@@ -47,7 +47,9 @@ Compiled: 2026-08-13 | Sources: Unstop API, Scribd via r.jina.ai, Google Open So
 
 ### Adobe
 - Adobe hackathons (Adobe Creative Jam, Adobe Developer): reward creative tools, design, media tech, AI in creative workflows (Firefly), developer experience with Adobe APIs.
-- **What an Adobe-set problem likely rewards**: creative/design tech, media processing, generative AI in creative workflows, UI/UX excellence.
+- **Adobe India Hackathon 2025 (VERIFIED, Sibasish11/Adobe-Hackathon-2025 repo)**: Round 1 = pure DSA problem (Corporate Training — Max Employees: T employees, N workshops, rooms with capacities A/B, each employee needs K workshops; constraints up to 1e9, so it's an O(1)/math problem, not brute force). Adobe's coding round tests algorithmic thinking under big constraints.
+- **dentsu x Adobe global hackathon Q1'25 (VERIFIED, dentsu.com blog)**: 115 registrants, 28 teams, 12 countries, 72h hacking, 30 Adobe+AWS experts, ~3,000 API calls, 29 AWS accounts, 18 submissions. Winner: Sparky AI — node-based visual interface for image creation/manipulation, democratizing Adobe Firefly for non-developers (text prompts, background removal, element combining). Pattern: Firefly-powered creative tools, no-code/low-code wrappers, AWS infra.
+- **What an Adobe-set problem likely rewards**: creative/design tech, media processing, generative AI in creative workflows (Firefly), UI/UX excellence. Their DNA: Firefly integration, visual/no-code tooling, polished creative output, developer experience with Adobe APIs.
 
 ### Consensus sponsor DNA (all 5)
 1. **AI/ML is non-negotiable** — every one of the 5 has an AI product line (Gemini, Swift+ML, Llama, GenAI consulting, Firefly).
