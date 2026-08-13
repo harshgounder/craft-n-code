@@ -44,10 +44,16 @@ Healthcare, sustainability, agriculture, finance, education, cybersecurity, AI, 
 
 ## Open questions (PENDING)
 
-1. Exact idea submission format on Unstop (PPT? doc? fields?) — check portal Aug 15.
-2. Qualifier problem statements: released at submission open (Aug 15 21:00) or free-form idea?
+1. ~~Exact idea submission format on Unstop (PPT? doc? fields?)~~ — check portal Aug 15.
+2. ~~Qualifier problem statements: released at submission open (Aug 15 21:00) or free-form idea?~~ — **RESOLVED (2026-08-13, user intel from club insider):** the topic is NOT set by the club. The sponsor companies behind the hackathon will set the question. Topic unknown until companies release it.
 3. How many teams advance to nationals from Rajasthan.
 4. Full CSC LinkedIn post text (extraction providers down 2026-08-13: Firecrawl 402, Tavily/Exa/Linkup failed).
+
+## Prep implication (topic unknown)
+
+- The qualifier question comes from sponsor companies, released on their schedule. Club only runs logistics.
+- Prep = build a FLEXIBLE stack + idea bank across the listed themes (healthcare, sustainability, agriculture, finance, education, cybersecurity, AI) so we can pivot fast once the question drops.
+- Watch the Unstop portal + CSC channels (Instagram @csc_muj, LinkedIn) for the question release. Friend in the club = early-warning channel — ask him to ping when companies finalize.
 
 ## Notes
 
