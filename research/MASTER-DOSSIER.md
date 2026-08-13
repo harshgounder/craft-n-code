@@ -1,6 +1,34 @@
 # CRAFT N CODE — MASTER DOSSIER (everything we know)
 
-Compiled: 2026-08-13 | Repo: ~/craft-n-code | Sources: Unstop API, LinkedIn LD+JSON, GitHub forensics, rivalsearch multi-engine, Wayback, cscmuj.com, subagent OSINT
+Compiled: 2026-08-13 | Repo: ~/craft-n-code | Sources: Unstop API, LinkedIn LD+JSON, GitHub forensics, rivalsearch multi-engine, Wayback, cscmuj.com, subagent OSINT, craftncode-2026.vercel.app, D³ Fest 2026 brochure PDF
+
+## ⚡ THE 5 TRACKS (VERIFIED — live event site + source repo)
+
+| ID | Title | Body | Points |
+|---|---|---|---|
+| PS-01 | Rewind the Legacy | Take an outdated tool your campus still depends on and rebuild it for 2026. | 100 |
+| PS-02 | Night Ops | Tooling for people who work odd hours — sleep, safety, focus, logistics. | 200 |
+| PS-03 | Signal / Noise | Cut through information overload with search, summarisation or ranking. | 300 |
+| PS-04 | Open Track | Anything you can justify in a 3-minute demo. Surprise the judges. | 400 |
+| PS-05 | Hardware Hack | Sensors, microcontrollers, ugly wiring. Physical output required. | 500 |
+
+- "CHOOSE ONE TRACK AT CHECK-IN. SWITCHING AFTER THE CLOCK STARTS COSTS 30 MINUTES."
+- Full forensics: research/EVENT-SITE-FORENSICS.md
+
+## ⚡ OVERNIGHT TIMELINE (VERIFIED — live site /about)
+
+20:00 check-in · 21:30 problem statements go live + clock starts · 01:00 midnight fuel + mentors · 04:30 debug hour · 09:00 freeze, demo, judging
+
+## ⚡ SUBMISSION (VERIFIED — live site /submit)
+
+- Deadline 09:00. One submission per team, resubmit until clock hits zero (latest wins).
+- Fields: team_name, track, repo_url, demo_url (optional), pitch (1-2000 chars). Supabase backend.
+
+## ⚡ SPONSORS (VERIFIED — live site /sponsors)
+
+- TITLE PARTNER: "Your Brand Here" (EMPTY) · POWERED BY: 2 slots open · COMMUNITY: 3 slots open
+- Contact: sponsors@craftncode.dev · "hall of 200 builders at 3 AM" (~200 expected)
+- CSC post (Aug 11): problems "inspired by Google, Apple, Facebook, Accenture & Adobe" = the sponsor companies setting the questions (matches user's club-insider intel)
 
 ## 0. THE EVENT (2026, Rajasthan)
 
