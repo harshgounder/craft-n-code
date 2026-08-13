@@ -37,6 +37,29 @@ Compiled: 2026-08-13 | Source: p-society/D3-2k25-solutions README (submission ta
 - Challenge 5 (Inbox Navigator): 1 team
 - Challenge 7 (Mobile Packet Hunter): 1 team ← the WINNER
 
+## Tech stacks (from repo metadata + READMEs)
+
+| Team | Project | Stack |
+|---|---|---|
+| Kon'nichiwa sekai | PromptBuddy | TypeScript, **Google Gemini 2.0 Flash + Composio v3** (Inbox Navigator: Gmail OAuth, color-coded countdowns, doc repo, calendar sync) |
+| Team CogniCode | EduSynth | **Python FastAPI + Next.js 16 + React 19 + TS** (AI lecture generator: animations, voice narration) |
+| Lone Wolf | digital-lab-grader | JavaScript |
+| CodeX | SwapX | TypeScript (skill exchange platform) |
+| Voxforge | Evalo | TypeScript (24hr hackathon project) |
+| Marine Drive | Acadify | TypeScript |
+| Hackasauras | Drawisly | TypeScript |
+| SentinelX | swap-sphere | TypeScript |
+| Magic Monks | Maven | JavaScript |
+| Raccoon Fanclub | Codemia | JavaScript |
+| Resolvers | DigiGrade | JavaScript |
+| DIAMOND | Project_Kaushal | JavaScript |
+| AgroFast | VedaScore | HTML |
+| GITLERS | swapp | HTML |
+| Just-Git-Gud | LECTRA | Python |
+| Highlanders | AFTERPACKETS | Java/Kotlin/C++/React (the outlier — native mobile + DPI) |
+
+**Stack pattern**: 10/16 teams used JS/TS web stacks. The winner was the ONLY native-mobile team. Judges rewarded technical depth over framework familiarity.
+
 ## The key insight
 
 The winner (Highlanders) took the LEAST-attempted challenge (7, only 1 team) and built the most technically complex solution. The most-attempted challenges (6, 3, 4) were the most crowded — the winner chose the hardest, emptiest lane.
