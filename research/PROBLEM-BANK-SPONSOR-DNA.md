@@ -42,7 +42,8 @@ Compiled: 2026-08-13 | Sources: Unstop API, Scribd via r.jina.ai, Google Open So
 
 ### Accenture
 - Accenture hackathons (e.g. Accenture Innovation Challenge): reward business-relevant innovation, industry solutions (healthcare, finance, retail), AI + cloud + data, presentation quality, feasibility for enterprise adoption.
-- **What an Accenture-set problem likely rewards**: enterprise-grade solutions, industry problem framing, data/AI depth, business case clarity, polished pitch.
+- **Accenture Innovation Challenge 2026 (VERIFIED, Unstop API 1714566)**: "Reinvent with AI" — 3,879 reg / 2,273 players, Jul 24-Oct 9. Themes: trusted enterprise AI systems, reimagining patient care (intelligent decision support), transforming business insights into action, smarter/resilient manufacturing. Multi-stage: Round 1 = 2-3 slide deck (prescribed template) + 2-3 min video (TeamName_CampusName naming), then prototype development. Teams up to 3, pre-final/final year only. Core ask: "people and AI working together" — human-in-the-loop framing.
+- **What an Accenture-set problem likely rewards**: enterprise-grade solutions, industry problem framing, data/AI depth, business case clarity, polished pitch. Their DNA: AI + human ingenuity, measurable business value, structured deliverables (template compliance matters).
 
 ### Adobe
 - Adobe hackathons (Adobe Creative Jam, Adobe Developer): reward creative tools, design, media tech, AI in creative workflows (Firefly), developer experience with Adobe APIs.
