@@ -44,6 +44,16 @@ Compiled: 2026-08-13 | Method: GitHub forensics (gh CLI) on the PUBLIC event-sit
 - 2026-08-10: "shorten-header-wordmark-to-cn1"
 - Food ordering menu planned for the overnight hackathon (src/routes/food.tsx)
 
+## OVERNIGHT TIMELINE (VERIFIED — src/routes/about.tsx)
+
+| Time | Event |
+|---|---|
+| 20:00 | Check-in, team lock-in, opening brief |
+| 21:30 | Problem statements go live. Clock starts. |
+| 01:00 | Midnight fuel run + mentor rounds |
+| 04:30 | Debug hour. "The city is asleep, you are not." |
+| 09:00 | Freeze, demo, judging |
+
 ## SUBMISSION FLOW (VERIFIED — src/routes/submit.tsx)
 
 - "DEADLINE 09:00" (dawn deadline — overnight hackathon ends 09:00)
