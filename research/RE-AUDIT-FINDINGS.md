@@ -41,6 +41,12 @@ Real (all live-verified): Rajasthan 706/147, Karnataka 196/34, Tamil Nadu 182/20
 - The 2024 problems were released on-site at the finals (24h format)
 - The RVCE state round (Oct 23-24) theme = "AI and Big Data for food safety" (verified from cyb3r17/rvce-craft-n-code README)
 
+### 2d. 2025 nationals themes (VERIFIED, LinkedIn sagarbm + RVCE post)
+- The 2025 national finals (Nov 7-9) themes: **AI for Personal Development** + **Agentic Healthcare Systems**
+- The Karnataka state round (RVCE Coding Club, Sep 27-28 2025, online): same themes, ₹50K+, top 2 → nationals with free travel/food/stay
+- This confirms the state-round structure: each state club runs its own round, top 2 advance, nationals have 2-3 themes
+- 2026 nationals (Oct 30-Nov 1): themes NOT yet public (released 8:00 AM IST Oct 30 per listing)
+
 ## 3. VERIFIED-CLEAN CLAIMS (re-checked, still true)
 
 - 2025 winners: Team Highlanders (MUJ) with AFTERPACKETS — VERIFIED (roster + repo + commit dates)
