@@ -28,6 +28,7 @@ Compiled: 2026-08-13 | Sources: Unstop API, Scribd via r.jina.ai, Google Open So
 ### Google
 - Google Open Source hackathon policy (VERIFIED, opensource.google): Google employees can only participate where IP terms are clean (no IP assignment, open-source-friendly). Google's own hackathons (Google Student AI Hackathon 2026, Solution Challenge) reward: practical AI applications, Google tech usage (Gemini, Cloud, Android), real-world impact, working demos.
 - Google Solution Challenge criteria: alignment with UN SDGs, technology implementation, impact, scalability.
+- **Solution Challenge 2026 (VERIFIED, madhavmadupu/google-solution-challenge-2026 overview.md)**: tagline "Build with AI"; must use ≥1 Google AI service (Gemini/Vertex/Vision); prototype MUST deploy to Google Cloud. 5 themes: PS1 Digital Asset Protection (sports media piracy), PS2 Rapid Crisis Response (hospitality), PS3 Smart Supply Chains, PS4 Unbiased AI Decision (bias detection), PS5 Smart Resource Allocation (volunteer matching). Judging: Technical Merit 40% (complexity, AI integration, scalability, security), Alignment with Cause 25%, Innovation 25%, UX 10%. Winning playbook: pick the theme with the highest technical ceiling + real datasets + natural AI fit; "the LLM is the product" not "we added a chatbot"; consumer-grade UX polish.
 - **What a Google-set problem likely rewards**: AI/ML application, mobile (Android), clean engineering, user-centric design, measurable impact.
 
 ### Apple
