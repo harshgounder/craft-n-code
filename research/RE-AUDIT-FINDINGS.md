@@ -31,9 +31,11 @@ Real (all live-verified): Rajasthan 706/147, Karnataka 196/34, Tamil Nadu 182/20
 - UP 2026: 1 reg (vs 59/10 in 2025) — just launched
 - Real competition at the event: ~30 teams (players_count funnel)
 
-### 2b. 2024 national timeline (from repo forensics)
+### 2b. 2024 national timeline (from repo forensics + Instagram)
 - TrueMix team (Bit-Binary-2027): started Oct 23 2024 (RVCE state round), carried to nationals Nov 8-9 (CodeNCraft-Demo "Final Push" Nov 9 08:03)
-- The 2024 nationals were Nov 8 (not Oct 8-10 as the Instagram post's date range suggests — the post says "D3 Fest 2024 (8th-10th October)" but the certificate says Nov 8; the fest ran Oct 8-10, the hackathon finals Nov 8)
+- The 2024 finals: kicked off 11 PM Nov 8, 24h format (Instagram DCmUDxPN4eu: "As the clock struck 11 PM, Craft-N-Code — the ultimate 24-hour national hackathon — kicked off"), ended Nov 9
+- The "8th-10th October" in the winner post = D3 Fest dates, NOT the hackathon. The certificate (Nov 8) + repo commits (Nov 9) are the ground truth.
+- 3rd place: never posted publicly (only 1st/2nd on Instagram)
 
 ### 2c. 2024 national problems: still not public
 - The 2024 problems were released on-site at the finals (24h format)
