@@ -44,6 +44,24 @@ Compiled: 2026-08-13 | Method: GitHub forensics (gh CLI) on the PUBLIC event-sit
 - 2026-08-10: "shorten-header-wordmark-to-cn1"
 - Food ordering menu planned for the overnight hackathon (src/routes/food.tsx)
 
+## SUBMISSION FLOW (VERIFIED — src/routes/submit.tsx)
+
+- "DEADLINE 09:00" (dawn deadline — overnight hackathon ends 09:00)
+- One submission per team. Resubmit allowed until the clock hits zero — latest entry wins.
+- Fields (zod-validated): team_name (1-100), track (1-50), repo_url (valid URL, 1-500), demo_url (optional valid URL, ≤500), pitch (1-2000)
+- Supabase anon INSERT allowed (anyone can submit)
+
+## NIGHT CANTEEN (VERIFIED — src/routes/food.tsx)
+
+| Item | Price | Note |
+|---|---|---|
+| Midnight Maggi | ₹40 | Extra masala, served 22:00–05:00 |
+| Cutting Chai | ₹15 | "The primary compiler" |
+| Cold Brew Shot | ₹60 | Double strength |
+| Paneer Roll | ₹80 | One-handed, keyboard safe |
+| Grilled Sandwich | ₹70 | Veg / cheese |
+| Pizza Slice | ₹90 | "Reheated at 03:00, honestly still good" |
+
 ## IMPLICATIONS FOR TEAM 511
 
 1. The 5 tracks ARE the problem structure — sponsor companies will likely map their questions onto these tracks (or the tracks ARE the sponsor questions).
