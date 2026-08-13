@@ -37,7 +37,8 @@ Compiled: 2026-08-13 | Sources: Unstop API, Scribd via r.jina.ai, Google Open So
 
 ### Facebook/Meta
 - Meta hackathons (Meta Hackathon, Llama Impact): reward AI (Llama models), social impact, community platforms, developer tools.
-- **What a Meta-set problem likely rewards**: AI/LLM applications, social/community platforms, content moderation, AR/VR (if relevant).
+- **LlamaCon Hackathon 2025 (VERIFIED, ai.meta.com blog)**: 238 devs from 600+ registrants, 24h, $35K pool, 44 projects, 2-round judging. Winners: 1st OrgLens (AI expert matching, knowledge graph from Jira/GitHub/docs/resumes, digital twin chat, React+Tailwind+Django+Llama API), 2nd Compliance Wizards (fraud transaction analyzer, Llama multimodality, AI voice assistant), 3rd Llama CCTV Operator (surveillance event detection via Llama 4 multimodal, no fine-tuning), Best Llama API Usage Geo-ML. Partners: Groq, Crew AI, Tavus, Lambda, Nebius, SambaNova (each offered credited usage + workshops + mentors + judges).
+- **What a Meta-set problem likely rewards**: AI/LLM applications, social/community platforms, content moderation, AR/VR (if relevant). LlamaCon pattern: LLM-native products (the LLM IS the product), knowledge graphs, multimodal, digital twins, real integrations (GitHub API, Jira).
 
 ### Accenture
 - Accenture hackathons (e.g. Accenture Innovation Challenge): reward business-relevant innovation, industry solutions (healthcare, finance, retail), AI + cloud + data, presentation quality, feasibility for enterprise adoption.
