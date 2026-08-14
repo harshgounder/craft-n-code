@@ -212,71 +212,22 @@ Real question drops
 - [ ] The 10-minute rule: company → family → skin → deck file → demo script. The deck files are pre-named for exactly this.
 - [ ] If the drop smells Adobe: have the creative wrapper idea sketched (one slide, one page)
 - [ ] If the drop smells web3: have the "souvenir NFT" skin sketched (one slide)
-- [ ] Deep-research run in flight (parallel pro-fast, run cnc-company-lanes): sponsor question patterns + predictions. Results land in ~/parallel-ai-stack/test-results/cnc-company-lanes.content.md, will be folded into this section when done.
+- [ ] Deep-research pass 1 landed (cnc-company-lanes, pro-fast): 5 named skins (BriefLens, Kavach Swift, Kavach Circle, Kavach Ops, SignalStory), cue table + setter prior below. Pass 2 (cnc-company-lanes-2) in flight: verbatim sponsor-set problem texts + state-round history.
 
----
+### The 10-minute cue table (pass-1 deep research, cnc-company-lanes)
 
-## 5.5 ★ THE COMPANY-LANE PROTOCOL (Aug 14 intel: the site tracks are the CLUB's backup - the REAL questions come from the sponsors)
-
-**What changed**: Rudra (club, in person) confirmed the 5 site tracks (PS-01..PS-05) are a FALLBACK if the sponsor companies don't deliver. The sponsors (Google, Apple, Facebook/Meta, Accenture, Adobe) set the real questions, and they set them in their OWN image. The club only runs logistics. So the decision tree fires on COMPANY DNA first, track second.
-
-**How to read the drop (2-minute scan)**:
-1. WHO set it? Read the problem text for the company's fingerprints (their product names, their API names, their phrasing).
-2. WHAT family is it? Map to the 2022/2025 problem families below (they recycle every 2-3 years with new tech).
-3. WHICH skin mounts? Our engine + Kavach cover the map. Web3 and pure-creative are the gaps. See the lane table.
-
-### The company fingerprint table (what each sponsor ACTUALLY sets)
-
-| Sponsor | Their DNA (verified from their own hackathons) | Family they tend to set | Our answer |
+| Cue in released statement | Likely sponsor | Build this | One acceptance test |
 |---|---|---|---|
-| Google | Solution Challenge: must use ≥1 Google AI service, deploy to Cloud. Themes: asset protection, crisis response, supply chains, unbiased AI, resource allocation. "The LLM is the product." | Search / summarize / ranking (2025 C5 Inbox Navigator is PURE Google DNA) | IDEA 3A Signal (already the C5 upgrade) |
-| Meta/FB | LlamaCon winners: OrgLens (AI expert matching, knowledge graph), Compliance Wizards (fraud analyzer), Llama CCTV (multimodal surveillance). LLM-native products, social/community, multimodal. | Skill-swap / community / social platforms (2025 C3) + fraud/security | IDEA 3A skin (matching) or Kavach (fraud lane) |
-| Accenture | Innovation Challenge: trusted enterprise AI, patient care, business insights into action, resilient manufacturing. Human-in-the-loop. Template-compliant decks. Enterprise ops. | Enterprise ops / dashboards / logistics (2025 C6 Digital TA, C4 content factory) | IDEA 1A Campus Pulse (ops skin) or engine-as-dashboard |
-| Adobe | Creative Jam winners: Sparky AI (node-based Firefly wrapper, no-code). Firefly integration, creative/media tools, UI polish. | Creative AI / media tools (2025 C4 lecture generator) | GAP - need a creative skin idea |
-| Apple | Swift Student Challenge: Swift/SwiftUI, accessibility, polished UX, mobile. | Mobile UX / accessibility / health-safety (2025 C7 mobile, PS-02 night ops) | IDEA 2A Night Ops (mobile-first) |
+| Documents, sources, notices, search, summarize, deadlines, grounded answer | Google | BriefLens (Signal engine + source map + confidence bands) | Every answer has evidence + an action |
+| Swift, SwiftUI, playground, iPhone, camera, sensor, accessibility, native app | Apple | Kavach Swift (native risk timeline, accessible) | Judge completes the core interaction in 1 min |
+| Llama, open model, multimodal, video, audio, agent, community, moderation, fraud | Meta | Kavach Circle (user-defined rule + evidence + human override) | User defines a rule, system finds evidence, human approves |
+| Workflow, case, hospital, plant, field, employee, KPI, approval, enterprise | Accenture | Kavach Ops (case intake → owner → approval → metric) | One case moves intake → resolution |
+| Firefly, creative, campaign, asset, image, video, brand, personalize, node | Adobe | SignalStory (source → editable asset with provenance) | Source becomes an editable asset |
+| No sponsor cues, only Legacy/Night Ops/Signal/Open/Hardware language | Club fallback | Shared decision cockpit → closest track | Visible input-to-outcome loop |
 
-### The 2022 + 2025 problem families (the recycle pattern - verified verbatim)
+### Setter prior (if exactly one sponsor writes the state question)
 
-| Family | 2022 (D3 Fest) | 2025 (Rewind & Recode) | 2026 site tracks (the backup) |
-|---|---|---|---|
-| Campus ops | D3h02 hostel mgmt + complaints, D3h03 smart campus, D3h05 mess | - | PS-01 Legacy, PS-02 Night Ops |
-| Inbox/info overload | - | C5 Inbox Navigator (Gmail+Classroom → dashboard, deadlines, calendar sync, MCP) | PS-03 Signal/Noise |
-| Web3 | D3h08 crypto crowdfunding, D3h09 NFT ticketing | C1 NFT ticketing, C2 loyalty cards | - (gap) |
-| ML/AI | D3h06 PM2.5 prediction | C4 AI lecture generator | PS-05 Hardware (trap) |
-| Security | - | C7 Mobile Packet Hunter (the 2025 WINNER lane) | - (Kavach covers it) |
-| Edu/enterprise | - | C6 Digital TA (lab grader), C3 skill swap | - |
-| Social/food | D3h04 bill split, D3h07 IRCTC | - | - |
-
-### The lane decision (fires at 21:30, 10 minutes)
-
-```
-Real question drops
-│
-├─ Company fingerprint = Google ──────► IDEA 3A Signal (search/summarize/rank) - home turf
-├─ Company fingerprint = Meta ────────► 3A skin (skill/match) or Kavach (fraud/security)
-├─ Company fingerprint = Accenture ───► IDEA 1A Campus Pulse (ops) - or engine dashboard
-├─ Company fingerprint = Apple ───────► IDEA 2A Night Ops (mobile safety) or 3A mobile skin
-├─ Company fingerprint = Adobe ───────► GAP: creative skin - fall back to 3A with a creative
-│                                       wrapper (generate the digest AS a visual asset)
-├─ Web3 flavor (wallet/contract/NFT) ─► GAP: NOT pre-built. Decide fast: (a) skip to 3A if
-│                                       allowed, (b) build the web3 skin ONLY if we judge the
-│                                       field weak (2025 C1/C2 were the crowded lanes)
-├─ Security/safety flavor ────────────► Kavach (existing product, real demo)
-└─ Off-map / none of the above ────────► Section 7 protocol (map to closest skin, never
-                                        pitch a fresh idea)
-```
-
-### The two gaps (honest)
-
-1. **Adobe/creative lane**: no pre-built creative-AI skin. Mitigation: the engine's digest IS a content-generation product (summaries + ranked feed = a visual asset factory). A creative wrapper = themed visual cards + auto-poster generation from the same pipeline. Decide at the drop whether that's enough.
-2. **Web3 lane**: nothing pre-built. Mitigation: 2025 C1/C2 were the CROWDED lanes (everyone does web3). If the companies set web3, the field splits and our Signal beats them on polish. Do NOT panic-build a smart contract at 23:00. The engine + a "mint my digest as a souvenir NFT" skin is the 24h-safe play (one ERC-721 mint call, no marketplace).
-
-### What this changes in prep (do BEFORE 21:30 Aug 15)
-
-- [ ] Read the drop TWICE: once for company fingerprint, once for family
-- [ ] The 10-minute rule: company → family → skin → deck file → demo script. The deck files are pre-named for exactly this.
-- [ ] If the drop smells Adobe: have the creative wrapper idea sketched (one slide, one page)
-- [ ] If the drop smells web3: have the "souvenir NFT" skin sketched (one slide)
+Google 24% > Accenture 22% > Meta 21% > Adobe 18% > Apple 15%. Working priors, not facts. The released text OVERWHELMS them: if the statement names a sponsor product/API/vocabulary, that sponsor wins, full stop. Evidence labels in the report: VERIFIED = source seen, INFERRED = reasoned prediction, UNVERIFIED = rumor. The report's key negative finding: public record does NOT prove sponsor authorship, keep the insider signal as a live hypothesis, and the shared engine wins either way (source → signal → rank → explanation → owner → action → outcome).
 
 ---
 
