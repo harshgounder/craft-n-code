@@ -229,6 +229,30 @@ Real question drops
 
 Google 24% > Accenture 22% > Meta 21% > Adobe 18% > Apple 15%. Working priors, not facts. The released text OVERWHELMS them: if the statement names a sponsor product/API/vocabulary, that sponsor wins, full stop. Evidence labels in the report: VERIFIED = source seen, INFERRED = reasoned prediction, UNVERIFIED = rumor. The report's key negative finding: public record does NOT prove sponsor authorship, keep the insider signal as a live hypothesis, and the shared engine wins either way (source → signal → rank → explanation → owner → action → outcome).
 
+### Pass-2 findings (cnc-company-lanes-2, DEEP 90.1, 111 cites)
+
+**Status check**: NO public source proves the sponsors write the questions. The sponsor-set claim stays UNVERIFIED until the drop itself. Prep is modular so it wins either way.
+
+**The 3 ranked predicted shapes (INFERRED, rehearsal only, never claim they are real)**:
+
+1. **Agentic operations / personal productivity** (Google ADK: agents, tools, multi-agent, debug, deploy; plus 2025's "AI for Personal Development" theme). Build response: task intake, planner, checklist mock tool, approval gate, progress dashboard, completion metric. Simulate external actions until the prompt confirms integration.
+2. **Multimodal campus/community assistant** (Meta Llama 4: open-weight natively multimodal + Apple 2026 accessibility winners). Build response: upload/camera input, OCR/extraction, evidence panel, confidence score, correction flow, human escalation. No clinical/legal certainty promises.
+3. **Responsible creative/enterprise media workflow** (Adobe Firefly API: generative creative workflows + Accenture Tech Next: autonomous intelligence for work). Build response: brief intake, asset generation adapter, captions/alt text, reviewer approval, provenance record, export. Labeled mock if credentials unavailable.
+
+**Prep architecture (from the report, what to have ready before 21:30)**:
+- Input adapter: text, image, PDF, sensor/mock event (covers multimodal + hardware prompts)
+- Orchestrator: deterministic router + optional agent (covers Google/Accenture shapes)
+- Model adapter: pluggable (ollama-cloud / Google / Llama / local mock), avoids vendor lock-in
+- Creative adapter: image/media generation interface (covers Adobe shape)
+- Mobile shell: responsive web shell or SwiftUI starter (covers Apple shape)
+- Safety layer: PII redaction, consent, approval (enterprise/healthcare)
+- Evidence layer: source links, confidence, audit events (turns demo into defensible system)
+- Evaluation: latency, accuracy, completion, fallback (aligns with measurable-success judging)
+
+**Failure cases to avoid (from the report)**: building a guessed sponsor prompt before the release (wait for text), generic chatbot with no measurable outcome (define user, action, metric), agent with unrestricted actions (approval gates + mock tools), multimodal demo without error handling (confidence + correction UI), media generator without provenance (store prompt + asset lineage), mobile-only build before the prompt (keep web/API fallback), healthcare claims without boundaries (triage + non-diagnostic framing).
+
+**Our scaffold vs this**: the shared engine already IS the input adapter (JSON feed) + orchestrator (dedupe/rank) + model adapter (ollama-cloud + offline) + evidence layer (source_id, deadline, rank_score) + evaluation (verified 13/13). The gaps are: creative adapter (none, fine), mobile shell (web UI is responsive, fine), safety layer (Kavach covers it), approval gate (add if the prompt smells agentic: one POST /api/approve endpoint, 30 min).
+
 ---
 
 ## 6. THE SHARED SCAFFOLD (build ONCE before 21:30 - do not skip)
