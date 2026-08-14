@@ -30,6 +30,7 @@ Updated: 2026-08-14 15:10 IST (re-audit refresh)
 | File | What it is |
 |---|---|
 | `DEMO-STORYBOARDS.md` | 4× 3-min storyboards (second-by-second voiceover scripts for pre-recorded videos) |
+| `BUILD-SPEC.md` | ★ Plan-only spec for the 2 pending scaffold upgrades (approval gate + trace viewer/fixture replay): exact endpoints, table schemas, G1-G13/T1-T6 acceptance tests. Build awaits user go (asked 14 Aug, answer: hold builds) |
 | `HARDWARE-GATE.md` | Archived option (PS-05 hardware sourcing checklist). NOT a track assumption - kept only as a what-if |
 
 ## research/ - the intel

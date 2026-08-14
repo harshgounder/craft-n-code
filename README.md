@@ -244,7 +244,7 @@ Oct 30 – Nov 1 national finals (24h overnight + judging)
 
 | Item | Who | Effort |
 |---|---|---|
-| Approval gate (rank-1 predicted shape = approved tools) | Hermes (awaiting user go) | 30-45 min |
+| Approval gate + trace viewer/fixture replay (rank-1 predicted shape = approved tools; full build spec in `docs/BUILD-SPEC.md`, G1-G13/T1-T6 acceptance tests) | Hermes (awaiting user go) | ~2h both |
 | Rudra ask: 2025 Rajasthan state-round problems + judging format | User (can't do from phone) | 1 message |
 | Demo videos (4× 3-min, screen + voiceover) | Team | ~1h each |
 | Pitch rehearsal (2:30 target, hard timer) | Team | 30 min |
