@@ -1,0 +1,9 @@
+# generated artifacts
+scaffold/engine/signal.db
+scaffold/engine/.llm_cache.json
+scaffold/webapp/static/demo-feed.json
+scaffold/deck/node_modules/
+scaffold/deck/package-lock.json
+scaffold/deck/package.json
+*.pdf
+*.jpg

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal - one ranked feed for your day</title>
+<style>
+  :root{
+    --bg:#0B1020; --panel:#141B33; --panel2:#1B2440; --line:#263055;
+    --txt:#E8ECF8; --mut:#93A0C4; --accent:#6C5CE7; --accent2:#00CE8F;
+    --warn:#FFB020; --danger:#FF5470; --chip:#202A4E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:Inter,'Segoe UI',system-ui,sans-serif;min-height:100vh}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 20px 60px}
+  /* ── header ── */
+  header{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:22px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.3px}
+  .logo .dot{width:12px;height:12px;border-radius:50%;background:var(--accent2);box-shadow:0 0 14px var(--accent2)}
+  .logo small{color:var(--mut);font-weight:500;font-size:12px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{background:var(--chip);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:5px 12px;font-size:12px}
+  .chip.live{color:var(--accent2);border-color:var(--accent2)}
+  /* ── hero / digest ── */
+  .digest{background:linear-gradient(135deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:22px}
+  .digest h2{font-size:15px;color:var(--mut);font-weight:600;margin-bottom:12px;letter-spacing:.4px;text-transform:uppercase}
+  .digest .urg{display:flex;gap:12px;flex-direction:column}
+  .urg-item{display:flex;gap:12px;align-items:flex-start;background:rgba(0,206,143,.07);border:1px solid rgba(0,206,143,.25);border-radius:12px;padding:12px 14px}
+  .urg-item .tag{background:var(--accent2);color:#04120C;font-weight:800;font-size:11px;border-radius:6px;padding:3px 8px;flex-shrink:0;margin-top:1px}
+  .urg-item .txt{font-size:14.5px;line-height:1.45}
+  .urg-item .dl{margin-top:4px;font-size:12.5px;color:var(--warn);font-weight:600}
+  /* ── tabs ── */
+  .tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  .tab{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:10px;padding:9px 16px;font-size:13.5px;font-weight:600;cursor:pointer;transition:.15s}
+  .tab:hover{color:var(--txt);border-color:var(--accent)}
+  .tab.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  /* ── feed cards ── */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;transition:.15s}
+  .card:hover{border-color:var(--accent)}
+  .card .rank{font-size:17px;font-weight:800;color:var(--accent);min-width:44px;text-align:center;padding-top:2px}
+  .card .rank small{display:block;font-size:10px;color:var(--mut);font-weight:600}
+  .card .chan{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--mut);background:var(--chip);border-radius:6px;padding:3px 8px;margin-bottom:6px}
+  .card h3{font-size:15.5px;margin-bottom:5px}
+  .card .sum{font-size:13.5px;color:var(--mut);line-height:1.5}
+  .card .meta{display:flex;gap:12px;margin-top:9px;font-size:12px;color:var(--mut);flex-wrap:wrap}
+  .card .meta .dl{color:var(--warn);font-weight:700}
+  .card .meta .sender{color:var(--txt);opacity:.85}
+  .card.urgent{border-left:4px solid var(--warn)}
+  /* ── search ── */
+  .searchbar{display:flex;gap:10px;margin-bottom:18px}
+  .searchbar input{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 16px;color:var(--txt);font-size:14.5px;outline:none}
+  .searchbar input:focus{border-color:var(--accent)}
+  .searchbar button{background:var(--accent);border:none;border-radius:12px;padding:0 22px;color:#fff;font-weight:700;font-size:14px;cursor:pointer}
+  /* ── complaints ── */
+  .complain-box{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .complain-box input,.complain-box select,.complain-box textarea{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;color:var(--txt);font-size:13.5px;outline:none}
+  .complain-box textarea{min-height:70px;resize:vertical}
+  .complain-box button{background:var(--accent2);color:#04120C;border:none;border-radius:10px;padding:12px;font-weight:800;font-size:14px;cursor:pointer}
+  .status{font-size:13px;color:var(--accent2);margin-top:6px;min-height:18px}
+  .slabar{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:12px;color:var(--mut)}
+  .slabar .bar{flex:1;height:6px;background:var(--chip);border-radius:3px;overflow:hidden}
+  .slabar .bar span{display:block;height:100%;background:var(--accent2)}
+  /* ── stats ── */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .stat .n{font-size:24px;font-weight:800;color:var(--accent2)}
+  .stat .l{font-size:12px;color:var(--mut);margin-top:2px}
+  footer{color:var(--mut);font-size:12px;text-align:center;margin-top:40px;line-height:1.7}
+  .hide{display:none}
+  .btn-skin{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:600;cursor:pointer}
+  .btn-skin:hover{border-color:var(--accent)}
+  @media(max-width:640px){.card .rank{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo"><span class="dot"></span> Signal <small>one ranked feed · Team 511</small></div>
+    <div class="chips">
+      <span class="chip live" id="llm-chip">llm: -</span>
+      <span class="chip" id="n-chip">- items</span>
+    </div>
+  </header>
+
+  <!-- digest -->
+  <section class="digest">
+    <h2>Today in 60 seconds</h2>
+    <div class="urg" id="digest"></div>
+  </section>
+
+  <!-- stats -->
+  <section class="stats" id="stats"></section>
+
+  <!-- tabs -->
+  <div class="tabs">
+    <button class="tab on" data-v="feed">Feed</button>
+    <button class="tab" data-v="search">Ask</button>
+    <button class="tab" data-v="complaints">Complaints</button>
+  </div>
+
+  <!-- feed view -->
+  <div id="v-feed">
+    <div id="feed"></div>
+  </div>
+
+  <!-- search view -->
+  <div id="v-search" class="hide">
+    <div class="searchbar">
+      <input id="q" placeholder='ask anything…  e.g. "when is the MTE?"' onkeydown="if(event.key==='Enter')doSearch()">
+      <button onclick="doSearch()">Ask</button>
+    </div>
+    <div id="search-res"></div>
+  </div>
+
+  <!-- complaints view -->
+  <div id="v-complaints" class="hide">
+    <div class="complain-box">
+      <input id="c-title" placeholder="What's wrong?  e.g. Water cooler broken on Hostel C floor 3">
+      <textarea id="c-body" placeholder="Details… (where, since when, how bad)"></textarea>
+      <select id="c-cat">
+        <option>plumbing</option><option>electrical</option><option>hygiene</option>
+        <option>network</option><option>safety</option><option>other</option>
+      </select>
+      <button onclick="fileComplaint()">File complaint → auto-triage</button>
+      <div class="status" id="c-status"></div>
+    </div>
+    <div id="complaints"></div>
+  </div>
+
+  <footer>
+    Signal engine - ingest → dedupe → summarize → rank → deadlines.<br>
+    Demo runs on pre-imported campus data. Zero external services needed.
+  </footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let FEED={items:[]};
+
+async function jget(u){const r=await fetch(u);return r.json()}
+
+async function load(){
+  const [feed,digest,stats]=await Promise.all([
+    jget('/api/feed'),jget('/api/digest'),jget('/api/stats')]);
+  FEED=feed;
+  $('llm-chip').textContent='llm: '+ (feed.llm?.model||'db');
+  $('n-chip').textContent=feed.total+' items';
+  renderStats(stats);
+  renderDigest(digest);
+  renderFeed(feed.items);
+  renderComplaints((await jget('/api/complaints')).complaints);
+}
+
+function renderStats(s){
+  $('stats').innerHTML=[
+    ['channels',s.channels?Object.keys(s.channels).length:'-'],
+    ['deadlines found',s.deadlines_found],
+    ['urgent now',FEED.items.filter(i=>i.is_urgent).length],
+    ['skin',s.skin_ready?'mount-ready':'-'],
+  ].map(([l,n])=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
+}
+
+function renderDigest(d){
+  const ur=d.urgent||[];
+  $('digest').innerHTML = ur.length? ur.map(i=>`
+    <div class="urg-item"><span class="tag">URGENT</span>
+      <div class="txt">${esc(i.summary)}
+        ${i.deadline_iso?`<div class="dl">⏰ deadline ${i.deadline_iso}</div>`:''}
+      </div></div>`).join('')
+    : '<div class="txt" style="color:var(--mut)">nothing urgent - you are clear today</div>';
+}
+
+const CH_ICON={gmail:'📧',classroom:'🎓',portal:'🏛',whatsapp:'💬',unstop:'⚡',instagram:'📸',complaint:'🛠'};
+function renderFeed(items){
+  $('feed').innerHTML=items.map((i,k)=>`
+    <div class="card ${i.is_urgent?'urgent':''}">
+      <div class="rank">#${k+1}<small>${i.rank_score}</small></div>
+      <div style="flex:1">
+        <span class="chan">${CH_ICON[i.channel]||''} ${i.channel}</span>
+        <h3>${esc(i.subject)}</h3>
+        <div class="sum">${esc(i.summary)}</div>
+        <div class="meta">
+          <span class="sender">${esc(i.sender)}</span>
+          ${i.deadline_iso?`<span class="dl">⏰ ${i.deadline_iso}</span>`:''}
+          ${i.is_urgent?'<span style="color:var(--warn);font-weight:700">⚠ urgent</span>':''}
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+async function doSearch(){
+  const q=$('q').value.trim();
+  if(!q)return;
+  const d=await jget('/api/search?q='+encodeURIComponent(q));
+  $('search-res').innerHTML=d.results.length?
+    d.results.map((i,k)=>`
+      <div class="card"><div class="rank">#${k+1}</div>
+        <div style="flex:1"><span class="chan">${i.channel}</span>
+        <h3>${esc(i.subject)}</h3>
+        <div class="sum">${esc(i.summary)}</div>
+        <div class="meta">${i.deadline_iso?`<span class="dl">⏰ ${i.deadline_iso}</span>`:''}</div></div>
+      </div>`).join('')
+    : '<div style="color:var(--mut);padding:20px">no match - try "mte", "fee", "lab"…</div>';
+}
+
+const SLA=[['open',1.0],['in-progress',.6],['fixed',0]];
+async function renderComplaints(list){
+  $('complaints').innerHTML=list.map((c,i)=>{
+    const status=c.status||'open';
+    const pct=(SLA.find(s=>s[0]===status)||SLA[0])[1];
+    return `<div class="card">
+      <div class="rank">#C-${114+i}</div>
+      <div style="flex:1"><span class="chan">🛠 ${c.category||'general'}</span>
+        <h3>${esc(c.subject)}</h3>
+        <div class="sum">${esc(c.body)}</div>
+        <div class="slabar"><span>${status}</span><div class="bar"><span style="width:${pct*100}%"></span></div>
+        <span>SLA ${c.sla_hours||48}h · escalated after ${(c.sla_hours||48)*2}h</span></div>
+      </div></div>`;
+  }).join('');
+}
+
+async function fileComplaint(){
+  const title=$('c-title').value.trim(), body=$('c-body').value.trim();
+  if(!title){$('c-status').textContent='say what is broken first';return}
+  const r=await fetch('/api/complaints',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({title,body,category:$('c-cat').value,sender:'You (demo)'})});
+  const d=await r.json();
+  $('c-status').textContent=`${d.ticket} filed → auto-triaged to ${d.item.category} · SLA 48h · you get pinged on status change`;
+  $('c-title').value='';$('c-body').value='';
+  renderComplaints((await jget('/api/complaints')).complaints);
+}
+
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  ['feed','search','complaints'].forEach(v=>$('v-'+v).classList.toggle('hide',v!==t.dataset.v));
+});
+
+load();
+</script>
+</body>
+</html>
