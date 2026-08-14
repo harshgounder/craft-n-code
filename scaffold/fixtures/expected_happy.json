@@ -1,0 +1,12 @@
+{
+  "top3": ["happy-1", "happy-3", "happy-5"],
+  "proposals": [
+    {
+      "source_id": "happy-3",
+      "tool": "pay_fee",
+      "status": "pending",
+      "reason_hint": "fee"
+    }
+  ],
+  "notes": "Authority senders (Registrar, Academic, Accounts) dominate. The fee item is the obvious side-effecting action to propose."
+}

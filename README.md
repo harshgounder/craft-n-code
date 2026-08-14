@@ -245,7 +245,7 @@ Oct 30 – Nov 1 national finals (24h overnight + judging)
 | Item | Who | Effort |
 |---|---|---|
 | Approval gate (typed tools, policy gate, audit trail) | Hermes + opencode | DONE, verified 13/13 (G1-G13) |
-| Trace viewer + fixture replay (demo-failure insurance, spec: docs/BUILD-SPEC.md Part 2) | Hermes + opencode (awaiting user go) | ~45 min |
+| Trace viewer + fixture replay (mode badge, /api/trace, 3 golden fixtures) | Hermes + opencode | DONE, verified 12/12 (T1-T6 + offline-key regression) |
 | Rudra ask: 2025 Rajasthan state-round problems + judging format | User (can't do from phone) | 1 message |
 | Demo videos (4× 3-min, screen + voiceover) | Team | ~1h each |
 | Pitch rehearsal (2:30 target, hard timer) | Team | 30 min |

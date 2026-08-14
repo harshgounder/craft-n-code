@@ -14,11 +14,15 @@ Updated: 2026-08-14 15:10 IST (re-audit refresh)
 
 | File | What it is |
 |---|---|
-| `engine/engine.py` | ★ Domain-agnostic pipeline: ingest → dedupe → LLM summarize → rank → deadlines. LLM mode (ollama-cloud deepseek-v4-flash:0731) + full offline mode (regex dates + tf-idf + cache replay, zero deps). Demo never dies |
+| `engine/engine.py` | ★ Domain-agnostic pipeline: ingest → dedupe → LLM summarize → rank → deadlines. LLM mode (ollama-cloud deepseek-v4-flash:0731) + full offline mode (regex dates + tf-idf + cache replay, zero deps). Demo never dies. Trace ring buffer (last 200 steps) for the trace viewer |
 | `engine/approval.py` | Approval gate: typed tool registry (4 tools), policy gate (read-only auto / reversible suggest / side-effecting require), proposals + audit_events sqlite tables, audit-before-status-flip. Built by opencode per docs/BUILD-SPEC.md, verified 13/13 |
-| `webapp/serve.py` | Zero-dependency python HTTP server: /api/stats, /api/digest, /api/search, /api/complaints (ticket flow), /api/tools, /api/proposals, /api/approve, /api/audit |
-| `webapp/static/index.html` | Dark UI: "Today in 60 seconds" digest, 4 stat cards, 4 tabs (Feed/Ask/Requests/Actions), Actions = proposal cards + approve/reject/snooze + audit trail table |
+| `webapp/serve.py` | Zero-dependency python HTTP server: /api/stats, /api/digest, /api/search, /api/complaints (ticket flow), /api/tools, /api/proposals, /api/approve, /api/audit, /api/trace. Flags: --fixture NAME, --offline |
+| `webapp/static/index.html` | Dark UI: "Today in 60 seconds" digest, 4 stat cards, 4 tabs (Feed/Ask/Requests/Actions), Actions = proposal cards + approve/reject/snooze + audit trail table. Mode badge (live/cached/offline/fixture) + collapsible engine trace drawer |
 | `tests/test_approval.py` | Acceptance suite G1-G13 for the approval gate (plain python3, starts real server, 13/13 passing) |
+| `tests/test_trace.py` | Acceptance suite T1-T6 + offline-key regression for trace viewer + fixtures (plain python3, 12/12 passing) |
+| `fixtures/happy.json` + `expected_happy.json` | Golden feed: 6 benign items, authority senders dominate, expected top3 + pay_fee proposal |
+| `fixtures/ambiguous.json` + `expected_ambiguous.json` | Golden feed: near-duplicate pair (dedupe drops one), social items rank last |
+| `fixtures/adversarial.json` + `expected_adversarial.json` | Golden feed: scam-ish urgent item capped at 5.0, must NOT rank first |
 | `deck/deck-gen.js` | pptxgenjs skeleton → 4 sponsor-shaped decks (one source, 4 outputs) |
 | `deck/deck-agentic.pptx` | IDEA A BriefLens deck (agentic ops, Google/Accenture DNA) |
 | `deck/deck-multimodal.pptx` | IDEA B Kavach Circle deck (multimodal assistant, Meta DNA) |
@@ -32,7 +36,7 @@ Updated: 2026-08-14 15:10 IST (re-audit refresh)
 | File | What it is |
 |---|---|
 | `DEMO-STORYBOARDS.md` | 4× 3-min storyboards (second-by-second voiceover scripts for pre-recorded videos) |
-| `BUILD-SPEC.md` | Build spec for the 2 scaffold upgrades. Part 1 (approval gate) BUILT + VERIFIED 13/13 (opencode, commit pending). Part 2 (trace viewer/fixture replay) still pending |
+| `BUILD-SPEC.md` | Build spec for the 2 scaffold upgrades. Parts 1 + 2 BUILT + VERIFIED (approval gate 13/13, trace viewer + fixtures 12/12). Now a record, nothing pending |
 | `REPO-TOUR.md` | ★ The map: where everything lives and why, 30-second version + per-folder breakdown + reading order. Read this before anything else |
 | `CODE-WALKTHROUGH.md` | ★ Every scaffold file explained function-by-function (engine.py, serve.py, index.html, deck-gen.js, demo.sh) + production lessons + how to audit the code yourself |
 | `HARDWARE-GATE.md` | Archived option (PS-05 hardware sourcing checklist). NOT a track assumption - kept only as a what-if |

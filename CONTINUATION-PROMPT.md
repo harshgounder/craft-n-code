@@ -47,7 +47,8 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 
 ## NEXT STEPS (in order)
 
-1. **Approval gate: DONE** (built Aug 14 evening via opencode, verified 13/13 G1-G13: typed tool registry, policy gate, POST /api/approve, audit log, Actions tab in the UI). Next build: trace viewer + fixture replay (docs/BUILD-SPEC.md Part 2, ~45 min, awaiting user go).
+1. **Approval gate: DONE** (built Aug 14 evening via opencode, verified 13/13 G1-G13: typed tool registry, policy gate, POST /api/approve, audit log, Actions tab in the UI).
+1b. **Trace viewer + fixture replay: DONE** (built Aug 14 evening via opencode, verified 12/12 T1-T6: --fixture/--offline flags, mode badge, /api/trace drawer, 3 golden fixtures, scam cap. Real bug found + fixed in audit: --offline now truly forces offline even with a key set).
 2. **Rudra ask (USER ACTION, can't do from phone)**: ask Rudra (or any CSC exec) for the 2025 RAJASTHAN state-round problems + judging format. The ONLY gap the internet can't close. If obtained, drop in repo or Telegram and fold in.
 3. **Demo videos (TEAM ACTION)**: 4× 3-min pre-recorded (screen + voiceover), storyboards ready in docs/DEMO-STORYBOARDS.md.
 4. **Pitch rehearsal (TEAM ACTION)**: 2:30 target, hard timer.

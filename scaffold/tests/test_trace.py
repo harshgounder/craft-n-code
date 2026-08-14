@@ -1,0 +1,181 @@
+#!/usr/bin/env python3
+"""Acceptance tests T1-T6 from BUILD-SPEC Part 2 (trace viewer + fixtures).
+
+Plain python3, zero external deps. Starts the real server on an ephemeral
+port against fixture feeds, exercises /api/trace and /api/stats, then
+reports which tests pass/fail.
+"""
+from __future__ import annotations
+
+import json
+import os
+import subprocess
+import sys
+import tempfile
+import time
+import urllib.request
+from pathlib import Path
+
+HERE = Path(__file__).parent
+ROOT = HERE.parent
+SERVE = ROOT / "webapp" / "serve.py"
+FIXTURES = ROOT / "fixtures"
+
+PORT = 8124
+BASE = f"http://localhost:{PORT}"
+
+results = []
+
+
+def check(name, cond, detail=""):
+    results.append((name, bool(cond), detail))
+    mark = "PASS" if cond else "FAIL"
+    print(f"  [{mark}] {name}" + (f"  -> {detail}" if detail else ""))
+
+
+def jget(path):
+    with urllib.request.urlopen(BASE + path) as r:
+        return json.loads(r.read().decode())
+
+
+def expected_top3(name):
+    exp = json.loads((FIXTURES / f"expected_{name}.json").read_text())
+    return exp["top3"]
+
+
+def start_server(args, env):
+    return subprocess.Popen(
+        [sys.executable, str(SERVE)] + args,
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        cwd=str(ROOT / "webapp"), env=env)
+
+
+def stop(server):
+    if server is not None and server.poll() is None:
+        server.terminate()
+        server.wait()
+
+
+def main():
+    env = dict(os.environ)
+    env.pop("OLLAMA_API_KEY", None)
+
+    with tempfile.TemporaryDirectory() as td:
+        # ── T1 fixture happy: top3 matches expected, mode == fixture ──
+        s = start_server(["--port", str(PORT), "--fixture", "happy"], env)
+        time.sleep(1.2)
+        try:
+            feed = jget("/api/feed")
+            top3 = [i["source_id"] for i in feed["items"][:3]]
+            stats = jget("/api/stats")
+            check("T1 fixture happy top3 matches expected_happy.json",
+                  top3 == expected_top3("happy"), f"{top3}")
+            check("T1 /api/stats mode == fixture", stats.get("mode") == "fixture",
+                  stats.get("mode"))
+        finally:
+            stop(s)
+        time.sleep(0.3)
+
+        # ── T2 trace: ingest/dedupe/summarize/rank in order, rank has top3+score ──
+        s = start_server(["--port", str(PORT), "--fixture", "happy"], env)
+        time.sleep(1.2)
+        try:
+            tr = jget("/api/trace")["steps"]
+            steps = [t["step"] for t in tr]
+            check("T2 trace ingest/dedupe/summarize/rank present", "ingest" in steps
+                  and "dedupe" in steps and "summarize" in steps and "rank" in steps,
+                  f"{steps[:4]}")
+            rank = next(t for t in tr if t["step"] == "rank")
+            has_score = all("score" in e and "source_id" in e for e in rank.get("top3", []))
+            check("T2 rank step has top3 with score", has_score,
+                  json.dumps(rank.get("top3"))[:120])
+        finally:
+            stop(s)
+        time.sleep(0.3)
+
+        # ── T3 --offline forces offline even with key set ──
+        offline_env = dict(env)
+        offline_env["OLLAMA_API_KEY"] = "test-key-should-be-ignored"
+        s = start_server(["--port", str(PORT), "--fixture", "happy", "--offline"], offline_env)
+        time.sleep(1.2)
+        try:
+            stats = jget("/api/stats")
+            llm = jget("/api/feed")["llm"]
+            check("T3 --offline forces mode offline with key set",
+                  stats.get("mode") == "offline", stats.get("mode"))
+            check("T3 llm model reports OFFLINE", llm.get("model") == "OFFLINE",
+                  str(llm.get("model")))
+        finally:
+            stop(s)
+        time.sleep(0.3)
+
+        # ── T4 cached mode from DB feed (no fixture flag) ──
+        db_env = dict(env)
+        # seed the real engine DB so load_feed hits the cached path
+        db_dir = ROOT / "engine"
+        subprocess.run([sys.executable, str(db_dir / "engine.py"), "--seed"],
+                       capture_output=True, env=db_env, cwd=str(db_dir))
+        s = start_server(["--port", str(PORT)], db_env)
+        time.sleep(1.2)
+        try:
+            stats = jget("/api/stats")
+            feed = jget("/api/feed")
+            llm = feed["llm"]
+            check("T4 no-fixture feed served from DB", llm.get("model") == "db"
+                  and stats.get("mode") == "cached", f"mode={stats.get('mode')}")
+        finally:
+            stop(s)
+        time.sleep(0.3)
+
+        # ── T5 adversarial: scam item NOT ranked first ──
+        s = start_server(["--port", str(PORT), "--fixture", "adversarial"], env)
+        time.sleep(1.2)
+        try:
+            feed = jget("/api/feed")
+            ids = [i["source_id"] for i in feed["items"]]
+            scam = "adv-1"
+            check("T5 adversarial scam item NOT ranked first",
+                  ids[0] != scam and scam in ids, f"first={ids[0]}")
+            check("T5 top3 matches expected_adversarial.json",
+                  ids[:3] == expected_top3("adversarial"), f"{ids[:3]}")
+        finally:
+            stop(s)
+        time.sleep(0.3)
+
+        # ── T6 ambiguous: dedupe drops the dupe ──
+        s = start_server(["--port", str(PORT), "--fixture", "ambiguous"], env)
+        time.sleep(1.2)
+        try:
+            feed = jget("/api/feed")
+            ids = [i["source_id"] for i in feed["items"]]
+            tr = jget("/api/trace")["steps"]
+            dedupe = next(t for t in tr if t["step"] == "dedupe")
+            kept = dedupe.get("kept")
+            check("T6 ambiguous dedupe drops the dupe",
+                  "amb-1" in ids and "amb-2" not in ids, f"ids={ids}")
+            check("T6 dedupe trace reports kept=4", kept == 4, f"kept={kept}")
+        finally:
+            stop(s)
+        time.sleep(0.3)
+
+        # ── T (offline-key) key set + --offline => mode == offline (regression) ──
+        key_env = dict(env)
+        key_env["OLLAMA_API_KEY"] = "some-real-looking-key"
+        s = start_server(["--port", str(PORT), "--fixture", "happy", "--offline"], key_env)
+        time.sleep(1.2)
+        try:
+            stats = jget("/api/stats")
+            check("T-offline-key key set + --offline -> mode offline",
+                  stats.get("mode") == "offline", stats.get("mode"))
+        finally:
+            stop(s)
+
+    failed = [n for n, ok, _ in results if not ok]
+    print(f"\n{len(results) - len(failed)}/{len(results)} passed")
+    if failed:
+        print("FAILED:", ", ".join(failed))
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

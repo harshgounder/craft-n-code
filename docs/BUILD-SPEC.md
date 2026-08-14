@@ -1,7 +1,6 @@
 # BUILD-SPEC - the 2 pending scaffold upgrades (plan-only, no code yet)
 
-Status: PLAN ONLY. Written 2026-08-14 15:30 IST after the user's explicit
-"hold builds, plan-only for now". Build starts the moment the user says go.
+Status: Parts 1 + 2 BUILT + VERIFIED (2026-08-14 evening, via opencode, audited by Hermes). Part 1 = approval gate (G1-G13, 13/13). Part 2 = trace viewer + fixture replay (T1-T6 + offline regression, 12/12). This spec is now a record of what was built; no further work pending on these two items.
 Every item below is grounded in the CURRENT code (read serve.py + engine.py
 line-by-line today), so the build is mechanical execution, zero design time.
 

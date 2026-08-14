@@ -607,6 +607,71 @@ card appears PENDING -> click evidence, click APPROVE -> status flips to
 EXECUTED -> scroll to audit trail -> the row is there with the actor.
 "Nothing happens without a human, and everything is logged."
 
+## 5.6 TRACE VIEWER + FIXTURE REPLAY (Part 2, verified 12/12)
+
+The demo-failure insurance. Three modes on screen: LIVE (real LLM),
+CACHED (replayed responses), OFFLINE (deterministic rules), FIXTURE
+(golden data). Judges see a candid mode badge instead of a frozen demo.
+
+### engine.py changes (trace capture, no behavior change)
+
+- TRACE: deque(maxlen=200) ring buffer + push_trace(step) (stamps ts) +
+  get_trace() (newest first).
+- LLM.last_mode: "llm" | "cache" | "offline", set on every chat() path.
+- LLM.chat() reads OLLAMA_API_KEY / SIGNAL_MODEL / OLLAMA_BASE_URL
+  LAZILY from os.environ at call time, not at import. This was a real
+  bug found in audit: serve.py --offline blanks the env var AFTER engine
+  import, so the module-global key stayed set and the LLM was still
+  called. Now --offline truly forces offline even with a key present
+  (regression-tested: T-offline-key).
+- Exception path sets last_mode = "offline" before returning None (audit
+  nit: stale mode after a failed call).
+- run_pipeline pushes 4 steps: ingest (n), dedupe (dropped/kept),
+  summarize (mode + per-item modes), rank (top3 with score + why via
+  _rank_why).
+- SCAM_WORDS: urgent-sounding scam phrases ("click", "claim", "prize",
+  "gift card", "act now"...). offline_rank caps such items at 5.0 so a
+  scam item can never hit is_urgent (6.0) or rank first (T5).
+
+### serve.py changes
+
+- --fixture NAME loads scaffold/fixtures/NAME.json as Items and runs the
+  pipeline on it instead of the DB/seed. --offline forces offline mode.
+- current_mode(): fixture > offline > cached > live. OFFLINE is checked
+  BEFORE FIXTURE so --offline wins the badge.
+- /api/stats gains "mode". /api/trace returns the ring buffer.
+
+### index.html changes
+
+- Mode chip in the header ("mode: live/cached/offline/fixture").
+- Collapsible Engine Trace drawer: human-readable summary per step
+  ("received 6 items", "dropped 1 near-duplicates, kept 4", "summarized
+  6 items in offline mode") + raw JSON expandable, all esc() escaped.
+
+### fixtures/ (the golden data)
+
+- happy.json: 6 benign items, authority senders dominate; expected top3
+  = happy-1/happy-3/happy-5 + a pay_fee proposal expectation.
+- ambiguous.json: amb-1/amb-2 near-duplicates (dedupe keeps one, drops
+  the other), low-confidence social items rank last.
+- adversarial.json: a scam-ish urgent item (adv-1) with scam words; it
+  must NOT rank first (capped at 5.0). expected top3 = adv-2/adv-3/adv-1.
+- expected_*.json: the ground truth each fixture asserts against.
+
+### tests/test_trace.py (12/12)
+
+T1 fixture top3 + mode badge, T2 trace steps + rank top3 with scores,
+T3 --offline with key set (the bug regression), T4 cached DB mode,
+T5 scam not first in adversarial, T6 ambiguous dedupe drops dupe.
+Run: cd scaffold && python3 tests/test_trace.py
+
+### The stage story for this feature
+
+Mode badge + trace drawer = "here is exactly what the engine did and
+why, nothing is a black box". If the LLM dies mid-demo, flip to
+--offline and the demo still works. That is the zero-dependency rule
+made visible.
+
 ## 6. PRODUCTION LESSONS (what changes if this becomes real)
 
 The scaffold is deliberately simple: stdlib only, no frameworks, no auth.

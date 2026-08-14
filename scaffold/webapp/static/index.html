@@ -92,7 +92,19 @@
   th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
   th{color:var(--mut);font-weight:600}
   td .dt{color:var(--accent)}
-  footer{color:var(--mut);font-size:12px;text-align:center;margin-top:40px;line-height:1.7}
+  footer{
+    color:var(--mut);font-size:12px;text-align:center;margin-top:40px;line-height:1.7}
+  /* ── trace drawer ── */
+  .trace{margin-top:24px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .trace-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none}
+  .trace-head h3{font-size:13.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
+  .trace-body{padding:14px 18px;border-top:1px solid var(--line);font-size:12.5px}
+  .tstep{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+  .tstep .ts-name{font-weight:800;color:var(--accent)}
+  .tstep .ts-sum{color:var(--mut);margin:3px 0 0}
+  .tstep pre{background:var(--panel2);border-radius:8px;padding:8px 10px;margin-top:6px;color:var(--txt);font-size:11.5px;white-space:pre-wrap;word-break:break-word;max-height:160px;overflow:auto}
+  .caret{transition:.15s;color:var(--mut)}
+  .caret.open{transform:rotate(90deg)}
   .hide{display:none}
   .btn-skin{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:600;cursor:pointer}
   .btn-skin:hover{border-color:var(--accent)}
@@ -105,6 +117,7 @@
   <header>
     <div class="logo"><span class="dot"></span> Signal <small>one ranked feed · Team 511</small></div>
     <div class="chips">
+      <span class="chip" id="mode-chip">mode: -</span>
       <span class="chip live" id="llm-chip">llm: -</span>
       <span class="chip" id="n-chip">- items</span>
     </div>
@@ -168,6 +181,15 @@
     </div>
   </div>
 
+  <!-- trace drawer -->
+  <div class="trace">
+    <div class="trace-head" onclick="toggleTrace()">
+      <h3>Engine trace - why each item ranked</h3>
+      <span class="caret" id="trace-caret">&#9654;</span>
+    </div>
+    <div class="trace-body hide" id="trace-body"></div>
+  </div>
+
   <footer>
     Signal engine - ingest → dedupe → summarize → rank → deadlines.<br>
     Demo runs on pre-imported campus data. Zero external services needed.
@@ -184,12 +206,14 @@ async function load(){
   const [feed,digest,stats]=await Promise.all([
     jget('/api/feed'),jget('/api/digest'),jget('/api/stats')]);
   FEED=feed;
+  $('mode-chip').textContent='mode: '+ (stats.mode||'live');
   $('llm-chip').textContent='llm: '+ (feed.llm?.model||'db');
   $('n-chip').textContent=feed.total+' items';
   renderStats(stats);
   renderDigest(digest);
   renderFeed(feed.items);
   renderComplaints((await jget('/api/complaints')).complaints);
+  renderTrace((await jget('/api/trace')).steps||[]);
 }
 
 function renderStats(s){
@@ -272,6 +296,29 @@ async function fileComplaint(){
 }
 
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function stepSummary(st){
+  if(st.step==='ingest')return `received ${st.n} items from all channels`;
+  if(st.step==='dedupe')return `dropped ${st.dropped} near-duplicates, kept ${st.kept}`;
+  if(st.step==='summarize')return `summarized ${(st.per_item||[]).length} items in ${st.mode} mode`;
+  if(st.step==='rank')return `ranked; top 3 shown below`;
+  return '';
+}
+
+function renderTrace(steps){
+  $('trace-body').innerHTML=steps.map(st=>`
+    <div class="tstep">
+      <div class="ts-name">${esc(st.step)} <span style="color:var(--mut);font-weight:400">· ${esc(st.ts||'')}</span></div>
+      <div class="ts-sum">${esc(stepSummary(st))}</div>
+      <pre>${esc(JSON.stringify(st,null,2))}</pre>
+    </div>`).join('')||'<div style="color:var(--mut)">no trace yet</div>';
+}
+
+function toggleTrace(){
+  const b=$('trace-body'),c=$('trace-caret');
+  const open=b.classList.toggle('hide');
+  c.classList.toggle('open',!open);
+}
 
 const STATUS_CLS={pending:'pending',executed:'executed',approved:'approved',rejected:'rejected',snoozed:'snoozed'};
 function renderProposals(list){

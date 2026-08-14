@@ -1,0 +1,52 @@
+[
+  {
+    "channel": "email",
+    "source_id": "adv-1",
+    "sender": "Unknown Sender",
+    "subject": "URGENT: You have won a prize, act now",
+    "body": "Congratulations! You have won a gift card. Click this link and claim your prize before tonight. Verify your account and transfer the fee. Act now to avoid losing the money.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  },
+  {
+    "channel": "email",
+    "source_id": "adv-2",
+    "sender": "Registrar Office",
+    "subject": "Semester examinations from Nov 18",
+    "body": "Semester examinations will be held from 18 Nov to 2 Dec 2026. Last date to apply for re-exam: 10 Nov 2026. Timetable is on the portal.",
+    "received_at": "",
+    "profile_tags": ["exam"],
+    "kind": "notice"
+  },
+  {
+    "channel": "email",
+    "source_id": "adv-3",
+    "sender": "Dean Office",
+    "subject": "Hostel fee deadline",
+    "body": "Hostel fee last date is 25 Nov 2026. Pay online before then to avoid a late fine.",
+    "received_at": "",
+    "profile_tags": ["hostel"],
+    "kind": "deadline"
+  },
+  {
+    "channel": "chat",
+    "source_id": "adv-4",
+    "sender": "Department Group",
+    "subject": "Room change for the lab",
+    "body": "LAB SHIFTED to Room 4104 (was 4102). Same slot 2-4 PM. Share with everyone.",
+    "received_at": "",
+    "profile_tags": ["lab"],
+    "kind": "notice"
+  },
+  {
+    "channel": "email",
+    "source_id": "adv-5",
+    "sender": "",
+    "subject": "Library fine clearance",
+    "body": "All pending library fines must be cleared by 30 Nov 2026 or results are withheld.",
+    "received_at": "",
+    "profile_tags": ["library"],
+    "kind": "deadline"
+  }
+]

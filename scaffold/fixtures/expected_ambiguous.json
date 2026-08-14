@@ -1,0 +1,6 @@
+{
+  "top3": ["amb-1", "amb-3", "amb-4"],
+  "proposals": [],
+  "dedupe": {"expected_kept": 4, "expected_dropped": 1, "dupe_of": "amb-2"},
+  "notes": "amb-1 and amb-2 are near-duplicates; dedupe keeps the newer (tie -> first seen, amb-1) and drops amb-2. Low-confidence social items rank last."
+}

@@ -16,11 +16,25 @@ import sqlite3
 import sys
 import time
 import urllib.request
-from collections import Counter
+from collections import Counter, deque
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, date, timedelta
 from pathlib import Path
 from typing import Optional
+
+# In-memory ring buffer of pipeline steps for the trace viewer (BUILD-SPEC Part 2).
+TRACE: deque = deque(maxlen=200)
+
+
+def push_trace(step: dict) -> None:
+    """Append one pipeline step to the trace ring buffer."""
+    step["ts"] = datetime.now().isoformat(timespec="seconds")
+    TRACE.append(step)
+
+
+def get_trace() -> list[dict]:
+    """Return the trace buffer, newest step first."""
+    return list(reversed(TRACE))
 
 DB_PATH = Path(__file__).parent / "signal.db"
 CACHE_PATH = Path(__file__).parent / ".llm_cache.json"
@@ -76,6 +90,7 @@ class LLM:
                 self.cache = {}
         self.hits = 0
         self.misses = 0
+        self.last_mode = "offline"  # llm | cache | offline
 
     def _save_cache(self):
         try:
@@ -87,14 +102,21 @@ class LLM:
         key = hashlib.sha256((system + "\x00" + user).encode()).hexdigest()[:32]
         if key in self.cache:
             self.hits += 1
+            self.last_mode = "cache"
             return self.cache[key]
         self.misses += 1
 
-        if not OLLAMA_KEY:
+        # Read the key lazily so serve.py --offline (which blanks the env var
+        # after import) truly forces offline even when the key was set at import.
+        api_key = os.environ.get("OLLAMA_API_KEY", "")
+        model = os.environ.get("SIGNAL_MODEL", OLLAMA_MODEL)
+        base_url = os.environ.get("OLLAMA_BASE_URL", OLLAMA_URL).rstrip("/")
+        if not api_key:
+            self.last_mode = "offline"
             return None
 
         payload = {
-            "model": OLLAMA_MODEL,
+            "model": model,
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": user},
@@ -103,10 +125,10 @@ class LLM:
             "temperature": temperature,
         }
         req = urllib.request.Request(
-            f"{OLLAMA_URL}/chat/completions",
+            f"{base_url}/chat/completions",
             data=json.dumps(payload).encode(),
             headers={
-                "Authorization": f"Bearer {OLLAMA_KEY}",
+                "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
             },
         )
@@ -116,9 +138,11 @@ class LLM:
             out = data["choices"][0]["message"]["content"].strip()
             self.cache[key] = out
             self._save_cache()
+            self.last_mode = "llm"
             return out
         except Exception as e:
             print(f"  [llm] ollama-cloud failed ({e}); using offline", file=sys.stderr)
+            self.last_mode = "offline"
             return None
 
 
@@ -144,6 +168,11 @@ DEADLINE_WORDS = ["last date", "deadline", "due", "submit by", "before", "by "]
 
 URGENT_WORDS = ["urgent", "immediate", "last date", "deadline", "tomorrow", "mandatory",
                 "compulsory", "exam", "mte", "ete", "fee", "fine", "suspend", "ragging"]
+
+# Red flags that suggest a scam-ish urgent notice. Such items get their urgency
+# boost capped so they do not dominate the feed (BUILD-SPEC T5).
+SCAM_WORDS = ["click", "claim", "verify account", "suspicious activity", "prize", "won",
+              "lottery", "transfer", "bank", "password", "gift card", "act now", "free money"]
 
 def parse_date(text: str, today: date) -> Optional[date]:
     for pat in DATE_PATTERNS:
@@ -239,12 +268,31 @@ def offline_rank(items: list[Item], profile: list[str], today: date) -> list[Ite
         # urgency words
         if any(w in (it.subject + " " + it.body).lower() for w in URGENT_WORDS):
             score += 1.2
+        # scam detection: cap the score so scam-ish items never dominate
+        if any(w in (it.subject + " " + it.body).lower() for w in SCAM_WORDS):
+            score = min(score, 5.0)
         it.rank_score = round(score, 3)
         it.is_urgent = score >= 6.0
         scored.append(it)
 
     scored.sort(key=lambda x: -x.rank_score)
     return scored
+
+
+def _rank_why(item: Item) -> str:
+    """Human-readable one-line reason for an item's rank score."""
+    bits = []
+    if item.deadline_iso:
+        bits.append("deadline pressure")
+    if item.is_urgent:
+        bits.append("urgency")
+    if item.sender.lower() in ("registrar office", "dean", "accounts dept", "exam cell",
+                               "academic office", "controller"):
+        bits.append("authority")
+    bits.append("recency")
+    if item.profile_tags:
+        bits.append("profile match")
+    return ", ".join(bits[:3])
 
 
 # ────────────────────────────────────────────────────────────────
@@ -293,20 +341,37 @@ def run_pipeline(items: list[Item], profile: list[str], today: Optional[date] = 
     today = today or date.today()
     llm = LLM()
 
-    print(f"[engine] {len(items)} raw items → dedupe…")
+    push_trace({"step": "ingest", "n": len(items)})
+    raw_n = len(items)
     items = dedupe(items)
-    print(f"[engine] {len(items)} after dedupe → summarize…")
+    push_trace({"step": "dedupe", "dropped": raw_n - len(items), "kept": len(items)})
+    summarize_mode = "offline"
+    per_item = []
     for it in items:
         it.summary = llm_summarize(llm, it)
         it.deadline_iso = llm_deadline(llm, it, today)
         if it.deadline_iso:
             it.deadline = it.deadline_iso
-    print(f"[engine] ranking {len(items)} items…")
+        per_item.append({
+            "source_id": it.source_id,
+            "mode": llm.last_mode,
+        })
+        if llm.last_mode != "offline":
+            summarize_mode = llm.last_mode
+    push_trace({"step": "summarize", "mode": summarize_mode, "per_item": per_item})
     ranked = offline_rank(items, profile, today)
+    push_trace({
+        "step": "rank",
+        "top3": [
+            {"source_id": it.source_id, "score": it.rank_score,
+             "why": _rank_why(it)}
+            for it in ranked[:3]
+        ],
+    })
     return {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "today": today.isoformat(),
-        "llm": {"model": OLLAMA_MODEL if OLLAMA_KEY else "OFFLINE",
+        "llm": {"model": os.environ.get("OLLAMA_API_KEY", "") and OLLAMA_MODEL or "OFFLINE",
                 "cache_hits": llm.hits, "cache_misses": llm.misses},
         "profile": profile,
         "total": len(ranked),

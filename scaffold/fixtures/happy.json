@@ -1,0 +1,62 @@
+[
+  {
+    "channel": "email",
+    "source_id": "happy-1",
+    "sender": "Registrar Office",
+    "subject": "Semester examinations from Nov 18",
+    "body": "Semester examinations will be held from 18 Nov to 2 Dec 2026. Last date to apply for re-exam: 10 Nov 2026. Timetable is on the portal.",
+    "received_at": "",
+    "profile_tags": ["exam"],
+    "kind": "notice"
+  },
+  {
+    "channel": "portal",
+    "source_id": "happy-2",
+    "sender": "Academic Office",
+    "subject": "Assignment 2: submission",
+    "body": "Assignment 2 is uploaded. Submit by 19 Nov 2026. 10 questions, 15 marks. This is the obvious side-effecting action to follow up on.",
+    "received_at": "",
+    "profile_tags": ["assignment"],
+    "kind": "deadline"
+  },
+  {
+    "channel": "email",
+    "source_id": "happy-3",
+    "sender": "Accounts Dept",
+    "subject": "Fee payment reminder",
+    "body": "Semester fee is due. Pay via the portal before 5 PM. A late fee applies after the last date.",
+    "received_at": "",
+    "profile_tags": ["fee"],
+    "kind": "deadline"
+  },
+  {
+    "channel": "portal",
+    "source_id": "happy-4",
+    "sender": "Events Cell",
+    "subject": "Hackathon registrations open",
+    "body": "Registrations are open for the upcoming hackathon. Idea submission opens 21 Aug 21:00, closes 22 Aug 06:00.",
+    "received_at": "",
+    "profile_tags": ["events"],
+    "kind": "event"
+  },
+  {
+    "channel": "chat",
+    "source_id": "happy-5",
+    "sender": "Student Group",
+    "subject": "Room change for today's lab",
+    "body": "LAB SHIFTED to Room 4104 (was 4102). Same slot 2-4 PM. Share this with everyone.",
+    "received_at": "",
+    "profile_tags": ["lab"],
+    "kind": "notice"
+  },
+  {
+    "channel": "social",
+    "source_id": "happy-6",
+    "sender": "Social feed",
+    "subject": "Canteen queue memes",
+    "body": "Repost: canteen queue at 1 PM is 40 minutes. #problems",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  }
+]

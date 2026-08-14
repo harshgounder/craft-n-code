@@ -31,18 +31,42 @@ from typing import Optional
 HERE = Path(__file__).parent
 STATIC = HERE / "static"
 DB = HERE.parent / "engine" / "signal.db"
+FIXTURES = HERE.parent / "fixtures"
 
 sys.path.insert(0, str(HERE.parent / "engine"))
 import engine as E  # noqa: E402
 import approval as A  # noqa: E402
 
 FEED_CACHE: Optional[dict] = None
+FIXTURE: Optional[str] = None    # fixture name from --fixture NAME
+OFFLINE: bool = False            # forced offline from --offline
+
+
+def load_fixture(name: str) -> list[E.Item]:
+    """Load a golden fixture feed (scaffold/fixtures/{name}.json) as Items."""
+    path = FIXTURES / f"{name}.json"
+    rows = json.loads(path.read_text())
+    return [E.Item(
+        channel=r.get("channel", "email"),
+        source_id=r["source_id"],
+        sender=r.get("sender", ""),
+        subject=r.get("subject", ""),
+        body=r.get("body", ""),
+        received_at=r.get("received_at", ""),
+        profile_tags=r.get("profile_tags", []),
+        kind=r.get("kind", "notice"),
+    ) for r in rows]
 
 
 def load_feed(profile: Optional[list] = None) -> dict:
     global FEED_CACHE
     profile = profile or ["general"]
     if FEED_CACHE is not None:
+        return FEED_CACHE
+    # fixture mode loads a golden feed instead of the DB / seed
+    if FIXTURE:
+        items = load_fixture(FIXTURE)
+        FEED_CACHE = E.run_pipeline(items, profile)
         return FEED_CACHE
     if DB.exists():
         conn = sqlite3.connect(DB)
@@ -63,6 +87,21 @@ def load_feed(profile: Optional[list] = None) -> dict:
     # no db → run the engine fresh
     FEED_CACHE = E.run_pipeline(E.seed_items(), profile)
     return FEED_CACHE
+
+
+def current_mode() -> str:
+    """Derive the demo mode badge: offline | fixture | cached | live."""
+    if OFFLINE:
+        return "offline"
+    if FIXTURE:
+        return "fixture"
+    feed = load_feed()
+    llm = feed.get("llm") or {}
+    if llm.get("model") == "db":
+        return "cached"
+    if llm.get("cache_hits", 0) > 0 and llm.get("cache_misses", 0) == 0:
+        return "cached"
+    return "live"
 
 
 def search(items: list[dict], q: str, top: int = 5) -> list[dict]:
@@ -161,7 +200,11 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
                 "total": feed["total"], "channels": dict(counts),
                 "deadlines_found": len(deadlines),
                 "llm": feed["llm"], "skin_ready": True,
+                "mode": current_mode(),
             })
+
+        if parts[1] == "trace":
+            return json_reply(handler, {"steps": E.get_trace()})
 
         if parts[1] == "tools":
             return json_reply(handler, {
@@ -235,11 +278,23 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
+    global FIXTURE, OFFLINE
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", type=int, default=8000)
+    ap.add_argument("--fixture", default="",
+                    help="load a golden fixture feed from scaffold/fixtures/NAME.json")
+    ap.add_argument("--offline", action="store_true",
+                    help="force offline mode (no LLM key, no network)")
     args = ap.parse_args()
-    print(f"[serve] http://localhost:{args.port}  (ctrl-c to stop)")
+    if args.fixture:
+        FIXTURE = args.fixture
+    OFFLINE = args.offline
+    if OFFLINE:
+        import os
+        os.environ["OLLAMA_API_KEY"] = ""
+    mode = current_mode()
+    print(f"[serve] http://localhost:{args.port}  (mode={mode}, ctrl-c to stop)")
     ThreadingHTTPServer(("0.0.0.0", args.port), Handler).serve_forever()
 
 

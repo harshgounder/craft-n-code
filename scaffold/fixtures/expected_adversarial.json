@@ -1,0 +1,6 @@
+{
+  "top3": ["adv-2", "adv-3", "adv-1"],
+  "scam_rank": "adv-1",
+  "scam_not_top": true,
+  "notes": "The scam-ish urgent item adv-1 carries scam words and is capped at score 5.0, so it must NOT rank first. Genuine authoritative deadlines (adv-2, adv-3) clearly win. The no-sender item adv-5 is present but not boosted by authority."
+}
