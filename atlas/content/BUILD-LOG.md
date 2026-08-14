@@ -224,6 +224,38 @@ for THIS: an atlas website that renders every file in full with OPEN
 FILE buttons. The atlas generator, this log, and the manifest are the
 answer.
 
+### 17:05 - THE AGGRESSIVE AUDIT (user directive)
+A hostile self-review of everything. What it found and what was fixed:
+1. TEST RACE (critical, my earlier claim was wrong): all five suites
+   used a fixed 1.2s sleep after starting the server, and serve.py
+   computed the mode at startup, which on a COLD database runs the whole
+   LLM pipeline BEFORE binding the port. test_provenance sets a fake
+   key (Q1 needs it), so cold-start took longer than 1.2s and the test
+   crashed with connection refused. It only passed earlier because the
+   shared signal.db was warm. The "42/42 independently verified" claim
+   was therefore warm-state dependent. FIXED: wait_ready() polling
+   helper in all five suites, per-suite fresh DB (delete signal.db +
+   .llm_cache.json at suite start), serve.py binds immediately and
+   computes the mode in a daemon thread. Re-verified in two orders on
+   fresh DBs.
+2. TEST CONTAMINATION (real): suites share signal.db, so consent rows
+   granted by the provenance suite changed the approval suite's
+   consent_required output. Fixed by per-suite fresh DBs.
+3. STALE DOC NUMBERS (real): CODE-WALKTHROUGH line counts were from
+   before the builds (engine 433 vs 473, serve 193 vs 373, index 245 vs
+   378, approval 256 vs 362). Fixed.
+4. RULE COMPLIANCE (real): the pre-rule research corpus had 377 em
+   dashes across 33 files and ~20 AI-tell words in 8 files. Swept: em
+   dashes replaced with hyphens everywhere; AI-tell prose replaced
+   word-level; verbatim quotes (Apple newsroom, NEXORA site) and URL
+   slugs left untouched on purpose. Atlas regenerated.
+5. ONE FALSE FINDING (honest note): my audit script claimed a dead
+   urllib import in engine.py, but the provider refactor had already
+   removed it. The finding was based on a stale file read, corrected.
+6. SERVED-FILE WART (known, documented): demo.sh writes
+   webapp/static/demo-feed.json that nothing reads. Documented in
+   CODE-WALKTHROUGH, left as-is (harmless, gitignored).
+
 ---
 
 ## THE RULES THAT SURVIVED (hard rules)

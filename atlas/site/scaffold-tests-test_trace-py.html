@@ -29,6 +29,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -36,6 +37,8 @@ HERE = Path(__file__).parent
 ROOT = HERE.parent
 SERVE = ROOT / "webapp" / "serve.py"
 FIXTURES = ROOT / "fixtures"
+DB = ROOT / "engine" / "signal.db"
+CACHE = ROOT / "engine" / ".llm_cache.json"
 
 PORT = 8124
 BASE = f"http://localhost:{PORT}"
@@ -59,10 +62,40 @@ def expected_top3(name):
     return exp["top3"]
 
 
-def start_server(args, env):
+def fresh_db():
+    """Delete generated artifacts so every suite runs against fresh state."""
+    for p in (DB, CACHE):
+        try:
+            p.unlink()
+        except FileNotFoundError:
+            pass
+
+
+def wait_ready(server, errfile):
+    """Poll GET /api/stats until HTTP 200, up to 30s. Fail if server exits."""
+    deadline = time.time() + 30
+    while time.time() &lt; deadline:
+        if server.poll() is not None:
+            err = ""
+            try:
+                err = Path(errfile).read_text()
+            except Exception:
+                pass
+            raise RuntimeError(f"server exited during wait_ready (rc={server.returncode}): {err}")
+        try:
+            with urllib.request.urlopen(BASE + "/api/stats", timeout=2) as r:
+                if r.status == 200:
+                    return
+        except (urllib.error.URLError, OSError):
+            pass
+        time.sleep(0.25)
+    raise RuntimeError("server did not become ready within 30s")
+
+
+def start_server(args, env, errfile):
     return subprocess.Popen(
         [sys.executable, str(SERVE)] + args,
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        stdout=subprocess.DEVNULL, stderr=open(errfile, "w"),
         cwd=str(ROOT / "webapp"), env=env)
 
 
@@ -73,13 +106,15 @@ def stop(server):
 
 
 def main():
+    fresh_db()
     env = dict(os.environ)
     env.pop("OLLAMA_API_KEY", None)
 
     with tempfile.TemporaryDirectory() as td:
+        errfile = Path(td) / "server.err"
         # ── T1 fixture happy: top3 matches expected, mode == fixture ──
-        s = start_server(["--port", str(PORT), "--fixture", "happy"], env)
-        time.sleep(1.2)
+        s = start_server(["--port", str(PORT), "--fixture", "happy"], env, errfile)
+        wait_ready(s, errfile)
         try:
             feed = jget("/api/feed")
             top3 = [i["source_id"] for i in feed["items"][:3]]
@@ -93,8 +128,8 @@ def main():
         time.sleep(0.3)
 
         # ── T2 trace: ingest/dedupe/summarize/rank in order, rank has top3+score ──
-        s = start_server(["--port", str(PORT), "--fixture", "happy"], env)
-        time.sleep(1.2)
+        s = start_server(["--port", str(PORT), "--fixture", "happy"], env, errfile)
+        wait_ready(s, errfile)
         try:
             tr = jget("/api/trace")["steps"]
             steps = [t["step"] for t in tr]
@@ -112,8 +147,8 @@ def main():
         # ── T3 --offline forces offline even with key set ──
         offline_env = dict(env)
         offline_env["OLLAMA_API_KEY"] = "test-key-should-be-ignored"
-        s = start_server(["--port", str(PORT), "--fixture", "happy", "--offline"], offline_env)
-        time.sleep(1.2)
+        s = start_server(["--port", str(PORT), "--fixture", "happy", "--offline"], offline_env, errfile)
+        wait_ready(s, errfile)
         try:
             stats = jget("/api/stats")
             llm = jget("/api/feed")["llm"]
@@ -131,8 +166,8 @@ def main():
         db_dir = ROOT / "engine"
         subprocess.run([sys.executable, str(db_dir / "engine.py"), "--seed"],
                        capture_output=True, env=db_env, cwd=str(db_dir))
-        s = start_server(["--port", str(PORT)], db_env)
-        time.sleep(1.2)
+        s = start_server(["--port", str(PORT)], db_env, errfile)
+        wait_ready(s, errfile)
         try:
             stats = jget("/api/stats")
             feed = jget("/api/feed")
@@ -144,8 +179,8 @@ def main():
         time.sleep(0.3)
 
         # ── T5 adversarial: scam item NOT ranked first ──
-        s = start_server(["--port", str(PORT), "--fixture", "adversarial"], env)
-        time.sleep(1.2)
+        s = start_server(["--port", str(PORT), "--fixture", "adversarial"], env, errfile)
+        wait_ready(s, errfile)
         try:
             feed = jget("/api/feed")
             ids = [i["source_id"] for i in feed["items"]]
@@ -159,8 +194,8 @@ def main():
         time.sleep(0.3)
 
         # ── T6 ambiguous: dedupe drops the dupe ──
-        s = start_server(["--port", str(PORT), "--fixture", "ambiguous"], env)
-        time.sleep(1.2)
+        s = start_server(["--port", str(PORT), "--fixture", "ambiguous"], env, errfile)
+        wait_ready(s, errfile)
         try:
             feed = jget("/api/feed")
             ids = [i["source_id"] for i in feed["items"]]
@@ -177,8 +212,8 @@ def main():
         # ── T (offline-key) key set + --offline =&gt; mode == offline (regression) ──
         key_env = dict(env)
         key_env["OLLAMA_API_KEY"] = "some-real-looking-key"
-        s = start_server(["--port", str(PORT), "--fixture", "happy", "--offline"], key_env)
-        time.sleep(1.2)
+        s = start_server(["--port", str(PORT), "--fixture", "happy", "--offline"], key_env, errfile)
+        wait_ready(s, errfile)
         try:
             stats = jget("/api/stats")
             check("T-offline-key key set + --offline -&gt; mode offline",

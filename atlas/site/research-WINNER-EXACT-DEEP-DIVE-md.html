@@ -14,27 +14,27 @@
   <a class="open" href="../../research/WINNER-EXACT-DEEP-DIVE.md" target="_blank" rel="noopener">OPEN FILE</a>
 </header>
 <main class="content">
-<h1>EXACT-WINNER DEEP-DIVE — AFTERPACKETS (2025 National Winner)</h1>
+<h1>EXACT-WINNER DEEP-DIVE  -  AFTERPACKETS (2025 National Winner)</h1>
 <p>Compiled: 2026-08-13 | Sources: full repo forensics (PrashamJ17/AfterPackets), FEATURE_GUIDE, commit history, C++ parser source</p>
 <h2>1. WHAT THEY BUILT (beyond the required MVP)</h2>
 <p>The problem (Challenge 7) required: capture module, traffic dashboard, DPI packet inspector, filtering controls.</p>
 <p><strong>They shipped ALL of that PLUS:</strong></p>
-<table><thead><tr><th>Feature</th><th>Detail</th></tr></thead><tbody><tr><td>App-level tracking</td><td>Per-app sent/received bytes, remote hosts, protocols, sorted by usage</td></tr><tr><td>Geo map</td><td>Real device location + remote server plotting, country/connection lines</td></tr><tr><td>Security alerts</td><td>MITM, DNS spoofing, ARP spoofing, data exfiltration, suspicious patterns, 4 severity levels</td></tr><tr><td>Custom detection rules</td><td>Metric (outbound_bytes/packet_rate/connection_count/failed_connections) + condition + threshold + time window + action (alert/log/block) + severity</td></tr><tr><td>Export</td><td>PCAP (Wireshark-compatible), JSON, Evidence Bundle (PCAP+JSON+report+timeline+threat assessment)</td></tr><tr><td>WebSocket server</td><td>Real-time streaming to companion web app</td></tr><tr><td>Firewall engine</td><td>FirewallRuleEngine.kt — block actions</td></tr><tr><td>VpnSocketProtector</td><td>Protects the VPN socket from being captured (self-awareness)</td></tr><tr><td>VpnDiagnostics + VpnVerification</td><td>Self-testing VPN setup</td></tr></tbody></table>
+<table><thead><tr><th>Feature</th><th>Detail</th></tr></thead><tbody><tr><td>App-level tracking</td><td>Per-app sent/received bytes, remote hosts, protocols, sorted by usage</td></tr><tr><td>Geo map</td><td>Real device location + remote server plotting, country/connection lines</td></tr><tr><td>Security alerts</td><td>MITM, DNS spoofing, ARP spoofing, data exfiltration, suspicious patterns, 4 severity levels</td></tr><tr><td>Custom detection rules</td><td>Metric (outbound_bytes/packet_rate/connection_count/failed_connections) + condition + threshold + time window + action (alert/log/block) + severity</td></tr><tr><td>Export</td><td>PCAP (Wireshark-compatible), JSON, Evidence Bundle (PCAP+JSON+report+timeline+threat assessment)</td></tr><tr><td>WebSocket server</td><td>Real-time streaming to companion web app</td></tr><tr><td>Firewall engine</td><td>FirewallRuleEngine.kt  -  block actions</td></tr><tr><td>VpnSocketProtector</td><td>Protects the VPN socket from being captured (self-awareness)</td></tr><tr><td>VpnDiagnostics + VpnVerification</td><td>Self-testing VPN setup</td></tr></tbody></table>
 <h2>2. THE C++ DPI CORE (packet_parser.cpp)</h2>
 <ul>
 <li>Hand-rolled IPv4/TCP/UDP/ICMP parsing (no library)</li>
 <li><code>parseIPv4</code>: version check, IHL, source/dest IP, total length, protocol switch</li>
 <li><code>parseTCP</code>: source/dest ports, flags</li>
 <li><code>ntohl/ntohs</code> byte-order handling, hex/ASCII payload view</li>
-<li>Native via JNI (NativePacketParser.kt) — performance + "real engineering" signal</li>
+<li>Native via JNI (NativePacketParser.kt)  -  performance + "real engineering" signal</li>
 </ul>
 <h2>3. THE ANDROID ARCHITECTURE (40+ Kotlin files)</h2>
 <ul>
-<li><code>PacketCaptureService : VpnService()</code> — MTU 1400, buffer 32767, coroutine-based</li>
-<li>Room database (PacketDao, FilterPresetDao) — persisted captures</li>
+<li><code>PacketCaptureService : VpnService()</code>  -  MTU 1400, buffer 32767, coroutine-based</li>
+<li>Room database (PacketDao, FilterPresetDao)  -  persisted captures</li>
 <li>MVVM (MainViewModel, screens per feature)</li>
 <li>13 UI screens: Dashboard, PacketList, PacketDetail, Filter, Alerts, Rules, Export, Map, AppDataDonut, TopTalkers, ConnectionDetails, PayloadWarning, ProtocolPie</li>
-<li>Theme system (Color/Theme/Type.kt) — polished dark UI</li>
+<li>Theme system (Color/Theme/Type.kt)  -  polished dark UI</li>
 </ul>
 <h2>4. THE COMMIT TIMELINE (finals day, Nov 8 2025)</h2>
 <table><thead><tr><th>Time (UTC)</th><th>Action</th></tr></thead><tbody><tr><td>06:56</td><td>Initial commit (core built)</td></tr><tr><td>07:17</td><td>Removed geo-location features from README (scope-down)</td></tr><tr><td>07:26</td><td>Deleted debug APKs (cleanup)</td></tr><tr><td>08:01</td><td>Renamed Mobile Packet Hunter → AFTERPACKETS (rebrand)</td></tr><tr><td>08:11</td><td>Removed desktop web app documentation (scope-down)</td></tr><tr><td>2026-04-07</td><td>README update (post-event polish)</td></tr></tbody></table>

@@ -1,4 +1,4 @@
-# REFIRE: cnc-company-lanes-2 — verbatim sponsor-set problem texts + state-round history
+# REFIRE: cnc-company-lanes-2  -  verbatim sponsor-set problem texts + state-round history
 
 ## META
 Reader: Team 511 (E&CE 2nd-yr, MUJ), competing in Craft N Code 2026 Rajasthan state qualifier (Aug 15-16). Problem statements drop 21:30 IST Aug 15; we pick our build lane in 10 minutes. Insider (club) says the real questions are set by sponsor companies (Google, Apple, Meta, Accenture, Adobe), with the 5 site tracks (Legacy/Night Ops/Signal/Open/Hardware) as club fallback. A first research pass (cnc-company-lanes) established sponsor DNA and working priors but FAILED to find: (1) verbatim problem statements from Indian college hackathons sponsored by these companies, (2) Craft N Code state-round problem history. THIS PASS targets exactly those two gaps with heavy citation pressure.

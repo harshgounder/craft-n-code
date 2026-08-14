@@ -1,4 +1,4 @@
-# 2026 TOPIC PROBABILITY MATRIX — what will actually be asked
+# 2026 TOPIC PROBABILITY MATRIX  -  what will actually be asked
 
 Compiled: 2026-08-13 | Method: cross-referencing 2022/2024/2025 problem history + sponsor DNA + track bodies + club patterns
 
@@ -7,7 +7,7 @@ Compiled: 2026-08-13 | Method: cross-referencing 2022/2024/2025 problem history 
 | Track | Points | Exact body |
 |---|---|---|
 | PS-01 Rewind the Legacy | 100 | "Take an outdated tool your campus still depends on and rebuild it for 2026." |
-| PS-02 Night Ops | 200 | "Tooling for people who work odd hours — sleep, safety, focus, logistics." |
+| PS-02 Night Ops | 200 | "Tooling for people who work odd hours  -  sleep, safety, focus, logistics." |
 | PS-03 Signal / Noise | 300 | "Cut through information overload with search, summarisation or ranking." |
 | PS-04 Open Track | 400 | "Anything you can justify in a 3-minute demo. Surprise the judges." |
 | PS-05 Hardware Hack | 500 | "Sensors, microcontrollers, ugly wiring. Physical output required." |
@@ -38,7 +38,7 @@ Compiled: 2026-08-13 | Method: cross-referencing 2022/2024/2025 problem history 
 ### PS-04 Open Track (400 pts)
 - Anything. The escape hatch.
 - 2025 winners' lane (packet hunter was effectively open-ish)
-- **Most likely question**: none — self-directed. Judges reward surprise + depth.
+- **Most likely question**: none  -  self-directed. Judges reward surprise + depth.
 - **Probability: N/A (no question, but the safest strategic lane)**
 
 ### PS-05 Hardware Hack (500 pts)
@@ -78,7 +78,7 @@ Compiled: 2026-08-13 | Method: cross-referencing 2022/2024/2025 problem history 
 
 ## 5. WHAT TO PREP (idea bank priorities)
 
-1. PS-03: an AI search/summariser with a working demo (email/news/paper domain) — the Inbox Navigator rework
+1. PS-03: an AI search/summariser with a working demo (email/news/paper domain)  -  the Inbox Navigator rework
 2. PS-04: Kavach adaptation (call-security platform, 3-min demo, security judges)
 3. PS-02: night-ops safety/productivity tool (campus night safety = Kavach-adjacent)
 4. PS-01: campus tool rebuild (mess/canteen with AI)

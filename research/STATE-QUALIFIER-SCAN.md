@@ -1,4 +1,4 @@
-# 2026 State Qualifier Scan — Confirmed Listings
+# 2026 State Qualifier Scan  -  Confirmed Listings
 
 Compiled: 2026-08-13 | Method: Unstop API ID-range probing + search endpoint
 
@@ -19,7 +19,7 @@ Compiled: 2026-08-13 | Method: Unstop API ID-range probing + search endpoint
 
 1. Rajasthan is the BIGGEST confirmed state round (402 reg vs UP's 1). The MUJ qualifier is the flagship.
 2. Other states (Assam, Punjab, Bihar, TN had 2025 rounds) either haven't launched their 2026 listings yet or use different ID ranges. The watchdog's PROBE_RANGE will catch them if they appear near the known IDs.
-3. The national finals (Oct 30-Nov 1) will draw the winners of ALL state rounds — the Rajasthan winner pool is the largest confirmed feeder.
+3. The national finals (Oct 30-Nov 1) will draw the winners of ALL state rounds  -  the Rajasthan winner pool is the largest confirmed feeder.
 
 ## WATCHDOG STATUS
 

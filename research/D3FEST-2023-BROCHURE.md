@@ -1,4 +1,4 @@
-# D³ Fest 2023 — Full Brochure (p-society/d3-web 2023 branch)
+# D³ Fest 2023  -  Full Brochure (p-society/d3-web 2023 branch)
 
 Compiled: 2026-08-13 | Source: raw.githubusercontent.com/p-society/d3-web/2023/assets/d3brochure.pdf (14 pages, pdftotext)
 
@@ -30,6 +30,6 @@ Compiled: 2026-08-13 | Source: raw.githubusercontent.com/p-society/d3-web/2023/a
 - D³ Fest 2023 = Tech Society + E-Cell. D³ Fest 2025 = Tech + Robotics Societies. D³ Fest 2026 = Tech Society (Craft N Code national).
 - The 13h overnight hackathon format (Geek-O-Thon, AI-ML) is the direct ancestor of the 24h Craft N Code format.
 - Cyber Hunt (CTF) is the ancestor of the 2026 CTF Arena.
-- Cryptoverse (crypto trading sim) shows the fest's breadth — trading/blockchain was a theme as early as 2023.
+- Cryptoverse (crypto trading sim) shows the fest's breadth  -  trading/blockchain was a theme as early as 2023.
 - Shark Tank (pitch to investors) = the ancestor of the presentation/judging rounds.
 - The fest has ALWAYS been multi-society + multi-domain: hackathons, CTF, DSA, case studies, trading sims, pitches.

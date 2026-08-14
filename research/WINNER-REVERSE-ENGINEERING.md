@@ -1,8 +1,8 @@
-# Winner Reverse-Engineering — Craft N Code / D³ Fest Hackathons
+# Winner Reverse-Engineering  -  Craft N Code / D³ Fest Hackathons
 
 Compiled: 2026-08-13 | Method: GitHub forensics (gh CLI), LinkedIn LD+JSON, rivalsearch
 
-## 1. AFTERPACKETS — 2025 National Winner (Team Highlanders, MUJ)
+## 1. AFTERPACKETS  -  2025 National Winner (Team Highlanders, MUJ)
 
 ### The win
 - 1st place among 1600-2000+ teams at Rewind & Recode National Hackathon (D³ Fest 2025, IIIT Bhubaneswar), Nov 7-9 2025.
@@ -19,12 +19,12 @@ Compiled: 2026-08-13 | Method: GitHub forensics (gh CLI), LinkedIn LD+JSON, riva
 
 ### Why it won (deconstructed)
 1. WORKING end-to-end product: real Android app (APK in repo) + web companion. Not a mockup.
-2. Real-world problem: mobile network forensics (privacy/security visibility) — judges = cyber experts + police (ACP Anjana Tudu at Hackfest).
-3. "Clarity, relevance, and execution" (winner's own words) — the README is a professional pitch.
+2. Real-world problem: mobile network forensics (privacy/security visibility)  -  judges = cyber experts + police (ACP Anjana Tudu at Hackfest).
+3. "Clarity, relevance, and execution" (winner's own words)  -  the README is a professional pitch.
 4. Security-first framing: legal consent, audit logs, evidence bundles (forensic-grade).
 5. Team was known: MUJ CSE dept celebrated them; Student Excellence Award from MUJ president.
 
-## 2. TrueMix — 2024 CraftNCode Participant (Bit-Binary-2027)
+## 2. TrueMix  -  2024 CraftNCode Participant (Bit-Binary-2027)
 
 ### The project
 - Fact-checking platform: verify facts, read news, play games/quizzes. Gamification + leaderboard.
@@ -32,15 +32,15 @@ Compiled: 2026-08-13 | Method: GitHub forensics (gh CLI), LinkedIn LD+JSON, riva
 - Team photos in repo: anuska.jpg, arna.jpg, chandu.jpg (3 members).
 - **Chandan-Kr-dev/CraftNCode** + **Sapta-Dev27/TrueMix-CraftNCode-IIIT-BBS** = team member copies.
 
-### Chandan Kumar (Chandan-Kr-dev) — the participant profile
+### Chandan Kumar (Chandan-Kr-dev)  -  the participant profile
 - 34 public repos, created 2023-11. TMSL (GDG-ON-CAMPUS TMSL = Techno Main Salt Lake, Kolkata) involvement.
 - Project history: EgramPanchayat (rural gov schemes), IIC-Job-dhundo (job portal), SIHJudicio (SIH project, frontend+backend), CVForge.ai, Health_Companion, Medical-Decentralized-App (Aptos blockchain), PragatiMeta, TalkWithMe (TS, 2026), Balance-3D (Unity/ShaderLab), Dragon-Slayer (Godot).
 - Pattern: gov-scheme projects (Egram, SIH), hackathon circuit (IIC, SIH, CraftNCode, Hacktoberfest), full-stack JS + Python ML.
 
-## 3. GENESIS — Hackfest 2024 Winner (SIT Bhubaneswar)
+## 3. GENESIS  -  Hackfest 2024 Winner (SIT Bhubaneswar)
 
 - Won Hackfest 2024 (Tech Society's own national hackathon, ADVITA 2024).
-- Project: food distribution inefficiency solution — mobile app + dynamic web platform + advanced ML model for surplus food management.
+- Project: food distribution inefficiency solution  -  mobile app + dynamic web platform + advanced ML model for surplus food management.
 - Social-impact framing (food waste) + working app + ML = the winning combo.
 - Runner-up: TECHTITANS (IIIT-B).
 
@@ -60,6 +60,6 @@ Compiled: 2026-08-13 | Method: GitHub forensics (gh CLI), LinkedIn LD+JSON, riva
 
 1. The bar is a WORKING demo (APK/web app), not a deck.
 2. Security/network/forensics themes have won twice (AFTERPACKETS + Hackfest judges = cyber experts + police).
-3. Sponsor companies (Google/Apple/FB/Accenture/Adobe 2026) will set the problem — build a flexible stack: React/Vite frontend + Express/FastAPI backend + ML component + mobile (Kotlin/Flutter) if feasible.
+3. Sponsor companies (Google/Apple/FB/Accenture/Adobe 2026) will set the problem  -  build a flexible stack: React/Vite frontend + Express/FastAPI backend + ML component + mobile (Kotlin/Flutter) if feasible.
 4. Commit clean (no .gradle/node_modules junk) = free points vs every past winner.
 5. README as pitch: problem stats, features, quickstart, screenshots.

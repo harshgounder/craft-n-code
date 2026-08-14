@@ -38,6 +38,7 @@ import mimetypes
 import re
 import sqlite3
 import sys
+import threading
 import time
 import urllib.parse
 from collections import Counter
@@ -171,7 +172,7 @@ def ingest_multimodal(body: dict) -&gt; dict:
 
     item = E.Item(
         channel=body.get("channel", "email"),
-        source_id=body.get("source_id") or f"ingest-{int(time.time())}",
+        source_id=body.get("source_id") or f"ingest-{int(time.time() * 1000)}",
         sender=body.get("sender", ""),
         subject=body.get("subject", ""),
         body=item_body,
@@ -373,9 +374,15 @@ def main():
     if OFFLINE:
         import os
         os.environ["OLLAMA_API_KEY"] = ""
-    mode = current_mode()
-    print(f"[serve] http://localhost:{args.port}  (mode={mode}, ctrl-c to stop)")
-    ThreadingHTTPServer(("0.0.0.0", args.port), Handler).serve_forever()
+    print(f"[serve] http://localhost:{args.port}  (ctrl-c to stop)")
+    server = ThreadingHTTPServer(("0.0.0.0", args.port), Handler)
+    # compute the mode badge in the background so the server binds and serves
+    # immediately; load_feed may take a while on first cold start.
+    def _announce():
+        mode = current_mode()
+        print(f"[serve] mode={mode} ready")
+    threading.Thread(target=_announce, daemon=True).start()
+    server.serve_forever()
 
 
 if __name__ == "__main__":

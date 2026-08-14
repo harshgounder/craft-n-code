@@ -1,4 +1,4 @@
-# 2025 National Finals — Full Team Roster (from p-society/D3-2k25-solutions)
+# 2025 National Finals  -  Full Team Roster (from p-society/D3-2k25-solutions)
 
 Compiled: 2026-08-13 | Source: p-society/D3-2k25-solutions README (submission table, 20 teams)
 
@@ -17,7 +17,7 @@ Compiled: 2026-08-13 | Source: p-society/D3-2k25-solutions README (submission ta
 | Resolvers | DigiGrade | PiyushSutar-570/D3-2K25-SOLUTIONS-DIGITAL_LAB_GRADER | 6 (lab grader) |
 | AgroFast | VedaScore | ankit071105/VedaScore | 2 (loyalty) or 5 |
 | Mind meld | Digital_ta | PriyanAcharya/digtial_ta | 6 (lab grader) |
-| **Highlanders** | **AFTERPACKETS** | **PrashamJ17/AfterPackets** | **7 (Mobile Packet Hunter) — NATIONAL WINNER** |
+| **Highlanders** | **AFTERPACKETS** | **PrashamJ17/AfterPackets** | **7 (Mobile Packet Hunter)  -  NATIONAL WINNER** |
 | GITLERS | swapp | PreetiPMishra-Codes/swapp | 3 (P2P skill swap) |
 | Marine Drive | Acadify | Atharv714/Acadify | 4 (lecture) or 5 (inbox) |
 | Hunters | nani | udaykoti/nani | unknown |
@@ -29,7 +29,7 @@ Compiled: 2026-08-13 | Source: p-society/D3-2k25-solutions README (submission ta
 
 ## Challenge popularity (from 19 mapped teams)
 
-- Challenge 6 (Automated Lab Grader): 5 teams — the most attempted
+- Challenge 6 (Automated Lab Grader): 5 teams  -  the most attempted
 - Challenge 3 (P2P Skill Swap): 4 teams
 - Challenge 4 (AI Lecture Generator): 4 teams
 - Challenge 2 (Web3 Loyalty): 2 teams
@@ -56,12 +56,12 @@ Compiled: 2026-08-13 | Source: p-society/D3-2k25-solutions README (submission ta
 | AgroFast | VedaScore | HTML |
 | GITLERS | swapp | HTML |
 | Just-Git-Gud | LECTRA | Python |
-| Highlanders | AFTERPACKETS | Java/Kotlin/C++/React (the outlier — native mobile + DPI) |
+| Highlanders | AFTERPACKETS | Java/Kotlin/C++/React (the outlier  -  native mobile + DPI) |
 
 **Stack pattern**: 10/16 teams used JS/TS web stacks. The winner was the ONLY native-mobile team. Judges rewarded technical depth over framework familiarity.
 
 ## The key insight
 
-The winner (Highlanders) took the LEAST-attempted challenge (7, only 1 team) and built the most technically complex solution. The most-attempted challenges (6, 3, 4) were the most crowded — the winner chose the hardest, emptiest lane.
+The winner (Highlanders) took the LEAST-attempted challenge (7, only 1 team) and built the most technically complex solution. The most-attempted challenges (6, 3, 4) were the most crowded  -  the winner chose the hardest, emptiest lane.
 
 **Strategy implication for 2026**: the empty lane wins. PS-05 Hardware Hack (500 pts) and PS-03 Signal/Noise (300) are the least likely to be crowded. PS-04 Open Track (400) is the escape hatch.

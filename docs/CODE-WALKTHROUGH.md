@@ -72,7 +72,7 @@ writes during the same run). demo-feed.json is a leftover artifact. It will
 become useful when the fixture/replay mode lands (offline deterministic
 replay). Nothing breaks, but know that it is currently dead weight.
 
-## 2. engine/engine.py (433 lines) - the brain
+## 2. engine/engine.py (473 lines) - the brain
 
 ### 2.1 The data model: Item (lines 35-59)
 
@@ -300,7 +300,7 @@ conn.commit()
   "Supabase-ready shape": same column names would map to a Postgres table
   if we ever move to Supabase for the nationals build.
 
-## 3. webapp/serve.py (193 lines) - the zero-dependency web layer
+## 3. webapp/serve.py (373 lines) - the zero-dependency web layer
 
 ### 3.1 load_feed (lines 41-64)
 
@@ -388,7 +388,7 @@ class Handler(BaseHTTPRequestHandler):
   parse the URL, read the POST body as JSON, delegate to route(). The
   `log_message` override silences the per-request logging noise.
 
-## 4. webapp/static/index.html (245 lines) - the UI
+## 4. webapp/static/index.html (378 lines) - the UI
 
 ### 4.1 The design system (lines 8-12)
 
@@ -531,7 +531,7 @@ This is the answer to the rank-1 predicted shape: "trustworthy agent with
 approved tools". Three files changed: a new engine/approval.py (the policy
 core), serve.py (5 new endpoints), index.html (Actions tab).
 
-### approval.py (256 lines) - the policy core
+### approval.py (362 lines) - the policy core
 
 - Side-effect classes are module constants: READ_ONLY, REVERSIBLE,
   SIDE_EFFECTING. One source of truth for the whole file.
@@ -594,7 +594,7 @@ language of the rank-1 predicted problem.
   from section 4.3). Proposal ids and statuses are server-generated, so
   the onclick interpolation is safe for demo data.
 
-### The test suite (tests/test_approval.py, 196 lines)
+### The test suite (tests/test_approval.py, 229 lines)
 
 - Plain python3, zero deps. Starts the REAL server on port 8123 against
   the real DB, exercises every endpoint, and reports G1-G13 pass/fail.

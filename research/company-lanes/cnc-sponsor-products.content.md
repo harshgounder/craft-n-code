@@ -118,7 +118,7 @@ The precise signal is openness plus native multimodality. The retrieved sources 
 
 Make model substitution a visible engineering feature. Define one interface for `understand_media`, `classify_intent`, and `draft_response`, then keep policy, retrieval, and audit logs outside the model. If Llama is available, use it for the multimodal path; otherwise use the authorized model available to the team and say so. A strong demo shows that changing the model does not change the safety policy or the evidence trail.
 
-The failure case is to equate open-weight with automatically cheap, private, or easy to run on a student laptop. Those properties depend on hardware, serving, licensing, and deployment choices that the retrieved Llama source does not settle. Pitch the adapter and evaluation harness as the robust contribution, not an unsupported performance claim.
+The failure case is to equate open-weight with automatically cheap, private, or easy to run on a student laptop. Those properties depend on hardware, serving, licensing, and deployment choices that the retrieved Llama source does not settle. Pitch the adapter and evaluation harness as the solid contribution, not an unsupported performance claim.
 
 ## Accenture: Industry Agents, SAP Workflows, and Operational Outcomes
 
@@ -178,7 +178,7 @@ The failure case is an impressive image with no business workflow. Adobe's stron
 | Accenture | A 2026 internship listing and industry engineering categories [23] | No current hackathon grant or student incentive was retrieved. | Industry process design, cybersecurity, digital engineering, manufacturing, agent deployment [21][22][23] | A named student hackathon track or guaranteed interview. |
 | Adobe | Adobe developer docs for Firefly and GenStudio [8][20] | No current student grant or Adobe hackathon incentive was retrieved. | Creative tooling, REST integration, approved assets, production workflow [9][20] | A current Adobe student award, Firefly quota, or sponsor rubric. |
 
-The missing incentive data is itself actionable. Team 511 should not waste overnight time optimizing for an assumed prize or undocumented API credit. Use free or already authorized tooling, keep a fallback, and make the architecture legible to a judge who may care about a different sponsor than the insider predicts.
+The missing incentive data is itself usable. Team 511 should not waste overnight time optimizing for an assumed prize or undocumented API credit. Use free or already authorized tooling, keep a fallback, and make the architecture legible to a judge who may care about a different sponsor than the insider predicts.
 
 ## The Hottest Technology Stack for a 24-Hour Build
 

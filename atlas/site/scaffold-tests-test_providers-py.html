@@ -43,6 +43,12 @@ def check(name, cond, detail=""):
 
 
 def main():
+    # delete generated artifacts so every suite runs against fresh state
+    for p in (ENGINE / "signal.db", ENGINE / ".llm_cache.json"):
+        try:
+            p.unlink()
+        except FileNotFoundError:
+            pass
     import engine as E
     from providers import PROVIDERS, NullProvider, OllamaProvider
 

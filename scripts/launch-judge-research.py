@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""launch-judge-research.py — fire the judge-dossier deep research via direct REST.
+"""launch-judge-research.py  -  fire the judge-dossier deep research via direct REST.
 Tries TASK_ALIVE keys in order, fallback-chains on 402. Writes run_id + key to a ledger."""
 import os, json, sys, time, urllib.request, urllib.error
 

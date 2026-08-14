@@ -26,7 +26,7 @@ Use four labels throughout the weekend. **[VERIFIED]** means the cited primary o
 
 The second-signal rule is the central discipline. Do not select a lane because a company announced one fashionable feature. Select it when two independent signals point to the same underlying job. For example, Google has both an agentic product direction and a developer message about removing infrastructure friction [6] (https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights). That combination is stronger than either announcement alone. Likewise, Adobe has both a broad creative-agent expansion [14] (https://news.adobe.com/news/2026/06/adobe-unveils-major-expansion) and an asynchronous Firefly API whose documentation discusses job status for generation, composite, and upscale operations [17] (https://developer.adobe.com/firefly-services/docs/firefly-api/api). The likely hole is not merely "make an image"; it is "make a production workflow reliable enough to review and ship."
 
-The third discipline is negative evidence. The search pass found official documentation and product pages for all five sponsor ecosystems, but it did not produce a robust, citable set of Reddit, X, or GitHub complaint excerpts for every sponsor. Therefore, claims such as "developers hate X" are deliberately not presented as facts. The team should mine complaints live only when a post identifies a repeatable failure, the affected API or SDK, and a workaround that a student team can demonstrate.
+The third discipline is negative evidence. The search pass found official documentation and product pages for all five sponsor ecosystems, but it did not produce a solid, citable set of Reddit, X, or GitHub complaint excerpts for every sponsor. Therefore, claims such as "developers hate X" are deliberately not presented as facts. The team should mine complaints live only when a post identifies a repeatable failure, the affected API or SDK, and a workaround that a student team can demonstrate.
 
 ### Evidence ledger: what is strong, what is directional, and what remains open
 
@@ -94,7 +94,7 @@ The mechanism is production workflow rather than isolated novelty. Once a creati
 
 ## 3. Complaint Mining and Workaround Detection: What Is Actually Safe to Claim
 
-The requested method calls for Reddit, GitHub issues, X, and workaround discovery. The evidence pass should not turn search-result absence into a claim about developer sentiment. The safe conclusion is narrower: official documentation exposes several friction surfaces, and a few public artifacts point toward integration workarounds. Those surfaces are enough to design a robust scaffold, but they are not enough to say that a particular API is universally hated.
+The requested method calls for Reddit, GitHub issues, X, and workaround discovery. The evidence pass should not turn search-result absence into a claim about developer sentiment. The safe conclusion is narrower: official documentation exposes several friction surfaces, and a few public artifacts point toward integration workarounds. Those surfaces are enough to design a solid scaffold, but they are not enough to say that a particular API is universally hated.
 
 ### Friction ledger
 

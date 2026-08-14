@@ -1,4 +1,4 @@
-# D³ Fest 2022 — Full Hackathon Problem Statements (d3nov.netlify.app)
+# D³ Fest 2022  -  Full Hackathon Problem Statements (d3nov.netlify.app)
 
 Compiled: 2026-08-13 | Source: d3nov.netlify.app (D³ Fest 2022 site, Nov 12-15 2022, Tech Society + E-Cell)
 
@@ -24,10 +24,10 @@ Compiled: 2026-08-13 | Source: d3nov.netlify.app (D³ Fest 2022 site, Nov 12-15 
 
 ## Lineage insights (2022 → 2026)
 
-- **D3h09 (on-chain event ticketing) is the DIRECT ancestor of 2025 Challenge 1 (NFT event ticketing)** — same problem, 3 years later, re-skinned for the national stage.
-- **D3h05 (mess management) → 2026 night canteen** — the food-ordering obsession is a 4-year tradition.
-- **D3h06 (PM2.5 ML prediction) → the AI/ML track DNA** — sklearn + Flask deployment was the 2022 bar; 2026 expects Gemini/Llama-grade AI.
-- **D3h02 (hostel management) → PS-01 Rewind the Legacy** — "outdated tool your campus depends on" is literally the hostel/mess/campus problem family.
-- **D3h07 (IRCTC automation) → the security/automation DNA** — Selenium automation was a sanctioned problem in 2022.
+- **D3h09 (on-chain event ticketing) is the DIRECT ancestor of 2025 Challenge 1 (NFT event ticketing)**  -  same problem, 3 years later, re-skinned for the national stage.
+- **D3h05 (mess management) → 2026 night canteen**  -  the food-ordering obsession is a 4-year tradition.
+- **D3h06 (PM2.5 ML prediction) → the AI/ML track DNA**  -  sklearn + Flask deployment was the 2022 bar; 2026 expects Gemini/Llama-grade AI.
+- **D3h02 (hostel management) → PS-01 Rewind the Legacy**  -  "outdated tool your campus depends on" is literally the hostel/mess/campus problem family.
+- **D3h07 (IRCTC automation) → the security/automation DNA**  -  Selenium automation was a sanctioned problem in 2022.
 - **The 2022 problems were CAMPUS-LIFE + WEB3 + ML.** The 2025 problems were WEB3 + AI + SECURITY. The 2026 tracks (Legacy, Night Ops, Signal/Noise, Open, Hardware) are the CAMPUS-LIFE family reorganized + hardware added.
 - **Pattern: the organizers recycle problem families every 2-3 years with new tech.** The 2026 questions will likely be 2022/2025 problems re-skinned with 2026 sponsor tech (Gemini, Llama, Firefly, enterprise AI).

@@ -14,59 +14,59 @@
   <a class="open" href="../../research/EVENT-SITE-FORENSICS.md" target="_blank" rel="noopener">OPEN FILE</a>
 </header>
 <main class="content">
-<h1>Event-Site Forensics — Craft N Code 2026 (Rudra-25-12/CraftnCode-2026)</h1>
+<h1>Event-Site Forensics  -  Craft N Code 2026 (Rudra-25-12/CraftnCode-2026)</h1>
 <p>Compiled: 2026-08-13 | Method: GitHub forensics (gh CLI) on the PUBLIC event-site repo</p>
 <h2>THE FIND: the official Craft N Code 2026 event portal source is PUBLIC on GitHub</h2>
 <ul>
 <li>Repo: github.com/Rudra-25-12/CraftnCode-2026 (created 2026-08-05, TypeScript)</li>
-<li>Owner: RUDRA PRATAP SINGH (GitHub created 2026-03-08, 7 public repos) — CSC dev</li>
+<li>Owner: RUDRA PRATAP SINGH (GitHub created 2026-03-08, 7 public repos)  -  CSC dev</li>
 <li>Built with: Lovable (vibe-coded), TanStack Router, Tailwind, Supabase backend, bun</li>
 <li>Theme: 8-bit arcade (Pac-Man glyphs, arcade cabinet art, neon cyan/magenta, "arcade-card" components)</li>
 </ul>
-<h2>THE 5 TRACKS (VERIFIED — src/routes/problem-statements.tsx)</h2>
-<table><thead><tr><th>ID</th><th>Title</th><th>Body</th><th>Points</th></tr></thead><tbody><tr><td>PS-01</td><td>Rewind the Legacy</td><td>Take an outdated tool your campus still depends on and rebuild it for 2026.</td><td>100</td></tr><tr><td>PS-02</td><td>Night Ops</td><td>Tooling for people who work odd hours — sleep, safety, focus, logistics.</td><td>200</td></tr><tr><td>PS-03</td><td>Signal / Noise</td><td>Cut through information overload with search, summarisation or ranking.</td><td>300</td></tr><tr><td>PS-04</td><td>Open Track</td><td>Anything you can justify in a 3-minute demo. Surprise the judges.</td><td>400</td></tr><tr><td>PS-05</td><td>Hardware Hack</td><td>Sensors, microcontrollers, ugly wiring. Physical output required.</td><td>500</td></tr></tbody></table>
+<h2>THE 5 TRACKS (VERIFIED  -  src/routes/problem-statements.tsx)</h2>
+<table><thead><tr><th>ID</th><th>Title</th><th>Body</th><th>Points</th></tr></thead><tbody><tr><td>PS-01</td><td>Rewind the Legacy</td><td>Take an outdated tool your campus still depends on and rebuild it for 2026.</td><td>100</td></tr><tr><td>PS-02</td><td>Night Ops</td><td>Tooling for people who work odd hours  -  sleep, safety, focus, logistics.</td><td>200</td></tr><tr><td>PS-03</td><td>Signal / Noise</td><td>Cut through information overload with search, summarisation or ranking.</td><td>300</td></tr><tr><td>PS-04</td><td>Open Track</td><td>Anything you can justify in a 3-minute demo. Surprise the judges.</td><td>400</td></tr><tr><td>PS-05</td><td>Hardware Hack</td><td>Sensors, microcontrollers, ugly wiring. Physical output required.</td><td>500</td></tr></tbody></table>
 <ul>
 <li>"CHOOSE ONE TRACK AT CHECK-IN. SWITCHING AFTER THE CLOCK STARTS COSTS 30 MINUTES."</li>
-<li>Points are per-track (100-500) — likely scoring weights, not prizes.</li>
+<li>Points are per-track (100-500)  -  likely scoring weights, not prizes.</li>
 </ul>
-<h2>SPONSORS (VERIFIED — src/routes/sponsors.tsx) — NOT FINALIZED</h2>
+<h2>SPONSORS (VERIFIED  -  src/routes/sponsors.tsx)  -  NOT FINALIZED</h2>
 <ul>
 <li>TITLE PARTNER: "Your Brand Here" (empty slot)</li>
 <li>POWERED BY: "Slot Open" x2</li>
 <li>COMMUNITY: "Slot Open" x3</li>
-<li>Contact: sponsors@craftncode.dev — "Want your logo glowing over a hall of 200 builders at 3 AM?"</li>
+<li>Contact: sponsors@craftncode.dev  -  "Want your logo glowing over a hall of 200 builders at 3 AM?"</li>
 <li>"hall of 200 builders" = expected participant count (~200)</li>
 </ul>
-<h2>BACKEND (VERIFIED — supabase/migrations/*.sql)</h2>
+<h2>BACKEND (VERIFIED  -  supabase/migrations/*.sql)</h2>
 <ul>
 <li>submissions table: team_name, track, repo_url, demo_url, pitch (1-2000 chars), created_at</li>
 <li>profiles table: user_id, team_name</li>
 <li>user_roles: admin / team (RLS-locked, admin-only update/delete on submissions)</li>
 <li>Anyone can submit (anon INSERT allowed with length checks)</li>
 </ul>
-<h2>BUILD HISTORY (VERIFIED — .lovable/plan/*.md)</h2>
+<h2>BUILD HISTORY (VERIFIED  -  .lovable/plan/*.md)</h2>
 <ul>
-<li>2026-08-09: "rename-event-to-craft-n-code" — the event was RENAMED from "Rewind and Recode" to "Craft N Code" on Aug 9</li>
+<li>2026-08-09: "rename-event-to-craft-n-code"  -  the event was RENAMED from "Rewind and Recode" to "Craft N Code" on Aug 9</li>
 <li>2026-08-10: pac-man draws the title, hero animation pacing, login overlay (arcade style)</li>
 <li>2026-08-10: "shorten-header-wordmark-to-cn1"</li>
 <li>Food ordering menu planned for the overnight hackathon (src/routes/food.tsx)</li>
 </ul>
-<h2>OVERNIGHT TIMELINE (VERIFIED — src/routes/about.tsx)</h2>
+<h2>OVERNIGHT TIMELINE (VERIFIED  -  src/routes/about.tsx)</h2>
 <table><thead><tr><th>Time</th><th>Event</th></tr></thead><tbody><tr><td>20:00</td><td>Check-in, team lock-in, opening brief</td></tr><tr><td>21:30</td><td>Problem statements go live. Clock starts.</td></tr><tr><td>01:00</td><td>Midnight fuel run + mentor rounds</td></tr><tr><td>04:30</td><td>Debug hour. "The city is asleep, you are not."</td></tr><tr><td>09:00</td><td>Freeze, demo, judging</td></tr></tbody></table>
-<h2>SUBMISSION FLOW (VERIFIED — src/routes/submit.tsx)</h2>
+<h2>SUBMISSION FLOW (VERIFIED  -  src/routes/submit.tsx)</h2>
 <ul>
-<li>"DEADLINE 09:00" (dawn deadline — overnight hackathon ends 09:00)</li>
-<li>One submission per team. Resubmit allowed until the clock hits zero — latest entry wins.</li>
+<li>"DEADLINE 09:00" (dawn deadline  -  overnight hackathon ends 09:00)</li>
+<li>One submission per team. Resubmit allowed until the clock hits zero  -  latest entry wins.</li>
 <li>Fields (zod-validated): team_name (1-100), track (1-50), repo_url (valid URL, 1-500), demo_url (optional valid URL, ≤500), pitch (1-2000)</li>
 <li>Supabase anon INSERT allowed (anyone can submit)</li>
 </ul>
-<h2>NIGHT CANTEEN (VERIFIED — src/routes/food.tsx)</h2>
+<h2>NIGHT CANTEEN (VERIFIED  -  src/routes/food.tsx)</h2>
 <table><thead><tr><th>Item</th><th>Price</th><th>Note</th></tr></thead><tbody><tr><td>Midnight Maggi</td><td>₹40</td><td>Extra masala, served 22:00–05:00</td></tr><tr><td>Cutting Chai</td><td>₹15</td><td>"The primary compiler"</td></tr><tr><td>Cold Brew Shot</td><td>₹60</td><td>Double strength</td></tr><tr><td>Paneer Roll</td><td>₹80</td><td>One-handed, keyboard safe</td></tr><tr><td>Grilled Sandwich</td><td>₹70</td><td>Veg / cheese</td></tr><tr><td>Pizza Slice</td><td>₹90</td><td>"Reheated at 03:00, honestly still good"</td></tr></tbody></table>
 <h2>IMPLICATIONS FOR TEAM 511</h2>
 <ol>
-<li>The 5 tracks ARE the problem structure — sponsor companies will likely map their questions onto these tracks (or the tracks ARE the sponsor questions).</li>
+<li>The 5 tracks ARE the problem structure  -  sponsor companies will likely map their questions onto these tracks (or the tracks ARE the sponsor questions).</li>
 <li>PS-04 Open Track = safest bet (3-min demo, anything justified). PS-05 Hardware = highest points but needs physical hardware.</li>
-<li>The event site is the submission portal (Supabase) — repo_url + demo_url + pitch are the submission fields. PREPARE THESE.</li>
+<li>The event site is the submission portal (Supabase)  -  repo_url + demo_url + pitch are the submission fields. PREPARE THESE.</li>
 <li>Sponsors not finalized = the "companies behind the hackathon" (Google/Apple/FB/Accenture/Adobe per CSC post) are still being locked. Watch sponsors@craftncode.dev + the site.</li>
 <li>~200 builders expected at the overnight event.</li>
 </ol>

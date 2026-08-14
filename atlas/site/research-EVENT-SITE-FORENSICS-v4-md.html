@@ -14,46 +14,46 @@
   <a class="open" href="../../research/EVENT-SITE-FORENSICS-v4.md" target="_blank" rel="noopener">OPEN FILE</a>
 </header>
 <main class="content">
-<h1>Event-Site Forensics v4 — Admin Console + Auth + Food (live JS bundle analysis)</h1>
+<h1>Event-Site Forensics v4  -  Admin Console + Auth + Food (live JS bundle analysis)</h1>
 <p>Compiled: 2026-08-13 | Method: live-site JS bundle extraction (craftncode-2026.vercel.app/assets/*.js)</p>
-<h2>ADMIN CONSOLE (VERIFIED — /admin + admin-D05ih_ze.js)</h2>
+<h2>ADMIN CONSOLE (VERIFIED  -  /admin + admin-D05ih_ze.js)</h2>
 <ul>
-<li>Route exists (200), renders "Admin Console — Craft N Code"</li>
+<li>Route exists (200), renders "Admin Console  -  Craft N Code"</li>
 <li>Query: <code>submissions</code> table, select <code>id, team_name, track, repo_url, demo_url, pitch, created_at</code>, order created_at DESC</li>
-<li>Render: article cards — team_name (neon-cyan), created_at (toLocaleString), track.toUpperCase() (neon-magenta), pitch, Repository link (repo_url), Demo link (demo_url, conditional)</li>
+<li>Render: article cards  -  team_name (neon-cyan), created_at (toLocaleString), track.toUpperCase() (neon-magenta), pitch, Repository link (repo_url), Demo link (demo_url, conditional)</li>
 <li>Counter: "NN ENTRIES" (padStart 2)</li>
 <li>Empty state: "No submissions yet."</li>
 <li>NO delete/update buttons in the admin UI (read-only dashboard)</li>
 <li>Admin guard: login flow checks <code>user_roles</code> table for role=admin; non-admin sign-in → signOut + "THIS ACCOUNT IS NOT AN ADMIN"</li>
 </ul>
-<h2>AUTH FLOW (VERIFIED — index-D7FOYZhw.js)</h2>
+<h2>AUTH FLOW (VERIFIED  -  index-D7FOYZhw.js)</h2>
 <ul>
 <li>Signup: <code>auth.signUp({email, password, options: {emailRedirectTo: window.location.origin, data: {team_name}}})</code> → "Check your email to confirm your team account."</li>
 <li>Login: <code>auth.signInWithPassword</code>; if mode=admin → check user_roles for admin role → "Admin access granted." / "Player one ready."</li>
 <li>Session hook: reads <code>profiles.team_name</code> + <code>user_roles.role=admin</code> per user</li>
 <li>Team name stored in auth metadata (data.team_name) at signup; profiles row created by DB trigger (handle_new_user)</li>
 </ul>
-<h2>SUBMISSION (VERIFIED — submit-DSBoB-9_.js)</h2>
+<h2>SUBMISSION (VERIFIED  -  submit-DSBoB-9_.js)</h2>
 <ul>
-<li><code>submissions.insert({...data, demo_url: demo_url || null})</code> — plain INSERT, no upsert</li>
-<li>"One submission per team. You can resubmit until the clock hits zero — latest entry wins."</li>
+<li><code>submissions.insert({...data, demo_url: demo_url || null})</code>  -  plain INSERT, no upsert</li>
+<li>"One submission per team. You can resubmit until the clock hits zero  -  latest entry wins."</li>
 <li>Track select: PS-01..PS-05, defaultValue PS-01</li>
 <li>DEADLINE 09:00</li>
 <li>Zod validation: team_name (1-100), track (1-50), repo_url (valid URL, 1-500), demo_url (optional URL ≤500), pitch (1-2000)</li>
 </ul>
-<h2>NIGHT CANTEEN (VERIFIED — food-BN7_vjLM.js)</h2>
+<h2>NIGHT CANTEEN (VERIFIED  -  food-BN7_vjLM.js)</h2>
 <ul>
 <li>Menu (hardcoded): Midnight Maggi ₹40, Cutting Chai ₹15, Cold Brew Shot ₹60, Paneer Roll ₹80, Grilled Sandwich ₹70, Pizza Slice ₹90</li>
-<li>Cart: local state only (useState), NO backend — "PLACE ORDER" just shows a toast "Order placed · a runner is on the way" and clears the cart</li>
-<li>No localStorage persistence, no API call — the food ordering is a UI mock</li>
+<li>Cart: local state only (useState), NO backend  -  "PLACE ORDER" just shows a toast "Order placed · a runner is on the way" and clears the cart</li>
+<li>No localStorage persistence, no API call  -  the food ordering is a UI mock</li>
 </ul>
 <h2>INTEL IMPLICATIONS</h2>
 <ol>
-<li>The admin console is READ-ONLY — judges see team_name/track/repo/demo/pitch + timestamp. The PITCH is the first thing they read. Pitch quality = first impression.</li>
-<li>Submissions are plain INSERTs — resubmitting creates a NEW row (no upsert). "Latest entry wins" means the judges see ALL rows; the newest is what they evaluate. Old rows are NOT deleted — a sloppy early submission stays visible. Submit clean the first time, then resubmit only with a strictly better pitch.</li>
-<li>The food ordering is a UI mock — no real ordering backend. Don't rely on it; bring your own snacks.</li>
-<li>Admin access requires a user_roles row — the club grants it manually. No public admin signup.</li>
-<li>The auth metadata carries team_name — the team name is set at signup, not editable in-app.</li>
+<li>The admin console is READ-ONLY  -  judges see team_name/track/repo/demo/pitch + timestamp. The PITCH is the first thing they read. Pitch quality = first impression.</li>
+<li>Submissions are plain INSERTs  -  resubmitting creates a NEW row (no upsert). "Latest entry wins" means the judges see ALL rows; the newest is what they evaluate. Old rows are NOT deleted  -  a sloppy early submission stays visible. Submit clean the first time, then resubmit only with a strictly better pitch.</li>
+<li>The food ordering is a UI mock  -  no real ordering backend. Don't rely on it; bring your own snacks.</li>
+<li>Admin access requires a user_roles row  -  the club grants it manually. No public admin signup.</li>
+<li>The auth metadata carries team_name  -  the team name is set at signup, not editable in-app.</li>
 </ol>
 </main>
 </body>

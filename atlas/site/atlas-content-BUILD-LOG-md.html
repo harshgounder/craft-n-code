@@ -207,6 +207,49 @@
 <p>for THIS: an atlas website that renders every file in full with OPEN</p>
 <p>FILE buttons. The atlas generator, this log, and the manifest are the</p>
 <p>answer.</p>
+<h3>17:05 - THE AGGRESSIVE AUDIT (user directive)</h3>
+<p>A hostile self-review of everything. What it found and what was fixed:</p>
+<ol>
+<li>TEST RACE (critical, my earlier claim was wrong): all five suites</li>
+</ol>
+<p>used a fixed 1.2s sleep after starting the server, and serve.py</p>
+<p>computed the mode at startup, which on a COLD database runs the whole</p>
+<p>LLM pipeline BEFORE binding the port. test_provenance sets a fake</p>
+<p>key (Q1 needs it), so cold-start took longer than 1.2s and the test</p>
+<p>crashed with connection refused. It only passed earlier because the</p>
+<p>shared signal.db was warm. The "42/42 independently verified" claim</p>
+<p>was therefore warm-state dependent. FIXED: wait_ready() polling</p>
+<p>helper in all five suites, per-suite fresh DB (delete signal.db +</p>
+<p>.llm_cache.json at suite start), serve.py binds immediately and</p>
+<p>computes the mode in a daemon thread. Re-verified in two orders on</p>
+<p>fresh DBs.</p>
+<ol>
+<li>TEST CONTAMINATION (real): suites share signal.db, so consent rows</li>
+</ol>
+<p>granted by the provenance suite changed the approval suite's</p>
+<p>consent_required output. Fixed by per-suite fresh DBs.</p>
+<ol>
+<li>STALE DOC NUMBERS (real): CODE-WALKTHROUGH line counts were from</li>
+</ol>
+<p>before the builds (engine 433 vs 473, serve 193 vs 373, index 245 vs</p>
+<p>378, approval 256 vs 362). Fixed.</p>
+<ol>
+<li>RULE COMPLIANCE (real): the pre-rule research corpus had 377 em</li>
+</ol>
+<p>dashes across 33 files and ~20 AI-tell words in 8 files. Swept: em</p>
+<p>dashes replaced with hyphens everywhere; AI-tell prose replaced</p>
+<p>word-level; verbatim quotes (Apple newsroom, NEXORA site) and URL</p>
+<p>slugs left untouched on purpose. Atlas regenerated.</p>
+<ol>
+<li>ONE FALSE FINDING (honest note): my audit script claimed a dead</li>
+</ol>
+<p>urllib import in engine.py, but the provider refactor had already</p>
+<p>removed it. The finding was based on a stale file read, corrected.</p>
+<ol>
+<li>SERVED-FILE WART (known, documented): demo.sh writes</li>
+</ol>
+<p>webapp/static/demo-feed.json that nothing reads. Documented in</p>
+<p>CODE-WALKTHROUGH, left as-is (harmless, gitignored).</p>
 <hr>
 <h2>THE RULES THAT SURVIVED (hard rules)</h2>
 <ol>

@@ -133,7 +133,7 @@ The winning skill profile is SwiftUI, interaction design, lightweight local infe
 
 Meta's own report on the first LlamaCon Hackathon says that a team led by Agajan Torayev built a Llama CCTV AI control-room operator. The excerpt specifies that the system automatically identifies custom surveillance video events without requiring model fine-tuning and that operators define video events in simple language [6]. This is the clearest winner-level evidence in the retrieved set.
 
-The pattern is not merely "use Llama." It is: accept a natural-language operational definition, inspect a difficult modality, and produce an actionable control-room result without asking a small team to retrain a model. A community recap of the May 3-4, 2025 LlamaCon Hackathon says popular topics included Llama 4 multimodal capabilities, video processing, virtual AI agents, and mixture-of-experts [7]. Because that recap is participant-level evidence, it supports directional interest rather than a formal Meta rubric.
+The pattern is not merely "use Llama." It is: accept a natural-language operational definition, inspect a difficult modality, and produce a concrete control-room result without asking a small team to retrain a model. A community recap of the May 3-4, 2025 LlamaCon Hackathon says popular topics included Llama 4 multimodal capabilities, video processing, virtual AI agents, and mixture-of-experts [7]. Because that recap is participant-level evidence, it supports directional interest rather than a formal Meta rubric.
 
 An IBM article describes LlamaCon as Meta's first conference dedicated to the Llama family and mentions the Llama API. That supports the importance of the developer ecosystem, but it does not prove an Indian college sponsor event. The retrieved material did not verify an India-specific Meta-set question, nor did it verify the supplied OrgLens and Compliance Wizards names. Keep those names as team-provided leads, not as externally established winners.
 
@@ -149,7 +149,7 @@ An IBM article describes LlamaCon as Meta's first conference dedicated to the Ll
 
 ### 4.3 Case study: the Llama CCTV operator
 
-The CCTV winner illustrates a high-leverage mechanism. Instead of asking a student team to fine-tune a custom video model, it turns event definitions into natural-language configuration and lets the operator query or monitor the stream [6]. That compresses the distance between a nontechnical user and a multimodal system.
+The CCTV winner illustrates a high-value mechanism. Instead of asking a student team to fine-tune a custom video model, it turns event definitions into natural-language configuration and lets the operator query or monitor the stream [6]. That compresses the distance between a nontechnical user and a multimodal system.
 
 The implication is that a Meta-like question will reward a model capability made operational. A demo that says "the model can see" is weaker than one that shows a user defining a risk rule, the system detecting evidence, the system explaining uncertainty, and a human approving the response. Team 511 should copy that control-loop structure, not the CCTV domain.
 

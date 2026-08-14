@@ -1,13 +1,13 @@
-# CRAFT N CODE — MASTER DOSSIER (everything we know)
+# CRAFT N CODE  -  MASTER DOSSIER (everything we know)
 
 Compiled: 2026-08-13 | Repo: ~/craft-n-code | Sources: Unstop API, LinkedIn LD+JSON, GitHub forensics, rivalsearch multi-engine, Wayback, cscmuj.com, subagent OSINT, craftncode-2026.vercel.app, D³ Fest 2026 brochure PDF
 
-## ⚡ THE 5 TRACKS (VERIFIED — live event site + source repo)
+## ⚡ THE 5 TRACKS (VERIFIED  -  live event site + source repo)
 
 | ID | Title | Body | Points |
 |---|---|---|---|
 | PS-01 | Rewind the Legacy | Take an outdated tool your campus still depends on and rebuild it for 2026. | 100 |
-| PS-02 | Night Ops | Tooling for people who work odd hours — sleep, safety, focus, logistics. | 200 |
+| PS-02 | Night Ops | Tooling for people who work odd hours  -  sleep, safety, focus, logistics. | 200 |
 | PS-03 | Signal / Noise | Cut through information overload with search, summarisation or ranking. | 300 |
 | PS-04 | Open Track | Anything you can justify in a 3-minute demo. Surprise the judges. | 400 |
 | PS-05 | Hardware Hack | Sensors, microcontrollers, ugly wiring. Physical output required. | 500 |
@@ -15,16 +15,16 @@ Compiled: 2026-08-13 | Repo: ~/craft-n-code | Sources: Unstop API, LinkedIn LD+J
 - "CHOOSE ONE TRACK AT CHECK-IN. SWITCHING AFTER THE CLOCK STARTS COSTS 30 MINUTES."
 - Full forensics: research/EVENT-SITE-FORENSICS.md
 
-## ⚡ OVERNIGHT TIMELINE (VERIFIED — live site /about)
+## ⚡ OVERNIGHT TIMELINE (VERIFIED  -  live site /about)
 
 20:00 check-in · 21:30 problem statements go live + clock starts · 01:00 midnight fuel + mentors · 04:30 debug hour · 09:00 freeze, demo, judging
 
-## ⚡ SUBMISSION (VERIFIED — live site /submit)
+## ⚡ SUBMISSION (VERIFIED  -  live site /submit)
 
 - Deadline 09:00. One submission per team, resubmit until clock hits zero (latest wins).
 - Fields: team_name, track, repo_url, demo_url (optional), pitch (1-2000 chars). Supabase backend.
 
-## ⚡ SPONSORS (VERIFIED — live site /sponsors)
+## ⚡ SPONSORS (VERIFIED  -  live site /sponsors)
 
 - TITLE PARTNER: "Your Brand Here" (EMPTY) · POWERED BY: 2 slots open · COMMUNITY: 3 slots open
 - Contact: sponsors@craftncode.dev · "hall of 200 builders at 3 AM" (~200 expected)
@@ -32,9 +32,9 @@ Compiled: 2026-08-13 | Repo: ~/craft-n-code | Sources: Unstop API, LinkedIn LD+J
 
 ## 0. THE EVENT (2026, Rajasthan)
 
-- **Craft N Code — Rajasthan State Qualifier**, organized by **Cyber Space Club (CSC) MUJ** in collaboration with **IIIT Bhubaneswar** (national host).
+- **Craft N Code  -  Rajasthan State Qualifier**, organized by **Cyber Space Club (CSC) MUJ** in collaboration with **IIIT Bhubaneswar** (national host).
 - Timeline: registration deadline Aug 14 23:59 IST → idea submission Aug 15 21:00 → Aug 16 06:00 → presentation Aug 16 10:00-17:30 at MUJ.
-- Entry: ₹299/team (CSC post) vs ₹699/team (user's Unstop listing) — VERIFY.
+- Entry: ₹299/team (CSC post) vs ₹699/team (user's Unstop listing)  -  VERIFY.
 - Prize: top 2 teams → National Finale at IIIT Bhubaneswar (travel sponsored), ₹50,000 pool at nationals.
 - National finals: Oct 30 - Nov 1, 2026 at IIIT-B. Problem statements released at 8:00 AM IST Oct 30.
 - **The questions are set by sponsor companies: Google, Apple, Facebook, Accenture, Adobe** (CSC post + user's club-insider intel).
@@ -59,7 +59,7 @@ Compiled: 2026-08-13 | Repo: ~/craft-n-code | Sources: Unstop API, LinkedIn LD+J
 - **2025-26**: Jatin Sangewar (Tech Sec), Arnab Roy (Gen Sec), Ganesh Kotwade (VP), Rishabh Pandey (Treasurer), etc.
 
 ### Other 2026 state rounds
-- **UP**: IET Lucknow (ISSACC Technical IET Lucknow) — "IIIT Bhubaneswar × IET Lucknow, 50K+ pool" (IG iet_fractal, Aug 8 2026).
+- **UP**: IET Lucknow (ISSACC Technical IET Lucknow)  -  "IIIT Bhubaneswar × IET Lucknow, 50K+ pool" (IG iet_fractal, Aug 8 2026).
 - 2024 series: Rajasthan, Assam, UP, Maharashtra state rounds.
 
 ## 2. EDITION HISTORY
@@ -79,31 +79,31 @@ Compiled: 2026-08-13 | Repo: ~/craft-n-code | Sources: Unstop API, LinkedIn LD+J
 ## 3. PEOPLE (key profiles)
 
 ### CSC (2026 Rajasthan)
-- **Abhinav Trikha** — Chairperson, pre-final IT @ MUJ, ex-Joint Head of Events. LinkedIn: abhinav-trikha. Contact +91 95994 15311.
-- **Ambika Seth** — Vice-Chair, Varanasi, MUJ. Cyber Awareness Camp volunteer. LinkedIn: ambika-seth-084149333.
-- **Spandan Hota** — Craft N Code contact. **Intern @ Nursio Innovation, Ex-Google Student Ambassador** (Gemini, selected Sep 2025). LinkedIn: spandan-hota. IG @spandanhota. ⚠️ Name collision with a Jio Bank engineer — different person.
-- **Tirtha Desai** — Craft N Code contact. GitHub TirthaDesai (6 repos: Flutter session, ML session, Node restaurant app = CSC workshop evidence). No LinkedIn found (5 profiles, none match).
-- **Harshit Raj Singh** (devxharshit) — Tech Sec 2026-27, GitHub contributor to cscmuj-website.
-- **Jatin Sangewar** (jatinn-sw) — Tech Sec 2025-26, 92 commits to club site, "Data Enthusiast" Hyderabad.
+- **Abhinav Trikha**  -  Chairperson, pre-final IT @ MUJ, ex-Joint Head of Events. LinkedIn: abhinav-trikha. Contact +91 95994 15311.
+- **Ambika Seth**  -  Vice-Chair, Varanasi, MUJ. Cyber Awareness Camp volunteer. LinkedIn: ambika-seth-084149333.
+- **Spandan Hota**  -  Craft N Code contact. **Intern @ Nursio Innovation, Ex-Google Student Ambassador** (Gemini, selected Sep 2025). LinkedIn: spandan-hota. IG @spandanhota. ⚠️ Name collision with a Jio Bank engineer  -  different person.
+- **Tirtha Desai**  -  Craft N Code contact. GitHub TirthaDesai (6 repos: Flutter session, ML session, Node restaurant app = CSC workshop evidence). No LinkedIn found (5 profiles, none match).
+- **Harshit Raj Singh** (devxharshit)  -  Tech Sec 2026-27, GitHub contributor to cscmuj-website.
+- **Jatin Sangewar** (jatinn-sw)  -  Tech Sec 2025-26, 92 commits to club site, "Data Enthusiast" Hyderabad.
 
 ### Tech Society IIIT-B (2024 coordinators + Hackfest organizers)
 - Soubhik Gon, Saswat Parasar Behera (2024 CraftNCode coordinators, emails/phones in COMPETITIVE-INTEL-DOSSIER.md)
 - Swoyam Siddharth Nayak, Raj Alpha Swain, Subrat Kumar Swain, Ehtisham Mohd, Sipra Mohanty (Hackfest 2024 organizers)
 - Judges (Hackfest 2024): Ayushi Parashar, Shivani Prasad, Sarthak Padhi, ACP Anjana Tudu (police), Lingaraj Sethi (cyber expert), Sonali Satpathy
-- (Full Tech Society dossiers: PEOPLE-DOSSIER-TECHSOC.md — landing)
+- (Full Tech Society dossiers: PEOPLE-DOSSIER-TECHSOC.md  -  landing)
 
 ### Winners
-- **Team Highlanders (MUJ)** — 1st place 2025 nationals (1600-2000+ teams), AFTERPACKETS. Abhishek Chaturvedi, Prasham Jain, Hrishi Bhalaria, Tapish Thakur.
-- **GENESIS (SIT Bhubaneswar)** — Hackfest 2024 winner, food distribution app + ML.
-- **TECHTITANS (IIIT-B)** — Hackfest 2024 runner-up.
+- **Team Highlanders (MUJ)**  -  1st place 2025 nationals (1600-2000+ teams), AFTERPACKETS. Abhishek Chaturvedi, Prasham Jain, Hrishi Bhalaria, Tapish Thakur.
+- **GENESIS (SIT Bhubaneswar)**  -  Hackfest 2024 winner, food distribution app + ML.
+- **TECHTITANS (IIIT-B)**  -  Hackfest 2024 runner-up.
 
 ## 4. WINNER CODE FORENSICS (what actually won)
 
-### AFTERPACKETS (2025 national winner) — full stack recovered from GitHub
+### AFTERPACKETS (2025 national winner)  -  full stack recovered from GitHub
 - **Android app** (Kotlin, 40+ files): VPNService capture (no root), native C++ DPI parser (IP/TCP/UDP/ICMP/HTTP/DNS/TLS), Room DB, Jetpack Compose, WebSocket server, firewall engine, app tracking, geo map, PCAP/JSON export, consent + audit logging.
 - **Security alerts**: MITM, DNS spoofing, data exfiltration, ARP spoofing (severity levels).
 - **Desktop web**: React 18 + Vite + TS + Tailwind + Zustand + three.js/globe.gl + Leaflet + Recharts + Express.
-- **Repo hygiene**: TERRIBLE (committed .gradle, node_modules, .DS_Store, debug APK, 201MB) — and they still won. Clean repo = free points.
+- **Repo hygiene**: TERRIBLE (committed .gradle, node_modules, .DS_Store, debug APK, 201MB)  -  and they still won. Clean repo = free points.
 - Repos: PrashamJ17/AfterPackets, hrishibhalaria/AfterPackets, Avshrek/AfterPackets.
 
 ### TrueMix (2024 participant, Bit-Binary-2027)
@@ -111,7 +111,7 @@ Compiled: 2026-08-13 | Repo: ~/craft-n-code | Sources: Unstop API, LinkedIn LD+J
 - Chandan Kumar (Chandan-Kr-dev): 34 repos, gov-scheme projects (EgramPanchayat, SIHJudicio), hackathon circuit regular.
 
 ### The formula
-1. Working end-to-end product (APK/web app) — non-negotiable.
+1. Working end-to-end product (APK/web app)  -  non-negotiable.
 2. Real-world problem (network forensics, food waste, misinformation).
 3. ML/security depth.
 4. README as pitch.
@@ -151,10 +151,10 @@ Full rosters: NOT published by organizers. Winners only. Counts = honest denomin
 ## 8. STRATEGIC READ (for Team 511)
 
 1. **Win the state round = ticket to nationals.** Top 2 advance, travel sponsored.
-2. **MUJ has won nationals before** (Highlanders 2025) — the bar is a working, polished, security/network-flavored build.
-3. **Sponsors set the question** — prep a flexible stack + idea bank across their domains. The question likely drops at the Aug 15 21:00 window.
-4. **The club has real platform engineering** (custom NEXORA portal, Jatin's 92 commits) — expect a smooth submission system, possibly the same portal.
-5. **Fee discrepancy**: ₹299 (CSC post) vs ₹699 (Unstop listing) — verify before paying.
+2. **MUJ has won nationals before** (Highlanders 2025)  -  the bar is a working, polished, security/network-flavored build.
+3. **Sponsors set the question**  -  prep a flexible stack + idea bank across their domains. The question likely drops at the Aug 15 21:00 window.
+4. **The club has real platform engineering** (custom NEXORA portal, Jatin's 92 commits)  -  expect a smooth submission system, possibly the same portal.
+5. **Fee discrepancy**: ₹299 (CSC post) vs ₹699 (Unstop listing)  -  verify before paying.
 6. **24h finals rules**: original work, GitHub push every 3h, no pre-built projects. Pre-built scaffolds + libraries are fine.
 7. **Judges reward**: creativity, technical complexity, practicality, presentation (2024 criteria) + sponsor-company taste (AI/ML, working demo, their platforms).
 
@@ -170,9 +170,9 @@ Full rosters: NOT published by organizers. Winners only. Counts = honest denomin
 
 ## 10. FILE MAP
 
-- research/COMPETITIVE-INTEL-DOSSIER.md — org lineage, editions, people, sponsors, participants
-- research/WINNER-REVERSE-ENGINEERING.md — AFTERPACKETS forensics, TrueMix, GENESIS, formula
-- research/PROBLEM-BANK-SPONSOR-DNA.md — 2024 rules, sponsor DNA, prep plan
-- research/PEOPLE-DOSSIER-CSC.md — CSC full roster + 4 organizer profiles + 26-claim verification
-- research/PEOPLE-DOSSIER-TECHSOC.md — Tech Society dossiers (landing)
-- research/watch-state.json — watchdog state
+- research/COMPETITIVE-INTEL-DOSSIER.md  -  org lineage, editions, people, sponsors, participants
+- research/WINNER-REVERSE-ENGINEERING.md  -  AFTERPACKETS forensics, TrueMix, GENESIS, formula
+- research/PROBLEM-BANK-SPONSOR-DNA.md  -  2024 rules, sponsor DNA, prep plan
+- research/PEOPLE-DOSSIER-CSC.md  -  CSC full roster + 4 organizer profiles + 26-claim verification
+- research/PEOPLE-DOSSIER-TECHSOC.md  -  Tech Society dossiers (landing)
+- research/watch-state.json  -  watchdog state

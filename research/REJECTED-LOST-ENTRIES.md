@@ -1,4 +1,4 @@
-# REJECTED / LOST ENTRIES — what got cut and why (R1 mechanics + evidence)
+# REJECTED / LOST ENTRIES  -  what got cut and why (R1 mechanics + evidence)
 
 Compiled: 2026-08-13 | Sources: NEXORA'26 portal JS forensics, 2025 finals roster, participant repos, judging UI strings
 
@@ -13,8 +13,8 @@ Fields: team_id, team_name, track_name, **problem_statement**, github_url, ppt_u
 - A `rejected` status exists in the flow (the admin list filters on it)
 - Duplicate submission blocked: error code 23505 → "Your team has already successfully submitted a project pipeline"
 - Admin view: all submissions ordered by submitted_at DESC, with score + status badges (amber = Pending Review, green = Evaluated)
-- **"Scores Redacted for Review Balance"** — scores hidden from teams during review (anti-bias)
-- **"Cryptographic Assessment Protocol Active"** — telemetry/anti-cheat framing
+- **"Scores Redacted for Review Balance"**  -  scores hidden from teams during review (anti-bias)
+- **"Cryptographic Assessment Protocol Active"**  -  telemetry/anti-cheat framing
 
 ### The admin gate (exact strings)
 - "Admin Access Gate" / "Provide valid gateway criteria"
@@ -27,7 +27,7 @@ Fields: team_id, team_name, track_name, **problem_statement**, github_url, ppt_u
 ### From the 2025 finals roster (20 teams, 19 mapped):
 - **Incomplete repos**: udaykoti/nani + WadoKira/Bhubaneswar-project--Frontend = 404 (deleted/private after event). 2/20 teams' work is GONE. If the repo is gone, the submission is unverifiable.
 - **Tiny repos**: PreetiPMishra-Codes/swapp = 18KB (HTML only). GITLERS submitted a near-empty repo. That's a rejection-grade submission.
-- **HTML-only entries**: swapp (18KB), VedaScore (190KB HTML) — no real app, no backend. 2/20.
+- **HTML-only entries**: swapp (18KB), VedaScore (190KB HTML)  -  no real app, no backend. 2/20.
 - **The crowded-lane losers**: 5 lab-grader teams split the lane; only the best (if any) advanced. The other 4 lost despite building.
 
 ### From the NEXORA flow (what the admin sees):
@@ -54,15 +54,15 @@ Fields: team_id, team_name, track_name, **problem_statement**, github_url, ppt_u
 1. **Pick the lane BEFORE the problems drop** (PS-04 or PS-02 = emptiest)
 2. **Have the repo skeleton ready** (public, named, README'd, with a real commit history)
 3. **Have the pitch template ready** (problem_statement field: 3 sentences, judge-reads-in-30s format)
-4. **Deploy early** (Vercel free tier, even a stub) — deployment_url filled from minute 1
+4. **Deploy early** (Vercel free tier, even a stub)  -  deployment_url filled from minute 1
 5. **Zero-dependency core** (no OAuth/API keys in the critical path; if AI is needed, use a key we control with fallback)
 6. **Demo > deck** (the 3-min demo is the whole game in PS-04)
 7. **Clean repo before freeze** (no debug files, no .env, no node_modules committed)
-8. **Resubmit near deadline** (latest entry wins — but keep the first submission clean in case)
+8. **Resubmit near deadline** (latest entry wins  -  but keep the first submission clean in case)
 
 ## 5. THE "REJECTED" DATA WE CANNOT GET (honest limits)
 
-- The actual NEXORA'26 results (winners named) — not public
+- The actual NEXORA'26 results (winners named)  -  not public
 - The 2025 R1 rejection list (only the 20 finalists are public)
 - The 2026 Rajasthan R1 submissions (Supabase RLS-locked to admins)
 - Judge score sheets (redacted by design)

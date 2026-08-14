@@ -1,4 +1,4 @@
-# Craft N Code — Competitive Intelligence Dossier
+# Craft N Code  -  Competitive Intelligence Dossier
 
 Compiled: 2026-08-13 | Sources: Unstop public API, LinkedIn LD+JSON, rivalsearch multi-engine, Wayback, GitHub
 
@@ -17,7 +17,7 @@ Compiled: 2026-08-13 | Sources: Unstop public API, LinkedIn LD+JSON, rivalsearch
 - CSC's own state hackathon: **NEXORA'26** (with Rabbitt AI, 261 participants, ₹10K pool, 48h, custom-built portal, winner → Rabbitt AI National Finale in Delhi).
 
 ### Other state rounds (2026 series)
-- **UP**: IET Lucknow (ISSACC Technical IET Lucknow) — "IIIT Bhubaneswar × IET Lucknow, Prize Pool 50K+" (Instagram iet_fractal, Aug 8 2026).
+- **UP**: IET Lucknow (ISSACC Technical IET Lucknow)  -  "IIIT Bhubaneswar × IET Lucknow, Prize Pool 50K+" (Instagram iet_fractal, Aug 8 2026).
 - 2024 series also had state rounds for Rajasthan, Assam, UP, Maharashtra.
 
 ## 2. EDITION HISTORY
@@ -35,19 +35,19 @@ Compiled: 2026-08-13 | Sources: Unstop public API, LinkedIn LD+JSON, rivalsearch
 - Team size 2-4, cross-college within same state allowed. Bachelor's students only.
 - Coordinators: **Soubhik Gon** (b422056@iiit-bh.ac.in, +91 6370462354), **Saswat Parasar Behera** (b122103@iiit-bh.ac.in, +91 7327903685).
 
-### 2025 (Rewind & Recode) — the MUJ connection
-- **Team Highlanders (MUJ) WON the 2025 national finale** — "1st place among 2000+ teams across India" (Abhishek Chaturvedi's post).
-- Project: **AFTERPACKETS** — mobile network traffic analysis and forensics platform (real-time app communication visibility, suspicious activity detection).
+### 2025 (Rewind & Recode)  -  the MUJ connection
+- **Team Highlanders (MUJ) WON the 2025 national finale**  -  "1st place among 2000+ teams across India" (Abhishek Chaturvedi's post).
+- Project: **AFTERPACKETS**  -  mobile network traffic analysis and forensics platform (real-time app communication visibility, suspicious activity detection).
 - Team: Abhishek Chaturvedi, Prasham Jain, Hrishi Bhalaria, Tapish Thakur.
-- CSC MUJ's own post (Dec 27, 2025): "A National-Level Hackathon by Cyberspace Club, MUJ in collaboration with IIIT Bhubaneswar — Rewind & Recode – D3 TechFest Hackathon 2025."
+- CSC MUJ's own post (Dec 27, 2025): "A National-Level Hackathon by Cyberspace Club, MUJ in collaboration with IIIT Bhubaneswar  -  Rewind & Recode – D3 TechFest Hackathon 2025."
 - This is the "Last year, MUJ students... won it" claim in the 2026 CSC promo.
 
 ## 3. PEOPLE
 
 ### 2026 Rajasthan organizers (Unstop contacts, listing 1730325)
-- **Spandan Hota** — spandanhota2005@gmail.com, +91 85990 90093
-- **Tirtha Desai** — tirthadesai29@gmail.com, +91 79841 92596
-- **Abhinav Trikha** — trikhaabhinav@gmail.com, +91 95994 15311 (also CSC chairperson)
+- **Spandan Hota**  -  spandanhota2005@gmail.com, +91 85990 90093
+- **Tirtha Desai**  -  tirthadesai29@gmail.com, +91 79841 92596
+- **Abhinav Trikha**  -  trikhaabhinav@gmail.com, +91 95994 15311 (also CSC chairperson)
 
 ### 2024 coordinators (IIIT-B)
 - Soubhik Gon, Saswat Parasar Behera (emails/phones above)
@@ -55,7 +55,7 @@ Compiled: 2026-08-13 | Sources: Unstop public API, LinkedIn LD+JSON, rivalsearch
 ### Tech Society organizers (Hackfest 2024 post)
 - Swoyam Siddharth Nayak, Raj Alpha Swain, Subrat Kumar Swain, Ehtisham Mohd, Sipra Mohanty (organizers); Chirantan Beura, G.N. Venkata Pathi Raju, Anshuman Mahabhoi (volunteers)
 
-### Judges (Hackfest 2024 — Tech Society's judging taste)
+### Judges (Hackfest 2024  -  Tech Society's judging taste)
 - Ayushi Parashar, Shivani Prasad, Sarthak Padhi, ACP Anjana Tudu (police), Lingaraj Sethi (cybersecurity expert), Sonali Satpathy
 
 ### 2025 national winners (Team Highlanders, MUJ)
@@ -94,9 +94,9 @@ Compiled: 2026-08-13 | Sources: Unstop public API, LinkedIn LD+JSON, rivalsearch
 ## 7. KEY INSIGHTS FOR TEAM 511
 
 1. **The path is: win the state round → nationals at IIIT-B.** Top 2 from Rajasthan advance (travel sponsored per CSC post).
-2. **MUJ has won the nationals before** (Team Highlanders 2025) — the bar is a working, polished, security/network-flavored build. AFTERPACKETS won on "clarity, relevance, and execution."
+2. **MUJ has won the nationals before** (Team Highlanders 2025)  -  the bar is a working, polished, security/network-flavored build. AFTERPACKETS won on "clarity, relevance, and execution."
 3. **The judges reward**: working demos, real-world problems, clear presentation (Hackfest 2024 pattern: 114→21→8 funnel, judges = industry + police + cyber experts).
-4. **Sponsor companies set the questions** (Google/Apple/Facebook/Accenture/Adobe for 2026) — prep a flexible stack + idea bank across their domains (AI, mobile, cloud, design, security).
+4. **Sponsor companies set the questions** (Google/Apple/Facebook/Accenture/Adobe for 2026)  -  prep a flexible stack + idea bank across their domains (AI, mobile, cloud, design, security).
 5. **Entry fee discrepancy**: CSC post says ₹299/team, user's Unstop listing says ₹699/team (MUJ tier). Verify before paying.
 6. **Registration deadline**: Aug 14 23:59 IST (tomorrow). Idea submission Aug 15 21:00 → Aug 16 06:00. Presentation Aug 16 10:00-17:30 at MUJ.
 
@@ -110,6 +110,6 @@ Compiled: 2026-08-13 | Sources: Unstop public API, LinkedIn LD+JSON, rivalsearch
 | 2025 = Rewind & Recode, MUJ won | ✅ VERIFIED | Winner LinkedIn posts, CSC post |
 | 2026 sponsors = Google/Apple/FB/Accenture/Adobe | ✅ VERIFIED | CSC LinkedIn post (Aug 11 2026) |
 | 2026 Rajasthan listing ID | 🟡 PARTIAL | User's Unstop paste; API ID not yet found (UP=1730325 confirmed) |
-| Judges for 2026 | ❌ NOT FOUND | No reveal yet (normal — reveals come 1-2 days before) |
+| Judges for 2026 | ❌ NOT FOUND | No reveal yet (normal  -  reveals come 1-2 days before) |
 | 2026 problem statements | ❌ NOT FOUND | Sponsor companies set them; not released |
 | Full participant rosters | ❌ NOT FOUND | Organizers publish winners only; counts from API |

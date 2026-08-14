@@ -1,4 +1,4 @@
-# EXACT-WINNER DEEP-DIVE — AFTERPACKETS (2025 National Winner)
+# EXACT-WINNER DEEP-DIVE  -  AFTERPACKETS (2025 National Winner)
 
 Compiled: 2026-08-13 | Sources: full repo forensics (PrashamJ17/AfterPackets), FEATURE_GUIDE, commit history, C++ parser source
 
@@ -16,7 +16,7 @@ The problem (Challenge 7) required: capture module, traffic dashboard, DPI packe
 | Custom detection rules | Metric (outbound_bytes/packet_rate/connection_count/failed_connections) + condition + threshold + time window + action (alert/log/block) + severity |
 | Export | PCAP (Wireshark-compatible), JSON, Evidence Bundle (PCAP+JSON+report+timeline+threat assessment) |
 | WebSocket server | Real-time streaming to companion web app |
-| Firewall engine | FirewallRuleEngine.kt — block actions |
+| Firewall engine | FirewallRuleEngine.kt  -  block actions |
 | VpnSocketProtector | Protects the VPN socket from being captured (self-awareness) |
 | VpnDiagnostics + VpnVerification | Self-testing VPN setup |
 
@@ -26,15 +26,15 @@ The problem (Challenge 7) required: capture module, traffic dashboard, DPI packe
 - `parseIPv4`: version check, IHL, source/dest IP, total length, protocol switch
 - `parseTCP`: source/dest ports, flags
 - `ntohl/ntohs` byte-order handling, hex/ASCII payload view
-- Native via JNI (NativePacketParser.kt) — performance + "real engineering" signal
+- Native via JNI (NativePacketParser.kt)  -  performance + "real engineering" signal
 
 ## 3. THE ANDROID ARCHITECTURE (40+ Kotlin files)
 
-- `PacketCaptureService : VpnService()` — MTU 1400, buffer 32767, coroutine-based
-- Room database (PacketDao, FilterPresetDao) — persisted captures
+- `PacketCaptureService : VpnService()`  -  MTU 1400, buffer 32767, coroutine-based
+- Room database (PacketDao, FilterPresetDao)  -  persisted captures
 - MVVM (MainViewModel, screens per feature)
 - 13 UI screens: Dashboard, PacketList, PacketDetail, Filter, Alerts, Rules, Export, Map, AppDataDonut, TopTalkers, ConnectionDetails, PayloadWarning, ProtocolPie
-- Theme system (Color/Theme/Type.kt) — polished dark UI
+- Theme system (Color/Theme/Type.kt)  -  polished dark UI
 
 ## 4. THE COMMIT TIMELINE (finals day, Nov 8 2025)
 

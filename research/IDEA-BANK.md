@@ -43,7 +43,7 @@ The deep-research pass-2 #1 predicted shape: an AI agent system that plans, exec
 - **What we build (24h MVP)**:
   - Ingest: JSON feed from any channel (connectors are pluggable; demo uses pre-imported data)
   - Engine: dedupe → LLM summarize (one line) → rank by profile + sender authority + deadline → "today in 60 seconds" digest
-  - Action proposals: actionable items become proposals (AI proposes, evidence attached: source, deadline, amount)
+  - Action proposals: concrete items become proposals (AI proposes, evidence attached: source, deadline, amount)
   - Approval gate: APPROVE / REJECT / SNOOZE per proposal, audit log (who, when, what)
   - Ask: semantic search over everything with sourced answers
 - **Stack**: python engine (built) + zero-dep web server (built) + ollama-cloud LLM with offline fallback (built). NO paid keys, NO external deps in the demo (AFTERPACKETS rule).

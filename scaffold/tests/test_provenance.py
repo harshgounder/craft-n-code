@@ -14,6 +14,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -21,6 +22,7 @@ HERE = Path(__file__).parent
 ROOT = HERE.parent
 SERVE = ROOT / "webapp" / "serve.py"
 DB = ROOT / "engine" / "signal.db"
+CACHE = ROOT / "engine" / ".llm_cache.json"
 
 PORT = 8126
 BASE = f"http://localhost:{PORT}"
@@ -51,25 +53,52 @@ def feed_item_ids():
     return [i["source_id"] for i in jget("/api/feed")["items"]]
 
 
+def fresh_db():
+    """Delete generated artifacts so every suite runs against fresh state."""
+    for p in (DB, CACHE):
+        try:
+            p.unlink()
+        except FileNotFoundError:
+            pass
+
+
+def wait_ready(server, errfile):
+    """Poll GET /api/stats until HTTP 200, up to 30s. Fail if server exits."""
+    deadline = time.time() + 30
+    while time.time() < deadline:
+        if server.poll() is not None:
+            err = ""
+            try:
+                err = Path(errfile).read_text()
+            except Exception:
+                pass
+            raise RuntimeError(f"server exited during wait_ready (rc={server.returncode}): {err}")
+        try:
+            with urllib.request.urlopen(BASE + "/api/stats", timeout=2) as r:
+                if r.status == 200:
+                    return
+        except (urllib.error.URLError, OSError):
+            pass
+        time.sleep(0.25)
+    raise RuntimeError("server did not become ready within 30s")
+
+
 def main():
+    fresh_db()
     env = dict(os.environ)
     env["OLLAMA_API_KEY"] = "test-key"
     os.environ["OLLAMA_API_KEY"] = "test-key"
+    proc = subprocess.run([sys.executable, str(ROOT / "engine" / "engine.py"), "--seed"],
+                          capture_output=True, env=env, cwd=str(ROOT / "engine"))
+    assert proc.returncode == 0, proc.stderr.decode()
 
     with tempfile.TemporaryDirectory() as td:
-        # clear any prior consent rows so Q3/Q4 are deterministic
-        try:
-            conn = sqlite3.connect(DB)
-            conn.execute("DELETE FROM consent")
-            conn.commit()
-            conn.close()
-        except Exception:
-            pass
+        errfile = Path(td) / "server.err"
         server = subprocess.Popen(
             [sys.executable, str(SERVE), "--port", str(PORT)],
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            stdout=subprocess.DEVNULL, stderr=open(errfile, "w"),
             cwd=str(ROOT / "webapp"), env=env)
-        time.sleep(1.2)
+        wait_ready(server, errfile)
         try:
             item = feed_item_ids()[0]
 

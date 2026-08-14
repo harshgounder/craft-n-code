@@ -1,4 +1,4 @@
-# D³ Fest 2026 Brochure — Full Text Extraction
+# D³ Fest 2026 Brochure  -  Full Text Extraction
 
 Compiled: 2026-08-13 | Source: drive.google.com/file/d/1iyiSNVeNCb1sEuLReG3oIY8hC8bFBZ0u (linked from d3fest.techsoc-iiitbbsr.com) | Method: pdftotext
 
@@ -29,7 +29,7 @@ Compiled: 2026-08-13 | Source: drive.google.com/file/d/1iyiSNVeNCb1sEuLReG3oIY8h
 - Curated exhibition where local startups and companies showcase technology and products to a live audience
 
 ### Code-o-lympics
-- ICPC-inspired programming competition (same description as Code-Kombat — likely renamed)
+- ICPC-inspired programming competition (same description as Code-Kombat  -  likely renamed)
 
 ### Workshop.exe
 - Hands-on learning with industry experts: AI, Blockchain, Web3, Augmented Reality (AR), Virtual Reality (VR)
@@ -50,7 +50,7 @@ Compiled: 2026-08-13 | Source: drive.google.com/file/d/1iyiSNVeNCb1sEuLReG3oIY8h
 
 ## Implications for Team 511
 
-1. CraftNCode'26 = 24h national hackathon, "showcase your skills to industry leaders" — the industry leaders ARE the sponsor companies (Google/Apple/FB/Accenture/Adobe).
-2. The D³ Fest ecosystem has a CTF Arena (cybersecurity) — CSC's home turf. If the sponsor questions lean cyber, we have the deepest assets (Kavach).
-3. Workshop.exe covers AI/Blockchain/Web3/AR/VR — the sponsor companies' likely problem domains.
+1. CraftNCode'26 = 24h national hackathon, "showcase your skills to industry leaders"  -  the industry leaders ARE the sponsor companies (Google/Apple/FB/Accenture/Adobe).
+2. The D³ Fest ecosystem has a CTF Arena (cybersecurity)  -  CSC's home turf. If the sponsor questions lean cyber, we have the deepest assets (Kavach).
+3. Workshop.exe covers AI/Blockchain/Web3/AR/VR  -  the sponsor companies' likely problem domains.
 4. The brochure confirms D³ Fest 2026 = Tech + Robotics Societies, 4-day fest.

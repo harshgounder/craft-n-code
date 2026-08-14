@@ -61,7 +61,7 @@ The safe Google-shaped preparation is not a guessed quote. It is an agent or AI 
 
 Apple's official Swift Student Challenge page says the challenge has given thousands of student developers opportunities to demonstrate creativity and coding capability through app playgrounds [7]. The retrieved page does not provide an Indian college hackathon problem statement. It therefore cannot support a claim that Apple authored a Craft N Code problem.
 
-The strongest current Apple signal is the 2026 accessibility direction. Apple's newsroom describes four 2026 Swift Student Challenge winners creating innovative apps that leverage AI and focus on accessibility [8]. Apple's 2026 terms state that applicants must be enrolled in, or have graduated within the last 90 days from, an accredited academic institution or official homeschool equivalent, or be an Apple Developer Academy student [13]. These facts support an accessibility-first mobile build, but not a verbatim sponsor prompt.
+The strongest current Apple signal is the 2026 accessibility direction. Apple's newsroom describes four 2026 Swift Student Challenge winners creating innovative apps that use AI and focus on accessibility [8]. Apple's 2026 terms state that applicants must be enrolled in, or have graduated within the last 90 days from, an accredited academic institution or official homeschool equivalent, or be an Apple Developer Academy student [13]. These facts support an accessibility-first mobile build, but not a verbatim sponsor prompt.
 
 > "Meet four Swift Student Challenge winners who are creating innovative apps that leverage AI and focus on accessibility." [8]
 >
@@ -272,7 +272,7 @@ Recommended minimum architecture: a task router, one or two deterministic tools,
 
 ### C2.3 Meta multimodality
 
-Llama 4's official announcement supports preparing for multimodal input [4]. A robust prototype should accept an image or document, extract structured facts, show uncertainty, and let the user correct the result. The non-obvious risk is that a multimodal demo can look impressive while failing on poor lighting, regional language, handwriting, or ambiguous images.
+Llama 4's official announcement supports preparing for multimodal input [4]. A solid prototype should accept an image or document, extract structured facts, show uncertainty, and let the user correct the result. The non-obvious risk is that a multimodal demo can look impressive while failing on poor lighting, regional language, handwriting, or ambiguous images.
 
 ### C2.4 Adobe creative APIs
 

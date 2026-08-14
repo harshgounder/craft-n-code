@@ -14,43 +14,43 @@
   <a class="open" href="../../research/COMPETITOR-POOL.md" target="_blank" rel="noopener">OPEN FILE</a>
 </header>
 <main class="content">
-<h1>Competitor Pool — 2025 Finalists + NEXORA + 2024 (deep-dive)</h1>
+<h1>Competitor Pool  -  2025 Finalists + NEXORA + 2024 (deep-dive)</h1>
 <p>Compiled: 2026-08-13 | Sources: GitHub commit forensics, repo metadata, READMEs</p>
-<h2>1. THE WINNERS' WORKFLOW (AFTERPACKETS commit forensics — VERIFIED)</h2>
+<h2>1. THE WINNERS' WORKFLOW (AFTERPACKETS commit forensics  -  VERIFIED)</h2>
 <p>Commit timeline (finals day, Nov 8 2025, freeze 09:00):</p>
-<table><thead><tr><th>Time</th><th>Commit</th><th>What it means</th></tr></thead><tbody><tr><td>06:56</td><td>Initial commit</td><td>The build was done BEFORE the public commits — they committed the finished app</td></tr><tr><td>07:17</td><td>"Remove geo-location features from README"</td><td>SCOPE DOWN #1 — cut a feature from the story</td></tr><tr><td>07:26</td><td>Delete debug APKs (cursor-mph-v1.apk, mobile-packet-hunter-debug.apk)</td><td>Cleanup — no junk in the submission</td></tr><tr><td>08:01</td><td>"Rename project from Mobile Packet Hunter to AFTERPACKETS"</td><td>REBRAND mid-hackathon — the name change happened 1h before freeze</td></tr><tr><td>08:11</td><td>"Remove Desktop Web App documentation"</td><td>SCOPE DOWN #2 — dropped the web app from the story entirely</td></tr><tr><td>(next)</td><td>Apr 2026 README update</td><td>Nothing for 5 months — they shipped and stopped</td></tr></tbody></table>
+<table><thead><tr><th>Time</th><th>Commit</th><th>What it means</th></tr></thead><tbody><tr><td>06:56</td><td>Initial commit</td><td>The build was done BEFORE the public commits  -  they committed the finished app</td></tr><tr><td>07:17</td><td>"Remove geo-location features from README"</td><td>SCOPE DOWN #1  -  cut a feature from the story</td></tr><tr><td>07:26</td><td>Delete debug APKs (cursor-mph-v1.apk, mobile-packet-hunter-debug.apk)</td><td>Cleanup  -  no junk in the submission</td></tr><tr><td>08:01</td><td>"Rename project from Mobile Packet Hunter to AFTERPACKETS"</td><td>REBRAND mid-hackathon  -  the name change happened 1h before freeze</td></tr><tr><td>08:11</td><td>"Remove Desktop Web App documentation"</td><td>SCOPE DOWN #2  -  dropped the web app from the story entirely</td></tr><tr><td>(next)</td><td>Apr 2026 README update</td><td>Nothing for 5 months  -  they shipped and stopped</td></tr></tbody></table>
 <p><strong>The winning pattern:</strong></p>
 <ol>
 <li>Build the core FIRST (the Android DPI engine), commit it whole</li>
 <li>CUT features aggressively in the final hours (geo-location, desktop web app)</li>
-<li>REBRAND for impact (Mobile Packet Hunter → AFTERPACKETS — a name that sounds like a product)</li>
+<li>REBRAND for impact (Mobile Packet Hunter → AFTERPACKETS  -  a name that sounds like a product)</li>
 <li>Clean the repo (delete debug APKs)</li>
-<li>The story they told at 09:00 was SMALLER than what they built — focused, not sprawling</li>
+<li>The story they told at 09:00 was SMALLER than what they built  -  focused, not sprawling</li>
 </ol>
 <h2>2. THE 2025 FINALISTS (20 teams, from p-society/D3-2k25-solutions)</h2>
 <p>Full roster + challenge mapping + tech stacks in 2025-FINALS-ROSTER.md. Key competitors:</p>
-<table><thead><tr><th>Team</th><th>Project</th><th>Challenge</th><th>Stack</th><th>Threat level</th></tr></thead><tbody><tr><td>Highlanders</td><td>AFTERPACKETS</td><td>7 (packet hunter)</td><td>Kotlin/C++/React</td><td>WON — the benchmark</td></tr><tr><td>Kon'nichiwa sekai</td><td>PromptBuddy</td><td>5 (inbox navigator)</td><td>TS, Gemini 2.0 Flash + Composio</td><td>HIGH — AI-native, real integrations</td></tr><tr><td>Team CogniCode</td><td>EduSynth</td><td>4 (lecture gen)</td><td>FastAPI + Next.js 16 + React 19</td><td>HIGH — polished, animations</td></tr><tr><td>CodeX</td><td>SwapX</td><td>3 (skill swap)</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>Voxforge</td><td>Evalo</td><td>6 (lab grader)</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>Lone Wolf</td><td>digital-lab-grader</td><td>6 (lab grader)</td><td>JavaScript</td><td>MEDIUM</td></tr><tr><td>Marine Drive</td><td>Acadify</td><td>4/5</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>Hackasauras</td><td>Drawisly</td><td>5/7</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>SentinelX</td><td>swap-sphere</td><td>3</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>Magic Monks</td><td>Maven</td><td>1/2</td><td>JavaScript</td><td>LOW</td></tr><tr><td>Raccoon Fanclub</td><td>Codemia</td><td>6</td><td>JavaScript</td><td>LOW</td></tr><tr><td>Resolvers</td><td>DigiGrade</td><td>6</td><td>JavaScript</td><td>LOW</td></tr><tr><td>DIAMOND</td><td>Project_Kaushal</td><td>2</td><td>JavaScript</td><td>LOW</td></tr><tr><td>AgroFast</td><td>VedaScore</td><td>2/5</td><td>HTML</td><td>LOW</td></tr><tr><td>GITLERS</td><td>swapp</td><td>3</td><td>HTML</td><td>LOW</td></tr><tr><td>Just-Git-Gud</td><td>LECTRA</td><td>4</td><td>Python</td><td>LOW</td></tr></tbody></table>
+<table><thead><tr><th>Team</th><th>Project</th><th>Challenge</th><th>Stack</th><th>Threat level</th></tr></thead><tbody><tr><td>Highlanders</td><td>AFTERPACKETS</td><td>7 (packet hunter)</td><td>Kotlin/C++/React</td><td>WON  -  the benchmark</td></tr><tr><td>Kon'nichiwa sekai</td><td>PromptBuddy</td><td>5 (inbox navigator)</td><td>TS, Gemini 2.0 Flash + Composio</td><td>HIGH  -  AI-native, real integrations</td></tr><tr><td>Team CogniCode</td><td>EduSynth</td><td>4 (lecture gen)</td><td>FastAPI + Next.js 16 + React 19</td><td>HIGH  -  polished, animations</td></tr><tr><td>CodeX</td><td>SwapX</td><td>3 (skill swap)</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>Voxforge</td><td>Evalo</td><td>6 (lab grader)</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>Lone Wolf</td><td>digital-lab-grader</td><td>6 (lab grader)</td><td>JavaScript</td><td>MEDIUM</td></tr><tr><td>Marine Drive</td><td>Acadify</td><td>4/5</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>Hackasauras</td><td>Drawisly</td><td>5/7</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>SentinelX</td><td>swap-sphere</td><td>3</td><td>TypeScript</td><td>MEDIUM</td></tr><tr><td>Magic Monks</td><td>Maven</td><td>1/2</td><td>JavaScript</td><td>LOW</td></tr><tr><td>Raccoon Fanclub</td><td>Codemia</td><td>6</td><td>JavaScript</td><td>LOW</td></tr><tr><td>Resolvers</td><td>DigiGrade</td><td>6</td><td>JavaScript</td><td>LOW</td></tr><tr><td>DIAMOND</td><td>Project_Kaushal</td><td>2</td><td>JavaScript</td><td>LOW</td></tr><tr><td>AgroFast</td><td>VedaScore</td><td>2/5</td><td>HTML</td><td>LOW</td></tr><tr><td>GITLERS</td><td>swapp</td><td>3</td><td>HTML</td><td>LOW</td></tr><tr><td>Just-Git-Gud</td><td>LECTRA</td><td>4</td><td>Python</td><td>LOW</td></tr></tbody></table>
 <h2>3. NEXORA'26 (the MUJ dress rehearsal)</h2>
 <ul>
 <li>261 registrations, Rajasthan-only, online, June 20-21 2026</li>
 <li>6 tracks (Cybersecurity, Health Tech, Education Innovation, Data Driven, Smart Governance, Open Innovation)</li>
-<li>Winners NOT named publicly — but the format + judging stack are now known (NEXORA-FORENSICS.md)</li>
+<li>Winners NOT named publicly  -  but the format + judging stack are now known (NEXORA-FORENSICS.md)</li>
 <li>The 1st-place team was promised a Rabbitt AI Delhi finale slot</li>
-<li>Abhinav Trikha (President) + Harshit Raj Singh (Tech Sec) ran it — same people judging Craft N Code</li>
+<li>Abhinav Trikha (President) + Harshit Raj Singh (Tech Sec) ran it  -  same people judging Craft N Code</li>
 </ul>
 <h2>4. THE 2024 STATE WINNERS (who advanced to nationals)</h2>
 <ul>
 <li>RVCE round: top 2 advanced (food safety theme). 5 solutions mapped (2024-STATE-QUALIFIER-FORMAT.md)</li>
-<li>TrueMix (Bit-Binary-2027) — fact-check + news + games platform, React/Express/Python, Gemini 1.5 Flash</li>
+<li>TrueMix (Bit-Binary-2027)  -  fact-check + news + games platform, React/Express/Python, Gemini 1.5 Flash</li>
 <li>The 2024 national winner: NOT publicly named (only 2025's Highlanders confirmed)</li>
 </ul>
 <h2>5. COMPETITOR INTELLIGENCE SUMMARY</h2>
 <ol>
 <li><strong>The 2025 winner's edge was DEPTH + SCOPE-DOWN, not breadth.</strong> They built one hard thing (native DPI) and cut everything else.</li>
-<li><strong>The AI-native teams (PromptBuddy, EduSynth) were the closest challengers</strong> — Gemini + Composio integrations, polished UX. The 2026 sponsors (Google/Apple/FB/Accenture/Adobe) will reward exactly this.</li>
+<li><strong>The AI-native teams (PromptBuddy, EduSynth) were the closest challengers</strong>  -  Gemini + Composio integrations, polished UX. The 2026 sponsors (Google/Apple/FB/Accenture/Adobe) will reward exactly this.</li>
 <li><strong>The crowded lanes lose.</strong> 2025: lab grader (5 teams) and skill swap (4 teams) were the most crowded; the winner took the 1-team lane. 2026: expect PS-01 (Legacy) and PS-03 (Signal/Noise) to be crowded; PS-05 (Hardware) and PS-04 (Open) are the empty lanes.</li>
-<li><strong>The club's judging stack is proven</strong> (Jury Score, redacted review, leaderboard) — the Aug 16 presentation will use it.</li>
-<li><strong>Repo hygiene matters more than it should.</strong> AFTERPACKETS won with a 201MB repo full of node_modules — but they CLEANED the visible junk (debug APKs) before freeze. A clean repo = free points.</li>
+<li><strong>The club's judging stack is proven</strong> (Jury Score, redacted review, leaderboard)  -  the Aug 16 presentation will use it.</li>
+<li><strong>Repo hygiene matters more than it should.</strong> AFTERPACKETS won with a 201MB repo full of node_modules  -  but they CLEANED the visible junk (debug APKs) before freeze. A clean repo = free points.</li>
 </ol>
 </main>
 </body>

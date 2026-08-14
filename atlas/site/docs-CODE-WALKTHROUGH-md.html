@@ -77,7 +77,7 @@ python3 engine/engine.py --seed --out webapp/static/demo-feed.json &gt;/dev/null
 <p>writes during the same run). demo-feed.json is a leftover artifact. It will</p>
 <p>become useful when the fixture/replay mode lands (offline deterministic</p>
 <p>replay). Nothing breaks, but know that it is currently dead weight.</p>
-<h2>2. engine/engine.py (433 lines) - the brain</h2>
+<h2>2. engine/engine.py (473 lines) - the brain</h2>
 <h3>2.1 The data model: Item (lines 35-59)</h3>
 <pre><code class="language-python">@dataclass
 class Item:
@@ -281,7 +281,7 @@ conn.commit()</code></pre>
 <p>would use INSERT OR REPLACE and never drop. The comment says</p>
 <p>"Supabase-ready shape": same column names would map to a Postgres table</p>
 <p>if we ever move to Supabase for the nationals build.</p>
-<h2>3. webapp/serve.py (193 lines) - the zero-dependency web layer</h2>
+<h2>3. webapp/serve.py (373 lines) - the zero-dependency web layer</h2>
 <h3>3.1 load_feed (lines 41-64)</h3>
 <pre><code class="language-python">FEED_CACHE = None   # module-level cache: computed ONCE per server process
 def load_feed(profile=None):
@@ -356,7 +356,7 @@ def load_feed(profile=None):
 </ul>
 <p>parse the URL, read the POST body as JSON, delegate to route(). The</p>
 <p><code>log_message</code> override silences the per-request logging noise.</p>
-<h2>4. webapp/static/index.html (245 lines) - the UI</h2>
+<h2>4. webapp/static/index.html (378 lines) - the UI</h2>
 <h3>4.1 The design system (lines 8-12)</h3>
 <pre><code class="language-css">:root{
   --bg:#0B1020; --panel:#141B33; --panel2:#1B2440; --line:#263055;
@@ -481,7 +481,7 @@ p.defineLayout({ name: "W", width: 13.33, height: 7.5 });  // 16:9 widescreen</c
 <p>This is the answer to the rank-1 predicted shape: "trustworthy agent with</p>
 <p>approved tools". Three files changed: a new engine/approval.py (the policy</p>
 <p>core), serve.py (5 new endpoints), index.html (Actions tab).</p>
-<h3>approval.py (256 lines) - the policy core</h3>
+<h3>approval.py (362 lines) - the policy core</h3>
 <ul>
 <li>Side-effect classes are module constants: READ_ONLY, REVERSIBLE,</li>
 </ul>
@@ -563,7 +563,7 @@ p.defineLayout({ name: "W", width: 13.33, height: 7.5 });  // 16:9 widescreen</c
 </ul>
 <p>from section 4.3). Proposal ids and statuses are server-generated, so</p>
 <p>the onclick interpolation is safe for demo data.</p>
-<h3>The test suite (tests/test_approval.py, 196 lines)</h3>
+<h3>The test suite (tests/test_approval.py, 229 lines)</h3>
 <ul>
 <li>Plain python3, zero deps. Starts the REAL server on port 8123 against</li>
 </ul>
