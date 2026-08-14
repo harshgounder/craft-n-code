@@ -107,7 +107,7 @@
   <!-- search view -->
   <div id="v-search" class="hide">
     <div class="searchbar">
-      <input id="q" placeholder='ask anything…  e.g. "when is the MTE?"' onkeydown="if(event.key==='Enter')doSearch()">
+      <input id="q" placeholder='ask anything…  e.g. "what is due this week?"' onkeydown="if(event.key==='Enter')doSearch()">
       <button onclick="doSearch()">Ask</button>
     </div>
     <div id="search-res"></div>
@@ -171,7 +171,7 @@ function renderDigest(d){
     : '<div class="txt" style="color:var(--mut)">nothing urgent - you are clear today</div>';
 }
 
-const CH_ICON={gmail:'📧',classroom:'🎓',portal:'🏛',whatsapp:'💬',unstop:'⚡',instagram:'📸',complaint:'🛠'};
+const CH_ICON={email:'📧',portal:'🏛',chat:'💬',app:'📱',social:'📸',ticket:'🛠'};
 function renderFeed(items){
   $('feed').innerHTML=items.map((i,k)=>`
     <div class="card ${i.is_urgent?'urgent':''}">

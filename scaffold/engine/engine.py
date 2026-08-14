@@ -1,6 +1,6 @@
 # Signal Engine - ingest → dedupe → summarize → rank → deadlines
-# Craft N Code 2026 shared scaffold (IDEA-BANK §6.1)
-# One engine, many skins: Signal (PS-03), Campus Pulse (PS-01), Night Ops (PS-02).
+# Craft N Code 2026 shared scaffold. Domain-agnostic: feed ANY JSON items,
+# the pipeline ranks + extracts deadlines regardless of domain.
 #
 # LLM layer: ollama-cloud (OpenAI-compatible, deepseek-v4-flash:0731) with
 # disk cache + FULL offline fallback (regex deadlines + tf-idf ranking).
@@ -35,7 +35,7 @@ OLLAMA_MODEL = os.environ.get("SIGNAL_MODEL", "deepseek-v4-flash:0731")
 @dataclass
 class Item:
     """One raw message/notice/complaint from any channel."""
-    channel: str            # gmail | classroom | unstop | portal | whatsapp | instagram | complaint
+    channel: str            # email | chat | portal | app | social | ticket
     source_id: str          # unique id within channel
     sender: str
     subject: str
@@ -319,52 +319,53 @@ def run_pipeline(items: list[Item], profile: list[str], today: Optional[date] = 
 # ────────────────────────────────────────────────────────────────
 
 def seed_items() -> list[Item]:
+    """Domain-agnostic demo feed: shows the pipeline (ingest → dedupe → summarize → rank → deadlines)
+    on ANY input. Swap this feed for the actual problem domain on the night."""
     now = datetime.now()
     d = now.date()
     iso = lambda dd: datetime(dd.year, dd.month, dd.day, 9, 0).isoformat()
     base = [
-        Item("portal", "n1", "Registrar Office", "MTE 2026 schedule released",
-             f"Mid-Term Examinations will be held from 18 Sep to 25 Sep 2026. "
-             f"Detailed timetable on the portal. Last date to apply for re-exam: 10 Sep 2026.",
+        Item("email", "e1", "Registrar Office", "Examination schedule released",
+             f"Semester examinations will be held from 18 Nov to 2 Dec 2026. "
+             f"Last date to apply for re-exam: 10 Nov 2026. Timetable on the portal.",
              iso(d - timedelta(days=1)), ["exam"]),
-        Item("gmail", "g1", "Dean Student Welfare", "Hostel fee payment reminder",
-             f"Hostel fee for Semester 5 is due by 20 Aug 2026. Late payment attracts a fine of ₹500/day. "
-             f"Pay via the portal or fee desk before 5 PM.",
-             iso(d - timedelta(days=0)), ["hostel", "fee"]),
-        Item("classroom", "c1", "Prof. Mehta (ELC2107)", "Unit 2 assignment: LTI systems",
-             f"Assignment 2 uploaded. Submit by 19 Aug 2026 on Classroom. "
-             f"Covers convolution and impulse response, 10 questions, 15 marks.",
-             iso(d - timedelta(days=2)), ["e&ce", "assignment"]),
-        Item("whatsapp", "w1", "WhatsApp: E&CE 2nd Year", "Room shift for tomorrow's Networks lab",
-             f"NETWORKS LAB SHIFTED to Room 4104 (was 4102). Same slot 2-4 PM. "
+        Item("email", "e2", "Accounts Dept", "Fee payment reminder",
+             f"Semester fee is due by 20 Aug 2026. Late payment attracts a fine of ₹500/day. "
+             f"Pay via the portal before 5 PM.",
+             iso(d - timedelta(days=0)), ["fee"]),
+        Item("portal", "p1", "Academic Office", "Assignment 2: submission deadline",
+             f"Assignment 2 uploaded. Submit by 19 Aug 2026. 10 questions, 15 marks.",
+             iso(d - timedelta(days=2)), ["assignment"]),
+        Item("chat", "c1", "Department Group", "Room change for tomorrow's lab",
+             f"LAB SHIFTED to Room 4104 (was 4102). Same slot 2-4 PM. "
              f"Share with everyone. Urgent.",
-             iso(d - timedelta(hours=3)), ["e&ce", "lab"]),
-        Item("unstop", "u1", "Unstop Bot", "Craft N Code 2026 registrations open",
-             f"Rajasthan State Qualifier at MUJ. Idea submission opens 21 Aug 21:00, closes 22 Aug 06:00. "
-             f"Register on Unstop. 131K prize pool.",
-             iso(d - timedelta(days=3)), ["hackathon"]),
-        Item("instagram", "i1", "Instagram: MUJ Memes", "5 memes about the canteen queue",
-             f"Repost: canteen queue at 1 PM is 40 minutes. #mujproblems #mess",
+             iso(d - timedelta(hours=3)), ["lab"]),
+        Item("portal", "p2", "Events Cell", "Hackathon registrations open",
+             f"Registrations open for the upcoming hackathon. Idea submission opens "
+             f"21 Aug 21:00, closes 22 Aug 06:00. Register on the portal.",
+             iso(d - timedelta(days=3)), ["events"]),
+        Item("social", "s1", "Social feed", "5 memes about the canteen queue",
+             f"Repost: canteen queue at 1 PM is 40 minutes. #problems",
              iso(d - timedelta(hours=1)), []),
-        Item("gmail", "g2", "Library", "Library fine clearance deadline",
-             f"All pending library fines must be cleared by 30 Aug 2026 or semester results are withheld.",
+        Item("email", "e3", "Library", "Library fine clearance deadline",
+             f"All pending library fines must be cleared by 30 Aug 2026 or results are withheld.",
              iso(d - timedelta(days=5)), ["library"]),
-        Item("portal", "n2", "Exam Cell", "Backlog exam form",
+        Item("portal", "p3", "Exam Cell", "Backlog exam form",
              f"Backlog exam application forms available. Last date: 5 Sep 2026. Form fee ₹300.",
              iso(d - timedelta(days=4)), ["exam"]),
     ]
-    # complaints (Campus Pulse skin)
+    # complaints (tracked requests)
     complaints = [
-        Item("complaint", "cpt1", "Student (Ananya S.)", "Hostel C water cooler broken",
-             "Water cooler on Hostel C floor 3 has been broken for a week. Hot days, no drinking water. "
+        Item("ticket", "t1", "User (A. S.)", "Water cooler broken",
+             "Water cooler on floor 3 has been broken for a week. Hot days, no drinking water. "
              "Category: plumbing. Severity: high.",
-             iso(d - timedelta(days=1)), ["hostel"], kind="complaint"),
-        Item("complaint", "cpt2", "Student (Rohan K.)", "Canteen food quality",
-             "Found a hair in the paneer today. This is the second time this month. "
+             iso(d - timedelta(days=1)), ["facility"], kind="complaint"),
+        Item("ticket", "t2", "User (R. K.)", "Food quality",
+             "Found a hair in the food today. This is the second time this month. "
              "Category: hygiene. Severity: medium.",
-             iso(d - timedelta(days=3)), ["mess"], kind="complaint"),
-        Item("complaint", "cpt3", "Student (Priya M.)", "Streetlight flickering near gate 2",
-             "The streetlight near Gate 2 flickers all night. Dark stretch, unsafe for late walkers. "
+             iso(d - timedelta(days=3)), ["canteen"], kind="complaint"),
+        Item("ticket", "t3", "User (P. M.)", "Streetlight flickering",
+             "The streetlight near the gate flickers all night. Dark stretch, unsafe for late walkers. "
              "Category: electrical. Severity: high.",
              iso(d - timedelta(days=0)), ["safety"], kind="complaint"),
     ]

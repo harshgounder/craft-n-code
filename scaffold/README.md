@@ -1,69 +1,54 @@
-# Signal Engine + Scaffold — Craft N Code 2026 (Team 511)
+# Signal Engine + Scaffold  -  Craft N Code 2026 (Team 511)
 
 One engine, many skins. Whatever problem drops Aug 15 21:30, this is pre-built.
 
 ```
 scaffold/
-├── demo.sh                 one command: generate feed + serve UI
+├── demo.sh                 one command: generate the feed + serve the web UI
 ├── engine/
-│   ├── engine.py           ingest → dedupe → summarize → rank → deadlines
+│   ├── engine.py           the pipeline: ingest → dedupe → summarize → rank → deadlines
+│   │                       LLM via ollama-cloud (deepseek-v4-flash:0731) + FULL offline
+│   │                       fallback (regex deadlines + tf-idf ranking). Domain-agnostic:
+│   │                       feed ANY JSON items, works on any problem domain.
 │   └── signal.db           (generated, gitignored)
 ├── webapp/
-│   ├── serve.py            zero-dependency HTTP server (stdlib only)
-│   └── static/index.html   the UI (dark, mobile-friendly, 3 tabs)
+│   ├── serve.py            zero-dependency HTTP server (stdlib only, python3)
+│   └── static/index.html   dark UI: digest, ranked feed, search, complaint board
 └── deck/
-    ├── deck-gen.js         one skeleton → 4 idea decks
-    ├── deck-signal.pptx    PS-03 skin
-    ├── deck-pulse.pptx     PS-01 skin
-    ├── deck-nightops.pptx  PS-02 skin
-    └── deck-kavach.pptx    PS-04 skin
+    ├── deck-gen.js         pptxgenjs: ONE skeleton, 4 decks
+    ├── deck-agentic.pptx     BriefLens (agentic ops / approval gate)
+    ├── deck-multimodal.pptx  Kavach Circle (multimodal assistant + escalation)
+    ├── deck-creative.pptx    SignalStory (brief → asset with provenance)
+    └── deck-kavach.pptx      Kavach (call-security platform, real product)
 ```
 
-## Quickstart
+## Quick start
 
 ```bash
-# with the ollama-cloud key (recommended)
-export OLLAMA_API_KEY=...          # from ~/.hermes/.env
-./demo.sh                          # opens http://localhost:8137
+# generate the feed + serve the UI (LLM if OLLAMA_API_KEY set, offline otherwise)
+./demo.sh            # -> http://localhost:8137
 
-# or totally offline (zero network, zero keys)
-./demo.sh
+# or run the engine directly
+cd engine
+python3 engine.py --seed --digest          # offline-safe digest
+OLLAMA_API_KEY=... python3 engine.py --seed --digest   # LLM mode
+python3 engine.py --seed --out feed.json   # full JSON result
 ```
 
-The engine tries the LLM (summarize + deadline extraction), falls back to
-rule-based offline mode if no key/network. The demo never dies.
+## The pipeline (domain-agnostic)
 
-## API (Supabase-shaped JSON)
+1. INGEST: any JSON items (channel, sender, subject, body, received_at, tags)
+2. DEDUPE: normalized subject+body fingerprint
+3. SUMMARIZE: LLM one-liner (cached per item), or extractive offline
+4. RANK: sender authority + profile-tag overlap + recency + deadline pressure
+5. DEADLINES: regex extraction (multiple formats) + urgency flagging
+6. PERSIST: SQLite (Supabase-ready shape)
 
-| Route | What |
-|---|---|
-| GET /api/feed | ranked feed |
-| GET /api/digest | "today in 60 seconds" |
-| GET /api/search?q=mte | semantic-ish search over all channels |
-| GET /api/complaints | complaint board |
-| POST /api/complaints | file a complaint (auto-triage + SLA) |
-| GET /api/stats | channel counts, deadlines found |
+Verified: 13/13 ad-hoc checks (offline + LLM mode, webapp end to end, decks).
 
-## Engine pipeline
+## On the night (Aug 15, 21:30 drop)
 
-1. ingest: 6 channels (Gmail IMAP, Classroom API, Unstop API, portal scrape,
-   WhatsApp export, Instagram seed)
-2. dedupe: normalized fingerprint, keep newest
-3. summarize: LLM one-liner (ollama-cloud deepseek-v4-flash:0731), offline
-   extractive fallback
-4. rank: profile match + sender authority + recency + deadline pressure + urgency
-5. deadlines: LLM extraction with regex fallback, ISO output
-
-## On the night (Aug 15 21:30)
-
-1. Problem drops -> decision tree (research/IDEA-BANK.md)
-2. Pick the matching deck file, pick the skin
-3. `./demo.sh` on the stage laptop, or play the pre-recorded video
-4. Submit before 06:00 Aug 16
-
-## Rules it follows
-
-- Zero paid keys. Zero external deps in the demo. (AFTERPACKETS rule: they won
-  2025 partly because their demo had no external dependencies.)
-- No em dashes anywhere in this repo.
-- Everything verified before claiming: run `python3 /tmp/hermes-verify-scaffold.py`.
+1. Read the drop for the company fingerprint (cue table in IDEA-BANK §5.5)
+2. Pick the matching deck + storyboard (4 pre-built)
+3. Swap the seed feed for the real domain (10-30 min, engine untouched)
+4. ./demo.sh or play the video; submit before 06:00

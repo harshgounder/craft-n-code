@@ -1,71 +1,69 @@
-# DEMO STORYBOARDS — pre-recorded videos + live backup (scaffold §6.3)
+# DEMO STORYBOARDS  -  pre-recorded videos + live backup
 
-Each skin has a 3-min storyboard. Record once today/tomorrow, screen + voiceover.
-If the projector dies, network dies, or rate limits hit: the video saves us.
-If the video dies: the offline mode saves us. Two layers, always.
+Four 3-min storyboards matching the 4 decks (agentic/multimodal/creative/kavach).
+Record once today, screen + voiceover. If the projector dies, network dies, or a
+demo rate-limits, the video saves us. ALSO: judges see polish.
 
-Rule: every demo runs on PRE-IMPORTED real-ish data (the engine seed), never live accounts on stage.
+## The one pattern (all four demos)
 
----
+Every demo shows the same loop the judges reward:
+source -> signal -> rank -> explanation -> owner -> action -> outcome.
 
-## 1. SIGNAL (PS-03) — "one ranked feed for a student's day"
-
-| Time | Screen | Voiceover |
-|---|---|---|
-| 0:00-0:20 | Title card: Signal | "A student's day lives in six channels. The one notice that matters is drowning in two hundred memes." |
-| 0:20-0:50 | App opens on digest | "Signal pulls all six channels into one feed, dedupes, summarizes each notice with AI, and ranks what matters for YOU." |
-| 0:50-1:20 | "Today in 60 seconds" + urgent cards | "Today: hostel fee due in six days, MTE schedule released, lab room shift. Sixty seconds and you know your whole day." |
-| 1:20-1:50 | Ask box: "when is the MTE?" | "Ask anything. 'When is the MTE?' One sourced answer, with the deadline extracted." |
-| 1:50-2:20 | Deadline card -> calendar invite | "The deadline is already a calendar invite with a two-day reminder. You cannot miss it." |
-| 2:20-2:50 | Focus mode | "Focus mode collapses everything but what's urgent. Noise is gone." |
-| 2:50-3:00 | Impact card | "Six channels, one feed, zero missed deadlines." |
-
-## 2. CAMPUS PULSE (PS-01) — "the notice + complaint rebuild"
+## 1. BriefLens (agentic)  -  3:00
 
 | Time | Screen | Voiceover |
 |---|---|---|
-| 0:00-0:20 | Title card | "Notices live in six places. Complaints go into a system nobody reads. We rebuilt both." |
-| 0:20-0:50 | 6 source chips -> one feed | "Same engine: portal, mail, WhatsApp, Classroom, Instagram, Unstop. One ranked feed." |
-| 0:50-1:30 | File a complaint with photo, auto-triage | "Water cooler broken on Hostel C, third floor. Photo in, AI triages it to plumbing, severity high, SLA 48 hours." |
-| 1:30-2:10 | Ticket live status + fixed board | "Ticket C-114 goes live. Status updates like a delivery tracker. Every fix lands on the public fixed board." |
-| 2:10-2:40 | Mess live board | "Mess board: queue load, today's menu, feedback NLP." |
-| 2:40-3:00 | Impact card | "One feed, tracked complaints, a campus that can see itself getting fixed." |
+| 0:00-0:05 | Title card: BriefLens, Team 511 | "Every day, inputs arrive from everywhere. The one action that matters is drowning." |
+| 0:05-0:35 | The feed: 8 items from 4 channels, ranked | "This is a day's input. Email, chat, portal, tickets. The engine ingests everything, dedupes it, summarizes each to one line." |
+| 0:35-1:00 | Digest: 2 urgent actions on top | "It ranks by your profile, the sender's authority, and the deadline. You see the two urgent actions in ten seconds." |
+| 1:00-1:40 | Click an action -> proposal + evidence | "Here's the interesting part: it doesn't just tell you, it proposes. Pay the fee, submit the form. Evidence attached, source shown." |
+| 1:40-2:10 | APPROVE -> status flips, audit log | "You approve. The action executes and the audit log records who, when, what. No blind automation, no missed actions." |
+| 2:10-2:50 | Ask: "what do I need to do today?" | "Ask anything. The answer comes with the source it's grounded in." |
+| 2:50-3:00 | Impact cards: 1 feed, 10s, 0 missed | "One feed. Ten seconds. Zero missed actions." |
 
-## 3. NIGHT OPS (PS-02) — "campus after dark"
-
-| Time | Screen | Voiceover |
-|---|---|---|
-| 0:00-0:20 | Title card | "Campus at 2 AM: dark stretches, sparse security, and nobody knows you're walking." |
-| 0:20-0:55 | Night walk share, live map + ETA | "Start a night walk. Your trusted circle sees live location, auto ETA, and gets an arrival ping." |
-| 0:55-1:30 | Lit-route heatmap | "The lit-route heatmap is crowd-sourced: safe, lit, crowded. We route you through the lit stretches." |
-| 1:30-2:10 | SOS demo (2-sec hold) -> alert + evidence | "Two-second hold. Audio and video evidence captured, streamed to your circle and security with your location." |
-| 2:10-2:40 | Night mess pre-order + focus mode | "Pre-order for a 2 AM pickup. And focus mode for when the campus is asleep." |
-| 2:40-3:00 | Impact card | "Night on campus, without the fear." |
-
-## 4. KAVACH (PS-04) — "the call-security platform"
+## 2. Kavach Circle (multimodal)  -  3:00
 
 | Time | Screen | Voiceover |
 |---|---|---|
-| 0:00-0:20 | Title card | "India's biggest quantified fraud is one phone call away. Four thousand crore lost to digital-arrest scams." |
-| 0:20-0:55 | Live scam-call simulation | "Kavach screens the call in real time. Six detection engines, one intervention loop." |
-| 0:55-1:30 | Family alert fires | "The family alert chain fires: trusted contacts get the call details and risk score instantly." |
-| 1:30-2:10 | Evidence file export | "Every flagged call becomes an evidence file, ready for a police complaint." |
-| 2:10-2:40 | The 24h build: night-safety integration | "Tonight we shipped the night-safety integration: Kavach's alert backbone now covers in-person emergencies too." |
-| 2:40-3:00 | Impact card | "Real product, real demo, real families protected." |
+| 0:00-0:05 | Title card | "Assistants hallucinate. This one shows its sources and asks for help when unsure." |
+| 0:05-0:40 | Drop a screenshot + a PDF | "Text, images, PDFs, documents. Any input format in, the system extracts the facts and shows the evidence panel with source links." |
+| 0:40-1:10 | Ask a question -> answer with confidence band | "Every answer carries a confidence score and its sources. You can check the reasoning, not just trust it." |
+| 1:10-1:50 | Ask something risky -> escalation to human | "When it's uncertain or high-risk, it doesn't guess. It routes to a human. That's the gate that keeps it safe." |
+| 1:50-2:30 | Correct an answer -> correction applied + logged | "And when the human corrects it, the fix is applied and remembered." |
+| 2:30-3:00 | Impact cards | "Any input. Evidence on every answer. Zero hallucinated high-risk answers." |
 
----
+## 3. SignalStory (creative)  -  3:00
 
-## Recording checklist (per video)
+| Time | Screen | Voiceover |
+|---|---|---|
+| 0:00-0:05 | Title card | "Making content is slow. Making content that stays on-brand is slower." |
+| 0:05-0:40 | Paste a one-paragraph brief | "A real brief in. The system extracts the brand rules, tone, and audience." |
+| 0:40-1:20 | Generate an asset -> caption + alt text | "It generates the asset, captions it, and adds alt text. One brief becomes a ready asset." |
+| 1:20-2:00 | Edit -> regenerate -> reviewer approves | "Human review before anything ships. Revise, regenerate, approve. The version is logged." |
+| 2:00-2:40 | Provenance card: prompt, model, lineage | "And every asset carries its provenance: the prompt, the model, the lineage. You can always answer where it came from." |
+| 2:40-3:00 | Impact cards | "A brief becomes an asset in minutes. Full provenance. Controlled output." |
 
-- [ ] Screen recording at 1080p, voiceover in a quiet room
-- [ ] Start with 1s black + title card (easy trim)
-- [ ] Every screen shows REAL engine output, no fakery
-- [ ] Keep under 2:50 (buffer for judge intro)
-- [ ] Store: assets/demos/<skin>.mp4
-- [ ] Playback test on the stage laptop BEFORE the pitch
+## 4. Kavach (security)  -  3:00
 
-## Live-demo fallback ladder (if going live instead of video)
+| Time | Screen | Voiceover |
+|---|---|---|
+| 0:00-0:05 | Title card | "India's largest quantified fraud: the digital-arrest scam. 4,057 crore lost in four years." |
+| 0:05-0:40 | The scam explained, one line at a time | "Fake CBI calls, AI-cloned voices, spoofed caller IDs. Banks warn you. Nobody defends the phone itself." |
+| 0:40-1:20 | Simulate a digital-arrest call | "Here's the call. Kavach flags it in under a second: six detection departments, one loop." |
+| 1:20-2:00 | AI proposes intervention -> user approves | "It proposes the intervention: warn, block, guide. The user approves. The loop is human-controlled." |
+| 2:00-2:40 | Post-call report | "After the call: what happened, what was blocked, what the user did." |
+| 2:40-3:00 | Impact cards | "Six departments. Under a second to flag. A platform defending Indian families." |
 
-1. Open http://localhost:8137 (offline mode needs nothing)
-2. Pre-warm: run demo.sh 5 min before, feed cached
-3. If UI breaks: fall back to the video. If video breaks: fall back to terminal digest output.
+## Recording checklist
+
+- 1080p screen capture, mic on, quiet room
+- 1s black + title card at start, under 2:50 total (buffer for pitch 3-min hard cap)
+- Store in assets/demos/, named demo-<skin>.mp4
+- Re-record the moment a demo claim changes; stale videos lose the pitch
+
+## Live-demo fallback ladder (on stage)
+
+1. localhost:8137 (zero-dep server, works offline)
+2. Pre-warmed browser tab (open before the pitch starts)
+3. Pre-recorded video (this file's storyboards)
+4. Terminal digest (python3 engine.py --seed --digest) as the absolute floor

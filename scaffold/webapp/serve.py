@@ -40,7 +40,7 @@ FEED_CACHE: Optional[dict] = None
 
 def load_feed(profile: Optional[list] = None) -> dict:
     global FEED_CACHE
-    profile = profile or ["2nd-year", "e&ce", "hostel"]
+    profile = profile or ["general"]
     if FEED_CACHE is not None:
         return FEED_CACHE
     if DB.exists():
@@ -122,8 +122,8 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
             if method == "POST" and body:
                 complaints = [i for i in feed["items"] if i["kind"] == "complaint"]
                 new = {
-                    "channel": "complaint", "source_id": f"cpt{len(complaints)+4}",
-                    "sender": body.get("sender", "Student"), "subject": body.get("title", "New complaint"),
+                    "channel": "ticket", "source_id": f"tkt{len(complaints)+4}",
+                    "sender": body.get("sender", "User"), "subject": body.get("title", "New request"),
                     "body": body.get("body", ""), "received_at": "",
                     "summary": body.get("title", ""), "rank_score": 0,
                     "deadline_iso": None, "is_urgent": False,

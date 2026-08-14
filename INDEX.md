@@ -15,7 +15,7 @@ Updated: 2026-08-14 09:56 IST
 ### Strategy & action
 | File | What it is |
 |---|---|
-| `IDEA-BANK.md` | ★ THE playbook: pre-built ideas for all 5 tracks (Campus Pulse / Night Ops / Signal / Kavach / Hygiene Sentinel), decision tree for the 21:30 drop, §5.5 company-lane protocol (Rudra intel: real questions come from sponsors, not the site tracks), shared scaffold, risk table, action plan |
+| `IDEA-BANK.md` | ★ THE playbook: pre-built ideas for the 4 sponsor-shaped lanes (IDEA A BriefLens, IDEA B Kavach Circle, IDEA C SignalStory, IDEA D Kavach), decision tree for the 21:30 drop, §5 company-lane protocol (Rudra intel: real questions come from sponsors, site tracks are backup), scaffold status, risk table, action plan |
 | `prompts/company-lane-prompt.md` | Deep-research prompt: sponsor (Google/Apple/Meta/Accenture/Adobe) question-pattern intelligence, fired as parallel run `cnc-company-lanes` |
 | `2026-TOPIC-PROBABILITY.md` | Probability matrix: verbatim track bodies, sponsor-to-track mapping, P(question lands) × P(we win), strategic read |
 | `GAP-MAP.md` | 20 gaps still diggable, tiered execution order |
