@@ -1,0 +1,28 @@
+[
+  {
+    "channel": "email",
+    "source_id": "mm-1",
+    "sender": "Registrar Office",
+    "subject": "Exam schedule attachment",
+    "body": "Please find the exam schedule attached.",
+    "attachment_path": "fixtures/attachments/schedule.txt",
+    "kind": "notice"
+  },
+  {
+    "channel": "email",
+    "source_id": "mm-2",
+    "sender": "Unknown Sender",
+    "subject": "Suspicious file",
+    "body": "Open this file for a surprise.",
+    "attachment_path": "fixtures/attachments/weird.exe",
+    "kind": "notice"
+  },
+  {
+    "channel": "chat",
+    "source_id": "mm-3",
+    "sender": "Student Group",
+    "subject": "No attachment here",
+    "body": "Just a plain text message with no file.",
+    "kind": "notice"
+  }
+]

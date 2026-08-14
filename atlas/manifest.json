@@ -1,0 +1,124 @@
+{
+  "title": "Craft N Code Atlas",
+  "subtitle": "Everything we know, everything we built, every file, zero summaries. Each entry renders its full source and has an OPEN FILE button.",
+  "sections": [
+    {
+      "name": "READ FIRST - the map",
+      "entries": [
+        {"path": "docs/REPO-TOUR.md", "blurb": "The map of the whole repo: what lives where, why, and the reading order. Start here."},
+        {"path": "atlas/content/BUILD-LOG.md", "blurb": "The full timeline: every session, every commit, every decision from Aug 13 to now, with hashes and whys."}
+      ]
+    },
+    {
+      "name": "THE EVENT",
+      "entries": [
+        {"path": "research/RECON.md", "blurb": "First recon: what the event is, verified timeline, organizers, open questions."},
+        {"path": "research/RAJASTHAN-LISTING-1730314.md", "blurb": "The live Unstop listing: 402+ teams, Rs 50,000 prize, qualifier has its own problems, contacts verified."},
+        {"path": "research/INTEL-20260814-EVENING.md", "blurb": "Live API refresh: submission = PPT only (pdf/pptx, 50MB), multiple submissions allowed, judge buttons shortlist/reject/hold/noshow, D3 site live."},
+        {"path": "research/EVENT-SITE-FORENSICS-v4.md", "blurb": "The event site internals: admin console is read-only and pitch-first, submission is a plain INSERT, latest entry wins, night canteen is a UI mock."},
+        {"path": "research/EVENT-SITE-FORENSICS.md", "blurb": "Original site forensics: the 5 tracks verbatim, overnight timeline, sponsors, Supabase backend."},
+        {"path": "research/NEXORA-FORENSICS.md", "blurb": "CSC's dress rehearsal: NEXORA'26 site internals, 6 tracks, the judging stack (Jury Score, redacted review, leaderboard), submission requirements."},
+        {"path": "research/2026-TOPIC-PROBABILITY.md", "blurb": "The 5 tracks with exact bodies, evidence-based likelihood per track, sponsor-to-track mapping, honest probability table."}
+      ]
+    },
+    {
+      "name": "THE HISTORY (2022-2025)",
+      "entries": [
+        {"path": "research/D3FEST-2022-PROBLEMS.md", "blurb": "All 9 problems from D3 Fest 2022 verbatim, and the problem-family lineage into 2025 and 2026."},
+        {"path": "research/D3FEST-2023-BROCHURE.md", "blurb": "D3 Fest 2023 brochure: 12 events, the 13h overnight hackathon that is the 24h format's ancestor."},
+        {"path": "research/D3FEST-2026-BROCHURE.md", "blurb": "D3 Fest 2026 national brochure content."},
+        {"path": "research/2024-STATE-QUALIFIER-FORMAT.md", "blurb": "The 2024 RVCE state round: food safety theme, 3 tracks, 4x25% judging, top-2 advance, 5 participant solutions mapped."},
+        {"path": "research/2025-FINALS-ROSTER.md", "blurb": "All 20 national finalists of 2025 with projects, repos, challenges, and stacks."},
+        {"path": "research/2025-STATE-SWEEP.md", "blurb": "The 2025 state-round map: 11 rounds found, 1,592 total registrations, uniform fee and prize."},
+        {"path": "research/STATE-QUALIFIER-SCAN.md", "blurb": "2026 state qualifier scan: Rajasthan is the biggest confirmed round, UP is fresh."},
+        {"path": "research/PSOCIETY-HARVEST-20260814.md", "blurb": "The p-society org census: no 2026 solutions repo exists publicly, dead ends closed honestly."}
+      ]
+    },
+    {
+      "name": "THE WINNERS",
+      "entries": [
+        {"path": "research/WINNER-REVERSE-ENGINEERING.md", "blurb": "AFTERPACKETS (2025 national winner), TrueMix (2024), GENESIS (Hackfest 2024): full forensics and the winning formula."},
+        {"path": "research/WINNER-EXACT-DEEP-DIVE.md", "blurb": "AFTERPACKETS code-level: the C++ DPI core, 13 UI screens, the commit timeline by hour, and why it beat EduSynth and PromptBuddy."},
+        {"path": "research/PARTICIPANT-UNIVERSE.md", "blurb": "Every public participant repo found across all editions, with stacks and dates."}
+      ]
+    },
+    {
+      "name": "THE JUDGES AND PEOPLE",
+      "entries": [
+        {"path": "research/JUDGE-DOSSIERS.md", "blurb": "The 6 judges of the 2024 panel, each one's lens, the comparative matrix, and how a project wins THIS panel."},
+        {"path": "research/PEOPLE-DOSSIER-CSC.md", "blurb": "The full CSC MUJ roster: exec committee, coordinators, advisors, and the key organizer profiles."},
+        {"path": "research/PEOPLE-DOSSIER-TECHSOC.md", "blurb": "Tech Society IIIT-B dossiers: the national organizers."},
+        {"path": "research/RABBITT-AI-DOSSIER.md", "blurb": "Rabbitt AI: the founder, the products (ChanceRAG, DRIP), the NEXORA partnership, and the talent-funnel playbook."}
+      ]
+    },
+    {
+      "name": "THE COMPETITION",
+      "entries": [
+        {"path": "research/COMPETITOR-POOL.md", "blurb": "The 2025 finalists as a threat matrix, the winner's workflow (scope down, rebrand, clean), and the empty-lane strategy."},
+        {"path": "research/COMPETITIVE-INTEL-DOSSIER.md", "blurb": "Org lineage, edition history, people, sponsors, participant numbers across all editions."},
+        {"path": "research/REJECTED-LOST-ENTRIES.md", "blurb": "How teams lose: 404 repos, empty repos, no deployment, weak pitches, crowded lanes, tooling wars."}
+      ]
+    },
+    {
+      "name": "SPONSORS AND THE DEEP RESEARCH",
+      "entries": [
+        {"path": "research/PROBLEM-BANK-SPONSOR-DNA.md", "blurb": "2024 rules verbatim plus every sponsor's DNA pulled from their own hackathons (Solution Challenge, LlamaCon, Accenture Innovation, Creative Jam)."},
+        {"path": "research/CHEATSHEET-BRIEF.md", "blurb": "The 8-point winning formula, what each sponsor makes and looks for, the hottest tech for a 24h build."},
+        {"path": "research/company-lanes/cnc-problem-lanes.content.md", "blurb": "Deep research (78K chars): evidence-mined most likely problem statements, 5 ranked shapes, kill criteria."},
+        {"path": "research/company-lanes/cnc-sponsor-products.content.md", "blurb": "Deep research (68K chars): 2025-2026 product launches and verbatim problem shapes per sponsor."},
+        {"path": "research/company-lanes/cnc-winner-anatomy.content.md", "blurb": "Deep research (62K chars): winner case studies and demo techniques."},
+        {"path": "research/company-lanes/cnc-state-rounds.content.md", "blurb": "Deep research (42K chars): state-round forensics. Honest negative: no verbatim state-round problems are publicly retrievable."},
+        {"path": "research/company-lanes/cnc-company-lanes-pass2.content.md", "blurb": "Company lanes pass 2 (DEEP 90.1): sponsor authorship and predicted prompt shapes."},
+        {"path": "research/company-lanes/cnc-company-lanes-pass1.content.md", "blurb": "Company lanes pass 1 (SURFACE): first-pass sponsor problem shapes."}
+      ]
+    },
+    {
+      "name": "OUR PLANS AND SYNTHESIS",
+      "entries": [
+        {"path": "research/IDEA-BANK.md", "blurb": "Our 5 pre-built ideas (BriefLens, Kavach Circle, SignalStory, Kavach, plus one more), sponsor DNA match, and the decision tree for the drop."},
+        {"path": "research/WAVE-SYNTHESIS.md", "blurb": "What the deep-research runs conclude: the 5 ranked predicted problems, the common denominator pipeline, the 5 portable patterns."},
+        {"path": "research/GAP-MAP.md", "blurb": "What we still do not know, tiered by value, and how to get it."},
+        {"path": "research/RE-AUDIT-FINDINGS.md", "blurb": "The re-audit: 4 corrections to earlier claims, 3 new data points, the verified-clean list."},
+        {"path": "research/CNC-INTEL-EXECUTION-20260813.md", "blurb": "The intel execution log: how the research was run and scored."}
+      ]
+    },
+    {
+      "name": "THE BUILD (every code file)",
+      "entries": [
+        {"path": "scaffold/README.md", "blurb": "One-page scaffold guide: the pipeline, quickstart, on-the-night flow."},
+        {"path": "docs/CODE-WALKTHROUGH.md", "blurb": "Every scaffold file explained function by function, with production lessons and audit how-to."},
+        {"path": "docs/BUILD-SPEC.md", "blurb": "Spec of the approval gate + trace viewer: endpoints, tables, acceptance tests. Both built and verified."},
+        {"path": "docs/BUILD-SPEC-2.md", "blurb": "Spec of the provider adapter, multimodal adapter, provenance and consent: tests and acceptance. Built and verified."},
+        {"path": "scaffold/engine/engine.py", "blurb": "The pipeline brain: ingest, dedupe, summarize, rank, deadlines, trace ring buffer. 474 lines, fully explained in CODE-WALKTHROUGH."},
+        {"path": "scaffold/engine/approval.py", "blurb": "The approval gate: typed tool registry, policy gate, proposals + audit tables, consent, provenance."},
+        {"path": "scaffold/engine/providers.py", "blurb": "The provider adapter: swap LLM backends via SIGNAL_PROVIDER without touching engine.py."},
+        {"path": "scaffold/engine/multimodal.py", "blurb": "The multimodal input adapter: text, PDF, image extraction with graceful fallback."},
+        {"path": "scaffold/webapp/serve.py", "blurb": "The zero-dependency HTTP server: 14 API endpoints, --fixture and --offline flags."},
+        {"path": "scaffold/webapp/static/index.html", "blurb": "The dark UI: digest, ranked feed, search, request board, Actions tab, mode badge, trace drawer."},
+        {"path": "scaffold/demo.sh", "blurb": "The one-command demo runner: generate the feed, serve the app."},
+        {"path": "scaffold/deck/deck-gen.js", "blurb": "The deck generator: one skeleton, 4 sponsor-shaped decks."},
+        {"path": "scaffold/tests/test_approval.py", "blurb": "Acceptance suite G1-G13 for the approval gate. 13/13 passing."},
+        {"path": "scaffold/tests/test_trace.py", "blurb": "Acceptance suite T1-T6 plus offline regression for trace + fixtures. 12/12 passing."},
+        {"path": "scaffold/tests/test_providers.py", "blurb": "Acceptance suite P1-P4 for the provider adapter. 9/9 passing."},
+        {"path": "scaffold/tests/test_multimodal.py", "blurb": "Acceptance suite M1-M4 for multimodal ingest. 4/4 passing."},
+        {"path": "scaffold/tests/test_provenance.py", "blurb": "Acceptance suite Q1-Q4 for provenance + consent. 4/4 passing."},
+        {"path": "scaffold/fixtures/happy.json", "blurb": "Golden feed: 6 benign items, authority senders dominate."},
+        {"path": "scaffold/fixtures/expected_happy.json", "blurb": "Expected top3 and proposal for the happy fixture."},
+        {"path": "scaffold/fixtures/ambiguous.json", "blurb": "Golden feed: near-duplicate pair for dedupe testing."},
+        {"path": "scaffold/fixtures/expected_ambiguous.json", "blurb": "Expected dedupe outcome for the ambiguous fixture."},
+        {"path": "scaffold/fixtures/adversarial.json", "blurb": "Golden feed: a scam-ish urgent item that must never rank first."},
+        {"path": "scaffold/fixtures/expected_adversarial.json", "blurb": "Expected top3 and scam-cap assertion for the adversarial fixture."},
+        {"path": "scaffold/fixtures/multimodal.json", "blurb": "Golden feed for multimodal ingest: text attachment, unsupported type, no attachment."},
+        {"path": "scaffold/fixtures/expected_multimodal.json", "blurb": "Expected extraction meta for the multimodal fixture."}
+      ]
+    },
+    {
+      "name": "THE RECORD",
+      "entries": [
+        {"path": "README.md", "blurb": "The war-room home: status table, shared scaffold, deep-research wave, remaining work."},
+        {"path": "INDEX.md", "blurb": "The file-by-file index of the whole repo."},
+        {"path": "CONTINUATION-PROMPT.md", "blurb": "The new-window reset doc: mission, timeline, what is done, next steps in order, operating rules."}
+      ]
+    }
+  ]
+}

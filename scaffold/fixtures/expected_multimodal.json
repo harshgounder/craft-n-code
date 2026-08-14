@@ -1,0 +1,13 @@
+{
+  "mm-1": {
+    "extractor": "builtin",
+    "reason": null,
+    "size": 107
+  },
+  "mm-2": {
+    "extractor": null,
+    "reason": "no extractor for this type",
+    "size": 24
+  },
+  "mm-3": null
+}

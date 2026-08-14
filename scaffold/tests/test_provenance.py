@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+"""Acceptance tests Q1-Q4 from BUILD-SPEC-2 item C (provenance + consent).
+
+Plain python3, zero external deps. Starts the real server on an ephemeral
+port, exercises /api/provenance and /api/consent, and verifies the
+consent_required flag on side-effecting proposals.
+"""
+from __future__ import annotations
+
+import json
+import os
+import sqlite3
+import subprocess
+import sys
+import tempfile
+import time
+import urllib.request
+from pathlib import Path
+
+HERE = Path(__file__).parent
+ROOT = HERE.parent
+SERVE = ROOT / "webapp" / "serve.py"
+DB = ROOT / "engine" / "signal.db"
+
+PORT = 8126
+BASE = f"http://localhost:{PORT}"
+
+results = []
+
+
+def check(name, cond, detail=""):
+    results.append((name, bool(cond), detail))
+    mark = "PASS" if cond else "FAIL"
+    print(f"  [{mark}] {name}" + (f"  -> {detail}" if detail else ""))
+
+
+def jget(path):
+    with urllib.request.urlopen(BASE + path) as r:
+        return json.loads(r.read().decode())
+
+
+def jpost(path, payload):
+    req = urllib.request.Request(
+        BASE + path, data=json.dumps(payload).encode(),
+        headers={"Content-Type": "application/json"}, method="POST")
+    with urllib.request.urlopen(req) as r:
+        return r.status, json.loads(r.read().decode())
+
+
+def feed_item_ids():
+    return [i["source_id"] for i in jget("/api/feed")["items"]]
+
+
+def main():
+    env = dict(os.environ)
+    env["OLLAMA_API_KEY"] = "test-key"
+    os.environ["OLLAMA_API_KEY"] = "test-key"
+
+    with tempfile.TemporaryDirectory() as td:
+        # clear any prior consent rows so Q3/Q4 are deterministic
+        try:
+            conn = sqlite3.connect(DB)
+            conn.execute("DELETE FROM consent")
+            conn.commit()
+            conn.close()
+        except Exception:
+            pass
+        server = subprocess.Popen(
+            [sys.executable, str(SERVE), "--port", str(PORT)],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            cwd=str(ROOT / "webapp"), env=env)
+        time.sleep(1.2)
+        try:
+            item = feed_item_ids()[0]
+
+            # ── Q1 after approve, /api/provenance/P-xx has all fields ──
+            st, res = jpost("/api/proposals", {"item_id": item, "tool": "submit_form",
+                                               "params": {"form_id": "re-exam", "answers": {}}})
+            pid = res["proposal"]["id"]
+            jpost("/api/approve", {"proposal_id": pid, "decision": "approve", "actor": "judge"})
+            man = jget(f"/api/provenance/{pid}")
+            q1 = (man.get("proposal_id") == pid
+                  and man.get("tool") == "submit_form"
+                  and man.get("prompt_sha256")
+                  and man.get("reviewed_by") == "judge"
+                  and man.get("decided_at")
+                  and man.get("decision") == "executed"
+                  and man.get("generated_at")
+                  and man.get("model") != "offline")
+            check("Q1 provenance manifest has all fields incl prompt_sha256", q1,
+                  f"sha={man.get('prompt_sha256', '')[:8]} actor={man.get('reviewed_by')} model={man.get('model')}")
+
+            # ── Q2 POST /api/consent grants, GET lists, duplicate upserts ──
+            st, res = jpost("/api/consent", {"subject": item, "scope": "pay_fee",
+                                             "granted_by": "user"})
+            cons = jget("/api/consent")["consent"]
+            q2a = res.get("ok") and any(c["subject"] == item and c["scope"] == "pay_fee" for c in cons)
+            st2, res2 = jpost("/api/consent", {"subject": item, "scope": "pay_fee",
+                                               "granted_by": "admin"})
+            cons2 = jget("/api/consent")["consent"]
+            matches = [c for c in cons2 if c["subject"] == item and c["scope"] == "pay_fee"]
+            q2b = len(matches) == 1 and matches[0]["granted_by"] == "admin"
+            check("Q2 consent grant + list + upsert", q2a and q2b,
+                  f"{len(matches)} rows")
+
+            # ── Q3 side-effecting propose without consent -> consent_required true ──
+            st, res = jpost("/api/proposals", {"item_id": item, "tool": "submit_form",
+                                               "params": {"form_id": "x", "answers": {}}})
+            check("Q3 side-effecting without consent -> consent_required true",
+                  res.get("ok") and res["proposal"].get("consent_required") is True,
+                  f"consent_required={res.get('proposal', {}).get('consent_required')}")
+
+            # ── Q4 with consent granted -> consent_required false ──
+            jpost("/api/consent", {"subject": item, "scope": "submit_form", "granted_by": "user"})
+            st, res = jpost("/api/proposals", {"item_id": item, "tool": "submit_form",
+                                               "params": {"form_id": "y", "answers": {}}})
+            check("Q4 with consent granted -> consent_required false",
+                  res.get("ok") and res["proposal"].get("consent_required") is False,
+                  f"consent_required={res.get('proposal', {}).get('consent_required')}")
+        finally:
+            if server.poll() is None:
+                server.terminate(); server.wait()
+            os.environ.pop("OLLAMA_API_KEY", None)
+
+    failed = [n for n, ok, _ in results if not ok]
+    print(f"\n{len(results) - len(failed)}/{len(results)} passed")
+    if failed:
+        print("FAILED:", ", ".join(failed))
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

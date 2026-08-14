@@ -15,7 +15,6 @@ import re
 import sqlite3
 import sys
 import time
-import urllib.request
 from collections import Counter, deque
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, date, timedelta
@@ -108,42 +107,18 @@ class LLM:
 
         # Read the key lazily so serve.py --offline (which blanks the env var
         # after import) truly forces offline even when the key was set at import.
-        api_key = os.environ.get("OLLAMA_API_KEY", "")
-        model = os.environ.get("SIGNAL_MODEL", OLLAMA_MODEL)
-        base_url = os.environ.get("OLLAMA_BASE_URL", OLLAMA_URL).rstrip("/")
-        if not api_key:
+        # The provider is also read lazily so SIGNAL_PROVIDER can be forced at
+        # runtime (BUILD-SPEC-2 item A).
+        from providers import get_provider
+        provider = get_provider()
+        out = provider.chat(system, user, max_tokens, temperature)
+        if out is None:
             self.last_mode = "offline"
             return None
-
-        payload = {
-            "model": model,
-            "messages": [
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-            "max_tokens": max_tokens,
-            "temperature": temperature,
-        }
-        req = urllib.request.Request(
-            f"{base_url}/chat/completions",
-            data=json.dumps(payload).encode(),
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
-        )
-        try:
-            with urllib.request.urlopen(req, timeout=40) as resp:
-                data = json.loads(resp.read().decode())
-            out = data["choices"][0]["message"]["content"].strip()
-            self.cache[key] = out
-            self._save_cache()
-            self.last_mode = "llm"
-            return out
-        except Exception as e:
-            print(f"  [llm] ollama-cloud failed ({e}); using offline", file=sys.stderr)
-            self.last_mode = "offline"
-            return None
+        self.cache[key] = out
+        self._save_cache()
+        self.last_mode = "llm"
+        return out
 
 
 # ────────────────────────────────────────────────────────────────

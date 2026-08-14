@@ -22,6 +22,7 @@ import mimetypes
 import re
 import sqlite3
 import sys
+import time
 import urllib.parse
 from collections import Counter
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -36,6 +37,7 @@ FIXTURES = HERE.parent / "fixtures"
 sys.path.insert(0, str(HERE.parent / "engine"))
 import engine as E  # noqa: E402
 import approval as A  # noqa: E402
+import multimodal as M  # noqa: E402
 
 FEED_CACHE: Optional[dict] = None
 FIXTURE: Optional[str] = None    # fixture name from --fixture NAME
@@ -136,6 +138,46 @@ def propose_for_item(item_id: str, tool: str, params: dict) -> dict:
     return {"ok": True, "proposal": prop.as_dict()}
 
 
+def ingest_multimodal(body: dict) -> dict:
+    """POST /api/ingest: accept a message with an optional local attachment.
+
+    Runs extract_text, builds an Item, appends it to the feed cache, re-runs
+    the pipeline, and pushes an ingest:multimodal trace step with the meta.
+    Returns 200 even when extraction is None (graceful).
+    """
+    global FEED_CACHE
+    attachment_path = body.get("attachment_path") or ""
+    text, meta = M.extract_text(attachment_path) if attachment_path else (None, None)
+
+    item_body = body.get("body", "")
+    if text:
+        item_body = (item_body + "\n" + text).strip() if item_body else text
+
+    item = E.Item(
+        channel=body.get("channel", "email"),
+        source_id=body.get("source_id") or f"ingest-{int(time.time())}",
+        sender=body.get("sender", ""),
+        subject=body.get("subject", ""),
+        body=item_body,
+        received_at=body.get("received_at", ""),
+        profile_tags=body.get("profile_tags", []),
+        kind=body.get("kind", "notice"),
+    )
+
+    feed = load_feed()
+    items = [E.Item(**{k: v for k, v in i.items() if k in E.Item.__dataclass_fields__})
+             for i in feed["items"]]
+    items.append(item)
+    result = E.run_pipeline(items, feed.get("profile") or ["general"])
+    FEED_CACHE = result
+
+    trace_meta = meta if meta is not None else {}
+    E.push_trace({"step": "ingest:multimodal", "source_id": item.source_id,
+                  "extraction": trace_meta})
+
+    return {"ok": True, "item": item.as_dict(), "extraction": meta}
+
+
 def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optional[dict]):
     query = urllib.parse.parse_qs(urllib.parse.urlparse(path).query)
     path = path.split("?")[0]  # strip query string before segment split
@@ -206,6 +248,11 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
         if parts[1] == "trace":
             return json_reply(handler, {"steps": E.get_trace()})
 
+        if parts[1] == "ingest":
+            if method == "POST" and body:
+                return json_reply(handler, ingest_multimodal(body), 200)
+            return json_reply(handler, {"ok": False, "error": "POST only"}, 405)
+
         if parts[1] == "tools":
             return json_reply(handler, {
                 "tools": [
@@ -240,6 +287,23 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
 
         if parts[1] == "audit":
             return json_reply(handler, {"events": A.list_audit()})
+
+        if parts[1] == "provenance" and len(parts) >= 3:
+            manifest = A.provenance(parts[2])
+            if manifest is None:
+                return json_reply(handler, {"ok": False, "error": "proposal not found"}, 404)
+            return json_reply(handler, manifest)
+
+        if parts[1] == "consent":
+            if method == "POST" and body:
+                subject = body.get("subject")
+                scope = body.get("scope")
+                granted_by = body.get("granted_by") or "user"
+                if not subject or not scope:
+                    return json_reply(handler, {"ok": False, "error": "subject and scope required"}, 400)
+                row = A.grant_consent(subject, scope, granted_by)
+                return json_reply(handler, {"ok": True, "consent": row}, 201)
+            return json_reply(handler, {"consent": A.list_consent()})
 
     handler.send_response(404)
     handler.end_headers()

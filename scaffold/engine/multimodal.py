@@ -1,0 +1,78 @@
+# Multimodal input adapter - extract text from attachments.
+# BUILD-SPEC-2 item B. Pure stdlib; pypdf and tesseract are optional at runtime
+# and never required. Availability is detected at runtime, never hard-fails.
+
+from __future__ import annotations
+
+import os
+import shutil
+import subprocess
+from pathlib import Path
+from typing import Optional
+
+TEXT_EXTENSIONS = {".txt", ".md", ".markdown", ".csv", ".json", ".log", ".text"}
+
+
+def _read_text(path: Path) -> tuple[Optional[str], dict]:
+    try:
+        text = path.read_text(encoding="utf-8", errors="replace")
+    except Exception as e:
+        return None, {"extractor": None, "reason": f"read failed: {e}", "size": _size(path)}
+    return text, {"extractor": "builtin", "reason": None, "size": _size(path)}
+
+
+def _extract_pdf(path: Path) -> tuple[Optional[str], dict]:
+    try:
+        from pypdf import PdfReader
+    except Exception:
+        return None, {"extractor": None, "reason": "pypdf not installed", "size": _size(path)}
+    try:
+        reader = PdfReader(str(path))
+        text = "\n".join((page.extract_text() or "") for page in reader.pages)
+    except Exception as e:
+        return None, {"extractor": None, "reason": f"pdf read failed: {e}", "size": _size(path)}
+    if not text.strip():
+        return None, {"extractor": None, "reason": "pdf yielded no text", "size": _size(path)}
+    return text, {"extractor": "pypdf", "reason": None, "size": _size(path)}
+
+
+def _extract_image(path: Path) -> tuple[Optional[str], dict]:
+    if shutil.which("tesseract") is None:
+        return None, {"extractor": None, "reason": "tesseract missing", "size": _size(path)}
+    try:
+        proc = subprocess.run(
+            ["tesseract", str(path), "stdout"],
+            capture_output=True, text=True, timeout=60)
+    except Exception as e:
+        return None, {"extractor": None, "reason": f"ocr failed: {e}", "size": _size(path)}
+    text = (proc.stdout or "").strip()
+    if not text:
+        return None, {"extractor": None, "reason": "ocr yielded no text", "size": _size(path)}
+    return text, {"extractor": "tesseract", "reason": None, "size": _size(path)}
+
+
+def _size(path: Path) -> int:
+    try:
+        return path.stat().st_size
+    except Exception:
+        return 0
+
+
+def extract_text(attachment_path: str) -> tuple[Optional[str], dict]:
+    """Extract text from an attachment. Returns (text, meta).
+
+    meta = {"extractor": name|None, "reason": str|None, "size": n}
+    Extractors are tried in order: builtin text, pypdf, tesseract. Never raises.
+    """
+    path = Path(attachment_path)
+    if not path.exists():
+        return None, {"extractor": None, "reason": "file not found", "size": 0}
+
+    ext = path.suffix.lower()
+    if ext in TEXT_EXTENSIONS:
+        return _read_text(path)
+    if ext == ".pdf":
+        return _extract_pdf(path)
+    if ext in {".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tiff", ".webp"}:
+        return _extract_image(path)
+    return None, {"extractor": None, "reason": "no extractor for this type", "size": _size(path)}

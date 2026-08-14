@@ -5,7 +5,9 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
+import os
 import sqlite3
 from dataclasses import dataclass
 from datetime import datetime
@@ -74,6 +76,7 @@ class Proposal:
     created_at: str
     decided_at: str | None = None
     actor: str | None = None
+    consent_required: bool = False
 
     def as_dict(self) -> dict:
         return {
@@ -87,6 +90,7 @@ class Proposal:
             "created_at": self.created_at,
             "decided_at": self.decided_at,
             "actor": self.actor,
+            "consent_required": self.consent_required,
         }
 
 
@@ -112,6 +116,10 @@ CREATE TABLE IF NOT EXISTS audit_events (
     id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT, actor TEXT,
     decision TEXT, proposal_id TEXT, tool TEXT, params TEXT,
     evidence TEXT, reason TEXT);
+CREATE TABLE IF NOT EXISTS consent (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, subject TEXT, scope TEXT,
+    granted_by TEXT, granted_at TEXT, revoke_at TEXT,
+    UNIQUE(subject, scope));
 """
 
 
@@ -226,6 +234,98 @@ def list_audit() -> list[dict]:
     return [dict(r) for r in rows]
 
 
+# ────────────────────────────────────────────────────────────────
+# Consent record (BUILD-SPEC-2 item C)
+# ────────────────────────────────────────────────────────────────
+
+def grant_consent(subject: str, scope: str, granted_by: str,
+                  revoke_at: str | None = None) -> dict:
+    """Grant (upsert) a consent row for a subject+scope pair."""
+    conn = _connect()
+    conn.execute(
+        "INSERT INTO consent (subject, scope, granted_by, granted_at, revoke_at) "
+        "VALUES (?,?,?,?,?) "
+        "ON CONFLICT(subject, scope) DO UPDATE SET "
+        "granted_by=excluded.granted_by, granted_at=excluded.granted_at, "
+        "revoke_at=excluded.revoke_at",
+        (subject, scope, granted_by, _now(), revoke_at))
+    conn.commit()
+    row = conn.execute(
+        "SELECT id, subject, scope, granted_by, granted_at, revoke_at "
+        "FROM consent WHERE subject=? AND scope=?", (subject, scope)).fetchone()
+    conn.close()
+    return dict(row)
+
+
+def list_consent() -> list[dict]:
+    conn = _connect()
+    rows = conn.execute(
+        "SELECT id, subject, scope, granted_by, granted_at, revoke_at "
+        "FROM consent ORDER BY id").fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def has_consent(subject: str, scope: str) -> bool:
+    conn = _connect()
+    row = conn.execute(
+        "SELECT revoke_at FROM consent WHERE subject=? AND scope=?",
+        (subject, scope)).fetchone()
+    conn.close()
+    if row is None:
+        return False
+    if row["revoke_at"]:
+        return False
+    return True
+
+
+# ────────────────────────────────────────────────────────────────
+# Provenance manifest (BUILD-SPEC-2 item C)
+# ────────────────────────────────────────────────────────────────
+
+def provenance(proposal_id: str) -> dict | None:
+    """Build a per-decision provenance manifest on demand from existing rows."""
+    conn = _connect()
+    row = conn.execute("SELECT * FROM proposals WHERE id=?", (proposal_id,)).fetchone()
+    if row is None:
+        conn.close()
+        return None
+    proposal = _row_to_proposal(row)
+    audit = conn.execute(
+        "SELECT ts, actor, decision FROM audit_events WHERE proposal_id=? "
+        "ORDER BY id DESC LIMIT 1", (proposal_id,)).fetchone()
+    conn.close()
+
+    prompt = (proposal.reason or "") + "\x00" + json.dumps(proposal.evidence or [])
+    prompt_sha256 = hashlib.sha256(prompt.encode()).hexdigest()
+    if os.environ.get("OLLAMA_API_KEY"):
+        model = os.environ.get("SIGNAL_MODEL", "deepseek-v4-flash:0731")
+    else:
+        model = "offline"
+
+    return {
+        "proposal_id": proposal.id,
+        "tool": proposal.tool,
+        "params": proposal.params,
+        "reason": proposal.reason,
+        "evidence": proposal.evidence,
+        "prompt_sha256": prompt_sha256,
+        "model": model,
+        "generated_at": proposal.created_at,
+        "reviewed_by": proposal.actor,
+        "decided_at": proposal.decided_at,
+        "decision": proposal.status,
+    }
+
+
+def _evidence_subject(evidence: list) -> str | None:
+    """Derive a consent subject from the first evidence entry's source_id."""
+    for e in evidence or []:
+        if isinstance(e, dict) and e.get("source_id"):
+            return str(e["source_id"])
+    return None
+
+
 def propose(tool_name: str, params: dict, reason: str, evidence: list,
             confidence: float) -> Proposal:
     """Create and persist a proposal, applying the policy gate.
@@ -240,6 +340,12 @@ def propose(tool_name: str, params: dict, reason: str, evidence: list,
     proposal = Proposal(
         id=pid, tool=tool_name, params=params, reason=reason, evidence=evidence,
         confidence=confidence, status=PENDING, created_at=_now())
+    # consent_required: side-effecting or reversible tools need a consent row for
+    # the evidence source subject (informational flag; proposal still created).
+    if tool is not None and tool.side_effect in (REVERSIBLE, SIDE_EFFECTING):
+        subject = _evidence_subject(evidence)
+        if subject and not has_consent(subject, tool_name):
+            proposal.consent_required = True
     if gate_mode == "auto":
         proposal.status = EXECUTED
         proposal.decided_at = _now()
