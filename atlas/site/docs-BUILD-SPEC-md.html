@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/BUILD-SPEC.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/BUILD-SPEC.md</h1>
+  <p class="blurb">Spec of the approval gate + trace viewer: endpoints, tables, acceptance tests. Both built and verified.</p>
+  <a class="open" href="../../docs/BUILD-SPEC.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>BUILD-SPEC - the 2 pending scaffold upgrades (plan-only, no code yet)</h1>
+<p>Status: Parts 1 + 2 BUILT + VERIFIED (2026-08-14 evening, via opencode, audited by Hermes). Part 1 = approval gate (G1-G13, 13/13). Part 2 = trace viewer + fixture replay (T1-T6 + offline regression, 12/12). This spec is now a record of what was built; no further work pending on these two items.</p>
+<p>Every item below is grounded in the CURRENT code (read serve.py + engine.py</p>
+<p>line-by-line today), so the build is mechanical execution, zero design time.</p>
+<p>Target: ~30-45 min for the approval gate, ~30-45 min for trace+fixtures.</p>
+<p>Both fit in the "3h of remaining polish" window from WAVE-SYNTHESIS §10.</p>
+<p>Reason: the rank-1 predicted problem shape (Google/Accenture lane) is a</p>
+<p>"trustworthy agent with approved tools + audit trail". Judges see the control</p>
+<p>plane. The current scaffold has NO approval concept at all.</p>
+<hr>
+<h2>PART 1. APPROVAL GATE (typed tools + policy gate + audit)</h2>
+<h3>1.1 What exists today (facts from the code, do not re-read)</h3>
+<ul>
+<li>serve.py routes: GET /api/feed, /api/digest, /api/search?q=, /api/complaints</li>
+</ul>
+<p>(GET+POST), /api/stats. POST body JSON parsing already works in Handler._serve.</p>
+<ul>
+<li>serve.py has FEED_CACHE (module global) + route() is the SINGLE place to add</li>
+</ul>
+<p>endpoints. json_reply() exists for JSON responses.</p>
+<ul>
+<li>engine.py: Item dataclass, LLM (ollama-cloud + .llm_cache.json replay),</li>
+</ul>
+<p>offline fallback, sqlite persistence in main() to scaffold/engine/signal.db.</p>
+<ul>
+<li>UI: webapp/static/index.html, dark, 3 tabs (Feed/Ask/Requests).</li>
+</ul>
+<h3>1.2 New file: scaffold/engine/approval.py (~120 lines)</h3>
+<p>Data model (plain dataclasses, mirror Item style):</p>
+<p>@dataclass</p>
+<p>class Tool:</p>
+<p>name: str                 # e.g. "send_reminder", "pay_fee", "book_slot"</p>
+<p>description: str</p>
+<p>params: dict              # JSON schema-ish: {param: type}</p>
+<p>side_effect: str          # "read-only" | "reversible" | "side-effecting"</p>
+<p>TOOL_REGISTRY: dict[str, Tool]  # typed registry, 3-4 tools for the demo:</p>
+<ul>
+<li>lookup_room("query")            → read-only (auto-executes)</li>
+<li>send_reminder("who","what","when") → reversible (approval suggested)</li>
+<li>submit_form("form_id","answers")   → side-effecting (approval REQUIRED)</li>
+<li>pay_fee("amount","ref")            → side-effecting (approval REQUIRED)</li>
+</ul>
+<p>@dataclass</p>
+<p>class Proposal:</p>
+<p>id: str                   # "P-1", "P-2", ... (mirror ticket #C-117 style)</p>
+<p>tool: str</p>
+<p>params: dict</p>
+<p>reason: str               # one line, LLM or template</p>
+<p>evidence: list[dict]      # [{source_id, snippet}] from the item's body</p>
+<p>confidence: float         # 0.0-1.0</p>
+<p>status: str               # pending | approved | rejected | executed | snoozed</p>
+<p>created_at: str</p>
+<p>decided_at: str | None</p>
+<p>actor: str | None         # who decided (demo: "judge" or "user")</p>
+<p>Policy gate (the "approved tools" story, pure function, testable):</p>
+<p>def gate(tool: Tool) -&gt; str:</p>
+<p>read-only → "auto"          (executes immediately, still logged)</p>
+<p>reversible → "suggest"      (UI shows APPROVE / REJECT / SNOOZE)</p>
+<p>side-effecting → "require"  (blocks until human approves)</p>
+<p>sqlite persistence: reuse scaffold/engine/signal.db, add 2 tables</p>
+<p>(create-if-not-exists, do NOT drop the items table):</p>
+<p>CREATE TABLE IF NOT EXISTS proposals (</p>
+<p>id TEXT PRIMARY KEY, tool TEXT, params TEXT, reason TEXT,</p>
+<p>evidence TEXT, confidence REAL, status TEXT,</p>
+<p>created_at TEXT, decided_at TEXT, actor TEXT);</p>
+<p>CREATE TABLE IF NOT EXISTS audit_events (</p>
+<p>id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT, actor TEXT,</p>
+<p>decision TEXT, proposal_id TEXT, tool TEXT, params TEXT,</p>
+<p>evidence TEXT, reason TEXT);</p>
+<p>Audit invariant: EVERY decision (approve/reject/snooze/auto-execute) writes</p>
+<p>one audit row BEFORE the status flips. This is the demo's "trace" story.</p>
+<h3>1.3 New endpoints in serve.py (add inside route(), api branch)</h3>
+<p>GET  /api/tools       → registry list (name, description, side_effect)</p>
+<p>GET  /api/proposals   → all proposals, newest first</p>
+<p>POST /api/proposals   → {"item_id","tool","params"} → engine proposes</p>
+<p>(evidence pulled from the item's body, reason via</p>
+<p>LLM with cache+offline fallback, confidence from</p>
+<p>rank_score normalized)</p>
+<p>POST /api/approve     → {"proposal_id","decision","actor"}</p>
+<p>decision: approve | reject | snooze</p>
+<p>approve → status executed (side-effecting) OR</p>
+<p>approved (reversible); audit row written first</p>
+<p>GET  /api/audit       → audit log, newest first (what, who, when, why)</p>
+<p>No auth (local demo, judges click buttons). actor defaults to "user".</p>
+<h3>1.4 UI (index.html, third tab becomes "Actions")</h3>
+<ul>
+<li>Proposal card: tool name, one-line reason, params preview, evidence panel</li>
+</ul>
+<p>(source_id + snippet, collapsible), confidence badge, status chip.</p>
+<ul>
+<li>APPROVE (green) / REJECT (red) / SNOOZE (amber) buttons per card.</li>
+<li>On approve: card flips to EXECUTED with a fake progress line</li>
+</ul>
+<p>("tool called, result logged"), audit entry appears.</p>
+<ul>
+<li>Audit tab or collapsible panel: table of (ts, actor, decision, tool).</li>
+<li>The demo beat: digest → click proposal → evidence panel → APPROVE → status</li>
+</ul>
+<p>flips → audit row appears. ~30 seconds of stage time, sells the whole story.</p>
+<h3>1.5 Acceptance tests (run after build, mirror the 13/13 style)</h3>
+<p>G1  GET /api/tools returns &gt;= 3 tools, each with a side_effect class.</p>
+<p>G2  Propose a side-effecting tool → status "pending", NOT executed.</p>
+<p>G3  Propose a read-only tool → auto-executes, audit row present.</p>
+<p>G4  POST /api/approve approve → status "executed", audit row with actor.</p>
+<p>G5  POST /api/approve reject → status "rejected", NOT executed.</p>
+<p>G6  Snooze → status "snoozed", still listed, not executed.</p>
+<p>G7  GET /api/audit shows every decision, newest first, with actor+ts.</p>
+<p>G8  Proposals persist across server restart (sqlite).</p>
+<p>G9  Offline mode (no OLLAMA key): proposals still generate (template</p>
+<p>reason + rule-based confidence), same statuses work.</p>
+<p>G10 Cache replay: second run hits .llm_cache.json, identical reasons.</p>
+<p>G11 UI: card renders evidence panel; buttons flip status; no JS errors.</p>
+<p>G12 Existing endpoints still pass (regression: feed/digest/search/stats).</p>
+<p>G13 demo.sh still runs end-to-end (regression).</p>
+<hr>
+<h2>PART 2. TRACE VIEWER + FIXTURE REPLAY (demo-failure insurance)</h2>
+<h3>2.1 The problem it solves</h3>
+<p>WAVE-SYNTHESIS §4: "no explicit trace of what the engine did". A judge asks</p>
+<p>"why is this ranked first?" and today the answer is invisible. Also: a live</p>
+<p>demo can die at 3 AM; replay mode must be a first-class mode, not a hack.</p>
+<h3>2.2 Fixtures (new dir: scaffold/fixtures/)</h3>
+<p>Three golden feeds, each a JSON array of Item-shaped dicts (channel,</p>
+<p>source_id, sender, subject, body, received_at, profile_tags, kind):</p>
+<p>happy.json       → 6 clean items, 2 deadlines, 1 obvious side-effecting action</p>
+<p>ambiguous.json   → near-dupes (dedupe story), missing dates, low confidence</p>
+<p>adversarial.json → a scam-ish urgent item, an item with no sender, a fake deadline</p>
+<p>Plus expected.json per fixture: expected top-3 order + expected proposals,</p>
+<p>so replay is deterministic AND assertable.</p>
+<h3>2.3 Replay mode (serve.py)</h3>
+<p>python3 serve.py --fixture happy    → load_feed() reads fixtures/happy.json</p>
+<p>python3 serve.py --fixture happy --offline  → force offline, still works</p>
+<p>Mode is surfaced: /api/stats gains "mode": "live" | "cached" | "offline" |</p>
+<p>"fixture" (derived: fixture flag, OLLAMA_KEY presence, cache hit ratio).</p>
+<p>UI badge top-right: LIVE / CACHED / OFFLINE / FIXTURE. Candid fallback wins</p>
+<p>judges (zero-dependency rule, AFTERPACKETS lesson).</p>
+<h3>2.4 Trace endpoint (serve.py + engine.py)</h3>
+<p>Engine already prints pipeline steps to stdout; capture them into a small</p>
+<p>in-memory ring buffer instead (collections.deque, maxlen=200) inside</p>
+<p>run_pipeline(), one dict per step:</p>
+<p>{"step": "ingest", "n": 11}</p>
+<p>{"step": "dedupe", "dropped": 2, "kept": 9}</p>
+<p>{"step": "summarize", "mode": "llm|cache|offline", "per_item": [...]}</p>
+<p>{"step": "rank", "top3": [{source_id, score, why}]}   # why = profile/authority/recency/deadline/urgency weights</p>
+<p>GET /api/trace → the buffer, newest first.</p>
+<p>UI: collapsible "Trace" drawer at the bottom. The demo beat: judge asks why</p>
+<p>item X is top → open trace → point at the deadline pressure weight. 15</p>
+<p>seconds of stage time, "we can explain every decision" is a Google-line.</p>
+<h3>2.5 Acceptance tests</h3>
+<p>T1  --fixture happy returns the fixture's expected top-3 (assertable).</p>
+<p>T2  --fixture happy --offline works with no network and no key.</p>
+<p>T3  /api/trace shows ingest → dedupe → summarize → rank, in order.</p>
+<p>T4  /api/stats mode reflects fixture flag (and offline).</p>
+<p>T5  Adversarial fixture: scam item does NOT rank top (urgency caps).</p>
+<p>T6  Regression: default run (no flags) behaves exactly as today.</p>
+<hr>
+<h2>3. ORDER OF BUILD (when the go lands)</h2>
+<ol>
+<li>approval.py (registry + gate + sqlite)  → ~30 min</li>
+<li>serve.py endpoints (tools/proposals/approve/audit) → ~15 min</li>
+<li>index.html Actions tab + audit panel → ~15 min</li>
+<li>fixtures/ + --fixture flag + mode badge → ~25 min</li>
+<li>/api/trace ring buffer → ~15 min</li>
+<li>Run G1-G13 + T1-T6, fix, commit, push, Telegram.</li>
+</ol>
+<p>Total ~1.5-2h if done in one pass (approval gate alone ~45 min).</p>
+<h2>4. WHAT THIS UNBLOCKS (per predicted shape, WAVE-SYNTHESIS §1)</h2>
+<ul>
+<li>Rank 1 (trustworthy agent, Google/Accenture): the ENTIRE story is Part 1.</li>
+<li>Rank 2 (creative production agent, Adobe): review/approve loop already fits</li>
+</ul>
+<p>(approve = reviewer approval, audit = provenance record).</p>
+<ul>
+<li>Rank 4 (multimodal assistant, Meta): escalation = reject/snooze + human.</li>
+<li>Rank 5 (governed case router, Accenture): case → proposal → policy gate →</li>
+</ul>
+<p>approval → KPI is literally the flow.</p>
+<ul>
+<li>Off-map: the approval + trace layer is a differentiator on ANY demo.</li>
+</ul>
+<h2>5. OPEN ITEMS (not code)</h2>
+<ul>
+<li>User go-signal is the only blocker on Part 1 + Part 2 (asked 2026-08-14</li>
+</ul>
+<p>15:20 IST, answer: "hold builds, plan-only for now").</p>
+<ul>
+<li>Multimodal adapter (image/PDF → evidence) still unplanned in detail: that</li>
+</ul>
+<p>one needs its own 60-90 min slot, only worth it if Meta/Apple flavor looks</p>
+<p>likely on the night. Decide AT the drop, not before.</p>
+<ul>
+<li>Provider adapter interface + provenance/consent record: low priority,</li>
+</ul>
+<p>already partially covered (env-var provider swap + Kavach patterns).</p>
+</main>
+</body>
+</html>

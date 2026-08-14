@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scaffold/fixtures/expected_ambiguous.json</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>scaffold/fixtures/expected_ambiguous.json</h1>
+  <p class="blurb">Expected dedupe outcome for the ambiguous fixture.</p>
+  <a class="open" href="../../scaffold/fixtures/expected_ambiguous.json" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<pre><code class="language-json">{
+  "top3": ["amb-1", "amb-3", "amb-4"],
+  "proposals": [],
+  "dedupe": {"expected_kept": 4, "expected_dropped": 1, "dupe_of": "amb-2"},
+  "notes": "amb-1 and amb-2 are near-duplicates; dedupe keeps the newer (tie -&gt; first seen, amb-1) and drops amb-2. Low-confidence social items rank last."
+}
+</code></pre>
+</main>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/GAP-MAP.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/GAP-MAP.md</h1>
+  <p class="blurb">What we still do not know, tiered by value, and how to get it.</p>
+  <a class="open" href="../../research/GAP-MAP.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>What Else Can We Dig? — Gap Map for Craft N Code Intel</h1>
+<p>Compiled: 2026-08-13 | Status: thinking doc, nothing fetched yet (except the two PDFs that fell out during gap-check)</p>
+<h2>⚡ NEW FINDING while checking gaps (ALREADY LANDED)</h2>
+<ul>
+<li>p-society/D3-2k25-solutions repo = ACTUAL 2025 problem statements (Phase 1: 7 challenges, Phase 2: extensions). Saved to research/raw/rnr-phase1.pdf + rnr-phase2.pdf (commit 1e99b6d).</li>
+<li>2025 challenges (ALL 7, verified): 1) NFT event ticketing, 2) Web3 loyalty cards, 3) P2P skill swap, 4) AI lecture generator, 5) Collegiate Inbox Navigator (AI academic assistant, Gmail+Classroom dashboard — direct predecessor of 2026 PS-03 Signal/Noise!), 6) Automated Lab Grader ("Digital TA", code judge), 7) Mobile Packet Hunter (= what AFTERPACKETS won with).</li>
+<li>Phase 2 extensions: chain auto-select, quest map gamification, anonymity + replay, animated lectures, MCP server integration, load testing, interception layer.</li>
+<li>Pattern: 2025 problems were WEB3 + AI + security heavy. Sponsors that year likely included web3/algo companies. 2026 sponsors (Google/Apple/FB/Accenture/Adobe) suggest AI + infra + security angle.</li>
+<li>Rudra-25-12/CraftnCode-2026/.env contains Supabase keys (PUBLISHABLE only, low risk) — worth flagging to the club, NOT exploiting.</li>
+</ul>
+<h2>GAP MAP — what we do NOT have yet, and how to get it</h2>
+<h3>TIER 1: HIGH VALUE, HIGH FEASIBILITY (do these first)</h3>
+<ol>
+<li><strong>The missing 2025 challenge #6</strong> (phase 1 PDF page 5, text between code-judge and packet-hunter got cut in my tail read). Read the PDF fully. 2 min.</li>
+<li><strong>2024 national finals problem statements</strong> (24h at IIIT-B Nov 8 2024). Sources to try: p-society repos (d3-web has a 2024 problem page?), Scribd search "CraftNCode problem statements 2024", LinkedIn posts by Soubhik/Saswat, the 2024 brochure pages 3-9 (need headless browser for per-page hashes, or try the D3 Fest 2024 site d3-web pages).</li>
+<li><strong>2024 state-round (Rajasthan) problems</strong> — the ₹200/team state round at MUJ was run by... someone. CSC or Tech Society? Find who ran it + the statements.</li>
+<li><strong>2026 state-round problems</strong>: the event site /problem-statements already leaks the 5 tracks (done), but the ACTUAL statements (the sponsor company questions) may be seeded in the site repo's git history, Supabase seed data, or the .lovable/plan files. Check git log for deleted files + the admin route.</li>
+<li><strong>2025 Rewind & Recode national finale problems</strong> (Nov 7-9, IIIT-B): p-society may have another solutions repo (search p-society repos for 2025/rewind), or the D³ 2025 site repo.</li>
+<li><strong>Rabbitt AI (NEXORA partner)</strong> — who are they? Their judging taste matters if they come back for Craft N Code. 10 min web search.</li>
+<li><strong>The sponsor companies' hackathon problem archives</strong> (Google/Apple/FB/Accenture/Adobe): Google Solution Challenge problems (annual, public), Meta Hackathon 2024/2025 problems, Accenture hackathon problem sets, Adobe Creative Jam archives. These predict the 2026 question style. All public.</li>
+<li><strong>Judges for 2026</strong>: not announced (watchdog will catch). But the 2024/2025 judge lists are known (Ayushi Parashar, Shivani Prasad, Sarthak Padhi, ACP Anjana Tudu, Lingaraj Sethi, Sonali Satpathy). Dig each judge's background + what they reward. 6 mini-dossiers, same recipe as the people dossiers.</li>
+</ol>
+<h3>TIER 2: MEDIUM VALUE, MEDIUM FEASIBILITY</h3>
+<ol>
+<li><strong>Participant rosters</strong>: Unstop hides them. But GitHub search found 25 repos. Extend: search "D3 hackathon", "d3fest", "arcadia", "code-kombat" repos (the D³ Fest sibling events) + LeetCode/Codeforces handles of the 2025 participants (from repo profiles) to map the competitor pool we will face at nationals.</li>
+<li><strong>The 2026 UP listing (1730325) full details</strong> — same API call pattern, gives the UP round's timeline + contact + maybe the state problem set (IET Lucknow's own event site?).</li>
+<li><strong>The 2026 state rounds in other states</strong> (Assam, others): each state college runs its own qualifier. Find all state listings (org 11832 on Unstop = all their events, try the Unstop org page or API) → we can compare how other states structure the qualifier.</li>
+<li><strong>Team Highlanders' actual submission</strong> (the 2025 winners): their demo video, pitch deck, or Unstop submission if public. LinkedIn posts by Abhishek/Prasham/Hrishi/Tapish about the win may contain the pitch summary.</li>
+<li><strong>NEXORA'26 participant data</strong> (261 participants): same GitHub-harvest recipe. Those are the same people we will face at the Rajasthan qualifier.</li>
+<li><strong>CSC MUJ's past hackathon results</strong>: who won NEXORA, what did they build? Winners' repos may exist. They are the direct local competition.</li>
+</ol>
+<h3>TIER 3: LOWER VALUE / HARDER</h3>
+<ol>
+<li><strong>The Supabase database</strong>: anon INSERT is allowed (that's how submissions work). SELECT on submissions is RLS-locked to admins, so we CANNOT read other teams' submissions (and should not try — that's cheating + the RLS blocks it anyway). Do NOT attempt. Flag instead: the club's anon-INSERT design means anyone can submit fake entries; we should submit early + resubmit near deadline (latest wins).</li>
+<li><strong>Live site full-page content</strong>: /sponsors, /food already pulled. The admin dashboard route (/admin) is auth-gated. Check /robots.txt + sitemap for hidden routes. Cheap.</li>
+<li><strong>The 2026 brochure</strong> (Craft N Code Rajasthan version): CSC may have a PDF on cscmuj.com or the event site. Check.</li>
+<li><strong>Mentors for 2026</strong>: the event site mentions "mentor rounds" at 01:00. Mentor names may be seeded in the site code (check PageShell/about for hardcoded names) or announced later.</li>
+<li><strong>Historical D³ Fest editions</strong>: 2023 (Soubhik's team won 2nd), 2022, 2021. Problem archives from older D³ fests (p-society repos, Scribd). Predicts the 2026 national format.</li>
+<li><strong>The p-society repo full harvest</strong>: 67 repos. List them all, check the ones that look like event sites/solutions (tech-society-web, techSocWeb, d3-web, D3-2k25-solutions, D3-2026). Any "solutions" repo for 2026 will be the NEXT jackpot.</li>
+</ol>
+<h2>STRATEGIC USE (what the data is FOR)</h2>
+<ul>
+<li>Problem-pattern prediction: 2024 (web3 + AI) → 2025 (web3 + AI + security) → 2026 (sponsor-set, likely AI + infra + security given Google/Apple/FB/Accenture/Adobe). Pre-build the flexible stack + idea bank around these.</li>
+<li>The 5 tracks ARE the 2026 categories. The ACTUAL questions will be sponsor-specific. The 2025 PDFs show the FORMAT: "The Problem / Your 24-Hour Mission / Required MVP (bullets) / Bonus Goal". Expect the same format. We can pre-draft the MVP structure for each track.</li>
+<li>Judges' taste (from 2024/2025 dossiers): creativity, technical complexity, practicality, presentation. Police + industry + TCS. Presentation polish matters.</li>
+<li>Watchdog will catch: Rajasthan listing ID, judge reveals, reg counts, sponsor fills.</li>
+</ul>
+<h2>ORDER OF EXECUTION (recommended)</h2>
+<ol>
+<li>~~Read missing 2025 challenge #6~~ DONE — all 7 challenges recovered (Challenge 5 = Collegiate Inbox Navigator, Challenge 6 = Automated Lab Grader)</li>
+<li>Harvest p-society 67 repos for solutions/problem archives (30 min)</li>
+<li>Sponsor problem archives: Google Solution Challenge + Meta + Accenture + Adobe (1h, parallel-able)</li>
+<li>Judge dossiers x6 (1h, subagent-able)</li>
+<li>2024 national problems (30 min)</li>
+<li>Competitor pool: GitHub harvest for D³ fest sibling events + NEXORA (30 min)</li>
+<li>Rabbitt AI dossier (10 min)</li>
+</ol>
+<p>All can be delegated one-by-one (user preference: NOT parallel) to keep this session light.</p>
+</main>
+</body>
+</html>

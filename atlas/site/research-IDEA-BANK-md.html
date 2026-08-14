@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/IDEA-BANK.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/IDEA-BANK.md</h1>
+  <p class="blurb">Our 5 pre-built ideas (BriefLens, Kavach Circle, SignalStory, Kavach, plus one more), sponsor DNA match, and the decision tree for the drop.</p>
+  <a class="open" href="../../research/IDEA-BANK.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>IDEA BANK - pre-built for sponsor-set questions (drop-ready)</h1>
+<p>Compiled: 2026-08-14 | Purpose: the problem statements drop <strong>21:30 IST Aug 15</strong>. We will NOT have time to brainstorm that night. Every idea below is pre-built: problem angle, MVP scope for 24h, stack that matches OUR skills, demo script, judge mapping, risk. We pick within 10 minutes of the drop.</p>
+<p><strong>Source of truth (Aug 14, Rudra in person)</strong>: the REAL questions are written by the sponsor companies (Google, Apple, Meta, Accenture, Adobe), not by the club. The site's track list is a backup set and is NOT a basis for prep. The only site-derived facts we rely on are the timings below.</p>
+<p><strong>Timings (the only website facts we use)</strong>:</p>
+<ul>
+<li>Aug 15 21:00: idea submission opens</li>
+<li>Aug 15 21:30: problem statements drop</li>
+<li>Aug 16 06:00: idea submission closes</li>
+<li>Aug 16 10:00-17:30: pitch to judges at MUJ (3-min demo, 2:30 target)</li>
+</ul>
+<hr>
+<h2>0. THE DECISION TREE (fires within 10 minutes of the drop)</h2>
+<pre><code class="language-">Real question drops at 21:30
+│
+├─ Fingerprint = Google (agents, tools, search, summarize,
+│   deadlines, grounded answers) ────► IDEA A "BriefLens" (agentic ops)
+├─ Fingerprint = Meta (Llama, multimodal, community,
+│   moderation, fraud) ──────────────► IDEA B "Kavach Circle" (multimodal assistant)
+├─ Fingerprint = Adobe (Firefly, creative, campaign,
+│   asset, media) ───────────────────► IDEA C "SignalStory" (creative workflow)
+├─ Fingerprint = Apple (Swift, accessibility, mobile,
+│   safety, health) ─────────────────► IDEA D "Kavach" or its mobile skin
+├─ Fingerprint = Accenture (workflow, case, enterprise,
+│   KPI, approval) ──────────────────► IDEA A ops skin (case → owner → approval → metric)
+├─ Security / safety / fraud flavor ─► IDEA D "Kavach" (existing product, real demo)
+└─ No fingerprint / off-map ─────────► Map to the closest idea. Never pitch a fresh one.</code></pre>
+<p>The strategic core: ONE engine (ingest → dedupe → summarize → rank → deadlines → propose → approve), domain-agnostic. Every idea mounts on it with a different skin. Kavach is the only pre-existing product and covers the security lane.</p>
+<hr>
+<h2>1. IDEA A - "BriefLens" (agentic ops / personal productivity) (PRIMARY for Google/Accenture)</h2>
+<p>The deep-research pass-2 #1 predicted shape: an AI agent system that plans, executes, and reviews work using tools, with approval gates and measurable progress.</p>
+<ul>
+<li><strong>Problem angle</strong>: inputs arrive from everywhere (email, chat, portal, tickets, docs). The ONE action that matters (a deadline, an approval, a payment) drowns under noise. An agent that acts without asking is unsafe; an agent that only chats is useless. The answer is a ranked feed + human-approved actions.</li>
+<li><strong>What we build (24h MVP)</strong>:</li>
+<li>Ingest: JSON feed from any channel (connectors are pluggable; demo uses pre-imported data)</li>
+<li>Engine: dedupe → LLM summarize (one line) → rank by profile + sender authority + deadline → "today in 60 seconds" digest</li>
+<li>Action proposals: actionable items become proposals (AI proposes, evidence attached: source, deadline, amount)</li>
+<li>Approval gate: APPROVE / REJECT / SNOOZE per proposal, audit log (who, when, what)</li>
+<li>Ask: semantic search over everything with sourced answers</li>
+<li><strong>Stack</strong>: python engine (built) + zero-dep web server (built) + ollama-cloud LLM with offline fallback (built). NO paid keys, NO external deps in the demo (AFTERPACKETS rule).</li>
+<li><strong>Demo script (3 min)</strong>: open "today" → digest reads out 2 urgent actions → click a proposal → evidence panel → APPROVE → status flips, audit logged → ask a question → sourced answer.</li>
+<li><strong>Judge mapping</strong>: Google DNA (agents, tools, measurable outcomes), Accenture DNA (workflow + approval + audit), practicality, AI non-negotiable (satisfied).</li>
+<li><strong>Risk</strong>: if the prompt is pure summarize/rank without actions, the approval gate is a small extra card, costs nothing.</li>
+<li><strong>Reuse</strong>: THE engine. Already built and verified 13/13.</li>
+</ul>
+<h2>2. IDEA B - "Kavach Circle" (multimodal assistant + human escalation) (PRIMARY for Meta)</h2>
+<p>The deep-research pass-2 #2 predicted shape: an accessible multimodal assistant that accepts text, images, or documents, answers with evidence, and routes uncertain or high-risk cases to a human.</p>
+<ul>
+<li><strong>Problem angle</strong>: information arrives in every format (text, image, PDF, chat). Generic assistants answer confidently even when wrong. High-risk cases need a human, not a guess.</li>
+<li><strong>What we build (24h MVP)</strong>:</li>
+<li>Input: text paste, image upload, PDF upload (OCR via local tools)</li>
+<li>Extraction: structured facts + evidence panel with source links</li>
+<li>Answers: confidence score on everything; uncertain or high-risk routes to human review</li>
+<li>Correction flow: user fixes the model, the fix is remembered (session cache)</li>
+<li><strong>Stack</strong>: python engine + webapp + ollama-cloud LLM + OCR (tesseract if available, else offline mock). Zero external deps.</li>
+<li><strong>Demo script (3 min)</strong>: drop a screenshot + a PDF → both extracted, facts with sources → ask a question → answer with confidence band → ask something risky → visible escalation to human → correct an answer → fix applied.</li>
+<li><strong>Judge mapping</strong>: Meta DNA (multimodal, Llama), Apple DNA (accessibility, correction flows), safety framing (human-in-the-loop).</li>
+<li><strong>Risk</strong>: multimodal can fail on bad inputs. Mitigation: error handling + confidence UI + pre-recorded fallback video.</li>
+<li><strong>Reuse</strong>: engine for the evidence layer; Kavach safety patterns for escalation.</li>
+</ul>
+<h2>3. IDEA C - "SignalStory" (creative / enterprise media workflow) (PRIMARY for Adobe)</h2>
+<p>The deep-research pass-2 #3 predicted shape: a workflow that converts a real organizational brief into accessible, brand-consistent media assets using generative AI, with review, revision, content provenance, and multi-format delivery.</p>
+<ul>
+<li><strong>Problem angle</strong>: making content is slow; making content that stays on-brand is slower. Generative AI creates fast but uncontrolled: wrong brand, wrong facts. Nobody can answer where an asset came from.</li>
+<li><strong>What we build (24h MVP)</strong>:</li>
+<li>Brief intake: paste a real brief → extract brand rules, tone, audience</li>
+<li>Asset generation: labeled generator adapter (mock if no credentials; ollama-cloud can produce text assets; image generation optional)</li>
+<li>Caption + alt text + export (multi-format: text, image card, PDF)</li>
+<li>Review loop: human approves before delivery, version logged</li>
+<li>Provenance record: prompt, model, lineage per asset</li>
+<li><strong>Stack</strong>: engine pipeline (brief → structured output) + webapp + labeled generator adapter. Zero external deps if mock.</li>
+<li><strong>Demo script (3 min)</strong>: paste a one-paragraph brief → system extracts brand + tone → generate an asset → caption + alt text → edit/regenerate → reviewer approves → provenance card shown.</li>
+<li><strong>Judge mapping</strong>: Adobe DNA (Firefly, provenance, creative workflows), Accenture DNA (review + approval + measurable output), polish.</li>
+<li><strong>Risk</strong>: no image-gen credentials on the night. Mitigation: the generator adapter is swappable; a text/asset pipeline still demonstrates the workflow, and provenance is the differentiator regardless.</li>
+<li><strong>Reuse</strong>: engine for the structured extraction + approval pattern.</li>
+</ul>
+<h2>4. IDEA D - "Kavach" (call-security platform) (SECURITY LANE, existing product)</h2>
+<p>Our existing product (IIC 3.0, ~/iic-3/kavach): real-time scam-call screening, six detection departments fused into one intervention loop, Hindi-first.</p>
+<ul>
+<li><strong>Why this wins the security lane</strong>: it is a REAL product with a REAL demo. Judges = industry + cyber + police taste (ACP Anjana Tudu, Sethi). No 24h build risk: it's built, tested, verified (V1 fresh-clone 5/5 scenarios).</li>
+<li><strong>What we build for THIS round (24h)</strong>: the integration + demo harness: wire the engine's proposal/approval loop into Kavach's intervention flow (AI detects scam → proposes intervention → user approves → audit). Pre-scripted answer to "what did YOU build in the 24h": the integration + demo harness IS the build.</li>
+<li><strong>Demo script (3 min)</strong>: simulate a digital-arrest call → flagged in <1s → AI proposes intervention → user approves → post-call report.</li>
+<li><strong>Risk</strong>: "did you build this tonight?" question. Mitigation: pre-scripted honest framing (integration + harness + this round's demo is the build), plus the engine loop is genuinely new work.</li>
+</ul>
+<hr>
+<h2>5. THE COMPANY-LANE PROTOCOL (Rudra intel: the REAL questions come from the sponsors)</h2>
+<h3>How to read the drop (2-minute scan)</h3>
+<ol>
+<li>WHO set it? Read the problem text for the company's fingerprints (their product names, their API names, their phrasing).</li>
+<li>WHAT shape is it? Map to the 3 predicted shapes + security lane below.</li>
+<li>WHICH idea mounts? BriefLens / Kavach Circle / SignalStory / Kavach. See the lane table.</li>
+</ol>
+<h3>The company fingerprint table</h3>
+<table><thead><tr><th>Sponsor</th><th>Their DNA (verified from their own hackathons)</th><th>Family they tend to set</th><th>Our answer</th></tr></thead><tbody><tr><td>Google</td><td>Solution Challenge: must use ≥1 Google AI service, deploy to Cloud. Themes: asset protection, crisis response, supply chains, unbiased AI, resource allocation. ADK: agents, tools, multi-agent.</td><td>Agentic ops / search / summarize / ranking</td><td>IDEA A BriefLens</td></tr><tr><td>Meta/FB</td><td>LlamaCon winners: OrgLens (AI expert matching, knowledge graph), Compliance Wizards (fraud analyzer), Llama CCTV (multimodal surveillance). Llama 4: open-weight natively multimodal.</td><td>Multimodal assistants / community / fraud</td><td>IDEA B Kavach Circle</td></tr><tr><td>Accenture</td><td>Innovation Challenge: trusted enterprise AI, patient care, business insights into action, resilient manufacturing. Human-in-the-loop. Template decks.</td><td>Enterprise workflows / dashboards / approvals</td><td>IDEA A ops skin</td></tr><tr><td>Adobe</td><td>Creative Jam winners: Sparky AI (node-based Firefly wrapper). Firefly API: generative creative workflows, audio/video, provenance.</td><td>Creative / media workflows</td><td>IDEA C SignalStory</td></tr><tr><td>Apple</td><td>Swift Student Challenge 2026: AI + accessibility winners. SwiftUI, on-device, polished UX.</td><td>Mobile UX / accessibility / safety</td><td>IDEA D Kavach mobile skin</td></tr></tbody></table>
+<h3>The 10-minute cue table (pass-1 deep research)</h3>
+<table><thead><tr><th>Cue in released statement</th><th>Likely sponsor</th><th>Build this</th><th>One acceptance test</th></tr></thead><tbody><tr><td>Documents, sources, notices, search, summarize, deadlines, grounded answer</td><td>Google</td><td>BriefLens (engine + source map + confidence bands)</td><td>Every answer has evidence + an action</td></tr><tr><td>Swift, SwiftUI, playground, iPhone, camera, sensor, accessibility, native app</td><td>Apple</td><td>Kavach Swift (native risk timeline, accessible)</td><td>Judge completes the core interaction in 1 min</td></tr><tr><td>Llama, open model, multimodal, video, audio, agent, community, moderation, fraud</td><td>Meta</td><td>Kavach Circle (user-defined rule + evidence + human override)</td><td>User defines a rule, system finds evidence, human approves</td></tr><tr><td>Workflow, case, hospital, plant, field, employee, KPI, approval, enterprise</td><td>Accenture</td><td>Kavach Ops (case intake → owner → approval → metric)</td><td>One case moves intake → resolution</td></tr><tr><td>Firefly, creative, campaign, asset, image, video, brand, personalize, node</td><td>Adobe</td><td>SignalStory (source → editable asset with provenance)</td><td>Source becomes an editable asset</td></tr></tbody></table>
+<h3>Setter prior (if exactly one sponsor writes the state question)</h3>
+<p>Google 24% &gt; Accenture 22% &gt; Meta 21% &gt; Adobe 18% &gt; Apple 15%. Working priors, not facts. The released text OVERWHELMS them: if the statement names a sponsor product/API/vocabulary, that sponsor wins, full stop. Evidence labels in the report: VERIFIED = source seen, INFERRED = reasoned prediction, UNVERIFIED = rumor. The report's key negative finding: public record does NOT prove sponsor authorship. Keep the insider signal as a live hypothesis. The shared engine wins either way.</p>
+<h3>Pass-2 findings (cnc-company-lanes-2, DEEP 90.1, 111 cites)</h3>
+<p><strong>Status check</strong>: NO public source proves the sponsors write the questions. The sponsor-set claim stays UNVERIFIED until the drop itself. Prep is modular so it wins either way.</p>
+<p><strong>The 3 ranked predicted shapes (INFERRED, rehearsal only, never claim they are real)</strong>:</p>
+<ol>
+<li><strong>Agentic operations / personal productivity</strong> (Google ADK: agents, tools, multi-agent, debug, deploy; plus 2025's "AI for Personal Development" theme) → IDEA A.</li>
+<li><strong>Multimodal campus/community assistant</strong> (Meta Llama 4: open-weight natively multimodal + Apple 2026 accessibility winners) → IDEA B.</li>
+<li><strong>Responsible creative/enterprise media workflow</strong> (Adobe Firefly API + Accenture Tech Next: autonomous intelligence for work) → IDEA C.</li>
+</ol>
+<p><strong>Prep architecture (have ready before 21:30)</strong>:</p>
+<ul>
+<li>Input adapter: text, image, PDF, sensor/mock event</li>
+<li>Orchestrator: deterministic router + optional agent</li>
+<li>Model adapter: pluggable (ollama-cloud / Google / Llama / local mock)</li>
+<li>Creative adapter: image/media generation interface (labeled mock OK)</li>
+<li>Mobile shell: responsive web shell or SwiftUI starter</li>
+<li>Safety layer: PII redaction, consent, approval</li>
+<li>Evidence layer: source links, confidence, audit events</li>
+<li>Evaluation: latency, accuracy, completion, fallback</li>
+</ul>
+<p><strong>Failure cases to avoid</strong>: building a guessed sponsor prompt before the release (wait for text), generic chatbot with no measurable outcome (define user, action, metric), agent with unrestricted actions (approval gates + mock tools), multimodal demo without error handling (confidence + correction UI), media generator without provenance (store prompt + asset lineage), mobile-only build before the prompt (keep web/API fallback), healthcare claims without boundaries (triage + non-diagnostic framing).</p>
+<p><strong>Our scaffold vs this</strong>: the shared engine already IS the input adapter (JSON feed) + orchestrator (dedupe/rank) + model adapter (ollama-cloud + offline) + evidence layer (source_id, deadline, rank_score) + evaluation (verified 13/13). Gaps: creative adapter (none, labeled mock fine), safety layer (Kavach covers it), approval gate (built into IDEA A's demo flow; one POST /api/approve endpoint if needed).</p>
+<hr>
+<h2>6. THE SHARED SCAFFOLD (built Aug 14 - verified, committed, pushed)</h2>
+<p>Whatever drops, these are pre-built (see scaffold/README.md):</p>
+<ol>
+<li><strong>The engine</strong> (ingest → dedupe → LLM summarize → rank → deadlines). Domain-agnostic, verified in LLM mode (deepseek-v4-flash:0731) AND full offline mode. 13/13 ad-hoc checks.</li>
+<li><strong>The webapp</strong> (zero-dependency python server + dark UI: digest, ranked feed, search, request board). Runs on ANY machine with python3.</li>
+<li><strong>4 decks</strong> (deck-gen.js → pptxgenjs): deck-agentic (BriefLens), deck-multimodal (Kavach Circle), deck-creative (SignalStory), deck-kavach. Schema-validated. Swap slides ready.</li>
+<li><strong>4 storyboards</strong> (docs/DEMO-STORYBOARDS.md): second-by-second voiceover scripts for pre-recorded 3-min videos.</li>
+<li><strong>LLM layer verified TODAY</strong>: ollama-cloud key works (deepseek-v4-flash:0731 live test). Offline fallback means the demo NEVER dies. AFTERPACKETS rule: zero external deps.</li>
+<li><strong>demo.sh</strong>: one command → generate feed + serve UI.</li>
+</ol>
+<h2>7. RISK TABLE (honest)</h2>
+<table><thead><tr><th>Risk</th><th>Likelihood</th><th>Mitigation</th></tr></thead><tbody><tr><td>Problem doesn't match any predicted shape</td><td>Medium</td><td>Off-map protocol: map to closest idea, never pitch fresh</td></tr><tr><td>Demo fails on stage (network/rate-limit/permissions)</td><td>Medium</td><td>Pre-recorded videos + local mock mode for every demo</td></tr><tr><td>Sponsor authorship is wrong (Rudra intel off)</td><td>Low</td><td>Engine is domain-agnostic, ideas map to any shape</td></tr><tr><td>Judges ask "what did YOU build in the 24h" (Kavach)</td><td>Medium</td><td>Pre-scripted answer: the integration + demo harness IS the build</td></tr><tr><td>LLM quota dies at 3 AM</td><td>Low</td><td>ollama-cloud + offline rule-based fallback in the engine</td></tr><tr><td>Pitch overruns 3 min</td><td>High</td><td>Rehearse with a hard timer today, trim to 2:30</td></tr></tbody></table>
+<h2>8. ACTION PLAN (TODAY, Aug 14)</h2>
+<ol>
+<li>[x] Build the engine skeleton (ingest → summarize → rank → deadlines) - verified</li>
+<li>[x] Webapp (zero-dep server + UI) - verified</li>
+<li>[x] 4 decks + 4 storyboards (BriefLens, Kavach Circle, SignalStory, Kavach)</li>
+<li>[x] Verify LLM keys (ollama-cloud live test) + offline fallback</li>
+<li>[ ] Pre-record 4 demo videos (screen + voiceover) - needs the team</li>
+<li>[ ] Rehearse pitch with timer (2:30 target), record once</li>
+<li>[ ] Deep-research pass 1 + 2 folded in (§5) - done, reports in research/company-lanes/</li>
+</ol>
+</main>
+</body>
+</html>

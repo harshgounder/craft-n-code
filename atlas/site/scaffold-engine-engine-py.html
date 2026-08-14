@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scaffold/engine/engine.py</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>scaffold/engine/engine.py</h1>
+  <p class="blurb">The pipeline brain: ingest, dedupe, summarize, rank, deadlines, trace ring buffer. 474 lines, fully explained in CODE-WALKTHROUGH.</p>
+  <a class="open" href="../../scaffold/engine/engine.py" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<pre><code class="language-py"># Signal Engine - ingest → dedupe → summarize → rank → deadlines
+# Craft N Code 2026 shared scaffold. Domain-agnostic: feed ANY JSON items,
+# the pipeline ranks + extracts deadlines regardless of domain.
+#
+# LLM layer: ollama-cloud (OpenAI-compatible, deepseek-v4-flash:0731) with
+# disk cache + FULL offline fallback (regex deadlines + tf-idf ranking).
+# Zero paid keys, zero external deps in the demo. AFTERPACKETS rule.
+
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import re
+import sqlite3
+import sys
+import time
+from collections import Counter, deque
+from dataclasses import dataclass, field, asdict
+from datetime import datetime, date, timedelta
+from pathlib import Path
+from typing import Optional
+
+# In-memory ring buffer of pipeline steps for the trace viewer (BUILD-SPEC Part 2).
+TRACE: deque = deque(maxlen=200)
+
+
+def push_trace(step: dict) -&gt; None:
+    """Append one pipeline step to the trace ring buffer."""
+    step["ts"] = datetime.now().isoformat(timespec="seconds")
+    TRACE.append(step)
+
+
+def get_trace() -&gt; list[dict]:
+    """Return the trace buffer, newest step first."""
+    return list(reversed(TRACE))
+
+DB_PATH = Path(__file__).parent / "signal.db"
+CACHE_PATH = Path(__file__).parent / ".llm_cache.json"
+OLLAMA_KEY = os.environ.get("OLLAMA_API_KEY", "")
+OLLAMA_URL = os.environ.get("OLLAMA_BASE_URL", "https://ollama.com/v1").rstrip("/")
+OLLAMA_MODEL = os.environ.get("SIGNAL_MODEL", "deepseek-v4-flash:0731")
+
+# ────────────────────────────────────────────────────────────────
+# 1. DATA MODEL
+# ────────────────────────────────────────────────────────────────
+
+@dataclass
+class Item:
+    """One raw message/notice/complaint from any channel."""
+    channel: str            # email | chat | portal | app | social | ticket
+    source_id: str          # unique id within channel
+    sender: str
+    subject: str
+    body: str
+    received_at: str        # ISO
+    profile_tags: list = field(default_factory=list)  # e.g. ["2nd-year", "E&amp;CE", "hostel"]
+    kind: str = "notice"    # notice | complaint | deadline | event
+    summary: str = ""
+    rank_score: float = 0.0
+    deadline: Optional[str] = None
+    deadline_iso: Optional[str] = None
+    is_urgent: bool = False
+
+    def dedupe_key(self) -&gt; str:
+        # normalized subject + first 80 chars of body = near-dup fingerprint
+        s = re.sub(r"[^a-z0-9]+", "", (self.subject + " " + self.body).lower())[:120]
+        return s
+
+    def as_dict(self):
+        return asdict(self)
+
+
+# ────────────────────────────────────────────────────────────────
+# 2. LLM LAYER (ollama-cloud + cache + offline fallback)
+# ────────────────────────────────────────────────────────────────
+
+class LLM:
+    """Tiny OpenAI-compatible client. Uses ollama-cloud when key present,
+    falls back to rule-based offline mode (no network at all)."""
+
+    def __init__(self, cache_path: Path = CACHE_PATH):
+        self.cache_path = cache_path
+        self.cache: dict = {}
+        if cache_path.exists():
+            try:
+                self.cache = json.loads(cache_path.read_text())
+            except Exception:
+                self.cache = {}
+        self.hits = 0
+        self.misses = 0
+        self.last_mode = "offline"  # llm | cache | offline
+
+    def _save_cache(self):
+        try:
+            self.cache_path.write_text(json.dumps(self.cache, indent=1))
+        except Exception:
+            pass
+
+    def chat(self, system: str, user: str, max_tokens: int = 400, temperature: float = 0.2) -&gt; Optional[str]:
+        key = hashlib.sha256((system + "\x00" + user).encode()).hexdigest()[:32]
+        if key in self.cache:
+            self.hits += 1
+            self.last_mode = "cache"
+            return self.cache[key]
+        self.misses += 1
+
+        # Read the key lazily so serve.py --offline (which blanks the env var
+        # after import) truly forces offline even when the key was set at import.
+        # The provider is also read lazily so SIGNAL_PROVIDER can be forced at
+        # runtime (BUILD-SPEC-2 item A).
+        from providers import get_provider
+        provider = get_provider()
+        out = provider.chat(system, user, max_tokens, temperature)
+        if out is None:
+            self.last_mode = "offline"
+            return None
+        self.cache[key] = out
+        self._save_cache()
+        self.last_mode = "llm"
+        return out
+
+
+# ────────────────────────────────────────────────────────────────
+# 3. OFFLINE FALLBACK (rule-based - the demo never dies)
+# ────────────────────────────────────────────────────────────────
+
+MONTHS = {m: i + 1 for i, m in enumerate(
+    ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"])}
+
+DATE_PATTERNS = [
+    # "22 Aug 2026", "22 August 2026"
+    re.compile(r"\b(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(\d{4})\b", re.I),
+    # "Aug 22, 2026"
+    re.compile(r"\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(\d{1,2}),?\s+(\d{4})\b", re.I),
+    # "22/08/2026", "22-08-2026", "22.08.26"
+    re.compile(r"\b(\d{1,2})[/\-.](\d{1,2})[/\-.](\d{2,4})\b"),
+    # "22 Aug" (year implied = upcoming)
+    re.compile(r"\b(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\b", re.I),
+]
+
+DEADLINE_WORDS = ["last date", "deadline", "due", "submit by", "before", "by "]
+
+URGENT_WORDS = ["urgent", "immediate", "last date", "deadline", "tomorrow", "mandatory",
+                "compulsory", "exam", "mte", "ete", "fee", "fine", "suspend", "ragging"]
+
+# Red flags that suggest a scam-ish urgent notice. Such items get their urgency
+# boost capped so they do not dominate the feed (BUILD-SPEC T5).
+SCAM_WORDS = ["click", "claim", "verify account", "suspicious activity", "prize", "won",
+              "lottery", "transfer", "bank", "password", "gift card", "act now", "free money"]
+
+def parse_date(text: str, today: date) -&gt; Optional[date]:
+    for pat in DATE_PATTERNS:
+        m = pat.search(text)
+        if not m:
+            continue
+        g = m.groups()
+        if len(g) == 3 and g[2].isdigit():
+            day, mon, year = int(g[0]), MONTHS[g[1].lower()[:3]], int(g[2])
+            if year &lt; 100:
+                year += 2000
+            try:
+                return date(year, mon, day)
+            except ValueError:
+                continue
+        # "22 Aug" → nearest upcoming
+        if len(g) == 2:
+            day, mon = int(g[0]), MONTHS[g[1].lower()[:3]]
+            try:
+                d = date(today.year, mon, day)
+                if d &lt; today:
+                    d = date(today.year + 1, mon, day)
+                return d
+            except ValueError:
+                continue
+    return None
+
+def offline_summarize(item: Item) -&gt; str:
+    """Extractive summary: first sentence + key numbers, no LLM needed."""
+    text = item.body.strip()
+    first = text.split("\n")[0] if text else item.subject
+    first = re.sub(r"\s+", " ", first).strip()
+    if len(first) &gt; 140:
+        first = first[:137].rsplit(" ", 1)[0] + "..."
+    return f"{item.subject} | {first}"
+
+def offline_extract_deadline(item: Item, today: date) -&gt; Optional[str]:
+    text = (item.subject + " " + item.body).lower()
+    d = parse_date(text, today)
+    if d is None:
+        return None
+    # only treat as deadline if a deadline-ish word is near, or kind=deadline
+    if any(w in text for w in DEADLINE_WORDS) or item.kind == "deadline":
+        return d.isoformat()
+    return None
+
+def offline_rank(items: list[Item], profile: list[str], today: date) -&gt; list[Item]:
+    """TF-IDF-ish + recency + authority + deadline pressure. Deterministic."""
+    # corpus stats
+    doc_terms = []
+    for it in items:
+        doc_terms.append(Counter(re.findall(r"[a-z]{3,}", (it.subject + " " + it.body).lower())))
+    df: Counter = Counter()
+    for dt in doc_terms:
+        for t in set(dt):
+            df[t] += 1
+    n = max(len(items), 1)
+
+    AUTHORITY = {"registrar": 5, "dean": 5, "controller": 5, "hoc": 4, "hod": 4, "faculty": 3,
+                 "club": 2, "committee": 2, "student": 1, "whatsapp": 1, "bot": 1}
+
+    scored = []
+    for it, dt in zip(items, doc_terms):
+        score = 0.0
+        # profile match: tokens that appear in the item and the user profile
+        prof_terms = [t for t in re.findall(r"[a-z]{3,}", " ".join(profile).lower())]
+        if prof_terms:
+            hit = sum(1 for t in set(dt) if t in prof_terms) / len(prof_terms)
+            score += 2.5 * hit
+        # authority
+        sender_l = it.sender.lower()
+        for k, v in AUTHORITY.items():
+            if k in sender_l:
+                score += v
+                break
+        # recency: 0-2 days old = full points, decays to 0 over 7 days
+        try:
+            age_days = (today - datetime.fromisoformat(it.received_at).date()).days
+        except Exception:
+            age_days = 0
+        score += max(0.0, 2.0 - age_days * 0.35)
+        # deadline pressure: closer = higher, deadline passed = 0
+        if it.deadline_iso:
+            try:
+                dl = date.fromisoformat(it.deadline_iso)
+                days_left = (dl - today).days
+                if days_left &lt; 0:
+                    score -= 3
+                else:
+                    score += max(0.0, 3.0 - days_left * 0.15)
+            except Exception:
+                pass
+        # urgency words
+        if any(w in (it.subject + " " + it.body).lower() for w in URGENT_WORDS):
+            score += 1.2
+        # scam detection: cap the score so scam-ish items never dominate
+        if any(w in (it.subject + " " + it.body).lower() for w in SCAM_WORDS):
+            score = min(score, 5.0)
+        it.rank_score = round(score, 3)
+        it.is_urgent = score &gt;= 6.0
+        scored.append(it)
+
+    scored.sort(key=lambda x: -x.rank_score)
+    return scored
+
+
+def _rank_why(item: Item) -&gt; str:
+    """Human-readable one-line reason for an item's rank score."""
+    bits = []
+    if item.deadline_iso:
+        bits.append("deadline pressure")
+    if item.is_urgent:
+        bits.append("urgency")
+    if item.sender.lower() in ("registrar office", "dean", "accounts dept", "exam cell",
+                               "academic office", "controller"):
+        bits.append("authority")
+    bits.append("recency")
+    if item.profile_tags:
+        bits.append("profile match")
+    return ", ".join(bits[:3])
+
+
+# ────────────────────────────────────────────────────────────────
+# 4. PIPELINE
+# ────────────────────────────────────────────────────────────────
+
+SUMMARIZE_SYSTEM = (
+    "You compress student notices to ONE line (max 140 chars). Output ONLY the summary, "
+    "no prefix, no quotes. Keep numbers, dates, and room numbers."
+)
+DEADLINE_SYSTEM = (
+    "Extract the single most important deadline from this notice. Output ONLY an ISO date "
+    "YYYY-MM-DD, or the word NONE if no deadline exists. If a relative date is given, resolve "
+    "it against today. Today is {today}."
+)
+
+def llm_summarize(llm: LLM, item: Item) -&gt; str:
+    out = llm.chat(SUMMARIZE_SYSTEM, f"{item.subject}\n{item.body[:1200]}")
+    if not out:
+        return offline_summarize(item)
+    return out.strip()[:160]
+
+def llm_deadline(llm: LLM, item: Item, today: date) -&gt; Optional[str]:
+    out = llm.chat(DEADLINE_SYSTEM.format(today=today.isoformat()),
+                   f"Subject: {item.subject}\nBody: {item.body[:1200]}")
+    if not out:
+        return offline_extract_deadline(item, today)
+    m = re.search(r"\d{4}-\d{2}-\d{2}", out)
+    return m.group(0) if m else offline_extract_deadline(item, today)
+
+
+def dedupe(items: list[Item]) -&gt; list[Item]:
+    seen: dict[str, Item] = {}
+    for it in items:
+        k = it.dedupe_key()
+        if k in seen:
+            # keep the newer one
+            if it.received_at &gt; seen[k].received_at:
+                seen[k] = it
+        else:
+            seen[k] = it
+    return list(seen.values())
+
+
+def run_pipeline(items: list[Item], profile: list[str], today: Optional[date] = None) -&gt; dict:
+    today = today or date.today()
+    llm = LLM()
+
+    push_trace({"step": "ingest", "n": len(items)})
+    raw_n = len(items)
+    items = dedupe(items)
+    push_trace({"step": "dedupe", "dropped": raw_n - len(items), "kept": len(items)})
+    summarize_mode = "offline"
+    per_item = []
+    for it in items:
+        it.summary = llm_summarize(llm, it)
+        it.deadline_iso = llm_deadline(llm, it, today)
+        if it.deadline_iso:
+            it.deadline = it.deadline_iso
+        per_item.append({
+            "source_id": it.source_id,
+            "mode": llm.last_mode,
+        })
+        if llm.last_mode != "offline":
+            summarize_mode = llm.last_mode
+    push_trace({"step": "summarize", "mode": summarize_mode, "per_item": per_item})
+    ranked = offline_rank(items, profile, today)
+    push_trace({
+        "step": "rank",
+        "top3": [
+            {"source_id": it.source_id, "score": it.rank_score,
+             "why": _rank_why(it)}
+            for it in ranked[:3]
+        ],
+    })
+    return {
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "today": today.isoformat(),
+        "llm": {"model": os.environ.get("OLLAMA_API_KEY", "") and OLLAMA_MODEL or "OFFLINE",
+                "cache_hits": llm.hits, "cache_misses": llm.misses},
+        "profile": profile,
+        "total": len(ranked),
+        "items": [it.as_dict() for it in ranked],
+    }
+
+
+# ────────────────────────────────────────────────────────────────
+# 5. SEED DATA (real MUJ-shaped notices, pre-imported for the demo)
+# ────────────────────────────────────────────────────────────────
+
+def seed_items() -&gt; list[Item]:
+    """Domain-agnostic demo feed: shows the pipeline (ingest → dedupe → summarize → rank → deadlines)
+    on ANY input. Swap this feed for the actual problem domain on the night."""
+    now = datetime.now()
+    d = now.date()
+    iso = lambda dd: datetime(dd.year, dd.month, dd.day, 9, 0).isoformat()
+    base = [
+        Item("email", "e1", "Registrar Office", "Examination schedule released",
+             f"Semester examinations will be held from 18 Nov to 2 Dec 2026. "
+             f"Last date to apply for re-exam: 10 Nov 2026. Timetable on the portal.",
+             iso(d - timedelta(days=1)), ["exam"]),
+        Item("email", "e2", "Accounts Dept", "Fee payment reminder",
+             f"Semester fee is due by 20 Aug 2026. Late payment attracts a fine of ₹500/day. "
+             f"Pay via the portal before 5 PM.",
+             iso(d - timedelta(days=0)), ["fee"]),
+        Item("portal", "p1", "Academic Office", "Assignment 2: submission deadline",
+             f"Assignment 2 uploaded. Submit by 19 Aug 2026. 10 questions, 15 marks.",
+             iso(d - timedelta(days=2)), ["assignment"]),
+        Item("chat", "c1", "Department Group", "Room change for tomorrow's lab",
+             f"LAB SHIFTED to Room 4104 (was 4102). Same slot 2-4 PM. "
+             f"Share with everyone. Urgent.",
+             iso(d - timedelta(hours=3)), ["lab"]),
+        Item("portal", "p2", "Events Cell", "Hackathon registrations open",
+             f"Registrations open for the upcoming hackathon. Idea submission opens "
+             f"21 Aug 21:00, closes 22 Aug 06:00. Register on the portal.",
+             iso(d - timedelta(days=3)), ["events"]),
+        Item("social", "s1", "Social feed", "5 memes about the canteen queue",
+             f"Repost: canteen queue at 1 PM is 40 minutes. #problems",
+             iso(d - timedelta(hours=1)), []),
+        Item("email", "e3", "Library", "Library fine clearance deadline",
+             f"All pending library fines must be cleared by 30 Aug 2026 or results are withheld.",
+             iso(d - timedelta(days=5)), ["library"]),
+        Item("portal", "p3", "Exam Cell", "Backlog exam form",
+             f"Backlog exam application forms available. Last date: 5 Sep 2026. Form fee ₹300.",
+             iso(d - timedelta(days=4)), ["exam"]),
+    ]
+    # complaints (tracked requests)
+    complaints = [
+        Item("ticket", "t1", "User (A. S.)", "Water cooler broken",
+             "Water cooler on floor 3 has been broken for a week. Hot days, no drinking water. "
+             "Category: plumbing. Severity: high.",
+             iso(d - timedelta(days=1)), ["facility"], kind="complaint"),
+        Item("ticket", "t2", "User (R. K.)", "Food quality",
+             "Found a hair in the food today. This is the second time this month. "
+             "Category: hygiene. Severity: medium.",
+             iso(d - timedelta(days=3)), ["canteen"], kind="complaint"),
+        Item("ticket", "t3", "User (P. M.)", "Streetlight flickering",
+             "The streetlight near the gate flickers all night. Dark stretch, unsafe for late walkers. "
+             "Category: electrical. Severity: high.",
+             iso(d - timedelta(days=0)), ["safety"], kind="complaint"),
+    ]
+    return base + complaints
+
+
+# ────────────────────────────────────────────────────────────────
+# 6. CLI
+# ────────────────────────────────────────────────────────────────
+
+def main():
+    import argparse
+    ap = argparse.ArgumentParser(description="Signal engine - one feed for a student's day")
+    ap.add_argument("--seed", action="store_true", help="run on seed demo data")
+    ap.add_argument("--json", action="store_true", help="dump full JSON result")
+    ap.add_argument("--digest", action="store_true", help="print the 'today in 60 seconds' digest")
+    ap.add_argument("--profile", default="2nd-year,e&amp;ce,hostel", help="comma profile tags")
+    ap.add_argument("--out", default="", help="write JSON result to this path")
+    args = ap.parse_args()
+
+    items = seed_items() if args.seed else []
+    if not items:
+        print("no items. use --seed for demo data (or extend connectors in code)")
+        return 1
+
+    result = run_pipeline(items, [t.strip() for t in args.profile.split(",") if t.strip()])
+
+    if args.out:
+        Path(args.out).write_text(json.dumps(result, indent=1))
+        print(f"[engine] wrote {args.out}")
+
+    if args.digest:
+        print("\n=== TODAY IN 60 SECONDS ===")
+        urgent = [i for i in result["items"] if i["is_urgent"]][:3]
+        for it in urgent:
+            dl = f"  ⏰ deadline {it['deadline_iso']}" if it["deadline_iso"] else ""
+            print(f"  ! {it['summary']}{dl}")
+        print("--- top 5 ---")
+        for it in result["items"][:5]:
+            print(f"  {it['rank_score']:5.2f} [{it['channel']:9s}] {it['summary']}")
+        print(f"\n[{result['llm']['model']}] cache h={result['llm']['cache_hits']} m={result['llm']['cache_misses']}")
+    elif args.json:
+        print(json.dumps(result, indent=1))
+    else:
+        print(f"total={result['total']} llm={result['llm']}")
+
+    # sqlite persistence (Supabase-ready shape)
+    conn = sqlite3.connect(DB_PATH)
+    conn.execute("DROP TABLE IF EXISTS items")
+    conn.execute("""CREATE TABLE items (
+        channel TEXT, source_id TEXT, sender TEXT, subject TEXT, body TEXT,
+        received_at TEXT, summary TEXT, rank_score REAL, deadline_iso TEXT,
+        is_urgent INTEGER, kind TEXT)""")
+    for it in result["items"]:
+        conn.execute("INSERT INTO items VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                     (it["channel"], it["source_id"], it["sender"], it["subject"], it["body"],
+                      it["received_at"], it["summary"], it["rank_score"], it["deadline_iso"],
+                      int(it["is_urgent"]), it["kind"]))
+    conn.commit()
+    print(f"[engine] persisted {len(result['items'])} rows → {DB_PATH.name}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+</code></pre>
+</main>
+</body>
+</html>

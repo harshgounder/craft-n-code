@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CONTINUATION-PROMPT.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>CONTINUATION-PROMPT.md</h1>
+  <p class="blurb">The new-window reset doc: mission, timeline, what is done, next steps in order, operating rules.</p>
+  <a class="open" href="../../CONTINUATION-PROMPT.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>CONTINUATION-PROMPT - Craft N Code (read this FIRST in a new window)</h1>
+<blockquote>
+<p>Drop this file's contents (or this path) as the first message in a new Hermes window. It fully resets context. Written 2026-08-14 15:10 IST (re-audit refresh).</p>
+</blockquote>
+<hr>
+<h2>WHO / WHAT</h2>
+<p>Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the <strong>Craft N Code Rajasthan State Qualifier</strong> (Cyber Space Club MUJ, Unstop 1730314), gateway to the <strong>Craft N Code National Finals at IIIT Bhubaneswar (Oct 30 - Nov 1 2026)</strong>. This repo (<code>~/craft-n-code</code>, PRIVATE, remote github.com/harshgounder/craft-n-code) is the war-room: 40+ research files + a verified scaffold, all live-verified.</p>
+<p><strong>We are already registered and paid (₹299/team, live API confirmed).</strong></p>
+<h2>THE IMMEDIATE MISSION (the deadline is the whole game)</h2>
+<table><thead><tr><th>When (IST)</th><th>What</th></tr></thead><tbody><tr><td><strong>Aug 15 21:00</strong></td><td>Idea submission OPENS (Unstop)</td></tr><tr><td><strong>Aug 15 21:30</strong></td><td>★ PROBLEM STATEMENTS DROP ★ (written by the sponsor companies) - our pre-built decision tree fires within 10 min</td></tr><tr><td>Aug 16 06:00</td><td>Idea submission CLOSES (submit before this)</td></tr><tr><td>Aug 16 10:00-17:30</td><td>Pitch to judges at MUJ (3-min demo, 2:30 target)</td></tr></tbody></table>
+<p><strong>CRITICAL AUG 14 INTEL (Rudra, club, in person)</strong>: the 5 site tracks are the CLUB'S BACKUP SET and are NOT the basis for prep. The REAL problem statements are written by the sponsor companies (Google, Apple, Meta, Accenture, Adobe) and drop at/just before the 21:00 window. Decision tree fires on COMPANY DNA first. See IDEA-BANK §5 (company-lane protocol) + the 6 deep-research runs in research/company-lanes/.</p>
+<p><strong>The idea bank is already written</strong>: <code>research/IDEA-BANK.md</code> - pre-built answers for the 4 sponsor-shaped lanes (IDEA A BriefLens = agentic ops, IDEA B Kavach Circle = multimodal assistant, IDEA C SignalStory = creative media workflow, IDEA D Kavach = security), cue table, setter prior (Google 24% &gt; Accenture 22% &gt; Meta 21% &gt; Adobe 18% &gt; Apple 15%), risk table, action plan. The strategic core: ONE engine (ingest → dedupe → summarize → rank → deadlines → propose → approve) with skins, + Kavach for the security lane.</p>
+<h2>WHAT'S DONE (verified, committed, pushed)</h2>
+<p><strong>Repo state</strong>: HEAD 073951b, 11 commits today, local == remote, zero drift. 76 files tracked.</p>
+<h3>The scaffold (the night's weapon, all verified 13/13 post-strip)</h3>
+<ul>
+<li><code>scaffold/engine/engine.py</code>: domain-agnostic pipeline (ingest → dedupe → LLM summarize → rank → deadlines). LLM mode = ollama-cloud deepseek-v4-flash:0731 (OLLAMA_API_KEY in ~/.hermes/.env, LIVE). Offline mode = regex dates + tf-idf + cache replay (22 hits), zero deps. Demo never dies.</li>
+<li><code>scaffold/engine/approval.py</code>: approval gate (typed tool registry, policy gate auto/suggest/require, proposals + audit tables). Verified 13/13.</li>
+<li><code>scaffold/webapp/serve.py</code> + <code>static/index.html</code>: zero-dependency python server + dark UI (digest, ranked feed, search, request board). Verified: stats 11 items / 6 deadlines / skin_ready, search "fee" → 3 results, ticket flow → #C-117.</li>
+<li><code>scaffold/deck/deck-gen.js</code> + 4 decks (deck-agentic, deck-multimodal, deck-creative, deck-kavach, ~107K each, schema-validated). One skeleton → 4 sponsor-shaped decks.</li>
+<li><code>scaffold/demo.sh</code> (one-command demo runner), <code>scaffold/README.md</code>.</li>
+<li><code>docs/DEMO-STORYBOARDS.md</code> (4× 3-min storyboards), <code>docs/HARDWARE-GATE.md</code> (archived option, NOT a track assumption).</li>
+<li>STRIP DONE (commit d00077b): all site-track/campus assumptions removed (PS-01..PS-05, Campus Pulse, Night Ops, Hygiene Sentinel). Engine is domain-agnostic; only seed data changes on the night.</li>
+</ul>
+<h3>The research stack (6 deep-research runs, all landed + pushed)</h3>
+<ul>
+<li><code>research/company-lanes/</code>: cnc-company-lanes-pass1 (65.5K, SURFACE, 5 named skins), cnc-company-lanes-pass2 (34.9K, DEEP 90.1, 111 cites, 3 predicted shapes), cnc-sponsor-products (68K, ADECENT 230 cites), cnc-winner-anatomy (62K, SURFACE 138 cites), cnc-problem-lanes (78K, ADECENT 333 cites, 5 ranked predicted problems + build cards + kill criteria + 24h plan), cnc-state-rounds (42K, ADECENT 125 cites, honest negative: no state-round problems publicly recoverable).</li>
+<li><code>research/WAVE-SYNTHESIS.md</code>: the 5 most likely problem shapes ranked + common denominator (input → extraction → evidence → ranking → proposed action → policy gate → human approval → audit trace) + 5 portable patterns + gaps table + 8.5h execution plan + zero-dependency rule + 10 questions to ask at reveal.</li>
+<li><code>research/CHEATSHEET-BRIEF.md</code>: what matters most, what each sponsor makes/looks for (verified from their own hackathons), hottest tech for a 24h build.</li>
+<li><code>research/prompts/</code>: 6 prompt files (company-lane ×2, sponsor-products, winner-anatomy, problem-lanes, state-rounds) saved for re-fire.</li>
+<li>Full competitive intel: editions 2022/2023/2024/2025/2026, organizers, judges (6, taste profile), winners (AFTERPACKETS reverse-engineered; 2024 Wizard_Oz + Fork), losers (PromptBuddy, EduSynth), 2025 state map (11 rounds, 1,592 reg / 285 players), 2026 field (402 reg Rajasthan).</li>
+<li>2025 problem statements: FULL verbatim (7 Phase-1 + 7 Phase-2) in <code>research/raw/</code>.</li>
+<li>Re-audit sweep (Aug 14): every claim re-checked, corrections in <code>research/RE-AUDIT-FINDINGS.md</code>.</li>
+</ul>
+<h2>NEXT STEPS (in order)</h2>
+<ol>
+<li><strong>Approval gate: DONE</strong> (built Aug 14 evening via opencode, verified 13/13 G1-G13: typed tool registry, policy gate, POST /api/approve, audit log, Actions tab in the UI).</li>
+</ol>
+<p>1b. <strong>Trace viewer + fixture replay: DONE</strong> (built Aug 14 evening via opencode, verified 12/12 T1-T6: --fixture/--offline flags, mode badge, /api/trace drawer, 3 golden fixtures, scam cap. Real bug found + fixed in audit: --offline now truly forces offline even with a key set).</p>
+<ol>
+<li><strong>Rudra ask (USER ACTION, can't do from phone)</strong>: ask Rudra (or any CSC exec) for the 2025 RAJASTHAN state-round problems + judging format. The ONLY gap the internet can't close. If obtained, drop in repo or Telegram and fold in.</li>
+<li><strong>Demo videos (TEAM ACTION)</strong>: 4× 3-min pre-recorded (screen + voiceover), storyboards ready in docs/DEMO-STORYBOARDS.md.</li>
+<li><strong>Pitch rehearsal (TEAM ACTION)</strong>: 2:30 target, hard timer.</li>
+<li><strong>Aug 15</strong>: 21:00 watch Unstop. 21:30 problems drop → company fingerprint scan (cue table, 2 min) → decision tree (10 min) → pick idea A/B/C/D → pick deck + storyboard → swap seed data (15-40 min) → ./demo.sh → submit before 06:00.</li>
+<li><strong>Aug 16</strong>: pitch 10:00-17:30. 3-min demo (2:30 rehearsal target). Win the round, top-2 advance.</li>
+<li>Parallel track: IIC 3.0 R1 ends Aug 25 (repo <code>~/iic-3</code>, judge-watch cron live).</li>
+<li>After qualifier: national prep (Oct 30 - Nov 1). Watchdog cron (<code>craft-n-code-watch</code>, every 6h) tracks reg counts + judge/sponsor reveals; state in <code>research/watch-state.json</code>.</li>
+</ol>
+<h2>OPERATING RULES</h2>
+<ul>
+<li>Waves ONE BY ONE, no parallel fan-out (user directive). Extreme depth, no fluff.</li>
+<li>Verify before claiming: live Unstop API (<code>https://unstop.com/api/public/competition/<ID></code>) is ground truth; tag claims VERIFIED / PARTIAL / NOT FOUND.</li>
+<li>Web infra degraded: Firecrawl 402; use rivalsearch (<code>mcp__rivalsearch__web_search</code>) + curl with Chrome UA + r.jina.ai + gh CLI (authed).</li>
+<li>NO em dashes, no AI-tell words (hard rule). Casual "bro" tone, lowercase-ish, kaomoji.</li>
+<li>Everything committed + pushed; report milestones via Telegram (token: <code>grep TELEGRAM_BOT_TOKEN ~/.hermes/.env</code>, chat_id=6408901386), no permission-asking.</li>
+<li>Report to user in terminal too (CLI session) - plain text, no markdown tables.</li>
+<li>Parallel deep-research: processor <code>pro-fast</code> is the ONLY working combo (lite 401s on every key). Rotate keys on 402. Keys: 130 in <code>~/Desktop/parallel spams</code>, 43/103 alive in <code>~/parallel-ai-stack/run-ledger/keys.json</code>.</li>
+</ul>
+<h2>KEY FACTS (do not re-research)</h2>
+<ul>
+<li>Unstop IDs: 1730314 Rajasthan 2026 (402 reg/81 players, ₹299, LIVE) · 1730325 UP 2026 · 1171379 national 2024 · 1175823 state 2024 · 1545708 RJ 2025 · 374277 D³ Fest 2025 (dead).</li>
+<li>2026 question writers: the sponsor companies (Google, Apple, Meta, Accenture, Adobe) per club insider. The site's 5-track list is a BACKUP SET, not the real questions (Rudra intel, Aug 14). Only the timings are reliable from the site. Pass-2 deep research could NOT publicly verify sponsor authorship - Rudra's word is the best signal.</li>
+<li>2025 winners: AFTERPACKETS (MUJ Highlanders) - zero external deps, Android VPNService + C++ DPI, empty lane. 2024: Wizard_Oz (CVRGU) 1st, Fork (RVCE) 2nd.</li>
+<li>The 3 predicted shapes (INFERRED, rehearsal only): 1) agentic ops/personal productivity (Google/Accenture) → IDEA A, 2) multimodal campus/community assistant (Meta/Apple) → IDEA B, 3) responsible creative/enterprise media workflow (Adobe/Accenture) → IDEA C. Security lane → IDEA D Kavach.</li>
+<li>Key people: Abhinav Trikha (CSC chair, +91 95994 15311), Spandan Hota (CSC contact, GSA), Soubhik Gon (2024 coordinator → Nasuni), Swoyam Nayak (→ Sarvam AI).</li>
+<li>2025 problems verbatim in <code>research/raw/rnr-phase1-full.txt</code> + <code>rnr-phase2-full.txt</code>.</li>
+<li>The winner formula: AI non-negotiable, working demo > deck, real-world impact framing, zero external deps in demo, clean repo = free points.</li>
+<li>LLM layer: OLLAMA_API_KEY live (deepseek-v4-flash:0731 via https://ollama.com/v1/chat/completions). OPENROUTER + XIAOMI present. GEMINI/GROQ/UNOROUTER empty.</li>
+<li>Crons: 12/12 healthy. craft-n-code-watch every 6h (last tick 14:34, state committed 073951b).</li>
+<li>Telegram: bot artemas (token in ~/.hermes/.env), chat_id 6408901386, last message 1319 (full re-audit).</li>
+</ul>
+<h2>CURRENT FILE TREE (key)</h2>
+<pre><code class="language-">~/craft-n-code/
+├── README.md               ← war-room index, fresh
+├── CONTINUATION-PROMPT.md  ← this file
+├── INDEX.md                ← file-by-file map
+├── scaffold/               ← ★ THE NIGHT'S WEAPON (verified 13/13)
+│   ├── engine/engine.py    ← ingest → dedupe → summarize → rank → deadlines
+│   ├── webapp/serve.py + static/index.html
+│   ├── deck/deck-gen.js + 4 .pptx (agentic/multimodal/creative/kavach)
+│   ├── demo.sh + README.md
+├── docs/                   ← DEMO-STORYBOARDS.md, HARDWARE-GATE.md (archived)
+└── research/               ← 40+ files (see INDEX.md)
+    ├── IDEA-BANK.md        ← ★ THE playbook for Aug 15 21:30
+    ├── CHEATSHEET-BRIEF.md ← what matters, sponsor DNA, hottest tech
+    ├── WAVE-SYNTHESIS.md   ← 5 predicted shapes + gaps + execution plan
+    ├── company-lanes/      ← 6 deep-research reports (376K total)
+    ├── prompts/            ← 6 re-fire prompts
+    └── raw/                ← 2025 verbatim problems</code></pre>
+<p>Related repos: <code>~/iic-3</code> (IIC 3.0, R1 ends Aug 25), <code>~/muj-academics</code> (planner + drive sync crons alive), <code>~/parallel-ai-stack</code> (launcher + watcher + run-ledger), <code>~/.hermes/scripts/craft-n-code-watch.py</code> (watchdog).</p>
+<hr>
+<p><strong>Resume command</strong>: read this file, then <code>research/IDEA-BANK.md</code>, then <code>research/WAVE-SYNTHESIS.md</code>. Do not re-harvest what's already verified. If the user said yes to the approval gate, build it first (30-45 min).</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/STATE-QUALIFIER-SCAN.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/STATE-QUALIFIER-SCAN.md</h1>
+  <p class="blurb">2026 state qualifier scan: Rajasthan is the biggest confirmed round, UP is fresh.</p>
+  <a class="open" href="../../research/STATE-QUALIFIER-SCAN.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>2026 State Qualifier Scan — Confirmed Listings</h1>
+<p>Compiled: 2026-08-13 | Method: Unstop API ID-range probing + search endpoint</p>
+<h2>CONFIRMED 2026 STATE ROUNDS</h2>
+<table><thead><tr><th>State</th><th>ID</th><th>Registered</th><th>Organizer</th><th>Notes</th></tr></thead><tbody><tr><td>Rajasthan</td><td>1730314</td><td>402</td><td>CSC MUJ</td><td>LIVE, ends Aug 16 17:30, ₹50K, hybrid at MUJ</td></tr><tr><td>UP</td><td>1730325</td><td>1</td><td>IET Lucknow</td><td>LIVE, ends Sep 19, "50K+ pool" per listing</td></tr></tbody></table>
+<h2>PROBED RANGES (no other Craft N Code state rounds found)</h2>
+<ul>
+<li>1730300-1730375: jobs/internships/workshops, no Craft N Code</li>
+<li>1730320-1730340 + 1730400-1730420: no other state rounds</li>
+<li>Unstop search endpoint (q=craft n code, type=competition, pages 1-4): fuzzy matches only (jobs, workshops, unrelated hackathons)</li>
+</ul>
+<h2>WHAT THIS MEANS</h2>
+<ol>
+<li>Rajasthan is the BIGGEST confirmed state round (402 reg vs UP's 1). The MUJ qualifier is the flagship.</li>
+<li>Other states (Assam, Punjab, Bihar, TN had 2025 rounds) either haven't launched their 2026 listings yet or use different ID ranges. The watchdog's PROBE_RANGE will catch them if they appear near the known IDs.</li>
+<li>The national finals (Oct 30-Nov 1) will draw the winners of ALL state rounds — the Rajasthan winner pool is the largest confirmed feeder.</li>
+</ol>
+<h2>WATCHDOG STATUS</h2>
+<ul>
+<li>craft-n-code-watch cron (every 6h, next 02:34): tracks 1730314 (Rajasthan) + 1730325 (UP) + 3 historical listings. Probes for new state siblings in the 17303xx/17304xx ranges.</li>
+<li>Will alert on: reg count changes, judge/mentor reveals (authors field), result flags.</li>
+</ul>
+</main>
+</body>
+</html>

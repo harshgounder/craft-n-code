@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/RE-AUDIT-FINDINGS.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/RE-AUDIT-FINDINGS.md</h1>
+  <p class="blurb">The re-audit: 4 corrections to earlier claims, 3 new data points, the verified-clean list.</p>
+  <a class="open" href="../../research/RE-AUDIT-FINDINGS.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>RE-AUDIT FINDINGS — corrections + new data (sweep 2026-08-14)</h1>
+<p>Compiled: 2026-08-14 | Method: live API re-fetches, ID-range sweeps, Instagram/LinkedIn/Scribd verification</p>
+<h2>1. CORRECTIONS (old dossier was WRONG)</h2>
+<h3>1a. 2025 state rounds: 9, not 4-5</h3>
+<p>Old: "Rajasthan/Punjab/Bihar/TN/UP/Odisha"</p>
+<p>Real (all live-verified): Rajasthan 706/147, Karnataka 196/34, Tamil Nadu 182/20, Maharashtra 95/19, UP 59/10, Punjab 58/9, MP 21/3, Gujarat 16/1, Bihar 15/1</p>
+<ul>
+<li>Odisha was NOT a state round (host state, nationals at IIIT-B)</li>
+<li>All rounds: ₹300 fee, ₹50K winner prize (uniform)</li>
+<li>TOTAL: 1,348 reg / 244 players</li>
+</ul>
+<h3>1b. 2024 national winners (NEW, verified via d3fest.iiitbh Instagram)</h3>
+<ul>
+<li>1st: Wizard_Oz (C.V. Raman Global University) — real-time student sentiment analysis for learning engagement</li>
+<li>2nd: Fork (RVCE) — AI thumbnail keyframe detection + emotion analysis + text-to-image generation</li>
+<li>Finalists: team Loopception (Sambhav Shadangi, certificate on Scribd), Top-10 teams incl. Ravivarman B + Priyadharshini D (100+ teams)</li>
+<li><strong>MUJ did NOT win 2024. MUJ (Highlanders) won 2025.</strong> The CSC post "Last year MUJ students won it" = 2025, correct.</li>
+</ul>
+<h3>1c. Fee discrepancy RESOLVED</h3>
+<ul>
+<li>Live API payment_services: 2026 Rajasthan = ₹299 (CSC post RIGHT, ₹699 was wrong tier)</li>
+<li>2024 national = ₹200, 2024 state = ₹400, 2025 states = ₹300, 2026 UP = ₹299</li>
+</ul>
+<h3>1d. D3 Fest 2025 listing 374277 = DEAD (404)</h3>
+<ul>
+<li>The "3,000+ participants, ₹131K pool" claim came from the 2025 brochure (Scribd 917484478) — the brochure text layer was unrecoverable, so this claim is UNVERIFIED (from search snippets only). Flagged, not confirmed.</li>
+</ul>
+<h2>2. NEW DATA (sweep finds)</h2>
+<h3>2a. 2026 field comparison</h3>
+<ul>
+<li>Rajasthan 2026: 402 reg / 81 players (vs 706/147 in 2025) — SMALLER field</li>
+<li>UP 2026: 1 reg (vs 59/10 in 2025) — just launched</li>
+<li>Real competition at the event: ~30 teams (players_count funnel)</li>
+</ul>
+<h3>2b. 2024 national timeline (from repo forensics + Instagram)</h3>
+<ul>
+<li>TrueMix team (Bit-Binary-2027): started Oct 23 2024 (RVCE state round), carried to nationals Nov 8-9 (CodeNCraft-Demo "Final Push" Nov 9 08:03)</li>
+<li>The 2024 finals: kicked off 11 PM Nov 8, 24h format (Instagram DCmUDxPN4eu: "As the clock struck 11 PM, Craft-N-Code — the ultimate 24-hour national hackathon — kicked off"), ended Nov 9</li>
+<li>The "8th-10th October" in the winner post = D3 Fest dates, NOT the hackathon. The certificate (Nov 8) + repo commits (Nov 9) are the ground truth.</li>
+<li>3rd place: never posted publicly (only 1st/2nd on Instagram)</li>
+</ul>
+<h3>2c. 2024 national problems: still not public</h3>
+<ul>
+<li>The 2024 problems were released on-site at the finals (24h format)</li>
+<li>The RVCE state round (Oct 23-24) theme = "AI and Big Data for food safety" (verified from cyb3r17/rvce-craft-n-code README)</li>
+</ul>
+<h3>2d. 2025 nationals themes (VERIFIED, LinkedIn sagarbm + RVCE post)</h3>
+<ul>
+<li>The 2025 national finals (Nov 7-9) themes: <strong>AI for Personal Development</strong> + <strong>Agentic Healthcare Systems</strong></li>
+<li>The Karnataka state round (RVCE Coding Club, Sep 27-28 2025, online): same themes, ₹50K+, top 2 → nationals with free travel/food/stay</li>
+<li>This confirms the state-round structure: each state club runs its own round, top 2 advance, nationals have 2-3 themes</li>
+<li>2026 nationals (Oct 30-Nov 1): themes NOT yet public (released 8:00 AM IST Oct 30 per listing)</li>
+</ul>
+<h2>3. VERIFIED-CLEAN CLAIMS (re-checked, still true)</h2>
+<ul>
+<li>2025 winners: Team Highlanders (MUJ) with AFTERPACKETS — VERIFIED (roster + repo + commit dates)</li>
+<li>2025 problem statements: all 7 + phase 2 — VERIFIED (p-society PDFs)</li>
+<li>2026 5 tracks + timeline + submission flow — VERIFIED (live site)</li>
+<li>2026 Rajasthan listing 1730314, 402 reg, ₹50K, contacts — VERIFIED (live API)</li>
+<li>Sponsors set the questions (Google/Apple/FB/Accenture/Adobe) — VERIFIED (CSC post)</li>
+<li>Judges (Hackfest 2024): Anjana Tudu, Lingaraj Sethi, Sarthak Padhi — VERIFIED (ultra8x)</li>
+<li>Rabbitt AI: seed $2.1M, Harneet, NEXORA'26 mechanics — VERIFIED (ultra8x)</li>
+<li>NEXORA'26: 261 reg, ₹10K pool, 6 tracks — VERIFIED (live site + ultra8x)</li>
+</ul>
+<h2>4. REMAINING GAPS (honest)</h2>
+<ul>
+<li>2024 national problem statements: NOT public (on-site release)</li>
+<li>2025 D³ Fest total pool (₹131K): UNVERIFIED (brochure text unrecoverable)</li>
+<li>2026 Rajasthan judges: not revealed yet (watchdog watching)</li>
+<li>2026 other state rounds: not listed yet (watchdog probing)</li>
+<li>2024 3rd place: not found (only 1st/2nd posted)</li>
+</ul>
+</main>
+</body>
+</html>

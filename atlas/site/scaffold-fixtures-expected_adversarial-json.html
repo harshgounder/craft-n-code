@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scaffold/fixtures/expected_adversarial.json</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>scaffold/fixtures/expected_adversarial.json</h1>
+  <p class="blurb">Expected top3 and scam-cap assertion for the adversarial fixture.</p>
+  <a class="open" href="../../scaffold/fixtures/expected_adversarial.json" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<pre><code class="language-json">{
+  "top3": ["adv-2", "adv-3", "adv-1"],
+  "scam_rank": "adv-1",
+  "scam_not_top": true,
+  "notes": "The scam-ish urgent item adv-1 carries scam words and is capped at score 5.0, so it must NOT rank first. Genuine authoritative deadlines (adv-2, adv-3) clearly win. The no-sender item adv-5 is present but not boosted by authority."
+}
+</code></pre>
+</main>
+</body>
+</html>

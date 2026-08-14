@@ -1,0 +1,77 @@
+/* Atlas site stylesheet */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+a { color: #58a6ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+header.index-head, header.page-head {
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid #21262d;
+  background: #161b22;
+}
+header.index-head h1, header.page-head h1 { margin: 0 0 0.5rem; color: #f0f6fc; }
+.subtitle { color: #8b949e; max-width: 60rem; }
+.back { display: inline-block; margin-bottom: 1rem; font-size: 0.9rem; }
+.open {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #58a6ff;
+  border-radius: 6px;
+  color: #58a6ff;
+}
+.open:hover { background: #1f6feb; color: #fff; text-decoration: none; }
+main.content, section { padding: 1.5rem 2rem; max-width: 70rem; }
+section { border-bottom: 1px solid #21262d; }
+h2 { color: #f0f6fc; border-bottom: 1px solid #21262d; padding-bottom: 0.3rem; }
+h3 { color: #f0f6fc; }
+.card {
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin: 0.7rem 0;
+  background: #161b22;
+}
+.card-path { font-weight: 600; color: #f0f6fc; font-family: ui-monospace, monospace; }
+.card-blurb { color: #8b949e; margin: 0.3rem 0; }
+.card-links a { margin-right: 1rem; font-size: 0.9rem; }
+.ladder { display: flex; flex-wrap: wrap; gap: 1rem; }
+.tier { border: 1px solid #21262d; border-radius: 8px; padding: 0.8rem 1rem; background: #161b22; min-width: 16rem; }
+.tier h3 { margin: 0 0 0.5rem; }
+.tier ul { margin: 0; padding-left: 1.2rem; }
+.tier li { margin: 0.2rem 0; }
+.content h1, .content h2, .content h3, .content h4 { color: #f0f6fc; }
+.content p { margin: 0.6rem 0; }
+.content ul, .content ol { padding-left: 1.5rem; }
+.content li { margin: 0.2rem 0; }
+.content blockquote {
+  margin: 0.6rem 0;
+  padding: 0.2rem 1rem;
+  border-left: 4px solid #30363d;
+  color: #8b949e;
+}
+.content hr { border: 0; border-top: 1px solid #30363d; margin: 1.2rem 0; }
+.content code {
+  background: #21262d;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+}
+.content pre {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+.content pre code { background: none; padding: 0; }
+table { border-collapse: collapse; margin: 0.8rem 0; width: 100%; }
+th, td { border: 1px solid #30363d; padding: 0.4rem 0.7rem; text-align: left; }
+th { background: #21262d; color: #f0f6fc; }
+.foot { padding: 1.5rem 2rem; color: #8b949e; font-size: 0.9rem; }

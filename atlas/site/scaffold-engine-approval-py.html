@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scaffold/engine/approval.py</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>scaffold/engine/approval.py</h1>
+  <p class="blurb">The approval gate: typed tool registry, policy gate, proposals + audit tables, consent, provenance.</p>
+  <a class="open" href="../../scaffold/engine/approval.py" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<pre><code class="language-py"># Approval gate - typed tools, policy gate, and audit trail.
+# Part 1 of BUILD-SPEC: a trustworthy agent with approved tools + audit trail.
+#
+# Pure stdlib. Reuses scaffold/engine/signal.db (never drops the items table).
+
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import sqlite3
+from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
+
+DB_PATH = Path(__file__).parent / "signal.db"
+
+# Side-effect classes
+READ_ONLY = "read-only"
+REVERSIBLE = "reversible"
+SIDE_EFFECTING = "side-effecting"
+
+# Proposal statuses
+PENDING = "pending"
+APPROVED = "approved"
+REJECTED = "rejected"
+EXECUTED = "executed"
+SNOOZED = "snoozed"
+
+
+@dataclass
+class Tool:
+    name: str
+    description: str
+    params: dict
+    side_effect: str
+
+
+TOOL_REGISTRY: dict[str, Tool] = {
+    "lookup_room": Tool(
+        name="lookup_room",
+        description="Look up a room or venue for an event or meeting",
+        params={"query": "str"},
+        side_effect=READ_ONLY,
+    ),
+    "send_reminder": Tool(
+        name="send_reminder",
+        description="Send a reminder to a person or group about a deadline",
+        params={"who": "str", "what": "str", "when": "str"},
+        side_effect=REVERSIBLE,
+    ),
+    "submit_form": Tool(
+        name="submit_form",
+        description="Submit a form on the user's behalf",
+        params={"form_id": "str", "answers": "dict"},
+        side_effect=SIDE_EFFECTING,
+    ),
+    "pay_fee": Tool(
+        name="pay_fee",
+        description="Pay a fee for the user",
+        params={"amount": "number", "ref": "str"},
+        side_effect=SIDE_EFFECTING,
+    ),
+}
+
+
+@dataclass
+class Proposal:
+    id: str
+    tool: str
+    params: dict
+    reason: str
+    evidence: list
+    confidence: float
+    status: str
+    created_at: str
+    decided_at: str | None = None
+    actor: str | None = None
+    consent_required: bool = False
+
+    def as_dict(self) -&gt; dict:
+        return {
+            "id": self.id,
+            "tool": self.tool,
+            "params": self.params,
+            "reason": self.reason,
+            "evidence": self.evidence,
+            "confidence": self.confidence,
+            "status": self.status,
+            "created_at": self.created_at,
+            "decided_at": self.decided_at,
+            "actor": self.actor,
+            "consent_required": self.consent_required,
+        }
+
+
+def gate(tool: Tool) -&gt; str:
+    """Policy gate: read-only auto-executes, reversible suggests, side-effecting requires."""
+    if tool.side_effect == READ_ONLY:
+        return "auto"
+    if tool.side_effect == REVERSIBLE:
+        return "suggest"
+    return "require"
+
+
+# ────────────────────────────────────────────────────────────────
+# SQLite persistence
+# ────────────────────────────────────────────────────────────────
+
+_SCHEMA = """
+CREATE TABLE IF NOT EXISTS proposals (
+    id TEXT PRIMARY KEY, tool TEXT, params TEXT, reason TEXT,
+    evidence TEXT, confidence REAL, status TEXT,
+    created_at TEXT, decided_at TEXT, actor TEXT);
+CREATE TABLE IF NOT EXISTS audit_events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT, actor TEXT,
+    decision TEXT, proposal_id TEXT, tool TEXT, params TEXT,
+    evidence TEXT, reason TEXT);
+CREATE TABLE IF NOT EXISTS consent (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, subject TEXT, scope TEXT,
+    granted_by TEXT, granted_at TEXT, revoke_at TEXT,
+    UNIQUE(subject, scope));
+"""
+
+
+def _connect() -&gt; sqlite3.Connection:
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    conn.executescript(_SCHEMA)
+    return conn
+
+
+def _now() -&gt; str:
+    return datetime.now().isoformat(timespec="seconds")
+
+
+def _next_proposal_id(conn: sqlite3.Connection) -&gt; str:
+    rows = conn.execute("SELECT id FROM proposals").fetchall()
+    mx = 0
+    for r in rows:
+        try:
+            mx = max(mx, int(r["id"].split("-")[1]))
+        except Exception:
+            pass
+    return f"P-{mx + 1}"
+
+
+def save_proposal(proposal: Proposal) -&gt; None:
+    conn = _connect()
+    conn.execute(
+        "INSERT INTO proposals (id, tool, params, reason, evidence, confidence, status, "
+        "created_at, decided_at, actor) VALUES (?,?,?,?,?,?,?,?,?,?)",
+        (proposal.id, proposal.tool, json.dumps(proposal.params), proposal.reason,
+         json.dumps(proposal.evidence), proposal.confidence, proposal.status,
+         proposal.created_at, proposal.decided_at, proposal.actor))
+    conn.commit()
+    conn.close()
+
+
+def _write_audit(conn: sqlite3.Connection, actor: str, decision: str, proposal: Proposal) -&gt; None:
+    conn.execute(
+        "INSERT INTO audit_events (ts, actor, decision, proposal_id, tool, params, "
+        "evidence, reason) VALUES (?,?,?,?,?,?,?,?)",
+        (_now(), actor, decision, proposal.id, proposal.tool, json.dumps(proposal.params),
+         json.dumps(proposal.evidence), proposal.reason))
+
+
+def decide(proposal_id: str, decision: str, actor: str = "user") -&gt; Proposal | None:
+    """Apply a decision. Audit row is written BEFORE the status flips."""
+    conn = _connect()
+    row = conn.execute("SELECT * FROM proposals WHERE id=?", (proposal_id,)).fetchone()
+    if row is None:
+        conn.close()
+        return None
+    proposal = _row_to_proposal(row)
+    tool = TOOL_REGISTRY.get(proposal.tool)
+    decision_l = decision.lower()
+
+    if proposal.status not in (PENDING, SNOOZED):
+        conn.close()
+        return proposal
+
+    new_status = proposal.status
+    if decision_l == "approve":
+        if tool is not None and tool.side_effect == REVERSIBLE:
+            new_status = APPROVED
+        else:
+            new_status = EXECUTED
+    elif decision_l == "reject":
+        new_status = REJECTED
+    elif decision_l == "snooze":
+        new_status = SNOOZED
+
+    _write_audit(conn, actor, decision_l, proposal)
+    conn.execute(
+        "UPDATE proposals SET status=?, decided_at=?, actor=? WHERE id=?",
+        (new_status, _now(), actor, proposal_id))
+    conn.commit()
+    proposal.status = new_status
+    proposal.decided_at = _now()
+    proposal.actor = actor
+    conn.close()
+    return proposal
+
+
+def _row_to_proposal(row: sqlite3.Row) -&gt; Proposal:
+    return Proposal(
+        id=row["id"],
+        tool=row["tool"],
+        params=json.loads(row["params"] or "{}"),
+        reason=row["reason"],
+        evidence=json.loads(row["evidence"] or "[]"),
+        confidence=row["confidence"],
+        status=row["status"],
+        created_at=row["created_at"],
+        decided_at=row["decided_at"],
+        actor=row["actor"],
+    )
+
+
+def list_proposals() -&gt; list[Proposal]:
+    conn = _connect()
+    rows = conn.execute("SELECT * FROM proposals ORDER BY created_at DESC").fetchall()
+    conn.close()
+    return [_row_to_proposal(r) for r in rows]
+
+
+def list_audit() -&gt; list[dict]:
+    conn = _connect()
+    rows = conn.execute(
+        "SELECT ts, actor, decision, proposal_id, tool, params, evidence, reason "
+        "FROM audit_events ORDER BY id DESC").fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+# ────────────────────────────────────────────────────────────────
+# Consent record (BUILD-SPEC-2 item C)
+# ────────────────────────────────────────────────────────────────
+
+def grant_consent(subject: str, scope: str, granted_by: str,
+                  revoke_at: str | None = None) -&gt; dict:
+    """Grant (upsert) a consent row for a subject+scope pair."""
+    conn = _connect()
+    conn.execute(
+        "INSERT INTO consent (subject, scope, granted_by, granted_at, revoke_at) "
+        "VALUES (?,?,?,?,?) "
+        "ON CONFLICT(subject, scope) DO UPDATE SET "
+        "granted_by=excluded.granted_by, granted_at=excluded.granted_at, "
+        "revoke_at=excluded.revoke_at",
+        (subject, scope, granted_by, _now(), revoke_at))
+    conn.commit()
+    row = conn.execute(
+        "SELECT id, subject, scope, granted_by, granted_at, revoke_at "
+        "FROM consent WHERE subject=? AND scope=?", (subject, scope)).fetchone()
+    conn.close()
+    return dict(row)
+
+
+def list_consent() -&gt; list[dict]:
+    conn = _connect()
+    rows = conn.execute(
+        "SELECT id, subject, scope, granted_by, granted_at, revoke_at "
+        "FROM consent ORDER BY id").fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def has_consent(subject: str, scope: str) -&gt; bool:
+    conn = _connect()
+    row = conn.execute(
+        "SELECT revoke_at FROM consent WHERE subject=? AND scope=?",
+        (subject, scope)).fetchone()
+    conn.close()
+    if row is None:
+        return False
+    if row["revoke_at"]:
+        return False
+    return True
+
+
+# ────────────────────────────────────────────────────────────────
+# Provenance manifest (BUILD-SPEC-2 item C)
+# ────────────────────────────────────────────────────────────────
+
+def provenance(proposal_id: str) -&gt; dict | None:
+    """Build a per-decision provenance manifest on demand from existing rows."""
+    conn = _connect()
+    row = conn.execute("SELECT * FROM proposals WHERE id=?", (proposal_id,)).fetchone()
+    if row is None:
+        conn.close()
+        return None
+    proposal = _row_to_proposal(row)
+    audit = conn.execute(
+        "SELECT ts, actor, decision FROM audit_events WHERE proposal_id=? "
+        "ORDER BY id DESC LIMIT 1", (proposal_id,)).fetchone()
+    conn.close()
+
+    prompt = (proposal.reason or "") + "\x00" + json.dumps(proposal.evidence or [])
+    prompt_sha256 = hashlib.sha256(prompt.encode()).hexdigest()
+    if os.environ.get("OLLAMA_API_KEY"):
+        model = os.environ.get("SIGNAL_MODEL", "deepseek-v4-flash:0731")
+    else:
+        model = "offline"
+
+    return {
+        "proposal_id": proposal.id,
+        "tool": proposal.tool,
+        "params": proposal.params,
+        "reason": proposal.reason,
+        "evidence": proposal.evidence,
+        "prompt_sha256": prompt_sha256,
+        "model": model,
+        "generated_at": proposal.created_at,
+        "reviewed_by": proposal.actor,
+        "decided_at": proposal.decided_at,
+        "decision": proposal.status,
+    }
+
+
+def _evidence_subject(evidence: list) -&gt; str | None:
+    """Derive a consent subject from the first evidence entry's source_id."""
+    for e in evidence or []:
+        if isinstance(e, dict) and e.get("source_id"):
+            return str(e["source_id"])
+    return None
+
+
+def propose(tool_name: str, params: dict, reason: str, evidence: list,
+            confidence: float) -&gt; Proposal:
+    """Create and persist a proposal, applying the policy gate.
+
+    Read-only tools auto-execute immediately (still audited). Reversible and
+    side-effecting tools stay pending until a human decides.
+    """
+    conn = _connect()
+    pid = _next_proposal_id(conn)
+    tool = TOOL_REGISTRY.get(tool_name)
+    gate_mode = gate(tool) if tool else "suggest"
+    proposal = Proposal(
+        id=pid, tool=tool_name, params=params, reason=reason, evidence=evidence,
+        confidence=confidence, status=PENDING, created_at=_now())
+    # consent_required: side-effecting or reversible tools need a consent row for
+    # the evidence source subject (informational flag; proposal still created).
+    if tool is not None and tool.side_effect in (REVERSIBLE, SIDE_EFFECTING):
+        subject = _evidence_subject(evidence)
+        if subject and not has_consent(subject, tool_name):
+            proposal.consent_required = True
+    if gate_mode == "auto":
+        proposal.status = EXECUTED
+        proposal.decided_at = _now()
+        proposal.actor = "system"
+        _write_audit(conn, "system", "auto-execute", proposal)
+    conn.execute(
+        "INSERT INTO proposals (id, tool, params, reason, evidence, confidence, status, "
+        "created_at, decided_at, actor) VALUES (?,?,?,?,?,?,?,?,?,?)",
+        (proposal.id, proposal.tool, json.dumps(proposal.params), proposal.reason,
+         json.dumps(proposal.evidence), proposal.confidence, proposal.status,
+         proposal.created_at, proposal.decided_at, proposal.actor))
+    conn.commit()
+    conn.close()
+    return proposal
+</code></pre>
+</main>
+</body>
+</html>

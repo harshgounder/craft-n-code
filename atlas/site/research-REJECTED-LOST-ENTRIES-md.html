@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/REJECTED-LOST-ENTRIES.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/REJECTED-LOST-ENTRIES.md</h1>
+  <p class="blurb">How teams lose: 404 repos, empty repos, no deployment, weak pitches, crowded lanes, tooling wars.</p>
+  <a class="open" href="../../research/REJECTED-LOST-ENTRIES.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>REJECTED / LOST ENTRIES — what got cut and why (R1 mechanics + evidence)</h1>
+<p>Compiled: 2026-08-13 | Sources: NEXORA'26 portal JS forensics, 2025 finals roster, participant repos, judging UI strings</p>
+<h2>1. THE R1 SUBMISSION MECHANICS (NEXORA'26 portal, exact)</h2>
+<h3>The submission form (TeamSubmission table)</h3>
+<p>Fields: team_id, team_name, track_name, <strong>problem_statement</strong>, github_url, ppt_url, deployment_url, status</p>
+<ul>
+<li>status starts as <code>submitted</code></li>
+<li>Admin evaluates with a <strong>score 0-100</strong> (validated: "Please enter a valid evaluation score between 0 and 100")</li>
+<li>After scoring: status → <code>Evaluated</code></li>
+<li>A <code>rejected</code> status exists in the flow (the admin list filters on it)</li>
+<li>Duplicate submission blocked: error code 23505 → "Your team has already successfully submitted a project pipeline"</li>
+<li>Admin view: all submissions ordered by submitted_at DESC, with score + status badges (amber = Pending Review, green = Evaluated)</li>
+<li><strong>"Scores Redacted for Review Balance"</strong> — scores hidden from teams during review (anti-bias)</li>
+<li><strong>"Cryptographic Assessment Protocol Active"</strong> — telemetry/anti-cheat framing</li>
+</ul>
+<h3>The admin gate (exact strings)</h3>
+<ul>
+<li>"Admin Access Gate" / "Provide valid gateway criteria"</li>
+<li>Admin Username + System Password + Access Code</li>
+<li>Mock sandbox creds hardcoded in JS: username <code>test</code>, password <code>1234</code> (dev leftover)</li>
+<li>Team gate: Team Name + Leader's Full Name + Access Code</li>
+</ul>
+<h2>2. WHAT GETS REJECTED (the evidence-based list)</h2>
+<h3>From the 2025 finals roster (20 teams, 19 mapped):</h3>
+<ul>
+<li><strong>Incomplete repos</strong>: udaykoti/nani + WadoKira/Bhubaneswar-project--Frontend = 404 (deleted/private after event). 2/20 teams' work is GONE. If the repo is gone, the submission is unverifiable.</li>
+<li><strong>Tiny repos</strong>: PreetiPMishra-Codes/swapp = 18KB (HTML only). GITLERS submitted a near-empty repo. That's a rejection-grade submission.</li>
+<li><strong>HTML-only entries</strong>: swapp (18KB), VedaScore (190KB HTML) — no real app, no backend. 2/20.</li>
+<li><strong>The crowded-lane losers</strong>: 5 lab-grader teams split the lane; only the best (if any) advanced. The other 4 lost despite building.</li>
+</ul>
+<h3>From the NEXORA flow (what the admin sees):</h3>
+<ul>
+<li>Missing deployment_url = weaker (the field is optional in the form but the demo round REQUIRED a deployment link)</li>
+<li>Missing ppt_url = auto-fail in R1 (PPT was a required round)</li>
+<li>problem_statement field = the pitch. Empty/weak = rejected</li>
+<li>Duplicate submission = blocked (23505)</li>
+<li>Score < threshold = "Pending Review" forever → effectively rejected</li>
+</ul>
+<h2>3. THE REJECTION PATTERNS (synthesized)</h2>
+<table><thead><tr><th>Pattern</th><th>Evidence</th><th>2026 R1 implication</th></tr></thead><tbody><tr><td>Repo gone/private</td><td>2/20 2025 repos 404</td><td>Keep repo PUBLIC + alive. Never delete.</td></tr><tr><td>Near-empty repo</td><td>swapp 18KB</td><td>Judges see repo size. A real repo is table stakes.</td></tr><tr><td>No deployment</td><td>demo round required it</td><td>Deploy EVERYTHING. Vercel/Netlify free tier.</td></tr><tr><td>Weak pitch</td><td>problem_statement field</td><td>The pitch IS the submission. Write it like a judge reads it in 30s.</td></tr><tr><td>Crowded lane</td><td>5 teams on lab grader</td><td>Empty lane = less competition for the same score.</td></tr><tr><td>Tooling failure</td><td>PromptBuddy's Composio/Gemini war</td><td>Zero-dependency stack = demo always works.</td></tr><tr><td>Scope creep</td><td>AFTERPACKETS cut features at 07:17</td><td>Ship core, cut extras, clean repo, rebrand.</td></tr></tbody></table>
+<h2>4. THE R1 WIN FORMULA (for team 511, Aug 15 21:00 - Aug 16 06:00)</h2>
+<ol>
+<li><strong>Pick the lane BEFORE the problems drop</strong> (PS-04 or PS-02 = emptiest)</li>
+<li><strong>Have the repo skeleton ready</strong> (public, named, README'd, with a real commit history)</li>
+<li><strong>Have the pitch template ready</strong> (problem_statement field: 3 sentences, judge-reads-in-30s format)</li>
+<li><strong>Deploy early</strong> (Vercel free tier, even a stub) — deployment_url filled from minute 1</li>
+<li><strong>Zero-dependency core</strong> (no OAuth/API keys in the critical path; if AI is needed, use a key we control with fallback)</li>
+<li><strong>Demo > deck</strong> (the 3-min demo is the whole game in PS-04)</li>
+<li><strong>Clean repo before freeze</strong> (no debug files, no .env, no node_modules committed)</li>
+<li><strong>Resubmit near deadline</strong> (latest entry wins — but keep the first submission clean in case)</li>
+</ol>
+<h2>5. THE "REJECTED" DATA WE CANNOT GET (honest limits)</h2>
+<ul>
+<li>The actual NEXORA'26 results (winners named) — not public</li>
+<li>The 2025 R1 rejection list (only the 20 finalists are public)</li>
+<li>The 2026 Rajasthan R1 submissions (Supabase RLS-locked to admins)</li>
+<li>Judge score sheets (redacted by design)</li>
+</ul>
+<p>What we CAN watch: the watchdog (reg counts, judge reveals, result flags) + the live site's admin console (read-only, but it shows submission count + timestamps once the event starts).</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scaffold/webapp/static/index.html</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>scaffold/webapp/static/index.html</h1>
+  <p class="blurb">The dark UI: digest, ranked feed, search, request board, Actions tab, mode badge, trace drawer.</p>
+  <a class="open" href="../../scaffold/webapp/static/index.html" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Signal - one ranked feed for your day&lt;/title&gt;
+&lt;style&gt;
+  :root{
+    --bg:#0B1020; --panel:#141B33; --panel2:#1B2440; --line:#263055;
+    --txt:#E8ECF8; --mut:#93A0C4; --accent:#6C5CE7; --accent2:#00CE8F;
+    --warn:#FFB020; --danger:#FF5470; --chip:#202A4E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:Inter,'Segoe UI',system-ui,sans-serif;min-height:100vh}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 20px 60px}
+  /* ── header ── */
+  header{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:22px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.3px}
+  .logo .dot{width:12px;height:12px;border-radius:50%;background:var(--accent2);box-shadow:0 0 14px var(--accent2)}
+  .logo small{color:var(--mut);font-weight:500;font-size:12px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{background:var(--chip);border:1px solid var(--line);color:var(--mut);border-radius:999px;padding:5px 12px;font-size:12px}
+  .chip.live{color:var(--accent2);border-color:var(--accent2)}
+  /* ── hero / digest ── */
+  .digest{background:linear-gradient(135deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:22px}
+  .digest h2{font-size:15px;color:var(--mut);font-weight:600;margin-bottom:12px;letter-spacing:.4px;text-transform:uppercase}
+  .digest .urg{display:flex;gap:12px;flex-direction:column}
+  .urg-item{display:flex;gap:12px;align-items:flex-start;background:rgba(0,206,143,.07);border:1px solid rgba(0,206,143,.25);border-radius:12px;padding:12px 14px}
+  .urg-item .tag{background:var(--accent2);color:#04120C;font-weight:800;font-size:11px;border-radius:6px;padding:3px 8px;flex-shrink:0;margin-top:1px}
+  .urg-item .txt{font-size:14.5px;line-height:1.45}
+  .urg-item .dl{margin-top:4px;font-size:12.5px;color:var(--warn);font-weight:600}
+  /* ── tabs ── */
+  .tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  .tab{background:var(--panel);border:1px solid var(--line);color:var(--mut);border-radius:10px;padding:9px 16px;font-size:13.5px;font-weight:600;cursor:pointer;transition:.15s}
+  .tab:hover{color:var(--txt);border-color:var(--accent)}
+  .tab.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  /* ── feed cards ── */
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;transition:.15s}
+  .card:hover{border-color:var(--accent)}
+  .card .rank{font-size:17px;font-weight:800;color:var(--accent);min-width:44px;text-align:center;padding-top:2px}
+  .card .rank small{display:block;font-size:10px;color:var(--mut);font-weight:600}
+  .card .chan{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--mut);background:var(--chip);border-radius:6px;padding:3px 8px;margin-bottom:6px}
+  .card h3{font-size:15.5px;margin-bottom:5px}
+  .card .sum{font-size:13.5px;color:var(--mut);line-height:1.5}
+  .card .meta{display:flex;gap:12px;margin-top:9px;font-size:12px;color:var(--mut);flex-wrap:wrap}
+  .card .meta .dl{color:var(--warn);font-weight:700}
+  .card .meta .sender{color:var(--txt);opacity:.85}
+  .card.urgent{border-left:4px solid var(--warn)}
+  /* ── search ── */
+  .searchbar{display:flex;gap:10px;margin-bottom:18px}
+  .searchbar input{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 16px;color:var(--txt);font-size:14.5px;outline:none}
+  .searchbar input:focus{border-color:var(--accent)}
+  .searchbar button{background:var(--accent);border:none;border-radius:12px;padding:0 22px;color:#fff;font-weight:700;font-size:14px;cursor:pointer}
+  /* ── complaints ── */
+  .complain-box{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .complain-box input,.complain-box select,.complain-box textarea{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;color:var(--txt);font-size:13.5px;outline:none}
+  .complain-box textarea{min-height:70px;resize:vertical}
+  .complain-box button{background:var(--accent2);color:#04120C;border:none;border-radius:10px;padding:12px;font-weight:800;font-size:14px;cursor:pointer}
+  .status{font-size:13px;color:var(--accent2);margin-top:6px;min-height:18px}
+  .slabar{display:flex;align-items:center;gap:10px;margin-top:8px;font-size:12px;color:var(--mut)}
+  .slabar .bar{flex:1;height:6px;background:var(--chip);border-radius:3px;overflow:hidden}
+  .slabar .bar span{display:block;height:100%;background:var(--accent2)}
+  /* ── stats ── */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .stat .n{font-size:24px;font-weight:800;color:var(--accent2)}
+  .stat .l{font-size:12px;color:var(--mut);margin-top:2px}
+  /* ── actions / proposals ── */
+  .prop{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+  .prop h3{font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .prop .reason{font-size:13px;color:var(--mut);line-height:1.5;margin-bottom:8px}
+  .prop .params{font-size:12px;color:var(--mut);background:var(--chip);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-family:monospace}
+  .conf{background:var(--chip);border-radius:999px;padding:2px 9px;font-size:11px;color:var(--accent)}
+  .chip.status{padding:3px 10px;font-size:11px;font-weight:700;border-radius:999px}
+  .status.pending{background:var(--chip);color:var(--warn)}
+  .status.executed{background:rgba(0,206,143,.15);color:var(--accent2)}
+  .status.approved{background:rgba(108,92,231,.15);color:var(--accent)}
+  .status.rejected,.status.snoozed{background:rgba(255,84,112,.12);color:var(--danger)}
+  .ev{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:12.5px;color:var(--mut)}
+  .ev .ev-src{color:var(--accent);font-weight:700}
+  .ev .ev-body{margin-top:4px;font-style:italic}
+  .prop .btns{display:flex;gap:8px;flex-wrap:wrap}
+  .pbtn{border:none;border-radius:9px;padding:9px 16px;font-weight:800;font-size:13px;cursor:pointer}
+  .pbtn.approve{background:var(--accent2);color:#04120C}
+  .pbtn.reject{background:var(--danger);color:#fff}
+  .pbtn.snooze{background:var(--warn);color:#241600}
+  .pbtn:disabled{opacity:.5;cursor:default}
+  /* ── audit ── */
+  .audit{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:22px}
+  .audit h3{font-size:14px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--mut);font-weight:600}
+  td .dt{color:var(--accent)}
+  footer{
+    color:var(--mut);font-size:12px;text-align:center;margin-top:40px;line-height:1.7}
+  /* ── trace drawer ── */
+  .trace{margin-top:24px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .trace-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none}
+  .trace-head h3{font-size:13.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
+  .trace-body{padding:14px 18px;border-top:1px solid var(--line);font-size:12.5px}
+  .tstep{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+  .tstep .ts-name{font-weight:800;color:var(--accent)}
+  .tstep .ts-sum{color:var(--mut);margin:3px 0 0}
+  .tstep pre{background:var(--panel2);border-radius:8px;padding:8px 10px;margin-top:6px;color:var(--txt);font-size:11.5px;white-space:pre-wrap;word-break:break-word;max-height:160px;overflow:auto}
+  .caret{transition:.15s;color:var(--mut)}
+  .caret.open{transform:rotate(90deg)}
+  .hide{display:none}
+  .btn-skin{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:600;cursor:pointer}
+  .btn-skin:hover{border-color:var(--accent)}
+  @media(max-width:640px){.card .rank{display:none}}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="wrap"&gt;
+
+  &lt;header&gt;
+    &lt;div class="logo"&gt;&lt;span class="dot"&gt;&lt;/span&gt; Signal &lt;small&gt;one ranked feed · Team 511&lt;/small&gt;&lt;/div&gt;
+    &lt;div class="chips"&gt;
+      &lt;span class="chip" id="mode-chip"&gt;mode: -&lt;/span&gt;
+      &lt;span class="chip live" id="llm-chip"&gt;llm: -&lt;/span&gt;
+      &lt;span class="chip" id="n-chip"&gt;- items&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;!-- digest --&gt;
+  &lt;section class="digest"&gt;
+    &lt;h2&gt;Today in 60 seconds&lt;/h2&gt;
+    &lt;div class="urg" id="digest"&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- stats --&gt;
+  &lt;section class="stats" id="stats"&gt;&lt;/section&gt;
+
+  &lt;!-- tabs --&gt;
+  &lt;div class="tabs"&gt;
+    &lt;button class="tab on" data-v="feed"&gt;Feed&lt;/button&gt;
+    &lt;button class="tab" data-v="search"&gt;Ask&lt;/button&gt;
+    &lt;button class="tab" data-v="complaints"&gt;Complaints&lt;/button&gt;
+    &lt;button class="tab" data-v="actions"&gt;Actions&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;!-- feed view --&gt;
+  &lt;div id="v-feed"&gt;
+    &lt;div id="feed"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- search view --&gt;
+  &lt;div id="v-search" class="hide"&gt;
+    &lt;div class="searchbar"&gt;
+      &lt;input id="q" placeholder='ask anything…  e.g. "what is due this week?"' onkeydown="if(event.key==='Enter')doSearch()"&gt;
+      &lt;button onclick="doSearch()"&gt;Ask&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div id="search-res"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- complaints view --&gt;
+  &lt;div id="v-complaints" class="hide"&gt;
+    &lt;div class="complain-box"&gt;
+      &lt;input id="c-title" placeholder="What's wrong?  e.g. Water cooler broken on Hostel C floor 3"&gt;
+      &lt;textarea id="c-body" placeholder="Details… (where, since when, how bad)"&gt;&lt;/textarea&gt;
+      &lt;select id="c-cat"&gt;
+        &lt;option&gt;plumbing&lt;/option&gt;&lt;option&gt;electrical&lt;/option&gt;&lt;option&gt;hygiene&lt;/option&gt;
+        &lt;option&gt;network&lt;/option&gt;&lt;option&gt;safety&lt;/option&gt;&lt;option&gt;other&lt;/option&gt;
+      &lt;/select&gt;
+      &lt;button onclick="fileComplaint()"&gt;File complaint → auto-triage&lt;/button&gt;
+      &lt;div class="status" id="c-status"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="complaints"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- actions view --&gt;
+  &lt;div id="v-actions" class="hide"&gt;
+    &lt;div id="proposals"&gt;&lt;/div&gt;
+    &lt;div class="audit"&gt;
+      &lt;h3&gt;Audit trail&lt;/h3&gt;
+      &lt;table&gt;
+        &lt;thead&gt;&lt;tr&gt;&lt;th&gt;when&lt;/th&gt;&lt;th&gt;who&lt;/th&gt;&lt;th&gt;decision&lt;/th&gt;&lt;th&gt;tool&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+        &lt;tbody id="audit"&gt;&lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- trace drawer --&gt;
+  &lt;div class="trace"&gt;
+    &lt;div class="trace-head" onclick="toggleTrace()"&gt;
+      &lt;h3&gt;Engine trace - why each item ranked&lt;/h3&gt;
+      &lt;span class="caret" id="trace-caret"&gt;&amp;#9654;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="trace-body hide" id="trace-body"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;footer&gt;
+    Signal engine - ingest → dedupe → summarize → rank → deadlines.&lt;br&gt;
+    Demo runs on pre-imported campus data. Zero external services needed.
+  &lt;/footer&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+const $=id=&gt;document.getElementById(id);
+let FEED={items:[]};
+
+async function jget(u){const r=await fetch(u);return r.json()}
+
+async function load(){
+  const [feed,digest,stats]=await Promise.all([
+    jget('/api/feed'),jget('/api/digest'),jget('/api/stats')]);
+  FEED=feed;
+  $('mode-chip').textContent='mode: '+ (stats.mode||'live');
+  $('llm-chip').textContent='llm: '+ (feed.llm?.model||'db');
+  $('n-chip').textContent=feed.total+' items';
+  renderStats(stats);
+  renderDigest(digest);
+  renderFeed(feed.items);
+  renderComplaints((await jget('/api/complaints')).complaints);
+  renderTrace((await jget('/api/trace')).steps||[]);
+}
+
+function renderStats(s){
+  $('stats').innerHTML=[
+    ['channels',s.channels?Object.keys(s.channels).length:'-'],
+    ['deadlines found',s.deadlines_found],
+    ['urgent now',FEED.items.filter(i=&gt;i.is_urgent).length],
+    ['skin',s.skin_ready?'mount-ready':'-'],
+  ].map(([l,n])=&gt;`&lt;div class="stat"&gt;&lt;div class="n"&gt;${n}&lt;/div&gt;&lt;div class="l"&gt;${l}&lt;/div&gt;&lt;/div&gt;`).join('');
+}
+
+function renderDigest(d){
+  const ur=d.urgent||[];
+  $('digest').innerHTML = ur.length? ur.map(i=&gt;`
+    &lt;div class="urg-item"&gt;&lt;span class="tag"&gt;URGENT&lt;/span&gt;
+      &lt;div class="txt"&gt;${esc(i.summary)}
+        ${i.deadline_iso?`&lt;div class="dl"&gt;⏰ deadline ${i.deadline_iso}&lt;/div&gt;`:''}
+      &lt;/div&gt;&lt;/div&gt;`).join('')
+    : '&lt;div class="txt" style="color:var(--mut)"&gt;nothing urgent - you are clear today&lt;/div&gt;';
+}
+
+const CH_ICON={email:'📧',portal:'🏛',chat:'💬',app:'📱',social:'📸',ticket:'🛠'};
+function renderFeed(items){
+  $('feed').innerHTML=items.map((i,k)=&gt;`
+    &lt;div class="card ${i.is_urgent?'urgent':''}"&gt;
+      &lt;div class="rank"&gt;#${k+1}&lt;small&gt;${i.rank_score}&lt;/small&gt;&lt;/div&gt;
+      &lt;div style="flex:1"&gt;
+        &lt;span class="chan"&gt;${CH_ICON[i.channel]||''} ${i.channel}&lt;/span&gt;
+        &lt;h3&gt;${esc(i.subject)}&lt;/h3&gt;
+        &lt;div class="sum"&gt;${esc(i.summary)}&lt;/div&gt;
+        &lt;div class="meta"&gt;
+          &lt;span class="sender"&gt;${esc(i.sender)}&lt;/span&gt;
+          ${i.deadline_iso?`&lt;span class="dl"&gt;⏰ ${i.deadline_iso}&lt;/span&gt;`:''}
+          ${i.is_urgent?'&lt;span style="color:var(--warn);font-weight:700"&gt;⚠ urgent&lt;/span&gt;':''}
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;`).join('');
+}
+
+async function doSearch(){
+  const q=$('q').value.trim();
+  if(!q)return;
+  const d=await jget('/api/search?q='+encodeURIComponent(q));
+  $('search-res').innerHTML=d.results.length?
+    d.results.map((i,k)=&gt;`
+      &lt;div class="card"&gt;&lt;div class="rank"&gt;#${k+1}&lt;/div&gt;
+        &lt;div style="flex:1"&gt;&lt;span class="chan"&gt;${i.channel}&lt;/span&gt;
+        &lt;h3&gt;${esc(i.subject)}&lt;/h3&gt;
+        &lt;div class="sum"&gt;${esc(i.summary)}&lt;/div&gt;
+        &lt;div class="meta"&gt;${i.deadline_iso?`&lt;span class="dl"&gt;⏰ ${i.deadline_iso}&lt;/span&gt;`:''}&lt;/div&gt;&lt;/div&gt;
+      &lt;/div&gt;`).join('')
+    : '&lt;div style="color:var(--mut);padding:20px"&gt;no match - try "mte", "fee", "lab"…&lt;/div&gt;';
+}
+
+const SLA=[['open',1.0],['in-progress',.6],['fixed',0]];
+async function renderComplaints(list){
+  $('complaints').innerHTML=list.map((c,i)=&gt;{
+    const status=c.status||'open';
+    const pct=(SLA.find(s=&gt;s[0]===status)||SLA[0])[1];
+    return `&lt;div class="card"&gt;
+      &lt;div class="rank"&gt;#C-${114+i}&lt;/div&gt;
+      &lt;div style="flex:1"&gt;&lt;span class="chan"&gt;🛠 ${c.category||'general'}&lt;/span&gt;
+        &lt;h3&gt;${esc(c.subject)}&lt;/h3&gt;
+        &lt;div class="sum"&gt;${esc(c.body)}&lt;/div&gt;
+        &lt;div class="slabar"&gt;&lt;span&gt;${status}&lt;/span&gt;&lt;div class="bar"&gt;&lt;span style="width:${pct*100}%"&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;span&gt;SLA ${c.sla_hours||48}h · escalated after ${(c.sla_hours||48)*2}h&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;&lt;/div&gt;`;
+  }).join('');
+}
+
+async function fileComplaint(){
+  const title=$('c-title').value.trim(), body=$('c-body').value.trim();
+  if(!title){$('c-status').textContent='say what is broken first';return}
+  const r=await fetch('/api/complaints',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({title,body,category:$('c-cat').value,sender:'You (demo)'})});
+  const d=await r.json();
+  $('c-status').textContent=`${d.ticket} filed → auto-triaged to ${d.item.category} · SLA 48h · you get pinged on status change`;
+  $('c-title').value='';$('c-body').value='';
+  renderComplaints((await jget('/api/complaints')).complaints);
+}
+
+function esc(s){return (s||'').replace(/[&amp;&lt;&gt;"]/g,c=&gt;({'&amp;':'&amp;amp;','&lt;':'&amp;lt;','&gt;':'&amp;gt;','"':'&amp;quot;'}[c]))}
+
+function stepSummary(st){
+  if(st.step==='ingest')return `received ${st.n} items from all channels`;
+  if(st.step==='dedupe')return `dropped ${st.dropped} near-duplicates, kept ${st.kept}`;
+  if(st.step==='summarize')return `summarized ${(st.per_item||[]).length} items in ${st.mode} mode`;
+  if(st.step==='rank')return `ranked; top 3 shown below`;
+  return '';
+}
+
+function renderTrace(steps){
+  $('trace-body').innerHTML=steps.map(st=&gt;`
+    &lt;div class="tstep"&gt;
+      &lt;div class="ts-name"&gt;${esc(st.step)} &lt;span style="color:var(--mut);font-weight:400"&gt;· ${esc(st.ts||'')}&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="ts-sum"&gt;${esc(stepSummary(st))}&lt;/div&gt;
+      &lt;pre&gt;${esc(JSON.stringify(st,null,2))}&lt;/pre&gt;
+    &lt;/div&gt;`).join('')||'&lt;div style="color:var(--mut)"&gt;no trace yet&lt;/div&gt;';
+}
+
+function toggleTrace(){
+  const b=$('trace-body'),c=$('trace-caret');
+  const open=b.classList.toggle('hide');
+  c.classList.toggle('open',!open);
+}
+
+const STATUS_CLS={pending:'pending',executed:'executed',approved:'approved',rejected:'rejected',snoozed:'snoozed'};
+function renderProposals(list){
+  $('proposals').innerHTML=list.map(p=&gt;{
+    const cls=STATUS_CLS[p.status]||'pending';
+    const disabled=p.status==='executed'||p.status==='approved'||p.status==='rejected'||p.status==='snoozed';
+    const ev=(p.evidence||[]).map(e=&gt;
+      `&lt;div class="ev"&gt;&lt;span class="ev-src"&gt;${esc(e.source_id)}&lt;/span&gt;
+        &lt;div class="ev-body"&gt;${esc(e.snippet)}&lt;/div&gt;&lt;/div&gt;`).join('');
+    const params=JSON.stringify(p.params||{});
+    return `&lt;div class="prop" id="prop-${p.id}"&gt;
+      &lt;h3&gt;${esc(p.tool)} &lt;span class="conf"&gt;${(p.confidence*100).toFixed(0)}%&lt;/span&gt;
+        &lt;span class="chip status ${cls}"&gt;${p.status}&lt;/span&gt;&lt;/h3&gt;
+      &lt;div class="reason"&gt;${esc(p.reason)}&lt;/div&gt;
+      &lt;div class="params"&gt;${esc(params)}&lt;/div&gt;
+      &lt;div class="ev" style="cursor:pointer" onclick="this.style.display='none';$('ev-${p.id}').style.display='block'"&gt;
+        evidence (click to expand)&lt;/div&gt;
+      &lt;div class="ev hide" id="ev-${p.id}"&gt;${ev}&lt;/div&gt;
+      &lt;div class="btns"&gt;
+        &lt;button class="pbtn approve" ${disabled?'disabled':''} onclick="decide('${p.id}','approve')"&gt;APPROVE&lt;/button&gt;
+        &lt;button class="pbtn reject" ${disabled?'disabled':''} onclick="decide('${p.id}','reject')"&gt;REJECT&lt;/button&gt;
+        &lt;button class="pbtn snooze" ${disabled?'disabled':''} onclick="decide('${p.id}','snooze')"&gt;SNOOZE&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;`;
+  }).join('')||'&lt;div style="color:var(--mut);padding:20px"&gt;no proposals yet - propose a tool from the feed&lt;/div&gt;';
+}
+
+function renderAudit(events){
+  $('audit').innerHTML=events.map(e=&gt;`
+    &lt;tr&gt;&lt;td class="dt"&gt;${esc(e.ts)}&lt;/td&gt;&lt;td&gt;${esc(e.actor)}&lt;/td&gt;
+      &lt;td&gt;${esc(e.decision)}&lt;/td&gt;&lt;td&gt;${esc(e.tool)}&lt;/td&gt;&lt;/tr&gt;`).join('')||
+    '&lt;tr&gt;&lt;td colspan="4" style="color:var(--mut)"&gt;no audit events yet&lt;/td&gt;&lt;/tr&gt;';
+}
+
+async function loadActions(){
+  renderProposals((await jget('/api/proposals')).proposals);
+  renderAudit((await jget('/api/audit')).events);
+}
+
+async function decide(id,decision){
+  const r=await fetch('/api/approve',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({proposal_id:id,decision,actor:'user'})});
+  const d=await r.json();
+  if(d.ok){loadActions();}
+}
+
+document.querySelectorAll('.tab').forEach(t=&gt;t.onclick=()=&gt;{
+  document.querySelectorAll('.tab').forEach(x=&gt;x.classList.remove('on'));
+  t.classList.add('on');
+  ['feed','search','complaints','actions'].forEach(v=&gt;$('v-'+v).classList.toggle('hide',v!==t.dataset.v));
+  if(t.dataset.v==='actions')loadActions();
+});
+
+load();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</main>
+</body>
+</html>

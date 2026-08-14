@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>atlas/content/BUILD-LOG.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>atlas/content/BUILD-LOG.md</h1>
+  <p class="blurb">The full timeline: every session, every commit, every decision from Aug 13 to now, with hashes and whys.</p>
+  <a class="open" href="../../atlas/content/BUILD-LOG.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>BUILD LOG - every session, every commit, every why</h1>
+<p>This is the complete record of the Craft N Code effort. Nothing is</p>
+<p>summarized away: each entry names the commit, the hour, what landed,</p>
+<p>and why it matters. Read it top to bottom to see the whole arc.</p>
+<p>Compiled: 2026-08-14 evening | Source of truth: git history + session records</p>
+<h2>THE SHAPE OF THE CAMPAIGN</h2>
+<p>Two nights of work:</p>
+<ul>
+<li>Night 1 (Aug 13, ~22:00 to 03:00): the recon blitz. Everything about the</li>
+</ul>
+<p>event, its history, its winners, its judges, its sponsors, its site.</p>
+<ul>
+<li>Day 2 (Aug 14, ~09:00 to now): the re-audit, the strip, the scaffold</li>
+</ul>
+<p>build, the deep-research wave, the code builds, the docs.</p>
+<p>The one rule that shaped everything: the user rejected site-track</p>
+<p>assumptions (Aug 14). Only verified timings survived. Everything else</p>
+<p>was rebuilt around the sponsor-set-question reality.</p>
+<hr>
+<h2>NIGHT 1 - AUG 13</h2>
+<h3>22:54 - ops: judge-research launcher (d2017a4)</h3>
+<p>Built the parallel.ai launcher with key fallback chain. Fired the ultra8x</p>
+<p>deep-research run on key#112 to build dossiers on all 6 Hackfest 2024</p>
+<p>judges.</p>
+<h3>22:56 - D3 Fest 2023 brochure (12706dc)</h3>
+<p>Recovered the full 14-page D3 Fest 2023 brochure: 12 events, Tech Society</p>
+<ul>
+<li>E-Cell, the 13-hour overnight hackathon (ancestor of the 24h format),</li>
+</ul>
+<p>Cyber Hunt (CTF ancestor), Shark Tank (pitch ancestor).</p>
+<h3>22:58 - D3 Fest 2022, all 9 problems (60563a0)</h3>
+<p>Found d3nov.netlify.app with ALL 9 hackathon problems verbatim: code</p>
+<p>snippet sharing, hostel management, smart campus app, bill split, mess</p>
+<p>management, PM2.5 prediction, IRCTC automation, crypto crowdfunding,</p>
+<p>on-chain event ticketing. Key find: D3h09 (on-chain ticketing) is the</p>
+<p>direct ancestor of the 2025 NFT challenge. The organizers recycle problem</p>
+<p>families every 2-3 years with new tech.</p>
+<h3>23:04 - JUDGE-DOSSIERS (dac8eb0)</h3>
+<p>The ultra8x run landed. All 6 judges profiled: Anjana Tudu (ACP Odisha</p>
+<p>Police, later CID Crime Branch, NIT Rourkela BTech, Ericsson background),</p>
+<p>Lingaraj Sethi (InfoSec Manager Mphasis, PhD, CEH), Sarthak Padhi (PhD</p>
+<p>Scholar IIIT-B, medical imaging ML), Ayushi Parashar (Hyundai corporate</p>
+<p>finance), Shivani Prasad (GSK data lead, unconfirmed match), Sonali</p>
+<p>Satpathy (sociopreneur). The comparative matrix: 3 judges reward</p>
+<p>research/security depth, 3 reward operations/impact. A winning project</p>
+<p>must satisfy BOTH axes.</p>
+<h3>23:36 - event-site forensics v4 (2c430d3)</h3>
+<p>Extracted the live JS bundles of craftncode-2026.vercel.app. Found the</p>
+<p>admin console (read-only, shows team_name/track/repo/demo/pitch/timestamp:</p>
+<p>the pitch is the first thing judges read), the auth flow (user_roles</p>
+<p>admin guard), the submission mechanics (plain INSERT, no upsert,</p>
+<p>resubmit = new row, latest wins), and the night canteen (a UI mock, no</p>
+<p>backend, bring your own snacks).</p>
+<h3>23:44 - RABBITT-AI-DOSSIER (8d5b86a)</h3>
+<p>Rabbitt AI: Harneet S N (IIT Delhi, Flipkart PM, TechCurators), $2.1M</p>
+<p>seed, ChanceRAG and DRIP products, open-model advocacy (Llama/Mistral/</p>
+<p>Gemma). The NEXORA'26 partnership with CSC MUJ was the dress rehearsal</p>
+<p>for the exact format we face.</p>
+<h3>23:46 - NEXORA-FORENSICS (ca94e66)</h3>
+<p>NEXORA'26 site internals: 6 tracks, the judging stack (Jury Score,</p>
+<p>Modify Score, Scores Redacted for Review Balance, leaderboard, timeline-</p>
+<p>gated scoring), submission requirements (GitHub repo required, live app</p>
+<p>build expected, PPT). Same people running Craft N Code.</p>
+<h3>23:48 - 2024 state qualifier format (22bb7fe)</h3>
+<p>The RVCE Bangalore 2024 round: food safety theme, 3 tracks, 4x25%</p>
+<p>judging (completeness, design, innovation, impact), top-2 advance with</p>
+<p>expenses covered. 5 participant solutions mapped: 4 of 5 used blockchain</p>
+<p>(2024's differentiator).</p>
+<h3>23:49 - COMPETITOR-POOL (e89f18a)</h3>
+<p>The 2025 winner's workflow from commit forensics: build core first,</p>
+<p>scope down aggressively in the final hours, rebrand for impact, clean</p>
+<p>the repo. The 20-team threat matrix. The empty-lane strategy.</p>
+<h3>23:52 - RAJASTHAN-LISTING-1730314 (000d43d)</h3>
+<p>Found the live Unstop listing: 402 teams registered, Rs 50,000 prize,</p>
+<p>qualifier has its OWN problems (separate from nationals), contacts</p>
+<p>verified (Spandan Hota, Tirtha Desai, Abhinav Trikha). Watchdog updated</p>
+<p>to track it directly.</p>
+<h3>23:55 - STATE-QUALIFIER-SCAN (b87b5e7)</h3>
+<p>Rajasthan (402 reg) = biggest confirmed 2026 state round. UP listing</p>
+<p>fresh (1 reg). No other 2026 state listings in the probed ranges.</p>
+<h3>00:32 (Aug 14) - 2025 problems verbatim (3b18763)</h3>
+<p>ALL 7 Phase 1 problems + 7 Phase 2 extensions from the p-society</p>
+<p>solutions repo, with exact MVP bullets and bonus goals: NFT ticketing,</p>
+<p>Web3 loyalty, P2P skill swap, AI lecture generator, Collegiate Inbox</p>
+<p>Navigator, Automated Lab Grader, Mobile Packet Hunter (what AFTERPACKETS</p>
+<p>won with).</p>
+<h3>00:41 - WINNER-EXACT-DEEP-DIVE (0a11753)</h3>
+<p>AFTERPACKETS at code level: the C++ DPI parser (hand-rolled IPv4/TCP/</p>
+<p>UDP/ICMP), VPNService capture, Room DB, WebSocket server, firewall</p>
+<p>engine, 13 UI screens, evidence-bundle export. The commit timeline by</p>
+<p>hour (06:56 initial commit, scope-downs at 07:17 and 08:11, rebrand at</p>
+<p>08:01). The counterfactual: PromptBuddy's Composio/Gemini war, EduSynth's</p>
+<p>77MB production app, both lost.</p>
+<h3>00:42 - 2026-TOPIC-PROBABILITY (b166437)</h3>
+<p>The 5 tracks verbatim + the evidence base per track + sponsor mapping +</p>
+<p>probability table: PS-03 35% and most winnable, PS-04 safest escape</p>
+<p>hatch, PS-02 dark horse, PS-05 the trap (no hardware).</p>
+<h3>00:44 - REJECTED-LOST-ENTRIES (5a3e94c)</h3>
+<p>How teams lose: R1 mechanics from NEXORA (score 0-100, redacted</p>
+<p>review, 23505 duplicate block), rejection patterns (2/20 repos 404,</p>
+<p>an 18KB repo, no deployment links), and the 8-step R1 win formula.</p>
+<h3>01:00-01:10 - the re-audit night (3c1138e, 98ff21f, f9d5a04, 885d50d, 6c11d19)</h3>
+<p>The big re-audit corrected the earlier dossier: 9 state rounds in 2025</p>
+<p>(not 4-5), 2024 winners were Wizard_Oz/Fork, fee confirmed Rs 299,</p>
+<p>2024 finals timeline resolved from Instagram + certificates + repo</p>
+<p>commits (11 PM Nov 8 kickoff, 24h). 2025 state map: 11 rounds, 1,592</p>
+<p>reg / 285 players. The Rs 131K D3 pool claim verified via Scribd.</p>
+<h3>01:20 - gap-map execution (bef04cf)</h3>
+<p>D3-2026 site fully explored (no seeded problems, resubmit is official),</p>
+<p>p-society 67 repos harvested, 2023/2024 brochures pulled, AFTERPACKETS</p>
+<p>formula confirmed, 20-team competitor pool.</p>
+<hr>
+<h2>DAY 2 - AUG 14</h2>
+<h3>09:53 - the new-window handoff (bce0ee4)</h3>
+<p>IDEA-BANK with drop-ready ideas for all 5 tracks + decision tree, README</p>
+<p>rewrite, CONTINUATION-PROMPT, INDEX. The repo became new-window ready:</p>
+<p>a fresh agent can read one file and know everything.</p>
+<h3>10:06 - the scaffold (83a3be9)</h3>
+<p>The shared engine + webapp + 4 decks pre-built: ingest/dedupe/summarize/</p>
+<p>rank/deadlines pipeline with ollama-cloud LLM + full offline fallback,</p>
+<p>zero-dependency webapp, deck generator, demo.sh, storyboards. Verified</p>
+<p>11/11 ad-hoc.</p>
+<h3>10:57-11:13 - the company-lane wave (fcac6a2, 1bfaed4, ec821d2, 1658c20)</h3>
+<p>The Rudra protocol landed: site tracks are the CLUB's backup, the</p>
+<p>sponsor companies set the real questions. IDEA-BANK got the company</p>
+<p>fingerprint table, setter priors, and the lane decision tree. Two</p>
+<p>deep-research passes on company lanes: pass 1 SURFACE, pass 2 DEEP 90.1</p>
+<p>(sponsor authorship stays UNVERIFIED publicly, insider signal stands).</p>
+<h3>11:51 - THE STRIP (d00077b) - the user's directive</h3>
+<p>ALL site-track assumptions removed: PS-01..PS-05, Campus Pulse, Night</p>
+<p>Ops, Hygiene Sentinel, hardware gate. Only timings survive. IDEA-BANK</p>
+<p>rebuilt around the 4 sponsor-shaped lanes (BriefLens, Kavach Circle,</p>
+<p>SignalStory, Kavach). Engine seed data made domain-agnostic. Decks</p>
+<p>regenerated. Re-verified 13/13.</p>
+<h3>13:29-13:37 - the deep-research wave (c4b2eb7, c4703cd, e986520)</h3>
+<p>3 parallel runs fired (sponsor-products, winner-anatomy, problem-lanes)</p>
+<ul>
+<li>a state-rounds run. Results: problem-lanes ADECENT 333 cites,</li>
+</ul>
+<p>sponsor-products ADECENT 230 cites, winner-anatomy SURFACE 138 cites,</p>
+<p>state-rounds ADECENT 125 cites with an honest negative (no verbatim</p>
+<p>state-round problems are publicly retrievable). The synthesis became</p>
+<p>WAVE-SYNTHESIS.md: 5 ranked predicted problems, the common denominator</p>
+<p>pipeline, the 5 portable patterns, the 8.5h execution plan, the</p>
+<p>zero-dependency rule.</p>
+<h3>15:07-15:12 - the re-audit + handoff refresh (073951b, 009e196)</h3>
+<p>Watchdog state refreshed. All three handoff files (CONTINUATION-PROMPT,</p>
+<p>INDEX, README) refreshed with the full re-audit state, the scaffold</p>
+<p>story, and the deep-research wave.</p>
+<h3>15:27 - the build spec (5ff76a2)</h3>
+<p>BUILD-SPEC.md: approval gate + trace viewer, grounded in the actual</p>
+<p>serve.py routes and engine.py dataclasses, with G1-G13/T1-T6 acceptance</p>
+<p>tests. Plan-only at that point: the user had said hold builds.</p>
+<h3>15:48 - the evening intel refresh (a630777)</h3>
+<p>Live Unstop API: 456 registrations, submission = PPT only (pdf/pptx,</p>
+<p>50MB), multiple submissions allowed (latest wins), judge panel buttons</p>
+<p>shortlist/reject/hold/noshow, score /5 weighted 100, the D3 Fest 2026</p>
+<p>site live at d3fest.techsoc-iiitbbsr.com, Tirtha Desai as a new contact.</p>
+<h3>15:51 - the teaching docs (e6dd5e7)</h3>
+<p>REPO-TOUR.md (the map) and CODE-WALKTHROUGH.md (every file explained</p>
+<p>function by function, production lessons, audit how-to).</p>
+<h3>15:55 - the p-society harvest (91a07dc)</h3>
+<p>Org census complete: NO 2026 solutions repo exists publicly (D3-2026 is</p>
+<p>an empty marketing site), 2024 problems not in the site source (dead</p>
+<p>end closed honestly), 2025 confirmed already harvested. The research</p>
+<p>frontier is closed: everything else is time-gated to the drop.</p>
+<h3>15:58 - THE APPROVAL GATE (cfaf85a)</h3>
+<p>Built via opencode per BUILD-SPEC Part 1: typed tool registry (4 tools),</p>
+<p>policy gate (read-only auto / reversible suggest / side-effecting</p>
+<p>require), proposals + audit_events tables, 5 new API endpoints, Actions</p>
+<p>tab in the UI. G1-G13 suite, 13/13. Two audit rounds: the</p>
+<p>double-decision guard (no fake history) and the bash -n G13 check.</p>
+<h3>16:22 - THE TRACE VIEWER + FIXTURES (f131a2f)</h3>
+<p>Built via opencode per BUILD-SPEC Part 2: --fixture/--offline flags,</p>
+<p>mode badge (live/cached/offline/fixture), /api/trace ring buffer, 3</p>
+<p>golden fixtures with expected top-3, scam-word cap, trace drawer UI.</p>
+<p>T1-T6 + offline regression, 12/12. The audit caught a REAL bug: --offline</p>
+<p>set the env var after engine import, so the LLM would still fire with a</p>
+<p>key set. Fixed with lazy env reads + a regression test.</p>
+<h3>16:42+ - the "build everything" directive</h3>
+<p>The user went all-in: all remaining scaffold items. BUILD-SPEC-2</p>
+<p>specified three: the provider adapter (swap LLM backends via</p>
+<p>SIGNAL_PROVIDER), the multimodal input adapter (text/PDF/image with</p>
+<p>graceful fallback), provenance + consent (per-decision manifests,</p>
+<p>consent records, consent_required flags). opencode built all three:</p>
+<p>test_providers 9/9, test_multimodal 4/4, test_provenance 4/4, with</p>
+<p>trace 12/12 and approval 13/13 regressions. All five suites verified</p>
+<p>independently by Hermes: 42/42.</p>
+<h3>16:50+ - the reading ladder + the atlas</h3>
+<p>The user asked for the full inventory, then for a reading ladder, then</p>
+<p>for THIS: an atlas website that renders every file in full with OPEN</p>
+<p>FILE buttons. The atlas generator, this log, and the manifest are the</p>
+<p>answer.</p>
+<hr>
+<h2>THE RULES THAT SURVIVED (hard rules)</h2>
+<ol>
+<li>All source code is written by opencode CLI. Hermes is the architect</li>
+</ol>
+<p>and reviewer: writes briefs, audits diffs, tells opencode what is</p>
+<p>right and wrong, runs tests, commits. Hermes never writes source</p>
+<p>code itself.</p>
+<ol>
+<li>No em dashes in any output, file, doc, or comment. No AI-tell words.</li>
+<li>Research waves run ONE BY ONE, never parallel fan-out.</li>
+<li>The demo has zero uncontrolled dependencies. LLM, cached, or offline,</li>
+</ol>
+<p>it always works.</p>
+<ol>
+<li>The repo reflects true state. Verified numbers only, honest negatives</li>
+</ol>
+<p>included.</p>
+</main>
+</body>
+</html>

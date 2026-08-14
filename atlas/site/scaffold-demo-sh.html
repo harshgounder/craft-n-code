@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scaffold/demo.sh</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>scaffold/demo.sh</h1>
+  <p class="blurb">The one-command demo runner: generate the feed, serve the app.</p>
+  <a class="open" href="../../scaffold/demo.sh" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<pre><code class="language-sh">#!/usr/bin/env bash
+# Craft N Code 2026 shared scaffold - one-command demo runner
+# Usage: ./demo.sh [port]
+set -euo pipefail
+PORT="${1:-8137}"
+cd "$(dirname "$0")"
+
+# 1. generate the feed (LLM if key present, offline otherwise)
+if [ -n "${OLLAMA_API_KEY:-}" ]; then
+  echo "[demo] using ollama-cloud LLM"
+else
+  echo "[demo] no OLLAMA_API_KEY -&gt; offline mode (rule-based, zero network)"
+  export OLLAMA_API_KEY="${OLLAMA_API_KEY:-}"
+fi
+python3 engine/engine.py --seed --out webapp/static/demo-feed.json &gt;/dev/null
+
+# 2. serve
+echo "[demo] open http://localhost:${PORT}"
+exec python3 webapp/serve.py --port "$PORT"
+</code></pre>
+</main>
+</body>
+</html>

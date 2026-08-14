@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/INTEL-20260814-EVENING.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/INTEL-20260814-EVENING.md</h1>
+  <p class="blurb">Live API refresh: submission = PPT only (pdf/pptx, 50MB), multiple submissions allowed, judge buttons shortlist/reject/hold/noshow, D3 site live.</p>
+  <a class="open" href="../../research/INTEL-20260814-EVENING.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>INTEL - Evening refresh (2026-08-14, live API verified)</h1>
+<p>Source: Unstop API (id 1730314) + D3 Fest 2026 site, probed 15:45 IST. ALL VERIFIED.</p>
+<h2>1. Submission format (the deck IS the submission)</h2>
+<ul>
+<li>Round 1 "Idea Submission": Aug 15 21:00 -> Aug 16 06:00 IST.</li>
+</ul>
+<p>"Submission round through Unstop platform."</p>
+<ul>
+<li>Submission type: PPT FILE ONLY (pdf or pptx, max 50 MB), MANDATORY.</li>
+</ul>
+<p>No description/text field in the API. Our 4 .pptx decks are exactly the</p>
+<p>right artifact. 50 MB cap is generous (decks are ~107K each).</p>
+<ul>
+<li>allow_multiple_submissions = 1: resubmission allowed, latest wins</li>
+</ul>
+<p>(matches forensics: plain INSERT, dup block on old row).</p>
+<ul>
+<li>Round 2 "Presentation": Aug 16 10:00 -> 17:30 IST.</li>
+</ul>
+<p>"You will be required to present your ideas to judges."</p>
+<p>(Our demo + pitch slot. 3-min demo, 2:30 target stays.)</p>
+<h2>2. Judge scoring schema (from rounds.evaluation_fields)</h2>
+<ul>
+<li>Score field: 5-point (score: 5), weighted to 100 (weighted_score: 100).</li>
+<li>Panel buttons: shortlist / reject / hold / noshow.</li>
+<li>"Overall Comments" free-text field (500 char cap, optional).</li>
+<li>weightAutoAdjust: true. One evaluation round.</li>
+</ul>
+<h2>3. Numbers</h2>
+<ul>
+<li>registerCount: 456 (was 402 at 09:30, 451 at 14:34).</li>
+<li>players_count: 96 (field-level).</li>
+<li>Round 1 players_count: 378 (participant-level count, different metric).</li>
+</ul>
+<h2>4. Event site</h2>
+<ul>
+<li>Unstop web_url now points to: d3fest.techsoc-iiitbbsr.com (D3 Fest 2026,</li>
+</ul>
+<p>Next.js marketing site, LIVE, http 200).</p>
+<ul>
+<li>OLD sites DEAD: craftncode-2026.vercel.app (DEPLOYMENT_NOT_FOUND),</li>
+</ul>
+<p>craftncode.dev (DNS fail).</p>
+<ul>
+<li>Live site routes: / and /gallery only. All other routes (problem-statements,</li>
+</ul>
+<p>tracks, sponsors, judges, schedule, faq, rules) return 404.</p>
+<ul>
+<li>Site links to a Google Drive brochure PDF (28.5 MB, downloaded to /tmp,</li>
+</ul>
+<p>title check pending) + instagram.com/d3fest.iiitbh + linkedin</p>
+<p>(tech-society-iiitbh) + x.com/techsociiitbh.</p>
+<h2>5. Details text (official, worth quoting)</h2>
+<p>"The official national problem statements will be released only at the</p>
+<p>beginning of the National Finals on 30th October 2026 at 8:00 AM IST.</p>
+<p>The Rajasthan State Qualifier will follow its own evaluation process and</p>
+<p>event flow, and participants need not wait for the national problem</p>
+<p>statements to compete in the qualifier."</p>
+<p>Reading: state qualifier = independent process, its own statements (Rudra</p>
+<p>intel: sponsor-set questions) stay the best signal. No conflict.</p>
+<h2>6. Contacts (3 now)</h2>
+<ul>
+<li>Spandan Hota (spandanhota2005@gmail.com) - CSC contact, GSA</li>
+<li>Tirtha Desai (tirthadesai29@gmail.com) - NEW (was not in prior dossiers)</li>
+<li>Abhinav Trikha (+91 95994 15311) - CSC chair</li>
+</ul>
+<h2>7. What this changes</h2>
+<ul>
+<li>Nothing on prep: decks are the submission, deck + demo are the pitch.</li>
+<li>The night's submit = upload ONE pptx to Unstop (case-submissions page,</li>
+</ul>
+<p>seo_url confirmed public). Resubmit allowed if we improve later.</p>
+<ul>
+<li>No description field means the deck must carry ALL the story. 4 decks stay</li>
+</ul>
+<p>the right prep. Consider adding a "problem statement restated" slide.</p>
+</main>
+</body>
+</html>

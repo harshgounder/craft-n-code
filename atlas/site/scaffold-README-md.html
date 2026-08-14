@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scaffold/README.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>scaffold/README.md</h1>
+  <p class="blurb">One-page scaffold guide: the pipeline, quickstart, on-the-night flow.</p>
+  <a class="open" href="../../scaffold/README.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>Signal Engine + Scaffold  -  Craft N Code 2026 (Team 511)</h1>
+<p>One engine, many skins. Whatever problem drops Aug 15 21:30, this is pre-built.</p>
+<pre><code class="language-">scaffold/
+├── demo.sh                 one command: generate the feed + serve the web UI
+├── engine/
+│   ├── engine.py           the pipeline: ingest → dedupe → summarize → rank → deadlines
+│   │                       LLM via ollama-cloud (deepseek-v4-flash:0731) + FULL offline
+│   │                       fallback (regex deadlines + tf-idf ranking). Domain-agnostic:
+│   │                       feed ANY JSON items, works on any problem domain.
+│   └── signal.db           (generated, gitignored)
+├── webapp/
+│   ├── serve.py            zero-dependency HTTP server (stdlib only, python3)
+│   └── static/index.html   dark UI: digest, ranked feed, search, complaint board
+└── deck/
+    ├── deck-gen.js         pptxgenjs: ONE skeleton, 4 decks
+    ├── deck-agentic.pptx     BriefLens (agentic ops / approval gate)
+    ├── deck-multimodal.pptx  Kavach Circle (multimodal assistant + escalation)
+    ├── deck-creative.pptx    SignalStory (brief → asset with provenance)
+    └── deck-kavach.pptx      Kavach (call-security platform, real product)</code></pre>
+<h2>Quick start</h2>
+<pre><code class="language-bash"># generate the feed + serve the UI (LLM if OLLAMA_API_KEY set, offline otherwise)
+./demo.sh            # -&gt; http://localhost:8137
+
+# or run the engine directly
+cd engine
+python3 engine.py --seed --digest          # offline-safe digest
+OLLAMA_API_KEY=... python3 engine.py --seed --digest   # LLM mode
+python3 engine.py --seed --out feed.json   # full JSON result</code></pre>
+<h2>The pipeline (domain-agnostic)</h2>
+<ol>
+<li>INGEST: any JSON items (channel, sender, subject, body, received_at, tags)</li>
+<li>DEDUPE: normalized subject+body fingerprint</li>
+<li>SUMMARIZE: LLM one-liner (cached per item), or extractive offline</li>
+<li>RANK: sender authority + profile-tag overlap + recency + deadline pressure</li>
+<li>DEADLINES: regex extraction (multiple formats) + urgency flagging</li>
+<li>PERSIST: SQLite (Supabase-ready shape)</li>
+</ol>
+<p>Verified: 13/13 ad-hoc checks (offline + LLM mode, webapp end to end, decks).</p>
+<h2>On the night (Aug 15, 21:30 drop)</h2>
+<ol>
+<li>Read the drop for the company fingerprint (cue table in IDEA-BANK §5.5)</li>
+<li>Pick the matching deck + storyboard (4 pre-built)</li>
+<li>Swap the seed feed for the real domain (10-30 min, engine untouched)</li>
+<li>./demo.sh or play the video; submit before 06:00</li>
+</ol>
+</main>
+</body>
+</html>

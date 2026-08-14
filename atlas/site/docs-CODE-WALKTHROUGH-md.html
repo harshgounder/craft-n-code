@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/CODE-WALKTHROUGH.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/CODE-WALKTHROUGH.md</h1>
+  <p class="blurb">Every scaffold file explained function by function, with production lessons and audit how-to.</p>
+  <a class="open" href="../../docs/CODE-WALKTHROUGH.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>CODE-WALKTHROUGH - every file, every function, why it exists</h1>
+<p>Written 2026-08-14 for Harsh (Team 511 lead). Read this with the code open</p>
+<p>next to you. This covers the CURRENT scaffold (engine, webapp, deck, demo).</p>
+<p>The approval gate + trace viewer sections get appended when that build lands.</p>
+<hr>
+<h2>0. THE WHOLE SYSTEM IN ONE PARAGRAPH</h2>
+<p>You have a pipeline (engine.py): it takes raw messages from any channel,</p>
+<p>throws away near-duplicates, writes a one-line summary for each (using a</p>
+<p>real LLM when a key is present, using rules when it is not), ranks them by</p>
+<p>"how much do you need to care", and extracts deadlines. That result is</p>
+<p>saved into a tiny SQLite database (signal.db). A web server (serve.py,</p>
+<p>stdlib only) reads that database and serves it over HTTP as JSON. A single</p>
+<p>HTML page (index.html, no frameworks) fetches that JSON and paints it as a</p>
+<p>dark dashboard: a "today in 60 seconds" digest, a ranked feed, a search</p>
+<p>box, and a complaints board. The decks (deck-gen.js) are a separate story:</p>
+<p>one Node.js script generates 4 PowerPoint decks, each a different skin of</p>
+<p>the same idea, so on the night you pick the deck that matches the released</p>
+<p>problem and submit it as the mandatory PPT.</p>
+<p>Data flow: demo.sh -&gt; engine.py -&gt; signal.db -&gt; serve.py -&gt; index.html (browser).</p>
+<hr>
+<h2>1. demo.sh (19 lines) - the one-command runner</h2>
+<pre><code class="language-bash">#!/usr/bin/env bash
+set -euo pipefail
+PORT="${1:-8137}"
+cd "$(dirname "$0")"</code></pre>
+<ul>
+<li><code>set -euo pipefail</code>: bash safety flags. <code>-e</code> = exit on any error,</li>
+</ul>
+<p><code>-u</code> = error on undefined variables, <code>-o pipefail</code> = a failing command</p>
+<p>mid-pipe fails the whole pipe. This makes the script fail loudly instead</p>
+<p>of half-working silently. Production habit, always put this at the top.</p>
+<ul>
+<li><code>PORT="${1:-8137}"</code>: first argument is the port, default 8137 if none.</li>
+</ul>
+<p>The <code>:-</code> syntax means "if unset or empty, use the default".</p>
+<pre><code class="language-bash">if [ -n "${OLLAMA_API_KEY:-}" ]; then
+  echo "[demo] using ollama-cloud LLM"
+else
+  echo "[demo] no OLLAMA_API_KEY -&gt; offline mode (rule-based, zero network)"
+  export OLLAMA_API_KEY="${OLLAMA_API_KEY:-}"
+fi
+python3 engine/engine.py --seed --out webapp/static/demo-feed.json &gt;/dev/null</code></pre>
+<ul>
+<li>If the LLM key env var is set, the demo uses the real LLM. If not, it</li>
+</ul>
+<p>still works: the engine falls back to offline rules. This is the</p>
+<p>AFTERPACKETS lesson: the demo never depends on a network.</p>
+<ul>
+<li><code>python3 engine/engine.py --seed --out ...</code>: runs the pipeline on the</li>
+</ul>
+<p>built-in seed data and writes the JSON result. <code>&gt;/dev/null</code> hides the</p>
+<p>noisy progress output.</p>
+<pre><code class="language-bash">exec python3 webapp/serve.py --port "$PORT"</code></pre>
+<ul>
+<li><code>exec</code> replaces the shell process with the server process (so Ctrl+C</li>
+</ul>
+<p>kills the server directly). The last line is the actual product: a web</p>
+<p>server.</p>
+<p>NOTE (honest wart): the <code>--out webapp/static/demo-feed.json</code> file is not</p>
+<p>actually read by serve.py. serve.py reads signal.db (which engine.py also</p>
+<p>writes during the same run). demo-feed.json is a leftover artifact. It will</p>
+<p>become useful when the fixture/replay mode lands (offline deterministic</p>
+<p>replay). Nothing breaks, but know that it is currently dead weight.</p>
+<h2>2. engine/engine.py (433 lines) - the brain</h2>
+<h3>2.1 The data model: Item (lines 35-59)</h3>
+<pre><code class="language-python">@dataclass
+class Item:
+    channel: str            # where it came from: email | chat | portal | app | social | ticket
+    source_id: str          # unique id within that channel (e1, p1, t1...)
+    sender: str             # who sent it (Registrar Office, User (A. S.)...)
+    subject: str
+    body: str
+    received_at: str        # ISO timestamp
+    profile_tags: list      # tags describing YOU: ["2nd-year", "E&amp;CE", "hostel"]
+    kind: str = "notice"    # notice | complaint | deadline | event
+    summary: str = ""       # filled by the summarize step
+    rank_score: float = 0.0 # filled by the rank step
+    deadline: Optional[str] = None
+    deadline_iso: Optional[str] = None
+    is_urgent: bool = False</code></pre>
+<p>Why a dataclass? Because every item is the SAME shape everywhere: engine,</p>
+<p>database, JSON API, UI. One definition, no drift. This is the "schema</p>
+<p>first" habit: define your data shape once, then everything else is</p>
+<p>mechanical.</p>
+<pre><code class="language-python">def dedupe_key(self) -&gt; str:
+    s = re.sub(r"[^a-z0-9]+", "", (self.subject + " " + self.body).lower())[:120]
+    return s</code></pre>
+<ul>
+<li><code>dedupe_key</code>: a fingerprint of the item. Lowercase, strip everything that</li>
+</ul>
+<p>is not letters/digits, take the first 120 chars of subject+body. Two</p>
+<p>items that say the same thing produce the same fingerprint, so the</p>
+<p>pipeline can drop one. This is a cheap near-duplicate detector: it is</p>
+<p>not perfect (a 2-char difference changes the key) but it is zero-cost.</p>
+<pre><code class="language-python">def as_dict(self):
+    return asdict(self)</code></pre>
+<ul>
+<li>Converts the dataclass to a plain dict so it can be JSON-serialized.</li>
+</ul>
+<h3>2.2 The LLM layer: class LLM (lines 65-122)</h3>
+<pre><code class="language-python">class LLM:
+    def __init__(self, cache_path=CACHE_PATH):
+        ...
+        self.cache = json.loads(cache_path.read_text()) if cache_path.exists() else {}
+        self.hits = 0
+        self.misses = 0</code></pre>
+<ul>
+<li>The LLM object loads a DISK CACHE (<code>.llm_cache.json</code>) at startup. Every</li>
+</ul>
+<p>question it has already answered is stored there.</p>
+<pre><code class="language-python">def chat(self, system, user, max_tokens=400, temperature=0.2):
+    key = hashlib.sha256((system + "\x00" + user).encode()).hexdigest()[:32]
+    if key in self.cache:
+        self.hits += 1
+        return self.cache[key]
+    self.misses += 1
+    if not OLLAMA_KEY:
+        return None
+    ...</code></pre>
+<ul>
+<li>The cache key is a hash of (system prompt + user prompt). Same inputs =</li>
+</ul>
+<p>same hash = cache hit = no network call, no cost, fast, deterministic.</p>
+<ul>
+<li>If there is no API key at all, <code>chat</code> returns None and the caller falls</li>
+</ul>
+<p>back to offline rules. This is the "offline mode" backbone.</p>
+<ul>
+<li>If a key exists, it POSTs to ollama-cloud (OpenAI-compatible endpoint)</li>
+</ul>
+<p>using urllib (stdlib, zero dependencies). Any exception = return None =</p>
+<p>offline fallback. The demo NEVER dies.</p>
+<p>Why temperature 0.2? Low temperature = less creative, more consistent.</p>
+<p>For summarization and deadline extraction you want consistency, not poetry.</p>
+<h3>2.3 The offline fallback (lines 129-247) - pure rules, deterministic</h3>
+<pre><code class="language-python">MONTHS = {m: i + 1 for i, m in enumerate([...])}   # "jan" -&gt; 1 ... "dec" -&gt; 12
+DATE_PATTERNS = [ ... 4 regexes ... ]
+DEADLINE_WORDS = ["last date", "deadline", "due", "submit by", "before", "by "]
+URGENT_WORDS = ["urgent", "immediate", ..., "fee", "fine", "suspend", "ragging"]</code></pre>
+<ul>
+<li>4 regexes cover the common Indian date formats: "22 Aug 2026",</li>
+</ul>
+<p>"Aug 22, 2026", "22/08/2026", and "22 Aug" (year implied = nearest</p>
+<p>upcoming).</p>
+<ul>
+<li>DEADLINE_WORDS: a date only counts as a deadline if a deadline-ish word</li>
+</ul>
+<p>is near it, or the item kind IS a deadline. Prevents "the party was on</p>
+<p>15 Aug" from being flagged.</p>
+<ul>
+<li>URGENT_WORDS: words that bump the urgency score. Includes fee/fine/exam</li>
+</ul>
+<p>because in a campus context those are the scary ones.</p>
+<pre><code class="language-python">def parse_date(text, today) -&gt; Optional[date]: ...
+def offline_summarize(item) -&gt; str:
+    first = text.split("\n")[0]  # first sentence
+    ...truncate at 140 chars at a word boundary...
+    return f"{item.subject} | {first}"</code></pre>
+<ul>
+<li><code>offline_summarize</code> is extractive: it takes the first line and clips it.</li>
+</ul>
+<p>No intelligence, but it never fails. The LLM summary replaces this when</p>
+<p>available.</p>
+<pre><code class="language-python">def offline_rank(items, profile, today) -&gt; list[Item]:
+    # TF-IDF-ish: words that appear in few documents are more distinctive
+    ...
+    AUTHORITY = {"registrar": 5, "dean": 5, ..., "student": 1, "bot": 1}</code></pre>
+<p>The rank score is a weighted sum of 5 signals:</p>
+<ol>
+<li>Profile match (+2.5 max): does the item use words from YOUR tags</li>
+</ol>
+<p>("e&amp;ce", "hostel")? If yes, you should care.</p>
+<ol>
+<li>Sender authority (+5 to +1): Registrar outranks a random bot. This is a</li>
+</ol>
+<p>hardcoded table, the demo's stand-in for a learned trust model.</p>
+<ol>
+<li>Recency (+2 max): items 0-2 days old get full points, decays to 0 over</li>
+</ol>
+<p>a week. Fresh = relevant.</p>
+<ol>
+<li>Deadline pressure (+3 max): the closer the deadline, the higher. A</li>
+</ol>
+<p>MISSED deadline is -3 (punished, should have been handled).</p>
+<ol>
+<li>Urgency words (+1.2): "urgent", "fee", "fine"...</li>
+</ol>
+<p><code>is_urgent = score &gt;= 6.0</code>. Then items are sorted descending. This is the</p>
+<p>core "what should I care about" logic, and it is fully deterministic:</p>
+<p>same input, same output, forever. That is what makes it demoable offline.</p>
+<h3>2.4 The pipeline (lines 254-314)</h3>
+<pre><code class="language-python">SUMMARIZE_SYSTEM = ("You compress student notices to ONE line (max 140 chars)...")
+DEADLINE_SYSTEM = ("Extract the single most important deadline... Today is {today}.")</code></pre>
+<ul>
+<li>These are the system prompts. Notice the deadlines prompt tells the LLM</li>
+</ul>
+<p>what TODAY is, so "submit by Friday" resolves correctly. Context matters:</p>
+<p>an LLM without today's date cannot resolve relative dates.</p>
+<pre><code class="language-python">def llm_summarize(llm, item): 
+    out = llm.chat(SUMMARIZE_SYSTEM, ...)
+    return out.strip()[:160] if out else offline_summarize(item)
+
+def llm_deadline(llm, item, today):
+    out = llm.chat(...)
+    m = re.search(r"\d{4}-\d{2}-\d{2}", out)   # grab the ISO date from the answer
+    return m.group(0) if m else offline_extract_deadline(item, today)</code></pre>
+<ul>
+<li>Pattern: TRY LLM, FALL BACK TO RULES. The regex salvages even a messy</li>
+</ul>
+<p>LLM answer ("the deadline is 2026-08-19 for sure!") by extracting the</p>
+<p>ISO date pattern. Never trust the model's formatting; extract structure</p>
+<p>from its output.</p>
+<pre><code class="language-python">def dedupe(items):
+    seen = {}
+    for it in items:
+        k = it.dedupe_key()
+        if k in seen:
+            if it.received_at &gt; seen[k].received_at:  # keep the NEWER one
+                seen[k] = it
+        else:
+            seen[k] = it
+    return list(seen.values())</code></pre>
+<ul>
+<li>One dict, one pass. Duplicates resolved in favor of the newer item.</li>
+</ul>
+<pre><code class="language-python">def run_pipeline(items, profile, today=None) -&gt; dict:
+    today = today or date.today()
+    llm = LLM()
+    items = dedupe(items)
+    for it in items:
+        it.summary = llm_summarize(llm, it)
+        it.deadline_iso = llm_deadline(llm, it, today)
+    ranked = offline_rank(items, profile, today)
+    return {"generated_at": ..., "today": ..., "llm": {...}, "profile": ...,
+            "total": len(ranked), "items": [...]}</code></pre>
+<ul>
+<li>The orchestrator: dedupe -> summarize each -> extract each deadline -></li>
+</ul>
+<p>rank. Returns a self-describing JSON envelope: what model was used, how</p>
+<p>many cache hits, when it ran. That envelope is what the web layer serves.</p>
+<h3>2.5 Seed data (lines 321-372)</h3>
+<p><code>seed_items()</code> returns 8 notices + 3 complaints, all shaped like real MUJ</p>
+<p>communication (exam schedule, fee due, assignment, room change, hackathon</p>
+<p>regs, library fines, backlog forms + 3 facility complaints). This is the</p>
+<p>DEMO domain: on the night you replace this function's data (or the JSON</p>
+<p>feed) with the problem statement's domain. The pipeline itself never</p>
+<p>changes. That is the whole strategy: ONE engine, swap the seed.</p>
+<h3>2.6 CLI + persistence (lines 379-433)</h3>
+<pre><code class="language-python">ap.add_argument("--seed", ...)  # run on demo data
+ap.add_argument("--json", ...)  # dump full JSON
+ap.add_argument("--digest", ...)# print the "today in 60 seconds" digest</code></pre>
+<ul>
+<li><code>--digest</code> prints the urgent items + top 5. This is the terminal version</li>
+</ul>
+<p>of the UI digest. Great for a quick live check during the demo.</p>
+<pre><code class="language-python">conn.execute("DROP TABLE IF EXISTS items")
+conn.execute("""CREATE TABLE items (...)""")
+for it in result["items"]:
+    conn.execute("INSERT INTO items VALUES (?,?,?,?,?,?,?,?,?,?,?)", (...))
+conn.commit()</code></pre>
+<ul>
+<li>Writes to signal.db with a hard schema. NOTE: it DROPS and recreates the</li>
+</ul>
+<p>table every run. Fine for a demo (always fresh), but in production you</p>
+<p>would use INSERT OR REPLACE and never drop. The comment says</p>
+<p>"Supabase-ready shape": same column names would map to a Postgres table</p>
+<p>if we ever move to Supabase for the nationals build.</p>
+<h2>3. webapp/serve.py (193 lines) - the zero-dependency web layer</h2>
+<h3>3.1 load_feed (lines 41-64)</h3>
+<pre><code class="language-python">FEED_CACHE = None   # module-level cache: computed ONCE per server process
+def load_feed(profile=None):
+    global FEED_CACHE
+    if FEED_CACHE is not None: return FEED_CACHE
+    if DB.exists():  # read items from signal.db
+        rows = conn.execute("SELECT ... FROM items").fetchall()
+        ... rebuild Item objects ...
+    # no db -&gt; run the engine fresh
+    FEED_CACHE = E.run_pipeline(E.seed_items(), profile)
+    return FEED_CACHE</code></pre>
+<ul>
+<li>Strategy: DB first (fast, deterministic, already computed), engine fresh</li>
+</ul>
+<p>only if no DB. Result cached in memory for the server's lifetime. Every</p>
+<p>API call after the first is instant.</p>
+<ul>
+<li>The <code>global FEED_CACHE</code> is the simplest cache there is. In production</li>
+</ul>
+<p>you would use a proper cache layer, but for a demo this is correct and</p>
+<p>honest.</p>
+<h3>3.2 search (lines 67-78)</h3>
+<pre><code class="language-python">def search(items, q, top=5):
+    terms = [t for t in re.findall(r"[a-z0-9]{2,}", q.lower())]
+    ...
+    s = sum(hay.count(t) * (2 if t in it["subject"].lower() else 1) for t in terms)</code></pre>
+<ul>
+<li>Keyword scoring: count how often each query word appears in</li>
+</ul>
+<p>subject+body+summary+sender, double-weight subject hits. Sort by score,</p>
+<p>return top 5. This is "semantic-ish" search: honest keyword ranking, no</p>
+<p>embeddings, zero deps. On the night, this is what answers "what is due</p>
+<p>this week?" in the demo.</p>
+<h3>3.3 route (lines 81-148) - the entire API in one function</h3>
+<pre><code class="language-python">if parts[0] == "api":
+    feed = load_feed()
+    if parts[1] == "feed":     return json_reply(handler, feed)
+    if parts[1] == "digest":   ... urgent + top 5 ...
+    if parts[1] == "search":   ... query param q ...
+    if parts[1] == "complaints": GET lists, POST adds a ticket
+    if parts[1] == "stats":    ... channel counts, deadlines, skin_ready ...</code></pre>
+<ul>
+<li>Every endpoint is 3-10 lines. The POST /api/complaints handler (lines</li>
+</ul>
+<p>122-134) shows the pattern for POST: parse JSON body, build a new item</p>
+<p>with a generated ticket id (#C-115 style), return 201 with the ticket</p>
+<p>number. This is the template the approval gate endpoints will follow.</p>
+<h3>3.4 json_reply + Handler (lines 151-181)</h3>
+<pre><code class="language-python">def json_reply(handler, obj, code=200):
+    data = json.dumps(obj).encode()
+    handler.send_response(code)
+    handler.send_header("Content-Type", "application/json")
+    handler.send_header("Content-Length", str(len(data)))
+    handler.end_headers()
+    handler.wfile.write(data)</code></pre>
+<ul>
+<li>Every JSON response goes through one function: correct Content-Type,</li>
+</ul>
+<p>correct Content-Length, correct status code. One place to fix if</p>
+<p>something is wrong.</p>
+<pre><code class="language-python">class Handler(BaseHTTPRequestHandler):
+    def _serve(self, method):
+        parsed = urllib.parse.urlparse(self.path)
+        body = None
+        if method == "POST":
+            length = int(self.headers.get("Content-Length") or 0)
+            if length:
+                body = json.loads(self.rfile.read(length).decode())
+        route(self, self.path, method, body)</code></pre>
+<ul>
+<li><code>BaseHTTPRequestHandler</code> is the stdlib HTTP server. This class adapts it:</li>
+</ul>
+<p>parse the URL, read the POST body as JSON, delegate to route(). The</p>
+<p><code>log_message</code> override silences the per-request logging noise.</p>
+<h2>4. webapp/static/index.html (245 lines) - the UI</h2>
+<h3>4.1 The design system (lines 8-12)</h3>
+<pre><code class="language-css">:root{
+  --bg:#0B1020; --panel:#141B33; --panel2:#1B2440; --line:#263055;
+  --txt:#E8ECF8; --mut:#93A0C4; --accent:#6C5CE7; --accent2:#00CE8F;
+  --warn:#FFB020; --danger:#FF5470; --chip:#202A4E;
+}</code></pre>
+<ul>
+<li>CSS custom properties = one palette, used everywhere. Change one variable,</li>
+</ul>
+<p>the whole app re-themes. This is the same "define once, use everywhere"</p>
+<p>habit as the Item dataclass. The dark navy/purple/mint theme is the</p>
+<p>Signal look.</p>
+<h3>4.2 The page structure (lines 76-135)</h3>
+<ul>
+<li>header: logo + status chips (llm mode, item count)</li>
+<li>digest section: "Today in 60 seconds"</li>
+<li>stats section: 4 stat cards</li>
+<li>tabs: Feed / Ask / Complaints (a fourth tab, Actions, is coming with the</li>
+</ul>
+<p>approval gate)</p>
+<ul>
+<li>three views, toggled with the <code>.hide</code> class</li>
+<li>footer: honest line: "Demo runs on pre-imported campus data. Zero</li>
+</ul>
+<p>external services needed."</p>
+<h3>4.3 The JavaScript (lines 137-243)</h3>
+<pre><code class="language-js">const $ = id =&gt; document.getElementById(id);          // shorthand
+let FEED = {items: []};
+async function jget(u){ const r = await fetch(u); return r.json() }  // GET + parse</code></pre>
+<ul>
+<li><code>$</code> is a one-character DOM shortcut. <code>jget</code> is the fetch wrapper: every</li>
+</ul>
+<p>GET in the app goes through it.</p>
+<pre><code class="language-js">async function load(){
+  const [feed, digest, stats] = await Promise.all([
+    jget('/api/feed'), jget('/api/digest'), jget('/api/stats')]);
+  ...
+}</code></pre>
+<ul>
+<li>Promise.all: fetch all three endpoints CONCURRENTLY, wait for all. The</li>
+</ul>
+<p>UI paints once, not three times.</p>
+<ul>
+<li>renderStats builds 4 stat cards from /api/stats. renderDigest paints the</li>
+</ul>
+<p>urgent items with a URGENT tag + deadline. renderFeed paints the ranked</p>
+<p>cards with rank number, channel icon, subject, summary, sender, deadline.</p>
+<pre><code class="language-js">const CH_ICON = {email:'📧', portal:'🏛', chat:'💬', app:'📱', social:'📸', ticket:'🛠'};</code></pre>
+<ul>
+<li>Channel -> emoji map. Small touches sell the demo.</li>
+</ul>
+<pre><code class="language-js">async function doSearch(){ ... fetch('/api/search?q='+encodeURIComponent(q)) ... }</code></pre>
+<ul>
+<li>encodeURIComponent is IMPORTANT: it escapes the query so "what's due?"</li>
+</ul>
+<p>does not break the URL. Always encode user input in URLs.</p>
+<pre><code class="language-js">const SLA = [['open',1.0], ['in-progress',.6], ['fixed',0]];</code></pre>
+<ul>
+<li>Complaint status -> progress bar width. A ticket that is "open" shows a</li>
+</ul>
+<p>full bar (100% of its SLA budget used), "in-progress" 60%, "fixed" 0%.</p>
+<pre><code class="language-js">function esc(s){
+  return (s||'').replace(/[&amp;&lt;&gt;"]/g, c =&gt; ({'&amp;':'&amp;amp;','&lt;':'&amp;lt;','&gt;':'&amp;gt;','"':'&amp;quot;'}[c]));
+}</code></pre>
+<ul>
+<li>THE most important function in the file. It HTML-escapes any text that</li>
+</ul>
+<p>came from user input or the LLM before injecting it into innerHTML.</p>
+<p>Without this, a notice containing <code>&lt;script&gt;</code> would execute in the demo.</p>
+<p>This is XSS prevention, the security habit that matters. NEVER inject</p>
+<p>unescaped user/LLM text into innerHTML.</p>
+<pre><code class="language-js">document.querySelectorAll('.tab').forEach(t =&gt; t.onclick = () =&gt; { ...toggle .hide... });</code></pre>
+<ul>
+<li>Tab switching: click a tab, hide all views except the matching one.</li>
+</ul>
+<h2>5. deck/deck-gen.js (259 lines) - 4 decks from one skeleton</h2>
+<h3>5.1 The data: IDEAS (lines 11-156)</h3>
+<p>Four objects, one per deck: agentic (BriefLens), multimodal (Kavach</p>
+<p>Circle), creative (SignalStory), kavach. Each has: accent color, title,</p>
+<p>tagline, problemTitle, problem[], solutionTitle, solution[], demo[],</p>
+<p>impact[][], roadmap[][]. THE CONTENT IS THE DECK. The code below is just a</p>
+<p>painter for this data.</p>
+<h3>5.2 The painter: build(idea) (lines 162-257)</h3>
+<pre><code class="language-js">const p = new pptxgen();
+p.defineLayout({ name: "W", width: 13.33, height: 7.5 });  // 16:9 widescreen</code></pre>
+<ul>
+<li>pptxgenjs is the ONLY external dependency in the whole scaffold (a node</li>
+</ul>
+<p>package, used at build time only, not in the demo).</p>
+<ul>
+<li>S1 Title: navy background, accent stripe, big title, tagline, team line,</li>
+</ul>
+<p>speaker notes attached (s.addNotes).</p>
+<ul>
+<li>S2 Problem: white slide, "The Problem" header, problemTitle, 3 numbered</li>
+</ul>
+<p>problem lines.</p>
+<ul>
+<li>S3 Solution: navy, 4 rounded rect cards.</li>
+<li>S4 Live Demo: "Live Demo (3 minutes)", 4 numbered steps, plus the backup</li>
+</ul>
+<p>line: "Pre-recorded demo video ready if projector or network fails."</p>
+<ul>
+<li>S5 Impact: 3 big numbers (e.g. "1 feed replaces N channels", "10s to</li>
+</ul>
+<p>know what needs action", "0 actions missed").</p>
+<ul>
+<li>S6 Roadmap: 24h / 1 wk / 1 mo / 90d boxes.</li>
+<li>S7 Team: 3 member cards with emoji + role.</li>
+</ul>
+<pre><code class="language-js">Object.values(IDEAS).forEach(build);</code></pre>
+<ul>
+<li>One loop, 4 files: deck-agentic.pptx, deck-multimodal.pptx,</li>
+</ul>
+<p>deck-creative.pptx, deck-kavach.pptx.</p>
+<p>Why decks matter MORE now: the live API intel (INTEL-20260814-EVENING.md)</p>
+<p>shows the submission is PPT-ONLY (pdf/pptx, 50MB). The deck IS the</p>
+<p>submission. On the night: pick the deck matching the sponsor fingerprint,</p>
+<p>possibly tweak the problem lines, regenerate with <code>node deck-gen.js</code>,</p>
+<p>upload. If we need to restate the actual problem statement, add a slide.</p>
+<h2>5.5 THE APPROVAL GATE (built Aug 14 evening, verified 13/13)</h2>
+<p>This is the answer to the rank-1 predicted shape: "trustworthy agent with</p>
+<p>approved tools". Three files changed: a new engine/approval.py (the policy</p>
+<p>core), serve.py (5 new endpoints), index.html (Actions tab).</p>
+<h3>approval.py (256 lines) - the policy core</h3>
+<ul>
+<li>Side-effect classes are module constants: READ_ONLY, REVERSIBLE,</li>
+</ul>
+<p>SIDE_EFFECTING. One source of truth for the whole file.</p>
+<ul>
+<li>Tool dataclass: name, description, params (schema-ish), side_effect.</li>
+<li>TOOL_REGISTRY: 4 typed tools. lookup_room = read-only (harmless, can</li>
+</ul>
+<p>auto-run), send_reminder = reversible (a reminder can be unsent),</p>
+<p>submit_form + pay_fee = side-effecting (real consequences, MUST ask).</p>
+<p>This registry is the "what can the agent do" contract. In production</p>
+<p>this would be the allowlist enforced by the runtime.</p>
+<ul>
+<li>Proposal dataclass: id (P-N), tool, params, reason, evidence[],</li>
+</ul>
+<p>confidence, status, created_at, decided_at, actor.</p>
+<ul>
+<li>gate(tool): the policy function. read-only -> "auto", reversible -></li>
+</ul>
+<p>"suggest", side-effecting -&gt; "require". Pure function, trivially testable.</p>
+<ul>
+<li>SQLite: two tables created with CREATE TABLE IF NOT EXISTS (never drops</li>
+</ul>
+<p>the items table). proposals stores params/evidence as JSON text,</p>
+<p>audit_events has AUTOINCREMENT id + ts + actor + decision + snapshot of</p>
+<p>the whole proposal (tool, params, evidence, reason). The snapshot means</p>
+<p>the audit is self-contained: even if the proposal row changes, the audit</p>
+<p>row remembers exactly what was decided.</p>
+<ul>
+<li>propose(): creates the proposal, applies the gate. If gate == auto</li>
+</ul>
+<p>(read-only), it IMMEDIATELY flips status to executed with actor</p>
+<p>"system" and writes an audit row ("auto-execute"). Reversible and</p>
+<p>side-effecting stay pending until a human acts. So even the "free" tools</p>
+<p>are audited: nothing happens invisibly.</p>
+<ul>
+<li>decide(): the human's action. THE GUARD (audit finding, fixed round 2):</li>
+</ul>
+<p>if the proposal is not pending/snoozed, it returns unchanged, writes NO</p>
+<p>audit row. This stops double-clicks from creating fake history. Then:</p>
+<p>approve -&gt; reversible becomes APPROVED, side-effecting becomes EXECUTED;</p>
+<p>reject -&gt; REJECTED; snooze -&gt; SNOOZED. The audit row is written BEFORE</p>
+<p>the status UPDATE (the "audit-before-status-flip" invariant).</p>
+<ul>
+<li>list_proposals() / list_audit(): newest first.</li>
+</ul>
+<p>Why this impresses judges: it is the human-in-the-loop story made real.</p>
+<p>"AI proposes, a human approves, every decision is logged" is the exact</p>
+<p>language of the rank-1 predicted problem.</p>
+<h3>serve.py - the 5 new endpoints</h3>
+<ul>
+<li>propose_for_item(item_id, tool, params): looks the item up in the feed,</li>
+</ul>
+<p>validates the tool exists, builds evidence from the item's summary,</p>
+<p>builds a reason from the tool description + item subject + sender, and</p>
+<p>maps rank_score to a 0-1 confidence (clamped). Then calls A.propose().</p>
+<ul>
+<li>GET /api/tools -> the registry (name, description, side_effect, params).</li>
+<li>GET /api/proposals -> all proposals, newest first.</li>
+<li>POST /api/proposals -> create one (201, or 404 if item/tool unknown).</li>
+<li>POST /api/approve -> {proposal_id, decision, actor}; decision whitelist</li>
+</ul>
+<p>checked server-side (approve/reject/snooze), 400 on bad decision, 404</p>
+<p>on unknown proposal, 405 on GET.</p>
+<ul>
+<li>GET /api/audit -> every audit event, newest first.</li>
+</ul>
+<h3>index.html - the Actions tab</h3>
+<ul>
+<li>New 4th tab: Actions. Proposal cards show tool name, confidence %,</li>
+</ul>
+<p>status chip (color-coded: pending amber, executed mint, approved violet,</p>
+<p>rejected/snoozed red), reason, params (monospace), collapsible evidence</p>
+<p>panel, and APPROVE/REJECT/SNOOZE buttons.</p>
+<ul>
+<li>Buttons disable once a proposal is decided (status no longer pending).</li>
+<li>Below the cards: the audit trail table (when, who, decision, tool).</li>
+<li>Security note: every dynamic string goes through esc() (the XSS guard</li>
+</ul>
+<p>from section 4.3). Proposal ids and statuses are server-generated, so</p>
+<p>the onclick interpolation is safe for demo data.</p>
+<h3>The test suite (tests/test_approval.py, 196 lines)</h3>
+<ul>
+<li>Plain python3, zero deps. Starts the REAL server on port 8123 against</li>
+</ul>
+<p>the real DB, exercises every endpoint, and reports G1-G13 pass/fail.</p>
+<ul>
+<li>It even restarts the server mid-test (G8: persistence across restart).</li>
+<li>G13 does a bash -n syntax check on demo.sh (audit fix, round 2).</li>
+<li>Run it yourself: cd scaffold && python3 tests/test_approval.py</li>
+</ul>
+<p>How to demo it on stage (30 seconds): open Actions -&gt; propose pay_fee -&gt;</p>
+<p>card appears PENDING -&gt; click evidence, click APPROVE -&gt; status flips to</p>
+<p>EXECUTED -&gt; scroll to audit trail -&gt; the row is there with the actor.</p>
+<p>"Nothing happens without a human, and everything is logged."</p>
+<h2>5.6 TRACE VIEWER + FIXTURE REPLAY (Part 2, verified 12/12)</h2>
+<p>The demo-failure insurance. Three modes on screen: LIVE (real LLM),</p>
+<p>CACHED (replayed responses), OFFLINE (deterministic rules), FIXTURE</p>
+<p>(golden data). Judges see a candid mode badge instead of a frozen demo.</p>
+<h3>engine.py changes (trace capture, no behavior change)</h3>
+<ul>
+<li>TRACE: deque(maxlen=200) ring buffer + push_trace(step) (stamps ts) +</li>
+</ul>
+<p>get_trace() (newest first).</p>
+<ul>
+<li>LLM.last_mode: "llm" | "cache" | "offline", set on every chat() path.</li>
+<li>LLM.chat() reads OLLAMA_API_KEY / SIGNAL_MODEL / OLLAMA_BASE_URL</li>
+</ul>
+<p>LAZILY from os.environ at call time, not at import. This was a real</p>
+<p>bug found in audit: serve.py --offline blanks the env var AFTER engine</p>
+<p>import, so the module-global key stayed set and the LLM was still</p>
+<p>called. Now --offline truly forces offline even with a key present</p>
+<p>(regression-tested: T-offline-key).</p>
+<ul>
+<li>Exception path sets last_mode = "offline" before returning None (audit</li>
+</ul>
+<p>nit: stale mode after a failed call).</p>
+<ul>
+<li>run_pipeline pushes 4 steps: ingest (n), dedupe (dropped/kept),</li>
+</ul>
+<p>summarize (mode + per-item modes), rank (top3 with score + why via</p>
+<p>_rank_why).</p>
+<ul>
+<li>SCAM_WORDS: urgent-sounding scam phrases ("click", "claim", "prize",</li>
+</ul>
+<p>"gift card", "act now"...). offline_rank caps such items at 5.0 so a</p>
+<p>scam item can never hit is_urgent (6.0) or rank first (T5).</p>
+<h3>serve.py changes</h3>
+<ul>
+<li>--fixture NAME loads scaffold/fixtures/NAME.json as Items and runs the</li>
+</ul>
+<p>pipeline on it instead of the DB/seed. --offline forces offline mode.</p>
+<ul>
+<li>current_mode(): fixture > offline > cached > live. OFFLINE is checked</li>
+</ul>
+<p>BEFORE FIXTURE so --offline wins the badge.</p>
+<ul>
+<li>/api/stats gains "mode". /api/trace returns the ring buffer.</li>
+</ul>
+<h3>index.html changes</h3>
+<ul>
+<li>Mode chip in the header ("mode: live/cached/offline/fixture").</li>
+<li>Collapsible Engine Trace drawer: human-readable summary per step</li>
+</ul>
+<p>("received 6 items", "dropped 1 near-duplicates, kept 4", "summarized</p>
+<p>6 items in offline mode") + raw JSON expandable, all esc() escaped.</p>
+<h3>fixtures/ (the golden data)</h3>
+<ul>
+<li>happy.json: 6 benign items, authority senders dominate; expected top3</li>
+</ul>
+<p>= happy-1/happy-3/happy-5 + a pay_fee proposal expectation.</p>
+<ul>
+<li>ambiguous.json: amb-1/amb-2 near-duplicates (dedupe keeps one, drops</li>
+</ul>
+<p>the other), low-confidence social items rank last.</p>
+<ul>
+<li>adversarial.json: a scam-ish urgent item (adv-1) with scam words; it</li>
+</ul>
+<p>must NOT rank first (capped at 5.0). expected top3 = adv-2/adv-3/adv-1.</p>
+<ul>
+<li>expected_*.json: the ground truth each fixture asserts against.</li>
+</ul>
+<h3>tests/test_trace.py (12/12)</h3>
+<p>T1 fixture top3 + mode badge, T2 trace steps + rank top3 with scores,</p>
+<p>T3 --offline with key set (the bug regression), T4 cached DB mode,</p>
+<p>T5 scam not first in adversarial, T6 ambiguous dedupe drops dupe.</p>
+<p>Run: cd scaffold &amp;&amp; python3 tests/test_trace.py</p>
+<h3>The stage story for this feature</h3>
+<p>Mode badge + trace drawer = "here is exactly what the engine did and</p>
+<p>why, nothing is a black box". If the LLM dies mid-demo, flip to</p>
+<p>--offline and the demo still works. That is the zero-dependency rule</p>
+<p>made visible.</p>
+<h2>6. PRODUCTION LESSONS (what changes if this becomes real)</h2>
+<p>The scaffold is deliberately simple: stdlib only, no frameworks, no auth.</p>
+<p>That is a FEATURE for the hackathon (nothing to install, nothing to break,</p>
+<p>judges can run it on any laptop). But you asked to learn production, so</p>
+<p>here is the honest diff between this and a production app:</p>
+<ol>
+<li>Server: FastAPI/Flask instead of BaseHTTPRequestHandler (routing,</li>
+</ol>
+<p>validation, OpenAPI docs for free). Still python.</p>
+<ol>
+<li>Auth: real login (session or JWT), roles (admin vs user), and the</li>
+</ol>
+<p>audit log keyed to authenticated actors, not a "judge" string.</p>
+<ol>
+<li>Database: Postgres instead of SQLite, migrations (Alembic), no DROP</li>
+</ol>
+<p>TABLE on startup. SQLite is fine for a single laptop demo.</p>
+<ol>
+<li>LLM calls: async, retries with backoff, timeouts, budget tracking,</li>
+</ol>
+<p>structured output parsing (JSON schema), fallback chains across</p>
+<p>providers, PII redaction before sending.</p>
+<ol>
+<li>Frontend: a framework (React/Vue) or at least build tooling; but note</li>
+</ol>
+<p>the no-dependency single-file page has real value for demos and</p>
+<p>offline reliability.</p>
+<ol>
+<li>Tests: pytest suite + CI (GitHub Actions), the acceptance tests we are</li>
+</ol>
+<p>writing for the approval gate are exactly the shape of a real test</p>
+<p>suite. Test the pipeline with golden fixtures (deterministic inputs,</p>
+<p>expected outputs).</p>
+<ol>
+<li>Observability: structured logs (JSON lines), metrics, a trace of every</li>
+</ol>
+<p>decision. The /api/trace endpoint we are building is a mini version of</p>
+<p>this.</p>
+<ol>
+<li>Security: rate limiting, input validation on every POST, escaping on</li>
+</ol>
+<p>every render (esc() everywhere), no secrets in code (env vars only).</p>
+<ol>
+<li>Deployment: container (Docker), reverse proxy (nginx/Caddy), managed</li>
+</ol>
+<p>host. For the demo, <code>python3 serve.py</code> on a laptop is the deployment.</p>
+<ol>
+<li>The one pattern that transfers as-is: TRY LLM, FALL BACK TO RULES,</li>
+</ol>
+<p>EXTRACT STRUCTURE FROM OUTPUT. That survives in every production AI</p>
+<p>app.</p>
+<h2>7. HOW TO AUDIT THE CODE YOURSELF (verify, don't trust)</h2>
+<pre><code class="language-bash">cd ~/craft-n-code/scaffold
+./demo.sh &amp;                      # starts server on :8137
+curl -s localhost:8137/api/stats | python3 -m json.tool   # stats
+curl -s localhost:8137/api/feed | python3 -m json.tool    # full feed
+curl -s "localhost:8137/api/search?q=fee" | python3 -m json.tool  # search
+curl -s localhost:8137/api/digest | python3 -m json.tool  # digest
+python3 engine/engine.py --seed --digest                  # engine alone
+node deck/deck-gen.js                                     # regenerate decks</code></pre>
+<p>Read order for full understanding: demo.sh (what runs) -&gt; engine.py</p>
+<p>(the brain) -&gt; serve.py (the API) -&gt; index.html (the face) -&gt; deck-gen.js</p>
+<p>(the deck painter). ~90 minutes at a relaxed pace, ~30 if you skim the</p>
+<p>offline regex parts.</p>
+</main>
+</body>
+</html>

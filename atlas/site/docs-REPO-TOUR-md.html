@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/REPO-TOUR.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/REPO-TOUR.md</h1>
+  <p class="blurb">The map of the whole repo: what lives where, why, and the reading order. Start here.</p>
+  <a class="open" href="../../docs/REPO-TOUR.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>REPO-TOUR - where everything lives and why (read this before anything else)</h1>
+<p>Written 2026-08-14 for Team 511. The repo looks like a wall of files. This</p>
+<p>file is the map. After this, read IDEA-BANK.md and WAVE-SYNTHESIS.md, those</p>
+<p>two are the only files that matter for the night.</p>
+<h2>The 30-second version</h2>
+<ul>
+<li><code>research/</code> = the intel. Why we win: we know the format, the sponsors, the</li>
+</ul>
+<p>judges, the winners, the losers, the numbers, the schedule.</p>
+<ul>
+<li><code>scaffold/</code> = the weapon. A working product skeleton we can re-skin in</li>
+</ul>
+<p>15-40 minutes no matter what the problem statement says.</p>
+<ul>
+<li><code>docs/</code> = the stage kit. Storyboards, build specs, tour (this file).</li>
+<li><code>scripts/</code> = small automation (feed data helpers).</li>
+<li>Top-level files: README.md (war-room index), CONTINUATION-PROMPT.md (the</li>
+</ul>
+<p>reset file for new AI sessions), INDEX.md (file-by-file index, boring but</p>
+<p>complete).</p>
+<h2>The only files you need to read (in this order, ~25 min total)</h2>
+<ol>
+<li><code>research/IDEA-BANK.md</code> - THE playbook. Pre-built answers for each</li>
+</ol>
+<p>sponsor-shaped question, the decision tree that fires 10 minutes after</p>
+<p>the 21:30 problem drop. This is what we run the night on.</p>
+<ol>
+<li><code>research/WAVE-SYNTHESIS.md</code> - WHY one shared engine wins: the 5 most</li>
+</ol>
+<p>likely problem shapes all share one pipeline (input -&gt; extraction -&gt;</p>
+<p>evidence -&gt; ranking -&gt; proposal -&gt; approval -&gt; audit). Also the gaps we</p>
+<p>are filling right now and the hour-by-hour execution plan.</p>
+<ol>
+<li><code>scaffold/README.md</code> - how to run the engine, webapp, and decks.</li>
+<li><code>docs/BUILD-SPEC.md</code> - what we are building right now (approval gate +</li>
+</ol>
+<p>trace viewer) and how it will be tested.</p>
+<h2>research/ - the intel (40+ files, grouped)</h2>
+<h3>Strategy (the brain, read these)</h3>
+<ul>
+<li><code>IDEA-BANK.md</code> - pre-built ideas A/B/C/D + decision tree + company-lane</li>
+</ul>
+<p>protocol + risk table + action plan. THE playbook.</p>
+<ul>
+<li><code>WAVE-SYNTHESIS.md</code> - 5 ranked predicted problem shapes + common</li>
+</ul>
+<p>denominator + gaps table + 8.5h execution plan.</p>
+<ul>
+<li><code>CHEATSHEET-BRIEF.md</code> - what matters most to judges, what each sponsor</li>
+</ul>
+<p>makes and looks for, hottest tech for a 24h build.</p>
+<ul>
+<li><code>GAP-MAP.md</code> - what intel we do NOT have yet and how to get it. Source of</li>
+</ul>
+<p>truth for the research waves we are running now.</p>
+<h3>Deep-research reports (the heavy lifting, 6 runs)</h3>
+<ul>
+<li><code>company-lanes/cnc-company-lanes-pass1.content.md</code> - 5 named skins per</li>
+</ul>
+<p>sponsor (65K chars).</p>
+<ul>
+<li><code>company-lanes/cnc-company-lanes-pass2.content.md</code> - the honest one:</li>
+</ul>
+<p>no public proof the sponsors write the questions, but the 3 ranked</p>
+<p>predicted shapes (DEEP 90.1, 111 cites).</p>
+<ul>
+<li><code>company-lanes/cnc-sponsor-products.content.md</code> - what each sponsor makes</li>
+<li>looks for (68K, 230 cites).</li>
+<li><code>company-lanes/cnc-winner-anatomy.content.md</code> - why winners win, the</li>
+</ul>
+<p>zero-dependency rule (62K).</p>
+<ul>
+<li><code>company-lanes/cnc-problem-lanes.content.md</code> - the 5 ranked predicted</li>
+</ul>
+<p>problems + build cards + kill criteria (78K, 333 cites).</p>
+<ul>
+<li><code>company-lanes/cnc-state-rounds.content.md</code> - honest negative: no</li>
+</ul>
+<p>state-round problems publicly recoverable (42K).</p>
+<ul>
+<li><code>prompts/</code> - the prompts used for those runs, saved so we can re-fire.</li>
+</ul>
+<h3>The competition (who we are up against)</h3>
+<ul>
+<li><code>COMPETITIVE-INTEL-DOSSIER.md</code> - org lineage, editions, people, sponsors.</li>
+<li><code>MASTER-DOSSIER.md</code> - everything in one file (older v2 synthesis).</li>
+<li><code>RAJASTHAN-LISTING-1730314.md</code> - our round's Unstop listing.</li>
+<li><code>COMPETITOR-POOL.md</code> - 20-team threat matrix + empty-lane strategy.</li>
+<li><code>PARTICIPANT-UNIVERSE.md</code> - 25+ past participant repos.</li>
+<li><code>REJECTED-LOST-ENTRIES.md</code> - why losers lost (the anti-patterns).</li>
+<li><code>WINNER-REVERSE-ENGINEERING.md</code> + <code>WINNER-EXACT-DEEP-DIVE.md</code> - AFTERPACKETS</li>
+</ul>
+<p>(2025 winners) full stack + why-it-won argument.</p>
+<ul>
+<li><code>JUDGE-DOSSERIS.md</code> - the 6 judges' backgrounds + how-to-win matrix.</li>
+</ul>
+<h3>Problem history (format forensics)</h3>
+<ul>
+<li><code>raw/rnr-phase1-full.txt</code> + <code>raw/rnr-phase2-full.txt</code> - the 2025 problems</li>
+</ul>
+<p>VERBATIM. The format template: "The Problem / Your 24-Hour Mission /</p>
+<p>Required MVP (bullets) / Bonus Goal".</p>
+<ul>
+<li><code>2024-STATE-QUALIFIER-FORMAT.md</code> - RVCE round format, top-2 advance.</li>
+<li><code>2025-FINALS-ROSTER.md</code>, <code>D3FEST-*-PROBLEMS.md</code> - older editions.</li>
+<li><code>EVENT-SITE-FORENSICS.md</code> + <code>-v4.md</code> - the 2026 event site source code</li>
+</ul>
+<p>analysis (tracks, submission flow, admin console).</p>
+<h3>People (who to ask / who judges)</h3>
+<ul>
+<li><code>PEOPLE-DOSSIER-CSC.md</code> - CSC MUJ full roster.</li>
+<li><code>PEOPLE-DOSSIER-TECHSOC.md</code> - Tech Society IIIT-B roster.</li>
+<li><code>RABBITT-AI-DOSSIER.md</code>, <code>NEXORA-FORENSICS.md</code> - partner orgs.</li>
+</ul>
+<h3>State (live data, machine-written)</h3>
+<ul>
+<li><code>watch-state.json</code> - watchdog's last probe of every Unstop listing.</li>
+<li><code>INTEL-20260814-EVENING.md</code> - tonight's live API findings: submission =</li>
+</ul>
+<p>PPT-only (pdf/pptx 50MB), resubmission allowed, judge buttons, site URLs.</p>
+<ul>
+<li><code>RE-AUDIT-FINDINGS.md</code> - every correction from the Aug 14 sweep.</li>
+<li><code>2025-STATE-SWEEP.md</code>, <code>STATE-QUALIFIER-SCAN.md</code> - state round maps.</li>
+</ul>
+<h2>scaffold/ - the weapon (VERIFIED working)</h2>
+<ul>
+<li><code>engine/engine.py</code> - the pipeline: ingest -> dedupe -> LLM summarize -></li>
+</ul>
+<p>rank -&gt; deadlines. Works with a live LLM (ollama-cloud) AND fully offline</p>
+<p>(regex + tf-idf). The demo never dies. Domain-agnostic: feed it ANY JSON</p>
+<p>items, it ranks them.</p>
+<ul>
+<li><code>engine/signal.db</code> - sqlite database the engine writes to (generated).</li>
+<li><code>webapp/serve.py</code> - zero-dependency python HTTP server (stdlib only).</li>
+</ul>
+<p>Serves the feed/digest/search/complaints over HTTP so any machine with</p>
+<p>python3 can demo. (Approval endpoints being added now.)</p>
+<ul>
+<li><code>webapp/static/index.html</code> - the dark UI: digest, ranked feed, search,</li>
+</ul>
+<p>requests board. Single file, no frameworks.</p>
+<ul>
+<li><code>deck/deck-gen.js</code> - one pptxgenjs skeleton that generates 4 decks</li>
+</ul>
+<p>(agentic/multimodal/creative/kavach). Each deck is a skin of the same</p>
+<p>story, schema-validated.</p>
+<ul>
+<li><code>demo.sh</code> - one command: generate feed + serve UI.</li>
+<li><code>README.md</code> - how to run everything, modes, seed swap.</li>
+</ul>
+<h2>docs/ - the stage kit</h2>
+<ul>
+<li><code>DEMO-STORYBOARDS.md</code> - 4x 3-min second-by-second voiceover scripts for</li>
+</ul>
+<p>the pre-recorded demo videos.</p>
+<ul>
+<li><code>BUILD-SPEC.md</code> - the plan for the approval gate + trace viewer we are</li>
+</ul>
+<p>building right now (with acceptance tests).</p>
+<ul>
+<li><code>REPO-TOUR.md</code> - this file.</li>
+<li><code>HARDWARE-GATE.md</code> - archived what-if, NOT a track assumption.</li>
+</ul>
+<h2>Why it is organized this way</h2>
+<ul>
+<li>Research and build are separate: the intel should not change the code,</li>
+</ul>
+<p>the code should not pollute the intel.</p>
+<ul>
+<li>Everything is versioned (git), nothing is deleted, every claim carries a</li>
+</ul>
+<p>VERIFIED / INFERRED / UNVERIFIED tag.</p>
+<ul>
+<li>The repo is PRIVATE. Friend-facing docs strip progress detail.</li>
+</ul>
+<h2>Reading order for the night (Aug 15, 20:45)</h2>
+<ol>
+<li>This tour (done).</li>
+<li>IDEA-BANK.md decision tree (2 min).</li>
+<li>WAVE-SYNTHESIS.md execution plan (2 min).</li>
+<li>Unstop open. 21:30 drop. Cue table from IDEA-BANK §5 (2 min).</li>
+<li>Decision tree fires (10 min). Pick idea + deck + storyboard.</li>
+<li>Swap seed data, ./demo.sh, submit the pptx before 06:00.</li>
+</ol>
+</main>
+</body>
+</html>

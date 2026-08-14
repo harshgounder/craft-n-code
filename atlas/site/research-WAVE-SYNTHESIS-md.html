@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/WAVE-SYNTHESIS.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/WAVE-SYNTHESIS.md</h1>
+  <p class="blurb">What the deep-research runs conclude: the 5 ranked predicted problems, the common denominator pipeline, the 5 portable patterns.</p>
+  <a class="open" href="../../research/WAVE-SYNTHESIS.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>WAVE SYNTHESIS  -  what the 4 deep-research runs give us (Aug 14, pre-night)</h1>
+<p>Compiled: 2026-08-14 | Sources: cnc-problem-lanes (78K chars, ADECENT 333 cites), cnc-sponsor-products (68K, ADECENT 230 cites), cnc-winner-anatomy (62K, SURFACE 138 cites), cnc-state-rounds (in flight), + prior passes 1-2 (company-lanes).</p>
+<h2>1. THE 5 MOST LIKELY PROBLEM STATEMENTS (ranked, with our response)</h2>
+<table><thead><tr><th>Rank</th><th>Predicted problem shape</th><th>Sponsor</th><th>Our idea/deck</th><th>Demo gate</th></tr></thead><tbody><tr><td>1</td><td>Trustworthy agent: multi-step task, evidence, approved tools, confirmation before side effects, typed audit trail</td><td>Google (Accenture overlap)</td><td>IDEA A BriefLens (deck-agentic)</td><td>plan → sources → approval → trace</td></tr><tr><td>2</td><td>Creative production agent: brief + brand kit → channel variants, constraints, provenance, review</td><td>Adobe</td><td>IDEA C SignalStory (deck-creative)</td><td>brief → 3 variants → violation caught → approved export</td></tr><tr><td>3</td><td>Private personal intelligence: on-device transform of sensitive content, visible data movement, graceful fallback</td><td>Apple</td><td>IDEA B privacy skin (deck-multimodal)</td><td>on-device state → refuse cloud → safe fallback</td></tr><tr><td>4</td><td>Multimodal assistant on messaging: text+image, trusted answers, approved templates, human escalation</td><td>Meta</td><td>IDEA B Kavach Circle (deck-multimodal)</td><td>message+image → answer → escalation</td></tr><tr><td>5</td><td>Governed enterprise case router: unstructured requests → structured cases, routing, policy, consent, audit</td><td>Accenture</td><td>IDEA A ops skin</td><td>3 requests → extraction → exception → approval → KPI</td></tr></tbody></table>
+<h2>2. THE COMMON DENOMINATOR (why one engine wins)</h2>
+<p>All 5 sponsors converge on the SAME core: input → extraction → evidence → ranking → proposed action → policy gate → human approval → audit trace. The report's words: "The common task is not a model call; it is making AI usable inside a controlled system." Our engine IS this pipeline. A skin = nouns + data + UI labels + provider adapter. Mount time per skin: 15-40 minutes.</p>
+<h2>3. THE 5 PORTABLE PATTERNS (scaffold must-haves)</h2>
+<ol>
+<li>Evidence-first structured answers: every answer = answer + confidence + evidence[] + unknowns + next_action. Source card per claim. JSON schema validation + repair loop.</li>
+<li>Tool gateway with approval: typed tool registry (name, schema, side-effect class), policy gate (read-only vs reversible vs side-effecting), approval modal, audit event.</li>
+<li>Multimodal + channel adapter: normalize every event (channel, sender, text, media, conversation_id, consent). WhatsApp/web/phone/fixture all become one object.</li>
+<li>Privacy/provenance/consent layer: data class, processing location badge, consent record, provenance manifest (prompt, model, timestamp, reviewer).</li>
+<li>Evaluation + failure observability: 3 golden fixtures (happy, ambiguous, adversarial), trace viewer, provider fallback, replay mode.</li>
+</ol>
+<h2>4. WHAT WE ALREADY HAVE vs THE GAPS</h2>
+<table><thead><tr><th>Pattern</th><th>Our scaffold</th><th>Gap</th></tr></thead><tbody><tr><td>Evidence-first answers</td><td>source_id, deadline, rank_score per item; search returns sourced results</td><td>no explicit confidence field per answer; no schema validator</td></tr><tr><td>Tool gateway + approval</td><td>NOT built (the "approval gate" discussed but deferred)</td><td>BUILD: typed tool registry + policy gate + approval endpoint (30-45 min)</td></tr><tr><td>Multimodal adapter</td><td>none</td><td>BUILD if Meta/Apple flavor: image/PDF input + OCR path (60-90 min)</td></tr><tr><td>Privacy/provenance</td><td>none in scaffold (Kavach has it separately)</td><td>consent record + provenance manifest (20-30 min)</td></tr><tr><td>Evaluation/observability</td><td>13/13 ad-hoc checks; offline+LLM dual mode; cache</td><td>trace viewer + replay fixture (30-45 min)</td></tr><tr><td>Provider abstraction</td><td>OLLAMA_KEY + URL + model env vars = swappable already</td><td>adapter interface for Google/Meta/Adobe providers</td></tr></tbody></table>
+<h2>5. THE EXECUTION PLAN (report's hour-by-hour, adapted to OUR timeline)</h2>
+<p>Our real clock: 21:30 drop → 06:00 close = 8.5 hours (not 24). Adjust:</p>
+<ul>
+<li>Hour 0 (21:30-22:30): parse drop for sponsor fingerprint (cue table), run 5 smoke tests in parallel (model key, network, offline mode, fixtures, deck), score lanes, freeze the ONE-SENTENCE story.</li>
+<li>Hour 1-3: mount the skin (nouns, seed data, UI labels). Our engine is pre-built, so this is swap + regenerate decks.</li>
+<li>Hour 3-6: vertical slice + one differentiator + one staged failure (the failure path WINS demos).</li>
+<li>Hour 6-8: polish, KPI card, record backup video, rehearse 2:30.</li>
+<li>Kill criteria (pre-agreed): any dependency failing its time gate (60-90 min) → switch to fixture/replay mode. Never spend 6h on image quality or a blocked API.</li>
+</ul>
+<h2>6. THE ZERO-DEPENDENCY RULE (why AFTERPACKETS won, and we repeat it)</h2>
+<p>The report: "The winning overnight scaffold should have zero UNCONTROLLED dependencies." Three execution modes: LIVE (real model), CACHED (replayed responses, same UI), OFFLINE (deterministic rules). Put a mode indicator on screen. A judge trusts a candid fallback more than a frozen demo pretending a dead API worked. Our engine already does LIVE + OFFLINE; CACHED is the .llm_cache.json mechanism (exists, used silently).</p>
+<h2>7. INDIA-FIRST = differentiator (not requirement)</h2>
+<p>Hindi/Hinglish voice+text interface layer is a verified theme in India hackathons. Add as a thin layer, never the critical path. DPDPA: build consent + audit as product features, NEVER claim legal compliance from a prototype (report's explicit warning: don't invent DPDPA deadlines on stage).</p>
+<h2>8. THE 10 QUESTIONS TO ASK AT REVEAL (shortlist)</h2>
+<ol>
+<li>Which sponsor API is mandatory vs optional vs thematic?</li>
+<li>Is a simulated integration accepted when the workflow is demonstrated honestly?</li>
+<li>What are judges rewarding: model novelty, user impact, responsible AI, polish, or sponsor integration?</li>
+<li>Must the demo work offline / on a specific OS?</li>
+<li>What is the ONE user outcome the sponsor wants improved?</li>
+</ol>
+<h2>9. STATE-ROUND HUNT (in flight)</h2>
+<p>cnc-state-rounds run is hunting for the 2024-2025 state-round problem texts (esp. Rajasthan 2025) + state format forensics. Landing soon, will append.</p>
+<h2>10. NEXT BUILD PRIORITIES (if we want the scaffold truly complete)</h2>
+<ol>
+<li>APPROVAL GATE (highest ROI: Rank-1 predicted shape = approved tools; judges see the control plane) - 30-45 min</li>
+<li>Fixture/replay mode + trace viewer (the demo-failure insurance) - 30-45 min</li>
+<li>Multimodal input adapter (image/PDF → evidence) - 60-90 min</li>
+<li>Provider adapter interface (Google/Meta/Adobe swap) - 30 min</li>
+<li>Provenance/consent record - 20-30 min</li>
+</ol>
+<p>All 5 fit in ~3h and make every predicted shape mountable with zero surprises.</p>
+</main>
+</body>
+</html>

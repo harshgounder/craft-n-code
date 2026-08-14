@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>README.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>README.md</h1>
+  <p class="blurb">The war-room home: status table, shared scaffold, deep-research wave, remaining work.</p>
+  <a class="open" href="../../README.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>Craft N Code  -  Rajasthan State Qualifier 2026</h1>
+<p><strong>Team 511's full war-room</strong> for the Craft N Code Rajasthan State Qualifier (Cyber Space Club MUJ), gateway to the <strong>Craft N Code National Finals at IIIT Bhubaneswar (Oct 30 – Nov 1, 2026)</strong>.</p>
+<blockquote>
+<p>🏆 <strong>Mission</strong>: win the Rajasthan qualifier, advance to nationals, and take the national title back to MUJ. MUJ's Team Highlanders (Abhishek Chaturvedi, Prasham Jain, Hrishi Bhalaria, Tapish Thakur) won the 2025 national finale with AFTERPACKETS  -  a mobile Deep Packet Inspection platform. We intend to repeat.</p>
+</blockquote>
+<hr>
+<h2>📌 Status (2026-08-14, live-verified)</h2>
+<table><thead><tr><th>Step</th><th>Status</th></tr></thead><tbody><tr><td>Unstop registration (team <strong>511</strong>: Harsh, Ayush, Sujal)</td><td>✅ DONE</td></tr><tr><td>Registration fee paid (₹299/team  -  live API confirmed)</td><td>✅ DONE</td></tr><tr><td>Idea submission (Aug 15 21:00 → Aug 16 06:00 IST)</td><td>⏳ PENDING  -  problem statements drop <strong>21:30 Aug 15</strong></td></tr><tr><td>Presentation to judges (Aug 16 10:00 → 17:30 IST, MUJ)</td><td>⏳ PENDING</td></tr><tr><td>National finals qualification (top 2 advance)</td><td>⏳ PENDING</td></tr><tr><td>National finals (IIIT Bhubaneswar, Oct 30 – Nov 1)</td><td>⏳ PENDING</td></tr><tr><td>Shared scaffold (engine + webapp + 4 decks + storyboards)</td><td>✅ DONE (verified 13/13, commit d00077b)</td></tr><tr><td>Deep-research wave (6 runs: sponsor DNA, winner anatomy, problem lanes, state rounds)</td><td>✅ DONE (all landed, folded into IDEA-BANK §5 + WAVE-SYNTHESIS)</td></tr><tr><td>Approval gate (rank-1 predicted shape = approved tools)</td><td>⏳ PENDING (30-45 min build, awaiting user go)</td></tr><tr><td>Demo videos (4× 3-min, screen + voiceover)</td><td>⏳ PENDING (needs team, storyboards ready)</td></tr></tbody></table>
+<p><strong>Watchdog</strong>: <code>craft-n-code-watch</code> cron (every 6h, no-agent mode) probes Unstop for known listing IDs, tracks registration counts, flags judge/mentor/sponsor reveals. Silent when nothing changes. State in <code>research/watch-state.json</code>.</p>
+<hr>
+<h2>🎯 The Competition (verified)</h2>
+<ul>
+<li><strong>Rajasthan State Qualifier</strong> (Unstop listing <strong>1730314</strong>): <strong>402 registered / 81 players</strong>, ₹299/team, LIVE. Biggest confirmed 2026 state round (UP 1730325 has 1 reg). Problems are set by the state club (CSC MUJ)  -  own qualifier problems, contact-verified.</li>
+<li><strong>The event</strong>: overnight hackathon at MUJ. Registration closed Aug 14 23:59. Idea submission Aug 15 21:00–Aug 16 06:00. Pitch to judges Aug 16 10:00–17:30.</li>
+<li><strong>Nationals</strong>: IIIT Bhubaneswar, Oct 30 – Nov 1, 2026. Top 2 from each state advance. Travel sponsored. Problem statements release Oct 30 08:00.</li>
+<li><strong>2026 question writers (Rudra intel, Aug 14)</strong>: the REAL problems are set by the sponsor companies (Google, Apple, Meta, Accenture, Adobe), not the club. The 5 site tracks are the club's BACKUP SET and are NOT the basis for prep. Only the timings are reliable from the site.</li>
+<li><strong>The overnight run</strong> (nationals format): 20:00 check-in → 21:30 problems live + clock starts → 01:00 midnight fuel + mentors → 04:30 debug hour → 09:00 freeze/demo/judging.</li>
+<li><strong>Submission</strong> (live-verified): deadline 09:00, one submission per team, resubmit until the clock hits zero, latest entry wins. Fields: <code>team_name</code>, <code>track</code>, <code>repo_url</code>, <code>demo_url</code> (optional), <code>pitch</code> (1–2000 chars). Supabase backend, plain INSERT (resubmit = new row; duplicate blocked).</li>
+<li><strong>The sponsor twist</strong> (club-insider verified): the topic is NOT set by the club. Sponsor companies behind the hackathon set the questions  -  historically <strong>Google, Apple, Facebook, Accenture & Adobe</strong> (per CSC's official post: "inspired by", nuance documented). The 5 tracks are the categories; the sponsors drop the actual problem statements.</li>
+<li><strong>Night canteen</strong> (live-verified  -  this is what 3 AM looks like): Midnight Maggi ₹40 (22:00–05:00), Cutting Chai ₹15 ("the primary compiler"), Cold Brew Shot ₹60, Paneer Roll ₹80 ("one-handed, keyboard safe"), Grilled Sandwich ₹70, Pizza Slice ₹90 ("reheated at 03:00, honestly still good"). Runners every 20 minutes.</li>
+</ul>
+<hr>
+<h2>🧠 The Idea Bank (drop-ready for 21:30 Aug 15)</h2>
+<p><strong><code>research/IDEA-BANK.md</code></strong>  -  pre-built answers for the 4 sponsor-shaped lanes so we don't brainstorm on the night:</p>
+<ul>
+<li><strong>IDEA A "BriefLens"</strong> (agentic ops / Google+Accenture DNA): ranked feed + AI proposes actions, human approves, audit logged.</li>
+<li><strong>IDEA B "Kavach Circle"</strong> (multimodal assistant / Meta DNA): text + image + PDF in, evidence-backed answers with confidence, human escalation on risk.</li>
+<li><strong>IDEA C "SignalStory"</strong> (creative media workflow / Adobe DNA): brief in → brand-consistent assets out, review loop, full provenance.</li>
+<li><strong>IDEA D "Kavach"</strong> (security lane): our existing call-security product, real demo, security-judge DNA.</li>
+</ul>
+<p><strong>The strategic core: one engine, many skins.</strong> A domain-agnostic ingest/dedupe/summarize/rank/deadlines engine (built + verified 13/13) mounts any of the above with a different skin. Decision tree + cue table + setter prior + risk table + action plan in the file.</p>
+<hr>
+<h2>🛠️ The Shared Scaffold (the night's weapon, verified 13/13)</h2>
+<p>Whatever drops at 21:30, these are pre-built (<code>scaffold/</code>, see <code>scaffold/README.md</code>):</p>
+<ol>
+<li><strong>The engine</strong> (<code>scaffold/engine/engine.py</code>): ingest → dedupe → LLM summarize → rank → deadlines. Domain-agnostic, verified in LLM mode (ollama-cloud deepseek-v4-flash:0731, live) AND full offline mode (regex dates + tf-idf + cache replay, zero deps). The demo never dies (AFTERPACKETS rule).</li>
+<li><strong>The webapp</strong> (<code>scaffold/webapp/</code>): zero-dependency python server + dark UI (digest, ranked feed, search, request board). Runs on ANY machine with python3.</li>
+<li><strong>4 decks</strong> (<code>scaffold/deck/</code>): deck-agentic (BriefLens), deck-multimodal (Kavach Circle), deck-creative (SignalStory), deck-kavach. One pptxgenjs skeleton → 4 outputs, schema-validated.</li>
+<li><strong>4 storyboards</strong> (<code>docs/DEMO-STORYBOARDS.md</code>): second-by-second voiceover scripts for pre-recorded 3-min videos.</li>
+<li><strong>demo.sh</strong>: one command → generate feed + serve UI.</li>
+</ol>
+<p><strong>Strip note (Aug 14)</strong>: all site-track/campus assumptions removed (PS-01..PS-05, Campus Pulse, Night Ops, Hygiene Sentinel). The engine is domain-agnostic; only seed data changes on the night.</p>
+<h2>🔬 The Deep-Research Wave (6 runs, all landed)</h2>
+<table><thead><tr><th>Run</th><th>Report</th><th>Depth</th><th>What it gave us</th></tr></thead><tbody><tr><td>cnc-company-lanes (pass 1)</td><td><code>research/company-lanes/cnc-company-lanes-pass1.content.md</code></td><td>SURFACE</td><td>5 named skins, setter prior, 10-min cue table</td></tr><tr><td>cnc-company-lanes-2 (pass 2)</td><td><code>research/company-lanes/cnc-company-lanes-pass2.content.md</code></td><td>DEEP 90.1</td><td>honest negative (no public proof of sponsor authorship), 3 ranked predicted shapes, prep architecture</td></tr><tr><td>cnc-sponsor-products</td><td><code>research/company-lanes/cnc-sponsor-products.content.md</code></td><td>ADECENT 230 cites</td><td>what each sponsor makes + looks for (verified from their own hackathons)</td></tr><tr><td>cnc-winner-anatomy</td><td><code>research/company-lanes/cnc-winner-anatomy.content.md</code></td><td>SURFACE 138 cites</td><td>winner common traits, zero-dependency rule</td></tr><tr><td>cnc-problem-lanes</td><td><code>research/company-lanes/cnc-problem-lanes.content.md</code></td><td>ADECENT 333 cites</td><td>5 ranked predicted problems + build cards + kill criteria + 24h plan</td></tr><tr><td>cnc-state-rounds</td><td><code>research/company-lanes/cnc-state-rounds.content.md</code></td><td>ADECENT 125 cites</td><td>honest negative: no state-round problems publicly recoverable; 10 questions to ask the organizer</td></tr></tbody></table>
+<p><strong>Synthesis</strong>: <code>research/WAVE-SYNTHESIS.md</code> (5 most likely problem shapes, common denominator = one engine wins, 5 portable patterns, gaps table, 8.5h execution plan, zero-dependency rule). <strong>Cheatsheet</strong>: <code>research/CHEATSHEET-BRIEF.md</code> (what matters most, sponsor DNA, hottest tech). <strong>Re-fire prompts</strong>: <code>research/prompts/</code> (6 files).</p>
+<hr>
+<h2>📜 Edition History (who ran it, how many times, who won)</h2>
+<h3>2024  -  CraftNCode (D³ Fest, IIIT Bhubaneswar)</h3>
+<ul>
+<li><strong>Run by</strong>: Tech Society, IIIT Bhubaneswar (Unstop org 11832). State prelims (₹400/team) → 24h national finals at IIIT-B, <strong>Nov 8 23:00 → Nov 9 23:00</strong> (timeline re-audited: Instagram kickoff post + certificate + repo commits all agree). ₹30K / ₹20K / goodies.</li>
+<li><strong>Scale</strong>: 1,318 registered, 280 players (national); 24 registered / 2 players on the combined Rajasthan+Assam+UP state listing (1175823).</li>
+<li><strong>Coordinators</strong>: Soubhik Gon, Saswat Parasar Behera (both now Joint-Heads of the Programming Society, 2024–25).</li>
+<li><strong>Rules snapshot</strong> (verified from the listing): ₹400/team, 2–4 members same state, 24h finals, <strong>GitHub push required every 3 hours</strong>, original work only, sleeper-fare reimbursement for non-Odisha teams, judging = creativity / technical complexity / practicality / presentation.</li>
+<li><strong>National winners (re-audited  -  previously unknown)</strong>: <strong>1st Wizard_Oz</strong> (C.V. Raman Global University; real-time student sentiment analysis), <strong>2nd Fork</strong> (RVCE; AI thumbnail keyframe detection + emotion analysis + text-to-image). 3rd place never posted publicly. <strong>MUJ did NOT win 2024</strong>  -  that's the 2025 team.</li>
+<li><strong>State round (RVCE, Oct 23–24)</strong>: food-safety theme, 3 tracks, 4×25% judging, top-2 advance. TrueMix (Bit-Binary-2027 / Chandan-Kr-dev) built there, carried to nationals.</li>
+</ul>
+<h3>2025  -  Rewind &amp; Recode (D³ Fest, IIIT Bhubaneswar)</h3>
+<ul>
+<li><strong>Run by</strong>: Tech Society + TARS (Robotics) Society. State rounds → nationals Nov 7–9. ₹50K per state listing.</li>
+<li><strong>ELEVEN state rounds</strong> (re-audited: was "4-5" in the first dossier): Rajasthan 706/147, Odisha host 231/40 (3-tier prizes), Karnataka 196/34, TN 182/20, Maharashtra 95/19, UP 59/10, Punjab 58/9, MP 21/3, Gujarat 16/1, Bihar 15/1, Jharkhand 13/1 → <strong>1,592 reg / 285 players total</strong>. Uniform ₹300 entry / ₹50K pool.</li>
+<li><strong>Nationals themes</strong> (verified via LinkedIn sagarbm + RVCE post): <strong>AI for Personal Development</strong> + <strong>Agentic Healthcare Systems</strong>.</li>
+<li><strong>WINNER: Team Highlanders (MUJ!)</strong> won the national finale (1,600–2,000+ teams) with <strong>AFTERPACKETS</strong>  -  Android VPNService + native C++ DPI parser + React web. The 7 challenges recovered verbatim (p-society/D3-2k25-solutions, in <code>research/raw/</code>): 1) NFT event ticketing, 2) Web3 loyalty cards, 3) P2P skill swap, 4) AI lecture generator, 5) Collegiate Inbox Navigator, 6) Automated Lab Grader, 7) <strong>Mobile Packet Hunter</strong> (= AFTERPACKETS' problem, the one that won). Phase 2: cross-chain auto-select, quest-map gamification, anonymity + replay, animated lectures, MCP server, load testing, interception layer.</li>
+<li><strong>D³ Fest 2025 pool ₹131K / 3,000+ participants</strong>: VERIFIED via Scribd snippet (the Unstop listing 374277 is dead on the live API).</li>
+</ul>
+<h3>2026  -  Craft N Code (D³ Fest 2026, IIIT Bhubaneswar × state clubs)</h3>
+<ul>
+<li><strong>Run by</strong>: Tech Society IIIT-B (national) + Cyber Space Club MUJ (Rajasthan round). State rounds → nationals Oct 30 – Nov 1. ₹50K winner.</li>
+<li><strong>2026 state rounds found</strong>: Rajasthan <strong>1730314</strong> (402 reg / 81 players  -  biggest confirmed, down from 706 in 2025), UP <strong>1730325</strong> (1 reg, fresh). 17303xx range otherwise jobs/internships.</li>
+<li><strong>Sibling events at D³ Fest 2026</strong> (official brochure): CTF Arena (cybersecurity battle), Workshop.exe (AI/Blockchain/Web3/AR/VR), UI/UX Showdown, TechXpo, Code-o-lympics, Dev Dialogue. 4-day fest, Tech + Robotics Societies.</li>
+<li><strong>Event site forensics</strong>: the official site source is PUBLIC (Lovable, arcade theme, Supabase)  -  built by Rudra Pratap Singh (CSC dev). Admin console read-only, pitch-first; food route = UI mock. Renamed from "Rewind&Recode" Aug 9, 2026.</li>
+</ul>
+<hr>
+<h2>🕵️ The People (who's behind all this)</h2>
+<h3>CSC MUJ (Rajasthan round organizers)  -  <code>research/PEOPLE-DOSSIER-CSC.md</code></h3>
+<ul>
+<li><strong>Abhinav Trikha</strong>  -  Chairperson 2026–27, pre-final B.Tech IT @ MUJ. +91 95994 15311, trikhaabhinav@gmail.com.</li>
+<li><strong>Ambika Seth</strong>  -  Vice-Chairperson. <strong>Spandan Hota</strong>  -  Craft N Code contact; <strong>Google Student Ambassador</strong> (Sep 2025), intern @ Nursio Innovation. <strong>Tirtha Desai</strong>  -  contact; GitHub <code>TirthaDesai</code>.</li>
+<li><strong>Exec committee 2026–27</strong>: 9 exec + 7 advisory + 10 heads + 19 joint heads + 18 coordinators (full roster in dossier). Faculty: Dr. Roheet Bhatnagar, Umashankar Rawat, Dr. Amit Kumar Bairwa.</li>
+<li><strong>CSC's other events</strong>: NEXORA'26 (state-level online hackathon with Rabbitt AI, 261 participants, 48h, ₹10K pool, custom portal), Novus annual fest, Build Fest.</li>
+</ul>
+<h3>Tech Society IIIT-B (national organizers)  -  <code>research/PEOPLE-DOSSIER-TECHSOC.md</code></h3>
+<ul>
+<li><strong>Soubhik Gon</strong>  -  CraftNCode 2024 coordinator → Oracle intern → SWE @ Nasuni. GitHub <code>zakhaev26</code> (66 repos). 2nd place D3 Hackathon 2023.</li>
+<li><strong>Saswat Parasar Behera</strong>  -  2024 coordinator → Creuto/Smarbl. <strong>Swoyam Siddharth Nayak</strong>  -  former Secretary → <strong>SWE @ Sarvam AI</strong> (CGPA 8.35, IEEE author). <strong>Ehtisham Mohd</strong>  -  Secretary 2024-25 → SWE @ Param.ai. <strong>Sipra Mohanty</strong>  -  GDSC Creative Lead → FDSE @ Sarvam AI. <strong>Subrat Kumar Swain</strong>  -  NCIIPC-AICTE PENTATHON finalist, police cyber intern → Sapiens. <strong>Raj Alpha Swain</strong>  -  EEE '25, CodeChef 3★.</li>
+<li><strong>The pattern</strong>: a tight alumni chain  -  Swoyam → Ehtisham → Soubhik & Saswat  -  now across Sarvam AI, Param.ai, Oracle, Nasuni, Smarbl. These people know what winning looks like.</li>
+</ul>
+<h3>The judges (2024/2025, taste profile)  -  <code>research/JUDGE-DOSSERIS.md</code></h3>
+<ul>
+<li><strong>Ayushi Parashar, Shivani Prasad, Sarthak Padhi, ACP Anjana Tudu (police), Lingaraj Sethi (cyber expert), Sonali Satpathy</strong>  -  industry + police + cyber experts, 3-round funnel (114 → 21 → 8 → top 2).</li>
+<li><strong>What they reward</strong> (2024 rulebook): creativity, technical complexity, practicality, presentation. Working demo > deck. Real-world impact framing wins. Security/safety themes land hard.</li>
+</ul>
+<hr>
+<h2>🏆 Winner Forensics (what actually won  -  and why)</h2>
+<h3>AFTERPACKETS  -  2025 national winner (Team Highlanders, MUJ)</h3>
+<p>Full codebase recovered from GitHub (<code>PrashamJ17/AfterPackets</code>, 201MB, created Nov 8 2025 = finals day):</p>
+<ul>
+<li><strong>Android app</strong> (Kotlin, 40+ files): VPNService packet capture (no root), native C++ DPI parser (IP/TCP/UDP/ICMP/HTTP/DNS/TLS), Room DB, Jetpack Compose, WebSocket server, firewall rule engine, app-level tracking, geo map, PCAP/JSON export, consent + audit logging. <strong>13 screens.</strong></li>
+<li><strong>Security alerts</strong>: MITM, DNS spoofing, data exfiltration, ARP spoofing (severity levels).</li>
+<li><strong>Desktop web</strong>: React 18 + Vite + TS + Tailwind + Zustand + three.js/globe.gl + Leaflet + Recharts + Express.</li>
+<li><strong>Why it won</strong> (deep-dive in <code>research/WINNER-EXACT-DEEP-DIVE.md</code>): deepest stack + <strong>ZERO external deps</strong> (no OAuth/API keys/quota → demo ALWAYS worked) + security relevance + empty lane + live-demo visual. Commit workflow: core 06:56 → scope-down 07:17 (dropped geo-location, dropped desktop web app) → cleanup 07:26 → rebrand 08:01.</li>
+<li><strong>Repo hygiene</strong>: TERRIBLE (committed .gradle, node_modules, .DS_Store, debug APK  -  201MB)  -  and they still won. <strong>Clean repo = free points.</strong></li>
+</ul>
+<h3>What LOST (counterfactual, <code>research/REJECTED-LOST-ENTRIES.md</code>)</h3>
+<ul>
+<li><strong>PromptBuddy</strong> (manaspros/code): war diary of Composio SDK bugs, Gemini 429 quota, 6 critical bugs fixed at 2am. External-dependency risk killed it.</li>
+<li><strong>EduSynth</strong> (varunaditya27/EduSynth): 77MB production app, Gemini 2.5 Pro + FastAPI + Prisma + MoviePy  -  lost to the 201MB junk-committed Android app. Over-polish without lane differentiation.</li>
+<li><strong>R1 rejection patterns</strong>: 404 repos (2/20), 18KB HTML-only repos, no deployment, weak pitch, crowded lanes.</li>
+</ul>
+<h3>The winning formula (synthesized across 3 winner sets)</h3>
+<ol>
+<li><strong>AI/ML is non-negotiable</strong> (every winner had it).</li>
+<li><strong>Working demo beats deck</strong>  -  judges poke and test.</li>
+<li><strong>Real-world impact framing</strong>  -  every winner mapped to a concrete human problem.</li>
+<li><strong>Zero external dependencies in the demo</strong>  -  no OAuth/API keys/quota to fail at 3 AM.</li>
+<li><strong>Presentation polish wins ties</strong>  -  3-minute demo discipline, one hero feature.</li>
+</ol>
+<hr>
+<h2>🔮 2026 Question Prediction (the edge)</h2>
+<p>Full matrix in <code>research/2026-TOPIC-PROBABILITY.md</code> (site track bodies kept for reference; they are the BACKUP SET per Rudra intel). The real prep is the company-lane protocol in <code>IDEA-BANK.md</code> §5: fingerprint table, cue table, setter prior (Google 24% &gt; Accenture 22% &gt; Meta 21% &gt; Adobe 18% &gt; Apple 15%), and the 3 predicted shapes from deep research (agentic ops / multimodal assistant / creative media workflow).</p>
+<p><strong>Sponsor-to-shape map</strong>: Google→agentic ops · Meta→multimodal assistant · Accenture→enterprise workflow · Adobe→creative media · Apple→mobile/accessibility.</p>
+<p><strong>The 5 ranked predicted problems</strong> (from <code>research/WAVE-SYNTHESIS.md</code>, INFERRED rehearsal only): 1) trustworthy agent with evidence + approval (Google/Accenture), 2) creative production agent with provenance (Adobe), 3) private personal intelligence on-device (Apple), 4) multimodal assistant on messaging with escalation (Meta), 5) governed enterprise case router (Accenture). All converge on ONE pipeline: input → extraction → evidence → ranking → proposed action → policy gate → human approval → audit trace. Our engine IS this pipeline; a skin = nouns + data + UI labels + provider adapter (15-40 min mount).</p>
+<hr>
+<h2>🌐 Participant Universe (the field)</h2>
+<ul>
+<li><strong>2024</strong>: 1,318 reg / 280 players (national); 24/2 (state combined). <strong>2025</strong>: 1,592 reg / 285 players across 11 state rounds; nationals 1,600–2,000+ teams. <strong>2026</strong>: Rajasthan 402/81, UP 1 (fresh). ~200 expected at the Rajasthan overnight.</li>
+<li><strong>GitHub-mapped repos</strong>: 25+ across editions (see <code>research/PARTICIPANT-UNIVERSE.md</code>). Known 2025 solutions: TrustChain (rural microfinance blockchain), BitSized (shopping assistant), Innovize (student health portal), Quantum Glitch, Chetna. 2026 threat matrix in <code>research/COMPETITOR-POOL.md</code>.</li>
+<li><strong>The field is smaller this year</strong> (402 vs 706 in Rajasthan)  -  the easiest qualifier in the event's history.</li>
+</ul>
+<hr>
+<h2>🗂️ Repo Layout</h2>
+<pre><code class="language-">craft-n-code/
+├── README.md                        ← this file (war-room index, fresh 2026-08-14)
+├── CONTINUATION-PROMPT.md           ← handoff for a new window (read this first)
+├── INDEX.md                         ← every file, one line each, what it's for
+├── scaffold/                        ← ★ THE NIGHT'S WEAPON (verified 13/13)
+│   ├── engine/engine.py             ← ingest → dedupe → summarize → rank → deadlines
+│   ├── webapp/serve.py + static/    ← zero-dep server + dark UI
+│   ├── deck/deck-gen.js + 4 .pptx   ← agentic/multimodal/creative/kavach
+│   ├── demo.sh + README.md
+├── docs/                            ← DEMO-STORYBOARDS.md, HARDWARE-GATE.md (archived)
+├── research/
+│   ├── MASTER-DOSSIER.md            ← everything in one file (tracks, timeline, sponsors, strategy)
+│   ├── IDEA-BANK.md                 ← ★ THE crown jewel: pre-built answers for the 4 sponsor lanes
+│   ├── CHEATSHEET-BRIEF.md          ← what matters, sponsor DNA, hottest tech
+│   ├── WAVE-SYNTHESIS.md            ← 5 predicted shapes + gaps + execution plan
+│   ├── company-lanes/               ← 6 deep-research reports (376K total)
+│   ├── prompts/                     ← 6 re-fire prompts
+│   ├── 2026-TOPIC-PROBABILITY.md    ← probability matrix (superseded by §5, kept for backup set)
+│   ├── RE-AUDIT-FINDINGS.md         ← every correction made during the sweep
+│   ├── 2025-STATE-SWEEP.md          ← the 11-round 2025 map + totals
+│   ├── COMPETITIVE-INTEL-DOSSIER.md ← org lineage + editions + people + sponsors
+│   ├── PEOPLE-DOSSIER-CSC.md        ← CSC MUJ full roster (18.7K)
+│   ├── PEOPLE-DOSSIER-TECHSOC.md    ← Tech Society IIIT-B (23K, 38 claims)
+│   ├── JUDGE-DOSSIERS.md            ← 6 judges + how-to-win matrix (ultra8x)
+│   ├── WINNER-REVERSE-ENGINEERING.md← AFTERPACKETS stack + TrueMix + GENESIS + formula
+│   ├── WINNER-EXACT-DEEP-DIVE.md    ← 13 screens, C++ parser, why-it-won, loser counterfactual
+│   ├── REJECTED-LOST-ENTRIES.md     ← rejection patterns + 8-step R1 win formula
+│   ├── COMPETITOR-POOL.md           ← 20-team threat matrix + empty-lane strategy
+│   ├── PROBLEM-BANK-SPONSOR-DNA.md  ← 2024 rules + sponsor DNA + prep plan
+│   ├── EVENT-SITE-FORENSICS.md      ← 5 tracks, overnight run, submission, canteen
+│   ├── EVENT-SITE-FORENSICS-v4.md   ← admin console, submission flow, food mock
+│   ├── RAJASTHAN-LISTING-1730314.md ← our round's full listing
+│   ├── STATE-QUALIFIER-SCAN.md      ← 2026 state round scan
+│   ├── 2024-STATE-QUALIFIER-FORMAT.md ← RVCE round: food-safety, 3 tracks, top-2
+│   ├── 2025-FINALS-ROSTER.md        ← national finals roster
+│   ├── PARTICIPANT-UNIVERSE.md      ← 25+ repos mapped across editions
+│   ├── RABBITT-AI-DOSSIER.md        ← NEXORA partner company
+│   ├── NEXORA-FORENSICS.md          ← NEXORA'26 portal forensics
+│   ├── D3FEST-2022-PROBLEMS.md      ← D3 2022 problems (campus-tool family)
+│   ├── D3FEST-2023-BROCHURE.md      ← D3 2023
+│   ├── D3FEST-2026-BROCHURE.md      ← full 2026 lineup (CTF Arena, Workshop.exe...)
+│   ├── BROCHURE-OCR.md              ← 2024/2025 brochure pages 1–2 + method
+│   ├── GAP-MAP.md                   ← 20 gaps still diggable, tiered
+│   ├── RECON.md                     ← base recon + sponsor-topic intel
+│   ├── CNC-INTEL-EXECUTION-20260813.md ← execution log
+│   ├── watch-state.json             ← watchdog state
+│   └── raw/                         ← rnr-phase1/2.pdf + FULL verbatim 2025 statements
+└── assets/                          ← deck, media, evidence</code></pre>
+<hr>
+<h2>🛰️ Watchdog (automation)</h2>
+<ul>
+<li><strong>craft-n-code-watch</strong> cron (every 6h, no-agent mode): probes Unstop listing 1730314 (Rajasthan), 1730325 (UP), 1171379 (2024 national), 1175823 (2024 state), 1545708 (2025 RJ)  -  tracks register counts, flags judge/mentor/sponsor changes, watches for new state siblings in the 1730xxx range. State in <code>research/watch-state.json</code>. Silent when nothing changes.</li>
+</ul>
+<hr>
+<h2>📅 Timeline (IST, all verified)</h2>
+<pre><code class="language-">Aug 14 23:59   registration deadline (DONE  -  team 511 in)
+Aug 15 21:00   idea submission opens (Unstop)
+Aug 15 21:30   ★ PROBLEM STATEMENTS DROP ★ (sponsor-written, decision tree fires)
+Aug 16 06:00   idea submission closes
+Aug 16 10:00   presentation to judges (MUJ)
+Aug 16 17:30   presentation ends
+Aug 30         IIC 3.0 results (R1, parallel track)
+Sep 8–9        IIC R2 offline (if advanced)
+Oct 30 08:00   national problem statements released (IIIT Bhubaneswar)
+Oct 30 – Nov 1 national finals (24h overnight + judging)</code></pre>
+<h2>🎯 Remaining Work (honest)</h2>
+<table><thead><tr><th>Item</th><th>Who</th><th>Effort</th></tr></thead><tbody><tr><td>Approval gate (typed tools, policy gate, audit trail)</td><td>Hermes + opencode</td><td>DONE, verified 13/13 (G1-G13)</td></tr><tr><td>Trace viewer + fixture replay (mode badge, /api/trace, 3 golden fixtures)</td><td>Hermes + opencode</td><td>DONE, verified 12/12 (T1-T6 + offline-key regression)</td></tr><tr><td>Rudra ask: 2025 Rajasthan state-round problems + judging format</td><td>User (can't do from phone)</td><td>1 message</td></tr><tr><td>Demo videos (4× 3-min, screen + voiceover)</td><td>Team</td><td>~1h each</td></tr><tr><td>Pitch rehearsal (2:30 target, hard timer)</td><td>Team</td><td>30 min</td></tr><tr><td>Night flow: 21:30 drop → cue table (2 min) → decision tree (10 min) → pick idea → mount skin (15-40 min) → demo.sh → submit</td><td>All</td><td>8.5h window</td></tr></tbody></table>
+<hr>
+<h2>🛡️ Rules of the Workspace</h2>
+<ul>
+<li><strong>PRIVATE repo</strong>  -  hackathon recon stays private.</li>
+<li><strong>No fake progress</strong>  -  repo reflects true state, verified numbers only.</li>
+<li><strong>Version up, never delete</strong>  -  every finding committed with a clear message.</li>
+<li><strong>Sources tagged</strong>  -  VERIFIED / PARTIAL / NOT FOUND on every claim in the dossiers. Re-audits correct rather than defend.</li>
+<li><strong>The edge is information</strong>  -  we know the tracks, the format, the judges' taste, the winners' stack, the canteen menu, and now the ideas. Tonight we build.</li>
+</ul>
+<hr>
+<p>*Team 511  -  Harsh, Ayush, Sujal. Let's hack. 🎮*</p>
+</main>
+</body>
+</html>
