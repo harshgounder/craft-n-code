@@ -1,4 +1,4 @@
-# CONTINUATION-PROMPT — Craft N Code (read this FIRST in a new window)
+# CONTINUATION-PROMPT - Craft N Code (read this FIRST in a new window)
 
 > Drop this file's contents (or this path) as the first message in a new Hermes window. It fully resets context. Written 2026-08-14 09:55 IST.
 
@@ -16,11 +16,13 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 |---|---|
 | Aug 15 12:00 | Hardware gate: decide PS-05 (needs ESP32/Pico + sensors in hand by then) |
 | **Aug 15 21:00** | Idea submission OPENS (Unstop) |
-| **Aug 15 21:30** | ★ PROBLEM STATEMENTS DROP ★ — our pre-built decision tree fires within 10 min |
+| **Aug 15 21:30** | ★ PROBLEM STATEMENTS DROP ★ - our pre-built decision tree fires within 10 min |
 | Aug 16 06:00 | Idea submission CLOSES (submit before this) |
 | Aug 16 10:00–17:30 | Pitch to judges at MUJ (3-min demo, 2:30 target) |
 
-**The idea bank is already written**: `research/IDEA-BANK.md` — pre-built answers for all 5 tracks (PS-01 Campus Pulse, PS-02 Night Ops, PS-03 Signal, PS-04 Kavach, PS-05 Hygiene Sentinel), decision tree, risk table, action plan. The strategic core: ONE engine (ingest → summarize → rank → deadlines) with skins, + Kavach for open/safety lanes.
+**CRITICAL AUG 14 INTEL (Rudra, club, in person)**: the 5 site tracks (PS-01..PS-05) are the CLUB'S BACKUP SET. The REAL problem statements are written by the sponsor companies (Google, Apple, Meta, Accenture, Adobe) and drop at/just before the 21:00 window. Decision tree fires on COMPANY DNA first, site track second. See IDEA-BANK §5.5 (company-lane protocol) + the deep-research run `cnc-company-lanes` (pro-fast, results in ~/parallel-ai-stack/test-results/cnc-company-lanes.content.md).
+
+**The idea bank is already written**: `research/IDEA-BANK.md` - pre-built answers for all 5 tracks (PS-01 Campus Pulse, PS-02 Night Ops, PS-03 Signal, PS-04 Kavach, PS-05 Hygiene Sentinel), decision tree, §5.5 company-lane protocol, risk table, action plan. The strategic core: ONE engine (ingest → summarize → rank → deadlines) with skins, + Kavach for open/safety lanes.
 
 ## WHAT'S DONE (verified, committed, pushed)
 
@@ -32,7 +34,7 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 
 ## NEXT STEPS (in order)
 
-1. **TODAY Aug 14**: build the shared scaffold per IDEA-BANK §6: engine skeleton (ingest→summarize→rank→deadlines), Supabase + Tailwind UI kit, 4 pre-recorded demo videos (Signal/Campus Pulse/Night Ops/Kavach), deck skeleton + swap-slides, verify free LLM keys (Gemini free + Groq + unorouter fallback), hardware sourcing check (MUJ E&CE lab in-charge / Amazon — Ayush/Sujal).
+1. **TODAY Aug 14**: build the shared scaffold per IDEA-BANK §6: engine skeleton (ingest→summarize→rank→deadlines), Supabase + Tailwind UI kit, 4 pre-recorded demo videos (Signal/Campus Pulse/Night Ops/Kavach), deck skeleton + swap-slides, verify free LLM keys (Gemini free + Groq + unorouter fallback), hardware sourcing check (MUJ E&CE lab in-charge / Amazon - Ayush/Sujal).
 2. **Aug 15**: 12:00 hardware gate decision. 21:00 watch Unstop. 21:30 problems drop → decision tree → pick idea → build overnight → submit before 06:00.
 3. **Aug 16**: pitch 10:00–17:30. 3-min demo (2:30 rehearsal target). Win the round, top-2 advance.
 4. Parallel track: IIC 3.0 R1 ends Aug 25 (repo `~/iic-3`, judge-watch cron live).
@@ -45,19 +47,19 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 - Web infra degraded: Firecrawl 402; use rivalsearch (`mcp__rivalsearch__web_search`) + curl with Chrome UA + r.jina.ai + gh CLI (authed).
 - NO em dashes, no AI-tell words (hard rule). Casual "bro" tone, lowercase-ish, kaomoji.
 - Everything committed + pushed; report milestones via Telegram (token: `grep TELEGRAM_BOT_TOKEN ~/.hermes/.env`, chat_id=6408901386), no permission-asking.
-- Report to user in terminal too (CLI session) — plain text, no markdown tables.
-- Calendar check (muj-academics) was requested but NOT performed in the last window — do it if time permits.
+- Report to user in terminal too (CLI session) - plain text, no markdown tables.
+- Calendar check (muj-academics) was requested but NOT performed in the last window - do it if time permits.
 
 ## KEY FACTS (do not re-research)
 
 - Unstop IDs: 1730314 Rajasthan 2026 (402 reg/81 players, ₹299, LIVE) · 1730325 UP 2026 · 1171379 national 2024 · 1175823 state 2024 · 1545708 RJ 2025 · 374277 D³ Fest 2025 (dead).
 - 2026 tracks: PS-01 100 "rewind the legacy" · PS-02 200 "night ops" · PS-03 300 "signal/noise" · PS-04 400 "open" · PS-05 500 "hardware". One track at check-in, switch = -30 min.
-- 2025 winners: AFTERPACKETS (MUJ Highlanders) — zero external deps, Android VPNService + C++ DPI, empty lane. 2024: Wizard_Oz (CVRGU) 1st, Fork (RVCE) 2nd.
+- 2025 winners: AFTERPACKETS (MUJ Highlanders) - zero external deps, Android VPNService + C++ DPI, empty lane. 2024: Wizard_Oz (CVRGU) 1st, Fork (RVCE) 2nd.
 - Topic probability: PS-03 35% + most winnable; PS-01 25%; PS-05 20% (trap); PS-02 15% (dark horse); PS-04 escape hatch (Kavach).
 - Key people: Abhinav Trikha (CSC chair, +91 95994 15311), Spandan Hota (CSC contact, GSA), Soubhik Gon (2024 coordinator → Nasuni), Swoyam Nayak (→ Sarvam AI).
 - 2025 problems verbatim in `research/raw/rnr-phase1-full.txt` + `rnr-phase2-full.txt`.
 - The winner formula: AI non-negotiable, working demo > deck, real-world impact framing, zero external deps in demo, clean repo = free points.
-- GitHub API rate limits historically suspect — use gh CLI. Firecrawl 402 — don't retry.
+- GitHub API rate limits historically suspect - use gh CLI. Firecrawl 402 - don't retry.
 
 ## CURRENT FILE TREE (key)
 

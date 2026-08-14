@@ -1,4 +1,4 @@
-# INDEX — every file in this repo, what it's for
+# INDEX - every file in this repo, what it's for
 
 Updated: 2026-08-14 09:56 IST
 
@@ -10,12 +10,13 @@ Updated: 2026-08-14 09:56 IST
 | `CONTINUATION-PROMPT.md` | ★ Handoff for a new window: full context reset, immediate mission, next steps, key facts, operating rules. Read this FIRST in any new session |
 | `INDEX.md` | This file |
 
-## research/ — the intel
+## research/ - the intel
 
 ### Strategy & action
 | File | What it is |
 |---|---|
-| `IDEA-BANK.md` | ★ THE playbook: pre-built ideas for all 5 tracks (Campus Pulse / Night Ops / Signal / Kavach / Hygiene Sentinel), decision tree for the 21:30 drop, shared scaffold, risk table, action plan |
+| `IDEA-BANK.md` | ★ THE playbook: pre-built ideas for all 5 tracks (Campus Pulse / Night Ops / Signal / Kavach / Hygiene Sentinel), decision tree for the 21:30 drop, §5.5 company-lane protocol (Rudra intel: real questions come from sponsors, not the site tracks), shared scaffold, risk table, action plan |
+| `prompts/company-lane-prompt.md` | Deep-research prompt: sponsor (Google/Apple/Meta/Accenture/Adobe) question-pattern intelligence, fired as parallel run `cnc-company-lanes` |
 | `2026-TOPIC-PROBABILITY.md` | Probability matrix: verbatim track bodies, sponsor-to-track mapping, P(question lands) × P(we win), strategic read |
 | `GAP-MAP.md` | 20 gaps still diggable, tiered execution order |
 | `CNC-INTEL-EXECUTION-20260813.md` | Execution log of the intel campaign |
@@ -53,7 +54,7 @@ Updated: 2026-08-14 09:56 IST
 | `PROBLEM-BANK-SPONSOR-DNA.md` | 2024 full rules + sponsor company DNA + prep plan |
 | `2024-STATE-QUALIFIER-FORMAT.md` | RVCE round: food-safety theme, 3 tracks, 4×25% judging, top-2 advance |
 | `2025-FINALS-ROSTER.md` | 2025 national finals roster |
-| `D3FEST-2022-PROBLEMS.md` | D3 2022 problems (the campus-tool family — PS-01 lineage) |
+| `D3FEST-2022-PROBLEMS.md` | D3 2022 problems (the campus-tool family - PS-01 lineage) |
 | `D3FEST-2023-BROCHURE.md` | D3 2023 |
 | `D3FEST-2026-BROCHURE.md` | Full D³ Fest 2026 lineup: CTF Arena, Workshop.exe, UI/UX Showdown, TechXpo, Code-o-lympics, Dev Dialogue |
 | `BROCHURE-OCR.md` | 2024/2025 brochure pages 1-2 OCR + method note (pages 3+ unrecoverable) |
@@ -85,8 +86,8 @@ Empty, ready. docs/ = idea drafts + submission prep; assets/ = deck, media, evid
 
 ## Related repos (not in this tree)
 
-- `~/iic-3` — IIC 3.0 project (R1 ends Aug 25, judge-watch cron live, decks filled)
-- `~/muj-academics` — planner + drive sync (crons alive, verified Aug 13)
-- `~/parallel-key-tracker` — 123 parallel keys (key#112 = ultra8x, used for dossiers)
-- `~/.hermes/scripts/craft-n-code-watch.py` — watchdog (cron every 6h)
+- `~/iic-3` - IIC 3.0 project (R1 ends Aug 25, judge-watch cron live, decks filled)
+- `~/muj-academics` - planner + drive sync (crons alive, verified Aug 13)
+- `~/parallel-key-tracker` - 123 parallel keys (key#112 = ultra8x, used for dossiers)
+- `~/.hermes/scripts/craft-n-code-watch.py` - watchdog (cron every 6h)
 - Winner repos (read-only): PrashamJ17/AfterPackets, Bit-Binary-2027/CraftNCode, Chandan-Kr-dev, manaspros/code, varunaditya27/EduSynth, Rudra-25-12/CraftnCode-2026 (event site source), cyb3r17/rvce-craft-n-code
