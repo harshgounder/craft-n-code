@@ -31,6 +31,8 @@ Updated: 2026-08-14 15:10 IST (re-audit refresh)
 |---|---|
 | `DEMO-STORYBOARDS.md` | 4× 3-min storyboards (second-by-second voiceover scripts for pre-recorded videos) |
 | `BUILD-SPEC.md` | ★ Plan-only spec for the 2 pending scaffold upgrades (approval gate + trace viewer/fixture replay): exact endpoints, table schemas, G1-G13/T1-T6 acceptance tests. Build awaits user go (asked 14 Aug, answer: hold builds) |
+| `REPO-TOUR.md` | ★ The map: where everything lives and why, 30-second version + per-folder breakdown + reading order. Read this before anything else |
+| `CODE-WALKTHROUGH.md` | ★ Every scaffold file explained function-by-function (engine.py, serve.py, index.html, deck-gen.js, demo.sh) + production lessons + how to audit the code yourself |
 | `HARDWARE-GATE.md` | Archived option (PS-05 hardware sourcing checklist). NOT a track assumption - kept only as a what-if |
 
 ## research/ - the intel
@@ -120,6 +122,7 @@ Updated: 2026-08-14 15:10 IST (re-audit refresh)
 | `raw/rnr-phase1.pdf` / `rnr-phase2.pdf` | Source PDFs |
 | `raw/rabbitt-runs.json` / `rabbitt-content.json` / `basis.json` | ultra8x parallel runs for Rabbitt + judge dossiers |
 | `watch-state.json` | Watchdog state (last probe results per listing) |
+| `INTEL-20260814-EVENING.md` | Live API findings: submission = PPT-only (pdf/pptx 50MB, multi-submit allowed), judge buttons (shortlist/reject/hold/noshow), score /5 weighted 100, D3 site live (d3fest.techsoc-iiitbbsr.com), 456 reg, Tirtha Desai new contact |
 
 ## Related repos (not in this tree)
 
