@@ -1,4 +1,4 @@
-# THE CHEATSHEET BRIEF — what matters most, what the sponsors make/look for, hottest tech
+# THE CHEATSHEET BRIEF  -  what matters most, what the sponsors make/look for, hottest tech
 
 Compiled: 2026-08-14 | Source: research/PROBLEM-BANK-SPONSOR-DNA.md + company-lanes reports + winner forensics
 Status: synthesis of VERIFIED intel; 3 parallel runs in flight to deepen (cnc-sponsor-products, cnc-winner-anatomy, cnc-problem-lanes)
