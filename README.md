@@ -16,6 +16,10 @@
 | Presentation to judges (Aug 16 10:00 → 17:30 IST, MUJ) | ⏳ PENDING |
 | National finals qualification (top 2 advance) | ⏳ PENDING |
 | National finals (IIIT Bhubaneswar, Oct 30 – Nov 1) | ⏳ PENDING |
+| Shared scaffold (engine + webapp + 4 decks + storyboards) | ✅ DONE (verified 13/13, commit d00077b) |
+| Deep-research wave (6 runs: sponsor DNA, winner anatomy, problem lanes, state rounds) | ✅ DONE (all landed, folded into IDEA-BANK §5 + WAVE-SYNTHESIS) |
+| Approval gate (rank-1 predicted shape = approved tools) | ⏳ PENDING (30-45 min build, awaiting user go) |
+| Demo videos (4× 3-min, screen + voiceover) | ⏳ PENDING (needs team, storyboards ready) |
 
 **Watchdog**: `craft-n-code-watch` cron (every 6h, no-agent mode) probes Unstop for known listing IDs, tracks registration counts, flags judge/mentor/sponsor reveals. Silent when nothing changes. State in `research/watch-state.json`.
 
@@ -44,6 +48,33 @@
 - **IDEA D "Kavach"** (security lane): our existing call-security product, real demo, security-judge DNA.
 
 **The strategic core: one engine, many skins.** A domain-agnostic ingest/dedupe/summarize/rank/deadlines engine (built + verified 13/13) mounts any of the above with a different skin. Decision tree + cue table + setter prior + risk table + action plan in the file.
+
+---
+
+## 🛠️ The Shared Scaffold (the night's weapon, verified 13/13)
+
+Whatever drops at 21:30, these are pre-built (`scaffold/`, see `scaffold/README.md`):
+
+1. **The engine** (`scaffold/engine/engine.py`): ingest → dedupe → LLM summarize → rank → deadlines. Domain-agnostic, verified in LLM mode (ollama-cloud deepseek-v4-flash:0731, live) AND full offline mode (regex dates + tf-idf + cache replay, zero deps). The demo never dies (AFTERPACKETS rule).
+2. **The webapp** (`scaffold/webapp/`): zero-dependency python server + dark UI (digest, ranked feed, search, request board). Runs on ANY machine with python3.
+3. **4 decks** (`scaffold/deck/`): deck-agentic (BriefLens), deck-multimodal (Kavach Circle), deck-creative (SignalStory), deck-kavach. One pptxgenjs skeleton → 4 outputs, schema-validated.
+4. **4 storyboards** (`docs/DEMO-STORYBOARDS.md`): second-by-second voiceover scripts for pre-recorded 3-min videos.
+5. **demo.sh**: one command → generate feed + serve UI.
+
+**Strip note (Aug 14)**: all site-track/campus assumptions removed (PS-01..PS-05, Campus Pulse, Night Ops, Hygiene Sentinel). The engine is domain-agnostic; only seed data changes on the night.
+
+## 🔬 The Deep-Research Wave (6 runs, all landed)
+
+| Run | Report | Depth | What it gave us |
+|---|---|---|---|
+| cnc-company-lanes (pass 1) | `research/company-lanes/cnc-company-lanes-pass1.content.md` | SURFACE | 5 named skins, setter prior, 10-min cue table |
+| cnc-company-lanes-2 (pass 2) | `research/company-lanes/cnc-company-lanes-pass2.content.md` | DEEP 90.1 | honest negative (no public proof of sponsor authorship), 3 ranked predicted shapes, prep architecture |
+| cnc-sponsor-products | `research/company-lanes/cnc-sponsor-products.content.md` | ADECENT 230 cites | what each sponsor makes + looks for (verified from their own hackathons) |
+| cnc-winner-anatomy | `research/company-lanes/cnc-winner-anatomy.content.md` | SURFACE 138 cites | winner common traits, zero-dependency rule |
+| cnc-problem-lanes | `research/company-lanes/cnc-problem-lanes.content.md` | ADECENT 333 cites | 5 ranked predicted problems + build cards + kill criteria + 24h plan |
+| cnc-state-rounds | `research/company-lanes/cnc-state-rounds.content.md` | ADECENT 125 cites | honest negative: no state-round problems publicly recoverable; 10 questions to ask the organizer |
+
+**Synthesis**: `research/WAVE-SYNTHESIS.md` (5 most likely problem shapes, common denominator = one engine wins, 5 portable patterns, gaps table, 8.5h execution plan, zero-dependency rule). **Cheatsheet**: `research/CHEATSHEET-BRIEF.md` (what matters most, sponsor DNA, hottest tech). **Re-fire prompts**: `research/prompts/` (6 files).
 
 ---
 
@@ -121,6 +152,8 @@ Full matrix in `research/2026-TOPIC-PROBABILITY.md` (site track bodies kept for 
 
 **Sponsor-to-shape map**: Google→agentic ops · Meta→multimodal assistant · Accenture→enterprise workflow · Adobe→creative media · Apple→mobile/accessibility.
 
+**The 5 ranked predicted problems** (from `research/WAVE-SYNTHESIS.md`, INFERRED rehearsal only): 1) trustworthy agent with evidence + approval (Google/Accenture), 2) creative production agent with provenance (Adobe), 3) private personal intelligence on-device (Apple), 4) multimodal assistant on messaging with escalation (Meta), 5) governed enterprise case router (Accenture). All converge on ONE pipeline: input → extraction → evidence → ranking → proposed action → policy gate → human approval → audit trace. Our engine IS this pipeline; a skin = nouns + data + UI labels + provider adapter (15-40 min mount).
+
 ---
 
 ## 🌐 Participant Universe (the field)
@@ -138,10 +171,20 @@ craft-n-code/
 ├── README.md                        ← this file (war-room index, fresh 2026-08-14)
 ├── CONTINUATION-PROMPT.md           ← handoff for a new window (read this first)
 ├── INDEX.md                         ← every file, one line each, what it's for
+├── scaffold/                        ← ★ THE NIGHT'S WEAPON (verified 13/13)
+│   ├── engine/engine.py             ← ingest → dedupe → summarize → rank → deadlines
+│   ├── webapp/serve.py + static/    ← zero-dep server + dark UI
+│   ├── deck/deck-gen.js + 4 .pptx   ← agentic/multimodal/creative/kavach
+│   ├── demo.sh + README.md
+├── docs/                            ← DEMO-STORYBOARDS.md, HARDWARE-GATE.md (archived)
 ├── research/
 │   ├── MASTER-DOSSIER.md            ← everything in one file (tracks, timeline, sponsors, strategy)
-│   ├── IDEA-BANK.md                 ← ★ THE crown jewel: pre-built answers for all 5 tracks
-│   ├── 2026-TOPIC-PROBABILITY.md    ← probability matrix + sponsor mapping
+│   ├── IDEA-BANK.md                 ← ★ THE crown jewel: pre-built answers for the 4 sponsor lanes
+│   ├── CHEATSHEET-BRIEF.md          ← what matters, sponsor DNA, hottest tech
+│   ├── WAVE-SYNTHESIS.md            ← 5 predicted shapes + gaps + execution plan
+│   ├── company-lanes/               ← 6 deep-research reports (376K total)
+│   ├── prompts/                     ← 6 re-fire prompts
+│   ├── 2026-TOPIC-PROBABILITY.md    ← probability matrix (superseded by §5, kept for backup set)
 │   ├── RE-AUDIT-FINDINGS.md         ← every correction made during the sweep
 │   ├── 2025-STATE-SWEEP.md          ← the 11-round 2025 map + totals
 │   ├── COMPETITIVE-INTEL-DOSSIER.md ← org lineage + editions + people + sponsors
@@ -171,7 +214,6 @@ craft-n-code/
 │   ├── CNC-INTEL-EXECUTION-20260813.md ← execution log
 │   ├── watch-state.json             ← watchdog state
 │   └── raw/                         ← rnr-phase1/2.pdf + FULL verbatim 2025 statements
-├── docs/                            ← idea drafts, submission prep (next)
 └── assets/                          ← deck, media, evidence
 ```
 
@@ -197,6 +239,16 @@ Sep 8–9        IIC R2 offline (if advanced)
 Oct 30 08:00   national problem statements released (IIIT Bhubaneswar)
 Oct 30 – Nov 1 national finals (24h overnight + judging)
 ```
+
+## 🎯 Remaining Work (honest)
+
+| Item | Who | Effort |
+|---|---|---|
+| Approval gate (rank-1 predicted shape = approved tools) | Hermes (awaiting user go) | 30-45 min |
+| Rudra ask: 2025 Rajasthan state-round problems + judging format | User (can't do from phone) | 1 message |
+| Demo videos (4× 3-min, screen + voiceover) | Team | ~1h each |
+| Pitch rehearsal (2:30 target, hard timer) | Team | 30 min |
+| Night flow: 21:30 drop → cue table (2 min) → decision tree (10 min) → pick idea → mount skin (15-40 min) → demo.sh → submit | All | 8.5h window |
 
 ---
 
