@@ -525,6 +525,88 @@ submission. On the night: pick the deck matching the sponsor fingerprint,
 possibly tweak the problem lines, regenerate with `node deck-gen.js`,
 upload. If we need to restate the actual problem statement, add a slide.
 
+## 5.5 THE APPROVAL GATE (built Aug 14 evening, verified 13/13)
+
+This is the answer to the rank-1 predicted shape: "trustworthy agent with
+approved tools". Three files changed: a new engine/approval.py (the policy
+core), serve.py (5 new endpoints), index.html (Actions tab).
+
+### approval.py (256 lines) - the policy core
+
+- Side-effect classes are module constants: READ_ONLY, REVERSIBLE,
+  SIDE_EFFECTING. One source of truth for the whole file.
+- Tool dataclass: name, description, params (schema-ish), side_effect.
+- TOOL_REGISTRY: 4 typed tools. lookup_room = read-only (harmless, can
+  auto-run), send_reminder = reversible (a reminder can be unsent),
+  submit_form + pay_fee = side-effecting (real consequences, MUST ask).
+  This registry is the "what can the agent do" contract. In production
+  this would be the allowlist enforced by the runtime.
+- Proposal dataclass: id (P-N), tool, params, reason, evidence[],
+  confidence, status, created_at, decided_at, actor.
+- gate(tool): the policy function. read-only -> "auto", reversible ->
+  "suggest", side-effecting -> "require". Pure function, trivially testable.
+- SQLite: two tables created with CREATE TABLE IF NOT EXISTS (never drops
+  the items table). proposals stores params/evidence as JSON text,
+  audit_events has AUTOINCREMENT id + ts + actor + decision + snapshot of
+  the whole proposal (tool, params, evidence, reason). The snapshot means
+  the audit is self-contained: even if the proposal row changes, the audit
+  row remembers exactly what was decided.
+- propose(): creates the proposal, applies the gate. If gate == auto
+  (read-only), it IMMEDIATELY flips status to executed with actor
+  "system" and writes an audit row ("auto-execute"). Reversible and
+  side-effecting stay pending until a human acts. So even the "free" tools
+  are audited: nothing happens invisibly.
+- decide(): the human's action. THE GUARD (audit finding, fixed round 2):
+  if the proposal is not pending/snoozed, it returns unchanged, writes NO
+  audit row. This stops double-clicks from creating fake history. Then:
+  approve -> reversible becomes APPROVED, side-effecting becomes EXECUTED;
+  reject -> REJECTED; snooze -> SNOOZED. The audit row is written BEFORE
+  the status UPDATE (the "audit-before-status-flip" invariant).
+- list_proposals() / list_audit(): newest first.
+
+Why this impresses judges: it is the human-in-the-loop story made real.
+"AI proposes, a human approves, every decision is logged" is the exact
+language of the rank-1 predicted problem.
+
+### serve.py - the 5 new endpoints
+
+- propose_for_item(item_id, tool, params): looks the item up in the feed,
+  validates the tool exists, builds evidence from the item's summary,
+  builds a reason from the tool description + item subject + sender, and
+  maps rank_score to a 0-1 confidence (clamped). Then calls A.propose().
+- GET /api/tools -> the registry (name, description, side_effect, params).
+- GET /api/proposals -> all proposals, newest first.
+- POST /api/proposals -> create one (201, or 404 if item/tool unknown).
+- POST /api/approve -> {proposal_id, decision, actor}; decision whitelist
+  checked server-side (approve/reject/snooze), 400 on bad decision, 404
+  on unknown proposal, 405 on GET.
+- GET /api/audit -> every audit event, newest first.
+
+### index.html - the Actions tab
+
+- New 4th tab: Actions. Proposal cards show tool name, confidence %,
+  status chip (color-coded: pending amber, executed mint, approved violet,
+  rejected/snoozed red), reason, params (monospace), collapsible evidence
+  panel, and APPROVE/REJECT/SNOOZE buttons.
+- Buttons disable once a proposal is decided (status no longer pending).
+- Below the cards: the audit trail table (when, who, decision, tool).
+- Security note: every dynamic string goes through esc() (the XSS guard
+  from section 4.3). Proposal ids and statuses are server-generated, so
+  the onclick interpolation is safe for demo data.
+
+### The test suite (tests/test_approval.py, 196 lines)
+
+- Plain python3, zero deps. Starts the REAL server on port 8123 against
+  the real DB, exercises every endpoint, and reports G1-G13 pass/fail.
+- It even restarts the server mid-test (G8: persistence across restart).
+- G13 does a bash -n syntax check on demo.sh (audit fix, round 2).
+- Run it yourself: cd scaffold && python3 tests/test_approval.py
+
+How to demo it on stage (30 seconds): open Actions -> propose pay_fee ->
+card appears PENDING -> click evidence, click APPROVE -> status flips to
+EXECUTED -> scroll to audit trail -> the row is there with the actor.
+"Nothing happens without a human, and everything is logged."
+
 ## 6. PRODUCTION LESSONS (what changes if this becomes real)
 
 The scaffold is deliberately simple: stdlib only, no frameworks, no auth.

@@ -15,8 +15,10 @@ Updated: 2026-08-14 15:10 IST (re-audit refresh)
 | File | What it is |
 |---|---|
 | `engine/engine.py` | ★ Domain-agnostic pipeline: ingest → dedupe → LLM summarize → rank → deadlines. LLM mode (ollama-cloud deepseek-v4-flash:0731) + full offline mode (regex dates + tf-idf + cache replay, zero deps). Demo never dies |
-| `webapp/serve.py` | Zero-dependency python HTTP server: /api/stats, /api/digest, /api/search, /api/complaints (ticket flow) |
-| `webapp/static/index.html` | Dark UI: "Today in 60 seconds" digest, 4 stat cards, 3 tabs (Feed/Ask/Requests) |
+| `engine/approval.py` | Approval gate: typed tool registry (4 tools), policy gate (read-only auto / reversible suggest / side-effecting require), proposals + audit_events sqlite tables, audit-before-status-flip. Built by opencode per docs/BUILD-SPEC.md, verified 13/13 |
+| `webapp/serve.py` | Zero-dependency python HTTP server: /api/stats, /api/digest, /api/search, /api/complaints (ticket flow), /api/tools, /api/proposals, /api/approve, /api/audit |
+| `webapp/static/index.html` | Dark UI: "Today in 60 seconds" digest, 4 stat cards, 4 tabs (Feed/Ask/Requests/Actions), Actions = proposal cards + approve/reject/snooze + audit trail table |
+| `tests/test_approval.py` | Acceptance suite G1-G13 for the approval gate (plain python3, starts real server, 13/13 passing) |
 | `deck/deck-gen.js` | pptxgenjs skeleton → 4 sponsor-shaped decks (one source, 4 outputs) |
 | `deck/deck-agentic.pptx` | IDEA A BriefLens deck (agentic ops, Google/Accenture DNA) |
 | `deck/deck-multimodal.pptx` | IDEA B Kavach Circle deck (multimodal assistant, Meta DNA) |
@@ -30,7 +32,7 @@ Updated: 2026-08-14 15:10 IST (re-audit refresh)
 | File | What it is |
 |---|---|
 | `DEMO-STORYBOARDS.md` | 4× 3-min storyboards (second-by-second voiceover scripts for pre-recorded videos) |
-| `BUILD-SPEC.md` | ★ Plan-only spec for the 2 pending scaffold upgrades (approval gate + trace viewer/fixture replay): exact endpoints, table schemas, G1-G13/T1-T6 acceptance tests. Build awaits user go (asked 14 Aug, answer: hold builds) |
+| `BUILD-SPEC.md` | Build spec for the 2 scaffold upgrades. Part 1 (approval gate) BUILT + VERIFIED 13/13 (opencode, commit pending). Part 2 (trace viewer/fixture replay) still pending |
 | `REPO-TOUR.md` | ★ The map: where everything lives and why, 30-second version + per-folder breakdown + reading order. Read this before anything else |
 | `CODE-WALKTHROUGH.md` | ★ Every scaffold file explained function-by-function (engine.py, serve.py, index.html, deck-gen.js, demo.sh) + production lessons + how to audit the code yourself |
 | `HARDWARE-GATE.md` | Archived option (PS-05 hardware sourcing checklist). NOT a track assumption - kept only as a what-if |

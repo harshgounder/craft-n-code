@@ -1,5 +1,6 @@
 # generated artifacts
 scaffold/engine/signal.db
+scaffold/engine/signal.db-journal
 scaffold/engine/.llm_cache.json
 scaffold/webapp/static/demo-feed.json
 scaffold/deck/node_modules/

@@ -65,6 +65,33 @@
   .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   .stat .n{font-size:24px;font-weight:800;color:var(--accent2)}
   .stat .l{font-size:12px;color:var(--mut);margin-top:2px}
+  /* ── actions / proposals ── */
+  .prop{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+  .prop h3{font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .prop .reason{font-size:13px;color:var(--mut);line-height:1.5;margin-bottom:8px}
+  .prop .params{font-size:12px;color:var(--mut);background:var(--chip);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-family:monospace}
+  .conf{background:var(--chip);border-radius:999px;padding:2px 9px;font-size:11px;color:var(--accent)}
+  .chip.status{padding:3px 10px;font-size:11px;font-weight:700;border-radius:999px}
+  .status.pending{background:var(--chip);color:var(--warn)}
+  .status.executed{background:rgba(0,206,143,.15);color:var(--accent2)}
+  .status.approved{background:rgba(108,92,231,.15);color:var(--accent)}
+  .status.rejected,.status.snoozed{background:rgba(255,84,112,.12);color:var(--danger)}
+  .ev{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:12.5px;color:var(--mut)}
+  .ev .ev-src{color:var(--accent);font-weight:700}
+  .ev .ev-body{margin-top:4px;font-style:italic}
+  .prop .btns{display:flex;gap:8px;flex-wrap:wrap}
+  .pbtn{border:none;border-radius:9px;padding:9px 16px;font-weight:800;font-size:13px;cursor:pointer}
+  .pbtn.approve{background:var(--accent2);color:#04120C}
+  .pbtn.reject{background:var(--danger);color:#fff}
+  .pbtn.snooze{background:var(--warn);color:#241600}
+  .pbtn:disabled{opacity:.5;cursor:default}
+  /* ── audit ── */
+  .audit{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:22px}
+  .audit h3{font-size:14px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--mut);font-weight:600}
+  td .dt{color:var(--accent)}
   footer{color:var(--mut);font-size:12px;text-align:center;margin-top:40px;line-height:1.7}
   .hide{display:none}
   .btn-skin{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:600;cursor:pointer}
@@ -97,6 +124,7 @@
     <button class="tab on" data-v="feed">Feed</button>
     <button class="tab" data-v="search">Ask</button>
     <button class="tab" data-v="complaints">Complaints</button>
+    <button class="tab" data-v="actions">Actions</button>
   </div>
 
   <!-- feed view -->
@@ -126,6 +154,18 @@
       <div class="status" id="c-status"></div>
     </div>
     <div id="complaints"></div>
+  </div>
+
+  <!-- actions view -->
+  <div id="v-actions" class="hide">
+    <div id="proposals"></div>
+    <div class="audit">
+      <h3>Audit trail</h3>
+      <table>
+        <thead><tr><th>when</th><th>who</th><th>decision</th><th>tool</th></tr></thead>
+        <tbody id="audit"></tbody>
+      </table>
+    </div>
   </div>
 
   <footer>
@@ -233,10 +273,56 @@ async function fileComplaint(){
 
 function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 
+const STATUS_CLS={pending:'pending',executed:'executed',approved:'approved',rejected:'rejected',snoozed:'snoozed'};
+function renderProposals(list){
+  $('proposals').innerHTML=list.map(p=>{
+    const cls=STATUS_CLS[p.status]||'pending';
+    const disabled=p.status==='executed'||p.status==='approved'||p.status==='rejected'||p.status==='snoozed';
+    const ev=(p.evidence||[]).map(e=>
+      `<div class="ev"><span class="ev-src">${esc(e.source_id)}</span>
+        <div class="ev-body">${esc(e.snippet)}</div></div>`).join('');
+    const params=JSON.stringify(p.params||{});
+    return `<div class="prop" id="prop-${p.id}">
+      <h3>${esc(p.tool)} <span class="conf">${(p.confidence*100).toFixed(0)}%</span>
+        <span class="chip status ${cls}">${p.status}</span></h3>
+      <div class="reason">${esc(p.reason)}</div>
+      <div class="params">${esc(params)}</div>
+      <div class="ev" style="cursor:pointer" onclick="this.style.display='none';$('ev-${p.id}').style.display='block'">
+        evidence (click to expand)</div>
+      <div class="ev hide" id="ev-${p.id}">${ev}</div>
+      <div class="btns">
+        <button class="pbtn approve" ${disabled?'disabled':''} onclick="decide('${p.id}','approve')">APPROVE</button>
+        <button class="pbtn reject" ${disabled?'disabled':''} onclick="decide('${p.id}','reject')">REJECT</button>
+        <button class="pbtn snooze" ${disabled?'disabled':''} onclick="decide('${p.id}','snooze')">SNOOZE</button>
+      </div>
+    </div>`;
+  }).join('')||'<div style="color:var(--mut);padding:20px">no proposals yet - propose a tool from the feed</div>';
+}
+
+function renderAudit(events){
+  $('audit').innerHTML=events.map(e=>`
+    <tr><td class="dt">${esc(e.ts)}</td><td>${esc(e.actor)}</td>
+      <td>${esc(e.decision)}</td><td>${esc(e.tool)}</td></tr>`).join('')||
+    '<tr><td colspan="4" style="color:var(--mut)">no audit events yet</td></tr>';
+}
+
+async function loadActions(){
+  renderProposals((await jget('/api/proposals')).proposals);
+  renderAudit((await jget('/api/audit')).events);
+}
+
+async function decide(id,decision){
+  const r=await fetch('/api/approve',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({proposal_id:id,decision,actor:'user'})});
+  const d=await r.json();
+  if(d.ok){loadActions();}
+}
+
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
   t.classList.add('on');
-  ['feed','search','complaints'].forEach(v=>$('v-'+v).classList.toggle('hide',v!==t.dataset.v));
+  ['feed','search','complaints','actions'].forEach(v=>$('v-'+v).classList.toggle('hide',v!==t.dataset.v));
+  if(t.dataset.v==='actions')loadActions();
 });
 
 load();

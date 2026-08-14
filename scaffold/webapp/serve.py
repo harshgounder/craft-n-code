@@ -34,6 +34,7 @@ DB = HERE.parent / "engine" / "signal.db"
 
 sys.path.insert(0, str(HERE.parent / "engine"))
 import engine as E  # noqa: E402
+import approval as A  # noqa: E402
 
 FEED_CACHE: Optional[dict] = None
 
@@ -76,6 +77,24 @@ def search(items: list[dict], q: str, top: int = 5) -> list[dict]:
             scored.append((s, it))
     scored.sort(key=lambda x: -x[0])
     return [it for _, it in scored[:top]]
+
+
+def propose_for_item(item_id: str, tool: str, params: dict) -> dict:
+    """Turn a feed item + tool into a Proposal. Evidence from the item body."""
+    feed = load_feed()
+    item = next((i for i in feed["items"] if i.get("source_id") == item_id), None)
+    if item is None:
+        return {"ok": False, "error": "item not found"}
+    if tool not in A.TOOL_REGISTRY:
+        return {"ok": False, "error": "unknown tool"}
+    t = A.TOOL_REGISTRY[tool]
+    evidence = [{"source_id": item.get("source_id"),
+                 "snippet": (item.get("summary") or item.get("subject") or "")[:160]}]
+    reason = (f"{t.description} for '{item.get('subject')}'. "
+              f"Triggered by a {item.get('kind')} item from {item.get('sender')}.")
+    confidence = max(0.0, min(1.0, (item.get("rank_score") or 0.0) / 10.0))
+    prop = A.propose(tool, params, reason, evidence, round(confidence, 3))
+    return {"ok": True, "proposal": prop.as_dict()}
 
 
 def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optional[dict]):
@@ -143,6 +162,41 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
                 "deadlines_found": len(deadlines),
                 "llm": feed["llm"], "skin_ready": True,
             })
+
+        if parts[1] == "tools":
+            return json_reply(handler, {
+                "tools": [
+                    {"name": t.name, "description": t.description,
+                     "side_effect": t.side_effect, "params": t.params}
+                    for t in A.TOOL_REGISTRY.values()
+                ]
+            })
+
+        if parts[1] == "proposals":
+            if method == "POST" and body:
+                item_id = body.get("item_id")
+                tool = body.get("tool")
+                params = body.get("params") or {}
+                res = propose_for_item(item_id, tool, params)
+                return json_reply(handler, res, 201 if res.get("ok") else 404)
+            proposals = A.list_proposals()
+            return json_reply(handler, {"proposals": [p.as_dict() for p in proposals]})
+
+        if parts[1] == "approve":
+            if method == "POST" and body:
+                pid = body.get("proposal_id")
+                decision = body.get("decision")
+                actor = body.get("actor") or "user"
+                if decision not in ("approve", "reject", "snooze"):
+                    return json_reply(handler, {"ok": False, "error": "bad decision"}, 400)
+                prop = A.decide(pid, decision, actor)
+                if prop is None:
+                    return json_reply(handler, {"ok": False, "error": "proposal not found"}, 404)
+                return json_reply(handler, {"ok": True, "proposal": prop.as_dict()})
+            return json_reply(handler, {"ok": False, "error": "POST only"}, 405)
+
+        if parts[1] == "audit":
+            return json_reply(handler, {"events": A.list_audit()})
 
     handler.send_response(404)
     handler.end_headers()

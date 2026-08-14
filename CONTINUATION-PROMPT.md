@@ -29,6 +29,7 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 
 ### The scaffold (the night's weapon, all verified 13/13 post-strip)
 - `scaffold/engine/engine.py`: domain-agnostic pipeline (ingest → dedupe → LLM summarize → rank → deadlines). LLM mode = ollama-cloud deepseek-v4-flash:0731 (OLLAMA_API_KEY in ~/.hermes/.env, LIVE). Offline mode = regex dates + tf-idf + cache replay (22 hits), zero deps. Demo never dies.
+- `scaffold/engine/approval.py`: approval gate (typed tool registry, policy gate auto/suggest/require, proposals + audit tables). Verified 13/13.
 - `scaffold/webapp/serve.py` + `static/index.html`: zero-dependency python server + dark UI (digest, ranked feed, search, request board). Verified: stats 11 items / 6 deadlines / skin_ready, search "fee" → 3 results, ticket flow → #C-117.
 - `scaffold/deck/deck-gen.js` + 4 decks (deck-agentic, deck-multimodal, deck-creative, deck-kavach, ~107K each, schema-validated). One skeleton → 4 sponsor-shaped decks.
 - `scaffold/demo.sh` (one-command demo runner), `scaffold/README.md`.
@@ -46,7 +47,7 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 
 ## NEXT STEPS (in order)
 
-1. **Approval gate (PENDING USER GO)**: the #1 gap vs the predicted shapes (rank-1 = approved tools). Typed tool registry + policy gate + POST /api/approve + audit log. 30-45 min. User was asked "want me to build it now?" - if they say yes, build it.
+1. **Approval gate: DONE** (built Aug 14 evening via opencode, verified 13/13 G1-G13: typed tool registry, policy gate, POST /api/approve, audit log, Actions tab in the UI). Next build: trace viewer + fixture replay (docs/BUILD-SPEC.md Part 2, ~45 min, awaiting user go).
 2. **Rudra ask (USER ACTION, can't do from phone)**: ask Rudra (or any CSC exec) for the 2025 RAJASTHAN state-round problems + judging format. The ONLY gap the internet can't close. If obtained, drop in repo or Telegram and fold in.
 3. **Demo videos (TEAM ACTION)**: 4× 3-min pre-recorded (screen + voiceover), storyboards ready in docs/DEMO-STORYBOARDS.md.
 4. **Pitch rehearsal (TEAM ACTION)**: 2:30 target, hard timer.
