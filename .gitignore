@@ -7,3 +7,4 @@ scaffold/deck/package-lock.json
 scaffold/deck/package.json
 *.pdf
 *.jpg
+__pycache__/
