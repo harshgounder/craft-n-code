@@ -226,18 +226,20 @@ answer.
 
 ### 17:05 - THE AGGRESSIVE AUDIT (user directive)
 A hostile self-review of everything. What it found and what was fixed:
-1. TEST RACE (critical, my earlier claim was wrong): all five suites
-   used a fixed 1.2s sleep after starting the server, and serve.py
-   computed the mode at startup, which on a COLD database runs the whole
-   LLM pipeline BEFORE binding the port. test_provenance sets a fake
-   key (Q1 needs it), so cold-start took longer than 1.2s and the test
-   crashed with connection refused. It only passed earlier because the
-   shared signal.db was warm. The "42/42 independently verified" claim
-   was therefore warm-state dependent. FIXED: wait_ready() polling
-   helper in all five suites, per-suite fresh DB (delete signal.db +
-   .llm_cache.json at suite start), serve.py binds immediately and
-   computes the mode in a daemon thread. Re-verified in two orders on
-   fresh DBs.
+1. TEST RACE (critical, my earlier claim was wrong): the four
+   server-starting suites used a fixed 1.2s sleep after starting the
+   server, and serve.py computed the mode at startup, which on a COLD
+   database runs the whole LLM pipeline BEFORE binding the port.
+   test_provenance sets a fake key (Q1 needs it), so cold-start took
+   longer than 1.2s and the test crashed with connection refused. It
+   only passed earlier because the shared signal.db was warm. The
+   "42/42 independently verified" claim was therefore warm-state
+   dependent. FIXED: wait_ready() polling helper in all four
+   server-starting suites (test_providers is serverless, it tests the
+   provider classes directly and never had a sleep), per-suite fresh DB
+   (delete signal.db + .llm_cache.json at suite start), serve.py binds
+   immediately and computes the mode in a daemon thread. Re-verified in
+   two orders on fresh DBs.
 2. TEST CONTAMINATION (real): suites share signal.db, so consent rows
    granted by the provenance suite changed the approval suite's
    consent_required output. Fixed by per-suite fresh DBs.

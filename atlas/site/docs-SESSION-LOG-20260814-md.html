@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/SESSION-LOG-20260814.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/SESSION-LOG-20260814.md</h1>
+  <p class="blurb">The all-in window's session record: decisions, builds, audit findings, commits, window-end state.</p>
+  <a class="open" href="../../docs/SESSION-LOG-20260814.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>SESSION LOG - 2026-08-14 (the all-in window)</h1>
+<p>Window: 15:10 IST to ~17:40 IST. This is the complete record of this</p>
+<p>session. The campaign-wide timeline lives in atlas/content/BUILD-LOG.md;</p>
+<p>this file is the session-level detail: decisions, whys, findings,</p>
+<p>commits, and the exact state at window end.</p>
+<h2>1. WINDOW START (15:10)</h2>
+<ul>
+<li>New window resumed off CONTINUATION-PROMPT.md (HEAD 009e196).</li>
+<li>State verified: watchdog healthy (Rajasthan 2026, 402 reg at the</li>
+</ul>
+<p>time), crons 12/12, repo clean, zero drift.</p>
+<h2>2. DECISIONS MADE THIS WINDOW</h2>
+<ol>
+<li>Builds gated on user go: user first said "hold builds, plan-only",</li>
+</ol>
+<p>then "lets go all in" (16:42). All scaffold builds happened after</p>
+<p>the go.</p>
+<ol>
+<li>HARD RULE (user): ALL source code written via opencode CLI. Hermes</li>
+</ol>
+<p>= architect/reviewer (briefs, audits, tests, commits). Saved to</p>
+<p>memory + ~/AGENTS.md conventions.</p>
+<ol>
+<li>Research frontier closed honestly: p-society org census showed NO</li>
+</ol>
+<p>public 2026 solutions repo exists; 2024 problems not in site source.</p>
+<p>Everything else is time-gated to the 21:30 drop.</p>
+<ol>
+<li>Supabase backend NOT built (needs project + keys; schema is already</li>
+</ol>
+<p>Supabase-shaped, 20 min on the night if the problem demands cloud).</p>
+<ol>
+<li>Atlas built as the full-repo documentation site (user request:</li>
+</ol>
+<p>"extreme detail, clickable file buttons").</p>
+<h2>3. THE BUILDS (all via opencode, all audited by Hermes)</h2>
+<h3>Approval gate (commit cfaf85a)</h3>
+<ul>
+<li>scaffold/engine/approval.py: typed tool registry (4 tools),</li>
+</ul>
+<p>policy gate (read-only auto / reversible suggest / side-effecting</p>
+<p>require), proposals + audit_events tables, audit-before-status-flip.</p>
+<ul>
+<li>serve.py: GET /api/tools, GET+POST /api/proposals, POST /api/approve,</li>
+</ul>
+<p>GET /api/audit. UI: Actions tab with proposal cards + audit table.</p>
+<ul>
+<li>G1-G13 suite 13/13. Audit rounds: double-decision guard (no fake</li>
+</ul>
+<p>history), G13 bash -n check.</p>
+<h3>Trace viewer + fixture replay (commit f131a2f)</h3>
+<ul>
+<li>engine.py: TRACE deque(maxlen=200) ring buffer, per-item LLM modes,</li>
+</ul>
+<p>SCAM_WORDS cap (5.0, never urgent), _rank_why explainer.</p>
+<ul>
+<li>serve.py: --fixture NAME, --offline, mode in /api/stats, /api/trace.</li>
+<li>UI: mode badge (live/cached/offline/fixture) + trace drawer.</li>
+<li>fixtures/: happy, ambiguous, adversarial + expected_*.json.</li>
+<li>T1-T6 12/12. AUDIT FOUND A REAL BUG: --offline blanked the env AFTER</li>
+</ul>
+<p>engine import, LLM still fired with a key set. Fixed with lazy env</p>
+<p>reads + regression test.</p>
+<h3>Provider adapter + multimodal + provenance (commit e0303de)</h3>
+<ul>
+<li>providers.py: Provider protocol, OllamaProvider, NullProvider, lazy</li>
+</ul>
+<p>SIGNAL_PROVIDER read. Swap LLM backends via env, no code edits.</p>
+<ul>
+<li>multimodal.py: extract_text with runtime-detected extractors</li>
+</ul>
+<p>(builtin text, optional pypdf, optional tesseract), graceful None +</p>
+<p>reason, never hard-fails. POST /api/ingest.</p>
+<ul>
+<li>approval.py: consent table (UNIQUE upsert), provenance manifest with</li>
+</ul>
+<p>deterministic prompt_sha256, consent_required flag on proposals.</p>
+<ul>
+<li>P1-P4 9/9, M1-M4 4/4, Q1-Q4 4/4. Audit fix: provenance model label</li>
+</ul>
+<p>now reflects actual LLM usage.</p>
+<h3>The Atlas (commits 88e8a0a + 1685b8d)</h3>
+<ul>
+<li>atlas/build.py: stdlib generator, renders every file in full</li>
+</ul>
+<p>(md via minimal converter with tables/code/lists; code files as</p>
+<p>code blocks), 69 pages, ~795K source chars.</p>
+<ul>
+<li>atlas/site/index.html: reading ladder + 10 sections, PAGE + OPEN FILE</li>
+</ul>
+<p>buttons. atlas/serve.sh (chmod +x fixed 1685b8d). test_build green.</p>
+<h2>4. THE AGGRESSIVE AUDIT (17:05, user directive)</h2>
+<p>Findings and fixes (full detail in atlas/content/BUILD-LOG.md):</p>
+<ol>
+<li>CRITICAL: test race. The four server-starting suites used a fixed</li>
+</ol>
+<p>1.2s sleep; serve.py computed mode at startup, which on a COLD DB</p>
+<p>runs the whole pipeline before binding. test_provenance (fake key</p>
+<p>for Q1) crashed on cold start. The earlier "42/42" claim was</p>
+<p>warm-state dependent. FIXED: wait_ready() polling (30s cap),</p>
+<p>per-suite fresh DB, non-blocking daemon-thread startup.</p>
+<ol>
+<li>Test contamination: shared signal.db made suite order matter.</li>
+</ol>
+<p>FIXED by fresh-DB isolation.</p>
+<ol>
+<li>Rule compliance: 377 em dashes across 33 files + ~20 AI-tell words</li>
+</ol>
+<p>in 8 files (pre-rule corpus + parallel-run output). Swept. Verbatim</p>
+<p>quotes + URL slugs left intact on purpose.</p>
+<ol>
+<li>Stale doc numbers (CODE-WALKTHROUGH line counts). Fixed.</li>
+<li>One false finding of my own (claimed a dead urllib import that the</li>
+</ol>
+<p>provider refactor had already removed). Corrected in the log.</p>
+<ol>
+<li>demo-feed.json wart: documented, harmless, left as-is.</li>
+</ol>
+<p>RE-VERIFIED after fixes, my own runs: both orders, fresh DBs,</p>
+<p>42/42 order-independent. demo.sh end to end 9/9 endpoints 200.</p>
+<h2>5. RESEARCH DONE THIS WINDOW</h2>
+<ul>
+<li>Evening intel refresh (a630777): submission = PPT only (pdf/pptx</li>
+</ul>
+<p>50MB), multiple submissions allowed, judge buttons shortlist/reject/</p>
+<p>hold/noshow, score /5 weighted 100, D3 site live at</p>
+<p>d3fest.techsoc-iiitbbsr.com, 456 reg, Tirtha Desai new contact.</p>
+<ul>
+<li>p-society harvest (91a07dc): org census complete, no 2026 solutions</li>
+</ul>
+<p>repo exists, 2024 problems dead end closed, 2025 already harvested.</p>
+<ul>
+<li>User's parallel keys: 137 in ~/Desktop/parallel spams, spot-probed</li>
+</ul>
+<p>newest 5 all alive (200/200). Watchdog re-probes + rebuilds the</p>
+<p>ledger automatically at 21:05.</p>
+<h2>6. KEY FACTS AT WINDOW END (verified)</h2>
+<ul>
+<li>HEAD: 1685b8d (local == remote, clean tree).</li>
+<li>Suites: approval 13/13, trace 12/12, providers 9/9, multimodal 4/4,</li>
+</ul>
+<p>provenance 4/4, atlas test green. Order-independent on fresh DBs.</p>
+<ul>
+<li>Atlas: 69 pages, ~795K chars, serves via ./atlas/serve.sh on port</li>
+</ul>
+<p>8900 (or open atlas/site/index.html directly).</p>
+<ul>
+<li>Watchdog: craft-n-code-watch every 6h, next tick 21:05 IST (also</li>
+</ul>
+<p>re-probes all parallel keys).</p>
+<ul>
+<li>Remaining work: Rudra ask (user), 4 demo videos (team), pitch</li>
+</ul>
+<p>rehearsal (team), night flow 21:30 drop -&gt; 06:00 submit, 10:00-17:30</p>
+<p>presentation at MUJ.</p>
+<ul>
+<li>The drop: Aug 15 21:30 IST (event site timeline), submission via</li>
+</ul>
+<p>Unstop round 1569450 (PPT, pdf/pptx, max 50MB, resubmit allowed,</p>
+<p>latest wins).</p>
+<h2>7. RULES IN FORCE</h2>
+<ol>
+<li>All code via opencode CLI. Hermes audits, tests, commits.</li>
+<li>No em dashes, no AI-tell words (corpus now swept, 0 in sources).</li>
+<li>Research waves one by one.</li>
+<li>Zero uncontrolled dependencies in the demo.</li>
+<li>Repo reflects true state, verified numbers, honest negatives.</li>
+</ol>
+</main>
+</body>
+</html>

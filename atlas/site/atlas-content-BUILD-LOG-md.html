@@ -210,19 +210,21 @@
 <h3>17:05 - THE AGGRESSIVE AUDIT (user directive)</h3>
 <p>A hostile self-review of everything. What it found and what was fixed:</p>
 <ol>
-<li>TEST RACE (critical, my earlier claim was wrong): all five suites</li>
+<li>TEST RACE (critical, my earlier claim was wrong): the four</li>
 </ol>
-<p>used a fixed 1.2s sleep after starting the server, and serve.py</p>
-<p>computed the mode at startup, which on a COLD database runs the whole</p>
-<p>LLM pipeline BEFORE binding the port. test_provenance sets a fake</p>
-<p>key (Q1 needs it), so cold-start took longer than 1.2s and the test</p>
-<p>crashed with connection refused. It only passed earlier because the</p>
-<p>shared signal.db was warm. The "42/42 independently verified" claim</p>
-<p>was therefore warm-state dependent. FIXED: wait_ready() polling</p>
-<p>helper in all five suites, per-suite fresh DB (delete signal.db +</p>
-<p>.llm_cache.json at suite start), serve.py binds immediately and</p>
-<p>computes the mode in a daemon thread. Re-verified in two orders on</p>
-<p>fresh DBs.</p>
+<p>server-starting suites used a fixed 1.2s sleep after starting the</p>
+<p>server, and serve.py computed the mode at startup, which on a COLD</p>
+<p>database runs the whole LLM pipeline BEFORE binding the port.</p>
+<p>test_provenance sets a fake key (Q1 needs it), so cold-start took</p>
+<p>longer than 1.2s and the test crashed with connection refused. It</p>
+<p>only passed earlier because the shared signal.db was warm. The</p>
+<p>"42/42 independently verified" claim was therefore warm-state</p>
+<p>dependent. FIXED: wait_ready() polling helper in all four</p>
+<p>server-starting suites (test_providers is serverless, it tests the</p>
+<p>provider classes directly and never had a sleep), per-suite fresh DB</p>
+<p>(delete signal.db + .llm_cache.json at suite start), serve.py binds</p>
+<p>immediately and computes the mode in a daemon thread. Re-verified in</p>
+<p>two orders on fresh DBs.</p>
 <ol>
 <li>TEST CONTAMINATION (real): suites share signal.db, so consent rows</li>
 </ol>

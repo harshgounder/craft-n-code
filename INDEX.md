@@ -1,6 +1,6 @@
 # INDEX - every file in this repo, what it's for
 
-Updated: 2026-08-14 15:10 IST (re-audit refresh)
+Updated: 2026-08-14 17:50 IST (all-in window refresh)
 
 ## Top level
 
@@ -9,6 +9,16 @@ Updated: 2026-08-14 15:10 IST (re-audit refresh)
 | `README.md` | War-room home: status, competition, idea bank summary, edition history, people, winner forensics, participant universe, layout, watchdog, timeline, rules |
 | `CONTINUATION-PROMPT.md` | ★ Handoff for a new window: full context reset, immediate mission, next steps, key facts, operating rules. Read this FIRST in any new session |
 | `INDEX.md` | This file |
+
+## atlas/ - the docs website (the Atlas)
+
+| File | What it is |
+|---|---|
+| `site/index.html` | ★ Open this (double-click, or `./atlas/serve.sh` → http://localhost:8900/atlas/site/index.html). Renders EVERY repo file in full: reading ladder, 10 sections, PAGE + OPEN FILE buttons. 69 pages / ~795K chars |
+| `build.py` + `test_build.py` | Stdlib generator (markdown tables/code/lists, HTML escaping) + acceptance test. ALL TESTS PASSED |
+| `manifest.json` | The curated catalogue (10 sections, per-file blurbs) |
+| `serve.sh` | One-command server (python3 -m http.server 8900 from repo root) |
+| `content/BUILD-LOG.md` | Full campaign timeline: every session, every commit, incl. the aggressive-audit episode |
 
 ## scaffold/ - the night's weapon (verified 13/13 post-strip)
 
@@ -37,6 +47,8 @@ Updated: 2026-08-14 15:10 IST (re-audit refresh)
 |---|---|
 | `DEMO-STORYBOARDS.md` | 4× 3-min storyboards (second-by-second voiceover scripts for pre-recorded videos) |
 | `BUILD-SPEC.md` | Build spec for the 2 scaffold upgrades. Parts 1 + 2 BUILT + VERIFIED (approval gate 13/13, trace viewer + fixtures 12/12). Now a record, nothing pending |
+| `BUILD-SPEC-2.md` | Spec for items A/B/C (provider adapter 9/9, multimodal 4/4, provenance+consent 4/4). BUILT + VERIFIED, now a record |
+| `SESSION-LOG-20260814.md` | The all-in window's full record: decisions, builds, audit findings, commits, window-end state |
 | `REPO-TOUR.md` | ★ The map: where everything lives and why, 30-second version + per-folder breakdown + reading order. Read this before anything else |
 | `CODE-WALKTHROUGH.md` | ★ Every scaffold file explained function-by-function (engine.py, serve.py, index.html, deck-gen.js, demo.sh) + production lessons + how to audit the code yourself |
 | `HARDWARE-GATE.md` | Archived option (PS-05 hardware sourcing checklist). NOT a track assumption - kept only as a what-if |

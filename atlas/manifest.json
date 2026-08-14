@@ -6,7 +6,9 @@
       "name": "READ FIRST - the map",
       "entries": [
         {"path": "docs/REPO-TOUR.md", "blurb": "The map of the whole repo: what lives where, why, and the reading order. Start here."},
-        {"path": "atlas/content/BUILD-LOG.md", "blurb": "The full timeline: every session, every commit, every decision from Aug 13 to now, with hashes and whys."}
+        {"path": "CONTINUATION-PROMPT.md", "blurb": "The new-window reset doc: mission, done list, next steps, operating rules, key facts, file tree, resume command."},
+        {"path": "atlas/content/BUILD-LOG.md", "blurb": "The full timeline: every session, every commit, every decision from Aug 13 to now, with hashes and whys."},
+        {"path": "docs/SESSION-LOG-20260814.md", "blurb": "The all-in window's session record: decisions, builds, audit findings, commits, window-end state."}
       ]
     },
     {

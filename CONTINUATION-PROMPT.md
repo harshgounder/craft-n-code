@@ -1,6 +1,6 @@
 # CONTINUATION-PROMPT - Craft N Code (read this FIRST in a new window)
 
-> Drop this file's contents (or this path) as the first message in a new Hermes window. It fully resets context. Written 2026-08-14 15:10 IST (re-audit refresh).
+> Drop this file's contents (or this path) as the first message in a new Hermes window. It fully resets context. Written 2026-08-14 17:45 IST (all-in window refresh).
 
 ---
 
@@ -25,15 +25,20 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 
 ## WHAT'S DONE (verified, committed, pushed)
 
-**Repo state**: HEAD 073951b, 11 commits today, local == remote, zero drift. 76 files tracked.
+**Repo state**: HEAD 1685b8d, local == remote, zero drift. ~180 files tracked.
 
-### The scaffold (the night's weapon, all verified 13/13 post-strip)
-- `scaffold/engine/engine.py`: domain-agnostic pipeline (ingest → dedupe → LLM summarize → rank → deadlines). LLM mode = ollama-cloud deepseek-v4-flash:0731 (OLLAMA_API_KEY in ~/.hermes/.env, LIVE). Offline mode = regex dates + tf-idf + cache replay (22 hits), zero deps. Demo never dies.
-- `scaffold/engine/approval.py`: approval gate (typed tool registry, policy gate auto/suggest/require, proposals + audit tables). Verified 13/13.
-- `scaffold/webapp/serve.py` + `static/index.html`: zero-dependency python server + dark UI (digest, ranked feed, search, request board). Verified: stats 11 items / 6 deadlines / skin_ready, search "fee" → 3 results, ticket flow → #C-117.
+### The scaffold (the night's weapon, ALL BUILT + verified order-independent)
+- `scaffold/engine/engine.py`: domain-agnostic pipeline (ingest → dedupe → LLM summarize → rank → deadlines). LLM mode = ollama-cloud deepseek-v4-flash:0731 (OLLAMA_API_KEY in ~/.hermes/.env, LIVE). Offline mode = regex dates + tf-idf + cache replay (22 hits), zero deps. Trace ring buffer (last 200 steps).
+- `scaffold/engine/approval.py`: approval gate (typed tool registry, policy gate auto/suggest/require, proposals + audit tables, consent records, provenance manifests). Verified 13/13.
+- `scaffold/engine/providers.py`: provider adapter (SIGNAL_PROVIDER env swap: ollama / null, lazy reads). Verified 9/9.
+- `scaffold/engine/multimodal.py`: multimodal input (text/PDF/image extractors, runtime-detected, graceful fallback). POST /api/ingest. Verified 4/4.
+- `scaffold/webapp/serve.py` + `static/index.html`: zero-dependency python server (14 endpoints) + dark UI (digest, ranked feed, search, request board, Actions tab with approve/reject/snooze + audit trail, mode badge, trace drawer). Verified 12/12.
+- `scaffold/tests/`: 5 acceptance suites (test_approval 13/13, test_trace 12/12, test_providers 9/9, test_multimodal 4/4, test_provenance 4/4). ALL order-independent on fresh DBs (wait_ready polling + per-suite fresh DB + non-blocking server startup).
+- `scaffold/fixtures/`: 4 golden feeds (happy, ambiguous, adversarial, multimodal) + expected_*.json.
 - `scaffold/deck/deck-gen.js` + 4 decks (deck-agentic, deck-multimodal, deck-creative, deck-kavach, ~107K each, schema-validated). One skeleton → 4 sponsor-shaped decks.
-- `scaffold/demo.sh` (one-command demo runner), `scaffold/README.md`.
+- `scaffold/demo.sh` (one-command demo runner, verified end to end: 9/9 endpoints 200), `scaffold/README.md`.
 - `docs/DEMO-STORYBOARDS.md` (4× 3-min storyboards), `docs/HARDWARE-GATE.md` (archived option, NOT a track assumption).
+- **The Atlas** (docs website, commit 88e8a0a): `atlas/site/index.html` renders EVERY repo file in full (69 pages, ~795K chars), reading ladder + OPEN FILE buttons. Run `./atlas/serve.sh` → http://localhost:8900/atlas/site/index.html (or double-click the index.html). Generator: `atlas/build.py` (stdlib). `atlas/content/BUILD-LOG.md` = full campaign timeline incl. the aggressive audit.
 - STRIP DONE (commit d00077b): all site-track/campus assumptions removed (PS-01..PS-05, Campus Pulse, Night Ops, Hygiene Sentinel). Engine is domain-agnostic; only seed data changes on the night.
 
 ### The research stack (6 deep-research runs, all landed + pushed)
@@ -47,29 +52,36 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 
 ## NEXT STEPS (in order)
 
-1. **Approval gate: DONE** (built Aug 14 evening via opencode, verified 13/13 G1-G13: typed tool registry, policy gate, POST /api/approve, audit log, Actions tab in the UI).
-1b. **Trace viewer + fixture replay: DONE** (built Aug 14 evening via opencode, verified 12/12 T1-T6: --fixture/--offline flags, mode badge, /api/trace drawer, 3 golden fixtures, scam cap. Real bug found + fixed in audit: --offline now truly forces offline even with a key set).
+1. **ALL SCAFFOLD BUILDS: DONE** (Aug 14 evening, via opencode, audited by Hermes):
+   approval gate 13/13 (cfaf85a) · trace viewer + fixtures 12/12 (f131a2f) ·
+   provider adapter 9/9 + multimodal 4/4 + provenance/consent 4/4 (e0303de) ·
+   atlas docs site (88e8a0a, serve.sh exec fix 1685b8d) · aggressive audit fixes
+   (3644d83: wait_ready polling, per-suite fresh DB, non-blocking startup,
+   corpus rule sweep). All suites order-independent on fresh DBs: 42/42 in
+   two orders, independently re-verified.
 2. **Rudra ask (USER ACTION, can't do from phone)**: ask Rudra (or any CSC exec) for the 2025 RAJASTHAN state-round problems + judging format. The ONLY gap the internet can't close. If obtained, drop in repo or Telegram and fold in.
 3. **Demo videos (TEAM ACTION)**: 4× 3-min pre-recorded (screen + voiceover), storyboards ready in docs/DEMO-STORYBOARDS.md.
 4. **Pitch rehearsal (TEAM ACTION)**: 2:30 target, hard timer.
-5. **Aug 15**: 21:00 watch Unstop. 21:30 problems drop → company fingerprint scan (cue table, 2 min) → decision tree (10 min) → pick idea A/B/C/D → pick deck + storyboard → swap seed data (15-40 min) → ./demo.sh → submit before 06:00.
+5. **Aug 15**: 21:00 watch Unstop. 21:30 problems drop → company fingerprint scan (cue table, 2 min) → decision tree (10 min) → pick idea A/B/C/D → pick deck + storyboard → swap seed data (15-40 min) → ./demo.sh → submit before 06:00 (PPT: pdf/pptx max 50MB, resubmit allowed, latest wins).
 6. **Aug 16**: pitch 10:00-17:30. 3-min demo (2:30 rehearsal target). Win the round, top-2 advance.
 7. Parallel track: IIC 3.0 R1 ends Aug 25 (repo `~/iic-3`, judge-watch cron live).
 8. After qualifier: national prep (Oct 30 - Nov 1). Watchdog cron (`craft-n-code-watch`, every 6h) tracks reg counts + judge/sponsor reveals; state in `research/watch-state.json`.
 
 ## OPERATING RULES
 
+- **ALL source code via opencode CLI (HARD RULE, user 2026-08-14)**. Hermes = architect/reviewer: writes briefs, audits diffs, tells opencode what's right/wrong, runs tests, commits. Hermes never writes source code itself (docs/research/tests/commands OK). See opencode skill (autonomous-ai-agents/opencode).
 - Waves ONE BY ONE, no parallel fan-out (user directive). Extreme depth, no fluff.
-- Verify before claiming: live Unstop API (`https://unstop.com/api/public/competition/<ID>`) is ground truth; tag claims VERIFIED / PARTIAL / NOT FOUND.
+- Verify before claiming: live Unstop API (`https://unstop.com/api/public/competition/<ID>`, data.competition nesting) is ground truth; tag claims VERIFIED / PARTIAL / NOT FOUND.
 - Web infra degraded: Firecrawl 402; use rivalsearch (`mcp__rivalsearch__web_search`) + curl with Chrome UA + r.jina.ai + gh CLI (authed).
-- NO em dashes, no AI-tell words (hard rule). Casual "bro" tone, lowercase-ish, kaomoji.
+- NO em dashes, no AI-tell words (hard rule). Corpus swept Aug 14 (377 dashes removed; verbatim quotes + URL slugs left on purpose).
 - Everything committed + pushed; report milestones via Telegram (token: `grep TELEGRAM_BOT_TOKEN ~/.hermes/.env`, chat_id=6408901386), no permission-asking.
 - Report to user in terminal too (CLI session) - plain text, no markdown tables.
-- Parallel deep-research: processor `pro-fast` is the ONLY working combo (lite 401s on every key). Rotate keys on 402. Keys: 130 in `~/Desktop/parallel spams`, 43/103 alive in `~/parallel-ai-stack/run-ledger/keys.json`.
+- Parallel deep-research: processor `pro-fast` is the ONLY working combo (lite 401s on every key). Rotate keys on 402. Keys: **137** in `~/Desktop/parallel spams` (newest at BOTTOM, spot-probed alive 2026-08-14), ledger auto-rebuilds at each watchdog tick.
 
 ## KEY FACTS (do not re-research)
 
-- Unstop IDs: 1730314 Rajasthan 2026 (402 reg/81 players, ₹299, LIVE) · 1730325 UP 2026 · 1171379 national 2024 · 1175823 state 2024 · 1545708 RJ 2025 · 374277 D³ Fest 2025 (dead).
+- Unstop IDs: 1730314 Rajasthan 2026 (456 reg/96 players, ₹299, LIVE) · 1730325 UP 2026 · 1171379 national 2024 · 1175823 state 2024 · 1545708 RJ 2025 · 374277 D³ Fest 2025 (dead).
+- Submission format (VERIFIED Aug 14): PPT only (pdf/pptx, max 50MB, mandatory), multiple submissions allowed (latest wins), round 1569450 Aug 15 21:00 - Aug 16 06:00, presentation round Aug 16 10:00-17:30. Judge panel buttons: shortlist/reject/hold/noshow, score /5 weighted 100.
 - 2026 question writers: the sponsor companies (Google, Apple, Meta, Accenture, Adobe) per club insider. The site's 5-track list is a BACKUP SET, not the real questions (Rudra intel, Aug 14). Only the timings are reliable from the site. Pass-2 deep research could NOT publicly verify sponsor authorship - Rudra's word is the best signal.
 - 2025 winners: AFTERPACKETS (MUJ Highlanders) - zero external deps, Android VPNService + C++ DPI, empty lane. 2024: Wizard_Oz (CVRGU) 1st, Fork (RVCE) 2nd.
 - The 3 predicted shapes (INFERRED, rehearsal only): 1) agentic ops/personal productivity (Google/Accenture) → IDEA A, 2) multimodal campus/community assistant (Meta/Apple) → IDEA B, 3) responsible creative/enterprise media workflow (Adobe/Accenture) → IDEA C. Security lane → IDEA D Kavach.
@@ -77,22 +89,33 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 - 2025 problems verbatim in `research/raw/rnr-phase1-full.txt` + `rnr-phase2-full.txt`.
 - The winner formula: AI non-negotiable, working demo > deck, real-world impact framing, zero external deps in demo, clean repo = free points.
 - LLM layer: OLLAMA_API_KEY live (deepseek-v4-flash:0731 via https://ollama.com/v1/chat/completions). OPENROUTER + XIAOMI present. GEMINI/GROQ/UNOROUTER empty.
-- Crons: 12/12 healthy. craft-n-code-watch every 6h (last tick 14:34, state committed 073951b).
-- Telegram: bot artemas (token in ~/.hermes/.env), chat_id 6408901386, last message 1319 (full re-audit).
+- Crons: 12/12 healthy. craft-n-code-watch every 6h (also re-probes all 137 parallel keys, rebuilds the ledger).
+- Telegram: bot artemas (token in ~/.hermes/.env), chat_id 6408901386, last message 1324 (atlas live).
+- Atlas: `./atlas/serve.sh` → http://localhost:8900/atlas/site/index.html (or double-click the file). Session detail: docs/SESSION-LOG-20260814.md.
 
 ## CURRENT FILE TREE (key)
 
 ```
 ~/craft-n-code/
-├── README.md               ← war-room index, fresh
+├── README.md               ← war-room index
 ├── CONTINUATION-PROMPT.md  ← this file
 ├── INDEX.md                ← file-by-file map
-├── scaffold/               ← ★ THE NIGHT'S WEAPON (verified 13/13)
-│   ├── engine/engine.py    ← ingest → dedupe → summarize → rank → deadlines
-│   ├── webapp/serve.py + static/index.html
+├── atlas/                  ← ★ THE ATLAS (docs site, 69 pages)
+│   ├── site/index.html     ← open this (or ./atlas/serve.sh → :8900)
+│   ├── build.py + test_build.py + serve.sh + manifest.json
+│   └── content/BUILD-LOG.md ← full campaign timeline + audit episode
+├── scaffold/               ← ★ THE NIGHT'S WEAPON (all verified)
+│   ├── engine/engine.py    ← ingest → dedupe → summarize → rank → deadlines + trace
+│   ├── engine/approval.py  ← approval gate + consent + provenance
+│   ├── engine/providers.py ← provider adapter (SIGNAL_PROVIDER)
+│   ├── engine/multimodal.py← multimodal input adapter
+│   ├── webapp/serve.py + static/index.html (14 endpoints, dark UI)
+│   ├── tests/              ← 5 acceptance suites (42/42, order-independent)
+│   ├── fixtures/           ← 4 golden feeds + expected
 │   ├── deck/deck-gen.js + 4 .pptx (agentic/multimodal/creative/kavach)
 │   ├── demo.sh + README.md
-├── docs/                   ← DEMO-STORYBOARDS.md, HARDWARE-GATE.md (archived)
+├── docs/                   ← REPO-TOUR, CODE-WALKTHROUGH, BUILD-SPEC(+2),
+│                              DEMO-STORYBOARDS, SESSION-LOG-20260814, HARDWARE-GATE
 └── research/               ← 40+ files (see INDEX.md)
     ├── IDEA-BANK.md        ← ★ THE playbook for Aug 15 21:30
     ├── CHEATSHEET-BRIEF.md ← what matters, sponsor DNA, hottest tech
@@ -106,4 +129,4 @@ Related repos: `~/iic-3` (IIC 3.0, R1 ends Aug 25), `~/muj-academics` (planner +
 
 ---
 
-**Resume command**: read this file, then `research/IDEA-BANK.md`, then `research/WAVE-SYNTHESIS.md`. Do not re-harvest what's already verified. If the user said yes to the approval gate, build it first (30-45 min).
+**Resume command**: read this file, then `research/IDEA-BANK.md`, then `research/WAVE-SYNTHESIS.md`, then `docs/SESSION-LOG-20260814.md`. Do not re-harvest what's already verified. ALL builds are done and verified (42/42 order-independent); the opencode rule is in force. Remaining work is user/team actions (Rudra ask, demo videos, rehearsal) + the Aug 15 night flow (drop at 21:30, submit by 06:00).
