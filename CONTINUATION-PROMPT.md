@@ -130,3 +130,25 @@ Related repos: `~/iic-3` (IIC 3.0, R1 ends Aug 25), `~/muj-academics` (planner +
 ---
 
 **Resume command**: read this file, then `research/IDEA-BANK.md`, then `research/WAVE-SYNTHESIS.md`, then `docs/SESSION-LOG-20260814.md`. Do not re-harvest what's already verified. ALL builds are done and verified (42/42 order-independent); the opencode rule is in force. Remaining work is user/team actions (Rudra ask, demo videos, rehearsal) + the Aug 15 night flow (drop at 21:30, submit by 06:00).
+
+## LATEST STATE (refresh Aug 15 ~14:30 IST, read before anything else)
+
+17 parallel.ai research runs integrated (wave2 + wave3-14 + wave15-18),
+all raw JSON+MD in research/raw/, all committed. READ FIRST in a night
+window, in order: research/NIGHT-CHEAT-SHEET-2026.md (the 21:30 mount
+table), research/WAVE-SYNTHESIS-2026.md (master index of all 17),
+research/PRIOR-ART-MAP-2026.md (the exists-map, three tensions, judge
+attack answers), docs/NIGHT-RUNBOOK.md (timeline, format facts, 3-act
+demo script, PRE-WARM RULE, 429 WATCH, honesty moment), docs/
+SUBMISSION-TEXT-KIT.md (v2: evaluator closing line, fraud numbers),
+docs/BUILD-SPEC-3.md + BUILD-SPEC-4.md (both built, both verified:
+badge honesty H1-H6, feeds F1-F8, stress 23/23, deck MCP slide M1-M6).
+
+STATE: 81/81 suites green, 5/5 kits, deck has MCP slide, tree clean
+at HEAD, atlas 82 files. LLM provider rate-limits under load (429
+WATCH: two-pass pre-warm, warm cache fallback, honesty story).
+
+OPEN (night): Rudra ask (cutoff 21:00), 4 demo videos, rehearsal
+2:30, venue fan-out 30 min before code (wave-17 rule), then the
+night flow 21:30 -> 09:00. Problem drops 21:30; fingerprint -> tree
+-> kit mount via NIGHT-CHEAT-SHEET; gates 23:00 / 05:00 / 09:00.

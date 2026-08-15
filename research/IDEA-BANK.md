@@ -28,10 +28,12 @@ Real question drops at 21:30
 ├─ Fingerprint = Accenture (workflow, case, enterprise,
 │   KPI, approval) ──────────────────► IDEA A ops skin (case → owner → approval → metric)
 ├─ Security / safety / fraud flavor ─► IDEA D "Kavach" (existing product, real demo)
+├─ Compliance / DPDPA / policy / consent words ─► IDEA E "VicharSetu" (compliance copilot, S9.16 track)
+├─ Onboarding / enrollment / schemes / form words ─► IDEA E "Sahaayak" (onboarding copilot, S9.16 track)
 └─ No fingerprint / off-map ─────────► Map to the closest idea. Never pitch a fresh one.
 ```
 
-The strategic core: ONE engine (ingest → dedupe → summarize → rank → deadlines → propose → approve), domain-agnostic. Every idea mounts on it with a different skin. Kavach is the only pre-existing product and covers the security lane.
+The strategic core: ONE engine (ingest → dedupe → summarize → rank → deadlines → propose → approve), domain-agnostic. Every idea mounts on it with a different skin. Kavach is the only pre-existing product and covers the security lane. Idea E skins (VicharSetu/Sahaayak) added from the complaint mine (S9.16, DEEP 95.9, 85 quotes): the 6 pain tracks are Trust Verification, Cost/Quota, Compliance-as-a-Service, Onboarding Copilot, Workflow Orchestrator, Indic-First UX; A covers Workflow + Cost/Quota, B covers Trust, D covers Trust at call level, E covers Compliance + Onboarding, Indic-First is a skin on any of them.
 
 ---
 
@@ -111,8 +113,8 @@ Both are 100% scaffold-skins (no engine work), each has a ready quote bank in S9
 
 ### How to read the drop (2-minute scan)
 1. WHO set it? Read the problem text for the company's fingerprints (their product names, their API names, their phrasing).
-2. WHAT shape is it? Map to the 3 predicted shapes + security lane below.
-3. WHICH idea mounts? BriefLens / Kavach Circle / SignalStory / Kavach. See the lane table.
+2. WHAT shape is it? Map to the 22-shape set (TOPIC-UNIVERSE S2 + S9.2, demo-risk column). The 7 core + MCP/multi-agent/voice are the likeliest.
+3. WHICH idea mounts? BriefLens / Kavach Circle / SignalStory / Kavach / VicharSetu / Sahaayak. See the lane table + the S9.16 six-track mapping.
 
 ### The company fingerprint table
 

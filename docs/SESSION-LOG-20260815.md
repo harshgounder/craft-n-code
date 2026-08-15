@@ -110,3 +110,30 @@ Full record of the Aug 15 morning prep window. Night flow starts 20:00.
 - All source code via opencode; Hermes = spec + audit + tests + commits.
 - No em dashes, no AI-tell words. Research waves one by one.
 - Everything committed, tree clean, local == remote.
+
+## AFTERNOON WINDOW (13:00-14:30 IST, same day)
+
+- Deck gap closed: BUILD-SPEC-4 via opencode (MCP slide on slide 5 +
+  MCP-READY cover badge, all 4 skins), audited by Hermes, M1-M6 PASS
+  independently (slide count 8 each, XML-verified, no em dashes).
+- Prior-art round: waves 15-18 launched on fresh keys 145-148, all
+  completed and integrated into research/PRIOR-ART-MAP-2026.md:
+  shapes (stars + wedges), domains (three tensions), student builds +
+  venues (demand signals, judge reality, venue recipe, evidence
+  warning about the TiE/Code-N-Craft conflation), OSS stand-on map
+  (compose list, traps, whitespace, vendorability matrix).
+- Prewarm attempts: keyless run (my mistake, no key sourced, killed),
+  keyed run hit sustained HTTP 429s (provider rate limit) and failed.
+  Finding documented as the 429 WATCH in NIGHT-RUNBOOK: two-pass
+  spaced pre-warm, warm cache fallback, honesty story. Cache baseline
+  45 entries, not warmed.
+- Honesty pass: evidence-chain legend added to both registries
+  (wave numbers = source-cited, not independently re-measured),
+  benchmark count corrected to ~250 named, stress canonical count
+  confirmed at 83 + 10, WAVE-SYNTHESIS waves 15-18 indexed (wave-14
+  header restored after a patch slip), atlas +2 files (82 total,
+  1,022,706 chars, tests green), NUMBERS-2026 research coverage block.
+- SUBMISSION-TEXT-KIT v2: 42 -> 81 acceptance checks fixed, evaluator
+  closing line, format facts, fraud number block, honesty line.
+- Commits: 7a78267, 46e32b1, 9dd1dd9, bf7ea4e, 9561959, bbe9c0b
+  (pushed; plus concurrent idea-lab sync 9dd1705).

@@ -5,7 +5,31 @@ the night is paste + submit, not write-at-5am. Two gates:
 - Unstop round 1569450: PPT (pdf/pptx, max 50MB), v1 at 23:00, final 05:00, closes 06:00
 - Club site (cscmuj.com / craftncode.dev form): repo_url (required) + pitch (1-2000 chars) + demo_url (optional), v1 before 06:00, final before 09:00 freeze
 
-## THE FIVE ONE-SENTENCE STORIES (freeze ONE at 21:45, use everywhere)
+## V2 ADDITIONS (Aug 15, after the 17-wave research round)
+
+THE EVALUATOR CLOSING LINE (use as the final line of ANY pitch):
+"Most hackathon entries ship agents. Very few ship evaluators that
+score whether the agents behave. We ship 81 automated checks, zero LLM
+judges, a trace for every step, and a mode badge that cannot lie."
+(Source: wave-16 synthesis, the generative vs evaluative tension.)
+
+FORMAT FACTS (verified, cite if asked): 24-hour state-level hackathon,
+Rs 299 entry, 2-4 person teams, prize pool Rs 50,000, top 2 advance to
+the national finals at IIIT Bhubaneswar (Oct 30 - Nov 1). Cyber Space
+Club MUJ runs the state qualifier; cybersecurity is the club's
+identity, security-shaped builds sit in the judges' center of mass.
+
+FRAUD KIT NUMBER BLOCK (only if the mounted idea is fraud-shaped):
+1,23,672 digital-arrest complaints and Rs 1,935.5 crore lost in 2024
+alone; Rs 4,057 crore lost to digital arrest since 2022 across 3 lakh
+victims; I4C blocked 59,000 WhatsApp + 1,700 Skype accounts; RBI
+disabled the UPI collect feature on 1 Oct 2025; the 1930 helpline
+saved about Rs 11,158 crore across 3.28M calls. All cited in
+research/raw/wave10-fraud.md.
+
+HONESTY LINE (if the LLM dies mid-demo): "The provider rate-limited
+us. The badge flipped to offline, the feed kept ranking, the approval
+flow kept working. That is the product." (429 WATCH, runbook)
 
 - IDEA A BriefLens: "The one action that matters drowns under noise; BriefLens
   ranks it, proves it with evidence, and waits for a human to approve."
@@ -30,7 +54,7 @@ amount. A human presses approve, reject, or snooze. Every decision is audited:
 who, when, what. A semantic search answers questions with sourced answers, not
 hallucinations. Built as a zero-dependency pipeline that runs live with an LLM
 or fully offline with deterministic rules, with a visible mode badge. Verified
-by 42 automated acceptance checks, order-independent, fresh databases every
+by 81 automated acceptance checks, order-independent, fresh databases every
 run. Demo: digest reads two urgent actions, approve one, audit trail updates,
 ask a question, get a sourced answer. The engine is domain-agnostic and mounts
 any workflow in under an hour. AI proposes, humans approve, everything is
@@ -47,7 +71,7 @@ routes to a human reviewer instead of guessing. Users can correct the model
 and the fix is remembered for the session. Built on a zero-dependency
 pipeline: runtime-detected extractors for PDF and OCR that degrade gracefully,
 a live LLM mode and a deterministic offline mode, and a visible mode badge so
-judges always know what is real. Verified by 42 automated acceptance checks,
+judges always know what is real. Verified by 81 automated acceptance checks,
 order-independent. Demo: drop a screenshot and a PDF, both get extracted with
 sourced facts, ask a question and get a confidence band, ask something risky
 and watch the escalation to a human, correct an answer and see the fix apply.
@@ -69,7 +93,7 @@ timestamp, reviewer, so lineage is always answerable. Export to multiple
 formats: text, image card, PDF. The generator adapter is swappable: live model
 when credentials exist, honest mock when they do not, and the provenance layer
 is the differentiator either way. Built on a zero-dependency pipeline with a
-visible mode badge, verified by 42 automated acceptance checks. Demo: paste a
+visible mode badge, verified by 81 automated acceptance checks. Demo: paste a
 one-paragraph brief, watch brand and tone get extracted, generate an asset,
 edit and regenerate, reviewer approves, provenance card shows the full
 lineage. On-brand, on-time, and accountable: that is what enterprise
