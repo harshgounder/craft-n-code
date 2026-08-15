@@ -474,10 +474,6 @@
         {
           "path": "INDEX.md",
           "blurb": "The file-by-file index of the whole repo."
-        },
-        {
-          "path": "CONTINUATION-PROMPT.md",
-          "blurb": "The new-window reset doc: mission, timeline, what is done, next steps in order, operating rules."
         }
       ]
     },
