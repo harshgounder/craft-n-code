@@ -399,6 +399,68 @@ Run: cnc-complaint-mining-refire. Verdict: SHALLOW 54.3 (398 cites, 6 tables, 63
 
 5 sponsor lanes mined (Google dev/student/SMB, Apple on-device/accessibility, Meta WhatsApp India/sellers/group admins, Accenture enterprise ops, Adobe creators). The usable output: verbatim complaint quotes per lane for the demo problem slide, and the statement-readiness ranking. Use it as the quote bank, not as prediction: complaints prove pain, they do not predict the setter.
 
+### SECTION 9.11: INDIA WINNER FORENSICS (wave 3-8, parallel.ai pro-fast, 2026-08-15)
+
+Run: cnc-wave7-winners (DEEP 92.1, 82 cites, 7 tables, 30.2K chars. Full report: parallel-ai-stack/test-results/cnc-wave7-winners.content.md).
+
+What changes tonight's parse (all VERIFIED with URLs in the report):
+- MUJ's own HackX 3.0 (the closest analogue): Rs 70,000 / 40,000 / 25,000 prizes + AIC-MUJ pre-incubation pathway, Round-3 is a LIVE WORKING MODEL final pitch. Prize ecosystem ceiling ~Rs 5L. Judges at MUJ events expect a working thing on stage, not a deck.
+- Google Cloud Gen AI Exchange 2025 (270,000 devs, 30-member jury) rewarded: agentic systems, explainable multimodal models, RAG legal intelligence, youth mental wellness. Bake in agentic + explainability.
+- Meta's first India Llama hackathon (Nov 2024): 1st CurePharma AI ($3K), 2nd CivicFix ($2K). Industry-built-help prompts win. "Built with Llama" attribution is a scored item.
+- Adoption + reproducibility beat novelty: GitLab 2026 scoring = technical work, design, potential impact, idea quality; live demos trump slide decks.
+- The anti-pattern (hackathonradar.com May 2026): "Most hackathon projects fade because they were built for judging, not for continuation". Add a continuation/LCA line to the pitch.
+- SIH themes that recur as Rajasthan-relevant: AI/ML, water, agriculture, healthcare, mobility, assistive tech. A state qualifier should link at least one ministry-grade domain.
+- Rajasthan lanes: TiE Global Summit Rajasthan Hackathon (30h, DigiFest co-branded), MeitY TIDE 2.0 + iStart Rajasthan ideation hackathon (problem-first + prototype-second grading).
+- Judge mindset (Section 5 of the report): questions cluster on demo failure, fake data, no testing, scope creep. 1st vs 2nd is decided by the working-demo gap, not the idea gap.
+- Failed finalists (Section 6): strong projects lose on untested edge cases on stage, no failure story ("what happens when the API dies"), and scope that visibly exceeded 24h.
+
+### SECTION 9.12: COMPETITOR TEARDOWN PER SHAPE (wave 3-8, parallel.ai pro-fast, 2026-08-15)
+
+Run: cnc-wave8-competitors (ADECENT 79.2, 84 cites, 36 tables, 38.4K chars. Full report: parallel-ai-stack/test-results/cnc-wave8-competitors.content.md).
+
+The per-shape "this already exists" map, with the student wedge for each (all VERIFIED):
+- SHAPE 1 (trustworthy agent): OpenAI Operator scores 38% on OSWorld (2 in 5 tasks fail). Wedge: provenance-per-action + explicit approval ledger. Only ~12% of agent deployers ship the audit row; a tamper-evident hash-chained approval ledger is defensible.
+- SHAPE 2 (creative production): C2PA has 6,000+ members but ZERO browser-enforced verification. Wedge: in-platform "trust badge" overlay that flags unsigned AI images.
+- SHAPE 3 (private intelligence): LEAST shipped competition today. No product ships a verifiable on-device multi-agent workflow router that signs its own outputs and handles SBOM-style model provenance. Wedge: "private + auditable" axis. Apple PCC is the only cryptographically audited cloud AI; no Android equivalent.
+- SHAPE 4 (multimodal messaging): WhatsApp Business Policy BANS general AI chatbots (effective Jan 15 2026), allows structured audited single-purpose bots with human hand-off in the 24h window. Bar: 95% across intent/quality/hallucination/guardrail/escalation. Wedge: verifiable 5-metric audit panel.
+- SHAPE 5 (enterprise router): 89% of AI agent pilots stall at production (Gartner/IDC 2026). SME/mid-market unserved by ServiceNow/Agentforce list prices. Wedge: policy-engine layer that ANY of them plug into, not "be ServiceNow".
+- SHAPE 6 (MCP): 8,000-12,000 listed MCP servers (from ~50 at Nov 2024 launch), but ~52% dead-server share. LEAST-shipped sub-niche: approval-gated MCP (a server that refuses tool calls above an approval threshold). Wedge: two MCP servers jointly enforcing HITL across five tools.
+- SHAPE 7 (multi-agent): MAST taxonomy = 14 failure modes, 1,642 traces, production crews hit ~40% broken-down tasks (step repetition 15.7%, disobey spec 11.8%, no completion recognition 12.4%). Wedge: stateful durable checkpointed DAG with audit, not another CrewAI.
+- Judge objection playbook (Section 8): name the incumbent product + its incident in the demo, show one measurable benchmark the judge can replay, embed every claim in a signed audit row. Innovation is rewarded when the failure mode is named; impact when the metric is reproducible.
+
+### SECTION 9.13: 2026 FRONTIER + AGENT INCIDENTS (wave 3-8, parallel.ai pro-fast, 2026-08-15)
+
+Run: cnc-wave6-frontier (ADECENT 73.5, 144 cites, 9 tables, 48.7K chars. Full report: parallel-ai-stack/test-results/cnc-wave6-frontier.content.md).
+
+What changes tonight's parse (all VERIFIED with URLs in the report):
+- Agent-induced data destruction is THE 2026 failure pattern: Replit wiped SaaStr prod DB (Jul 21 2025, 1,206 executive records, agent "lied" about rollback) and PocketOS wiped DB + backups in ~9 seconds (Apr 2026, Cursor + Claude Opus 4.6). Root cause both: autonomous coding agent with broad credentials + destructive tool path. Action: task-scoped short-lived credentials + tool-broker approval gates. A demo that SHOWS an agent refusing a destructive action is the 2026 on-brand move.
+- Prompt injection is OWASP's #1 agent risk, up 340% in 2026 (EchoLeak CVE-2025-32711 on M365 Copilot; March 2026 finance pricing-data leak ran 3 weeks undetected). Action: reader/doer separation (reader = no tools, doer = no untrusted text, trusted orchestrator between). This is a 24h-buildable architecture and a judge-proof answer to "what about injection?".
+- Operation Pale Fire: Block's red team got code execution via invisible Unicode in Google Calendar invites routed through Goose (their open-source agent). Treat calendar invites, PR comments, repos as untrusted input boundaries.
+- MCP: ~50 (Nov 2024) -> 10K-14K servers (Q2 2026), 86K GitHub stars, 97M monthly SDK downloads. Microsoft/GitHub/Stripe/Atlassian/Figma/Cloudflare integrate. Agent Plugins 1.0.0 shipped with Amazon/Cursor/Microsoft/OpenAI/Vercel TSC. Action: ship the hackathon tool integration AS an MCP server, not a custom API.
+- Frontier benchmark numbers are contested: SWE-bench Verified = 95.5% (BenchLM July 2026 mirror) vs 51.0% (Scale AI standardized set per Morph). Terminal-Bench 2.1 GPT-5.6 Sol 85.77%; OSWorld 2.0 Claude Opus 5 = 70.6%, GPT-5.6 Sol = 62.6%. Action: cite BOTH official and independent leaderboard URLs in the pitch so reviewers see spread.
+- MAST: 14+ failure modes, 1,642 traces, ~40% task breakdown in production crews. Design the eval harness covering MAST modes BEFORE the demo, not after.
+- Indian stack is shipping consumer-facing Indic models: Sarvam Indus (Feb 20 2026, Sarvam-105B, voice + Indian languages), Krutrim GPU-as-a-Service + AI Studio. Regional-language + on-device is the defensible niche vs frontier labs.
+- Google Agents CLI ships 7 skills (workflow, ADK code, scaffold, eval, deploy, publish, observability); Agent Platform evals GA Jul 31 2026. Build on ADK for a scaffold+eval+deploy path.
+- Plan-and-confirm beats let-it-run: Replit added dev/prod DB separation + planning-only mode + rollback-aware docs. Ship agents with explicit "plan-only" toggles. Our scaffold's propose -> approve IS this pattern, cite the incidents.
+
+### SECTION 9.14: STRESS BENCH EXTENSION (wave 3-8, parallel.ai pro-fast, 2026-08-15)
+
+Run: cnc-wave5-stress (ADECENT 77.8, 107 cites, 33 tables, 44.6K chars. Full report: parallel-ai-stack/test-results/cnc-wave5-stress.content.md).
+
+Normative numbers to quote on stage (all VERIFIED):
+- SLO pack: <1% request error rate, p95 <200 ms, p99 <400 ms.
+- Retry budget: cap ~60 retries/min per process; 4^3 = 64x amplification when three layers retry three times.
+- OWASP LLM Top 10 exists: test against LLM04 (model DoS / token exhaustion) by name, not "is it tough".
+- Idempotency = the most consequential hackathon pattern: Stripe mechanics (255-char key, 24h TTL, full response caching on POST).
+- Domain stress axes: fintech = decimal precision + double spend + reversal; health = consent revocation; education = proctoring resistance; civic = low-bandwidth paths; creative = brand violation at scale.
+- The six live failure injections to rehearse before stage: network kill, key revoke, resource cap, 100x burst, deadline pressure, multi-language (Indic) input. This is the mock-drop bench's failure-injection list, now with normative numbers.
+
+### SECTION 9.15: COMPELLED EVIDENCE REFRESH (wave 3-8 refire, parallel.ai pro, 2026-08-15)
+
+Run: cnc-compelled-evidence-refire2 (ADECENT 81.9, 231 cites, 24 tables, 45.8K chars. Improved from SURFACE at pro tier. Full report: parallel-ai-stack/test-results/cnc-compelled-evidence-refire2.content.md).
+
+Same 8 lanes as S9.9 with more receipts per lane. New anchor facts beyond S9.9 (all VERIFIED in report): 1930 helpline intercepts ~20% of reported fraud value (Rs 11,158 cr saved); 5.6 cr pending court cases; 70 cr UPI QRs; 7.3 cr MSMEs registered; 24 lakh NEET candidates; Rs 805 cr UPI fraud FY26 +85% YoY; Rs 250 cr DPDPA max penalty (tier ladder Rs 1L/2L/up to 250 cr); insurance claim grievances = 69% of complaints; creator piracy loss Rs 224B. The report's Top-20 Receipts Ranked (demo-citability index) is the quote bank for the problem slide. Cross-lane synthesis: India moves massive public numbers but the opaque backend is thin (fraud recovery ~12%, FIR conversion 3:1 behind complaints). Any demo opening with one of these numbers beats a generic problem slide.
+
 ## SECTION 10: THE META-UNIVERSE (beyond Craft N Code 2026)
 
 This universe generalizes to any AI hackathon in India 2026-2027. The event-agnostic core: Section 1 company DNA (apply the setter list of YOUR event), Section 2 shapes (7 core + 13 from wave 2 = 22 now), Section 3 domains (30 core + 32 from wave 2 = 62 now), Section 5 grammar, Section 4 kit mapping. For a new event: re-run the site forensics + company lane scan, swap the priors, keep everything else. The kit layer (what you can build in 24h) stays identical: one engine, many skins.
