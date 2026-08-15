@@ -52,7 +52,7 @@ iQOO/vivo-style device makers (on-device LLMs): watch-words: on-device, mobile L
 Wadhwani AI / education-adjacent (SahAI for Shiksha): education AI, assessment, personalized learning, teacher tools. Watch-words: education, learning, assessment, teacher, student, personalized. Kit: KIT-1 or KIT-4.
 IBM (watsonx, MCP-adjacent enterprise AI): enterprise agents, data governance. Watch-words: watsonx, governance, data, enterprise.
 
-## SECTION 2: SHAPES (the 5 predicted structures + 2 new from landscape, VERIFIED pattern)
+## SECTION 2: SHAPES (7 core + 13 from wave 2 = 22 total, VERIFIED pattern)
 
 Shape 1: TRUSTWORTHY AGENT. Input: tasks/emails/requests. Output: ranked actions, each with evidence, approved by a human, audited. Companies: Google, Accenture, Microsoft.
 Shape 2: CREATIVE PRODUCTION. Input: brief + brand constraints. Output: channel variants, provenance, approved export. Companies: Adobe.
@@ -115,6 +115,16 @@ education words (teacher/student/assessment) -> KIT-1 or KIT-4 (tutor agent)
 Indic / multilingual / Bharat words         -> KIT-4 or KIT-1 + voice-first skin (Hindi-first: Kavach DNA)
 PS-05 hardware                                -> software companion to closest kit, never pitch fresh hardware
 PS-04 open track                             -> strongest kit for the drop's actual words, same matrix
+Shapes 8-29 (wave 2)                         -> full mapping in SECTION 9.2 table; key additions:
+  streaming words (token stream / live)      -> KIT-1 + streamText / SSE adapter, demo MUST show interruption
+  eval / red-team / benchmark words          -> KIT-1 + promptfoo-style harness, demo risk 5 (live data on stage)
+  browser / computer-use words               -> KIT-1 + Playwright adapter, demo risk 5
+  workflow / chain / zapier words            -> KIT-1 + n8n-style visual chain
+  forecast / predict / confidence bands      -> KIT-1 + TimesFM/Chronos, demo risk 5 (held-out test set required)
+  simulation / digital twin                  -> lowest 24h feasibility, avoid unless statement demands it
+  safety / alignment / guardrail words       -> KIT-1 + Llama-Guard-3 wrapper, lowest demo risk (2)
+  translation / localization words           -> KIT-1 + Gemini Translate, high feasibility
+  MCP is an UNDERLAY now (not just Shape 6): appears inside shapes 9/11/15/17/26/27. "tools" or "MCP" maps to a family.
 
 ## SECTION 5: THE STATEMENT GRAMMAR (generates every possible drop)
 
@@ -122,15 +132,15 @@ Every realistic statement = Subject + CoreAction + Constraint + Channel + Evalua
 
 Subject (who it is for): ops teams / support agents / creators / communities / enterprises / citizens / individuals / students / doctors / teachers / merchants / travelers / developers / farmers / patients / parents / elderly / small businesses / gig workers.
 
-CoreAction: triage / rank / summarize / route / approve / generate / transform / detect / verify / escalate / audit / answer / search / schedule / personalize / protect / explain / orchestrate / monitor / recommend / transcribe / translate / moderate / review / predict / optimize.
+CoreAction: triage / rank / summarize / route / approve / generate / transform / detect / verify / escalate / audit / answer / search / schedule / personalize / protect / explain / orchestrate / monitor / recommend / transcribe / translate / moderate / review / predict / optimize / stream / evaluate / red-team / simulate / debug / generate-code.
 
-Constraint (the differentiator, ALWAYS present): with evidence / with human approval / on-device / offline-capable / with provenance / within brand rules / within policy / with consent / under SLA / with audit trail / without hallucinating / in multiple languages (Indic) / with a fallback / at scale / in real time / with MCP tools / with visible reasoning / with a coordinator / with confidence bands / without cloud.
+Constraint (the differentiator, ALWAYS present): with evidence / with human approval / on-device / offline-capable / with provenance / within brand rules / within policy / with consent / under SLA / with audit trail / without hallucinating / in multiple languages (Indic) / with a fallback / at scale / in real time / with MCP tools / with visible reasoning / with a coordinator / with confidence bands / without cloud / token-streaming with interruption / on a held-out test set / against adversarial inputs / with live telemetry on stage / on a testbed harness.
 
-Channel: email / WhatsApp / support tickets / calls / social / docs / images / voice notes / mixed / browser / IDE / repo / meetings / sensors / payments.
+Channel: email / WhatsApp / support tickets / calls / social / docs / images / voice notes / mixed / browser / IDE / repo / meetings / sensors / payments / live token stream.
 
-Evaluation: "working demo" / "show the failure case" / "measured accuracy" / "judged on trust" / "judged on adoption" / "judged on scale" / "3-minute demo" / "judged on safety" / "judged on usability for non-technical users".
+Evaluation: "working demo" / "show the failure case" / "measured accuracy" / "judged on trust" / "judged on adoption" / "judged on scale" / "3-minute demo" / "judged on safety" / "judged on usability for non-technical users" / "judged on live data" / "judged on a held-out test set" / "judged on benchmark scores".
 
-Twist (what makes it hard): the model is unreliable / the network dies / the user is non-technical / the content is sensitive / the brand is strict / the volume is 100x / the deadline is real / the cost must stay zero / the judge will attack it / the data is in an Indic language / the demo must work offline / multiple agents must not fight.
+Twist (what makes it hard): the model is unreliable / the network dies / the user is non-technical / the content is sensitive / the brand is strict / the volume is 100x / the deadline is real / the cost must stay zero / the judge will attack it / the data is in an Indic language / the demo must work offline / multiple agents must not fight / the judge demands real telemetry / the data must be live / the benchmark must not be gamed.
 
 Our engine covers every combination: the constraint maps to a gate (approval, provenance, consent, offline), the channel maps to an adapter, the twist maps to a stress test (see STRESS-BENCH-2026.md in craft-n-code). The only combos that cost extra are hardware (PS-05) and true real-time audio during a live call (Kavach D covers the call-flow claim with the signed evidence bundle, demo is simulated audio, honest).
 
