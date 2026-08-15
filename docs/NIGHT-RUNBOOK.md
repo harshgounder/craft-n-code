@@ -35,14 +35,27 @@ Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
   Freeze the ONE-SENTENCE STORY (SUBMISSION-TEXT-KIT).
 - Write down: sponsor guess, shape, idea, deck, storyboard, acceptance test.
 
-21:45 SKIN MOUNT (target 15-40 min)
-- Swap seed data + UI labels, pick deck + storyboard, run ./demo.sh,
-  verify endpoints. If any dependency fails its 60-90 min time gate:
-  switch to fixture/replay mode, no exceptions.
+21:45 SKIN MOUNT (target 15-40 min, drill-proven, MOCK-DROPS)
+- Fingerprint -> kit from the COMPANY FLAVOR MATRIX (SKIN-KITS-2026):
+  Google/Accenture -> KIT-1 or KIT-5, Meta -> KIT-4 (KIT-4B if fraud
+  words), Apple -> KIT-3, Adobe -> KIT-2, security words anywhere ->
+  KIT-4B overrides.
+- Mount: cp fixtures/<kit>.json fixtures/current.json (or --fixture <kit>),
+  swap deck nouns, optional label patch (LABEL PATCH BRIEF in SKIN-KITS),
+  ./demo.sh, verify endpoints.
+- LIVE DATA beat (30 s, do not skip): python3 engine/feeds.py --refresh,
+  restart with --feeds. The demo shows REAL recorded problems from HN +
+  GitHub + the live Unstop reg count, with the freshness badge.
+- If any dependency fails its 60-90 min time gate: switch to
+  fixture/replay mode, no exceptions. Run the DRILLS cheat sheet
+  (BACKEND-DRILLS-2026) if anything misbehaves.
 
 22:30 VERTICAL SLICE + DIFFERENTIATOR
 - One differentiator, one staged failure (the failure path wins demos).
-- KPI card on screen: 42/42 checks, zero deps, mode badge.
+- KPI card on screen: 81/81 checks, zero deps, mode badge, feeds badge.
+- THE HONESTY MOMENT (30 s): kill the LLM key mid-demo, show the badge
+  flip to offline and the feed still ranking. This is the "what if it
+  fails" answer. Practice it in DRILL 2.
 
 23:00 GATE 1: v1 SUBMIT (both gates, insurance)
 - Unstop: PPT (pdf preferred) uploaded, under 50MB. Club site: repo_url +
