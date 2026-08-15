@@ -46,6 +46,12 @@ Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
 - LIVE DATA beat (30 s, do not skip): python3 engine/feeds.py --refresh,
   restart with --feeds. The demo shows REAL recorded problems from HN +
   GitHub + the live Unstop reg count, with the freshness badge.
+- PRE-WARM RULE (critical, learned Aug 15): a cold pipeline with 31 live
+  items takes 3+ min (rate limits). ALWAYS pre-warm: start serve.py
+  --feeds 15 min before the demo, let the pipeline finish, then at demo
+  time POST /api/ingest ONE new item (live call ~2-5 s) and the badge
+  reads live while everything else renders from cache. Never cold-boot
+  on stage.
 - If any dependency fails its 60-90 min time gate: switch to
   fixture/replay mode, no exceptions. Run the DRILLS cheat sheet
   (BACKEND-DRILLS-2026) if anything misbehaves.
