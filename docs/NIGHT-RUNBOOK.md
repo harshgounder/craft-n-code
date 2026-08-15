@@ -11,6 +11,9 @@ Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
 - Sujal: deck + submission text, paste and submit at each gate.
 - Backup rule: anyone can run ./demo.sh and ./atlas/serve.sh. No single point
   of failure. Phones charged, hotspot ready, HDMI adapter packed.
+- CARRY THE CHEAT SHEET: research/NIGHT-CHEAT-SHEET-2026.md (print it).
+  It has the 5 mount cards, 25 domain rows, the 6 judge attack answers,
+  and the 3-minute script with second-level timing.
 
 ## FORMAT FACTS (VERIFIED, wave-7: CSC MUJ reel 12 Aug 2026 + public sources)
 
