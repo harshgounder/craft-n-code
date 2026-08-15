@@ -191,3 +191,46 @@ badge; "Phase 2 prototype" is a real line.
    score whether the agents behave." We ship 81/81 checks, zero LLM
    judges, a badge that cannot lie. This is the single best closing
    line available to us.
+
+## OSS STAND-ON MAP (wave-18, VERIFIED Aug 15, raw/wave18-osslandscape.md)
+
+GOLD-PLATED (compose, don't rebuild): Ollama 178,512 stars MIT +
+llama-cpp-python 10,551; Casbin 20,189 / pycasbin 1,740 Apache
+(single-file importable = our auth primitive to cite); MCP stack is
+the densest shape: python-sdk 24,002, TS-sdk 13,170, FastMCP 24,383,
+mcp-scan (Snyk agent-scan) 2,489 = tool-poisoning scanner, keep it in
+the demo story, ToolHive 2,004, github-mcp-server 18,000+.
+
+TRAPS (the judge-proof answers): CrewAI 57,088 stars but CVSS 9.6 RCE
++ CVSS 9.2 GitHub token leak (CERT/CC, Oct 2025) = the reason we do
+one controller + typed registry, not CrewAI; AutoGen CC-BY-4.0 (not a
+code license) + advisory treadmill; OpenAI Swarm = 29 commits,
+"educational", paused; n8n 200,653 stars but Sustainable Use License
+(NOT OSI, cannot sell as a service); LiteLLM enterprise license trap;
+StackStorm dead (last release Oct 2025). Judge line: "the most
+popular multi-agent framework has a 9.6 RCE. We don't use it. That's
+the point."
+
+BIGGEST WHITESPACE (if the PS smells fraud/SMS): there is NO FOSS
+spam-SMS classifier for the Indian market, NO FOSS UPI fraud-pattern
+database, NO self-hostable caller-ID DB (every "Truecaller
+alternative" repo is just an API client). upi-deeplink-builder ~30
+stars is the only helper. A 24h build with scikit-learn + a few
+hundred labelled examples fills a real hole.
+
+STDLIB VENDORABILITY (validates our zero-dep scaffold): only pycasbin,
+Piexif, exifread vendor as single files; everything else (Ollama,
+FAISS, Chroma, FastMCP, n8n, Temporal, OPA, Langfuse) needs a stack.
+Our net stand-on list: pycasbin for RBAC, Piexif/exifread for EXIF,
+stdlib hashlib/hmac/sqlite3/http.server/asyncio for everything else.
+When a judge says "why zero dependencies": "the three libraries we
+need vendor as single files; everything else is a server process we
+don't want to explain on stage."
+
+OTHER VERIFIED: OpenFGA 5,602 / SpiceDB 6,954 / Permify 5,914 (Permify
+merged into FusionAuth, avoid); OPA 12,101; Langfuse 33,129 MIT
+(AI-trace UI, docker only); Helicone 6,063; Pydantic AI 19,301 clean +
+4 durable-exec plugins; Agno 41,714 clean; LangGraph 39,701 MIT; c2pa-rs
+221 + c2pa-python 98 (thin, no pure-Python C2PA exists = our manifest
+is the honest alternative); Pillow 13,751 (yearly CVEs, pin);
+imagehash 3,860; python-phonenumbers 3,700 (parser, not classifier).
