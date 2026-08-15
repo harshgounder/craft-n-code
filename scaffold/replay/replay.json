@@ -1,0 +1,9 @@
+{
+  "schema": "craft-n-code-offline-replay-v1",
+  "fixture": "happy",
+  "fixtures_path": "fixtures/happy.json",
+  "expected_sha256": "15cd0ff3975115b01342bf49e8353bef3ba58de670f23fc7cc26e1157eccb476",
+  "canonical": "offline feed output minus generated_at, today, and provider counters",
+  "screenshots": "docs/screenshots/",
+  "note": "run ./replay.sh to serve the fixture offline, verify the signature, and print the trace IDs"
+}
