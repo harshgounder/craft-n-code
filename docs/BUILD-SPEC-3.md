@@ -143,7 +143,7 @@ hygiene on a security-judged stage.
 
 Fix in scaffold/webapp/serve.py static branch: reject the request with
 404 when any segment in parts[1:] equals ".." (or "." or is empty after
-strip), and additionally resolve the target and require it to be inside
+strip), and also resolve the target and require it to be inside
 STATIC.resolve() before serving. Keep everything else identical.
 
 Acceptance: S8 in scaffold/tests/test_stress.py asserts 404 for

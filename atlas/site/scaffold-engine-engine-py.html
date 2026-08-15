@@ -105,6 +105,7 @@ class LLM:
                 self.cache = {}
         self.hits = 0
         self.misses = 0
+        self.provider_errors = 0
         self.last_mode = "offline"  # llm | cache | offline
 
     def _save_cache(self):
@@ -129,6 +130,7 @@ class LLM:
         provider = get_provider()
         out = provider.chat(system, user, max_tokens, temperature)
         if out is None:
+            self.provider_errors += 1
             self.last_mode = "offline"
             return None
         self.cache[key] = out
@@ -363,7 +365,8 @@ def run_pipeline(items: list[Item], profile: list[str], today: Optional[date] = 
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "today": today.isoformat(),
         "llm": {"model": os.environ.get("OLLAMA_API_KEY", "") and OLLAMA_MODEL or "OFFLINE",
-                "cache_hits": llm.hits, "cache_misses": llm.misses},
+                "cache_hits": llm.hits, "cache_misses": llm.misses,
+                "provider_errors": llm.provider_errors},
         "profile": profile,
         "total": len(ranked),
         "items": [it.as_dict() for it in ranked],

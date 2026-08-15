@@ -26,7 +26,7 @@ Compiled: 2026-08-13 | Source: drive.google.com/file/d/1iyiSNVeNCb1sEuLReG3oIY8h
 - National-level hackathon (separate from CraftNCode)
 
 ### TechXpo
-- Curated exhibition where local startups and companies showcase technology and products to a live audience
+- Curated exhibition where local startups and companies present technology and products to a live audience
 
 ### Code-o-lympics
 - ICPC-inspired programming competition (same description as Code-Kombat  -  likely renamed)

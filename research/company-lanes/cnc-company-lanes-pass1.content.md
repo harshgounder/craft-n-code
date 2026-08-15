@@ -20,7 +20,7 @@
 
 This report uses three labels. VERIFIED means that the retrieved source excerpt directly states the fact. INFERRED means a reasoned prediction from a verified pattern, the team's supplied context, or a product direction; it is not evidence that the event organizer will use that pattern. UNVERIFIED means a rumor, insider report, search lead, or event-specific claim for which the retrieved material did not provide a reliable public confirmation.
 
-The distinction matters because a global showcase, a student challenge, a corporate hackathon, and a college fest can look similar while having different authorship. A page can prove that a brand held a program without proving that the brand wrote a problem for Craft N Code. Likewise, a winning project can reveal what judges rewarded without proving that the original prompt demanded that feature.
+The distinction matters because a global exhibition, a student challenge, a corporate hackathon, and a college fest can look similar while having different authorship. A page can prove that a brand held a program without proving that the brand wrote a problem for Craft N Code. Likewise, a winning project can reveal what judges rewarded without proving that the original prompt demanded that feature.
 
 ### 1.2 Evidence ledger
 
@@ -65,7 +65,7 @@ The answer to the specific recurrence question is therefore qualified. Search/su
 
 ### 2.3 Case study: what the 2023 winners page does and does not tell us
 
-The 2023 Solution Challenge page is a useful case study in evidence discipline. Google chose to present winners and a top 10, which demonstrates a showcase and finalist pipeline [4]. It does not, in the visible excerpt, tell us whether a winning project was a search tool, an education product, an accessibility app, or an AI-for-good intervention.
+The 2023 Solution Challenge page is a useful case study in evidence discipline. Google chose to present winners and a top 10, which demonstrates a winners-and-finalists pipeline [4]. It does not, in the visible excerpt, tell us whether a winning project was a search tool, an education product, an accessibility app, or an AI-for-good intervention.
 
 The mechanism is selection visibility: a curated winners page makes outcomes easy to find while leaving the full distribution of submitted problems elsewhere, such as demo videos or project pages. The implication is that a winner-only sample can reveal judging taste but cannot estimate the base rate of problem families. For Team 511, the recommendation is to use Google winners as inspiration for demo quality and user benefit, not as proof of a particular prompt.
 
@@ -90,7 +90,7 @@ The winning skill profile is a fast full-stack builder who can make a trustworth
 
 ### 3.1 What is actually VERIFIED
 
-Apple's official Swift Student Challenge page says that the challenge has given thousands of student developers an opportunity to showcase creativity and coding capabilities through app playgrounds [5]. That is strong evidence about the format: a compact interactive experience and a demonstrable Swift artifact. It is not evidence of an India-based Apple-sponsored college hackathon, a fixed problem family, or a corporate problem setter for Craft N Code.
+Apple's official Swift Student Challenge page says that the challenge has given thousands of student developers an opportunity to present their creativity and coding capabilities through app playgrounds [5]. That is strong evidence about the format: a compact interactive experience and a demonstrable Swift artifact. It is not evidence of an India-based Apple-sponsored college hackathon, a fixed problem family, or a corporate problem setter for Craft N Code.
 
 A secondary 2026 report says that that year's winners used developer tools and AI assistance to address a range of important challenges. A GitHub topic result describes a 2024 winner as a pathfinding visualization iOS app built with SwiftUI. These are useful examples of interaction and technical presentation, but the GitHub result is not an Apple judging document and the secondary article is not a complete official winner catalogue.
 
@@ -291,7 +291,7 @@ Takeaway: Google and Accenture are the most natural homes for the existing inges
 
 | Sponsor | Winning or finalist pattern actually visible | Source status | What Team 511 should copy | What it should not copy blindly |
 |---|---|---|---|---|
-| Google | The official page confirms winners and top 10 finalists but not their project details [4] | VERIFIED program structure; project pattern UNKNOWN | A clear showcase, finalist-quality narrative, and beneficiary | A guessed Google theme or an unsupported winner claim |
+| Google | The official page confirms winners and top 10 finalists but not their project details [4] | VERIFIED program structure; project pattern UNKNOWN | A clear winners display, finalist-quality narrative, and beneficiary | A guessed Google theme or an unsupported winner claim |
 | Apple | A secondary result describes a 2024 SwiftUI pathfinding visualization app; 2026 coverage mentions AI-assisted winners | SECONDARY | Direct manipulation, visual feedback, polished native interaction | Assuming every winner is health or accessibility |
 | Meta | Llama CCTV control-room operator with natural-language event definitions and no fine-tuning [6] | VERIFIED official winner | User-defined rule, multimodal evidence, operator action, human control | Surveillance without consent or a generic model demo |
 | Accenture | Concrete labels include speech-to-sign language, personalized AI trainer, and AI SPY [8] | VERIFIED labels; winners UNKNOWN | A defined beneficiary, service workflow, and measurable outcome | Claiming these labels were winners or full official briefs |
@@ -325,7 +325,7 @@ Google answer to the requested comparison: **35% information overload/search/sum
 |---:|---|---:|---|---|
 | 1 | Google | **24%** | Broad student-developer surface and strong fit with the team's engine; no event-specific proof | Low |
 | 2 | Accenture | **22%** | Concrete problem-statement vocabulary and easy enterprise evaluation; no Craft N Code proof | Low |
-| 3 | Meta | **21%** | Strong hackathon and model showcase signal, especially multimodal agents [6][7] | Low to medium |
+| 3 | Meta | **21%** | Strong hackathon and model exposure signal, especially multimodal agents [6][7] | Low to medium |
 | 4 | Adobe | **18%** | Strong creative workflow evidence [9], but college prompt evidence is thin | Low |
 | 5 | Apple | **15%** | Clear student app format [5], but direct India sponsor evidence was not found | Low |
 
@@ -414,7 +414,7 @@ Reject a solution if it has no named user, no source or input boundary, no measu
 
 A sponsor logo can mean cash support, credits, mentors, a judging prize, a developer tool, or a problem author. The retrieved Craft N Code evidence does not distinguish those roles. The team should therefore search the released statement for direct product constraints, not infer authorship from sponsor order or logo size.
 
-### 13.2 Showcase winners are a biased sample
+### 13.2 Winners lists are a biased sample
 
 Meta's CCTV winner is a strong official case, but one winner cannot establish the distribution of all LlamaCon projects [6]. The participant recap adds directional evidence about video, agents, and mixture-of-experts, but it is not a judging report [7]. Google's official page confirms a winner and top 10 without exposing project detail [4]. These examples are best used to identify mechanisms judges can see, not to predict a historical percentage.
 
