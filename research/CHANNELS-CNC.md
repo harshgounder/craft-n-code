@@ -2,6 +2,23 @@
 
 Source: startup-idea-lab's 10 idea channels (README), remapped from "how to find a startup" to "how to predict and select the winning build for THIS event". Each channel below: what it is for Craft N Code, how to mine it, where the evidence already lives in this repo, which parallel.ai prompt fires it, evidence strength.
 
+## COVERAGE STATUS (2026-08-15, after the 24-run day)
+
+| Channel (startup-idea-lab) | Fired? | Run + verdict | Folded in |
+|---|---|---|---|
+| Money-flow (gov aligned) | LIVE 13:25 | cnc-money-flow-gov (pro) | pending S9.18 |
+| Complaint mining | DONE | cnc-complaint-mining-refire3 DEEP 95.9 | S9.16 |
+| Workaround detection | DONE | cnc-workarounds DEEP 92.6 | S9.5 |
+| Failed-startup autopsies | DONE | cnc-failed-ai-startups-refire2 MINED 94.5 (provisional) | S9.8 |
+| Acquisition market | MAPPED | prior editions + autopsies cover the intent | S6, S9.8 |
+| Demand forecasting | LIVE 13:25 | cnc-demand-forecast (pro) | pending S9.19 |
+| Geographic arbitrage | DONE | cnc-geo-arbitrage-refire DEEP 100.0 | S9.7 |
+| Founder frameworks | LIVE 13:25 | cnc-founder-frameworks (pro) | pending S9.20 |
+| Compelled evidence | DONE | cnc-compelled-evidence-refire2 ADECENT 81.9 | S9.9 + S9.15 |
+| Nonconsumption | DONE | cnc-nonconsumption ADECENT 79.6 | S9.6 |
+
+Hackathon-native channels: sponsor DNA DONE (S9.4, ADECENT 72.5), statement grammar DONE (S5 + S9.2), prior editions DONE (S6 + S9.11), winner forensics DONE (S9.11 DEEP), judge taste PARTIAL (S9.11 Sec 5; per-judge dossier at finals), site forensics DONE (Unstop + runbook), participant field PARTIAL (629 regs tracked, lane analysis at finals), insider intel PARTIAL (Rudra ask = team action), topic trend DONE (S9 + S9.13), mock drops DONE (MOCK-DROP-20260815.md).
+
 The master rule: a channel is worth exactly what it predicts about the 21:30 Aug 15 drop from the 5 sponsors (Google 24% / Accenture 22% / Meta 21% / Adobe 18% / Apple 15% priors). Channels that predict the STATEMENT are 5 stars. Channels that predict the WINNING BUILD are 4 stars. Channels that only suggest domains are 3 stars.
 
 ---

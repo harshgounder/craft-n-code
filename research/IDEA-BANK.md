@@ -96,6 +96,17 @@ Our existing product (IIC 3.0, ~/iic-3/kavach): real-time scam-call screening, s
 
 ---
 
+## 4b. IDEA E (SKIN-ONLY, new) - "VicharSetu" (compliance-as-a-service copilot) + "Sahaayak" (onboarding copilot)
+
+Added 2026-08-15 from the complaint mine (hackathon-idea-lab TOPIC-UNIVERSE S9.16, DEEP 95.9, 334 cites): the 30 most statement-ready pains cluster into 6 tracks. Four are covered by A-D. Two are NOT:
+
+- **Compliance-as-a-Service track**: top pains = WhatsApp group admin jailed for member posts (2017 ruling), DPDPA pressure on 500M-user platforms, RBI data localization, digital arrest scams, Apple Intelligence unavailable on India SIMs. Skin: a compliance copilot that reads a policy/docs and answers "is this allowed" in Hindi with citations, audit trail, escalation. Scaffold = propose -> approve -> audit, fits verbatim. Kit: KIT-5/KIT-4. This is the strongest NEW skin if the drop says compliance, policy, or DPDPA.
+- **Onboarding Copilot track**: top pains = Adobe CC student verification wall (no .edu in India), outsourced dev time-zone exploitation, Apple India no-region docs. Skin: an agent that walks a non-technical user through any enrollment/onboarding flow (gov scheme, platform, license) via WhatsApp + voice, offline fallback. Kit: KIT-4 + KIT-3.
+
+Both are 100% scaffold-skins (no engine work), each has a ready quote bank in S9.16 for the problem slide. If the drop's domain is neither A-D nor these two, the S9.16 30-pain table is the tiebreaker.
+
+---
+
 ## 5. THE COMPANY-LANE PROTOCOL (Rudra intel: the REAL questions come from the sponsors)
 
 ### How to read the drop (2-minute scan)
