@@ -234,3 +234,72 @@ merged into FusionAuth, avoid); OPA 12,101; Langfuse 33,129 MIT
 221 + c2pa-python 98 (thin, no pure-Python C2PA exists = our manifest
 is the honest alternative); Pillow 13,751 (yearly CVEs, pin);
 imagehash 3,860; python-phonenumbers 3,700 (parser, not classifier).
+
+## STUDENT BUILDS + VENUES (wave-17, VERIFIED Aug 15,
+## raw/wave17-studentbuilds.md; see the EVIDENCE WARNING below)
+
+EVIDENCE WARNING (evidence discipline, do not ignore): wave-17 claims
+"the Rajasthan qualifier is TiE DigiFest, not Craft N Code" and mixes
+up Code-N-Craft (DAV Jalandhar, March 2026). This CONFLICTS with our
+direct-source verification (wave-7: CSC MUJ Instagram reel 12 Aug
+2026 + Unstop round 1569450 + Rs 299 + top-2 to IIIT-Bhubaneswar).
+DIRECT SOURCE WINS. The wave-17 model conflated similarly named
+events. Use wave-17 for demand signals and venue recipes, never for
+event mechanics.
+
+DEMAND SIGNALS (the market is literally asking for our shapes):
+- HackerRank Orchestrate AUGUST 2026 = "Build an AI-powered system for
+  WhatsApp that decides which messages deserve immediate attention,
+  which should wait, and which should be muted." Exact KIT-4 shape,
+  live this month. Starter repos to lift patterns from:
+  interviewstreet/hackerrank-orchestrate-august26 + Shilpatil2801/
+  Hackerrank-orchestrate-aug26 + swayam-mishra's month-by-month
+  archive. June 2026 edition: 12,885 registrants from ~50 countries.
+- r/SomebodyMakeThis (curator based in Goa, India-weighted): top
+  requests map to our shapes: "UPI scam detector that warns before
+  you tap approve", "WhatsApp bot that summarises missed voice notes
+  in Hindi", "AI agent that books train tickets via IRCTC MCP",
+  "local-only AI keyboard", "watermark AI images so students can't
+  cheat". The first two are OUR kits, verbatim.
+- Product Hunt: FraudLens AI (real-time fraud detection) + AI Emaily
+  (131 upvotes, #4 daily 7 Jul 2026) + ReleaseDock (#10 day) = the
+  inbox-triage + fraud tracks are live categories, not fantasies.
+
+JUDGE REALITY (r/developersIndia consensus, painful but true):
+- "Judges are non-technical and are more enamored by how shiny the
+  candy is than the taste"; "backend can be pulled off GitHub or
+  something, they never check"; "pitch can make or break". Budget
+  >=40% of build time on UI/UX + pitch, <=30% backend.
+- Failure modes that get Indian student builds penalised: unrealistic
+  screening rounds, bluffing senior projects (flagged + DQ), over-broad
+  scope ("platform" not MVP), no confident speaker, demo crash (have
+  the 60s backup video), no PS alignment.
+- SIH first-prize DNA: 6-member teams, ministry-specific problem IDs.
+  We are 3: our counter is the repo README + 81/81 + trace, and the
+  pitch covers the gap with "small team, zero deps, every claim
+  tested".
+- The contrarian pick (matches our strategy): judges have seen too
+  many generic agents. "Domain-specific tool that uses a 3-tool MCP
+  stack" beats "generic AI agent". That is our kit shape exactly.
+
+THE VENUE RECIPE (the user's "where do people post" answer, 10 min):
+- GitHub topics: github.com/topics/<topic> + stars:>50 language:python
+  created:>2024-01-01 (5 min)
+- HN Algolia: hn.algolia.com/?q=AI+agent&sort=byPopularity with date
+  filters, 44M+ stories (5 min)
+- Product Hunt categories: /categories/ai-coding-agents (4 min)
+- r/SomebodyMakeThis top-of-all-time = demand map (5 min)
+- dev.to search "build in public hackathon", Medium tag hackathon +
+  "postmortem" India (4 min each)
+- X: #buildinpublic #hackathon #aiagent; Discord: r/mcp, r/LocalLLaMA,
+  HF, LlamaIndex, Composio servers (7 min)
+- YouTube: "build in public hackathon AI agent" for winner-format
+  reels (5 min)
+Rule: first 30 min on the night = this fan-out, before touching code.
+
+CHECKLIST DELTAS (wave-17, adopt tonight): star + skim the Orchestrate
+August starter repo (it is the same shape as KIT-4 with a public
+reference submission to out-polish); submit the GH repo BEFORE the
+final hour so the commit log shows genuine cadence; rehearse the
+AI-judge-style NL Q&A on architecture, failure modes, metrics,
+why-not-X (that is exactly our judge attack answers list).
