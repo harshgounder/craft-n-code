@@ -28,6 +28,9 @@ scaffold/
 # generate the feed + serve the UI (LLM if OLLAMA_API_KEY set, offline otherwise)
 ./demo.sh            # -> http://localhost:8137
 
+# stage deploy on 0.0.0.0:8137 with auth (AUTH_TOKEN env or first arg)
+./deploy.sh mytoken  # -> stage mode with auth; ./demo.sh stays local-only
+
 # or run the engine directly
 cd engine
 python3 engine.py --seed --digest          # offline-safe digest

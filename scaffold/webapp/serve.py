@@ -2,16 +2,22 @@
 """Signal Engine web layer - zero-dependency server (stdlib only).
 
 Serves the engine over HTTP so ANY machine with python3 can demo:
-    python3 serve.py [--port 8000] [--seed]
+    python3 serve.py [--port 8000] [--seed] [--host 127.0.0.1] [--auth TOKEN]
 
 Endpoints (Supabase-shape JSON, swap for FastAPI/api.py at nationals):
     GET  /                     → static UI (index.html)
+    GET  /health               → health probe (always public)
     GET  /api/feed             → ranked feed
     GET  /api/digest           → today in 60 seconds
     GET  /api/search?q=...     → ranked semantic-ish search
     GET  /api/complaints       → complaint board
     POST /api/complaints       → add complaint  {"title","body","category"}
     GET  /api/stats            → channel counts, deadlines found
+
+Auth gate (--auth TOKEN): every POST /api/* plus GET /api/stats and
+GET /api/audit require the token via ?token= or an Authorization:
+Bearer header; mismatch -> 401. GET feed/digest/search/complaints and
+/health stay public. Without --auth the server behaves exactly as before.
 
 Craft N Code 2026 shared scaffold (IDEA-BANK §6). Team 511.
 """
@@ -26,6 +32,7 @@ import threading
 import time
 import urllib.parse
 from collections import Counter
+from hmac import compare_digest
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -48,6 +55,7 @@ FIXTURE: Optional[str] = None    # fixture name from --fixture NAME
 OFFLINE: bool = False            # forced offline from --offline
 FEEDS: bool = False              # real data kit from --feeds
 FEEDS_DIR = HERE.parent / "data" / "feeds"
+AUTH_TOKEN: Optional[str] = None  # token gate from --auth; None = no gate
 
 
 def load_fixture(name: str) -> list[E.Item]:
@@ -240,6 +248,42 @@ def ingest_multimodal(body: dict) -> dict:
     return {"ok": True, "item": item.as_dict(), "extraction": meta}
 
 
+def _gate_routes(parts: list, method: str) -> bool:
+    """Which /api/* routes require the token when --auth is set.
+
+    Every POST /api/* plus GET /api/stats and GET /api/audit are gated;
+    everything else on the demo screen (feed/digest/search/complaints)
+    stays public. Returns True when the route needs a token.
+    """
+    if not parts or parts[0] != "api" or len(parts) < 2:
+        return False
+    if method == "POST":
+        return True
+    if method == "GET" and parts[1] in ("stats", "audit"):
+        return True
+    return False
+
+
+def _request_token(handler: BaseHTTPRequestHandler, query: dict) -> str:
+    """Extract the presented token from ?token= or Authorization: Bearer."""
+    if query.get("token"):
+        return query["token"][0]
+    auth = handler.headers.get("Authorization", "")
+    if auth.lower().startswith("bearer "):
+        return auth[7:].strip()
+    return ""
+
+
+def _authorized(handler: BaseHTTPRequestHandler, query: dict, parts: list, method: str) -> bool:
+    """Auth gate. With --auth set, gated routes need a matching token."""
+    if AUTH_TOKEN is None:
+        return True
+    if not _gate_routes(parts, method):
+        return True
+    presented = _request_token(handler, query)
+    return bool(presented) and compare_digest(presented, AUTH_TOKEN)
+
+
 def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optional[dict]):
     query = urllib.parse.parse_qs(urllib.parse.urlparse(path).query)
     path = path.split("?")[0]  # strip query string before segment split
@@ -270,7 +314,12 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
         handler.wfile.write(f.read_bytes())
         return
 
+    if parts[0] == "health":
+        return json_reply(handler, {"status": "ok", "auth": AUTH_TOKEN is not None})
+
     if parts[0] == "api":
+        if not _authorized(handler, query, parts, method):
+            return json_reply(handler, {"error": "unauthorized"}, 401)
         feed = load_feed()
 
         if parts[1] == "feed":
@@ -418,10 +467,14 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
-    global FIXTURE, OFFLINE, FEEDS
+    global FIXTURE, OFFLINE, FEEDS, AUTH_TOKEN
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", type=int, default=8000)
+    ap.add_argument("--host", default="127.0.0.1",
+                    help="bind address (127.0.0.1 = local only, 0.0.0.0 = stage)")
+    ap.add_argument("--auth", default=None,
+                    help="token gate: POST /api/* + GET /api/stats and /api/audit need ?token= or Bearer")
     ap.add_argument("--fixture", default="",
                     help="load a golden fixture feed from scaffold/fixtures/NAME.json")
     ap.add_argument("--offline", action="store_true",
@@ -435,13 +488,15 @@ def main():
         FIXTURE = args.fixture
     OFFLINE = args.offline
     FEEDS = args.feeds
+    AUTH_TOKEN = args.auth
     if args.inject_failures:
         P.set_inject_failures(True)
     if OFFLINE:
         import os
         os.environ["OLLAMA_API_KEY"] = ""
-    print(f"[serve] http://localhost:{args.port}  (ctrl-c to stop)")
-    server = ThreadingHTTPServer(("0.0.0.0", args.port), Handler)
+    gate = "  (auth on)" if AUTH_TOKEN else ""
+    print(f"[serve] http://{args.host}:{args.port}  (ctrl-c to stop){gate}")
+    server = ThreadingHTTPServer((args.host, args.port), Handler)
     # compute the mode badge in the background so the server binds and serves
     # immediately; load_feed may take a while on first cold start.
     def _announce():
