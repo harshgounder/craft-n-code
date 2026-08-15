@@ -137,7 +137,12 @@ food/recipe: KIT-1 | ONDC food rails; local + Indic angle; data.gov.in.
 smart city: KIT-1 | SIH urban infra PS; Smart Cities Mission; ONDC
   civic vendors; dashboard with data.gov.in feeds.
 mcp/ecosystem: KIT-1 | 9,652 servers + 3 spec dates + tool poisoning;
-  compose gold-plated servers, never rebuild; 15-line FastMCP.
+  compose gold-plated servers, never rebuild; 15-line FastMCP. WEDGE
+  (idea-lab mock-drop, 13:05 today): approval-gated MCP is the
+  least-shipped sub-niche (~52% dead-server share in registries). If
+  the PS is shape 6/7/12 flavored, research/MOCK-DROP-20260815.md is
+  the parse playbook. GAP: no dedicated MCP deck slide yet, 30-45 min
+  fix (deck-gen.js), "MCP" should appear on the cover.
 multi-agent: KIT-1 | MAST 14 failure modes / 1,242 traces / kappa
   0.77; our one-controller-2-tools answer; HCAST gap line.
 

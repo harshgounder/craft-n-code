@@ -111,6 +111,17 @@ anywhere). The gap is the product, not the model.
 ## WAVE-2 NUMBERS (parallel.ai pro-fast, Aug 15, raw in
 ## research/raw/wave2-ai-failures.md)
 
+- **SWE-bench VALIDITY CAVEATS (ai-code-failure-matrix R01, VERIFIED
+  Aug 15): the leaderboard itself is inflated.** 7.7% of SWE-bench
+  Lite / 5.2% of Verified tasks lack unit tests that discriminate good
+  from bad patches; 28.4% of "passing" Lite patches (15.7% Verified)
+  actually fail when tests are augmented; 5.3% of Verified tasks pass
+  WITHOUT addressing the issue at all (do-nothing agent); the ABC
+  audit found 7/10 popular agentic benchmarks flawed on outcome
+  validity; reward-hacking exploit rates 0% (Claude Sonnet 4.5) to
+  13.9% (DeepSeek-R1-Zero) under RL. Stage line: "we report method,
+  harness, run count, and code-based assertions, because even the
+  famous benchmarks inflate 5-40% of their scores."
 - HCAST (METR): agents succeed 70-80% on tasks under one human-hour,
   under 20% on tasks over four human-hours. The 50% time horizon
   doubles roughly every 7 months. Our line: that gap is why a human
