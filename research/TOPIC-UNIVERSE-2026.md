@@ -486,6 +486,40 @@ Two planned runs failed the DEEP gate twice each and are parked, NOT integrated 
 - cnc-wave4-benchmarks (benchmark registry, 10 categories): SURFACE 65.7 (0 cites), refire SURFACE 63.7 (0 URLs anywhere in file). Benchmarks named match the verified frontier report (S9.13) where they overlap (SWE-bench, OSWorld, MAST, GAIA); scores WITHOUT URLs are not quotable.
 Both are reference material, not prediction-critical. If needed before finals: rebuild via structured per-entry URL-column prompt at ultra8x, or verify entries manually with rivalsearch.
 
+### SECTION 9.18: GOV + INSTITUTIONAL MONEY-FLOW MAP (channel wave 2, parallel.ai pro, 2026-08-15)
+
+Run: cnc-money-flow-gov (DEEP 97.0, 327 cites, 14 tables, 55.6K chars. The gov-aligned channel, dedicated run after the diligence park. Full report: parallel-ai-stack/test-results/cnc-money-flow-gov.content.md).
+
+The money map (all VERIFIED with URLs in the report):
+- IndiaAI Mission Rs 10,371.92 cr, 7 pillars, 38,000+ GPUs onboarded. Pillar 4 (Application Development Initiative) = ministries publish problem statements yearly. A demo aligned to a Pillar-4-style PS is attributable to a known federal buyer. Builder hooks: FutureSkills (Tier 2/3 AI labs), Datasets/Bhasha Daan (crowdsourced data), Safe & Trusted AI (bias audits = eval harness lane).
+- Bhashini is fusing into Safe & Trusted AI at IndiaAI, building ULI speech-to-speech across 22 languages. Sarvam = leading sovereign stack. USE Sarvam/Bhashini ASR/TTS as a black box, never train an Indic LLM.
+- Rajasthan: Bhamashah Techno Fund Rs 500 cr (Rs 100 cr women-led, Rs 50 cr green, Rs 25 lakh follow-on cap), iStart with 100+ investors + QRate, Rajasthan AI-ML Policy 2026 (statewide HPC + AI Cloud Infrastructure via DoIT&C iStart). Doing a Rajasthan problem = doing a flagged national priority.
+- Procurement lanes = the hidden buyer: GeM (AI-first re-platforming 2026), CPGRAMS AI classification (DARPG, since 2022, refreshed 2026), ABDM 100+ cr records linked to 90+ cr ABHA accounts (May 2026).
+- Jobs/PPO money: Adobe University Hackathon 2026 (PPI route), Google STEP (India-only, 1st/2nd year), Meta University Graduate SWE India 2026, Accenture India intern Rs 50,000/month, Apple Swift Student Challenge. PM Internship Scheme: Rs 9,000/month + Rs 6,000 joining, 1 cr youth, top 500 companies.
+- Student grants easy to cite in the pitch: NIDHI PRAYAS Rs 10 lakh, SISFS Rs 945 cr umbrella (Rs 50 lakh via incubator), BIRAC BIG Rs 50 lakh, ATL Rs 20 lakh/school, AIC up to Rs 10 cr, TIDE 2.0 EiR Rs 4 lakh seed + Rs 7 lakh grant. SIH prize Rs 1.5 lakh.
+- Pitch use: the "why this matters" slide quotes one lane with its amount + deadline + buyer. The full 30-row funding-lane master table is in the report (IndiaAI compute subsidy, DPIIT 80-IAC tax holiday, Bhamashah tiers Bronze Rs 15 lakh to Signature Rs 25 lakh, DigiFest x TiE, Code for Billion winners Dec 5 2026).
+
+### SECTION 9.19: DEMAND FORECAST (channel wave 2, parallel.ai pro, 2026-08-15, PROVISIONAL)
+
+Run: cnc-demand-forecast. Verdict: SURFACE 68.5 (84 cites, 12 tables, 47K chars; folded provisionally because the forecast table is decision-useful and each row carries driver evidence, verdict failed on composite). Full report: parallel-ai-stack/test-results/cnc-demand-forecast.content.md.
+
+20-theme forecast for late-2026/2027 Indian hackathons (condensed, drivers + URLs in report):
+- HIGH confidence, NEW (not pre-built): ONDC conversational commerce + Bhashini + WhatsApp agent (ONDC 500M txs, Meta-Reliance JV Rs 855 cr); DPDP Consent Manager registry + notice-and-consent agent (Rules G.S.R. 846(E) Nov 14 2025, Rs 250 cr penalty); ABDM/ABHA agent + HCX 2.0 fraud filter (ABDM 863M registrations, BMJ 562.4 cr fake claims); UPI biometric on-device agent (RBI Authentication Directions, 611M biometric UPI June 2026); DIKSHA PAL tutor low-resource languages; MCP server for Indian public data (GeM/ABHA/ONDC); UPI deepfake/liveness detector (Rs 805 cr fraud FY26).
+- MED confidence, NEW: GeM AI tender-match + procurement fraud detector; Rajasthan Hindi-first grievance redressal agent (state policy aligned); Maharashtra ethical-AI audit agent; smart city/port digital twin; Rajasthan craft-sector AI catalogue; CEA power-sector cybersecurity regs.
+- Already covered in our universe: Indic ASR/TTS scheme assistant (partly), smart city dashboard.
+- Tonight-relevant subset (if the drop trends regulatory/data): DPDP consent manager, ABDM claims, UPI biometric, GeM vendor copilot. All map to existing kits (KIT-5 compliance, KIT-1 agentic, KIT-3 on-device).
+
+### SECTION 9.20: FOUNDER FRAMEWORKS -> 10-MINUTE SELECTION CHECKLIST (channel wave 2, parallel.ai pro, 2026-08-15, PROVISIONAL)
+
+Run: cnc-founder-frameworks. Verdict: MINED 85.9 (126 cites, 19 tables, 40.1K chars; provisional fold: 19 tables of usable heuristics, verdict failed on citation hygiene). Full report: parallel-ai-stack/test-results/cnc-founder-frameworks.content.md.
+
+The one-page takeaway for the 21:30 decision (full checklist + printable in report Sections 4, 6, 10):
+- The canon compresses to 6 one-line heuristics: Mom Test = "the scorer wants this, not the user"; JTBD = "what job does the evaluation clause hire this build for"; PG = "live in the future, build the thing you'd use"; Blue Ocean = "is this lane empty at THIS event"; NFX = "why now, why us, why 24h"; lean = "smallest demo that proves the loop".
+- Time-pressure truth: the 10-min version of the Mom Test is READING THE EVALUATION CLAUSE and judging what the scorer rewards, because no interviews happen in the drop window.
+- Fallacy list: novelty bias (counter: judge-replay test), scope greed (counter: 24h-feasibility gate from S9.2 table), tool-first thinking (counter: statement words first, tools second), competitor blindness (counter: S9.12 wedges), demo-risk blindness (counter: S9.2 demo-risk column).
+- The checklist order: company DNA -> shape -> domain -> kit fit -> demo gate -> team skills -> failure story. Pass/fail thresholds in the report.
+- 1st vs 2nd place test: the empty-lane test (is another team likely to build the same), the judge-replay test (can a judge re-run your demo), the 3-minute-narrative test (does the story fit 180 seconds).
+
 ## SECTION 10: THE META-UNIVERSE (beyond Craft N Code 2026)
 
 This universe generalizes to any AI hackathon in India 2026-2027. The event-agnostic core: Section 1 company DNA (apply the setter list of YOUR event), Section 2 shapes (7 core + 13 from wave 2 = 22 now), Section 3 domains (30 core + 32 from wave 2 = 62 now), Section 5 grammar, Section 4 kit mapping. For a new event: re-run the site forensics + company lane scan, swap the priors, keep everything else. The kit layer (what you can build in 24h) stays identical: one engine, many skins.
