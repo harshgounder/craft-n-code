@@ -126,3 +126,68 @@ retry budgets. The MAST 14 failure modes table = our test map.
 Waves 16 (domains), 17 (student builds + venues), 18 (OSS stand-on
 map) land next; this file gets the domain rows + the venue search
 recipe + the compose table appended.
+
+## DOMAIN ROWS (wave-16, VERIFIED Aug 15, raw/wave16-priorart-domains.md)
+
+FRAUD (KIT-4B): 1,23,672 digital-arrest complaints / Rs 1,935.5 cr lost
+in 2024 ALONE (on top of the Rs 4,057 cr since-2022 line); I4C blocked
+59,000 WhatsApp + 1,700 Skype accounts; UPI 130B+ txns 2025; RBI
+DISABLED the UPI collect feature from 1 Oct 2025 = the problem is so
+bad the regulator removed a feature. Student UPI repos all reuse the
+same synthetic 5-column CSV (<50 stars, zero telemetry): the field is
+wide open for real-signal builds. CallerIDK (Devpost) admits a UK
+energy firm lost $243,000 to a deepfake CEO call. r/IndiaInvestments +
+r/LegalAdviceIndia (1.6M+ combined): no successful OSS tool is ever
+named, the narrative is "police did nothing" = our test-data source.
+
+TRIAGE (KIT-1/5): HN #43535653: "less capability, more reliability" is
+the 2026 mood; the Cursor wipeout incident is the canonical agent
+disaster. New category emerged: Agent-triage (LLM-as-judge over
+LangSmith/Langfuse/OTel traces), Kalibr, AI Inbx, Emailbottle. Intercom
+Fin drifts on long-tail KBs; Hiver = $25/seat 2-seat min; Chatwoot 25k
+stars self-host burden. WEDGE LINE: "we ship the evaluator, not
+another prompt chain." That is exactly our 81/81 + trace ring.
+
+C2PA (KIT-2): spec v2.3 (9 Feb 2026), 6,000+ members; Adobe CC is the
+most complete implementation; LinkedIn preserves chains, email strips
+them; Adobe's own verify site has "broken email forwarding, mass
+reported, not fixed". c2pa-go exists; ProofMode signs PGP not C2PA.
+WEDGE: the re-stamp bridge. Our manifest + badge is that bridge.
+
+LOCAL INDIC (KIT-3): Sarvam Edge (14 Feb 2026): 74M ASR ~294MB, 24M
+TTS ~60MB, 150M MT ~334MB, TTFT <300ms, 10-11 Indic languages,
+8.5x real-time on Snapdragon 8 Gen 3; Sarvam 30B/105B open 6 Mar
+2026; OpenHathi (Hindi Llama); Krutrim. Blockers are UX not weights.
+Indic tokenization is the silent killer (Hindi tokens ~3-4x English
+in Ollama models). WEDGE: offline-first with honest latency + the
+tokenization-aware model pick.
+
+KIRANA (if PS goes there): Dukaan raised $17M, dead 2024 (IdeaProof
+0/100; replaced 90% of support with AI chatbots 6 months before
+shutdown); Khatabook shut MyStore after 14 months (500k users).
+Horizontal SMB SaaS in India = graveyard. Vertical moat required.
+Survivors: Khatabook (10M MAU), OkCredit (OkScore), Vyapar (GST).
+Do NOT build "another Dukaan for X".
+
+GOVERNANCE (KIT-5): Sprinto (India, 3,000+ customers, 200+ frameworks
+incl DPDP) outscores Vanta on ease/support/monitoring; Vanta $25k/yr;
+TruConsent (IITMIC Bangalore, DPDPA-native, bootstrap); DPDP Phase 2
+consent managers effective 13 Nov 2026 = the required intermediary is
+brand new; Conductor OSS (Netflix) = permissive durable workflow
+engine we could compose. WEDGE: consent-first + audit + the honest
+badge; "Phase 2 prototype" is a real line.
+
+## THE THREE TENSIONS (wave-16 synthesis; the pitch brain)
+
+1. STANDARDS vs ADOPTION: C2PA exists, email strips it; DPDP rules
+   exist, no mature consent manager. BRIDGES are the moat, not
+   standards. Our scaffold IS a bridge (channels -> policy -> audit).
+2. GENERALITY vs VERTICAL MOAT: Dukaan's $17M + MyStore's shutdown
+   prove horizontal SMB SaaS dies in India. Vertical wins: Vyapar
+   (GST), Hiver (shared inbox), Sarvam (Indic), TruConsent (DPDP).
+   Our kits are vertical-shaped; the demo must name ONE vertical.
+3. GENERATIVE vs EVALUATIVE: the 2026 missing layer is the EVALUATOR.
+   "Most hackathon entries ship agents; very few ship evaluators that
+   score whether the agents behave." We ship 81/81 checks, zero LLM
+   judges, a badge that cannot lie. This is the single best closing
+   line available to us.
