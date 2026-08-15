@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Acceptance tests H1-H6 from BUILD-SPEC-3 Part 1 (badge honesty fix).
+"""Acceptance tests H1-H8 from BUILD-SPEC-3 Part 1 (badge honesty fix) and
+BUILD-SPEC B2 Part 4 (failure injection + honest observability).
 
 Plain python3, zero external deps. Starts the real server on an ephemeral
 port and verifies /api/stats mode tells the truth on failure: null provider,
-no key, cached DB, fixture, offline flag, and (when a real key is present)
-live mode with zero provider errors.
+no key, cached DB, fixture, offline flag, --inject-failures, and (when a real
+key is present) live mode with zero provider errors.
 """
 from __future__ import annotations
 
@@ -189,6 +190,39 @@ def main():
         else:
             check("H6 valid key present (skipped, no OLLAMA_API_KEY)", True,
                   "skipped: env key absent")
+
+        # ── H7 --inject-failures -> degraded, provider.errors.timeout >= 1, injected true ──
+        fresh_db()
+        inj_env = dict(env)
+        inj_env["OLLAMA_API_KEY"] = "some-key"
+        s = start_server(["--port", str(PORT), "--inject-failures"], inj_env, errfile)
+        wait_ready(s, errfile)
+        try:
+            stats = jget("/api/stats")
+            check("H7 --inject-failures -> mode degraded (never live)",
+                  stats.get("mode") == "degraded", stats.get("mode"))
+            check("H7 provider.errors.timeout >= 1",
+                  stats.get("provider", {}).get("errors", {}).get("timeout", 0) >= 1,
+                  str(stats.get("provider")))
+            check("H7 injected banner true", stats.get("injected") is True,
+                  str(stats.get("injected")))
+        finally:
+            stop(s)
+        time.sleep(0.3)
+
+        # ── H8 SIGNAL_PROVIDER=null -> mode offline ──
+        fresh_db()
+        null2_env = dict(env)
+        null2_env["SIGNAL_PROVIDER"] = "null"
+        null2_env["OLLAMA_API_KEY"] = "some-key"
+        s = start_server(["--port", str(PORT)], null2_env, errfile)
+        wait_ready(s, errfile)
+        try:
+            stats = jget("/api/stats")
+            check("H8 SIGNAL_PROVIDER=null -> mode offline",
+                  stats.get("mode") == "offline", stats.get("mode"))
+        finally:
+            stop(s)
 
     failed = [n for n, ok, _ in results if not ok]
     print(f"\n{len(results) - len(failed)}/{len(results)} passed")

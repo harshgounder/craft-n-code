@@ -41,6 +41,7 @@ import engine as E  # noqa: E402
 import approval as A  # noqa: E402
 import multimodal as M  # noqa: E402
 import feeds  # noqa: E402
+import providers as P  # noqa: E402
 
 FEED_CACHE: Optional[dict] = None
 FIXTURE: Optional[str] = None    # fixture name from --fixture NAME
@@ -104,22 +105,38 @@ def load_feed(profile: Optional[list] = None) -> dict:
 
 
 def current_mode() -> str:
-    """Derive the demo mode badge: offline | fixture | cached | live."""
+    """Derive the demo mode badge from ACTUAL provider outcomes (BUILD-SPEC B2):
+    offline | fixture | cached | live | degraded. The badge is honest: it can
+    only say live when a recent provider call actually succeeded, and real
+    failures surface as degraded instead of hiding behind intent flags."""
     if OFFLINE:
         return "offline"
     if FIXTURE:
         return "fixture"
+    stats = P.get_stats()
+    # Provider explicitly disabled (SIGNAL_PROVIDER=null) -> offline.
+    if stats["errors"].get("disabled", 0) > 0:
+        return "offline"
     feed = load_feed()
     llm = feed.get("llm") or {}
-    if llm.get("model") == "db":
+    has_cache = llm.get("cache_hits", 0) > 0 or llm.get("model") == "db"
+    # No provider call was ever attempted and a cache exists -> cached.
+    if stats["attempts"] == 0 and has_cache:
         return "cached"
+    # Live only when every attempt within this run succeeded, or the last
+    # recorded outcome was a success that is newer than the last failure.
+    recovered = (stats["ok"] > 0 and stats["last_ok_at"] and stats["last_error_at"]
+                 and stats["last_ok_at"] >= stats["last_error_at"])
+    if stats["ok"] > 0 and (stats["attempts"] - stats["ok"] == 0 or recovered):
+        return "live"
+    # Any recorded provider error -> degraded (error counts surface in /api/stats).
+    if sum(stats["errors"].values()) > 0:
+        return "degraded"
     if llm.get("model") == "OFFLINE":
         return "offline"
-    if llm.get("provider_errors", 0) > 0:
-        return "offline"
-    if llm.get("cache_hits", 0) > 0 and llm.get("cache_misses", 0) == 0:
+    if llm.get("model") == "db":
         return "cached"
-    return "live"
+    return "offline"
 
 
 def feeds_status() -> dict:
@@ -296,7 +313,10 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
                 "deadlines_found": len(deadlines),
                 "llm": feed["llm"], "skin_ready": True,
                 "mode": current_mode(),
+                "provider": P.get_stats(),
             }
+            if P.is_injecting():
+                stats["injected"] = True
             if FEEDS:
                 stats["feeds"] = feed.get("feeds_meta")
             return json_reply(handler, stats)
@@ -408,11 +428,15 @@ def main():
                     help="force offline mode (no LLM key, no network)")
     ap.add_argument("--feeds", action="store_true",
                     help="use the real data kit (data/feeds) as the feed")
+    ap.add_argument("--inject-failures", action="store_true",
+                    help="simulate a provider timeout on every chat call (failure drill)")
     args = ap.parse_args()
     if args.fixture:
         FIXTURE = args.fixture
     OFFLINE = args.offline
     FEEDS = args.feeds
+    if args.inject_failures:
+        P.set_inject_failures(True)
     if OFFLINE:
         import os
         os.environ["OLLAMA_API_KEY"] = ""
