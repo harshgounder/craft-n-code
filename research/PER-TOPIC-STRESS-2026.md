@@ -7,6 +7,20 @@ suite, and simulate the rest with failure injection (see
 SCAFFOLD-FINDINGS + test_stress.py). Every row is a testable claim.
 Status: [IMPLEMENTED] = in scaffold/tests (23 checks live), [PREFILL]
 = category named, implementable in one afternoon, [VERIFIED] = from a
+WAVE-5 VERIFIED UPGRADES (raw/wave5-stress.md): SLOs at p99 not averages
+(Google SRE Workbook: 90% <100ms AND 99% <400ms; k6 threshold syntax
+http_req_duration ['p(99)<400']; error budget = 1 - SLO, 1h/6h/72h
+burn-rate alerting); Chaos Mesh = 10+ fault categories (Pod, Network,
+Stress, IO, Time, DNS, Kernel); OWASP LLM01-LLM10 with prompt injection
+first + LLM06 sensitive info + LLM10 model theft + hard maxIterations
+cap (default 25 in LangChain); three easiest demo-killers = ReDoS
+(200-byte regex on 50KB input pins a core), Slowloris (200 half-open
+conns at 1KB/s), HTTP CL.0/T smuggling; idempotency mandatory for money
+(Stripe: Idempotency-Key on all POSTs, 255-char); Jepsen = data
+integrity standard (lost updates, stale reads, split-brain across
+etcd/MongoDB/Kafka/Postgres/MySQL); DST (Antithesis) beats statistical
+load testing for concurrency bugs; demo-hardness classes matter more
+than feature count (OHack rubric).
 cited source this cycle.
 
 ## CLASS A: LOAD CLASSES (per domain flavor)

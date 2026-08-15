@@ -6,6 +6,19 @@ domain. This is the answer to "what do we cite when the judge asks how
 we measure it". Statuses: [PREFILL] = from model knowledge, wave-4
 (parallel.ai, run in flight) will verify + add fresh 2026 numbers;
 [VERIFIED] = numbers seen in a cited source this cycle.
+WAVE-4 VERIFIED UPGRADES (raw/wave4-benchmarks.md): SWE-bench Verified
+led by Claude Opus 5 ~96%, Claude Mythos 5 95.5% (HumanEval saturated;
+target SWE-bench Verified + LiveCodeBench); AgentBench-style suites show
+~80% success variance across runs -> multi-run eval with confidence
+intervals, AgentBoard-style pass@k + pass^k; tau-bench false-pass fixed
+(show trajectory metrics: tool calls, user turns); MTEB tracks 196+
+models now multilingual (C-MTEB); BEIR NDCG@10 = generalization probe;
+RAGAS + ARES complementary (fixed metrics + auto-tuned LM judges);
+CyberSecEval 3 (Meta) = cyber bar; OWASP Top 10:2025 reorganized, OWASP
+API Security Top 10 (2023) canonical for fintech; India 4-pillar
+compliance stack = DPDPA 2023 + CERT-In Directions + RBI Digital
+Lending Directions 2025 + MeitY India AI Governance Guidelines
+(Nov 2025).
 
 Coverage target: hundreds of named benchmarks. The 81/81 suite maps to
 this file: every check in scaffold/tests is an instance of a class

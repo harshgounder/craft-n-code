@@ -12,6 +12,22 @@ Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
 - Backup rule: anyone can run ./demo.sh and ./atlas/serve.sh. No single point
   of failure. Phones charged, hotspot ready, HDMI adapter packed.
 
+## FORMAT FACTS (VERIFIED, wave-7: CSC MUJ reel 12 Aug 2026 + public sources)
+
+- 24-hour STATE-LEVEL hackathon, 15-16 Aug, Unstop round 1569450, reg Rs
+  299/team, teams 2-4, prize pool Rs 50,000.
+- TOP 2 TEAMS ADVANCE to the National Finale at IIIT-Bangalore. The pitch
+  leads with the IIITB gate, not the Rs 50K.
+- CSC MUJ = "the only Cybersecurity club of MUJ". Security-flavored builds
+  get thematic tailwind. Same pipeline runs Nexora'26 -> Craft N Code ->
+  IIITB.
+- MUJ pedigree judges know: hosted SIH 2025 Hardware Grand Finale (4
+  winners x Rs 1.5 lakh); HackX 3.0 national (Rs 5,00,000 pool, 10 themes
+  incl. fintech, edtech, health, cyber+defence).
+- SIH lesson: judges DO declare no-winner PS (5 in 2024). PS fidelity
+  alone lost a team that was "the only one following the brief". Theme
+  resonance + adoption language beat literalism.
+
 ## TIMELINE
 
 20:00 CHECK-IN + OPENING BRIEF (MUJ)
@@ -97,9 +113,30 @@ Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
   on-site: who judges, weights, anything they reward.
 
 09:00 FREEZE, DEMO, JUDGING
-- 3-min demo, 2:30 rehearsal target, hard timer. Cold open (aftermovie if
-  it exists, else the one-sentence story) -> problem -> answer -> live
-  demo -> KPI -> close.
+- 3-min demo, 2:30 rehearsal target, hard timer. THREE-ACT ARC (wave-14,
+  second-level): Act 1 problem 30-45 s (open 10 s with ONE victim, one
+  cost: e.g. "Rs 4,057 crore, 3 lakh victims, one call"), Act 2 solution
+  + live demo 90-120 s (demo intro 5 s, live demo 70 s, credibility line
+  10 s), Act 3 impact 30-45 s (one quantified number 20 s, vision 15 s,
+  ask 15 s). Demo never under 60 s.
+- Failure-case moment: 20 s show the old way failing, 50 s show ours
+  winning on the same input. Kills "does it solve the problem" + "is it
+  better" in one beat.
+- Deck: 7-10 slides. Slides 1-2 carry elimination risk. Architecture
+  slide = max 4 boxes, numbered lifecycle, "built vs reused" honesty
+  column. No AWS-icon diagrams.
+- Recovery lines (rehearse 5x): "Let me show you a moment in our test
+  data that captures exactly what the live system does."
+- PLANTED Q&A: end with one metric that forces the question you want
+  ("81/81 checks, zero deps, badge that cannot lie. Ask us how we tested
+  it.").
+- LLM FALLBACK LADDER (wave-12): OLLAMA primary -> OpenRouter :free
+  suffix (26+ $0 models, no card) -> Cerebras 1M tokens/day -> deep
+  offline mode. Never a dead demo.
+- LIVE DATA rails (wave-9): HN Firebase API (keyless, no rate limit,
+  CORS = browser fetch works), NPCI monthly UPI stats (23.66 bn txns /
+  Rs 29.88 lakh crore, July 2026), data.gov.in, Wikipedia REST 200 rps.
+  feeds.py already uses the HN source.
 
 ## WHAT TO CARRY
 

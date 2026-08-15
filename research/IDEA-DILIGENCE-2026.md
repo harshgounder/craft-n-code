@@ -173,3 +173,83 @@ clock start are banned (our rule).
 7. Demo gate: 3 minutes, failure case included.
 This file is that checklist applied to 30 domains. Wave-3 deepens
 every row with fresh 2026 citations.
+
+## WAVE-VERIFIED AMMO (waves 3, 10, 11 landed; the numbers below are cited
+## in research/WAVE-SYNTHESIS-2026.md, raw bodies in research/raw/)
+
+### FRAUD AMMO (KIT-4B; the 8 numbers a judge will ask first)
+- RBI FY25-26: 10,114 cases / Rs 48,021 crore (cases -57%, value +46%,
+  value per case +243%: Rs 1.38 cr -> Rs 4.75 cr). PSBs = 74.4% of loss
+  value. Fraud is concentrated, not sprawling: freeze the high-value
+  wire, not the long tail.
+- Digital arrest: ~3 lakh victims, Rs 4,057 crore since 2022; Rs 481.1 cr
+  in Jan-May 2026 alone (15,215 complaints); biggest single case Rs 14.84
+  crore (NRI doctor couple, Delhi). Case counts nearly tripled 2022-24.
+- AI-powered scams: Rs 22,495 crore lost in calendar 2025 (deepfake
+  voice, fake video calls, synthetic identity). A fraud pitch without a
+  deepfake story reads as 2024.
+- 1930 helpline: 3.28M calls, Rs 11,158 crore frozen/recovered, 85
+  banks/wallets on CFCFRMS; ~50% recovery inside the golden hour.
+  CFCFRMS/I4C: 6,589,201 complaints 2021-2025, Rs 55,050 crore, 195,760
+  FIRs. NCRP: 3M+ visitors.
+- Truecaller: 450M Android MAU (9 Oct 2025), 38B unwanted calls blocked,
+  500M+ total. 70%+ of 2026 scam entry vectors are WhatsApp-driven.
+- Regulator stack (name all four in the pitch): RBI FREE-AI (13 Aug 2025,
+  7 Sutras / 6 Pillars / 26 recs; Sutra 5 = "AI for customer protection"
+  = the student hook), DPIP (being built), Revised Master Directions
+  (15 Jul 2024: mule-account negatives, 7-day SLA), Ombudsman scheme for
+  digital transactions (27 Jul 2026). Plus Sanchar Saathi/Chakshu (DoT)
+  and NCRP (MeitY/I4C). RBI mandates 6-letter bank sender IDs (SBIINB).
+- Scam families (know all six): fake customer care, KYC update, FedEx/
+  DHL customs (Rs 1,800 cr), WhatsApp investment/task (largest channel,
+  Rs 10.98 cr Mumbai case), family-emergency AI voice/video, boss scam
+  (I4C 2026 warning), celebrity deepfake endorsements.
+- The judge test: "how do you detect a deepfake voice call <2 s on a
+  mid-range Android?" Our answer: offline on-device analysis + policy
+  gate + honest badge. "What's your false positive rate?" Answer:
+  "<5% measured on a 10,000-SMS corpus, here is the eval plan" (we can
+  build this with the IEEE-CIS/PaySim/Nazario datasets from wave-9).
+
+### DPDPA AMMO (KIT-3 / KIT-5; the compliance story)
+- Rules notified 14 Nov 2025; 3-phase rollout (6/12/18 months), first
+  obligations active from mid-May 2026. Build to the 18-month endpoint.
+- Penalties up to Rs 250 crore per breach item; Rs 500 crore with Section
+  33(3) aggravators. Breach clock: 72 hours to the DPBI (Section 8 /
+  Rule 12).
+- Children: verifiable parental consent (Rule 10) before processing child
+  data. SDF = notified status, not a size rule. Cross-border transfers:
+  state-controlled (Section 16), no EU-style SCCs.
+- Our scaffold answer: consent-first UX, 72h /breach-notify endpoint,
+  "DPDPA-ready by default" as a feature, not a footnote.
+
+### SPONSOR DNA 2026 (wave-3; one month fresh)
+- Google: I/O Connect India (14 Jul 2026) = ATL Saathi (10,000 Atal
+  Tinkering Labs), AIIMS x MedGemma, Aarogya Setu 2.0 (Gemma 4), Project
+  Vaani (109 Indic languages), Gemini Live 25+ Indic languages, Gemini on
+  Distributed Cloud (sovereign AI). Judge language: real Gemini/Gemma
+  usage, Indic context, responsible AI.
+- Adobe: Content Credentials = marquee 2026 (3 pillars: capture,
+  identity, content; 22 Jan 2026). Provenance/C2PA layers on generative
+  output = the Adobe angle.
+- Meta: OpenEnv Bengaluru Apr 2026 ($30K pool); open Llama usage.
+- Apple: Swift Student Challenge 2026 (350 winners, 41 countries;
+  Shourya SRMIST = Distinguished Winner, WWDC). On-device + accessibility
+  + privacy-by-default.
+- Accenture: first Chief Responsible AI Officer; "Blueprint for
+  Responsible AI"; governance, risk-tiered deploy, post-deployment
+  monitoring language.
+- Convergence sentence: "agent + provenance + Indic + privacy". Four
+  words cover all five sponsors.
+
+### FUNDING + RAILS (wave-3; the adoption story)
+- Rajasthan iStart: Rs 10,000/month sustenance x1yr, IP/marketing
+  reimbursement, Bhamashah Techno Hub + RIICO incubation; pre-seed grant
+  Rs 2,40,000; Rajasthan Rs 100 cr startup fund unveiled.
+- DPIIT threshold raised to Rs 200 cr (4 Feb 2026); recognition window
+  10 years (20 deeptech); Startup India Fund of Funds 2.0 (14 Feb 2026).
+- Rails: GeM (national procurement), ONDC (370K vendors, 800+ cities),
+  UPI (24,161.69 cr txns FY25-26; July 2026: 23.66 bn txns, Rs 29.88
+  lakh cr), 17 Account Aggregators (Sahamati), ABDM/Aarogya Setu 2.0.
+- MSME: 63M, 31.1% GDP, 48.5% exports, <5% use accounting software.
+  The "who adopts it" answer: pick one rail, name the pilot, name the
+  quarter.
