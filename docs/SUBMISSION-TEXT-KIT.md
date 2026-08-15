@@ -2,6 +2,7 @@
 
 Compiled: 2026-08-14 20:30 IST | Purpose: every submission field pre-written so
 the night is paste + submit, not write-at-5am. Two gates:
+- ROUND 0 (organizer msg 19:23 IST): ONLINE, drop 22:00, submission = PPT AND Prototype BOTH. Evaluated by IIIT Bhubaneswar faculty. Midnight surprise. Gates below are the OLD format, verify live at 22:00.
 - Unstop round 1569450: PPT (pdf/pptx, max 50MB), v1 at 23:00, final 05:00, closes 06:00
 - Club site (cscmuj.com / craftncode.dev form): repo_url (required) + pitch (1-2000 chars) + demo_url (optional), v1 before 06:00, final before 09:00 freeze
 

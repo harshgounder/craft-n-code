@@ -1,10 +1,10 @@
-# NIGHT-CHEAT-SHEET-2026.md: the 21:30 quick-mount table (print me)
+# NIGHT-CHEAT-SHEET-2026.md: the 22:00 quick-mount table (print me)
 
 Built from: WAVE-SYNTHESIS-2026 (12 verified waves), SKIN-KITS-2026,
 IDEA-DILIGENCE-2026, PER-TOPIC-BENCHMARKS/STRESS. One line per domain:
 kit + fixture + the numbers to quote + the judge attack to pre-answer.
 
-## THE 21:30 PROTOCOL (2 min fingerprint, 10 min tree, 30 s mount)
+## THE 22:00 PROTOCOL (2 min fingerprint, 10 min tree, 30 s mount)
 
 1. Fingerprint (Harsh, 2 min): company vocab cue table (IDEA-BANK s5).
    Security words ANYWHERE -> KIT-4B overrides everything.
