@@ -1,0 +1,31 @@
+{
+  "mode": "offline",
+  "generated_at": "2026-08-15T17:55:38",
+  "checks": [
+    {
+      "name": "Live happy summarize",
+      "status": "SKIP",
+      "detail": "provider is null/offline"
+    },
+    {
+      "name": "Live ambiguous summarize",
+      "status": "SKIP",
+      "detail": "provider is null/offline"
+    },
+    {
+      "name": "Live adversarial summarize",
+      "status": "SKIP",
+      "detail": "provider is null/offline"
+    },
+    {
+      "name": "Live multimodal summarize",
+      "status": "SKIP",
+      "detail": "provider is null/offline"
+    }
+  ],
+  "pass": 0,
+  "fail": 0,
+  "skip": 4,
+  "total": 4,
+  "elapsed_seconds": 0.0
+}

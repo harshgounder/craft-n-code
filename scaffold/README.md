@@ -33,6 +33,7 @@ cd engine
 python3 engine.py --seed --digest          # offline-safe digest
 OLLAMA_API_KEY=... python3 engine.py --seed --digest   # LLM mode
 python3 engine.py --seed --out feed.json   # full JSON result
+python3 eval/eval.py --all   # eval gate (offline-safe), --live for LLM spot checks
 ```
 
 ## The pipeline (domain-agnostic)
