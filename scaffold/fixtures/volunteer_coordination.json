@@ -1,0 +1,62 @@
+[
+  {
+    "channel": "email",
+    "source_id": "vol-1",
+    "sender": "Event Committee",
+    "subject": "URGENT: volunteer needed for night shift",
+    "body": "The night shift at the main gate needs one more volunteer on 18 Aug 2026. Confirm by 16 Aug 2026 or the slot stays open.",
+    "received_at": "",
+    "profile_tags": ["events"],
+    "kind": "deadline"
+  },
+  {
+    "channel": "email",
+    "source_id": "vol-2",
+    "sender": "Venue Coordination",
+    "subject": "Venue change for opening ceremony",
+    "body": "Opening ceremony moves from Hall A to the Auditorium on 20 Aug 2026. Same time, 6 PM. Inform all volunteers on the group chat about the move.",
+    "received_at": "",
+    "profile_tags": ["events"],
+    "kind": "notice"
+  },
+  {
+    "channel": "chat",
+    "source_id": "vol-3",
+    "sender": "Venue Coordination",
+    "subject": "Venue change for opening ceremony",
+    "body": "Opening ceremony moves from Hall A to the Auditorium on 20 Aug 2026. Same time, 6 PM. Inform all volunteers on the group chat about this change.",
+    "received_at": "",
+    "profile_tags": ["events"],
+    "kind": "notice"
+  },
+  {
+    "channel": "chat",
+    "source_id": "vol-4",
+    "sender": "Volunteer (S. J.)",
+    "subject": "Shift swap request for 19 Aug",
+    "body": "I need to swap my registration desk shift on 19 Aug 2026. Reply by 17 Aug 2026 if you can cover. I can take your evening shift in return.",
+    "received_at": "",
+    "profile_tags": ["events"],
+    "kind": "deadline"
+  },
+  {
+    "channel": "email",
+    "source_id": "vol-5",
+    "sender": "Unknown Sender",
+    "subject": "Get paid to volunteer",
+    "body": "Sign up now and earn 5000 rupees for a one-day event. Click the link and pay a small registration amount to reserve your slot. Bank transfer accepted. Act now, limited seats.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  },
+  {
+    "channel": "chat",
+    "source_id": "vol-6",
+    "sender": "Volunteer Lead",
+    "subject": "Volunteer meeting reminder",
+    "body": "Weekly volunteer sync tomorrow 9 AM in Room 2105. Attendance mandatory for all shift leads.",
+    "received_at": "",
+    "profile_tags": ["events"],
+    "kind": "notice"
+  }
+]

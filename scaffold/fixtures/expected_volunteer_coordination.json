@@ -1,0 +1,7 @@
+{
+  "top3": ["vol-1", "vol-4", "vol-6"],
+  "dedupe": {"expected_kept": 5, "expected_dropped": 1, "dupe_of": "vol-3"},
+  "scam_rank": "vol-5",
+  "scam_not_top": true,
+  "notes": "Urgent gap coverage and shift swap requests outrank routine notices. The duplicated venue change notice collapses to one. The paid volunteering scam stays out of the top 3."
+}

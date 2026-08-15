@@ -1,0 +1,7 @@
+{
+  "top3": ["support-1", "support-6", "support-2"],
+  "dedupe": {"expected_kept": 6, "expected_dropped": 1, "dupe_of": "support-3"},
+  "scam_rank": "support-5",
+  "scam_not_top": true,
+  "notes": "Escalation and cancel-risk tickets outrank routine ones. The near-duplicate payment gateway tickets collapse to one. The refund scam is score capped and stays out of the top 3."
+}

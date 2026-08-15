@@ -1,0 +1,72 @@
+[
+  {
+    "channel": "email",
+    "source_id": "support-1",
+    "sender": "Escalations Team",
+    "subject": "URGENT: refund request escalation",
+    "body": "Customer A. S. has filed a duplicate charge dispute. We must refund by 20 Aug 2026 before a chargeback is filed. Case severity high, respond today.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "deadline"
+  },
+  {
+    "channel": "email",
+    "source_id": "support-2",
+    "sender": "Customer (R. K.)",
+    "subject": "Payment gateway broken, cannot pay",
+    "body": "Payment gateway on the portal is down since morning. I cannot pay the hostel fee before the deadline. Please fix this issue right away without any further delay.",
+    "received_at": "",
+    "profile_tags": ["hostel"],
+    "kind": "complaint"
+  },
+  {
+    "channel": "ticket",
+    "source_id": "support-3",
+    "sender": "Customer (R. K.)",
+    "subject": "Payment gateway broken, cannot pay",
+    "body": "Payment gateway on the portal is down since morning. I cannot pay the hostel fee before the deadline. Please fix this issue right away without any further wait.",
+    "received_at": "",
+    "profile_tags": ["hostel"],
+    "kind": "complaint"
+  },
+  {
+    "channel": "email",
+    "source_id": "support-4",
+    "sender": "Support Agent",
+    "subject": "Refund processed",
+    "body": "The refund for order INV-4412 was processed successfully. No action needed.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  },
+  {
+    "channel": "email",
+    "source_id": "support-5",
+    "sender": "Unknown Sender",
+    "subject": "URGENT: account alert, verify to claim refund",
+    "body": "Your account shows suspicious activity. Click here and verify your account to claim your refund of 5000 rupees. Transfer a small verification amount first to release the payment.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  },
+  {
+    "channel": "ticket",
+    "source_id": "support-6",
+    "sender": "Customer (P. M.)",
+    "subject": "COMPLAINT: service down, need credit",
+    "body": "Your service has been down for 3 days. I want a full month credit. Respond by 18 Aug 2026 or I will cancel the subscription.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "deadline"
+  },
+  {
+    "channel": "app",
+    "source_id": "support-7",
+    "sender": "Customer (L. T.)",
+    "subject": "Feature request: dark mode",
+    "body": "Please add a dark mode toggle to the portal. Low priority, no rush.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  }
+]

@@ -28,7 +28,8 @@ import approval
 
 TODAY = date(2026, 8, 15)
 PROFILE = ["exam", "hostel", "2nd-year"]
-GOLDEN = ["happy", "ambiguous", "adversarial", "multimodal"]
+GOLDEN = ["happy", "ambiguous", "adversarial", "multimodal",
+          "support_ticket", "volunteer_coordination", "campus_ops"]
 
 FIXTURES_OVERRIDE: Path | None = None
 results: list[tuple[str, str, str]] = []

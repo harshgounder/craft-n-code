@@ -1,0 +1,72 @@
+[
+  {
+    "channel": "email",
+    "source_id": "ops-1",
+    "sender": "Security Office",
+    "subject": "URGENT: hostel theft reports due",
+    "body": "All theft reports must be filed by 18 Aug 2026 for the insurance process. Lock your rooms and report anything unusual immediately.",
+    "received_at": "",
+    "profile_tags": ["hostel"],
+    "kind": "deadline"
+  },
+  {
+    "channel": "email",
+    "source_id": "ops-2",
+    "sender": "Room Booking Desk",
+    "subject": "Projector room booking confirmed",
+    "body": "Your booking for the seminar room on 20 Aug 2026 is confirmed. Arrive by 5 PM to set up. Cancel before 19 Aug 2026 if not needed.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  },
+  {
+    "channel": "portal",
+    "source_id": "ops-3",
+    "sender": "Room Booking Desk",
+    "subject": "Projector room booking confirmed",
+    "body": "Your booking for the seminar room on 20 Aug 2026 is confirmed. Arrive by 5 PM to set up. Cancel before 19 Aug 2026 if unused.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  },
+  {
+    "channel": "email",
+    "source_id": "ops-4",
+    "sender": "Lost and Found",
+    "subject": "Found: laptop charger",
+    "body": "A laptop charger was found in the library today. Claim at the Lost and Found desk before 22 Aug 2026 or it will be donated.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  },
+  {
+    "channel": "email",
+    "source_id": "ops-5",
+    "sender": "Unknown Sender",
+    "subject": "You won a free hostel upgrade",
+    "body": "Congratulations, you won a free hostel upgrade. Click the link and claim your prize. Transfer a small processing amount to book your slot. Act now, limited offers.",
+    "received_at": "",
+    "profile_tags": [],
+    "kind": "notice"
+  },
+  {
+    "channel": "chat",
+    "source_id": "ops-6",
+    "sender": "Facilities Desk",
+    "subject": "Water supply interruption",
+    "body": "Water supply in the hostel blocks will be interrupted on 21 Aug 2026 for tank cleaning. Plan accordingly. Tank cleaning complete by 5 PM.",
+    "received_at": "",
+    "profile_tags": ["hostel"],
+    "kind": "notice"
+  },
+  {
+    "channel": "portal",
+    "source_id": "ops-7",
+    "sender": "Campus Events",
+    "subject": "Sports day registrations open",
+    "body": "Registrations for the annual sports day are open until 25 Aug 2026. Sign up at the sports office.",
+    "received_at": "",
+    "profile_tags": ["events"],
+    "kind": "notice"
+  }
+]
