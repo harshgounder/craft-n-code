@@ -284,6 +284,53 @@ Cross-sponsor master table (condensed):
 
 THE TRI-TOOL MOVE (cross-sponsor, max points): Gemini 3 free tier + Llama 4 Maverick (Hugging Face/Llama API, royalty-free) + Firefly Image Model 4 free credits. Covers LLM + multimodal + creative, all free, all verifiable. The statement "integration of at least 3 sponsor tools" is the event's own phrase: a team that literally integrates 3 sponsor free stacks has the phrase documented in the statement itself.
 
+### SECTION 9.5: WORKAROUND ATLAS (wave 3, parallel.ai pro-fast, 2026-08-15)
+
+Run: cnc-workarounds (DEEP 92.6, 362 cites, 3 tables, 56.4K chars. First DEEP of wave 3. Full report: parallel-ai-stack/test-results/cnc-workarounds.content.md).
+
+40+ manual rituals across 6 lanes (education, kirana, healthcare admin, gig workers, enterprise, campus/housing). Top-15 by statement-readiness (condensed):
+
+| # | Workaround | Lane | Pain evidence | Readiness | Shape | Kit |
+|---|---|---|---|---|---|---|
+| 1 | Paper register + shouted patient names | Healthcare | manual queue, Clinic OS | 5 | ABHA voice-triage | KIT-4 |
+| 2 | Udhar khata in notebook | Kirana | 40-90% of monthly revenue at risk, Rs 2-5 lakh | 5 | Voice-Khata (Hindi voice OCR) | KIT-3 + KIT-4 |
+| 3 | P2P purchase approval via email forwarding | Enterprise | no visibility/escalation/audit | 5 | Agentic Procure | KIT-5 |
+| 4 | Attendance via WhatsApp reply "+P" | Education | parent-chat micromanagement | 4 | Edu-Bridge | KIT-4 |
+| 5 | PMJAY pre-auth binder + fax | Healthcare | NHA runs AI adjudication hackathon because manual | 5 | NHCX-Bridge | KIT-5 |
+| 6 | Lab reports via courier/WhatsApp PDF | Healthcare | pathology market Rs 3.2K cr fragmented | 5 | Pathology-Push | KIT-3 |
+| 7 | Daily wage work via WhatsApp broadcast groups | Gig | first agentic AI for daily wagers exists because lane exists | 5 | Agentic Naukri | KIT-1 |
+| 8 | Maintenance collection flat-to-flat | Housing | scattered apps + WhatsApp + registers | 5 | Society-Receipt-Bot | KIT-4 |
+| 9 | Insurance via personal Aadhaar copy | Gig | 77% gig workers no social security, 12M gig workers | 5 | ABHA-Vault | KIT-3 |
+| 10 | Supplier order via phone call | Kirana | wrong SKU 1-in-5 (INFERRED) | 4 | DistributorBOT | KIT-1 |
+| 11 | Multi-level expense Excel + email | Enterprise | spreadsheets + email, time-consuming | 5 | ExpenseFlow | KIT-5 |
+| 12 | Mess menu via WhatsApp poll | Campus | 10-15% plate waste (INFERRED) | 4 | Mess-Choice | KIT-4 |
+| 13 | Exam seating via Excel + pencil | Education | GitHub template still needed | 4 | ExamPlot | KIT-1 |
+| 14 | Onboarding checklist per hire in Docs | Enterprise | HR Cloud mainstream push | 4 | OnboardConductor | KIT-5 |
+| 15 | Meeting minutes lost in chat | Enterprise | Saar.ai + MeetMinutes exist = mass pain | 5 | Meet-MOM | KIT-1 |
+
+Takeaways that change tonight's parse: 8/15 workarounds are messaging shape (KIT-4, Meta's hook); 5 are enterprise (KIT-5, Accenture/Adobe). The statement that splits two kits: Voice-Khata (kirana voice OCR, Hindi, KIT-3 + KIT-4). If the drop mentions kirana, education admin, or clinic queues, one of these 15 IS the expected build.
+
+### SECTION 9.6: NONCONSUMPTION MAP (wave 3, parallel.ai pro-fast, 2026-08-15)
+
+Run: cnc-nonconsumption (ADECENT 79.6, 135 cites, 2 tables, 38K chars. Full report: parallel-ai-stack/test-results/cnc-nonconsumption.content.md).
+
+9 India segments wanting outcomes but using nothing. Top-10 ranked (condensed):
+
+| # | Segment | Population (VERIFIED where noted) | Outcome gap | Current nothing | Product | Shape | Setters | Kit |
+|---|---|---|---|---|---|---|---|---|
+| 1 | Farmers | 93M households (Ag Census) | advisory + mandi price + PMFBY claims | radio / Krishi Mitra | Bharat-Krishi voice agent | voice-first | Google | KIT-4 + KIT-1 |
+| 2 | Daily-wage workers | 542M informal | wage record + safety + insurance | WhatsApp + pen-paper | missed-call IVR -> AI work log | voice/IVR | Meta + Accenture | KIT-4 + KIT-1 |
+| 3 | Rural elderly | 73.3M (2011), 92M by 2031 | medicine + family ping + SOS | phone call to relative | Saathi on-device companion | on-device | Apple | KIT-3 + KIT-4 |
+| 4 | New-to-internet | ~250M | schemes + banking + jobs | CSC / cybercafe / literate relative | Pehchaan WhatsApp + voice onboarding | cloud agent | Google + Meta | KIT-1 + KIT-4 |
+| 5 | Kirana | 12-15M shops (CONTESTED 12M/13M) | inventory + GST + credit | notebook + memory | Dukaan-AI on-device + e-invoice | hybrid | Google + Adobe | KIT-3 + KIT-1 |
+| 6 | Rural single-teacher schools | 2.5-3L schools (CONTESTED) | lesson plan + assessment + parent comms | blackboard + textbook | Ekal-Sahayak WhatsApp TA, DIKSHA 36 langs | cloud + voice | Google + Adobe | KIT-1 + KIT-4 |
+| 7 | Small clinics / pharmacies | 2.5L informal providers (INFERRED) | records + stock + billing | paper register | Clinic-AI voice SOAP + ABHA | cloud + voice | Google + Apple | KIT-4 + KIT-1 |
+| 8 | MSME / artisans | 8.83Cr MSME, 35L handloom weavers (CONTESTED) | design + price + market | local middleman | Tana-Bana-AI Firefly design + ONDC | cloud agent | Adobe + Meta + Google | KIT-1 + KIT-2 |
+| 9 | Rural/tier-2 students | 25Cr K-12 (INFERRED) | test prep + mentorship + scholarship | free YouTube + crowded apps | GuruJi offline-first vernacular | on-device + cloud | Google + Apple | KIT-3 + KIT-1 |
+| 10 | Gig workers (platform) | 7.7M now, 23.5M by 2029-30 | income record + insurance + grievance | app-only + nothing | GigSuraksha earnings aggregator + e-Shram | cloud + WhatsApp | Meta + Accenture | KIT-1 + KIT-4 |
+
+Takeaways that change tonight's parse: voice-first (KIT-4) in 7/10 segments, agentic (KIT-1) in 9/10. Those are the two kits judges reward most. On-device (KIT-3) wins where connectivity rules (elderly, kirana, students). Pure app builds do not appear: the distribution channel itself is nonconsumed. If the drop says "voice" or "Bharat" or "vernacular", this table is the target list.
+
 ## SECTION 10: THE META-UNIVERSE (beyond Craft N Code 2026)
 
 This universe generalizes to any AI hackathon in India 2026-2027. The event-agnostic core: Section 1 company DNA (apply the setter list of YOUR event), Section 2 shapes (7 core + 13 from wave 2 = 22 now), Section 3 domains (30 core + 32 from wave 2 = 62 now), Section 5 grammar, Section 4 kit mapping. For a new event: re-run the site forensics + company lane scan, swap the priors, keep everything else. The kit layer (what you can build in 24h) stays identical: one engine, many skins.
