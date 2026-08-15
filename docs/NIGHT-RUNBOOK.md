@@ -71,6 +71,13 @@ Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
   time POST /api/ingest ONE new item (live call ~2-5 s) and the badge
   reads live while everything else renders from cache. Never cold-boot
   on stage.
+- 429 WATCH (learned Aug 15 ~13:45): the OLLAMA key now hits HTTP 429
+  (Too Many Requests) under sustained cold-run load. Pre-warm in TWO
+  spaced passes (start server, let it hit 429s, restart 5 min later;
+  cache fills across passes), keep the .llm_cache.json warm copy in the
+  repo data dir as the ultimate fallback, and be ready to tell the
+  honesty story: "the provider rate-limited us, the badge flipped to
+  offline, the feed kept ranking. that is the product."
 - If any dependency fails its 60-90 min time gate: switch to
   fixture/replay mode, no exceptions. Run the DRILLS cheat sheet
   (BACKEND-DRILLS-2026) if anything misbehaves.
