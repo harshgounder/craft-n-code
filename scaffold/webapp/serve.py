@@ -344,6 +344,17 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
         handler.wfile.write(f.read_bytes())
         return
 
+    if parts[0] in ("manifest.json", "sw.js"):
+        # PWA install files served at the root (BUILD-SPEC B11)
+        f = STATIC / parts[0]
+        ctype = ("application/manifest+json" if parts[0] == "manifest.json"
+                 else "application/javascript")
+        handler.send_response(200)
+        handler.send_header("Content-Type", ctype)
+        handler.end_headers()
+        handler.wfile.write(f.read_bytes())
+        return
+
     if parts[0] == "static":
         # reject traversal: no "..", ".", or empty segments allowed
         if any(seg in ("..", ".", "") for seg in parts[1:]):
@@ -573,9 +584,28 @@ def _sse_stream(handler: BaseHTTPRequestHandler, query: dict):
                 _sse_clients.remove(client)
 
 
+# Security headers (BUILD-SPEC B11): applied to EVERY response via the
+# send_response override below, so HTML, JSON, SSE and error paths all carry
+# them. CSP is same-origin so fetch/EventSource are unaffected.
+SECURITY_HEADERS = [
+    ("Content-Security-Policy",
+     "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:"),
+    ("X-Content-Type-Options", "nosniff"),
+    ("X-Frame-Options", "DENY"),
+    ("Referrer-Policy", "no-referrer"),
+    ("Permissions-Policy",
+     "geolocation=(), microphone=(), camera=(), payment=(), usb=(), display-capture=()"),
+]
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, *a):
         pass
+
+    def send_response(self, code, message=None):
+        super().send_response(code, message)
+        for name, value in SECURITY_HEADERS:
+            self.send_header(name, value)
 
     def _serve(self, method: str):
         parsed = urllib.parse.urlparse(self.path)
