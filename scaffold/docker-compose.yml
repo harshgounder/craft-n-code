@@ -1,0 +1,16 @@
+services:
+  signal-engine:
+    build: .
+    image: craft-n-code:signal-engine
+    container_name: signal-engine
+    ports:
+      - "8137:8137"
+    volumes:
+      - var-data:/app/var
+    environment:
+      - OLLAMA_API_KEY=${OLLAMA_API_KEY:-}
+      - SIGNAL_PROVIDER=${SIGNAL_PROVIDER:-}
+      - DATABASE_URL=${DATABASE_URL:-}
+
+volumes:
+  var-data:

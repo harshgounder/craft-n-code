@@ -1,0 +1,37 @@
+name: smoke
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run all test suites
+        working-directory: scaffold
+        run: |
+          python3 tests/test_approval.py
+          python3 tests/test_feeds.py
+          python3 tests/test_honesty.py
+          python3 tests/test_multimodal.py
+          python3 tests/test_provenance.py
+          python3 tests/test_providers.py
+          python3 tests/test_stress.py
+          python3 tests/test_trace.py
+
+      - name: Run eval (offline)
+        working-directory: scaffold
+        env:
+          SIGNAL_PROVIDER: "null"
+          OLLAMA_API_KEY: ""
+        run: |
+          python3 eval/eval.py --all
