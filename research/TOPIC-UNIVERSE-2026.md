@@ -256,6 +256,34 @@ Synthesis that changes tonight's parse:
 - Demo risk hotspots: EV charging (charger API), ABDM (FHIR auth), railway (IRCTC scrape). Counter with mocked streams, ABDM sandboxed FHIR, scraped timetables (documented in report feasibility columns).
 - The dmj.one precedent (59 Bharat-first products incl. Jalseva water 163M reach) confirms LLM-only demos are the 24h ceiling and everything maps to KIT-1 agentic ops.
 
+### SECTION 9.4: COMPANY LANE SCAN PASS 2 (wave 2 refire, parallel.ai pro-fast, 2026-08-15)
+
+Run: cnc-company-lanes-refire (trun_6eaa095855ac45d6894ea729dcf2b29c). Depth: ADECENT 72.5, 221 cites (first attempt SURFACE 63.1 with 1 cite, refired with cite pressure per user precedent: redo SURFACE only). Full report: parallel-ai-stack/test-results/cnc-company-lanes-refire.content.md.
+
+What changes tonight's parse (all VERIFIED with URLs in the report):
+
+1. GOOGLE (24%): Gemini 3 launched Nov 18 2025 ("PhD-level reasoning", 1M-token context, "most powerful agentic and vibe coding model yet"), Gemini 3 Deep Think, Antigravity (agentic IDE), Gemini Agent. Agentspace REBRANDED to Gemini Enterprise (June 8 2026: Gemini 3.5 Flash default-on). CRITICAL HONEST NEGATIVE: Project Mariner SHUT DOWN as standalone May 4 2026, capability absorbed into Gemini Agent + Interactions API (GA). A statement naming Mariner is dead on arrival; rebuild on the Interactions API. Free tier: AI Studio no credit card, 10-30 req/min; Vertex $300 credits; ADK open-source.
+
+2. APPLE (15%): Apple Foundation Models = on-device 3B LLM exposed to third-party apps via native Swift API (@Generable, @Guide, streamResponse). Apple Intelligence is iPhone/iPad/Mac-only, no cost per request but hardware-gated. HONEST NEGATIVE: Metal/Xcode toolchains gate Swift on macOS; an Apple-lane entry must be iPhone-first and accept judges with no iPhone see design only. On-device + accessibility = their on-brand 2026 lane (Swift Student Challenge winners).
+
+3. META (21%): Llama 4 Community License = royalty-free, non-exclusive, worldwide; 700M-MAU ceiling only for hyperscaler products. Safest zero-API-key on-device stack (Scout/Maverick/Behemoth). HONEST NEGATIVE: WhatsApp Business AI assistant is country-restricted ("select languages and limited countries"), unreliable from India Aug 2026; safer = Meta AI Agent SDK / open Llama stack. Live translation + PyTorch in their vocabulary.
+
+4. ACCENTURE (22%): Distiller agentic framework (agent memory management, multi-agent collaboration, agentic workflow management, model customization, governance), Trusted Agent Huddle, Agent Builder, Physical AI SDK. VOCABULARY GIVEAWAY: "agent" never "chatbot", name a vertical (BFSI/healthcare/retail/manufacturing), route work across multiple agents with a memory/audit story. Our scaffold's propose -> approve -> audit IS their DNA.
+
+5. ADOBE (18%): Firefly Image Model 4 (MAX Oct 28 2025), Generative Fill 1 credit/generation, Firefly API free-tier eligible (/images/generations, /images/expand, /images/fill, /videos/generations), GenStudio content supply chain, Acrobat AI Assistant, brand governance. Their lane = marketing/content supply chain agent that proves itself visually in the 3-min demo.
+
+Cross-sponsor master table (condensed):
+
+| Sponsor | Top-3 predicted lanes | Watch-words | Can-ask draft | Shape mapping |
+|---|---|---|---|---|
+| Google 24% | multi-agent + MCP; trustworthy agent; on-device | agentic, vibe coding, Deep Think, 1M-token, ADK, Interactions API | "Multi-agent system using Google ADK with Gemini 3 Deep Think + NotebookLM fact-check, exposed as MCP server" | 7 -> 6 -> 1 -> 3 |
+| Apple 15% | on-device; trustworthy; multi-agent (App Intents) | @Generable, @Guide, streamResponse, Private Cloud Compute | "iPhone-only @Generable PDF redactor streaming via streamResponse with a verifiable no-network-call paper trail" | 3 -> 1 |
+| Meta 21% | messaging; on-device/open-weights; multimodal | open weights, Built with Llama, Scout/Maverick, WhatsApp Business AI, live translation | "WhatsApp Business Agent triaging customer messages with Llama 4 Scout, Built with Llama attribution + audit trail" | 4 -> 3 -> 7 |
+| Accenture 22% | enterprise router; multi-agent; trustworthy | Distiller, Trusted Agent Huddle, Agent Builder, Physical AI SDK, responsible AI | "Enterprise RFP workflow routed through three Distiller agents with AI Refinery SDK + Agent Builder + responsible-AI audit step" | 5 -> 7 -> 1 |
+| Adobe 18% | creative pipeline; enterprise router; multi-agent/MCP | Firefly Image Model 4, Generative Fill, GenStudio, content supply chain, generative credits | "Brand-safe asset factory: PDF brief -> Generative Fill -> Acrobat AI Assistant sign-off -> GenStudio campaign URL" | 2 -> 5 -> 7 |
+
+THE TRI-TOOL MOVE (cross-sponsor, max points): Gemini 3 free tier + Llama 4 Maverick (Hugging Face/Llama API, royalty-free) + Firefly Image Model 4 free credits. Covers LLM + multimodal + creative, all free, all verifiable. The statement "integration of at least 3 sponsor tools" is the event's own phrase: a team that literally integrates 3 sponsor free stacks has the phrase documented in the statement itself.
+
 ## SECTION 10: THE META-UNIVERSE (beyond Craft N Code 2026)
 
 This universe generalizes to any AI hackathon in India 2026-2027. The event-agnostic core: Section 1 company DNA (apply the setter list of YOUR event), Section 2 shapes (7 core + 13 from wave 2 = 22 now), Section 3 domains (30 core + 32 from wave 2 = 62 now), Section 5 grammar, Section 4 kit mapping. For a new event: re-run the site forensics + company lane scan, swap the priors, keep everything else. The kit layer (what you can build in 24h) stays identical: one engine, many skins.
