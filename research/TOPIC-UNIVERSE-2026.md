@@ -461,6 +461,31 @@ Run: cnc-compelled-evidence-refire2 (ADECENT 81.9, 231 cites, 24 tables, 45.8K c
 
 Same 8 lanes as S9.9 with more receipts per lane. New anchor facts beyond S9.9 (all VERIFIED in report): 1930 helpline intercepts ~20% of reported fraud value (Rs 11,158 cr saved); 5.6 cr pending court cases; 70 cr UPI QRs; 7.3 cr MSMEs registered; 24 lakh NEET candidates; Rs 805 cr UPI fraud FY26 +85% YoY; Rs 250 cr DPDPA max penalty (tier ladder Rs 1L/2L/up to 250 cr); insurance claim grievances = 69% of complaints; creator piracy loss Rs 224B. The report's Top-20 Receipts Ranked (demo-citability index) is the quote bank for the problem slide. Cross-lane synthesis: India moves massive public numbers but the opaque backend is thin (fraud recovery ~12%, FIR conversion 3:1 behind complaints). Any demo opening with one of these numbers beats a generic problem slide.
 
+### SECTION 9.16: COMPLAINT MINE FINAL (wave 3-8 refire 3, parallel.ai pro, 2026-08-15)
+
+Run: cnc-complaint-mining-refire3 (DEEP 95.9, 334 cites, 23 tables, 69.9K chars. Third attempt; attempts 1-2 failed the gate (SURFACE 67.1, SHALLOW 54.3, SURFACE 63.6), the "PREVIOUS RUN FAILED, THIS RUN MUST FIX" phrasing + pro tier + 100-URL floor worked. Full report: parallel-ai-stack/test-results/cnc-complaint-mining-refire3.content.md).
+
+85 verbatim complaints (17 per sponsor lane, India 2024-2026) + master ranking of the 30 most statement-ready pains. The top of the ranking (all VERIFIED, readiness 5):
+1. WhatsApp "digital arrest" scam: Rs 4,057 cr lost since 2022, ~3 lakh victims; 15,215 fresh 2026 victims, Rs 481.1 cr. Track: Trust Verification Layer.
+2. Gemini 2.5 Pro free tier 5 RPM / 100 RPD cap breaks Indian builders mid-quota. Track: Cost/Quota Optimizer.
+3. Adobe India Hackathon test software falsely flags WhatsApp-active devices (users delete WhatsApp to start the test). Track: Marketplace/Platform Connector.
+4. "We're not machines": outsourced India dev time-zone/labor exploitation. Track: Onboarding Copilot.
+5. Apple Intelligence reports unavailable on iPhone 17 Pro with full India SIM. Track: Compliance-as-a-Service.
+6. WhatsApp group admin can be jailed for any member's offensive post (2017 court ruling). Track: Compliance-as-a-Service.
+7. Llama 70B un-runnable locally ("You need 2x RTX 4090"). Track: AI Workflow Orchestrator.
+8. India gov asked Meta to pause WhatsApp usernames over digital arrest scams. Track: Trust Verification Layer.
+9. Siri responds to "Assalamualaikum" but not "Jai Shri Ram" (North India complaint filed). Track: Bilingual/Indic-First UX.
+10. Adobe CC Pro for Students Rs 398.99/mo requires India .edu/.in verification most students lack. Track: Onboarding Copilot.
+
+Cross-cutting: the top pains cluster into 6 tracks: Trust Verification Layer, Cost/Quota Optimizer, Compliance-as-a-Service, Onboarding Copilot, AI Workflow Orchestrator, Bilingual/Indic-First UX. If tonight's drop targets any lane in this table, the demo problem slide writes itself from these quotes.
+
+### SECTION 9.17: PARKED GAPS (diligence + benchmarks, 2026-08-15, UNVERIFIED)
+
+Two planned runs failed the DEEP gate twice each and are parked, NOT integrated as evidence:
+- cnc-wave3-diligence (sponsor India intel + judge intel + funding schemes): SURFACE 61.2 (0 cites), refire SURFACE 54.0 (4 cites, 5 URLs in file). Sponsor-lane structure matches the 221-cite company-lanes refire where they overlap; treat the funding-scheme sections (Startup India, iStart Rajasthan, MeitY) as UNVERIFIED leads, cross-check before quoting.
+- cnc-wave4-benchmarks (benchmark registry, 10 categories): SURFACE 65.7 (0 cites), refire SURFACE 63.7 (0 URLs anywhere in file). Benchmarks named match the verified frontier report (S9.13) where they overlap (SWE-bench, OSWorld, MAST, GAIA); scores WITHOUT URLs are not quotable.
+Both are reference material, not prediction-critical. If needed before finals: rebuild via structured per-entry URL-column prompt at ultra8x, or verify entries manually with rivalsearch.
+
 ## SECTION 10: THE META-UNIVERSE (beyond Craft N Code 2026)
 
 This universe generalizes to any AI hackathon in India 2026-2027. The event-agnostic core: Section 1 company DNA (apply the setter list of YOUR event), Section 2 shapes (7 core + 13 from wave 2 = 22 now), Section 3 domains (30 core + 32 from wave 2 = 62 now), Section 5 grammar, Section 4 kit mapping. For a new event: re-run the site forensics + company lane scan, swap the priors, keep everything else. The kit layer (what you can build in 24h) stays identical: one engine, many skins.
