@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/CHANNELS-CNC.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/CHANNELS-CNC.md</h1>
+  <p class="blurb">Every channel where announcements land: Unstop, club site, WhatsApp, Telegram, and who watches what.</p>
+  <a class="open" href="../../research/CHANNELS-CNC.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>CHANNELS-CNC.md: How to get Craft N Code 2026 winning ideas</h1>
+<p>Source: startup-idea-lab's 10 idea channels (README), remapped from "how to find a startup" to "how to predict and select the winning build for THIS event". Each channel below: what it is for Craft N Code, how to mine it, where the evidence already lives in this repo, which parallel.ai prompt fires it, evidence strength.</p>
+<h2>COVERAGE STATUS (2026-08-15, after the 24-run day)</h2>
+<table><thead><tr><th>Channel (startup-idea-lab)</th><th>Fired?</th><th>Run + verdict</th><th>Folded in</th></tr></thead><tbody><tr><td>Money-flow (gov aligned)</td><td>LIVE 13:25</td><td>cnc-money-flow-gov (pro)</td><td>pending S9.18</td></tr><tr><td>Complaint mining</td><td>DONE</td><td>cnc-complaint-mining-refire3 DEEP 95.9</td><td>S9.16</td></tr><tr><td>Workaround detection</td><td>DONE</td><td>cnc-workarounds DEEP 92.6</td><td>S9.5</td></tr><tr><td>Failed-startup autopsies</td><td>DONE</td><td>cnc-failed-ai-startups-refire2 MINED 94.5 (provisional)</td><td>S9.8</td></tr><tr><td>Acquisition market</td><td>MAPPED</td><td>prior editions + autopsies cover the intent</td><td>S6, S9.8</td></tr><tr><td>Demand forecasting</td><td>LIVE 13:25</td><td>cnc-demand-forecast (pro)</td><td>pending S9.19</td></tr><tr><td>Geographic arbitrage</td><td>DONE</td><td>cnc-geo-arbitrage-refire DEEP 100.0</td><td>S9.7</td></tr><tr><td>Founder frameworks</td><td>LIVE 13:25</td><td>cnc-founder-frameworks (pro)</td><td>pending S9.20</td></tr><tr><td>Compelled evidence</td><td>DONE</td><td>cnc-compelled-evidence-refire2 ADECENT 81.9</td><td>S9.9 + S9.15</td></tr><tr><td>Nonconsumption</td><td>DONE</td><td>cnc-nonconsumption ADECENT 79.6</td><td>S9.6</td></tr></tbody></table>
+<p>Hackathon-native channels: sponsor DNA DONE (S9.4, ADECENT 72.5), statement grammar DONE (S5 + S9.2), prior editions DONE (S6 + S9.11), winner forensics DONE (S9.11 DEEP), judge taste PARTIAL (S9.11 Sec 5; per-judge dossier at finals), site forensics DONE (Unstop + runbook), participant field PARTIAL (629 regs tracked, lane analysis at finals), insider intel PARTIAL (Rudra ask = team action), topic trend DONE (S9 + S9.13), mock drops DONE (MOCK-DROP-20260815.md).</p>
+<p>The master rule: a channel is worth exactly what it predicts about the 21:30 Aug 15 drop from the 5 sponsors (Google 24% / Accenture 22% / Meta 21% / Adobe 18% / Apple 15% priors). Channels that predict the STATEMENT are 5 stars. Channels that predict the WINNING BUILD are 4 stars. Channels that only suggest domains are 3 stars.</p>
+<hr>
+<h2>1. SPONSOR MONEY-FLOW (adapted from Money-flow) ★★★★★</h2>
+<p>What it is for startups: where capital goes (VC, gov, procurement, jobs, ads) = validated demand.</p>
+<p>What it is for THIS event: where the 5 sponsors push capital + products in 2026. What they ship is what they ask. Google pushes Gemini + Agentspace + AI Studio; Apple pushes Apple Intelligence + on-device; Meta pushes Llama + AI Studio + WhatsApp AI; Accenture pushes enterprise agents + responsible AI; Adobe pushes Firefly + Acrobat AI + Express.</p>
+<p>How to mine: company docs, launch blogs, I/O/WWDC/Connect/MAX keynotes, API pricing pages (free tiers = student-feasible lanes), investor letters, hiring posts (building X = asking about X).</p>
+<p>Evidence already in repo: TOPIC-UNIVERSE S1 (company lanes), S9 (landscape pass 1). Prompts: <code>prompts/company-lane-scan.md</code>. Wave-3 run <code>cnc-company-lanes-2026</code> (2026-08-15) is the dedicated fire.</p>
+<h2>2. STATEMENT GRAMMAR (hackathon-native) ★★★★★</h2>
+<p>What it is: the combinatorial skeleton every statement is built from: subject + core action + constraint + channel + evaluation + twist. 19 subjects x 27 actions x 22 constraints x 15 channels x 9 evals x 12 twists = ~34M raw combinations, trimmed by setter DNA to a few hundred probable.</p>
+<p>How to mine: keep appending closed sets from every real statement you recover (2022 set, 2025 set, wave reports). Every new shape/domain run feeds new slot values.</p>
+<p>Evidence in repo: <code>research/STATEMENT-GRAMMAR.md</code>. This is the parse engine for the drop.</p>
+<h2>3. SPONSOR DNA (hackathon-native) ★★★★★</h2>
+<p>What it is: what each company actually asks in ITS hackathons and what its product lines permit. Product/API names beat every prior. Vocabulary watch-words: agent, grounding, verification, evidence, tool use (Google); creative control, generation, iteration (Adobe); privacy, on-device, offline (Apple); multimodal, messaging, open-source (Meta); enterprise, governance, escalation, audit (Accenture).</p>
+<p>Evidence in repo: <code>research/COMPANY-DNA.md</code> (2-minute fingerprint method), TOPIC-UNIVERSE S1.</p>
+<h2>4. INSIDER INTEL (hackathon-native) ★★★★★</h2>
+<p>What it is: club execs, organizers, past winners. Never public, highest value per byte. Rudra (in person, Aug 14) confirmed: real statements written by sponsors, site tracks are the backup set. Setter prior table originates here.</p>
+<p>How to mine: conversations, not research. The Rudra ask list is in craft-n-code (docs/RUDRA-ASK.md): 2025 Rajasthan state problems, judging format, winning team's build.</p>
+<h2>5. PRIOR EDITIONS (hackathon-native; replaces Acquisition market) ★★★★</h2>
+<p>What it is for startups: buying small products = validated demand. What it is for THIS event: organizers recycle problem families every 2-3 years re-skinned with new tech. 2022 set (9 verified problems: code snippet sharing, hostel mgmt, smart campus, bill split, mess mgmt, PM2.5, IRCTC automation, crypto crowdfunding, NFT ticketing) -&gt; 2025 set (Rewind the Legacy, Night Ops, Signal/Noise, Open Track, Hardware Hack) -&gt; 2026 (5 backup tracks PS-01..PS-05). Lineage documented: D3h09 -&gt; 2025 NFT ticketing, D3h05 -&gt; 2026 night canteen, D3h06 -&gt; AI/ML track DNA, D3h07 -&gt; security/automation DNA.</p>
+<p>Evidence in repo: TOPIC-UNIVERSE S6/S7, craft-n-code <code>research/D3FEST-2022-PROBLEMS.md</code>.</p>
+<h2>6. WORKAROUND DETECTION (from startup-idea-lab, verbatim concept) ★★★★</h2>
+<p>What it is: the spreadsheets, Zapier chains, WhatsApp groups, manual rituals people assemble because no product exists. The statement's target IS the workaround. Judges reward "I saw this pain, here is the fix".</p>
+<p>How to mine: complaint threads + "how do you do X today" answers + r/SomebodyMakeThis-style asks in the 5 sponsor lanes (education, healthcare admin, small shops, content ops, campus life). A workaround with a paper trail is a statement waiting to be written.</p>
+<h2>7. FAILED-PRODUCT AUTOPSIES (from startup-idea-lab, verbatim concept) ★★★★</h2>
+<p>What it is: dead companies with live problems. Execution failure != idea failure. For THIS event: dead AI startups in the sponsor lanes = validated pain + a story judges already know (and the product's UX mistakes are free lessons for the 24h build). Also dead hackathon projects from prior editions: why did they die, what was the demo gap.</p>
+<p>How to mine: Failory, CB Insights autopsies, AI graveyard lists, prior-edition losers (winner forensics covers the winners; autopsy covers the field).</p>
+<h2>8. WINNER FORENSICS (hackathon-native) ★★★★</h2>
+<p>What it is: what won, what lost, why. Verified 2026 pattern: deepest stack + zero external deps + working demo + visible AI loop + honest failure handling. Demo matters more than the idea. Our scaffold IS the winning pattern (input -&gt; extraction -&gt; evidence -&gt; rank -&gt; propose -&gt; approve -&gt; audit).</p>
+<p>Evidence in repo: TOPIC-UNIVERSE S8, craft-n-code winner forensics + COMPETITOR-POOL. Prompt: <code>prompts/winner-forensics.md</code>.</p>
+<h2>9. JUDGE TASTE (hackathon-native) ★★★★</h2>
+<p>What it is: who judges (sponsor reps + academics), what they reward, rubric weightings. Per-judge dossier + how-to-win matrix. Sponsor judges weight their own product lines; academic judges weight impact + completeness.</p>
+<p>Prompt: <code>prompts/judge-taste-profile.md</code> (re-fire closer to finals with the actual judge list).</p>
+<h2>10. COMPELLED EVIDENCE (from startup-idea-lab, verbatim concept) ★★★★</h2>
+<p>What it is: machine-readable scars: audits, incident reports, queues, budget records, complaint databases, fraud stats. Problems with receipts. For THIS event: UPI fraud numbers, DPDPA fine records, hospital waitlists, railway complaints, campus queue data. A statement citing a number (e.g. "X% of UPI fraud goes unrecovered") is the strongest possible problem framing, and the number is citable in the demo itself.</p>
+<h2>11. NONCONSUMPTION (from startup-idea-lab, verbatim concept) ★★★★</h2>
+<p>What it is: people who want the outcome but use nothing. For THIS event: farmers, kirana shops, rural schools, small clinics, gig workers. Judges (esp. Google/Accenture) weight India relevance and inclusion. The empty lane has no incumbent to beat and the impact story writes itself. Kit fit: KIT-4 messaging + voice-first, Hindi-first (Kavach DNA).</p>
+<h2>12. GEOGRAPHIC ARBITRAGE (from startup-idea-lab, verbatim concept) ★★★★</h2>
+<p>What it is: products validated in US/EU not yet in India (or done badly). For THIS event: instant impact framing ("works in the US, India does it on paper"). US/EU AI products with no Indian equivalent: clinic intake agents, school admin copilots, small-business bookkeeping agents, landlord-tenant document automation. Same build, India skin, judges see relevance.</p>
+<h2>13. MOCK DROPS (hackathon-native) ★★★★</h2>
+<p>What it is: rehearsal statements generated from the grammar, parsed under the 10-minute timer, failure-injected against the scaffold (network, LLM quota, cold boot, hostile judge, 100x load, Indic input). The only channel that trains the actual skill: the parse.</p>
+<p>Prompt: <code>prompts/mock-drop-stress-bench.md</code>. Run tonight after the 3 wave-3 reports land.</p>
+<h2>14. COMPLAINT MINING (from startup-idea-lab, verbatim concept) ★★★</h2>
+<p>What it is: what people hate (Reddit, reviews, forums). For THIS event: raw material, not prediction. A complaint proves pain exists; it does not prove a sponsor will ask about it. Use it to fill domain slots and to phrase the demo's problem slide with real quotes.</p>
+<h2>15. DEMAND FORECASTING (from startup-idea-lab, verbatim concept) ★★★</h2>
+<p>What it is: trends, patents, regulatory pipeline. For THIS event: DPDPA compliance (63M SMBs), AI for Bharat, on-device shift, MCP adoption curve. Tells you which lanes the sponsors' product teams are thinking about this quarter. Wave-3 run <code>cnc-shapes-expansion2</code> + <code>cnc-domains-expansion2</code> (2026-08-15) are the live fires.</p>
+<h2>16. FOUNDER FRAMEWORKS (from startup-idea-lab, verbatim concept) ★★★</h2>
+<p>What it is: PG, JTBD, Mom Test, Blue Ocean applied to problem SELECTION. For THIS event: once the drop lands and we have 5 candidate angles, these frameworks kill the fake problems fast (does the user actually do this today? what would they do without it?). Blue Ocean = pick the lane the other 628 teams won't.</p>
+<h2>17. PARTICIPANT FIELD (hackathon-native) ★★★</h2>
+<p>What it is: who else is competing, what they build, which lanes crowd vs empty. 629 regs (Rajasthan, watchdog 2026-08-15 10:04) and climbing vs 706 in 2025. The "easiest qualifier" line is dead; the field is near-2025 size. Empty-lane analysis: which of our kit combos would be unique in the room.</p>
+<h2>18. SITE FORENSICS (hackathon-native) ★★★</h2>
+<p>What it is: event site source, submission flow (Unstop round 1569450: PPT, pdf/pptx, max 50MB, resubmit allowed, latest wins), backup tracks. Read-only public recon, low signal now, high signal at the finals (Oct 30) when the site changes.</p>
+<h2>19. TOPIC TREND SCAN (hackathon-native) ★★★</h2>
+<p>What it is: the 2026 landscape (agentic AI, MCP ecosystems, multi-agent, on-device/edge LLMs, GenAI education, AI for Bharat, responsible AI). Confirmed live 2026-08-15 from reskilll + India hackathon calendar. Feeds shapes and domains, does not predict the setter.</p>
+<hr>
+<h2>How channels combine at the drop (21:30)</h2>
+<ol>
+<li>Fingerprint the company: named product beats every prior (COMPANY-DNA method). If no product name: vocabulary watch-words (S1), then shape, then prior table.</li>
+<li>Pin the shape: 7 known + whatever wave-3 adds (S2). The shape pins the pipeline.</li>
+<li>Pin the domain: 30 known + wave-3 additions (S3). The domain pins the data and the demo story.</li>
+<li>Check the constraint slots (S5): gate, channel, twist. The constraint pins the adapter (browser, WhatsApp, on-device).</li>
+<li>Kit resolves (S4). Demo gate resolves (S2 per-shape gates).</li>
+<li>Stress: run the mock-drop bench on the picked angle, 10 minutes.</li>
+</ol>
+<h2>Channel health ledger</h2>
+<table><thead><tr><th>Channel</th><th>Evidence strength</th><th>Status (2026-08-15 11:50 IST)</th></tr></thead><tbody><tr><td>Sponsor money-flow</td><td>★★★★★</td><td>wave-3 run live: cnc-company-lanes-2026</td></tr><tr><td>Statement grammar</td><td>★★★★★</td><td>S5 complete, 7 shapes / 30 domains / 27 actions / 22 constraints</td></tr><tr><td>Sponsor DNA</td><td>★★★★★</td><td>COMPANY-DNA.md live, fingerprint method proven</td></tr><tr><td>Insider intel</td><td>★★★★★</td><td>Rudra intel banked; 2025 state problems still owed (RUDRA-ASK)</td></tr><tr><td>Prior editions</td><td>★★★★</td><td>2022 + 2025 + backup tracks documented</td></tr><tr><td>Workaround detection</td><td>★★★★</td><td>concept mapped, not yet mined as a wave</td></tr><tr><td>Failed-product autopsies</td><td>★★★★</td><td>concept mapped, not yet mined as a wave</td></tr><tr><td>Winner forensics</td><td>★★★★</td><td>2026 pattern verified in craft-n-code</td></tr><tr><td>Judge taste</td><td>★★★★</td><td>profile template ready, judges unknown until closer</td></tr><tr><td>Compelled evidence</td><td>★★★★</td><td>concept mapped, UPI/DPDPA stats pending</td></tr><tr><td>Nonconsumption</td><td>★★★★</td><td>mapped to KIT-4/KIT-1 voice-first</td></tr><tr><td>Geographic arbitrage</td><td>★★★★</td><td>mapped, US/EU product list pending</td></tr><tr><td>Mock drops</td><td>★★★★</td><td>bench prompt ready, first full drill tonight</td></tr><tr><td>Complaint mining</td><td>★★★</td><td>concept mapped</td></tr><tr><td>Demand forecasting</td><td>★★★</td><td>wave-3 runs live: shapes + domains expansion</td></tr><tr><td>Founder frameworks</td><td>★★★</td><td>mapped, fires after the drop</td></tr><tr><td>Participant field</td><td>★★★</td><td>629 regs live; empty-lane analysis pending</td></tr><tr><td>Site forensics</td><td>★★★</td><td>Unstop flow documented</td></tr><tr><td>Topic trend scan</td><td>★★★</td><td>landscape pass 1 done (S9)</td></tr></tbody></table>
+</main>
+</body>
+</html>

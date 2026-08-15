@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/BROCHURE-OCR.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/BROCHURE-OCR.md</h1>
+  <p class="blurb">OCR of the event brochure: cards, prize pool, venue, rules as printed.</p>
+  <a class="open" href="../../research/BROCHURE-OCR.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>Brochure OCR  -  Craft N Code 2024 + D³ Fest 2025</h1>
+<p>Compiled: 2026-08-13 | Method: Scribd page-image extraction (r.jina.ai leaked hashes) + tesseract OCR</p>
+<h2>Craft N Code 2024 brochure (Scribd doc 781392222, 9 pages, uploaded by jiteshauddy.06)</h2>
+<h3>Page 1 (OCR'd, full-res)</h3>
+<ul>
+<li>D³ Fest branding: "D³ FEST" + "IIIT BHUBANESWAR" + "CRAFT N CODE" + "NATIONAL LEVEL HACKATHON"</li>
+<li>Address: IIIT Bhubaneswar, AT-GOTHAPATANA, PO-MALIPADA, BHUBANESWAR, ODISHA 751003</li>
+</ul>
+<h3>Page 2 (OCR'd)</h3>
+<ul>
+<li>"The Craft-N-Code Hackathon, organized by the Tech Society at IIIT Bhubaneswar, is a major competition involving colleges across India and beyond."</li>
+<li>"This year, the event features hackathons in different states, with top teams advancing to the final round at IIIT Bhubaneswar."</li>
+<li>"Open to all bachelor's degree students, teams of 2-4 members from the same state compete to showcase their innovation and technical skills."</li>
+</ul>
+<h3>Pages 3-9</h3>
+<ul>
+<li>NOT OCR'd: page-image hashes are per-page random; only pages 1-2 leaked via r.jina.ai. The /original/{hash}/{page} pattern serves page 1 for all pages (hash is per-document).</li>
+<li>The full rules text was recovered from the Unstop API details instead (see PROBLEM-BANK-SPONSOR-DNA.md).</li>
+</ul>
+<h2>D³ Fest 2025 brochure (Scribd doc 917484478, uploaded by Shailendra Kumar)</h2>
+<h3>Page 1 (OCR'd)</h3>
+<ul>
+<li>D³ Fest branding, IIIT Bhubaneswar address (same campus)</li>
+</ul>
+<h3>Page 2 (OCR'd)  -  INTRODUCTION</h3>
+<ul>
+<li>"Get ready to rewind the past and fast-forward the future at D3 Techno Fest!"</li>
+<li>"Brought to life by the Tech and Robotics Societies of IIIT Bhubaneswar."</li>
+<li>"D3 is not just a fest  -  it's a four-day symphony of retro aesthetics and futuristic innovation."</li>
+<li>"Dive into a world where vintage charm meets tomorrow's tech, crafted for dreamers, doers, and disrupters across tech, management, and entrepreneurship."</li>
+<li>"Whether you're channeling 80s arcade energy or pioneering the next big breakthrough, D3 is your stage."</li>
+<li>"Buckle up for a high-voltage ride packed with retro flair, modern sparks, and mind-blowing rewards!"</li>
+<li>"From quirky challenges to creative showdowns, D3 promises endless fun, innovation, and memories that'll stick with you like your favorite cassette jam."</li>
+</ul>
+<h3>Pages 3-12</h3>
+<ul>
+<li>NOT OCR'd (same hash limitation)</li>
+</ul>
+<h2>Method note (reusable)</h2>
+<ol>
+<li>r.jina.ai on the Scribd URL leaks the first 2 page-image URLs (html.scribdassets.com/{doc-hash}/images/{n}-{page-hash}.jpg)</li>
+<li>The imgv2 original URL (imgv2-1-f.scribdassets.com/img/document/{id}/original/{doc-hash}/{page}?v=1) serves page 1 for ANY page number  -  the {page} segment is ignored</li>
+<li>Full OCR of all pages requires the per-page hashes, which are only in the JS-rendered reader (headless browser needed)</li>
+</ol>
+</main>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/ATTACK-SHEETS.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/ATTACK-SHEETS.md</h1>
+  <p class="blurb">The judge attack sheets: hardest questions per kit, verbatim-ready answers, recovery lines.</p>
+  <a class="open" href="../../docs/ATTACK-SHEETS.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>ATTACK SHEETS - the face-off kit (one answer per question, per idea)</h1>
+<p>Compiled: 2026-08-14 | Purpose: every question a judge can ask, answered before</p>
+<p>the stage. Grouped by judge lens (JUDGE-DOSSIERS.md, VERIFIED). Answers are</p>
+<p>honest, grounded in our verified numbers, never strawmen.</p>
+<hr>
+<h2>0. UNIVERSAL (all 4 ideas)</h2>
+<ol>
+<li>What did you build in the 24 hours?</li>
+</ol>
+<p>A: the skin mount (nouns, seed data, UI labels), the one differentiator, the</p>
+<p>staged failure beat, the deck, the demo. The engine core was pre-verified</p>
+<p>(42/42), the integration is the build. Honest, pre-scripted.</p>
+<ol>
+<li>Is this production-ready? No, it is a 24h MVP with a verified core and a</li>
+</ol>
+<p>clean architecture. That is the point of a hackathon build.</p>
+<ol>
+<li>What if the LLM fails? Mode badge on screen: live -> cached -> offline in</li>
+</ol>
+<p>under 2 seconds. Zero uncontrolled dependencies (AFTERPACKETS rule).</p>
+<ol>
+<li>What data did you use? Golden fixtures (happy/ambiguous/adversarial) plus</li>
+</ol>
+<p>real public data seeded today (event deadlines, notices). Honest about scope.</p>
+<ol>
+<li>How does it scale? Stateless engine, sqlite, zero deps. Horizontal by design.</li>
+<li>Security? Consent records, typed approval gate, audit trail, PII handled</li>
+</ol>
+<p>locally. We claim features, never legal compliance (DPDPA framing rule).</p>
+<ol>
+<li>What does it cost to run? Free: ollama-cloud key, no paid APIs in the demo.</li>
+<li>Who is the user? One line per idea below.</li>
+<li>What is the ONE metric? One line per idea below.</li>
+<li>Why should this win? One line per idea below.</li>
+</ol>
+<h2>1. JUDGE LENS QUESTIONS (ask these to yourself in rehearsal)</h2>
+<p>Sarthak (ML-validation): training data? baselines? metrics? false-positive rate?</p>
+<p>overfitting? error analysis? why this model choice? reproducibility?</p>
+<p>Lingaraj (security-depth): threat model? controls? test evidence? residual risk?</p>
+<p>authorization? data leakage paths? logging? incident response?</p>
+<p>Anjana (safety): who is protected? abuse resistance? privacy? legal exposure?</p>
+<p>false-alarm harm? measurable real-world impact? deployment path?</p>
+<p>Ayushi (business): quantified outcome? cost reduction? workflow fit? sustainability?</p>
+<p>unit economics? who pays?</p>
+<p>Sonali (impact): who adopts? why persist? how is value communicated? business model?</p>
+<p>beneficiaries? team credibility?</p>
+<p>Shivani (data/process): reliable data handling? quality controls? documentation?</p>
+<p>what did you learn? what would you do next?</p>
+<hr>
+<h2>2. IDEA A BRIEFLENS (agentic ops, Google/Accenture lane)</h2>
+<ul>
+<li>User: one professional drowning in inputs (email, chat, tickets, notices).</li>
+<li>Metric: urgent items surfaced with zero missed deadlines in replay tests.</li>
+<li>One-line win: we turn a flood of inputs into one approved action, with evidence</li>
+</ul>
+<p>and a full audit trail, and it works with zero internet.</p>
+<ul>
+<li>Competitor diff: Gmail Gemini/Superhuman summarize; we add the policy gate and</li>
+</ul>
+<p>the audit. An agent that acts without asking is unsafe, an agent that only</p>
+<p>chats is useless. We are the middle.</p>
+<ul>
+<li>Staged failure: LLM dies mid-demo -> offline mode takes over, badge flips,</li>
+</ul>
+<p>ranking still correct (regex dates + tf-idf), recovery under 2 seconds.</p>
+<h2>3. IDEA B KAVACH CIRCLE (multimodal assistant, Meta/Apple lane)</h2>
+<ul>
+<li>User: a student or citizen with information in every format (text, image, PDF)</li>
+</ul>
+<p>who needs answers they can trust.</p>
+<ul>
+<li>Metric: answers carry evidence + confidence; high-risk cases escalate to a</li>
+</ul>
+<p>human, never guessed.</p>
+<ul>
+<li>One-line win: every answer shows its sources, every uncertain answer goes to a</li>
+</ul>
+<p>human, and corrections stick for the session.</p>
+<ul>
+<li>Competitor diff: Pixel 9 and Truecaller proved demand for scam detection but</li>
+</ul>
+<p>not Hindi-first consumer workflow with evidence export; ChatGPT answers but</p>
+<p>does not escalate. We fuse both.</p>
+<ul>
+<li>Staged failure: a bad OCR input -> graceful None + reason, confidence UI shows</li>
+</ul>
+<p>low, route to human. The failure path is the demo.</p>
+<h2>4. IDEA C SIGNALSTORY (creative workflow, Adobe lane)</h2>
+<ul>
+<li>User: a team making on-brand content from a real brief, fast.</li>
+<li>Metric: brief -> approved asset in minutes, every asset has a provenance card.</li>
+<li>One-line win: generative AI creates fast but uncontrolled; we make it</li>
+</ul>
+<p>controlled: brand rules, review loop, provenance on every asset.</p>
+<ul>
+<li>Competitor diff: Canva/Firefly generate; we enforce brand constraints and</li>
+</ul>
+<p>provenance through an approval loop. The workflow is the product, not the</p>
+<p>generator.</p>
+<ul>
+<li>Staged failure: generator adapter returns off-brand text -> violation caught</li>
+</ul>
+<p>by rule check, human review, regenerated. Provenance card shows the full path.</p>
+<h2>5. IDEA D KAVACH (security lane, real product)</h2>
+<ul>
+<li>User: the Hindi-first consumer being targeted by digital-arrest and vishing</li>
+</ul>
+<p>scams, and the family that wants them protected.</p>
+<ul>
+<li>Metric: 5/5 fresh-clone scenarios (KILL/KILL/PAUSE/PASS/PASS), 24 real</li>
+</ul>
+<p>incidents registry, would-have-caught table.</p>
+<ul>
+<li>One-line win: real-time scam-call screening in Hindi, on-device, six detection</li>
+</ul>
+<p>departments fused into one intervention loop, with a signed evidence packet</p>
+<p>for 1930/Chakshu.</p>
+<ul>
+<li>Competitor diff: Truecaller labels, Pixel 9 detects, MuleHunter is bank-side;</li>
+</ul>
+<p>nobody does consumer-side Hindi-first real-time vishing defense with evidence</p>
+<p>export for the digital-arrest victim. Verified gap from 23 research runs.</p>
+<ul>
+<li>Staged failure: a clean call that must NOT be flagged (PASS scenario), then a</li>
+</ul>
+<p>digital-arrest call flagged in under 1 second (KILL). Both in the same demo.</p>
+<hr>
+<h2>6. THE THREE WEAKEST SPOTS (pre-scripted, honest)</h2>
+<ol>
+<li>"Did you build this tonight?" (Kavach): the integration + demo harness + this</li>
+</ol>
+<p>round's demo IS the build; the engine loop is genuinely new work. Say it</p>
+<p>straight, then show the audit trail.</p>
+<ol>
+<li>"Why is this different from Truecaller/Pixel 9?" (any security flavor): name</li>
+</ol>
+<p>them first, then the combination gap: Hindi-first + consumer-side + real-time</p>
+<p>during the call + digital-arrest-specific + evidence export.</p>
+<ol>
+<li>"Any legal/compliance claim?" (any idea): no. We build consent + audit as</li>
+</ol>
+<p>product features. Never invent DPDPA deadlines on stage.</p>
+<h2>7. THE ASK-BACKS (end of pitch, pick one)</h2>
+<ul>
+<li>If you were the sponsor company, which single metric would you watch first?</li>
+<li>What is the one thing you would ask us to cut if this went to production?</li>
+<li>Which of the six judges' lenses should we stress most in the demo?</li>
+</ul>
+</main>
+</body>
+</html>

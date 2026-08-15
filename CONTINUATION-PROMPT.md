@@ -145,8 +145,10 @@ docs/BUILD-SPEC-3.md + BUILD-SPEC-4.md (both built, both verified:
 badge honesty H1-H6, feeds F1-F8, stress 23/23, deck MCP slide M1-M6).
 
 STATE: 81/81 suites green, 5/5 kits, deck has MCP slide, tree clean
-at HEAD, atlas 82 files. LLM provider rate-limits under load (429
-WATCH: two-pass pre-warm, warm cache fallback, honesty story).
+at HEAD, atlas 135 files (1.78M chars, refreshed Aug 15 15:40 with
+all night files + raw waves + prompts). LLM provider rate-limits
+under load (429 WATCH: two-pass pre-warm, warm cache fallback,
+honesty story).
 
 OPEN (night): Rudra ask (cutoff 21:00), 4 demo videos, rehearsal
 2:30, venue fan-out 30 min before code (wave-17 rule), then the

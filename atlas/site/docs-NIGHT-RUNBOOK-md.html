@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/NIGHT-RUNBOOK.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/NIGHT-RUNBOOK.md</h1>
+  <p class="blurb">The night schedule 20:00 to 09:00: roles, format facts, the three gates (23:00/03:00/05:00), pre-warm rule, 429 watch, kill criteria. Print this.</p>
+  <a class="open" href="../../docs/NIGHT-RUNBOOK.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>NIGHT RUNBOOK - Aug 15 20:00 to Aug 16 09:00 (print this)</h1>
+<p>Compiled: 2026-08-14 20:30 IST | Source of truth for the schedule:</p>
+<p>the club's own event site (research/SITE-FORENSICS-20260814.md, VERIFIED).</p>
+<p>Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.</p>
+<h2>ROLES (Team 511)</h2>
+<ul>
+<li>Harsh (lead): fingerprint scan at 21:30, final decision call, pitch lead.</li>
+<li>Ayush: repo + engine ops, demo.sh runner, seed data swap.</li>
+<li>Sujal: deck + submission text, paste and submit at each gate.</li>
+<li>Backup rule: anyone can run ./demo.sh and ./atlas/serve.sh. No single point</li>
+</ul>
+<p>of failure. Phones charged, hotspot ready, HDMI adapter packed.</p>
+<ul>
+<li>CARRY THE CHEAT SHEET: research/NIGHT-CHEAT-SHEET-2026.md (print it).</li>
+</ul>
+<p>It has the 5 mount cards, 25 domain rows, the 6 judge attack answers,</p>
+<p>and the 3-minute script with second-level timing.</p>
+<h2>FORMAT FACTS (VERIFIED, wave-7: CSC MUJ reel 12 Aug 2026 + public sources)</h2>
+<ul>
+<li>24-hour STATE-LEVEL hackathon, 15-16 Aug, Unstop round 1569450, reg Rs</li>
+</ul>
+<p>299/team, teams 2-4, prize pool Rs 50,000.</p>
+<ul>
+<li>TOP 2 TEAMS ADVANCE to the National Finale at IIIT-Bangalore. The pitch</li>
+</ul>
+<p>leads with the IIITB gate, not the Rs 50K.</p>
+<ul>
+<li>CSC MUJ = "the only Cybersecurity club of MUJ". Security-flavored builds</li>
+</ul>
+<p>get thematic tailwind. Same pipeline runs Nexora'26 -&gt; Craft N Code -&gt;</p>
+<p>IIITB.</p>
+<ul>
+<li>MUJ pedigree judges know: hosted SIH 2025 Hardware Grand Finale (4</li>
+</ul>
+<p>winners x Rs 1.5 lakh); HackX 3.0 national (Rs 5,00,000 pool, 10 themes</p>
+<p>incl. fintech, edtech, health, cyber+defence).</p>
+<ul>
+<li>SIH lesson: judges DO declare no-winner PS (5 in 2024). PS fidelity</li>
+</ul>
+<p>alone lost a team that was "the only one following the brief". Theme</p>
+<p>resonance + adoption language beat literalism.</p>
+<h2>TIMELINE</h2>
+<p>20:00 CHECK-IN + OPENING BRIEF (MUJ)</p>
+<ul>
+<li>Team lock-in. LISTEN for wildcard signals: sponsor names, track changes,</li>
+</ul>
+<p>format changes. If the brief announces a wildcard drop or changes tracks,</p>
+<p>that overrides the plan. Track switch after the clock starts costs 30 min,</p>
+<p>only take it if the signal is clear.</p>
+<ul>
+<li>Verify wifi SSID + power points in the demo room.</li>
+</ul>
+<p>21:00 PRE-DROP WATCH</p>
+<ul>
+<li>Open in tabs: Unstop round 1569450, club site problem-statements page,</li>
+</ul>
+<p>club WhatsApp/Telegram, Unstop app push notifications on.</p>
+<ul>
+<li>Pull reg count (unstop.com/api/public/competition/1730314), log it.</li>
+</ul>
+<p>21:30 PROBLEM STATEMENTS DROP</p>
+<ul>
+<li>Fingerprint scan, 2 MINUTES: read the text for company vocab (cue table in</li>
+</ul>
+<p>IDEA-BANK section 5): agents/tools/deadlines = Google, Llama/multimodal/</p>
+<p>community = Meta, Firefly/creative/brand = Adobe, Swift/accessibility/</p>
+<p>on-device = Apple, workflow/case/KPI/approval = Accenture.</p>
+<ul>
+<li>Decision tree, 10 MINUTES: map to IDEA A/B/C/D (IDEA-BANK section 0).</li>
+</ul>
+<p>Freeze the ONE-SENTENCE STORY (SUBMISSION-TEXT-KIT).</p>
+<ul>
+<li>Write down: sponsor guess, shape, idea, deck, storyboard, acceptance test.</li>
+</ul>
+<p>21:45 SKIN MOUNT (target 15-40 min, drill-proven, MOCK-DROPS)</p>
+<ul>
+<li>Fingerprint -> kit from the COMPANY FLAVOR MATRIX (SKIN-KITS-2026):</li>
+</ul>
+<p>Google/Accenture -&gt; KIT-1 or KIT-5, Meta -&gt; KIT-4 (KIT-4B if fraud</p>
+<p>words), Apple -&gt; KIT-3, Adobe -&gt; KIT-2, security words anywhere -&gt;</p>
+<p>KIT-4B overrides.</p>
+<ul>
+<li>Mount: cp fixtures/<kit>.json fixtures/current.json (or --fixture <kit>),</li>
+</ul>
+<p>swap deck nouns, optional label patch (LABEL PATCH BRIEF in SKIN-KITS),</p>
+<p>./demo.sh, verify endpoints.</p>
+<ul>
+<li>LIVE DATA beat (30 s, do not skip): python3 engine/feeds.py --refresh,</li>
+</ul>
+<p>restart with --feeds. The demo shows REAL recorded problems from HN +</p>
+<p>GitHub + the live Unstop reg count, with the freshness badge.</p>
+<ul>
+<li>PRE-WARM RULE (critical, learned Aug 15): a cold pipeline with 31 live</li>
+</ul>
+<p>items takes 3+ min (rate limits). ALWAYS pre-warm: start serve.py</p>
+<p>--feeds 15 min before the demo, let the pipeline finish, then at demo</p>
+<p>time POST /api/ingest ONE new item (live call ~2-5 s) and the badge</p>
+<p>reads live while everything else renders from cache. Never cold-boot</p>
+<p>on stage.</p>
+<ul>
+<li>429 WATCH (learned Aug 15 ~13:45): the OLLAMA key now hits HTTP 429</li>
+</ul>
+<p>(Too Many Requests) under sustained cold-run load. Pre-warm in TWO</p>
+<p>spaced passes (start server, let it hit 429s, restart 5 min later;</p>
+<p>cache fills across passes), keep the .llm_cache.json warm copy in the</p>
+<p>repo data dir as the ultimate fallback, and be ready to tell the</p>
+<p>honesty story: "the provider rate-limited us, the badge flipped to</p>
+<p>offline, the feed kept ranking. that is the product."</p>
+<ul>
+<li>If any dependency fails its 60-90 min time gate: switch to</li>
+</ul>
+<p>fixture/replay mode, no exceptions. Run the DRILLS cheat sheet</p>
+<p>(BACKEND-DRILLS-2026) if anything misbehaves.</p>
+<p>22:30 VERTICAL SLICE + DIFFERENTIATOR</p>
+<ul>
+<li>One differentiator, one staged failure (the failure path wins demos).</li>
+<li>KPI card on screen: 81/81 checks, zero deps, mode badge, feeds badge.</li>
+<li>THE HONESTY MOMENT (30 s): kill the LLM key mid-demo, show the badge</li>
+</ul>
+<p>flip to offline and the feed still ranking. This is the "what if it</p>
+<p>fails" answer. Practice it in DRILL 2.</p>
+<p>23:00 GATE 1: v1 SUBMIT (both gates, insurance)</p>
+<ul>
+<li>Unstop: PPT (pdf preferred) uploaded, under 50MB. Club site: repo_url +</li>
+</ul>
+<p>pitch from SUBMISSION-TEXT-KIT + demo_url if video exists.</p>
+<ul>
+<li>Lock it. A bad v1 beats no v1 at 05:59.</li>
+</ul>
+<p>23:00-01:00 POLISH + BACKUP VIDEO</p>
+<ul>
+<li>Record a 3-min backup video (wf-recorder -a -f backup.mp4), store on the</li>
+</ul>
+<p>phone too. Rehearse 2:30 once, record it, review.</p>
+<p>01:00 MENTOR ROUND (club schedule)</p>
+<ul>
+<li>3 prepped questions per idea: sponsor-fit check, one differentiator</li>
+</ul>
+<p>suggestion, what judges reward this year. Take notes, fold in fast.</p>
+<p>03:00 GATE 2: v2 SUBMIT (both gates)</p>
+<ul>
+<li>Incorporate mentor notes + polish. Resubmit.</li>
+</ul>
+<p>04:30 DEBUG HOUR (club schedule)</p>
+<ul>
+<li>The scheduled beat: use it as the story moment ("the city is asleep, we</li>
+</ul>
+<p>are not") in the pitch and aftermovie. Fix anything found in rehearsal.</p>
+<p>05:00 GATE 3: FINAL SUBMIT</p>
+<ul>
+<li>Never 05:59. Latest wins, so the final is the last upload. Verify the</li>
+</ul>
+<p>file opens on the venue laptop (pdf renders identically everywhere).</p>
+<p>06:00 UNSTOP CLOSE (hard stop)</p>
+<ul>
+<li>Club site still open until 09:00; use the window for README polish if</li>
+</ul>
+<p>something slipped.</p>
+<p>08:30 ARRIVE AT MUJ, SCOUT</p>
+<ul>
+<li>Projector resolution, audio, mic, wifi, power, HDMI. Watch the first</li>
+</ul>
+<p>pitches, read judge reactions, adjust the last 10%. Ask CSC execs</p>
+<p>on-site: who judges, weights, anything they reward.</p>
+<p>09:00 FREEZE, DEMO, JUDGING</p>
+<ul>
+<li>3-min demo, 2:30 rehearsal target, hard timer. THREE-ACT ARC (wave-14,</li>
+</ul>
+<p>second-level): Act 1 problem 30-45 s (open 10 s with ONE victim, one</p>
+<p>cost: e.g. "Rs 4,057 crore, 3 lakh victims, one call"), Act 2 solution</p>
+<ul>
+<li>live demo 90-120 s (demo intro 5 s, live demo 70 s, credibility line</li>
+</ul>
+<p>10 s), Act 3 impact 30-45 s (one quantified number 20 s, vision 15 s,</p>
+<p>ask 15 s). Demo never under 60 s.</p>
+<ul>
+<li>Failure-case moment: 20 s show the old way failing, 50 s show ours</li>
+</ul>
+<p>winning on the same input. Kills "does it solve the problem" + "is it</p>
+<p>better" in one beat.</p>
+<ul>
+<li>Deck: 7-10 slides. Slides 1-2 carry elimination risk. Architecture</li>
+</ul>
+<p>slide = max 4 boxes, numbered lifecycle, "built vs reused" honesty</p>
+<p>column. No AWS-icon diagrams.</p>
+<ul>
+<li>Recovery lines (rehearse 5x): "Let me show you a moment in our test</li>
+</ul>
+<p>data that captures exactly what the live system does."</p>
+<ul>
+<li>PLANTED Q&A: end with one metric that forces the question you want</li>
+</ul>
+<p>("81/81 checks, zero deps, badge that cannot lie. Ask us how we tested</p>
+<p>it.").</p>
+<ul>
+<li>LLM FALLBACK LADDER (wave-12): OLLAMA primary -> OpenRouter :free</li>
+</ul>
+<p>suffix (26+ $0 models, no card) -&gt; Cerebras 1M tokens/day -&gt; deep</p>
+<p>offline mode. Never a dead demo.</p>
+<ul>
+<li>LIVE DATA rails (wave-9): HN Firebase API (keyless, no rate limit,</li>
+</ul>
+<p>CORS = browser fetch works), NPCI monthly UPI stats (23.66 bn txns /</p>
+<p>Rs 29.88 lakh crore, July 2026), data.gov.in, Wikipedia REST 200 rps.</p>
+<p>feeds.py already uses the HN source.</p>
+<h2>WHAT TO CARRY</h2>
+<ul>
+<li>Laptop + charger, phone + charger + hotspot, HDMI adapter, backup cable</li>
+<li>Printouts: this runbook, the cue table (IDEA-BANK 5), one-sentence</li>
+</ul>
+<p>stories, SUBMISSION-TEXT-KIT pitches</p>
+<ul>
+<li>Backup video on phone + laptop + one USB stick</li>
+<li>Water + snacks for the night, jacket (venue AC)</li>
+</ul>
+<h2>PRE-AGREED KILL CRITERIA</h2>
+<ul>
+<li>Any dependency failing its 60-90 min gate -> fixture/replay mode.</li>
+<li>LLM quota dead at 3 AM -> offline mode, badge shows it honestly.</li>
+<li>Pitch overruns -> the demo is the pitch; cut the deck, keep the story.</li>
+</ul>
+</main>
+</body>
+</html>

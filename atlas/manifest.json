@@ -60,6 +60,75 @@
       ]
     },
     {
+      "name": "THE NIGHT (AUG 15-16)",
+      "entries": [
+        {
+          "path": "docs/NIGHT-RUNBOOK.md",
+          "blurb": "The night schedule 20:00 to 09:00: roles, format facts, the three gates (23:00/03:00/05:00), pre-warm rule, 429 watch, kill criteria. Print this."
+        },
+        {
+          "path": "docs/SUBMISSION-TEXT-KIT.md",
+          "blurb": "v2: one-sentence stories per kit, evaluator closing line, fraud numbers block, honesty line. Paste-ready for both gates."
+        },
+        {
+          "path": "docs/NUMBERS-2026.md",
+          "blurb": "The live numbers ledger: every stat we quote on stage, with sources and wave tags."
+        },
+        {
+          "path": "docs/ATTACK-SHEETS.md",
+          "blurb": "The judge attack sheets: hardest questions per kit, verbatim-ready answers, recovery lines."
+        },
+        {
+          "path": "docs/BACKEND-DRILLS-2026.md",
+          "blurb": "6 backend drills: skin mount, live data beat, honesty moment, dependency failure, speed runs."
+        },
+        {
+          "path": "docs/RUDRA-ASK.md",
+          "blurb": "The Rudra ask draft: 2025 Rajasthan state problems + judging format. Cutoff 21:00."
+        },
+        {
+          "path": "research/PLAYBOOK-2026.md",
+          "blurb": "The full playbook: fingerprint, decision tree, kit mount, demo flow, venue rule, 429 watch."
+        },
+        {
+          "path": "research/MOCK-DROPS.md",
+          "blurb": "Drill 1: mock problem drops parsed with the machine, all pin to existing kits."
+        },
+        {
+          "path": "research/CHANNELS-CNC.md",
+          "blurb": "Every channel where announcements land: Unstop, club site, WhatsApp, Telegram, and who watches what."
+        },
+        {
+          "path": "docs/SESSION-LOG-20260815.md",
+          "blurb": "The Aug 15 session record: waves 15-18, mock drops, build specs 3-4, submission kit v2, window close."
+        },
+        {
+          "path": "docs/BUILD-SPEC-3.md",
+          "blurb": "Spec 3: honest badge H1-H6 + feeds F1-F8. Built and verified."
+        },
+        {
+          "path": "docs/BUILD-SPEC-4.md",
+          "blurb": "Spec 4: stress bench + deck MCP slide M1-M6. Built and verified."
+        },
+        {
+          "path": "docs/UI-UX-BRIEF-2026.md",
+          "blurb": "The UI/UX brief: mode badge, evidence panel, approval queue UX, freshness badge."
+        },
+        {
+          "path": "docs/SCAFFOLD-FINDINGS-20260814.md",
+          "blurb": "The aggressive audit findings: what was wrong, what got fixed, what stayed."
+        },
+        {
+          "path": "docs/DEMO-STORYBOARDS.md",
+          "blurb": "4x 3-minute storyboards with second-level timing and failure beats."
+        },
+        {
+          "path": "docs/HARDWARE-GATE.md",
+          "blurb": "Archived option: hardware demo. NOT a track assumption. Kept for reference."
+        }
+      ]
+    },
+    {
       "name": "THE EVENT",
       "entries": [
         {
@@ -89,6 +158,14 @@
         {
           "path": "research/2026-TOPIC-PROBABILITY.md",
           "blurb": "The 5 tracks with exact bodies, evidence-based likelihood per track, sponsor-to-track mapping, honest probability table."
+        },
+        {
+          "path": "research/SITE-FORENSICS-20260814.md",
+          "blurb": "Event site forensics: two gates (Unstop 06:00, club site 09:00), admin read-only, submission internals."
+        },
+        {
+          "path": "research/BROCHURE-OCR.md",
+          "blurb": "OCR of the event brochure: cards, prize pool, venue, rules as printed."
         }
       ]
     },
@@ -348,6 +425,42 @@
         {
           "path": "scaffold/fixtures/expected_multimodal.json",
           "blurb": "Expected extraction meta for the multimodal fixture."
+        },
+        {
+          "path": "scaffold/fixtures/kit1_agent.json",
+          "blurb": "KIT-1 fixture: agentic ops / governed router seed data."
+        },
+        {
+          "path": "scaffold/fixtures/kit2_creative.json",
+          "blurb": "KIT-2 fixture: creative provenance seed data."
+        },
+        {
+          "path": "scaffold/fixtures/kit3_privacy.json",
+          "blurb": "KIT-3 fixture: privacy / DPDPA-ready seed data."
+        },
+        {
+          "path": "scaffold/fixtures/kit4_messaging.json",
+          "blurb": "KIT-4B fixture: fraud guard seed data. The security-word override kit."
+        },
+        {
+          "path": "scaffold/fixtures/kit5_enterprise.json",
+          "blurb": "KIT-5 fixture: enterprise router / MSME seed data."
+        },
+        {
+          "path": "scaffold/engine/feeds.py",
+          "blurb": "The live feeds module: HN Firebase + Unstop reg count, freshness badge, --offline mode."
+        },
+        {
+          "path": "scaffold/tests/test_feeds.py",
+          "blurb": "Acceptance suite F1-F4 for feeds + serve --feeds freshness. Verified."
+        },
+        {
+          "path": "scaffold/tests/test_honesty.py",
+          "blurb": "Acceptance suite H1-H6 for the honest badge: kill key, offline flip, still ranking."
+        },
+        {
+          "path": "scaffold/tests/test_stress.py",
+          "blurb": "Stress bench: 23/23 checks under load, SLOs, kill-key behavior."
         }
       ]
     },
@@ -378,6 +491,115 @@
         {
           "path": "research/MOCK-DROPS-2-20260815.md",
           "blurb": "Drill 2: three sponsor-DNA statements parsed with the machine, all pin to existing kits."
+        }
+      ]
+    },
+    {
+      "name": "THE RAW RESEARCH WAVES (17 runs, full output)",
+      "entries": [
+        {
+          "path": "research/raw/wave2-ai-failures.md",
+          "blurb": "Wave 2 raw: where AI-built software fails (REPLIT, PocketOS, Pale Fire, MCP poisoning)."
+        },
+        {
+          "path": "research/raw/wave3-diligence.md",
+          "blurb": "Wave 3 raw: per-domain diligence and kill criteria."
+        },
+        {
+          "path": "research/raw/wave4-benchmarks.md",
+          "blurb": "Wave 4 raw: benchmark registry per domain."
+        },
+        {
+          "path": "research/raw/wave5-stress.md",
+          "blurb": "Wave 5 raw: stress standards (p99 SLO, OWASP LLM, Jepsen)."
+        },
+        {
+          "path": "research/raw/wave6-frontier.md",
+          "blurb": "Wave 6 raw: frontier benchmark landscape."
+        },
+        {
+          "path": "research/raw/wave7-winners.md",
+          "blurb": "Wave 7 raw: winner anatomy and demo techniques."
+        },
+        {
+          "path": "research/raw/wave8-competitors.md",
+          "blurb": "Wave 8 raw: competitor lines per kit."
+        },
+        {
+          "path": "research/raw/wave9-data.md",
+          "blurb": "Wave 9 raw: live data rails (HN Firebase, NPCI, data.gov.in)."
+        },
+        {
+          "path": "research/raw/wave10-fraud.md",
+          "blurb": "Wave 10 raw (VERIFIED): fraud numbers, Rs 4,057 cr, 1930 helpline, digital arrest."
+        },
+        {
+          "path": "research/raw/wave11-dpdpa.md",
+          "blurb": "Wave 11 raw: DPDPA rules, penalties, breach clock, consent."
+        },
+        {
+          "path": "research/raw/wave12-llmops.md",
+          "blurb": "Wave 12 raw: LLM ops, fallback ladder, rate limits."
+        },
+        {
+          "path": "research/raw/wave13-mcp.md",
+          "blurb": "Wave 13 raw: MCP ecosystem, 9,652 servers, tool poisoning."
+        },
+        {
+          "path": "research/raw/wave14-demo.md",
+          "blurb": "Wave 14 raw: the 3-minute script and demo psychology."
+        },
+        {
+          "path": "research/raw/wave15-priorart-shapes.md",
+          "blurb": "Wave 15 raw: prior art by problem shape."
+        },
+        {
+          "path": "research/raw/wave16-priorart-domains.md",
+          "blurb": "Wave 16 raw: prior art by domain, the exists-map."
+        },
+        {
+          "path": "research/raw/wave17-studentbuilds.md",
+          "blurb": "Wave 17 raw: student builds, venue rule."
+        },
+        {
+          "path": "research/raw/wave18-osslandscape.md",
+          "blurb": "Wave 18 raw: OSS landscape and the wedge."
+        },
+        {
+          "path": "research/raw/judge-dossiers-content.md",
+          "blurb": "Raw judge dossiers content: the 6 judges, lenses, taste profile."
+        },
+        {
+          "path": "research/raw/rnr-phase1-full.txt",
+          "blurb": "2025 Phase-1 problems verbatim (7 statements)."
+        },
+        {
+          "path": "research/raw/rnr-phase2-full.txt",
+          "blurb": "2025 Phase-2 problems verbatim (7 statements)."
+        },
+        {
+          "path": "research/prompts/company-lane-prompt.md",
+          "blurb": "Re-fire prompt: company lanes pass 1."
+        },
+        {
+          "path": "research/prompts/company-lane-prompt-2.md",
+          "blurb": "Re-fire prompt: company lanes pass 2."
+        },
+        {
+          "path": "research/prompts/problem-lanes-wave.md",
+          "blurb": "Re-fire prompt: problem lanes."
+        },
+        {
+          "path": "research/prompts/sponsor-products-wave.md",
+          "blurb": "Re-fire prompt: sponsor products."
+        },
+        {
+          "path": "research/prompts/state-rounds-wave.md",
+          "blurb": "Re-fire prompt: state rounds."
+        },
+        {
+          "path": "research/prompts/winner-anatomy-wave.md",
+          "blurb": "Re-fire prompt: winner anatomy."
         }
       ]
     }

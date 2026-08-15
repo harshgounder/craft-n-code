@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/UI-UX-BRIEF-2026.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/UI-UX-BRIEF-2026.md</h1>
+  <p class="blurb">The UI/UX brief: mode badge, evidence panel, approval queue UX, freshness badge.</p>
+  <a class="open" href="../../docs/UI-UX-BRIEF-2026.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>UI-UX-BRIEF-2026.md: what good human-in-the-loop UX looks like (draft)</h1>
+<p>Purpose: decide the demo UI standards BEFORE the night, so the skin mount</p>
+<p>includes a look, not just nouns. Wave-2 deep research (parallel.ai,</p>
+<p>pro-fast, run trun_4dd3f131a592407cbfde93c94ca73dc5) is pulling real</p>
+<p>product patterns + failure cases; this file merges them. Sections marked</p>
+<p>[DRAFT] get replaced with cited findings.</p>
+<h2>THE ONE PRINCIPLE (locked, no research needed)</h2>
+<p>The judge must understand the system in 10 seconds without a word:</p>
+<p>what came in, what the AI proposed, what a human approved, what the</p>
+<p>system did, and what it refused. If the UI needs explaining, it loses.</p>
+<h2>LAYOUT RULES (draft, from demo needs)</h2>
+<ol>
+<li>Top bar: product name + MODE BADGE (live/cached/fixture/offline) +</li>
+</ol>
+<p>FEEDS BADGE (live/cached/offline) + provider_errors count when &gt; 0.</p>
+<p>The badge is the honesty story, make it visible, not a footer.</p>
+<ol>
+<li>Left column: ranked queue. Each card: subject, source channel,</li>
+</ol>
+<p>rank score, deadline flag, evidence snippet (the source text, not a</p>
+<p>paraphrase). The card answers "why is this first".</p>
+<ol>
+<li>Right column / drawer: proposal pane. Tool name, side-effect class,</li>
+</ol>
+<p>params, confidence, evidence list, Approve / Reject / Snooze buttons</p>
+<p>with a re-decision guard (second click = already decided, shown</p>
+<p>disabled).</p>
+<ol>
+<li>Bottom strip: trace timeline (last N steps, clickable), audit</li>
+</ol>
+<p>counter, consent records. The judge scrolls once and sees the whole</p>
+<p>loop: ingest -&gt; rank -&gt; propose -&gt; approve -&gt; audit.</p>
+<ol>
+<li>Failure visibility: when the provider dies, the badge flips and a</li>
+</ol>
+<p>toast explains "model unreachable, showing offline rules". Showing</p>
+<p>the failure state on purpose is the demo beat, not an accident.</p>
+<h2>PATTERNS TO STEAL (wave-2 VERIFIED, parallel.ai pro-fast)</h2>
+<ol>
+<li>Claude Code: read-only by default, ask before edits/commands, rules</li>
+</ol>
+<p>evaluated in DENY, ASK, ALLOW order, enforced outside the model.</p>
+<p>Our map: policy gate auto/suggest/require IS deny/ask/allow. The UI</p>
+<p>must show which rule class fired on each proposal.</p>
+<ol>
+<li>Glean: pause BEFORE a write, let the user review AND EDIT the</li>
+</ol>
+<p>proposed change, then approve. Better than approving an opaque</p>
+<p>plan. Our map: proposals show params + evidence; the UI should show</p>
+<p>the exact side-effect class and let the approver see what changes.</p>
+<ol>
+<li>GitHub PR model: durable artifact + tests + discussion between</li>
+</ol>
+<p>proposal and merge. Our map: the audit row + trace ring is the</p>
+<p>artifact; tests are the 81/81 suite, runnable by the judge.</p>
+<ol>
+<li>Approval queue = operational review surface, not a chat transcript.</li>
+</ol>
+<p>7 stages from wave-2: triage (risk tier, environment), action</p>
+<p>summary (exact tool+args+blast radius, never a generic "run"),</p>
+<p>evidence (diff, tests, logs, provenance, confidence), safety preview</p>
+<p>(dry-run, rollback, what cannot be undone), decision (scoped to</p>
+<p>exact action+resource+time window), execution (live status, each</p>
+<p>tool call, policy check), closure (before/after state, approver</p>
+<p>identities, immutable export).</p>
+<ol>
+<li>Three interaction patterns that win: DIFF-FIRST (show the mutation</li>
+</ol>
+<p>before the rationale), EVIDENCE-LINKED (green status must link to an</p>
+<p>external test result, never the model's assertion), SCOPED approval</p>
+<p>(approve one call or a narrow class for a short window).</p>
+<ol>
+<li>Failure visibility is UX: a credential mismatch must appear as a</li>
+</ol>
+<p>high-risk STOP condition, not get silently "fixed". Our honesty</p>
+<p>moment is this exact principle on stage.</p>
+<ol>
+<li>Notion is the cautionary tale: automation while people are away</li>
+</ol>
+<p>raises the provenance bar. We always show the trace, so automation</p>
+<p>stays explainable.</p>
+<h2>WHAT TO AVOID (from the real failures, wave-2 VERIFIED)</h2>
+<ul>
+<li>Hidden auto-execute: the Replit/PocketOS class. Never hide what will</li>
+</ul>
+<p>change.</p>
+<ul>
+<li>Approve buttons that fire side effects twice: our double-decision</li>
+</ul>
+<p>guard kills it; the UI must disable the buttons after decision.</p>
+<ul>
+<li>Badges that lie: fixed Aug 15 (provider_errors -> offline). The UI</li>
+</ul>
+<p>shows the badge and the failure count, never hides it.</p>
+<ul>
+<li>Feeds that look live but are static: feeds badge shows live/cached/</li>
+</ul>
+<p>offline with fetched_at timestamps.</p>
+<ul>
+<li>Traces that hide failures: the trace ring keeps every step including</li>
+</ul>
+<p>provider failures (engine prints "using offline" to the ring).</p>
+<h2>DELIVERABLE</h2>
+<p>This file + wave-2 = the spec for a UI polish pass via opencode</p>
+<p>(labels, badge placement, card layout in index.html, no logic changes).</p>
+<p>The polish pass is optional pre-drop; the functional UI already tells</p>
+<p>the story. Priority: rehearsal beats polish.</p>
+</main>
+</body>
+</html>

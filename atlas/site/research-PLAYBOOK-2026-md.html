@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/PLAYBOOK-2026.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/PLAYBOOK-2026.md</h1>
+  <p class="blurb">The full playbook: fingerprint, decision tree, kit mount, demo flow, venue rule, 429 watch.</p>
+  <a class="open" href="../../research/PLAYBOOK-2026.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>PLAYBOOK 2026 - every method, ranked, executable (win at all costs edition)</h1>
+<p>Compiled: 2026-08-14 20:00 IST | Status: live document, updates as intel lands</p>
+<p>Rule: every method carries evidence (VERIFIED = source seen, INFERRED = reasoned,</p>
+<p>UNVERIFIED = rumor). Nothing here is vibes.</p>
+<hr>
+<h2>0. THE FIVE VERIFIED LAWS (everything hangs off these)</h2>
+<ol>
+<li>AI/ML is non-negotiable. All 5 sponsors ship AI products. A build without AI loses.</li>
+<li>Working demo > deck. Every past winner shipped a working prototype. AFTERPACKETS won with zero external deps and a demo that could not die.</li>
+<li>Fit beats depth. AFTERPACKETS won on empty lane + demo wow + story, not on research. Our research buys lane prediction and story precision, not automatic wins.</li>
+<li>The panel is two axes: research/security (Sarthak, Lingaraj, Anjana) vs operations/impact (Ayushi, Sonali, Shivani). A pitch must satisfy BOTH.</li>
+<li>Zero uncontrolled dependencies. LIVE / CACHED / OFFLINE modes, mode badge on screen. A candid fallback beats a frozen demo pretending a dead API worked.</li>
+</ol>
+<hr>
+<h2>1. INVENTORY: WHAT WE ALREADY HAVE (do not rebuild)</h2>
+<p>VERIFIED all green Aug 14 17:46:</p>
+<ul>
+<li>Engine (ingest, dedupe, LLM summarize, rank, deadlines, trace) 13/13</li>
+<li>Approval gate (typed tools, policy gate, proposals, audit) 13/13</li>
+<li>Providers (ollama/null swap) 9/9, multimodal (text/PDF/image) 4/4, provenance+consent 4/4</li>
+<li>Webapp 14 endpoints, dark UI, mode badge, trace drawer. Total 42/42 order-independent</li>
+<li>4 decks (agentic, multimodal, creative, kavach), 4 storyboards, demo.sh (9/9 endpoints)</li>
+<li>Atlas docs site (69 pages), serve.sh on :8900</li>
+<li>Research: 6 deep runs (376K chars), IDEA-BANK with decision tree + cue table + setter prior,</li>
+</ul>
+<p>judge dossiers (6, with judging matrix), competitor pool (2025 finalists + NEXORA),</p>
+<p>2025 problems verbatim, winner forensics (AFTERPACKETS commit timeline)</p>
+<ul>
+<li>LLM live (ollama deepseek-v4-flash:0731), offline fallback, cache replay</li>
+<li>Watchdog craft-n-code-watch every 6h (next 21:05), re-probes 137 parallel keys</li>
+</ul>
+<hr>
+<h2>2. P0 METHODS (do TODAY, before sleep)</h2>
+<h3>P0-1. SITE-REPO SEED HUNT (the potential jackpot)</h3>
+<p>The 2026 event site repo (p-society/D3-2026) may contain the REAL sponsor problem</p>
+<p>statements pre-seeded: git history deleted files, Supabase seed data, .lovable/plan</p>
+<p>files, admin route. 2025's statements were found the same way (p-society/D3-2k25-solutions).</p>
+<p>If the actual texts are there 24h early, we build the EXACT skin and win the night.</p>
+<p>Status: clone in progress. If clean, 30 min spent, zero loss.</p>
+<p>Evidence: 2025 jackpot landed exactly this way (VERIFIED). Rudra intel says sponsor-set</p>
+<p>questions (UNVERIFIED publicly). Both point at the same hunt.</p>
+<h3>P0-2. JUDGE ATTACK SHEETS (the face-off kit)</h3>
+<p>For each of the 4 ideas, a 30-question attack sheet, one answer per question, written</p>
+<p>tonight. Questions grouped by judge lens (from JUDGE-DOSSIERS.md, VERIFIED):</p>
+<ul>
+<li>Sarthak (ML-validation): training data? baselines? metrics? false positives? overfitting?</li>
+<li>Lingaraj (security-depth): threat model? controls? test evidence? residual risk? data leakage?</li>
+<li>Anjana (safety): who is protected? abuse resistance? privacy? legal risk? measurable impact?</li>
+<li>Ayushi (business): quantified outcome? cost reduction? workflow fit? sustainability?</li>
+<li>Sonali (impact): who adopts? why persist? how is value communicated? business model?</li>
+<li>Shivani (data/process): reliable data handling? quality controls? docs? what did you learn?</li>
+</ul>
+<p>Plus universal: "what did YOU build in the 24h" (pre-scripted honest answer per idea), and</p>
+<p>"how is this different from X" (X = real verified competitor, never a strawman).</p>
+<p>Deliverable: docs/ATTACK-SHEETS.md.</p>
+<h3>P0-3. LEAVE-BEHIND ONE-PAGER</h3>
+<p>A4 per judge (6 copies): problem in one line, our answer, KPI card, QR code to the</p>
+<p>atlas (serve it publicly or print the deck's KPI slide). Judges keep paper; every</p>
+<p>other team leaves nothing. Template tonight, print tomorrow at MUJ.</p>
+<p>Evidence: AFTERPACKETS README was the pitch (VERIFIED). Leave-behind = README on paper.</p>
+<h3>P0-4. RUDRA ASK (send tonight)</h3>
+<p>Message ready in docs/RUDRA-ASK.md. The only intel gap the internet cannot close.</p>
+<h3>P0-5. CLUB-SITE SUBMISSION KIT (new, VERIFIED Aug 14 20:00)</h3>
+<p>The club runs its OWN submission (src/routes/submit.tsx, Supabase): fields</p>
+<p>team_name, track, repo_url (required), demo_url (optional), pitch (max 2000</p>
+<p>chars). Rule: resubmit allowed, latest wins. Deadline 09:00 freeze. This is</p>
+<p>SEPARATE from Unstop (PPT by 06:00). Two gates, both must be locked early.</p>
+<p>Prep tonight: 2000-char killer pitch draft per idea, repo README as pitch</p>
+<p>(AFTERPACKETS lesson: README IS the pitch), demo video hosting plan</p>
+<p>(YouTube unlisted or Drive link ready to paste in demo_url).</p>
+<h3>P0-6. CHECK-IN DECISION PROTOCOL (new, VERIFIED)</h3>
+<p>20:00: check-in, team lock-in, opening brief. TRACK CHOICE HAPPENS HERE,</p>
+<p>before the drop. Tracks (stable since Aug 4): PS-01 Rewind the Legacy,</p>
+<p>PS-02 Night Ops, PS-03 Signal/Noise (search/summarise/rank = OUR IDEA A),</p>
+<p>PS-04 Open Track (anything, 3-min demo), PS-05 Hardware Hack. Switching</p>
+<p>after the clock starts costs 30 MINUTES. Protocol: default PS-03 Signal/</p>
+<p>Noise (the engine IS this lane), switch to PS-04 Open Track only if the</p>
+<p>20:00 opening brief signals a wildcard drop. Budget the 30-min switch in</p>
+<p>the hour-0 plan. Never pick PS-01/02/05.</p>
+<hr>
+<h2>3. P1 METHODS (tomorrow, pre-drop)</h2>
+<h3>P1-1. DEMO VIDEOS (4x 3-min pre-recorded)</h3>
+<p>Storyboards in docs/DEMO-STORYBOARDS.md. Record with wf-recorder -a -f demo-NAME.mp4</p>
+<p>(screen + audio, Ctrl+C to stop). Voiceover + SUBTITLES baked in (room audio is</p>
+<p>unreliable, subtitles always land). One Hinglish line in the demo: India-first</p>
+<p>differentiator (VERIFIED theme). Every storyboard must include the STAGED FAILURE beat:</p>
+<p>mode badge flips live to offline, recovery under 2 seconds. That beat wins demos.</p>
+<h3>P1-2. THE AFTERMOVIE (60-90s cold-open hype reel)</h3>
+<p>I assemble with ffmpeg once the first demo video exists: clips, deck renders, text</p>
+<p>cards (42/42 green, zero deps, team 511), atlas b-roll, music if you provide a track.</p>
+<p>Judges see 8-15 pitches, attention is the currency. A sick cold-open is a real edge.</p>
+<p>Order: video 1 -&gt; aftermovie draft -&gt; remaining videos.</p>
+<h3>P1-3. REAL-DATA SEED FOR THE DEMO</h3>
+<p>Seed the engine with REAL public data from the judges' world: Unstop round deadlines</p>
+<p>(21:00 open, 06:00 close, 10:00-17:30 pitch), event timeline, any public MUJ/CSC</p>
+<p>notices. The digest then speaks the room's language. 20 min, done tomorrow afternoon.</p>
+<p>Evidence: personalization beats generic (INFERRED, cheap to do, zero risk).</p>
+<h3>P1-4. KPI CARD PER IDEA</h3>
+<p>One slide, real numbers only: engine 42/42, 9/9 endpoints, zero deps, LLM live +</p>
+<p>offline fallback. Kavach: 5/5 scenarios fresh-clone, 24 real incidents registry,</p>
+<p>Hindi-first. Honest numbers beat vibes. Deck generator already supports swap slides.</p>
+<h3>P1-5. REHEARSAL x2, HARD TIMER</h3>
+<p>2:30 target, three roles: talker, demo driver, Q&amp;A support. Rehearsed handoffs.</p>
+<p>Record one run, watch it, trim. Second run after fixes.</p>
+<hr>
+<h2>4. P2 METHODS (the night of Aug 15)</h2>
+<h3>P2-1. SUBMISSION CADENCE (verified rule: multiple submissions, latest wins)</h3>
+<ul>
+<li>21:30 drop -> fingerprint scan (2 min) -> decision tree (10 min) -> freeze ONE-SENTENCE</li>
+</ul>
+<p>story -&gt; skin mount (15-40 min) -&gt; differentiator + staged failure -&gt; KPI card -&gt; deck swap</p>
+<ul>
+<li>v1 SUBMIT at 23:00 (LOCK, insurance against 5am failure)</li>
+<li>v2 at 03:00 (after polish)</li>
+<li>FINAL at 05:00, never 05:59. PDF preferred (renders identically), under 50MB.</li>
+<li>CLUB SITE: repo_url + pitch (under 2000 chars) + demo_url (hosted video),</li>
+</ul>
+<p>v1 before 06:00, final before the 09:00 freeze. TWO gates, both locked early.</p>
+<p>Evidence: submission format VERIFIED Aug 14 (round 1569450, PPT only, resubmit</p>
+<p>allowed) + club site submit.tsx VERIFIED Aug 14 (resubmit, latest wins, 09:00).</p>
+<h3>P2-2. THE 01:00 MENTOR ROUND</h3>
+<p>CONFIRMED in the club's own run of the night (about.tsx): "01:00 Midnight</p>
+<p>fuel run + mentor rounds". Pre-prepare 3 questions per idea: sponsor-fit</p>
+<p>check, one differentiator suggestion, what judges reward this year.</p>
+<p>Mentors are free expert feedback at the exact hour we are deepest in the</p>
+<p>build. Also 04:30 "Debug hour" is a scheduled beat: use it as the story</p>
+<p>moment in the aftermovie and pitch ("the city is asleep, we are not").</p>
+<h3>P2-3. REG-COUNT RACE</h3>
+<p>Pull the Unstop API every 30-60 min from 21:00 (ground truth: /api/public/competition/1730314).</p>
+<p>Surge patterns show who is awake. Also watch CSC club channels (Insta/WhatsApp/Telegram):</p>
+<p>the statement may surface there BEFORE the 21:30 site drop. Head start = win.</p>
+<h3>P2-4. EMPTY-LANE ANALYSIS AT 21:45</h3>
+<p>After the drop, map which of our 4 ideas the problems imply, then think like the field:</p>
+<p>which lane will 96+ players pile into? If our mapped idea is the crowded one, keep the</p>
+<p>idea, pivot the STORY angle (e.g. India-first, consumer-side, evidence export). Never</p>
+<p>pitch fresh. Evidence: lab-grader lane 2025 had 5 teams and split attention (VERIFIED).</p>
+<h3>P2-5. SLEEP ROTATION</h3>
+<p>One teammate sleeps 02:00-05:00 while the others polish. Pre-recorded videos mean the</p>
+<p>stage demo does not need live perfection. At 09:00 at least 2 of 3 must be sharp.</p>
+<hr>
+<h2>5. P3 METHODS (on-site, Aug 16)</h2>
+<h3>P3-1. ARRIVE 08:30, SCOUT FIRST</h3>
+<p>The club's own run of the night says "09:00 Freeze, demo, judging" (VERIFIED</p>
+<p>from about.tsx). Unstop's 10:00 listing is the outer bound, 09:00 is the</p>
+<p>real freeze. Arrive 08:30: projector resolution, audio, mic, wifi SSID,</p>
+<p>power points, HDMI adapter needs. Watch the first pitches, read judge</p>
+<p>reactions, adjust the last 10%. Ask CSC execs (Rudra, Abhinav Trikha,</p>
+<p>Harshit Raj Singh) on-site: who judges, weights, anything they reward.</p>
+<p>In-person intel beats research.</p>
+<h3>P3-2. THE PITCH SHAPE</h3>
+<p>Cold-open (aftermovie) -&gt; problem in one line -&gt; our answer (live demo or video) -&gt;</p>
+<p>KPI card -&gt; staged failure beat -&gt; close with one ask-back question ("if you were the</p>
+<p>sponsor, which metric matters most?"). Answers target the judge's lens: Sarthak gets</p>
+<p>metrics, Anjana gets safety, Ayushi gets cost, Sonali gets adoption.</p>
+<h3>P3-3. ON-SITE KIT (printed checklist)</h3>
+<p>Deck in 3 places (USB, Drive, email attachment). Demo videos downloaded, no streaming.</p>
+<p>Phone hotspot + verified offline mode. Chargers + power bank. HDMI adapter (USB-C).</p>
+<p>Printed one-pagers x6. Printed checklist itself.</p>
+<h3>P3-4. NO-EXCUSES FALLBACK TABLE</h3>
+<p>Every dependency has a fallback: network (hotspot + offline mode), LLM (cache replay),</p>
+<p>sound (subtitles), projector (PDF renders), live demo (pre-recorded video), time</p>
+<p>overrun (2:30 rehearsal, hard stop at 3:00).</p>
+<hr>
+<h2>6. TIMELINE (anchored)</h2>
+<p>Aug 14 20:00-24:00: P0-1 site hunt, P0-2 attack sheets, P0-3 leave-behind template,</p>
+<p>P0-4 Rudra ask, sleep.</p>
+<p>Aug 15 09:00-13:00: P1-1 demo videos, P1-2 aftermovie starts.</p>
+<p>Aug 15 13:00-18:00: P1-5 rehearsal x2, P1-3 real-data seed, P1-4 KPI cards, deck final.</p>
+<p>Aug 15 21:00: watch Unstop + channels, reg-count race starts.</p>
+<p>Aug 15 21:30: drop. Tree fires. v1 submit 23:00.</p>
+<p>Aug 15 01:00: mentor round, 3 questions ready.</p>
+<p>Aug 16 05:00: final submission. 09:00 arrive, scout. 10:00-17:30 pitch.</p>
+<p>Aug 16 17:30: aftermovie for the afterparty. Top-2 advance.</p>
+<h2>7. THE ONE LINE</h2>
+<p>We win if: the drop fits a predicted shape (90%+ probability), the skin mounts in 40</p>
+<p>minutes, the staged failure lands, the cold-open opens, and the answers match the</p>
+<p>judge's lens. Everything else is noise. Execute the tree, submit early, resubmit</p>
+<p>better, sleep in rotation, arrive sharp.</p>
+</main>
+</body>
+</html>

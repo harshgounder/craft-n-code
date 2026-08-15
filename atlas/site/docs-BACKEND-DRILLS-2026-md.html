@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/BACKEND-DRILLS-2026.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/BACKEND-DRILLS-2026.md</h1>
+  <p class="blurb">6 backend drills: skin mount, live data beat, honesty moment, dependency failure, speed runs.</p>
+  <a class="open" href="../../docs/BACKEND-DRILLS-2026.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>BACKEND-DRILLS-2026.md: practice until the stack is muscle memory</h1>
+<p>Purpose: every team member must be able to operate the scaffold blindfolded.</p>
+<p>These drills are the "practice a lot of backend" program. Each drill is</p>
+<p>timed, has a failure state, and a recovery script. Run each at least</p>
+<p>twice before 18:00. Target times in brackets.</p>
+<p>Setup: repo at ~/craft-n-code, python3 only, zero deps, nothing to</p>
+<p>install. The stack: engine (pipeline) -&gt; webapp (serve.py) -&gt; skins</p>
+<p>(fixtures) -&gt; feeds (real data kit) -&gt; tests (8 suites, 81 checks).</p>
+<h2>DRILL 1: COLD BOOT (target 60s, the night-opener)</h2>
+<ol>
+<li>Fresh checkout state: rm -f engine/signal.db engine/.llm_cache.json</li>
+<li>Export OLLAMA_API_KEY (anchored grep: grep '^OLLAMA_API_KEY=' ~/.hermes/.env | head -1 | cut -d= -f2-)</li>
+</ol>
+<p>WARNING: the .env has a COMMENTED placeholder line (# OLLAMA_API_KEY=...).</p>
+<p>A naive grep glues comment + real key into one broken header. Always</p>
+<p>anchor with ^ and strip the comment.</p>
+<ol>
+<li>./demo.sh 8137 in background</li>
+<li>curl localhost:8137/api/stats -> expect mode=live (or offline if no key),</li>
+</ol>
+<p>llm.provider_errors present, total &gt;= 1</p>
+<ol>
+<li>Kill: pkill -f "[s]erve.py" (bracket trick, never bare pattern)</li>
+</ol>
+<p>Pass: server up in &lt; 20s, stats honest, no zombie processes.</p>
+<h2>DRILL 2: THE HONESTY DRILL (target 90s, the judge's favorite moment)</h2>
+<ol>
+<li>Start serve.py cold with the real key. Confirm mode=live.</li>
+<li>In a second terminal: export OLLAMA_API_KEY="" and hit</li>
+</ol>
+<p>curl localhost:PORT/api/stats (new pipeline run via POST /api/ingest).</p>
+<ol>
+<li>Watch the badge flip to offline. That is the honesty moment: show it</li>
+</ol>
+<p>on stage if time allows. "When the model dies, the system says so and</p>
+<p>keeps working."</p>
+<ol>
+<li>Restore the key, POST /api/ingest again, badge flips back.</li>
+</ol>
+<p>Pass: badge always matches reality (provider_errors &gt; 0 -&gt; offline).</p>
+<h2>DRILL 3: LIVE DATA (target 90s, the real problems moment)</h2>
+<ol>
+<li>python3 engine/feeds.py --refresh  (fetches HN + GitHub + Unstop, writes data/feeds/)</li>
+<li>Check data/feeds/_meta.json: status per source, fetched_at.</li>
+<li>Start serve.py --feeds 8138. GET /api/feeds -> mode live when fresh.</li>
+<li>GET /api/feed -> real items ranked. GET /api/stats -> llm real.</li>
+<li>Kill the wifi (or run feeds.py --offline) -> /api/feeds mode cached,</li>
+</ol>
+<p>feed still renders from stale files. Honest degradation.</p>
+<p>Pass: live data in the demo, badge tells the truth on failure.</p>
+<h2>DRILL 4: SKIN MOUNT (the measured 15-40 min claim, use MOCK-DROPS)</h2>
+<ol>
+<li>Pick a mock drop, fingerprint it (2 min), decide the kit.</li>
+<li>cp fixtures/<kit>.json fixtures/current.json (or use --fixture <kit>)</li>
+<li>./demo.sh -> feed shows the kit's items, proposals fire.</li>
+<li>Time the whole thing. Log it in MOCK-DROPS metrics.</li>
+</ol>
+<p>Pass: mounted and demoing in under 40 min on the first try, under 20 on</p>
+<p>the second.</p>
+<h2>DRILL 5: RECOVERY (target 120s, what breaks at 3 AM)</h2>
+<p>Scenarios, each timed:</p>
+<p>a. Port busy: lsof -i :8137 (or fuser) -&gt; pick a new port, restart.</p>
+<p>b. DB locked: stale serve.py holds signal.db. pkill -f "[s]erve.py",</p>
+<p>wait 2s, restart. If still locked: rm -f engine/signal.db.</p>
+<p>c. LLM quota dead: OLLAMA_API_KEY valid but 402/429 in log -&gt; the badge</p>
+<p>flips to offline by itself (provider_errors). Demo continues. No code</p>
+<p>change needed. This is the design.</p>
+<p>d. Feed files missing: feeds.py --refresh fails on no wifi -&gt; run</p>
+<p>feeds.py --offline, or serve without --feeds (falls back to seed).</p>
+<p>e. Cache poisoned: weird summaries in UI -&gt; rm -f engine/.llm_cache.json,</p>
+<p>restart, cold run rebuilds it.</p>
+<p>Pass: every recovery under 2 min, no code edits.</p>
+<h2>DRILL 6: THE FULL TEST GAUNTLET (target 3 min, the numbers moment)</h2>
+<p>cd scaffold/tests &amp;&amp; for t in test_approval test_trace test_providers \</p>
+<p>test_multimodal test_provenance test_honesty test_feeds test_stress; do \</p>
+<p>python3 $t.py; done</p>
+<p>Pass: 81/81. Count it out loud: 13 + 12 + 9 + 4 + 4 + 8 + 8 + 23 = 81.</p>
+<p>Fresh DBs every run, order-independent. This is the "how do you know it</p>
+<p>works" answer.</p>
+<h2>COMMAND CHEAT SHEET (print this)</h2>
+<ul>
+<li>serve:            python3 webapp/serve.py [--port N] [--fixture NAME] [--offline] [--feeds]</li>
+<li>feeds refresh:    python3 engine/feeds.py --refresh | --offline | --dump</li>
+<li>kill server:      pkill -f "[s]erve.py"        (bracket trick)</li>
+<li>key export:       export OLLAMA_API_KEY=$(grep '^OLLAMA_API_KEY=' ~/.hermes/.env | head -1 | cut -d= -f2-)</li>
+<li>force offline:    export SIGNAL_PROVIDER=null OLLAMA_API_KEY=""</li>
+<li>test gauntlet:    cd scaffold/tests && for t in test_*; do python3 $t.py; done</li>
+<li>demo:             ./demo.sh [port]</li>
+<li>trace ring:       curl localhost:PORT/api/trace</li>
+<li>proposals:        curl localhost:PORT/api/proposals</li>
+</ul>
+</main>
+</body>
+</html>

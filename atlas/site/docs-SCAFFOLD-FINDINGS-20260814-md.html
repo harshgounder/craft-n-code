@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/SCAFFOLD-FINDINGS-20260814.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/SCAFFOLD-FINDINGS-20260814.md</h1>
+  <p class="blurb">The aggressive audit findings: what was wrong, what got fixed, what stayed.</p>
+  <a class="open" href="../../docs/SCAFFOLD-FINDINGS-20260814.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>SCAFFOLD FINDINGS - Aug 14 21:00 (failure-injection drill results)</h1>
+<p>Purpose: the failure-injection drill (docs/NUMBERS-2026 section 1) run for</p>
+<p>real on Aug 14 night. Two findings, one confirmed fix, one bug for opencode.</p>
+<h2>FINDING 1 - the badge can lie (REAL BUG, fix brief below)</h2>
+<p>Scenario: LLM key present but broken (simulated by exporting a malformed key</p>
+<p>that made the http client reject the header; every call fails). What the</p>
+<p>scaffold did:</p>
+<ul>
+<li>Every one of the 22 pipeline calls failed and fell back to per-item offline</li>
+</ul>
+<p>rules (engine prints "[llm] ollama-cloud failed (...); using offline").</p>
+<ul>
+<li>/api/stats STILL reported: mode=live, model=deepseek-v4-flash:0731,</li>
+</ul>
+<p>cache_misses=22. Zero trace of the failure in the llm dict.</p>
+<ul>
+<li>The UI badge would have shown "live" while every output was deterministic</li>
+</ul>
+<p>fallback. On stage, with a dead LLM, we would claim a live model call that</p>
+<p>never happened. That breaks our own honesty story (the mode badge exists</p>
+<p>so "a judge always knows what is real").</p>
+<p>Root cause: current_mode() (serve.py) only knows about flags (offline,</p>
+<p>fixture) and the cache counters. It never learns whether provider calls</p>
+<p>actually succeeded. The llm dict records model + cache_hits + cache_misses</p>
+<p>but no provider outcome.</p>
+<p>Repro (safe, in a copy): cp -r scaffold /tmp/cnc-inject; delete</p>
+<p>engine/signal.db + engine/.llm_cache.json; export a deliberately broken</p>
+<p>OLLAMA_API_KEY; run webapp/serve.py; curl /api/stats -&gt; mode=live despite</p>
+<p>all calls failing in the log.</p>
+<h2>FINDING 2 - "LLM key verified live" was weak proof (now properly verified)</h2>
+<p>The earlier live check used curl https://ollama.com/v1/models which returns</p>
+<p>200 WITHOUT any auth (public endpoint, useless as a probe). Confirmed today:</p>
+<p>a garbage bearer token gets 401 on /v1/chat/completions, so auth IS</p>
+<p>enforced. Proper verification done Aug 14 21:00:</p>
+<ul>
+<li>Chat completions with the real OLLAMA_API_KEY: HTTP 200 + real completion</li>
+</ul>
+<p>id, model deepseek-v4-flash:0731.</p>
+<ul>
+<li>Cold run of serve.py (fresh DB + fresh cache, key loaded correctly):</li>
+</ul>
+<p>12 real LLM calls succeeded (cache_misses=12, zero failures), 10 cache</p>
+<p>hits, mode=live, cache rebuilt. VERIFIED.</p>
+<ul>
+<li>Env lesson: the .env file has a COMMENTED placeholder line</li>
+</ul>
+<p>(# OLLAMA_API_KEY=your_ollama_key_here) and the real key on line 478.</p>
+<p>A naive grep that does not skip comments glues both into one broken</p>
+<p>header value. Load .env with a real parser or grep -v '^#'.</p>
+<h2>FIX BRIEF FOR OPENCODE (source code, Hermes does not write code)</h2>
+<p>Bug: mode badge reports live when the provider failed and offline fallback</p>
+<p>ran. Files: scaffold/engine/engine.py (pipeline llm metadata), maybe</p>
+<p>scaffold/webapp/serve.py current_mode().</p>
+<p>Desired behavior:</p>
+<ol>
+<li>The engine counts provider failures during a pipeline run and exposes</li>
+</ol>
+<p>them in the llm dict, e.g. "provider_errors": N.</p>
+<ol>
+<li>current_mode() returns "offline" whenever provider_errors >= 1 in the</li>
+</ol>
+<p>current run (the badge then tells the truth: outputs were offline rules).</p>
+<p>Optional: a 5th label "degraded" when SOME calls failed and some</p>
+<p>succeeded; default to offline if that is simpler.</p>
+<ol>
+<li>Keep zero external deps. Keep the 42 existing tests green.</li>
+<li>Add a regression test: run the pipeline with a guaranteed-broken key</li>
+</ol>
+<p>(or SIGNAL_PROVIDER=null) and assert /api/stats mode is NOT live.</p>
+<p>Test style: plain python3, fresh DB, wait_ready polling, per-suite</p>
+<p>isolation (see scaffold/tests/).</p>
+<p>Acceptance: cold run with broken key -&gt; mode=offline; cold run with valid</p>
+<p>key -&gt; mode=live; warm DB -&gt; mode=cached (unchanged); --fixture -&gt; fixture</p>
+<p>(unchanged); --offline -&gt; offline (unchanged). 43/43 green.</p>
+</main>
+</body>
+</html>

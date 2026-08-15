@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/MOCK-DROPS.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/MOCK-DROPS.md</h1>
+  <p class="blurb">Drill 1: mock problem drops parsed with the machine, all pin to existing kits.</p>
+  <a class="open" href="../../research/MOCK-DROPS.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>MOCK DROPS - practice problem statements + the drill</h1>
+<p>Compiled: 2026-08-14 20:30 IST | Purpose: simulate the 21:30 drop BEFORE the</p>
+<p>drop. We never measured the skin mount (the playbook claims 15-40 min, an</p>
+<p>unverified number). This drill turns that claim into a measured fact, and</p>
+<p>gives the team muscle memory for the decision tree. Written in sponsor voice</p>
+<p>using the cue table vocabulary (IDEA-BANK section 5).</p>
+<h2>HOW TO RUN THE DRILL (30-60 min, team)</h2>
+<ol>
+<li>One person is the timer + judge. Read ONE mock aloud, exactly once.</li>
+<li>Team does the real protocol: fingerprint scan (2 min target) -> decision</li>
+</ol>
+<p>tree (10 min target) -&gt; freeze one-sentence story -&gt; pick deck + storyboard</p>
+<p>-&gt; mount the skin (seed data + UI labels) -&gt; ./demo.sh -&gt; note the time.</p>
+<ol>
+<li>Judge records: fingerprint time, decision time, mount time, gaps found,</li>
+</ol>
+<p>arguments the team had (those arguments are gold, they reveal uncertainty).</p>
+<ol>
+<li>After each mock: 5 min retro. Fix anything that was missing. Move on.</li>
+<li>Run all 5 if possible, minimum 3 (mocks 1, 2, 4 cover the setter prior).</li>
+<li>Do NOT read the expected answer until the team has committed.</li>
+</ol>
+<h2>MOCK 1 - Google flavor (agents, tools, deadlines, grounded answers)</h2>
+<p>"Build an AI agent system for a busy professional. The system must ingest</p>
+<p>work items from multiple channels (email, chat, tickets, documents),</p>
+<p>deduplicate them, summarize each in one line, and rank them by urgency and</p>
+<p>deadline. For concrete items it must propose actions with evidence attached</p>
+<p>(source, deadline, amount). No action may execute without human approval,</p>
+<p>and every decision must be logged in an audit trail. The agent must answer</p>
+<p>questions about its own work with grounded answers, not guesses."</p>
+<p>Expected: fingerprint Google/Accenture. Decision tree -&gt; IDEA A BriefLens,</p>
+<p>deck-agentic, storyboard A. Acceptance test: every answer has evidence + an</p>
+<p>action, approve flips status + audit log grows.</p>
+<h2>MOCK 2 - Adobe flavor (brief, brand, assets, provenance, review)</h2>
+<p>"Create a workflow where a one-paragraph organizational brief becomes</p>
+<p>brand-consistent media assets. The system must extract brand rules, tone,</p>
+<p>and audience from the brief, generate assets with captions and alt text,</p>
+<p>support multiple output formats, and require human review before delivery.</p>
+<p>Every asset must carry a provenance record: which prompt, which model, which</p>
+<p>reviewer, when. Corrections and revisions must be versioned."</p>
+<p>Expected: fingerprint Adobe. Decision tree -&gt; IDEA C SignalStory,</p>
+<p>deck-creative, storyboard C. Acceptance test: source becomes an editable</p>
+<p>asset with a provenance card.</p>
+<h2>MOCK 3 - Apple flavor (privacy, on-device, graceful fallback)</h2>
+<p>"Design a privacy-first personal intelligence feature that transforms</p>
+<p>sensitive documents and notes on the user's device. The user must be able to</p>
+<p>see exactly what data moves where, nothing may leave the device without</p>
+<p>explicit consent, and the experience must degrade gracefully when the</p>
+<p>network is unavailable. Accessibility is a first-class requirement."</p>
+<p>Expected: fingerprint Apple. Decision tree -&gt; IDEA B privacy skin,</p>
+<p>deck-multimodal. Acceptance test: on-device state, refuse cloud path, safe</p>
+<p>fallback without a crash. Note: this is the hardest mount, our scaffold is</p>
+<p>server-shaped, be ready to frame the demo honestly (local mode, consent</p>
+<p>badges, no data leaves the laptop in the demo).</p>
+<h2>MOCK 4 - Meta flavor (multimodal, community, confidence, escalation)</h2>
+<p>"Build a multimodal assistant for a community platform. It must accept text,</p>
+<p>images, and documents, extract structured facts, and answer with confidence</p>
+<p>bands and evidence. Queries that are uncertain or high-risk must be routed</p>
+<p>to a human reviewer, and user corrections must be remembered. Moderation</p>
+<p>hints for suspicious content are a plus."</p>
+<p>Expected: fingerprint Meta. Decision tree -&gt; IDEA B Kavach Circle,</p>
+<p>deck-multimodal. Acceptance test: message + image -&gt; answer -&gt; escalation</p>
+<p>path visible.</p>
+<h2>MOCK 5 - Accenture flavor (cases, ownership, policy, KPI, audit)</h2>
+<p>"Design a governed case-routing system for an enterprise. Unstructured</p>
+<p>requests must become structured cases with an owner, a policy check, consent</p>
+<p>records, and an approval step before any side effect. Management needs a KPI</p>
+<p>dashboard: case volume, cycle time, approvals pending, exceptions. Every</p>
+<p>case must be auditable end to end."</p>
+<p>Expected: fingerprint Accenture. Decision tree -&gt; IDEA A ops skin,</p>
+<p>deck-agentic. Acceptance test: one case moves intake -&gt; owner -&gt; approval -&gt;</p>
+<p>KPI visible.</p>
+<h2>OFF-MAP MOCK (bonus, do last if time)</h2>
+<p>"Something completely different: a game, a hardware widget, or a social</p>
+<p>cause. The judges want to be surprised." Expected behavior: map to the</p>
+<p>closest idea, never pitch fresh (IDEA-BANK section 0). This mock exists to</p>
+<p>practice saying no to panic.</p>
+<h2>THE METRIC SHEET (fill per mock)</h2>
+<p>Mock N: sponsor fingerprint ____, fingerprint time ____, decision time ____,</p>
+<p>idea chosen ____, deck ____, mount time ____ (target 15-40 min), gaps found</p>
+<p>____, fixes needed ____.</p>
+<p>After the drill: append the measured times to docs/NUMBERS-2026.md section 1</p>
+<p>and replace the UNVERIFIED tag on the mount claim. That is the benchmark</p>
+<p>kavach had and we did not, until tonight.</p>
+</main>
+</body>
+</html>

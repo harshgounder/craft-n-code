@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/raw/wave18-osslandscape.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/raw/wave18-osslandscape.md</h1>
+  <p class="blurb">Wave 18 raw: OSS landscape and the wedge.</p>
+  <a class="open" href="../../research/raw/wave18-osslandscape.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h2>executive_summary</h2>
+<ul>
+<li><strong>Ollama is the default local LLM substrate, not llama.cpp alone</strong>: ollama/ollama has 178,512 stars and a pure-MIT license; pair with llama-cpp-python (10,551 stars, MIT) for embedded inference. A 24h build should treat <code>model pull</code> and <code>ollama serve</code> as one-line wins.</li>
+<li><strong>The pytest of authorization is Casbin-py</strong>: single-file importable, Apache-2.0, 1,740 stars; alternative Casdoor (IAM + Web UI) is heavier at 14,156 stars but ships frontend batteries. For Zanzibar-style relationship checks, OpenFGA (5,602 stars, Apache) is the new hotness.</li>
+<li><strong>C2PA is real but ecologically thin</strong>: c2pars (221 stars) and c2pa-python (98 stars) are the only credible implementations; everything else (image hashing, EXIF) sits on Pillow (13,751 stars), ImageHash (3,860 stars BSD-2-Clause), Piexif (385 stars MIT).</li>
+<li><strong>MCP has gold-plated infrastructure</strong>: official Python SDK 24,002 stars MIT, official TS SDK 13,170 stars MIT, FastMCP 24,383 stars Apache, official registry + publisher CLI, mcp-scan (now Snyk agent-scan) 2,489 stars Apache, ToolHive 2,004 stars Apache. This is the densest shape in the entire map.</li>
+<li><strong>Multi-agent is a minefield</strong>: CrewAI 57,088 stars is the most popular but has CVSS 9.6 RCE + CVSS 9.2 GitHub token-leak advisories; Pydantic AI (19,301 MIT, durable-exec pluggable) and Agno (41,714 Apache) are the safest speed picks.</li>
+<li><strong>Workflow trap licences are real</strong>: n8n 200,653 stars is not OSI - it is "Sustainable Use License"; LiteLLM 56,363 stars is dual-licensed with an Enterprise license for hosted use. Camunda and Temporal are both Apache-2.0 / MIT, respectively - clean.</li>
+<li><strong>Messaging fraud has no Python stand-out</strong>: python-phonenumbers (3,700 stars Apache) is a parser not a classifier; there is no production-grade OSS spam-SMS/UPI classifier; the only credible UPI helper on GitHub is a single-author deeplink-builder - this is your <strong>biggest whitespace</strong>.</li>
+<li><strong>For a stdlib-only Python server</strong>: only three projects are vendor-friendly as single files: pycasbin, Piexif, and our own langfuse-free audit repack using stdlib logging + hashlib. FastMCP, llama.cpp, Camunda, Temporal, n8n, ChromaDB all require a full runtime stack.</li>
+</ul>
+<p>Decision rule for the 24h build: spend the first hour pinning the OSS substrate from the gold-plated columns below; spend the last hour on the gap-niche columns where OSS is dead, missing, or wrong-language.</p>
+<h2>shape_1_governed_agent_ops_approvals_tool_registries_audit_trails</h2>
+<p>Gold-plated table (verified stars, live GitHub metadata, 2026-08-15):</p>
+<table><thead><tr><th>Library</th><th>Repo</th><th>Stars</th><th>License</th><th>What it does</th><th>Build composability</th></tr></thead><tbody><tr><td>Casbin</td><td>apache/casbin</td><td>20,189</td><td>Apache-2.0</td><td>Multi-model policy engine (ACL/RBAC/ABAC)</td><td><code>pip install casbin</code> + one <code>.conf</code> file</td></tr><tr><td>pycasbin</td><td>apache/casbin-pycasbin</td><td>1,740</td><td>Apache-2.0</td><td>Pure-Python Casbin port; single-module import</td><td>Import as-is</td></tr><tr><td>OpenFGA</td><td>openfga/openfga</td><td>5,602</td><td>Apache-2.0</td><td>Zanzibar-inspired check API, Go server</td><td>Needs docker run</td></tr><tr><td>SpiceDB</td><td>authzed/spicedb</td><td>6,954</td><td>Apache-2.0</td><td>Permify/Permify-style auth DB; relations + caveats</td><td>Needs docker run</td></tr><tr><td>Permify</td><td>Permify/permify</td><td>5,914</td><td>Apache-2.0</td><td>Named above; recently merged into FusionAuth</td><td>docker compose</td></tr><tr><td>OPA / Rego</td><td>open-policy-agent/opa</td><td>12,101</td><td>Apache-2.0</td><td>General-purpose Rego engine; CLI + Go SDK</td><td>bundle and call</td></tr><tr><td>Cedar</td><td>cedar-policy</td><td>n/a (AWS org)</td><td>Apache-2.0</td><td>Formally-verified (Lean) policy DSL</td><td>cedar CLI + Rust SDK</td></tr><tr><td>Casdoor</td><td>casdoor/casdoor</td><td>14,156</td><td>Apache-2.0</td><td>Full IAM web UI with OAuth/OIDC/SAML</td><td>Heavy: docker compose</td></tr><tr><td>OpenTelemetry-Python</td><td>open-telemetry/opentelemetry-python</td><td>2,588</td><td>Apache-2.0</td><td>W3C trace context, exporter ecosystem</td><td>Standard install</td></tr><tr><td>Langfuse</td><td>langfuse/langfuse</td><td>33,129</td><td>MIT</td><td>AI-trace UIs with OTLP ingest</td><td>docker compose</td></tr><tr><td>Helicone</td><td>Helicone/helicone</td><td>6,063</td><td>Apache-2.0</td><td>LLM proxy with replay + eval</td><td>docker compose</td></tr><tr><td>LiteLLM</td><td>BerriAI/litellm</td><td>56,363</td><td>Enterprise-only for hosted; MIT self-host is ambiguous</td><td>Unified 100+ LLM gateway</td><td>pip install</td></tr></tbody></table>
+<p>Gap niches:</p>
+<ul>
+<li><strong>Native agent-tool-registry</strong>: there is no single de-facto agent-component-registry. Observal (small, 17 stars) and ToolHive (2,004 stars Stacklok) are emerging but no Zanzibar/regulated registry is mature. Build one yourself; this is whitespace.</li>
+<li><strong>Step-up approval with timeouts</strong>: Casbin handles role, not expiry windows. There is no Apache-licensed approval-as-flow primitive.</li>
+<li><strong>Per-agent audit log with content-aware search</strong>: OTel+Langfuse gets you there if you wire it. No one ships a turnkey combination.</li>
+</ul>
+<p>Trap components:</p>
+<ul>
+<li><strong>Permify</strong> is now merged into FusionAuth; pre-merger copies lose maintenance. Use SpiceDB or OpenFGA instead.</li>
+<li><strong>Cedar</strong> is technically rigorous but the Rust SDK is heavy and the Lean verifier is overkill for a demo. Use it when "regulator will audit this" matters; otherwise Casbin.</li>
+<li><strong>StackStorm st2 (6,514 stars Apache)</strong> is essentially dead upstream - last release 3.9.0 Oct 10 2025. Drop in favor of Temporal + a worker.</li>
+</ul>
+<p>Security/trust:</p>
+<ul>
+<li>Casbin, pycasbin, OpenFGA, SpiceDB, OPA: no public CVE headlines.</li>
+<li>LiteLLM has had data-pipeline advisories; pin a known-good version.</li>
+<li>CrewAI (covered in shape 7) is the audit-target risk, not the audit tool itself.</li>
+</ul>
+<h2>shape_2_creative_provenance_c2pa_hashing_exif</h2>
+<p>Gold-plated table:</p>
+<table><thead><tr><th>Library</th><th>Repo</th><th>Stars</th><th>License</th><th>Use for</th><th>Stdlib-vend?</th></tr></thead><tbody><tr><td>c2pa-rs</td><td>contentauth/c2pa-rs</td><td>221</td><td>Apache-2.0/MIT (dual)</td><td>Reference C2PA SDK (Rust core)</td><td>NO - native libbuild, but <code>pip install c2pa</code> ABI-pull works</td></tr><tr><td>c2pa-python</td><td>contentauth/c2pa-python</td><td>98</td><td>Apache-2.0</td><td>Python bindings, signer/burner</td><td>NO - depends on c2pa-rs wheels</td></tr><tr><td>Pillow</td><td>python-pillow/Pillow</td><td>13,751</td><td>HPND/MIT-CMU</td><td>Lossless image I/O, EXIF read/write</td><td>pip install</td></tr><tr><td>ImageHash</td><td>JohannesBuchner/imagehash</td><td>3,860</td><td>BSD-2-Clause</td><td>Perceptual pHash/dHash/wHash</td><td>pip install</td></tr><tr><td>Piexif</td><td>hMatoba/Piexif</td><td>385</td><td>MIT</td><td>Pure-Python EXIF read+write without Pillow</td><td>YES - single module</td></tr><tr><td>exif-py (exifread)</td><td>ianare/exif-py</td><td>960</td><td>BSD-3-Clause</td><td>Pure-Python EXIF reader</td><td>YES - single drop-in</td></tr></tbody></table>
+<p>Gap niches:</p>
+<ul>
+<li><strong>No "C2PA in pure Python"</strong>: c2pa-python is a thin wrapper over Rust. If you cannot ship native binaries, your only stdlib option is to *mint* your own hash manifests, not use C2PA.</li>
+<li><strong>Audio provenance</strong>: no credible C2PA-as-audio implementation. Standalone audio watermarking is missing entirely.</li>
+<li><strong>Text-attribution chain</strong>: C2PA is image/video. For text provenance there is no FOSS standard - you have to roll your own cryptographic provenance log.</li>
+<li><strong>Cross-language byte-exact perceptual hashing</strong>: there is one project claiming cross-language byte-exact [perceptual-hashing topic page] but it is unverified at production scale.</li>
+</ul>
+<p>Trap components:</p>
+<ul>
+<li><strong>custom-built perceptual hash reinvention</strong>: people try to roll their own pHash; the off-the-shelf imagehash library is stable and covers aHash/pHash/dHash/wHash/colorHash/crop-resistant.</li>
+<li><strong>Reading EXIF via Pillow alone</strong>: Pillow's EXIF support is patchy for MakerNotes; switch to Piexif or exifread when MakerNote parsing matters.</li>
+</ul>
+<p>Security/trust:</p>
+<ul>
+<li>C2PA tools have not had a major CVE event, but the trust root list is small - the Adobe-issued certificates are dominant, which itself is a single-point-of-failure concern.</li>
+<li>Pillow CVEs appear roughly annually (e.g. 2024 libwebp CVE); pin via lockfile.</li>
+</ul>
+<h2>shape_3_local_first_privacy_ai_ollama_llama_cpp_embeddings_vector_dbs</h2>
+<p>Gold-plated table:</p>
+<table><thead><tr><th>Library</th><th>Repo</th><th>Stars</th><th>License</th><th>What it does</th><th>Stdlib-vend?</th></tr></thead><tbody><tr><td>Ollama</td><td>ollama/ollama</td><td>178,512</td><td>MIT</td><td>Model runtime for Llama, Qwen, Phi, GLM, DeepSeek</td><td>NO - needs server</td></tr><tr><td>llama.cpp</td><td>ggml-org/llama.cpp</td><td>90,600</td><td>MIT</td><td>C/C++ inference engine; ggml backend</td><td>NO - native binary</td></tr><tr><td>llama-cpp-python</td><td>abetlen/llama-cpp-python</td><td>10,551</td><td>MIT</td><td>Python bindings; load gguf in-process</td><td>NO - native wheels</td></tr><tr><td>ChromaDB</td><td>chroma-core/chromadb</td><td>~25,000</td><td>Apache-2.0</td><td>Embedded vector DB; SQLite-backed</td><td>NO - server process</td></tr><tr><td>Qdrant</td><td>qdrant/qdrant</td><td>33,981</td><td>Apache-2.0</td><td>High-perf vector DB; REST + gRPC</td><td>NO - server</td></tr><tr><td>LanceDB</td><td>lancedb/lancedb</td><td>11,147</td><td>Apache-2.0</td><td>Embedded columnar vector store</td><td>NO - server</td></tr><tr><td>FAISS</td><td>facebookresearch/faiss</td><td>40,743</td><td>MIT</td><td>C++ similarity search + Python bindings</td><td>NO - native wheels</td></tr><tr><td>sentence-transformers</td><td>huggingface/sentence-transformers</td><td>18,846</td><td>Apache-2.0</td><td>Wraps HF models; pip install</td><td>NO - large pull</td></tr><tr><td>fastembed</td><td>qdrant/fastembed</td><td>2,946</td><td>Apache-2.0</td><td>ONNX fast embeddings (CPU-friendly)</td><td>NO - native ONNX</td></tr></tbody></table>
+<p>Gap niches:</p>
+<ul>
+<li><strong>Production-grade pure-Python embeddings</strong>: none. Every embedding library wraps a HF model or ONNX runtime.</li>
+<li><strong>Tiny (<1MB) local-first pgvector</strong>: sqlite-vec is the closest; not in this table but worth flagging as an embedded alternative.</li>
+<li><strong>Multi-tenant vector store with row-level security</strong>: missing above Chroma/Qdrant/Lance. Build the policy layer yourself.</li>
+</ul>
+<p>Trap components:</p>
+<ul>
+<li><strong>Closures Vector DB (Weaviate, Pinecone clients)</strong>: often cloud-only; for local-first, Chroma/Lance are better.</li>
+<li><strong>llama-cpp-python implying no native compile</strong>: it pulls prebuilt wheels but the build is fragile on Mac arm64 / musl. Pin Python version.</li>
+</ul>
+<p>Security/trust:</p>
+<ul>
+<li>Ollama had a CVE on its HTTPS listener trust-default in 2024 - run only with explicit bind.</li>
+<li>llama.cpp has no catastrophic recent CVE; FFmpeg interop was prior risk area.</li>
+<li>sentence-transformers pulls arbitrary HF weights - trust the source.</li>
+</ul>
+<h2>shape_4_messaging_fraud_detection_caller_id_sms_parsing_upi_patterns</h2>
+<p>Gold-plated table:</p>
+<table><thead><tr><th>Library</th><th>Repo</th><th>Stars</th><th>License</th><th>What it does</th><th>Stdlib-vend?</th></tr></thead><tbody><tr><td>python-phonenumbers</td><td>daviddrysdale/python-phonenumbers</td><td>3,700</td><td>Apache-2.0</td><td>libphonenumber port: parse/format/validate</td><td>NO - wraps C++</td></tr><tr><td>phonenumberslite (pure Python previous API)</td><td>n/a</td><td>-</td><td>-</td><td>dropped - use python-phonenumbers</td><td>-</td></tr><tr><td>Truecaller (API client libraries on GitHub)</td><td>topics only</td><td>varies</td><td>mostly MIT</td><td>rely on Truecaller's API key - not FOSS DB</td><td>NO</td></tr><tr><td>upi-deeplink-builder</td><td>vivekkushwaha66/upi-deeplink-builder</td><td>~30</td><td>MIT (assumed)</td><td>Tiny UPI deep-link generator</td><td>YES - tiny</td></tr><tr><td>spam-classifier (PyPI demo)</td><td>spam-classifier on PyPI</td><td>n/a</td><td>MIT</td><td>Tutorial-grade scikit-learn pipeline</td><td>NO</td></tr></tbody></table>
+<p>Gap niches (THIS IS YOUR BIGGEST WHITESPACE):</p>
+<ul>
+<li><strong>No FOSS spam-SMS classifier for the Indian market</strong>: there is no maintained corpus of Indian-language spam messages + classifier on GitHub. Build one in 24h with scikit-learn + a labelled seed.</li>
+<li><strong>No FOSS UPI fraud-pattern database</strong>: published fraud deep-links change weekly; no aggregator has stepped up.</li>
+<li><strong>No FOSS caller-ID community database</strong>: Truecaller alternatives on GitHub are wrappers over Truecaller's API; you cannot self-host. The only path is your own community of contributors.</li>
+<li><strong>No FOSS PSTN/SIP/WhatsApp deep-link parser for India</strong>; UPI deeplink-builder is the only credible deeplink helper.</li>
+</ul>
+<p>Trap components:</p>
+<ul>
+<li><strong>"Truecaller alternative" repos on GitHub are API clients</strong> - they cannot work without a Truecaller-issued key; they are dead-ends for self-hosting.</li>
+<li><strong>Naive regex UPI parsing</strong>: a VPA like <code>name@okhdfcbank</code> is parseable with one regex; do not pull in ML until you have evidence.</li>
+</ul>
+<p>Security/trust:</p>
+<ul>
+<li>Truecaller alternatives are user-tracking conduits - privacy hazard.</li>
+</ul>
+<p>Recommendation: build a small IN/sms classifier in 24h (scikit-learn + a few hundred labelled examples) - that is a winning hackathon idea precisely because the OSS hole is large.</p>
+<h2>shape_5_enterprise_routing_workflow_n8n_temporal_camunda_rule_engines</h2>
+<p>Gold-plated table:</p>
+<table><thead><tr><th>Library</th><th>Repo</th><th>Stars</th><th>License</th><th>Notes</th><th>Stdlib-vend?</th></tr></thead><tbody><tr><td>n8n</td><td>n8n-io/n8n</td><td>200,653</td><td>Sustainable Use License (NOT OSI)</td><td>Visual workflow + 400 integrations</td><td>docker compose only</td></tr><tr><td>Camunda / Zeebe</td><td>camunda/camunda</td><td>4,239</td><td>Apache-2.0</td><td>BPMN-native process engine, Java</td><td>docker compose</td></tr><tr><td>Temporal SDK Python</td><td>temporalio/sdk-python</td><td>1,162</td><td>MIT</td><td>Durable-execution workflow SDK</td><td>NO - server required</td></tr><tr><td>Inngest</td><td>inngest/inngest</td><td>n/a here</td><td>Apache-2.0 self-host after Sep 2024 relaunch</td><td>event-driven TypeScript</td><td>NO</td></tr><tr><td>Hatchet</td><td>hatchet-dev/hatchet</td><td>6,000+</td><td>MIT (Python SDK paired)</td><td>Queue + workflows</td><td>NO</td></tr><tr><td>json-rules-engine</td><td>CacheControl/json-rules-engine</td><td>3,120</td><td>ISC</td><td>JSON-expressed rules, Node TS</td><td>NO</td></tr><tr><td>node-rules</td><td>mithunsatheesh/node-rules</td><td>~700</td><td>MIT</td><td>Forward-chaining JS rule engine</td><td>NO</td></tr><tr><td>StackStorm / st2</td><td>StackStorm/st2</td><td>6,514</td><td>Apache-2.0</td><td>Redis-based event/automation, but last upstream release Oct 2025</td><td>NO</td></tr></tbody></table>
+<p>Gap niches:</p>
+<ul>
+<li><strong>Pure-Python forward-chaining rule engine</strong>: json-rules-engine is JS; Casbin is RBAC. There is no mature Python Brenda-style rule engine. json-rules-engine is the closest FOSS but expects Node.</li>
+<li><strong>Lightweight human-in-loop approval state machine</strong>: pre-built FOSS is missing; Temporal + a worker is the conventional answer.</li>
+</ul>
+<p>Trap components:</p>
+<ul>
+<li><strong>n8n Sustainable Use License</strong> is non-OSI: you may self-host for your org but cannot sell-as-a-service without a separate license.</li>
+<li><strong>LiteLLM Enterprise license</strong>: switch to Langfuse self-host instead.</li>
+<li><strong>StackStorm</strong> maintenance shape as of 2026: last release 3.9.0 Oct 10 2025 with low commit rates - prefer Temporal.</li>
+</ul>
+<p>Security/trust:</p>
+<ul>
+<li>Camunda and Temporal have no critical CVE headlines in 2025-2026.</li>
+<li>n8n had a code-execution CVE class (workflow functions execute JS) - sandbox per-tenant.</li>
+</ul>
+<h2>shape_6_mcp_fastmcp_mcp_sdks_registry_security_tooling</h2>
+<p>This is the most densely-served shape - there is gold-plated infrastructure for everything in this domain.</p>
+<table><thead><tr><th>Component</th><th>Repo</th><th>Stars</th><th>License</th><th>What it does</th><th>Stdlib-vend?</th></tr></thead><tbody><tr><td>FastMCP</td><td>jlowin/fastmcp</td><td>24,383</td><td>Apache-2.0</td><td>Pythonic MCP server/client; <code>@mcp.tool</code></td><td>pip install</td></tr><tr><td>Official Python SDK</td><td>modelcontextprotocol/python-sdk</td><td>24,002</td><td>MIT</td><td>Reference Python implementation</td><td>pip install</td></tr><tr><td>Official TypeScript SDK</td><td>modelcontextprotocol/typescript-sdk</td><td>13,170</td><td>MIT</td><td>Reference TS implementation</td><td>npm install</td></tr><tr><td>mcp-scan / Snyk agent-scan</td><td>invariantlabs-ai/mcp-scan</td><td>2,489</td><td>Apache-2.0</td><td>Tool-poisoning + rug-pull scanner</td><td>pip install + Docker</td></tr><tr><td>ToolHive</td><td>stacklok/toolhive</td><td>2,004</td><td>Apache-2.0</td><td>Enterprise MCP server orchestration</td><td>Run as service</td></tr><tr><td>Official MCP Registry</td><td>modelcontextprotocol/registry</td><td>in flux</td><td>Apache-2.0</td><td>Server catalog + publish CLI (v1.8.0 Jul 2026)</td><td>Run as service</td></tr><tr><td>GitHub MCP Server</td><td>github/github-mcp-server</td><td>18,000+</td><td>MIT</td><td>Reference production-style MCP server</td><td>npm install</td></tr></tbody></table>
+<p>Gap niches:</p>
+<ul>
+<li><strong>MCP test harness / mock framework</strong>: nope; you write your own.</li>
+<li><strong>MCP spec-version negotiation enforcement</strong>: not formalized; client-side fork.</li>
+</ul>
+<p>Trap components:</p>
+<ul>
+<li><strong>FastMCP vs modelcontextprotocol/python-sdk overlap</strong>: FastMCP is a higher-level framework; MCP SDK is the lower-level protocol. Do not try to "drop-in MCP SDK" instead of FastMCP if you want a quick build - FastMCP saves days.</li>
+<li><strong>MCP server auto-publishing without human review</strong> is risky; use the official publisher CLI.</li>
+</ul>
+<p>Security/trust:</p>
+<ul>
+<li><strong>Tool poisoning</strong> is the named threat. mcp-scan detects tool descriptions that change after install (rug pulls) and prompt-injection payloads - keep it in the demo.</li>
+<li>mcp-scan was recently renamed/restructured; mirrors exist but the canonical repo is invariantlabs-ai/mcp-scan.</li>
+</ul>
+<h2>shape_7_multi_agent_orchestration_crewai_langgraph_autogen_swarm_pydantic_ai</h2>
+<p>Gold-plated AND trap-flagged table - this is the most contested shape:</p>
+<table><thead><tr><th>Library</th><th>Repo</th><th>Stars</th><th>License</th><th>Build composability</th><th>Stdlib-vend?</th><th>Security flag</th></tr></thead><tbody><tr><td>LangGraph</td><td>langchain-ai/langgraph</td><td>39,701</td><td>MIT</td><td>Graph nodes/edges, SQLite checkpoint</td><td>pip install</td><td>No public CVE; transitive LangChain risk</td></tr><tr><td>CrewAI</td><td>crewAIInc/crewAI</td><td>57,088</td><td>MIT</td><td>Role-based hierarchical agents</td><td>pip install</td><td><strong>CRITICAL: CVSS 9.6 RCE + CVSS 9.2 GitHub token leak</strong></td></tr><tr><td>AutoGen</td><td>microsoft/autogen</td><td>60,427</td><td>CC-BY-4.0 (not OSI-approved)</td><td>GroupChat, code-exec, multi-role</td><td>pip install</td><td>Repeated CVE advisories; low maturity</td></tr><tr><td>OpenAI Swarm</td><td>openai/swarm</td><td>21,906</td><td>MIT</td><td>Handoff-only pattern, 29 commits, "educational", explicitly paused by OpenAI</td><td>pip install</td><td>Stale; OpenAI directs users to Agents SDK</td></tr><tr><td>Pydantic AI</td><td>pydantic/pydantic-ai</td><td>19,301</td><td>MIT</td><td>Type-safe agents, 4 official durable-exec plug-ins (Temporal, DBOS, Prefect, Restate)</td><td>pip install</td><td>No critical CVE</td></tr><tr><td>Agno</td><td>agno-agi/agno</td><td>41,714</td><td>Apache-2.0</td><td>Fast multi-agent rag/eval; pure Python design</td><td>pip install</td><td>No public CVE</td></tr><tr><td>Letta</td><td>letta-ai/letta</td><td>24,247</td><td>Apache-2.0</td><td>Stateful agents with persistent memory + rest API</td><td>docker compose</td><td>No public CVE</td></tr><tr><td>Microsoft Agent Framework (MAF)</td><td>microsoft/agent-framework</td><td>12,809</td><td>MIT</td><td>Successor to AutoGen; .NET + Python</td><td>pip install</td><td>Early stage</td></tr><tr><td>OpenAI Agents SDK</td><td>openai/openai-agents-python</td><td>high</td><td>MIT</td><td>Built-in tracing, handoffs</td><td>pip install</td><td>No public CVE</td></tr><tr><td>LangGraph Studio UI</td><td>langchain-ai/langgraphjs</td><td>(referenced via langgraph)</td><td>n/a</td><td>visual debugger</td><td>web app</td><td>-</td></tr></tbody></table>
+<p>Gap niches:</p>
+<ul>
+<li><strong>Lightweight multi-agent with no message-bus dependency</strong>: Swarm would have been this but is paused. Agno is currently the closest lightweight Python pick.</li>
+<li><strong>Reverse-handoff (downward delegation) patterns</strong>: LangGraph supports arbitrary graphs; CrewAI is hierarchical-only.</li>
+<li><strong>Local-only multi-agent without any cloud call</strong>: Agno + Ollama is the only clean path.</li>
+</ul>
+<p>Trap components:</p>
+<ul>
+<li><strong>CrewAI looks deceptively approachable</strong>: CVSS 9.6 RCE via prompt-injection chaining and a CVSS 9.2 GitHub-token-leak incident in 2025 mean you are signing up for a security-fix treadmill. Use only behind a sandbox; for a hackathon, prefer Pydantic AI or Agno.</li>
+<li><strong>AutoGen license CC-BY-4.0</strong>: this is Creative Commons Attribution, not a code license; downstream teams should not redistribute without understanding the implication. Prefer MAF.</li>
+<li><strong>Swarm</strong>: 21,906 stars but only 29 commits and explicitly labelled "Educational" by OpenAI. Use as inspiration; treat the repo as a reference paper.</li>
+</ul>
+<p>Security/trust details:</p>
+<ul>
+<li><strong>CrewAI CVE chain October 2025</strong>: CERT/CC disclosed four CVEs coordinated with CrewAI; one is CVSS 9.6 RCE chaining prompt injection with infrastructure interactions and silent security downgrades.</li>
+<li><strong>CrewAI GitHub token leak</strong>: Noma Labs discovered a CVSS 9.2 flaw where an internal admin-level GitHub token leaked to user-facing exception text. Fix is on the maintainer side; users had no mitigation except waiting.</li>
+<li><strong>AutoGen</strong> has had multiple Github Advisory entries; treat as a moving target.</li>
+<li><strong>Pydantic AI, Agno, Letta, MAF</strong>: no public critical CVE in this window.</li>
+</ul>
+<h2>stdlib_only_python_vendorability_matrix</h2>
+<p>Our scaffold runs on Python stdlib only. The component verdict below answers: can a single <code>.py</code> file be vendored into our repo, or does it require a full server stack?</p>
+<table><thead><tr><th>Component</th><th>Stdlib-vend?</th><th>One-file size</th><th>Why / why not</th></tr></thead><tbody><tr><td>pycasbin</td><td>YES</td><td>small</td><td>Pure-Python modular package; vendor <code>casbin/</code> subtree</td></tr><tr><td>Piexif</td><td>YES</td><td>tiny</td><td><code>piexif</code> is a few <code>.py</code> files; drop in</td></tr><tr><td>exifread</td><td>YES</td><td>small</td><td>single-package; vendor as-is</td></tr><tr><td>json-rules-engine</td><td>NO</td><td>-</td><td>JavaScript; call via subprocess or replace with tiny Python reimplementation of the JSON-Rule DSL</td></tr><tr><td>Casbin DSL converter</td><td>YES</td><td>very small</td><td>Write your own conf-&gt;dictionary loader; rest of Casbin can be vendored</td></tr><tr><td>Pillow</td><td>NO</td><td>-</td><td>requires libjpeg/libpng/etc.</td></tr><tr><td>ImageHash</td><td>NO</td><td>-</td><td>numpy/scipy + Pillow stack</td></tr><tr><td>python-phonenumbers</td><td>NO</td><td>-</td><td>wraps shared C++ lib</td></tr><tr><td>Ollama</td><td>NO</td><td>-</td><td>requires <code>ollama</code> binary, model file</td></tr><tr><td>llama-cpp-python</td><td>NO</td><td>-</td><td>native ggml dependency</td></tr><tr><td>ChromaDB / Qdrant / Lance</td><td>NO</td><td>-</td><td>server processes</td></tr><tr><td>FAISS</td><td>NO</td><td>-</td><td>native</td></tr><tr><td>sentence-transformers</td><td>NO</td><td>-</td><td>large dependency tree</td></tr><tr><td>FastMCP</td><td>NO</td><td>-</td><td>constructs an MCP server; needs <code>mcp</code> SDK</td></tr><tr><td>Pydantic AI</td><td>NO</td><td>-</td><td>requires <code>pydantic-ai</code> and an LLM endpoint</td></tr><tr><td>Agno</td><td>NO</td><td>-</td><td>requires the agno-agi/agno package</td></tr><tr><td>LangGraph</td><td>NO</td><td>-</td><td>requires <code>langgraph</code> + a checkpointer backend</td></tr><tr><td>CrewAI</td><td>NO</td><td>-</td><td>requires crewAIInc/crewAI; also CVE-burdened</td></tr><tr><td>OPA</td><td>NO</td><td>-</td><td>CLI binary</td></tr><tr><td>Cedar</td><td>NO</td><td>-</td><td>Rust CLI</td></tr><tr><td>OpenFGA / SpiceDB / Permify</td><td>NO</td><td>-</td><td>server processes</td></tr><tr><td>n8n / Camunda / Temporal</td><td>NO</td><td>-</td><td>full-stack systems</td></tr><tr><td>Langfuse / Helicone / LiteLLM</td><td>NO</td><td>-</td><td>server processes</td></tr><tr><td>mcp-scan</td><td>NO</td><td>-</td><td>separate Python service</td></tr></tbody></table>
+<p>Net stand-on list for an actual zero-dependency Python demo server:</p>
+<ul>
+<li>Use <strong>pycasbin</strong> for "agent X can call tool Y" RBAC checks.</li>
+<li>Use <strong>Piexif + exifread</strong> for EXIF read/write.</li>
+<li>Use <strong>stdlib <code>hashlib</code> + <code>hash</code> + <code>hmac</code></strong> for content hashing and signed audit trails (no Pillow).</li>
+<li>Use <strong>stdlib <code>sqlite3</code></strong> for state (Casbin + audit log + step-up approvals).</li>
+<li>Use <strong>stdlib <code>http.server</code> + <code>socketserver</code></strong> for the MCP-shaped endpoint (or build a 50-LOC FastMCP clone).</li>
+<li>Use <strong>stdlib <code>asyncio</code> + <code>subprocess</code></strong> to bridge to a full Ollama / llama.cpp process for inference.</li>
+</ul>
+<p>Everything else - especially embeddings, vector search, durable execution, real LLM agent loops - is a stack addition, not a vend file.</p>
+<h2>synthesis_cross_cutting_insights</h2>
+<p>The seven shapes fell into three clear tiers by OSS density:</p>
+<p><strong>Tier 1 (densest - gold-plated everywhere)</strong>: Shape 6 MCP. The combination of official Anthropic stewardship (registry + Python/TS SDKs), high-quality community frameworks (FastMCP), and security tooling (mcp-scan, ToolHive) means a hackathon team can ship a fully-governed MCP-based demo in 24h without inventing anything. The strategic implication: MCP demos will be the "table-stakes" category in 2026 - differentiation will come from the *quality* of the tools and auditability, not the framework choice.</p>
+<p><strong>Tier 2 (mostly gold-plated with one or two controversial picks)</strong>: Shapes 1, 2, 3, 5, 7. Each has a clearly-dominant OSS recommendation (Casbin for authz, Pillow for image, Ollama for runtime, Camunda/Temporal for workflows, Pydantic AI for agents) but also one trap that will burn a team that picks wrong. The CrewAI trap, the n8n license trap, and the AutoGen CC-BY trap are the three single-biggest mistakes a student team can make in a 24h build. *Mechanism*: high star counts and visible marketing create selection bias that obscures license and security posture. *Implication*: read LICENSE.md and the security advisory feed before importing.</p>
+<p><strong>Tier 3 (genuine whitespace)</strong>: Shape 4 messaging fraud. python-phonenumbers parses numbers but no one has shipped a production-grade OSS spam-SMS or UPI-fraud classifier for the Indian market. The only UPI helper on GitHub is a small deeplink builder. A 24h build that ships a working Indian-context spam/fraud detector with a small labelled training set will likely be the only one in the room. *Mechanism*: the data is harder than the model, and most OSS maintainers do not own the data. *Strategic recommendation*: do not try to stand on FOSS here - spend the time on labelling and a simple scikit-learn model; the real value is data curation.</p>
+<p><strong>Non-obvious tensions to flag</strong>:</p>
+<ul>
+<li>StackStorm st2 has 6,514 stars and Apache-2.0 but its last release was Oct 10 2025 - it is functionally quasi-abandoned. Do not choose based on star count alone.</li>
+<li>python-phonenumbers has 3,700 stars Apache-2.0 but is the only credible PhoneNum lib; that means it's a hidden monarchy - if the upstream goes stale, every spam detector inherits that fragility.</li>
+<li>LiteLLM 56,363 stars looks like the obvious unified-LLM-gateway choice but its license is ent-licensed for hosted use. For a hackathon demo, prefer a plain Langfuse self-host.</li>
+<li>c2pa-python has only 98 stars - very low, but there is *no other credible Python C2PA*, so the low star count is misleading.</li>
+</ul>
+<p><strong>One-rule decision framework for a student team</strong>:</p>
+<ol>
+<li>If you can answer: "which OSS license?" without checking, you are wrong - check it.</li>
+<li>If your critical library has fewer than 100 weekly commits and is older than 2 years, you're inheriting an abandoned dependency.</li>
+<li>If the only contender for a slot is a single-person repo with <200 stars, your 24h build may have to contribute upstream - budget that.</li>
+<li>If a category has *no* FOSS answer at all, that is *not* a debt it is your hackathon's moat.</li>
+</ol>
+</main>
+</body>
+</html>

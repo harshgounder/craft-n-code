@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docs/BUILD-SPEC-4.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>docs/BUILD-SPEC-4.md</h1>
+  <p class="blurb">Spec 4: stress bench + deck MCP slide M1-M6. Built and verified.</p>
+  <a class="open" href="../../docs/BUILD-SPEC-4.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>BUILD-SPEC-4.md: MCP slide + cover badge in the deck generator</h1>
+<p>Grounding: scaffold/deck/deck-gen.js (12.3K, pptxgenjs). It has an IDEAS</p>
+<p>config with 4 skins (agentic, creative, multimodal, kavach), each with</p>
+<p>file/accent/title/tagline/problem/solution/demo arrays, and build(idea)</p>
+<p>renders the slides. The MCP shape (shape 6) has no dedicated slide; the</p>
+<p>idea lab drill (MOCK-DROP-20260815) flagged this as the only asset gap.</p>
+<p>Goal: add ONE optional mcpSlide per idea + a cover badge, so a shape-6</p>
+<p>problem statement maps to a deck without a rebuild.</p>
+<h2>Part 1: config (deck-gen.js)</h2>
+<p>Add to each of the 4 IDEAS entries an <code>mcpSlide</code> object:</p>
+<p>mcpSlide: { title: &lt;string&gt;, bullets: [&lt;string&gt; x 4] }</p>
+<p>Titles and bullets must be domain-appropriate per skin, drawn from:</p>
+<ul>
+<li>approval-gated MCP is the least-shipped sub-niche (~52% dead-server</li>
+</ul>
+<p>share in registries) = our wedge</p>
+<ul>
+<li>official MCP registry 9,652 servers; spec dates 2024-11-05 (HTTP+SSE</li>
+</ul>
+<p>deprecated), 2025-03-26 (Streamable HTTP), 2026-07-28 (stateless</p>
+<p>core, hardened auth, MRTR)</p>
+<ul>
+<li>tool poisoning is the headline attack class (Invariant Labs</li>
+</ul>
+<p>1 Apr 2025, OWASP indirect prompt injection via server responses)</p>
+<ul>
+<li>we compose gold-plated servers (filesystem, GitHub, Supabase, Slack,</li>
+</ul>
+<p>Playwright, Redis, Postgres), never rebuild them; typed allow-listed</p>
+<p>tools, policy gate outside the model</p>
+<ul>
+<li>human approval at every handoff, audit trace on every call</li>
+</ul>
+<p>No em dashes in any new string. No banned words (see docs rules).</p>
+<h2>Part 2: render (deck-gen.js)</h2>
+<ul>
+<li>In build(idea): after the demo slide is added, if idea.mcpSlide</li>
+</ul>
+<p>exists, add ONE slide titled idea.mcpSlide.title with the 4 bullets,</p>
+<p>using the same layout helpers as the existing slides (matching</p>
+<p>accent color + panel styling).</p>
+<ul>
+<li>On slide 1 (cover): if idea.mcpSlide exists, add a small badge text</li>
+</ul>
+<p>near the bottom: "MCP-READY" in the idea accent color, plain text,</p>
+<p>no shapes. Do not disturb existing cover layout.</p>
+<ul>
+<li>Ideas WITHOUT mcpSlide are unaffected (the if-guard must work when</li>
+</ul>
+<p>the key is absent).</p>
+<h2>Acceptance (numbered, run by Hermes after the build)</h2>
+<p>M1. node deck-gen.js exits 0 and regenerates all 4 .pptx files.</p>
+<p>M2. Slide count of each deck increases by EXACTLY 1 vs the previous</p>
+<p>build (count slides/slideN.xml entries via unzip -l; record</p>
+<p>before/after).</p>
+<p>M3. The new slide's title text exists in the pptx XML (grep the</p>
+<p>mcpSlide title string in the unzipped deck).</p>
+<p>M4. The cover badge "MCP-READY" appears on slide 1 XML of each deck.</p>
+<p>M5. grep -rl "—" on scaffold/deck returns nothing (no em dashes).</p>
+<p>M6. No other file changed (git status shows only deck-gen.js + the 4</p>
+<p>.pptx). No git commit.</p>
+<p>Boundary rules: only scaffold/deck/deck-gen.js may change (plus the 4</p>
+<p>generated .pptx). Do NOT touch serve.py, engine/, tests/, fixtures/,</p>
+<p>index.html, README, or docs. Do NOT git commit. Do NOT add npm</p>
+<p>packages (pptxgenjs already present).</p>
+</main>
+</body>
+</html>

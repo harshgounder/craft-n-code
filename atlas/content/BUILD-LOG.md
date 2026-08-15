@@ -272,3 +272,24 @@ A hostile self-review of everything. What it found and what was fixed:
    it always works.
 5. The repo reflects true state. Verified numbers only, honest negatives
    included.
+
+## ATLAS REFRESH (Aug 15 15:40 IST, atlas v3)
+
+The atlas site was stale: it covered 82 files and missed everything
+landed since the last build. Refreshed the manifest and rebuilt:
+
+- 82 -> 135 pages (1.02M -> 1.78M source chars).
+- New section THE NIGHT (AUG 15-16): runbook, submission text kit v2,
+  numbers ledger, attack sheets, backend drills, Rudra ask, playbook,
+  mock drops, channels, session log, build specs 3-4, UI/UX brief,
+  scaffold findings, storyboards, hardware gate (archived).
+- THE EVENT + 2: site forensics (two gates), brochure OCR.
+- THE BUILD + 10: 5 kit fixtures (kit1..kit5), feeds.py, test_feeds,
+  test_honesty, test_stress.
+- New section THE RAW RESEARCH WAVES: all 17 wave .md outputs,
+  judge dossiers content, 2025 Phase-1/2 verbatim txt, 6 re-fire
+  prompts.
+- Verified: all 134 manifest paths exist, build exits 0, test_build
+  ALL TESTS PASSED, footer count 135/1780982, spot checks (runbook
+  kill criteria, cheat sheet WEDGE line, continuation LATEST STATE)
+  all present.
