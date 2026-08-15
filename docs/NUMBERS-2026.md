@@ -62,6 +62,9 @@ pre-verified. Nothing here is vibes; each claim has an evidence tag.
 - 2026 Rajasthan: 402 registered at 15:10 IST Aug 14, 456 by ~17:45 IST Aug 14
   (+54 in under 3 hours, ~18/hr pace). ~96 players at last check. ₹299/team.
   VERIFIED, live API.
+- 2026 Rajasthan LATEST (live API 15:02 Aug 15): **654 registered**
+  (was 629 at 10:04 watchdog, 451 by yesterday evening). UP 1730325 = 5.
+  Registration closed Aug 14 23:59; field still climbing on late entries.
 - 2025 Rajasthan: 1,592 registered, 285 players across 11 state rounds.
   VERIFIED from research/state-rounds.
 - 2026 event: hybrid mode (Unstop listing), D3 Fest national finals Oct 30 -
