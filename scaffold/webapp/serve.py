@@ -26,7 +26,6 @@ from __future__ import annotations
 import json
 import mimetypes
 import re
-import sqlite3
 import sys
 import threading
 import time
@@ -49,6 +48,7 @@ import approval as A  # noqa: E402
 import multimodal as M  # noqa: E402
 import feeds  # noqa: E402
 import providers as P  # noqa: E402
+import storage as S  # noqa: E402
 
 FEED_CACHE: Optional[dict] = None
 FIXTURE: Optional[str] = None    # fixture name from --fixture NAME
@@ -103,6 +103,15 @@ def load_fixture(name: str) -> list[E.Item]:
     ) for r in rows]
 
 
+def _persist_feed_cache() -> None:
+    """Write the computed feed into the storage feed_cache table. Best effort:
+    a failure must never take the demo down (BUILD-SPEC B9)."""
+    try:
+        S.get_storage(DB).upsert_feed(FEED_CACHE)
+    except Exception:
+        pass
+
+
 def load_feed(profile: Optional[list] = None) -> dict:
     global FEED_CACHE
     profile = profile or ["general"]
@@ -112,6 +121,7 @@ def load_feed(profile: Optional[list] = None) -> dict:
     if FIXTURE:
         items = load_fixture(FIXTURE)
         FEED_CACHE = E.run_pipeline(items, profile)
+        _persist_feed_cache()
         return FEED_CACHE
     # real data kit: live feeds through the real pipeline
     if FEEDS:
@@ -119,25 +129,28 @@ def load_feed(profile: Optional[list] = None) -> dict:
         if feed_items:
             FEED_CACHE = E.run_pipeline(feed_items, profile)
             FEED_CACHE["feeds_meta"] = meta
+            _persist_feed_cache()
             return FEED_CACHE
-    if DB.exists():
-        conn = sqlite3.connect(DB)
-        rows = conn.execute(
-            "SELECT channel, source_id, sender, subject, body, received_at, summary, "
-            "rank_score, deadline_iso, is_urgent, kind FROM items").fetchall()
-        conn.close()
-        items = []
-        for r in rows:
-            items.append(E.Item(channel=r[0], source_id=r[1], sender=r[2], subject=r[3],
-                                body=r[4], received_at=r[5], summary=r[6], rank_score=r[7],
-                                deadline_iso=r[8], is_urgent=bool(r[9]), kind=r[10]))
-        if items:
-            FEED_CACHE = {"generated_at": "from-db", "today": "", "llm": {"model": "db"},
-                          "profile": profile, "total": len(items),
-                          "items": [i.as_dict() for i in items]}
-            return FEED_CACHE
+    # cached feed lives behind the storage layer (SQLite by default)
+    rows = S.get_storage(DB).list_items()
+    items = []
+    for r in rows:
+        items.append(E.Item(channel=r.get("channel", ""), source_id=r.get("source_id", ""),
+                            sender=r.get("sender", ""), subject=r.get("subject", ""),
+                            body=r.get("body", ""), received_at=r.get("received_at", ""),
+                            summary=r.get("summary", ""), rank_score=r.get("rank_score", 0.0),
+                            deadline_iso=r.get("deadline_iso"),
+                            is_urgent=bool(r.get("is_urgent", False)),
+                            kind=r.get("kind", "notice")))
+    if items:
+        FEED_CACHE = {"generated_at": "from-db", "today": "", "llm": {"model": "db"},
+                      "profile": profile, "total": len(items),
+                      "items": [i.as_dict() for i in items]}
+        _persist_feed_cache()
+        return FEED_CACHE
     # no db → run the engine fresh
     FEED_CACHE = E.run_pipeline(E.seed_items(), profile)
+    _persist_feed_cache()
     return FEED_CACHE
 
 
@@ -611,6 +624,12 @@ def main():
     if OFFLINE:
         import os
         os.environ["OLLAMA_API_KEY"] = ""
+    # apply the canonical schema (idempotent) so the storage layer is ready
+    # before any request lands; non-fatal on failure (BUILD-SPEC B9)
+    try:
+        S.get_storage(DB).migrate()
+    except Exception as e:
+        print(f"[serve] storage migrate warning: {e}")
     gate = "  (auth on)" if AUTH_TOKEN else ""
     print(f"[serve] http://{args.host}:{args.port}  (ctrl-c to stop){gate}")
     server = ThreadingHTTPServer((args.host, args.port), Handler)

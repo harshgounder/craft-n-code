@@ -12,9 +12,9 @@ import hashlib
 import json
 import os
 import re
-import sqlite3
 import sys
 import time
+from storage import get_storage
 from collections import Counter, deque
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, date, timedelta
@@ -455,19 +455,20 @@ def main():
     else:
         print(f"total={result['total']} llm={result['llm']}")
 
-    # sqlite persistence (Supabase-ready shape)
-    conn = sqlite3.connect(DB_PATH)
+    # storage-layer persistence (BUILD-SPEC B9): the engine DB lives behind
+    # the storage interface. Default backend is SQLite (same file and bytes
+    # as before); set DATABASE_URL to route to the optional Postgres backend.
+    storage = get_storage(DB_PATH)
+    storage.migrate()
+    conn = storage.connect()
     conn.execute("DROP TABLE IF EXISTS items")
     conn.execute("""CREATE TABLE items (
         channel TEXT, source_id TEXT, sender TEXT, subject TEXT, body TEXT,
         received_at TEXT, summary TEXT, rank_score REAL, deadline_iso TEXT,
         is_urgent INTEGER, kind TEXT)""")
-    for it in result["items"]:
-        conn.execute("INSERT INTO items VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                     (it["channel"], it["source_id"], it["sender"], it["subject"], it["body"],
-                      it["received_at"], it["summary"], it["rank_score"], it["deadline_iso"],
-                      int(it["is_urgent"]), it["kind"]))
     conn.commit()
+    for it in result["items"]:
+        storage.insert_item(it)
     print(f"[engine] persisted {len(result['items'])} rows → {DB_PATH.name}")
     return 0
 

@@ -2,16 +2,19 @@
 # Part 1 of BUILD-SPEC: a trustworthy agent with approved tools + audit trail.
 #
 # Pure stdlib. Reuses scaffold/engine/signal.db (never drops the items table).
+# Persistence routes through the storage layer (BUILD-SPEC B9): SQLite by
+# default, optional Postgres when DATABASE_URL points at a reachable server.
 
 from __future__ import annotations
 
 import hashlib
 import json
 import os
-import sqlite3
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+
+from storage import get_storage
 
 DB_PATH = Path(__file__).parent / "signal.db"
 
@@ -108,11 +111,11 @@ def gate(tool: Tool) -> str:
 # ────────────────────────────────────────────────────────────────
 
 _SCHEMA = """
-CREATE TABLE IF NOT EXISTS proposals (
+CREATE TABLE IF NOT EXISTS approvals (
     id TEXT PRIMARY KEY, tool TEXT, params TEXT, reason TEXT,
     evidence TEXT, confidence REAL, status TEXT,
     created_at TEXT, decided_at TEXT, actor TEXT);
-CREATE TABLE IF NOT EXISTS audit_events (
+CREATE TABLE IF NOT EXISTS audit (
     id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT, actor TEXT,
     decision TEXT, proposal_id TEXT, tool TEXT, params TEXT,
     evidence TEXT, reason TEXT);
@@ -123,9 +126,11 @@ CREATE TABLE IF NOT EXISTS consent (
 """
 
 
-def _connect() -> sqlite3.Connection:
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
+def _connect():
+    """Open a storage connection and ensure the approval tables exist.
+    Backend-neutral: question-mark placeholders work on both SQLite and the
+    psycopg adapter (BUILD-SPEC B9)."""
+    conn = get_storage(DB_PATH).connect()
     conn.executescript(_SCHEMA)
     return conn
 
@@ -134,8 +139,8 @@ def _now() -> str:
     return datetime.now().isoformat(timespec="seconds")
 
 
-def _next_proposal_id(conn: sqlite3.Connection) -> str:
-    rows = conn.execute("SELECT id FROM proposals").fetchall()
+def _next_proposal_id(conn) -> str:
+    rows = conn.execute("SELECT id FROM approvals").fetchall()
     mx = 0
     for r in rows:
         try:
@@ -146,20 +151,13 @@ def _next_proposal_id(conn: sqlite3.Connection) -> str:
 
 
 def save_proposal(proposal: Proposal) -> None:
-    conn = _connect()
-    conn.execute(
-        "INSERT INTO proposals (id, tool, params, reason, evidence, confidence, status, "
-        "created_at, decided_at, actor) VALUES (?,?,?,?,?,?,?,?,?,?)",
-        (proposal.id, proposal.tool, json.dumps(proposal.params), proposal.reason,
-         json.dumps(proposal.evidence), proposal.confidence, proposal.status,
-         proposal.created_at, proposal.decided_at, proposal.actor))
-    conn.commit()
-    conn.close()
+    """Persist (upsert) a proposal through the storage layer."""
+    get_storage(DB_PATH).insert_approval(proposal.as_dict())
 
 
-def _write_audit(conn: sqlite3.Connection, actor: str, decision: str, proposal: Proposal) -> None:
+def _write_audit(conn, actor: str, decision: str, proposal: Proposal) -> None:
     conn.execute(
-        "INSERT INTO audit_events (ts, actor, decision, proposal_id, tool, params, "
+        "INSERT INTO audit (ts, actor, decision, proposal_id, tool, params, "
         "evidence, reason) VALUES (?,?,?,?,?,?,?,?)",
         (_now(), actor, decision, proposal.id, proposal.tool, json.dumps(proposal.params),
          json.dumps(proposal.evidence), proposal.reason))
@@ -168,7 +166,7 @@ def _write_audit(conn: sqlite3.Connection, actor: str, decision: str, proposal: 
 def decide(proposal_id: str, decision: str, actor: str = "user") -> Proposal | None:
     """Apply a decision. Audit row is written BEFORE the status flips."""
     conn = _connect()
-    row = conn.execute("SELECT * FROM proposals WHERE id=?", (proposal_id,)).fetchone()
+    row = conn.execute("SELECT * FROM approvals WHERE id=?", (proposal_id,)).fetchone()
     if row is None:
         conn.close()
         return None
@@ -193,7 +191,7 @@ def decide(proposal_id: str, decision: str, actor: str = "user") -> Proposal | N
 
     _write_audit(conn, actor, decision_l, proposal)
     conn.execute(
-        "UPDATE proposals SET status=?, decided_at=?, actor=? WHERE id=?",
+        "UPDATE approvals SET status=?, decided_at=?, actor=? WHERE id=?",
         (new_status, _now(), actor, proposal_id))
     conn.commit()
     proposal.status = new_status
@@ -203,7 +201,7 @@ def decide(proposal_id: str, decision: str, actor: str = "user") -> Proposal | N
     return proposal
 
 
-def _row_to_proposal(row: sqlite3.Row) -> Proposal:
+def _row_to_proposal(row: dict) -> Proposal:
     return Proposal(
         id=row["id"],
         tool=row["tool"],
@@ -220,18 +218,14 @@ def _row_to_proposal(row: sqlite3.Row) -> Proposal:
 
 def list_proposals() -> list[Proposal]:
     conn = _connect()
-    rows = conn.execute("SELECT * FROM proposals ORDER BY created_at DESC").fetchall()
+    rows = conn.execute("SELECT * FROM approvals ORDER BY created_at DESC").fetchall()
     conn.close()
     return [_row_to_proposal(r) for r in rows]
 
 
 def list_audit() -> list[dict]:
-    conn = _connect()
-    rows = conn.execute(
-        "SELECT ts, actor, decision, proposal_id, tool, params, evidence, reason "
-        "FROM audit_events ORDER BY id DESC").fetchall()
-    conn.close()
-    return [dict(r) for r in rows]
+    """Audit trail, newest first, via the storage layer."""
+    return get_storage(DB_PATH).list_audit()
 
 
 # ────────────────────────────────────────────────────────────────
@@ -286,13 +280,13 @@ def has_consent(subject: str, scope: str) -> bool:
 def provenance(proposal_id: str) -> dict | None:
     """Build a per-decision provenance manifest on demand from existing rows."""
     conn = _connect()
-    row = conn.execute("SELECT * FROM proposals WHERE id=?", (proposal_id,)).fetchone()
+    row = conn.execute("SELECT * FROM approvals WHERE id=?", (proposal_id,)).fetchone()
     if row is None:
         conn.close()
         return None
     proposal = _row_to_proposal(row)
     audit = conn.execute(
-        "SELECT ts, actor, decision FROM audit_events WHERE proposal_id=? "
+        "SELECT ts, actor, decision FROM audit WHERE proposal_id=? "
         "ORDER BY id DESC LIMIT 1", (proposal_id,)).fetchone()
     conn.close()
 
@@ -352,7 +346,7 @@ def propose(tool_name: str, params: dict, reason: str, evidence: list,
         proposal.actor = "system"
         _write_audit(conn, "system", "auto-execute", proposal)
     conn.execute(
-        "INSERT INTO proposals (id, tool, params, reason, evidence, confidence, status, "
+        "INSERT INTO approvals (id, tool, params, reason, evidence, confidence, status, "
         "created_at, decided_at, actor) VALUES (?,?,?,?,?,?,?,?,?,?)",
         (proposal.id, proposal.tool, json.dumps(proposal.params), proposal.reason,
          json.dumps(proposal.evidence), proposal.confidence, proposal.status,
