@@ -24,6 +24,9 @@ class Provider(Protocol):
 class OllamaProvider:
     """Current behavior: ollama-cloud (OpenAI-compatible). Lazy env reads."""
 
+    def __init__(self):
+        self.failures = 0
+
     def chat(self, system: str, user: str, max_tokens: int = 400, temperature: float = 0.2) -> Optional[str]:
         api_key = os.environ.get("OLLAMA_API_KEY", "")
         model = os.environ.get("SIGNAL_MODEL", "deepseek-v4-flash:0731")
@@ -52,12 +55,16 @@ class OllamaProvider:
                 data = json.loads(resp.read().decode())
             return data["choices"][0]["message"]["content"].strip()
         except Exception as e:
+            self.failures += 1
             print(f"  [llm] ollama-cloud failed ({e}); using offline", file=sys.stderr)
             return None
 
 
 class NullProvider:
     """Pure offline: never returns a result, never touches the network."""
+
+    def __init__(self):
+        self.failures = 0
 
     def chat(self, system: str, user: str, max_tokens: int = 400, temperature: float = 0.2) -> Optional[str]:
         return None

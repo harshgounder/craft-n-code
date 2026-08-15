@@ -26,6 +26,7 @@ import threading
 import time
 import urllib.parse
 from collections import Counter
+from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Optional
@@ -39,10 +40,13 @@ sys.path.insert(0, str(HERE.parent / "engine"))
 import engine as E  # noqa: E402
 import approval as A  # noqa: E402
 import multimodal as M  # noqa: E402
+import feeds  # noqa: E402
 
 FEED_CACHE: Optional[dict] = None
 FIXTURE: Optional[str] = None    # fixture name from --fixture NAME
 OFFLINE: bool = False            # forced offline from --offline
+FEEDS: bool = False              # real data kit from --feeds
+FEEDS_DIR = HERE.parent / "data" / "feeds"
 
 
 def load_fixture(name: str) -> list[E.Item]:
@@ -71,6 +75,13 @@ def load_feed(profile: Optional[list] = None) -> dict:
         items = load_fixture(FIXTURE)
         FEED_CACHE = E.run_pipeline(items, profile)
         return FEED_CACHE
+    # real data kit: live feeds through the real pipeline
+    if FEEDS:
+        feed_items, meta = feeds.load_feeds(FEEDS_DIR)
+        if feed_items:
+            FEED_CACHE = E.run_pipeline(feed_items, profile)
+            FEED_CACHE["feeds_meta"] = meta
+            return FEED_CACHE
     if DB.exists():
         conn = sqlite3.connect(DB)
         rows = conn.execute(
@@ -102,9 +113,42 @@ def current_mode() -> str:
     llm = feed.get("llm") or {}
     if llm.get("model") == "db":
         return "cached"
+    if llm.get("model") == "OFFLINE":
+        return "offline"
+    if llm.get("provider_errors", 0) > 0:
+        return "offline"
     if llm.get("cache_hits", 0) > 0 and llm.get("cache_misses", 0) == 0:
         return "cached"
     return "live"
+
+
+def feeds_status() -> dict:
+    """Data freshness for the real data kit, separate from the LLM mode badge.
+    live if any source ok and fetched within 30 minutes, cached if files exist
+    but stale or all errored, offline if no files."""
+    meta_path = FEEDS_DIR / "_meta.json"
+    if not meta_path.exists():
+        return {"sources": [], "mode": "offline"}
+    try:
+        meta = json.loads(meta_path.read_text())
+    except Exception:
+        return {"sources": [], "mode": "offline"}
+    sources = meta.get("sources", {})
+    fetched_at = meta.get("fetched_at", "")
+    fresh = False
+    try:
+        fetched = datetime.fromisoformat(fetched_at)
+        fresh = (datetime.now(timezone.utc) - fetched).total_seconds() < 1800
+    except Exception:
+        fresh = False
+    any_ok = any(s.get("status") == "ok" for s in sources.values())
+    if any_ok and fresh:
+        mode = "live"
+    elif sources:
+        mode = "cached"
+    else:
+        mode = "offline"
+    return {"sources": list(sources.values()), "mode": mode}
 
 
 def search(items: list[dict], q: str, top: int = 5) -> list[dict]:
@@ -193,15 +237,20 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
         return
 
     if parts[0] == "static":
-        f = STATIC / parts[1]
-        if f.exists():
-            handler.send_response(200)
-            handler.send_header("Content-Type", mimetypes.guess_type(str(f))[0] or "text/plain")
-            handler.end_headers()
-            handler.wfile.write(f.read_bytes())
-        else:
+        # reject traversal: no "..", ".", or empty segments allowed
+        if any(seg in ("..", ".", "") for seg in parts[1:]):
             handler.send_response(404)
             handler.end_headers()
+            return
+        f = (STATIC / Path(*parts[1:])).resolve()
+        if not str(f).startswith(str(STATIC.resolve())) or not f.is_file():
+            handler.send_response(404)
+            handler.end_headers()
+            return
+        handler.send_response(200)
+        handler.send_header("Content-Type", mimetypes.guess_type(str(f))[0] or "text/plain")
+        handler.end_headers()
+        handler.wfile.write(f.read_bytes())
         return
 
     if parts[0] == "api":
@@ -209,6 +258,9 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
 
         if parts[1] == "feed":
             return json_reply(handler, feed)
+
+        if parts[1] == "feeds":
+            return json_reply(handler, feeds_status())
 
         if parts[1] == "digest":
             urgent = [i for i in feed["items"] if i.get("is_urgent")][:3]
@@ -239,12 +291,15 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
         if parts[1] == "stats":
             counts = Counter(i["channel"] for i in feed["items"])
             deadlines = [i for i in feed["items"] if i.get("deadline_iso")]
-            return json_reply(handler, {
+            stats = {
                 "total": feed["total"], "channels": dict(counts),
                 "deadlines_found": len(deadlines),
                 "llm": feed["llm"], "skin_ready": True,
                 "mode": current_mode(),
-            })
+            }
+            if FEEDS:
+                stats["feeds"] = feed.get("feeds_meta")
+            return json_reply(handler, stats)
 
         if parts[1] == "trace":
             return json_reply(handler, {"steps": E.get_trace()})
@@ -343,7 +398,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
-    global FIXTURE, OFFLINE
+    global FIXTURE, OFFLINE, FEEDS
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--port", type=int, default=8000)
@@ -351,10 +406,13 @@ def main():
                     help="load a golden fixture feed from scaffold/fixtures/NAME.json")
     ap.add_argument("--offline", action="store_true",
                     help="force offline mode (no LLM key, no network)")
+    ap.add_argument("--feeds", action="store_true",
+                    help="use the real data kit (data/feeds) as the feed")
     args = ap.parse_args()
     if args.fixture:
         FIXTURE = args.fixture
     OFFLINE = args.offline
+    FEEDS = args.feeds
     if OFFLINE:
         import os
         os.environ["OLLAMA_API_KEY"] = ""

@@ -1,0 +1,216 @@
+# Real data kit: pull live, public, key-free feeds into the demo.
+# BUILD-SPEC-3 Part 2. Pure stdlib (urllib/json). Cached fallback with honest
+# freshness metadata: the UI always knows whether data is live, cached, or
+# offline. Same philosophy as the mode badge.
+#
+# CLI:
+#   python3 engine/feeds.py --refresh   -> network fetch, write files
+#   python3 engine/feeds.py --offline   -> no network, mark every source error
+#   python3 engine/feeds.py --dump      -> print to_items JSON to stdout
+from __future__ import annotations
+
+import json
+import os
+import re
+import sys
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+
+HERE = Path(__file__).parent
+DEFAULT_OUTDIR = HERE.parent / "data" / "feeds"
+
+USER_AGENT = "Mozilla/5.0 (Craft-N-Code-2026; +https://github.com/)"
+
+
+def _slug(text: str) -> str:
+    s = re.sub(r"[^a-z0-9]+", "-", (text or "").lower()).strip("-")
+    return s[:60] or "item"
+
+
+def _extract_hn(data: dict) -> list[dict]:
+    out = []
+    for h in data.get("hits", []):
+        out.append({
+            "title": h.get("title") or h.get("story_text") or "",
+            "body": h.get("story_text") or h.get("title") or "",
+            "url": h.get("url") or h.get("objectID") or "",
+        })
+    return out
+
+
+def _extract_github(data: dict) -> list[dict]:
+    out = []
+    for it in data.get("items", []):
+        out.append({
+            "title": it.get("full_name") or "",
+            "body": it.get("description") or "",
+            "url": it.get("html_url") or "",
+        })
+    return out
+
+
+def _extract_unstop(data: dict) -> list[dict]:
+    obj = data if isinstance(data, dict) else {}
+    title = obj.get("name") or obj.get("title") or ""
+    body = ""
+    regs = obj.get("registrations") or obj.get("total_registrations")
+    prize = obj.get("prize") or obj.get("prize_money")
+    bits = []
+    if regs:
+        bits.append(f"registrations: {regs}")
+    if prize:
+        bits.append(f"prize: {prize}")
+    if bits:
+        body = ", ".join(bits)
+    url = obj.get("url") or obj.get("page_url") or obj.get("share_url") or ""
+    return [{"title": title, "body": body, "url": url}]
+
+
+SOURCES = [
+    {
+        "name": "hn",
+        "url": "https://hn.algolia.com/api/v1/search?tags=front_page",
+        "kind": "news",
+        "extractor": _extract_hn,
+    },
+    {
+        "name": "github",
+        "url": "https://api.github.com/search/repositories?q=agentic+ai&sort=stars&order=desc&per_page=10",
+        "kind": "repo",
+        "extractor": _extract_github,
+    },
+    {
+        "name": "unstop",
+        "url": "https://unstop.com/api/public/competition/1730314",
+        "kind": "event",
+        "extractor": _extract_unstop,
+    },
+]
+
+
+def fetch_source(src: dict) -> tuple[list[dict], str | None]:
+    """Fetch one source. Returns (records, error). Never raises."""
+    req = urllib.request.Request(
+        src["url"], headers={"User-Agent": USER_AGENT})
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read().decode())
+        records = src["extractor"](data)
+        return records, None
+    except Exception as e:
+        return [], str(e)
+
+
+def refresh(outdir: Path) -> dict:
+    """Fetch all sources, write outdir/<name>.json and outdir/_meta.json.
+    Always exits 0 even when every source fails; the meta file is the honest
+    record. Returns the meta dict."""
+    outdir.mkdir(parents=True, exist_ok=True)
+    fetched_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    meta = {"fetched_at": fetched_at, "sources": {}}
+    for src in SOURCES:
+        records, err = fetch_source(src)
+        (outdir / f"{src['name']}.json").write_text(json.dumps(records))
+        meta["sources"][src["name"]] = {
+            "status": "ok" if err is None else "error",
+            "count": len(records),
+            "error": err or "",
+        }
+    (outdir / "_meta.json").write_text(json.dumps(meta, indent=1))
+    return meta
+
+
+def refresh_offline(outdir: Path) -> dict:
+    """No network: write empty source files and a meta file marking every
+    source as error with reason 'offline'. Always exits 0."""
+    outdir.mkdir(parents=True, exist_ok=True)
+    fetched_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    meta = {"fetched_at": fetched_at, "sources": {}}
+    for src in SOURCES:
+        (outdir / f"{src['name']}.json").write_text(json.dumps([]))
+        meta["sources"][src["name"]] = {
+            "status": "error", "count": 0, "error": "offline",
+        }
+    (outdir / "_meta.json").write_text(json.dumps(meta, indent=1))
+    return meta
+
+
+def to_items(records: list[dict], source_name: str, kind: str,
+             fetched_at: str) -> list:
+    """Convert records to E.Item objects. Imported lazily to keep the CLI
+    usable without the engine module."""
+    import engine as E
+    items = []
+    for r in records:
+        title = r.get("title") or ""
+        url = r.get("url") or ""
+        items.append(E.Item(
+            channel=source_name,
+            source_id=url or _slug(title),
+            sender=source_name,
+            subject=title,
+            body=r.get("body") or "",
+            received_at=fetched_at,
+            kind=kind,
+        ))
+    return items
+
+
+def load_feeds(feeds_dir: Path) -> tuple[list, dict | None]:
+    """Read feeds_dir/<name>.json for every source plus _meta.json.
+    Returns (items, meta). meta is None when _meta.json is missing."""
+    meta = None
+    meta_path = feeds_dir / "_meta.json"
+    if meta_path.exists():
+        try:
+            meta = json.loads(meta_path.read_text())
+        except Exception:
+            meta = None
+    items = []
+    fetched_at = (meta or {}).get("fetched_at", "")
+    for src in SOURCES:
+        p = feeds_dir / f"{src['name']}.json"
+        if not p.exists():
+            continue
+        try:
+            records = json.loads(p.read_text())
+        except Exception:
+            records = []
+        items.extend(to_items(records, src["name"], src["kind"], fetched_at))
+    return items, meta
+
+
+def main() -> int:
+    import argparse
+    ap = argparse.ArgumentParser(description="Real data kit: live feeds into the demo")
+    ap.add_argument("--refresh", action="store_true", help="network fetch, write files")
+    ap.add_argument("--offline", action="store_true", help="no network, mark every source error")
+    ap.add_argument("--dump", action="store_true", help="print to_items JSON to stdout")
+    ap.add_argument("--out", default=str(DEFAULT_OUTDIR), help="output directory")
+    args = ap.parse_args()
+
+    outdir = Path(args.out)
+
+    if args.offline:
+        refresh_offline(outdir)
+        print(f"[feeds] offline refresh wrote {outdir}")
+        return 0
+
+    if args.refresh:
+        meta = refresh(outdir)
+        print(f"[feeds] refresh wrote {outdir} "
+              f"({sum(s['count'] for s in meta['sources'].values())} records)")
+        return 0
+
+    if args.dump:
+        items, meta = load_feeds(outdir)
+        print(json.dumps([i.as_dict() for i in items], indent=1))
+        return 0
+
+    ap.print_help()
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())
