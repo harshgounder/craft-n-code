@@ -60,6 +60,15 @@ const IDEAS = {
       ["1 mo", "Team rollout: approval flows with audit"],
       ["90d", "Org-wide: every action tracked, every decision logged"],
     ],
+    mcpSlide: {
+      title: "MCP: capabilities behind a gate you approve",
+      bullets: [
+        "Compose gold-plated MCP servers (filesystem, GitHub, Slack, Postgres), never rebuild",
+        "Typed, allow-listed tools; the policy gate sits outside the model, not in a prompt",
+        "Human approval at every handoff, an audit trace on every call",
+        "Tool poisoning is the headline attack (Invariant Labs, 1 Apr 2025): pin and scan descriptions",
+      ],
+    },
   },
   multimodal: {
     file: "deck-multimodal.pptx",
@@ -96,6 +105,15 @@ const IDEAS = {
       ["1 mo", "Team deployment with audit trail"],
       ["90d", "Org-wide: every answer traceable"],
     ],
+    mcpSlide: {
+      title: "MCP: evidence in, escalation out, both gated",
+      bullets: [
+        "Compose gold-plated MCP servers (filesystem, GitHub, Supabase, Slack), never rebuild",
+        "Typed, allow-listed tools; the policy gate sits outside the model, not in a prompt",
+        "Human approval at every handoff, an audit trace on every call",
+        "Tool poisoning is the headline attack (OWASP indirect prompt injection): pin and scan",
+      ],
+    },
   },
   creative: {
     file: "deck-creative.pptx",
@@ -132,6 +150,15 @@ const IDEAS = {
       ["1 mo", "Team review flows"],
       ["90d", "Full asset pipeline with brand rules"],
     ],
+    mcpSlide: {
+      title: "MCP: provenance in, approval out, all through a gate",
+      bullets: [
+        "Compose gold-plated MCP servers (filesystem, GitHub, Supabase, Playwright), never rebuild",
+        "Typed, allow-listed tools; the policy gate sits outside the model, not in a prompt",
+        "Human approval at every handoff, an audit trace on every call",
+        "Tool poisoning is the headline attack (Invariant Labs, 1 Apr 2025): pin and scan",
+      ],
+    },
   },
   kavach: {
     file: "deck-kavach.pptx",
@@ -168,6 +195,15 @@ const IDEAS = {
       ["1 mo", "Hindi voice guidance v1"],
       ["90d", "Family rollout with banks as distribution"],
     ],
+    mcpSlide: {
+      title: "MCP: six departments, one gated intervention loop",
+      bullets: [
+        "Compose gold-plated MCP servers (Redis, Postgres, Slack), never rebuild",
+        "Typed, allow-listed tools; the policy gate sits outside the model, not in a prompt",
+        "Human approval at every handoff, an audit trace on every call",
+        "Tool poisoning is the headline attack (OWASP indirect prompt injection): pin and scan",
+      ],
+    },
   },
 };
 
@@ -191,6 +227,9 @@ function build(idea) {
   s.addText(idea.title, { x: 0.9, y: 2.3, w: 11.5, h: 1.4, fontSize: 54, bold: true, color: WHITE, fontFace: "Arial" });
   s.addText(idea.tagline, { x: 0.9, y: 3.75, w: 11.3, h: 0.9, fontSize: 20, color: MUT });
   s.addText("Team 511  |  Harsh Gounder (lead)  |  Ayush Kharwar  |  Sujal Shukla", { x: 0.9, y: 6.4, w: 11.5, h: 0.4, fontSize: 13, color: MUT });
+  if (idea.mcpSlide) {
+    s.addText("MCP-READY", { x: 10.6, y: 7.05, w: 2.0, h: 0.3, fontSize: 12, bold: true, color: a, align: "right" });
+  }
   s.addNotes("Opening line: " + idea.problem[0]);
 
   // S2: Problem
@@ -227,7 +266,20 @@ function build(idea) {
   s.addText("Backup: pre-recorded demo video ready if projector or network fails.", { x: 1.1, y: 6.6, w: 11, h: 0.5, fontSize: 12, italic: true, color: MUT });
   s.addNotes("Demo beats deck. Show the loop, not the slides.");
 
-  // S5: Impact
+  // S5: MCP (optional, only if the idea declares it)
+  if (idea.mcpSlide) {
+    s = p.addSlide();
+    s.background = { color: NAVY };
+    s.addShape("rect", { x: 0, y: 0, w: 13.33, h: 0.08, fill: { color: a } });
+    s.addText(idea.mcpSlide.title, { x: 0.9, y: 0.5, w: 11.5, h: 0.7, fontSize: 26, bold: true, color: WHITE });
+    idea.mcpSlide.bullets.forEach((line, i) =&gt; {
+      s.addShape("roundRect", { x: 0.9, y: 1.7 + i * 1.25, w: 11.5, h: 1.05, rectRadius: 0.08, fill: { color: PANEL }, line: { color: LINE, width: 1 } });
+      s.addText(line, { x: 1.3, y: 1.85 + i * 1.25, w: 10.7, h: 0.75, fontSize: 15, color: TXT });
+    });
+    s.addNotes("MCP is the wedge: approval-gated compose beats rebuild, gate outside the model.");
+  }
+
+  // S6: Impact
   s = p.addSlide();
   s.background = { color: NAVY };
   s.addText("Impact", { x: 0.9, y: 0.5, w: 6, h: 0.6, fontSize: 30, bold: true, color: WHITE });

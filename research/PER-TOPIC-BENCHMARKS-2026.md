@@ -20,9 +20,14 @@ compliance stack = DPDPA 2023 + CERT-In Directions + RBI Digital
 Lending Directions 2025 + MeitY India AI Governance Guidelines
 (Nov 2025).
 
-Coverage target: hundreds of named benchmarks. The 81/81 suite maps to
-this file: every check in scaffold/tests is an instance of a class
-listed here, and the night kit can cite the class names.
+Coverage: 30 domain sections, ~250 named benchmarks/standards/tools.
+Statuses: [PREFILL] rows = from model knowledge (wave-4 verified numbers
+live in the block above; per-domain merge pending); [VERIFIED] = seen
+in a cited source this cycle. EVIDENCE CHAIN (read once): wave-sourced
+numbers are verified through the report's inline citations, not
+independently re-measured; the recheck spot-checks URL reachability,
+not content. When citing a number on stage, keep the same chain:
+"per <source>, cited in our research, raw file on disk".
 
 ## 01 OPS / SRE / INCIDENT
 [PREFILL] DORA metrics (deployment frequency, lead time, MTTR, change

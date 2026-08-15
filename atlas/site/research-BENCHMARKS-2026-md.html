@@ -147,6 +147,19 @@
 <h2>WAVE-2 NUMBERS (parallel.ai pro-fast, Aug 15, raw in</h2>
 <h2>research/raw/wave2-ai-failures.md)</h2>
 <ul>
+<li>**SWE-bench VALIDITY CAVEATS (ai-code-failure-matrix R01, VERIFIED</li>
+</ul>
+<p>Aug 15): the leaderboard itself is inflated.** 7.7% of SWE-bench</p>
+<p>Lite / 5.2% of Verified tasks lack unit tests that discriminate good</p>
+<p>from bad patches; 28.4% of "passing" Lite patches (15.7% Verified)</p>
+<p>actually fail when tests are augmented; 5.3% of Verified tasks pass</p>
+<p>WITHOUT addressing the issue at all (do-nothing agent); the ABC</p>
+<p>audit found 7/10 popular agentic benchmarks flawed on outcome</p>
+<p>validity; reward-hacking exploit rates 0% (Claude Sonnet 4.5) to</p>
+<p>13.9% (DeepSeek-R1-Zero) under RL. Stage line: "we report method,</p>
+<p>harness, run count, and code-based assertions, because even the</p>
+<p>famous benchmarks inflate 5-40% of their scores."</p>
+<ul>
 <li>HCAST (METR): agents succeed 70-80% on tasks under one human-hour,</li>
 </ul>
 <p>under 20% on tasks over four human-hours. The 50% time horizon</p>

@@ -40,6 +40,22 @@ pre-verified. Nothing here is vibes; each claim has an evidence tag.
 - One engine (ingest, dedupe, summarize, rank, deadlines, propose, approve,
   audit), four skins (agentic ops, multimodal assistant, creative workflow,
   security). Skin mount target: 15-40 min (target UNVERIFIED, drill planned).
+- RESEARCH COVERAGE (all Aug 15, all committed, raw files on disk):
+  17 parallel.ai deep research runs (12-wave round + 4-wave prior-art round
+  + wave-2), all completed, all converted, all integrated.
+  PER-TOPIC-BENCHMARKS: 30 domains, ~250 named benchmarks/standards/tools.
+  PER-TOPIC-STRESS: 83 categories (A-F) + 10 demo-hardness (G) across 30
+  domains. IDEA-DILIGENCE: 30 domains scored (need, sponsor, judge,
+  funding, adoption, idea seed, gate, risk). PRIOR-ART-MAP: the exists-map
+  per shape/domain with stars, wedges, traps, the three tensions, the
+  venue recipe. WAVE-SYNTHESIS: the master index. NIGHT-CHEAT-SHEET: the
+  21:30 quick-mount table (5 mount cards + 25 domain rows + 6 judge
+  attack answers + 3-min script). EVIDENCE CHAIN (honest): wave numbers
+  are verified through each report's inline citations and URL
+  reachability spot-checks, not independently re-measured.
+- THE 429 WATCH (Aug 15 13:45): the LLM provider rate-limits under
+  sustained cold-run load. Pre-warm in two spaced passes, keep the warm
+  cache as fallback, and the honesty story as the backup demo.
 
 ## 2. THE FIELD (reg counts, live Unstop API, competition/1730314)
 

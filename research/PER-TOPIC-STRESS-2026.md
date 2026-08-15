@@ -7,6 +7,9 @@ suite, and simulate the rest with failure injection (see
 SCAFFOLD-FINDINGS + test_stress.py). Every row is a testable claim.
 Status: [IMPLEMENTED] = in scaffold/tests (23 checks live), [PREFILL]
 = category named, implementable in one afternoon, [VERIFIED] = from a
+cited source this cycle (wave-5 block below). EVIDENCE CHAIN: same as
+PER-TOPIC-BENCHMARKS, wave numbers are source-cited, not
+independently re-measured.
 WAVE-5 VERIFIED UPGRADES (raw/wave5-stress.md): SLOs at p99 not averages
 (Google SRE Workbook: 90% <100ms AND 99% <400ms; k6 threshold syntax
 http_req_duration ['p(99)<400']; error budget = 1 - SLO, 1h/6h/72h

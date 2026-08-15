@@ -317,6 +317,20 @@ STAGE USE: if the PS is MCP-shaped, we name the spec dates and the
 poisoning class; that is depth judges don't expect from students.
 
 ════════════════════════════════════════════════════════════════
+## WAVE 15-18: PRIOR-ART ROUND (the exists-map)
+: 4 runs (prior-art shapes, prior-art domains, student builds + venues,
+OSS stand-on map). Integrated into research/PRIOR-ART-MAP-2026.md:
+per-shape exists with stars + wedges, per-domain landscape, the three
+tensions (bridges / vertical moat / evaluator), student demand signals
+(HackerRank Orchestrate Aug 2026 = WhatsApp router, verbatim KIT-4),
+the 10-min venue recipe, the compose/trap OSS lists, and the evidence
+warning: wave-17 conflated our event with Code-N-Craft/TiE, DIRECT
+SOURCE WINS (CSC MUJ reel + Unstop 1569450). Star-count numbers are
+source-cited via the wave reports, not independently re-measured.
+
+## END OF INDEX: 17 runs total (wave2 + 3-14 + 15-18), all raw files
+## on disk, all converted to md, all integrated, all committed.
+════════════════════════════════════════════════════════════════
 ## WAVE 14: DEMO CRAFT (the 3-minute playbook)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:

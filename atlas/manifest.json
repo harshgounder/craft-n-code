@@ -367,6 +367,19 @@
           "blurb": "The new-window reset doc: mission, timeline, what is done, next steps in order, operating rules."
         }
       ]
+    },
+    {
+      "name": "THE RESEARCH",
+      "entries": [
+        {
+          "path": "research/PRIOR-ART-MAP-2026.md",
+          "blurb": "The exists-map: every shape and domain, with stars, wedges, traps, the three tensions, demand signals, the venue recipe. Cite this before claiming anything is new."
+        },
+        {
+          "path": "research/MOCK-DROPS-2-20260815.md",
+          "blurb": "Drill 2: three sponsor-DNA statements parsed with the machine, all pin to existing kits."
+        }
+      ]
     }
   ]
 }
