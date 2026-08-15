@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/PER-TOPIC-BENCHMARKS-2026.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/PER-TOPIC-BENCHMARKS-2026.md</h1>
+  <p class="blurb">Benchmark + eval registry, one per domain, hundreds of named evals, wave-4 verified upgrades.</p>
+  <a class="open" href="../../research/PER-TOPIC-BENCHMARKS-2026.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>PER-TOPIC-BENCHMARKS-2026.md: benchmark + eval registry, one per domain</h1>
+<p>Purpose: for EVERY domain in TOPIC-UNIVERSE (30 domains), the named</p>
+<p>benchmarks, eval standards, and tools that measure a product in that</p>
+<p>domain. This is the answer to "what do we cite when the judge asks how</p>
+<p>we measure it". Statuses: [PREFILL] = from model knowledge, wave-4</p>
+<p>(parallel.ai, run in flight) will verify + add fresh 2026 numbers;</p>
+<p>[VERIFIED] = numbers seen in a cited source this cycle.</p>
+<p>WAVE-4 VERIFIED UPGRADES (raw/wave4-benchmarks.md): SWE-bench Verified</p>
+<p>led by Claude Opus 5 ~96%, Claude Mythos 5 95.5% (HumanEval saturated;</p>
+<p>target SWE-bench Verified + LiveCodeBench); AgentBench-style suites show</p>
+<p>~80% success variance across runs -&gt; multi-run eval with confidence</p>
+<p>intervals, AgentBoard-style pass@k + pass^k; tau-bench false-pass fixed</p>
+<p>(show trajectory metrics: tool calls, user turns); MTEB tracks 196+</p>
+<p>models now multilingual (C-MTEB); BEIR NDCG@10 = generalization probe;</p>
+<p>RAGAS + ARES complementary (fixed metrics + auto-tuned LM judges);</p>
+<p>CyberSecEval 3 (Meta) = cyber bar; OWASP Top 10:2025 reorganized, OWASP</p>
+<p>API Security Top 10 (2023) canonical for fintech; India 4-pillar</p>
+<p>compliance stack = DPDPA 2023 + CERT-In Directions + RBI Digital</p>
+<p>Lending Directions 2025 + MeitY India AI Governance Guidelines</p>
+<p>(Nov 2025).</p>
+<p>Coverage target: hundreds of named benchmarks. The 81/81 suite maps to</p>
+<p>this file: every check in scaffold/tests is an instance of a class</p>
+<p>listed here, and the night kit can cite the class names.</p>
+<h2>01 OPS / SRE / INCIDENT</h2>
+<p>[PREFILL] DORA metrics (deployment frequency, lead time, MTTR, change</p>
+<p>failure rate), Google SRE book SLI/SLO/SLA framework, Error Budgets,</p>
+<p>Site Reliability Engineering workbook, Chaos engineering suites</p>
+<p>(Chaos Monkey, Chaos Mesh, Litmus), GameDays, Incident.io postmortem</p>
+<p>standards, PagerDuty incident taxonomy, Gremlin failure injection.</p>
+<p>Tools: k6, Prometheus, Grafana, Sentry, OpenTelemetry.</p>
+<p>Stress mapping: our trace ring (200 steps) + deadline gates are an</p>
+<p>SLO-measurement instance. VERIFIED in our code: timeout chain + circuit</p>
+<p>breaker (providers.py 40s, offline fallback).</p>
+<h2>02 CUSTOMER SUPPORT</h2>
+<p>[PREFILL] CSAT/NPS/CSI standards, AHT (average handle time), FCR</p>
+<p>(first contact resolution), SLA adherence, ticket deflection rate,</p>
+<p>LLM support evals: SupportBench, TweetQA, Customer Support on HELM,</p>
+<p>Koala/ShareGPT-style human preference, G-Eval for response quality,</p>
+<p>Zendesk/Intercom benchmarks (proprietary), KPI: resolution accuracy,</p>
+<p>escalation precision, hallucination rate on refunds/policies.</p>
+<h2>03 FINANCE / FINTECH</h2>
+<p>[PREFILL] EBA stress tests, CCAR (Fed), Basel III/IV ratios, FRTB,</p>
+<p>RBI stress testing guidelines (2024-2026), OWASP API Security Top 10,</p>
+<p>PCI DSS 4.0, ISO 20022 messaging, FIX protocol conformance, UPI spec</p>
+<p>(NPCI), RTGS/NEFT rules, double-spend and reconciliation tests,</p>
+<p>decimal precision (IEEE 754 traps: 0.1+0.2), idempotency tests,</p>
+<p>audit trail standards (immutable logs, RFC 3164/5424 syslog),</p>
+<p>GAAP/Ind-AS reporting, fraud detection evals: IEEE-CIS Fraud</p>
+<p>Detection (Kaggle), PaySim, AML typologies (FATF 40).</p>
+<h2>04 SECURITY / CYBER</h2>
+<p>[PREFILL] OWASP ASVS 4.0 (levels 1-3), OWASP WSTG, OWASP Top 10 2021,</p>
+<p>OWASP LLM Top 10 2025, CWE Top 25, MITRE ATT&amp;CK (enterprise+mobile),</p>
+<p>MITRE ATLAS (AI), DARPA Cyber Grand Challenge, AutoDAN, JailbreakBench,</p>
+<p>HarmBench, AdvBench, StrongREJECT, PAIR, GPTFuzzer, Meta CyberSecEval,</p>
+<p>SecurityEval, SEED-Bench, CyberMetric, Purdue/ICS frameworks,</p>
+<p>CERT-In advisories, RBI/UPI security circulars, DPDPA compliance</p>
+<p>checklist, NIST CSF 2.0, NIST AI RMF 1.0, ISO 27001, SOC 2, TPM/firmware</p>
+<p>attestation standards (for hardware kits).</p>
+<p>Our instance: S8 path traversal check, injection checks in stress</p>
+<p>suite, provider key handling (anchored regex, no key in repo).</p>
+<h2>05 PRIVACY / DATA CONTROL</h2>
+<p>[PREFILL] DPDPA 2023 (rules 2025) compliance matrix, GDPR Art. 17</p>
+<p>(right to erasure) tests, consent management standards (IAB TCF,</p>
+<p>ISO 29184), data minimization checklists, differential privacy</p>
+<p>benchmarks (DP-SGD utility tradeoff), k-anonymity/l-diversity tests,</p>
+<p>Apple Privacy Nutrition Labels (for on-device kits), on-device</p>
+<p>inference evals: MLC-LLM, ExecuTorch, CoreML performance, privacy</p>
+<p>leak tests (side-channel, timing), PII detection evals: Presidio,</p>
+<p>Microsoft Presidio benchmarks, AWS Comprehend PII F1.</p>
+<p>Our instance: consent gate tests, no-data-leaves-device fixture</p>
+<p>(kit3_privacy), do-not-upload test rows.</p>
+<h2>06 CREATIVE / BRAND</h2>
+<p>[PREFILL] Adobe Content Credentials / C2PA provenance spec,</p>
+<p>brand-consistency evals (color/logo/voice violation detectors),</p>
+<p>StyleGAN/Stable Diffusion fidelity evals: FID, IS, CLIP score,</p>
+<p>ImageReward, Pick-a-Pic, HPS v2, DPG-Bench, T2I-CompBench, GenEval,</p>
+<p>DSG-1K, Brandmark tests, A/B creative testing (Meta Ad Library</p>
+<p>patterns), font licensing (OFL), WCAG color contrast for assets.</p>
+<p>Our instance: kit2_creative fixture (brief -&gt; variants -&gt; violation</p>
+<p>caught -&gt; approved export), brand-rule gate tests.</p>
+<h2>07 MESSAGING / COMMUNITY</h2>
+<p>[PREFILL] moderation evals: Jigsaw Perspective API (toxicity),</p>
+<p>HateCheck, HONEST, CivilComments, Multitask-Toxicity, PAN-clef</p>
+<p>(troll/abuse), semantic similarity for duplicate detection (STS-B),</p>
+<p>multimodal safety: MM-SafetyBench, SafeBench, WhatsApp-style delivery</p>
+<p>semantics (ordering, exactly-once), group scaling tests, scam-detection</p>
+<p>evals: Smishing datasets, FraudGPT countermeasures, voice-note ASR</p>
+<p>evals: WER (LibriSpeech, Common Voice, Indic TTS/ASR: Bhashini</p>
+<p>benchmarks), speaker verification (VoxCeleb).</p>
+<p>Our instance: kit4_messaging fixture (family rent agreement + scam</p>
+<p>call), trust/answer gate, escalation test.</p>
+<h2>08 ENTERPRISE OPS / GOVERNANCE</h2>
+<p>[PREFILL] RACI + policy-as-code (OPA Rego test suites), audit log</p>
+<p>standards (SIEM: Splunk/Cribl/Elastic ingestion, MITRE ATT&amp;CK mapping),</p>
+<p>approval workflow benchmarks: human-in-the-loop studies (METR RCT,</p>
+<p>Glean UX studies), enterprise RAG evals (RAGAS on enterprise corpora,</p>
+<p>ARES), KPI dashboards (Tableau/PowerBI validation), ISO 38500 IT</p>
+<p>governance, COBIT 2019, TOGAF, DORA for AI adoption (Accenture</p>
+<p>research), responsible AI governance: NIST AI RMF, EU AI Act tiers,</p>
+<p>MeitY AI governance framework 2025-2026.</p>
+<p>Our instance: approval.py policy gate + 13/13 approval suite, trace</p>
+<p>ring audit, 7-stage approval queue in UI brief.</p>
+<h2>09 HEALTH</h2>
+<p>[PREFILL] MedQA (USMLE), MedBench, PubMedQA, MIMIC-III/IV tasks,</p>
+<p>Med-HALT, HealthBench (Anthropic), GatorTron, EHR QA: emrQA,</p>
+<p>discharge summary evals, clinical safety: NEVER give diagnosis tests,</p>
+<p>consent/records: DPDPA health rules, HIPAA-style access logging,</p>
+<p>WHO digital health guidelines 2026, ICMR telemedicine guidelines,</p>
+<p>drug interaction checks (DDI benchmarks), accessibility: WCAG for</p>
+<p>health apps, medical device software: IEC 62304.</p>
+<p>Risk gate: our kits refuse clinical claims (honest "not medical</p>
+<p>advice" pattern from kit3).</p>
+<h2>10 EDUCATION</h2>
+<p>[PREFILL] MMLU (edu subsets), ARC, ARC-AGI-2, BEEAR (AI tutor evals),</p>
+<p>Khanmigo-style tutoring quality, grader consistency evals (Cohen's</p>
+<p>kappa, quadratic weighted kappa), Bloom's taxonomy alignment,</p>
+<p>NEP 2020 alignment, UGC guidelines, plagiarism/cheating resistance,</p>
+<p>question generation evals (BLEU/ROUGE + human), feedback quality</p>
+<p>(EdTech benchmarks), accessibility (WCAG + UDL).</p>
+<p>Our instance: 2025 lane = lecture generator + lab grader; kit mapping</p>
+<p>KIT-1/KIT-4.</p>
+<h2>11 WEB3</h2>
+<p>[PREFILL] smart contract audits (Slither, Mythril, CertiK), ERC</p>
+<p>standards conformance (ERC-721/1155/4337), gas benchmarks, tokenomics</p>
+<p>stress, replay/signature replay tests, wallet security (EIP-712),</p>
+<p>NFT metadata standards, ticketing anti-bot tests.</p>
+<p>2025 lanes: NFT ticketing, Web3 loyalty SBT. Low 2026 prior, but</p>
+<p>covered if PS-04 goes this way.</p>
+<h2>12 HARDWARE / EDGE</h2>
+<p>[PREFILL] MLPerf Inference/Tiny, TinyMLPerf, EdgeBench, MLCommons</p>
+<p>Mobile, Qualcomm AI Hub benchmarks, power/thermal (UL, IEC 62368),</p>
+<p>latency p99 budgets, NPU SDK evals (ExecuTorch, XNNPACK), sensor</p>
+<p>accuracy (IMU, camera), OTA update integrity, boot time, sleep/wake.</p>
+<p>Our rule: software companion only, never fresh hardware on stage.</p>
+<h2>13 GOVERNMENT / CITIZEN</h2>
+<p>[PREFILL] DPDPA compliance, DigiLocker API integration, UMANG</p>
+<p>standards, grievance redressal: CPGRAMS data, language access:</p>
+<p>Bhashini ASR/MT evals (WER, BLEU on Indic), accessibility: WCAG</p>
+<p>2.2 AA, W3C WAI, digital literacy usability studies (NIELIT),</p>
+<p>open data standards (data.gov.in, OGD), RTI workflows.</p>
+<p>Judge resonance: security + ops judges both lean civic tech.</p>
+<h2>14 CLIMATE / SUSTAINABILITY</h2>
+<p>[PREFILL] GHG Protocol reporting, BEE/EESL standards, energy</p>
+<p>optimization benchmarks, ESG reporting frameworks (GRI, SASB),</p>
+<p>India climate targets (NDC 2070), green IT: energy per inference</p>
+<p>(MLPerf power), carbon-aware scheduling (WattTime).</p>
+<p>WILDCARD domain, low prior.</p>
+<h2>15 HR / PEOPLE OPS</h2>
+<p>[PREFILL] onboarding completion, leave policy compliance, bias evals</p>
+<p>in hiring AI (AI Fairness 360, Fairlearn, disparate impact tests),</p>
+<p>resume parsing evals (F1 on NER), payroll accuracy (tax rules:</p>
+<p>TDS/80C), policy Q&amp;A hallucination tests.</p>
+<p>WILDCARD, fits KIT-5.</p>
+<h2>16 LEGAL / COMPLIANCE</h2>
+<p>[PREFILL] LegalBench, CUAD (contracts), CaseHOLD, LexGLUE, SCOTUS</p>
+<p>datasets, contract redline accuracy, "not legal advice" guardrail,</p>
+<p>DPDPA/GDPR clause detection, policy-vs-action audit tests,</p>
+<p>ISO 37301 compliance management.</p>
+<p>Careful: never present as legal advice; gate + disclaimer tested.</p>
+<h2>17 RETAIL / E-COMMERCE</h2>
+<p>[PREFILL] checkout flow correctness, refund idempotency, inventory</p>
+<p>consistency (Eventual vs strong), catalog search evals (NDCG@k,</p>
+<p>MRR), recommendation evals (precision/recall, diversity), fraud</p>
+<p>flags (transaction velocity), return prediction, OWASP API Top 10</p>
+<p>for storefronts, payment reconciliation.</p>
+<p>Fits KIT-1 (triage shape).</p>
+<h2>18 TRAVEL / LOGISTICS</h2>
+<p>[PREFILL] delay prediction evals, rerouting optimization, booking</p>
+<p>idempotency, fare consistency, ETA accuracy (MAPE), GPS/geofence</p>
+<p>tests, shipment tracking integrity, SLAs on disruption alerts.</p>
+<p>Fits KIT-1/KIT-5.</p>
+<h2>19 MEDIA / NEWS</h2>
+<p>[PREFILL] fact-checking evals: FEVER, SciFact, LIAR-PLUS, AVeriTeC,</p>
+<p>provenance: C2PA verification tests, summarization: ROUGE/BERTScore/</p>
+<p>SummEdits, hallucination: HaluEval, FActScore, XSumFaith, news</p>
+<p>classification: AG-News, source credibility ranking, deepfake</p>
+<p>detection: FaceForensics++, DFDC, Celeb-DF.</p>
+<p>Fits KIT-2 with provenance story.</p>
+<h2>20 SOCIAL GOOD / ACCESSIBILITY</h2>
+<p>[PREFILL] WCAG 2.2 AA/AAA, axe-core rule coverage, screen reader</p>
+<p>compat (NVDA/VoiceOver), keyboard-only navigation, color contrast,</p>
+<p>voice-first UX, inclusive language audits, UDID/divyang schemes</p>
+<p>(accessibility funding), assistive AI evals (SeeSay-style), low</p>
+<p>bandwidth adaptation (Lighthouse on 2G/3G).</p>
+<p>Strong judge resonance on both axes.</p>
+<h2>21 DEVTOOLS / CODE</h2>
+<p>[PREFILL] SWE-bench Verified, SWE-Lancer, HumanEval, MBPP,</p>
+<p>LiveCodeBench, Aider polyglot, CodeContests, Defects4J,</p>
+<p>CodeQL/static analysis rules, linting standards (Ruff/ESLint),</p>
+<p>review evals (CodeReviewer, CRScore), MCP conformance tests,</p>
+<p>semver correctness, CI gate standards.</p>
+<p>MCP words -&gt; KIT-1 + tool adapters.</p>
+<h2>22 MEETINGS / COLLABORATION</h2>
+<p>[PREFILL] meeting summarization: MeetingBank, QMSum, AMI, ICSI,</p>
+<p>action-item extraction evals, speaker diarization (DER: DIHARD),</p>
+<p>ASR WER, agenda adherence, hallucination on who-said-what,</p>
+<p>calendar conflict tests, notification fatigue.</p>
+<p>Fits KIT-1.</p>
+<h2>23 RESEARCH / ACADEMIC</h2>
+<p>[PREFILL] paper QA: QASPER, SciQA, ARC (science), literature review</p>
+<p>coverage evals, citation accuracy (NEVER fabricate: tested), MathQA/</p>
+<p>MATH for math reasoning, retrieval: SciFact, aggregation quality,</p>
+<p>"grounded citations" tests (our research standard: every claim [n]).</p>
+<p>Our instance: every research wave report cites inline URLs.</p>
+<h2>24 AGRICULTURE</h2>
+<p>[PREFILL] weather API accuracy (IMD), soil sensor calibration,</p>
+<p>advisory correctness (Krishi Vigyan Kendra guidelines), crop</p>
+<p>recommendation evals, voice-first Indic support (Bhashini),</p>
+<p>MSP/APMC price data integrity, low-bandwidth design.</p>
+<p>AI for Bharat family.</p>
+<h2>25 AI FOR BHARAT / INDIC</h2>
+<p>[PREFILL] Indic ASR: Bhashini datasets, WER benchmarks; Indic MT:</p>
+<p>WAT, FLORES-200, IN22; Indic LLM evals: Hinglish, Romanized</p>
+<p>transliteration; voice-first UX evals; rural usability studies;</p>
+<p>Bhashini API integration tests; multilingual code-switch evals.</p>
+<p>VERIFIED theme: AI for Bharat confirmed 2026 hackathon theme.</p>
+<p>Kavach DNA fits here (Hindi-first voice).</p>
+<h2>26 RESPONSIBLE AI</h2>
+<p>[PREFILL] bias: BBQ, CrowS-Pairs, Winogender, StereoSet, FairFace,</p>
+<p>disparate impact; explainability: SHAP/LIME fidelity, feature</p>
+<p>attribution evals; safety: Anthropic Safety Evaluations, METR</p>
+<p>Autonomy, Aviary, AgentHarm, SafetyBench; alignment: HHH</p>
+<p>(helpful-harmless-honest), NIST AI RMF conformance, EU AI Act</p>
+<p>tiers, MeitY framework 2025-2026; red-team: adversarial suites</p>
+<p>(our stress suite S2 injection is an instance).</p>
+<p>VERIFIED theme: responsible AI confirmed 2026.</p>
+<h2>27 GAMING / ENTERTAINMENT</h2>
+<p>[PREFILL] game master coherence evals, NPC response quality,</p>
+<p>procedural generation (diversity, novelty), latency (p95 &lt; 100ms),</p>
+<p>LLM story consistency (long-context), moderation of user content,</p>
+<p>accessibility (colorblind modes).</p>
+<p>WILDCARD.</p>
+<h2>28 MUSIC / AUDIO</h2>
+<p>[PREFILL] playlist eval (precision/recall, diversity), audio quality</p>
+<p>(PESQ, STOI), music generation (FAD), ASR on voice notes (WER),</p>
+<p>copyright-safe generation tests, metadata correctness.</p>
+<p>WILDCARD.</p>
+<h2>29 FOOD / RECIPE</h2>
+<p>[PREFILL] recipe correctness (ingredient math), dietary constraint</p>
+<p>compliance (allergen detection), image-&gt;ingredient recognition</p>
+<p>(Food-101), nutrition accuracy, regional cuisine coverage.</p>
+<p>WILDCARD.</p>
+<h2>30 SMART CITY</h2>
+<p>[PREFILL] multi-agent dashboard evals (data fusion accuracy),</p>
+<p>sensor ingestion integrity, anomaly detection (Numenta NAB,</p>
+<p>SWaT), alert fatigue, citizen report routing accuracy</p>
+<p>(CPGRAMS-style), geospatial QA.</p>
+<p>WILDCARD.</p>
+<h2>CROSS-CUTTING: the 5-layer scorecard (VERIFIED from wave-2)</h2>
+<ol>
+<li>outcome correctness -> our 81/81 suites (code-based assertions,</li>
+</ol>
+<p>fresh DBs, zero LLM judges)</p>
+<ol>
+<li>policy adherence -> approval.py gate + 13/13 policy suite</li>
+<li>tool-call correctness -> typed registry tests (providers 9/9)</li>
+<li>trajectory efficiency -> trace ring (200-step cap) + stress</li>
+</ol>
+<p>suite (deadline gates, retry storms)</p>
+<ol>
+<li>failure recovery -> provider_errors counter, offline flip,</li>
+</ol>
+<p>H1-H6 honesty suite, feeds fallback ladder</p>
+<p>Cite these as our benchmark stack: ASVS-grade security checks,</p>
+<p>DORA-grade ops checks, HCAST-grade honesty framing, all implemented</p>
+<p>as deterministic code tests, not LLM-as-judge.</p>
+<h2>TOOLS WE SHIP WITH (for the "how do you test" answer)</h2>
+<p>k6/JMeter-class load (our stress suite), OWASP ZAP-class checks</p>
+<p>(our traversal/injection), Lighthouse-class (our latency budgets</p>
+<p>in deadline gates), RAGAS-class (our evidence/rank tests), all</p>
+<p>implemented zero-dep in scaffold/tests/. Honest claim: we implement</p>
+<p>the CATEGORIES as deterministic checks, and we cite the standards</p>
+<p>they instantiate.</p>
+</main>
+</body>
+</html>

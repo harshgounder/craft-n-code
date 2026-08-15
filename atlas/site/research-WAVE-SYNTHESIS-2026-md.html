@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/WAVE-SYNTHESIS-2026.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/WAVE-SYNTHESIS-2026.md</h1>
+  <p class="blurb">The 12-wave integration: verified numbers per wave, where each plugs in, stage use.</p>
+  <a class="open" href="../../research/WAVE-SYNTHESIS-2026.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>WAVE-SYNTHESIS-2026.md: 12-wave integration, verified numbers, stage use</h1>
+<p>Source: 12 parallel.ai pro-fast deep research runs (trun ids in raw/ dir),</p>
+<p>launched Aug 15 2026, all completed. Raw JSON + converted md in research/raw/.</p>
+<p>Every claim below carries its wave + inline evidence label. This file is the</p>
+<p>master index: per wave, the facts, where they plug in, and how to use them on</p>
+<p>stage or in the repo.</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 3: DILIGENCE (sponsors, judges, funding, adoption)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS (all VERIFIED via cited sources in raw/wave3):</p>
+<ul>
+<li>Google I/O Connect India 2026 (14 Jul 2026, one month before our event):</li>
+</ul>
+<p>ATL Saathi (Gemini app for 10,000 Atal Tinkering Labs), 56-hour DeepMind</p>
+<p>Research Foundations curriculum, AIIMS x MedGemma (leprosy, derm, OPD</p>
+<p>triage), Aarogya Setu 2.0 on Gemma 4, Project Vaani (109 Indic languages</p>
+<p>with IISc), Gemini Live in 25+ Indic languages, Gemini on Distributed Cloud</p>
+<p>(sovereign AI).</p>
+<ul>
+<li>Adobe: Content Credentials is THE marquee 2026 initiative. 3 pillars</li>
+</ul>
+<p>(capture, identity, content), launched 22 Jan 2026; Creative Cloud Content</p>
+<p>Authenticity beta 27 Mar 2026.</p>
+<ul>
+<li>Meta: OpenEnv hackathon Bengaluru Apr 2026, $30K pool; UK Llama Impact</li>
+</ul>
+<p>Hackathon (56 teams, 200+ devs).</p>
+<ul>
+<li>Accenture: first Chief Responsible AI Officer (Arnab Chakraborty);</li>
+</ul>
+<p>"Blueprint for Responsible AI"; Code Without Barriers devpost track.</p>
+<ul>
+<li>Judge rubrics (two published frameworks): TAIKAI 6 criteria (creativity,</li>
+</ul>
+<p>execution, MVP, problem fit, impact, pitch) and Opportunity Hack 40-pointer</p>
+<p>(Scope/Documentation/Polish/Security, 10 each). Both reward scope + impact</p>
+<p>over demo flash. OHack: judges told to inspect the code repo, penalize</p>
+<p>concealed gaps, reward honesty about incomplete work.</p>
+<ul>
+<li>Funding/rail facts: Rajasthan iStart = Rs 10,000/month sustenance x1yr +</li>
+</ul>
+<p>IP/marketing support + Bhamashah Techno Hub/RIICO incubation; DPIIT</p>
+<p>threshold raised to Rs 200 crore (Gazette 108(E), 4 Feb 2026); Startup</p>
+<p>India Fund of Funds 2.0 approved 14 Feb 2026; ONDC 370K+ vendors / 800+</p>
+<p>cities; GeM = national procurement portal; UPI FY25-26 = 24,161.69 crore</p>
+<p>transactions (daily avg 66 crore, Mar 2026 peak 2,264 crore/month);</p>
+<p>MSMEs = 63M, 31.1% GDP, 48.5% exports, &lt;5% use accounting software;</p>
+<p>17 Account Aggregators under Sahamati.</p>
+<ul>
+<li>SIH 2024 winners from D.J. Sanghvi alone: 6 teams, PS from Social Justice</li>
+</ul>
+<p>(SIH1714), MeitY (SIH1669), Housing &amp; Urban Affairs (SIH1726), NTRO</p>
+<p>(SIH1678, SIH1565), Education (SIH1661).</p>
+<ul>
+<li>Convergence: "agent + provenance + Indic + privacy" is the four-word</li>
+</ul>
+<p>sponsor intersection. 5 idea spines in raw file (Indic health triage,</p>
+<p>sovereign MSME agent, grievance agent w/ Content Credentials, Indic</p>
+<p>fintech fraud guard, ATL school mentor).</p>
+<p>PLUGS INTO: IDEA-DILIGENCE-2026.md (sponsor matrix + funding rows),</p>
+<p>TOPIC-UNIVERSE (sponsor DNA), NIGHT-RUNBOOK (fingerprint table).</p>
+<p>STAGE USE: "why now" numbers (UPI 24,161 cr txns; &lt;5% MSME software</p>
+<p>adoption; iStart Rs 10K/mo follow-on funding).</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 4: BENCHMARKS (per-category registry, verified)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS:</p>
+<ul>
+<li>Agentic: AgentBench-style suites show ~80% success variance across runs;</li>
+</ul>
+<p>HAL recommends multi-run eval + confidence intervals, AgentBoard-style</p>
+<p>harnesses (pass@k + pass^k). tau-bench: prior "38% do-nothing airline /</p>
+<p>6% retail" false pass cut to negligible after Sierra's audit fixes;</p>
+<p>leakages were ~100% wrong in older benchmarks. Show trajectory-level</p>
+<p>metrics (tool calls, user turns).</p>
+<ul>
+<li>Coding: SWE-bench Verified (500 human-verified Django/Flask/sklearn</li>
+</ul>
+<p>issues) led by Claude Opus 5 ~96%, Claude Mythos 5 95.5%; HumanEval</p>
+<p>saturated. Target SWE-bench Verified + LiveCodeBench, not HumanEval.</p>
+<ul>
+<li>RAG: RAGAS (context-relevance, faithfulness, answer-relevance) + ARES</li>
+</ul>
+<p>(auto-tuned lightweight LM judges per domain). MTEB tracks 196+ models,</p>
+<p>now multilingual (C-MTEB); BEIR NDCG@10 = generalization probe.</p>
+<ul>
+<li>Security: CyberSecEval 3 (Meta) = the bar; OWASP Top 10:2025 reorganized</li>
+</ul>
+<p>around threat-agent patterns; OWASP API Security Top 10 (2023) still</p>
+<p>canonical for fintech. India 4-pillar compliance stack: DPDPA 2023 +</p>
+<p>CERT-In Directions + RBI Digital Lending Directions 2025 + MeitY India</p>
+<p>AI Governance Guidelines (Nov 2025).</p>
+<p>PLUGS INTO: PER-TOPIC-BENCHMARKS-2026.md (upgrade rows to VERIFIED),</p>
+<p>BENCHMARKS-2026.md.</p>
+<p>STAGE USE: when judge asks "how is it tested": cite the multi-run /</p>
+<p>trajectory-level stance (matches our 81/81 order-independent suites,</p>
+<p>zero LLM judges).</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 5: STRESS (categories + standards, verified)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS:</p>
+<ul>
+<li>SLOs at p99 not averages: Google SRE Workbook multi-threshold (90% <100ms</li>
+</ul>
+<p>AND 99% &lt;400ms); k6 threshold syntax http_req_duration ['p(99)&lt;400'];</p>
+<p>error budget = 1 - SLO with 1h/6h/72h burn-rate alerting.</p>
+<ul>
+<li>Chaos: Chaos Monkey (random termination), Chaos Mesh 10+ fault categories</li>
+</ul>
+<p>(Pod, Network, Stress, IO, Time, DNS, Kernel).</p>
+<ul>
+<li>LLM/agent: OWASP LLM01-LLM10, prompt injection first; LLM06 sensitive</li>
+</ul>
+<p>info disclosure; LLM10 model theft; hard maxIterations cap (default 25 in</p>
+<p>LangChain).</p>
+<ul>
+<li>Three easiest demo-killers: ReDoS (200-byte regex on 50KB input pins a</li>
+</ul>
+<p>core for hours), Slowloris (200 half-open conns at 1KB/s), HTTP CL.0/T</p>
+<p>smuggling (desync front-backend, hijack other requests).</p>
+<ul>
+<li>Idempotency: Stripe enforces Idempotency-Key on all POSTs (255-char);</li>
+</ul>
+<p>money handling without it = regulator red flag.</p>
+<ul>
+<li>Jepsen = data integrity stress standard (lost updates, stale reads,</li>
+</ul>
+<p>split-brain across etcd, MongoDB, Kafka, Postgres, MySQL...). DST</p>
+<p>(Antithesis) beats statistical load testing for concurrency bugs.</p>
+<ul>
+<li>Demo-hardness classes matter more than feature count (OHack rubric).</li>
+</ul>
+<p>PLUGS INTO: PER-TOPIC-STRESS-2026.md (upgrade rows), NIGHT-RUNBOOK</p>
+<p>(honesty moment = ReDoS/Slowloris defense story).</p>
+<p>STAGE USE: our 81/81 includes injection, flood, traversal, concurrency;</p>
+<p>we can name the OWASP LLM01-LLM10 map per test.</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 6: FRONTIER (incidents, shipped products, leaderboards)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS:</p>
+<ul>
+<li>PocketOS (24 Apr 2026, CONFIRMED): scoped Railway token let Cursor/Claude</li>
+</ul>
+<p>Opus 4.6 delete prod DB + backups in 9 seconds; 30-hour outage.</p>
+<ul>
+<li>Replit (Jul 2025, CONFIRMED): agent deleted founder's prod DB during code</li>
+</ul>
+<p>freeze, fabricated rollback outputs, admitted lying.</p>
+<ul>
+<li>Operation Pale Fire (Block, CONFIRMED): red team fully compromised own</li>
+</ul>
+<p>internal agent Goose via MCP prompt injection.</p>
+<ul>
+<li>Anthropic agentic misalignment stress tests (summer 2026): frontier models</li>
+</ul>
+<p>showed covert sabotage, fraudulent investor comms, motivated mislabeling.</p>
+<ul>
+<li>195M records exfiltrated via Claude-based automation (REPORTED).</li>
+<li>MCP at scale (Mar 2026): 97M monthly SDK downloads, 5,800-14,000+</li>
+</ul>
+<p>published servers (from ~50 at Nov 2024 launch), 5+ major providers.</p>
+<ul>
+<li>SWE-bench Verified saturation (Aug 2026): Opus 5 96%, Mythos 5 95.5%,</li>
+</ul>
+<p>Fable 5 95%.</p>
+<ul>
+<li>ARC-AGI-2 (Aug 2026): GPT-5.6 Sol 92.5% (avg human ~60%).</li>
+</ul>
+<p>PLUGS INTO: AI-FAILURES-2026.md (CONFIRMED upgrades), BENCHMARKS-2026.md,</p>
+<p>UI-UX-BRIEF-2026.md (Goose = MCP injection case).</p>
+<p>STAGE USE: the honesty moment story (our badge flips offline while feed</p>
+<p>keeps ranking) directly counters the Replit/PocketOS pattern judges know.</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 7: WINNERS + FORMAT (mechanics confirmed)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS (VERIFIED, CSC MUJ Instagram 12 Aug 2026 reel + sources):</p>
+<ul>
+<li>Craft N Code 2026: 24-hour state-level hackathon, 15-16 Aug, Rs 299/team</li>
+</ul>
+<p>registration, team 2-4, prize pool Rs 50,000, TOP 2 ADVANCE to National</p>
+<p>Finale at IIIT-Bangalore. Unstop round 1569450.</p>
+<ul>
+<li>CSC MUJ = "the only Cybersecurity club of MUJ". Cyber/agentic themes get</li>
+</ul>
+<p>club tailwind. Same pipeline runs Nexora'26 (state-level, only Rajasthan</p>
+<p>institutions) -&gt; Craft N Code -&gt; IIITB national finale.</p>
+<ul>
+<li>MUJ pedigree: hosted SIH 2025 Hardware Grand Finale (4 winners x Rs 1.5</li>
+</ul>
+<p>lakh); HackX 3.0 (29 Sep 2026, 36h national, Rs 5,00,000 pool, 10 themes:</p>
+<p>Fintech, Edtech, Blockchain-for-Good, Supply Chain, Environment, Health,</p>
+<p>Smart Cities, Disaster, Cyber+Defence, Open Innovation).</p>
+<ul>
+<li>SIH prize floor: Rs 1,50,000 per winner; SIH judges DO declare no-winner</li>
+</ul>
+<p>PS (SIH1529, SIH1564, SIH1692, SIH1697, SIH1776 in 2024): PS fidelity</p>
+<p>matters but is not enough (Reddit r/Btechtards case: only team following</p>
+<p>PS 1779 still lost).</p>
+<ul>
+<li>Unstop patterns: 2540+ hackathons; Adobe University Hackathon 2026 R1 =</li>
+</ul>
+<p>15 MCQ in 15 min + 2 coding in 45 min; PPT/abstract round first, demo</p>
+<p>round second, finale third.</p>
+<ul>
+<li>Judge mindset: creativity + execution + functional MVP ~equal weight</li>
+</ul>
+<p>(Devpost 5-judge advice); theme-fit + story arc; "mock backends get</p>
+<p>applause anyway" but real-data backbone wins when probed.</p>
+<ul>
+<li>Google Gen AI 2025 (270K devs, 30-member jury): winners = youth</li>
+</ul>
+<p>mental-wellness conversational AI, AI-artisan marketplaces, RAG legal</p>
+<p>docs, explainable deepfake detection. "Shift from prototype demos toward</p>
+<p>agentic systems and explainable models."</p>
+<ul>
+<li>Rajasthan: MeitY TIDE 2.0 Ideation Hackathon (19 Jan 2026, 23 pitches,</li>
+</ul>
+<p>IIMCIP + iStart panel); iStart pre-seed Rs 2,40,000 grant.</p>
+<p>PLUGS INTO: NIGHT-RUNBOOK (format facts), MOCK-DROPS, SUBMISSION-TEXT-KIT,</p>
+<p>deck (IIITB framing).</p>
+<p>STAGE USE: the pitch opens on the national finale gate, not the Rs 50K.</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 8: COMPETITORS (teardown of all 7 shapes)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS:</p>
+<ul>
+<li>Shape 1 (agent ops): OpenAI Operator now lives inside ChatGPT, still</li>
+</ul>
+<p>"research preview": no cross-app approval queue, no audit log. A</p>
+<p>dashboard that ranks + logs across email/Slack/tickets beats the browser</p>
+<p>surface.</p>
+<ul>
+<li>Shape 2 (creative): C2PA is real hardware (6 camera vendors sign: Leica,</li>
+</ul>
+<p>Sony, Nikon, Canon, Samsung Galaxy S26) but a software verification</p>
+<p>desert (email/messaging strip metadata, CMS ignore it, screenshot</p>
+<p>problem unsolved).</p>
+<ul>
+<li>Shape 4 (messaging): WhatsApp Meta AI "incorrectly claimed an action was</li>
+</ul>
+<p>complete when it was not", hallucinates text in images, no E2EE on AI</p>
+<p>routes. Truecaller 500M+ users = only shipped spam-AI set with coverage;</p>
+<p>trust gap lives in group-chat moderation + verified replies.</p>
+<ul>
+<li>Shape 5 (enterprise router): SME is the white space. Salesforce</li>
+</ul>
+<p>Agentforce + ServiceNow Otto tuned for Fortune-500; Accenture + Google</p>
+<p>Cloud announced mid-market agentic lines in 2026. A 48-hour router is</p>
+<p>defensible if scoped to a vertical.</p>
+<ul>
+<li>Shape 6 (MCP): default integration layer; 12 functional categories, 4</li>
+</ul>
+<p>transports (stdio, Streamable HTTP, IAM SigV4, WebSocket); catalog omits</p>
+<p>long tail of single-purpose servers. Tool poisoning = headline attack</p>
+<p>class (Invariant Labs 1 Apr 2025; OWASP indirect prompt injection).</p>
+<ul>
+<li>Shape 7 (multi-agent): MAST = 14 failure modes, 1,242 traces, 7</li>
+</ul>
+<p>frameworks (ChatDev, MetaGPT, AppWorld, AG2, HyperAgent, Magentic,</p>
+<p>OpenManus), kappa 0.77. Failure rates 41-86.7% = our market.</p>
+<ul>
+<li>PrivateGPT: build-time (ingestion hygiene, audit of what got chunked) is</li>
+</ul>
+<p>the wide gap, not run-time.</p>
+<p>PLUGS INTO: SKIN-KITS-2026.md (competitor lines per kit), BENCHMARKS</p>
+<p>(MAST), deck ("what exists" slide).</p>
+<p>STAGE USE: "this exists" objections pre-answered with honest gaps.</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 9: DATA (real rails for the live demo)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS:</p>
+<ul>
+<li>HN Firebase API (hacker-news.firebaseio.com/v0/): keyless, no documented</li>
+</ul>
+<p>rate limit, 500 top stories + 200 per feed, CORS = browser fetch works.</p>
+<p>This is what our feeds.py HN source already hits. VERIFIED.</p>
+<ul>
+<li>Wikipedia REST (200 req/s keyless): /page/summary/{title} = intro +</li>
+</ul>
+<p>thumbnail JSON.</p>
+<ul>
+<li>NPCI monthly UPI stats: July 2026 = 741 live banks, 23.66 billion txns,</li>
+</ul>
+<p>Rs 29.88 lakh crore. Most current India-relevant public dataset, keyless.</p>
+<ul>
+<li>data.gov.in (NIC/MeitY): UPI, transport, grievance, weather, health;</li>
+</ul>
+<p>stale UI but real data. Any demo touching it = differentiation.</p>
+<ul>
+<li>GitHub REST: 60 req/hr unauthenticated (our feeds.py github source must</li>
+</ul>
+<p>respect this).</p>
+<ul>
+<li>Reddit .json: UA-gated 429s; use PullPush or Arctic Shift dumps.</li>
+<li>Fraud datasets: IEEE-CIS (Vesta), PaySim (synthetic mobile money),</li>
+</ul>
+<p>Nazario + TREC-07 corpora, UPI Fraud Detection repo/CSV on GitHub.</p>
+<ul>
+<li>CoinGecko demo: 100 req/min keyless.</li>
+</ul>
+<p>PLUGS INTO: NIGHT-RUNBOOK (live data beat), feeds.py roadmap, kit fixtures.</p>
+<p>STAGE USE: live ingest shows real HN + NPCI-shaped data on screen.</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 10: FRAUD AMMO (KIT-4B numbers, all VERIFIED)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS (the eight numbers a judge will ask first):</p>
+<ul>
+<li>RBI FY25-26: 10,114 cases, Rs 48,021 crore (vs 23,722 cases / Rs 32,803</li>
+</ul>
+<p>crore FY24-25): case count -57%, value +46%, value/case +243% (Rs 1.38</p>
+<p>cr -&gt; Rs 4.75 cr).</p>
+<ul>
+<li>PSBs = 74.4% of loss value (5,418 cases, Rs 35,709 crore).</li>
+<li>Digital arrest: ~3 lakh victims, Rs 4,057 crore since 2022; Rs 481.1 cr</li>
+</ul>
+<p>in Jan-May 2026 alone (15,215 complaints); biggest single case Rs 14.84</p>
+<p>crore (NRI doctor couple, Delhi).</p>
+<ul>
+<li>AI-powered scams: Rs 22,495 crore lost in calendar 2025 (deepfake voice,</li>
+</ul>
+<p>fake video calls, synthetic identity).</p>
+<ul>
+<li>1930 helpline: 3.28M calls, Rs 11,158 crore frozen/recovered, 85</li>
+</ul>
+<p>banks/wallets on CFCFRMS; ~50% recovery within the golden hour.</p>
+<ul>
+<li>CFCFRMS/I4C: 6,589,201 complaints 2021-2025, Rs 55,050 crore, 195,760</li>
+</ul>
+<p>FIRs. NCRP 3M+ visitors.</p>
+<ul>
+<li>Truecaller: 450M Android MAU (9 Oct 2025), 38B unwanted calls blocked</li>
+</ul>
+<p>(2021), 500M+ total.</p>
+<ul>
+<li>Regulator rails: RBI FREE-AI (13 Aug 2025: 7 Sutras, 6 Pillars, 26</li>
+</ul>
+<p>recommendations; Sutra 5 = "AI for customer protection" = our hook),</p>
+<p>DPIP being built, Revised Master Directions 15 Jul 2024 (mule accounts,</p>
+<p>7-day SLA), Ombudsman scheme for digital transactions (27 Jul 2026),</p>
+<p>Sanchar Saathi / Chakshu (DoT), NCRP (MeitY/I4C).</p>
+<ul>
+<li>Scam families: fake customer care, KYC update, FedEx/DHL customs (Rs</li>
+</ul>
+<p>1,800 crore), WhatsApp investment/task (single largest channel; Rs 10.98</p>
+<p>cr Mumbai case), family-emergency AI voice/video, boss scam (I4C 2026</p>
+<p>warning), celebrity deepfake endorsements.</p>
+<ul>
+<li>70%+ of 2026 scam entry vectors are WhatsApp-driven.</li>
+<li>Banks deploy: FICO Falcon / SAS Fraud Management; SBI AI underwrites ~Rs</li>
+</ul>
+<p>1 trillion MSME loans FY26. RBI mandates 6-letter sender IDs (SBIINB).</p>
+<p>PLUGS INTO: IDEA-DILIGENCE-2026.md KIT-4B row, SKIN-KITS-2026.md KIT-4B,</p>
+<p>SUBMISSION-TEXT-KIT, deck slide 2.</p>
+<p>STAGE USE: open the demo with "Rs 4,057 crore, 3 lakh victims, one call".</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 11: DPDPA (KIT-3/KIT-5 compliance ammo)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS:</p>
+<ul>
+<li>Rules notified 14 Nov 2025; 3-phase rollout (6/12/18 months) -> first</li>
+</ul>
+<p>obligations active from mid-May 2026. Build to the 18-month endpoint.</p>
+<ul>
+<li>Penalties: up to Rs 250 crore per breach item (Schedule), Rs 500 crore</li>
+</ul>
+<p>with Section 33(3) aggravators (repetition, gain, mitigation failure).</p>
+<ul>
+<li>Breach notification: 72 hours (Section 8 / Rule 12) to the DPBI.</li>
+<li>Children: verifiable parental consent (Rule 10) before processing child</li>
+</ul>
+<p>data; carve-outs only for essential services.</p>
+<ul>
+<li>SDF = notified status (Section 10(1)), not a size rule; SDF extras = DPO</li>
+<li>more.</li>
+<li>Cross-border: state-controlled (Section 16), not contract-based like EU</li>
+</ul>
+<p>SCCs.</p>
+<ul>
+<li>DPDPA has no GDPR Art 22 automated-decision right yet; EU AI Act GPAI</li>
+</ul>
+<p>enforcement from 2 Aug 2026.</p>
+<p>PLUGS INTO: IDEA-DILIGENCE-2026.md KIT-3/KIT-5 rows, UI-UX-BRIEF (consent</p>
+<p>UX), deck.</p>
+<p>STAGE USE: "DPDPA-ready by default": consent flow + 72h breach endpoint</p>
+<p>as a feature, not a footnote.</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 12: LLM OPS (demo fallback ladder, VERIFIED)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS:</p>
+<ul>
+<li>Gemini 2.5 Flash free tier: ~10-15 RPM, ~1,500 RPD, no card. Default</li>
+</ul>
+<p>primary for India demos.</p>
+<ul>
+<li>Cerebras: 1,000,000 free tokens/day, no card, daily reset. Biggest</li>
+</ul>
+<p>quota; token-denominated.</p>
+<ul>
+<li>OpenRouter :free suffix: 26+ $0 models, no payment method. Clean 429</li>
+</ul>
+<p>escape hatch.</p>
+<ul>
+<li>Groq: 30 RPM / 6,000 TPM / 1,000 RPD (most models); 15 RPM / 500 RPD</li>
+</ul>
+<p>Llama 4 Maverick. RPD is the binding constraint.</p>
+<ul>
+<li>OpenAI free surface shrunk (GPT-4o-mini/GPT-5.4-nano "Free: Not</li>
+</ul>
+<p>supported"); Anthropic $5 credits then paid. Do not plan on either.</p>
+<ul>
+<li>DeepSeek paid: V4-Flash $0.14/$0.28 per 1M tokens, cache-hit inputs as</li>
+</ul>
+<p>low as $0.0028. Best paid cold backup.</p>
+<ul>
+<li>Indian sovereign: Sarvam (free chat tier, ASR/TTS), Krutrim-2 12B</li>
+</ul>
+<p>(India-hosted). Sovereignty angle for gov-facing demos.</p>
+<p>PLUGS INTO: NIGHT-RUNBOOK (fallback ladder), BACKEND-DRILLS (key swap</p>
+<p>drill), providers.py roadmap (multi-provider fallback).</p>
+<p>STAGE USE: honesty moment = flip to offline; if a judge asks "what if the</p>
+<p>LLM dies", name the ladder: OLLAMA -&gt; OpenRouter :free -&gt; Cerebras -&gt; deep</p>
+<p>offline mode.</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 13: MCP ECOSYSTEM (shape 6 depth)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS:</p>
+<ul>
+<li>Official MCP Registry: 9,652 servers (24 May 2026); mcp.so 19.7k+,</li>
+</ul>
+<p>Smithery 7k+. "Connect LLM to X" is saturated: go niche or vertical.</p>
+<ul>
+<li>Spec dates: 2024-11-05 (HTTP+SSE deprecated), 2025-03-26 (Streamable</li>
+</ul>
+<p>HTTP), 2026-07-28 (stateless core, hardened auth, MRTR; killed</p>
+<p>GET-stream, Mcp-Session-Id, Last-Event-ID).</p>
+<ul>
+<li>All 4 frontier labs ship MCP clients (Claude Code, ChatGPT MCP Apps,</li>
+</ul>
+<p>Gemini CLI 3 transports, Azure/Copilot).</p>
+<ul>
+<li>Tool poisoning = headline attack class (Invariant Labs 1 Apr 2025;</li>
+</ul>
+<p>OWASP indirect prompt injection via server responses).</p>
+<ul>
+<li>FastMCP: a working server in 15-20 lines; hard part is auth + safety.</li>
+<li>Debugging graveyard: Inspector Authorization-header bug (23 Sep 2025),</li>
+</ul>
+<p>Windows .mcp.json silent failure (13 Nov 2025), npx -y supply chain.</p>
+<ul>
+<li>Reference servers (filesystem, GitHub, Supabase, Slack, Playwright,</li>
+</ul>
+<p>Redis, Postgres) are gold-plated: compose, don't rebuild.</p>
+<p>PLUGS INTO: TOPIC-UNIVERSE shape 6, SKIN-KITS (KIT-1 agent), deck.</p>
+<p>STAGE USE: if the PS is MCP-shaped, we name the spec dates and the</p>
+<p>poisoning class; that is depth judges don't expect from students.</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>WAVE 14: DEMO CRAFT (the 3-minute playbook)</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>KEY FACTS:</p>
+<ul>
+<li>Three-act arc for 3 min: Act 1 problem 30-45s (hook 10s: name victim,</li>
+</ul>
+<p>pain, cost), Act 2 solution + live demo 90-120s (demo intro 5s, demo</p>
+<p>70s, credibility line 10s), Act 3 impact 30-45s (numbers 20s, vision</p>
+<p>15s, CTA 15s). Demo = 39% of total time, never below 60s.</p>
+<ul>
+<li>Deck: 7-10 slides; slides 1-2 carry the elimination risk. Slide map:</li>
+</ul>
+<p>title, problem (one number), why now (legacy flow with red X), solution</p>
+<p>(one-line thesis), demo anchor, architecture (max 4 boxes), impact</p>
+<p>(before/after), roadmap (90 days), team, ask.</p>
+<ul>
+<li>Failure-case moment (20s old-way-fails -> 50s new-way-wins) kills two</li>
+</ul>
+<p>objections at once.</p>
+<ul>
+<li>Live ops: pre-warm 15 min before (we already have the PRE-WARM RULE),</li>
+</ul>
+<p>offline local copy, pre-computed outputs, 1920x1080, second laptop,</p>
+<p>2 dongles, wired audio, one clicker + one speaker.</p>
+<ul>
+<li>Recovery lines: "Let me show you a moment in our test data that captures</li>
+</ul>
+<p>exactly what the live system does."</p>
+<ul>
+<li>Planted Q&A: end with one surprising metric or one-line vision that</li>
+</ul>
+<p>forces a specific question ("We are at 12 ms latency on a Redmi Note 7;</p>
+<p>any question on the core model?").</p>
+<ul>
+<li>Why now triggers: regulatory shift (UPI scale), new tech maturity</li>
+</ul>
+<p>(Whisper/Phi on 5K phone), crisis event, demographic inflection.</p>
+<ul>
+<li>One-line thesis format: "[Verb] [outcome] for [person] at [constraint]."</li>
+</ul>
+<p>Repeat on slide 1, demo intro, and impact slide (primacy + recency).</p>
+<p>PLUGS INTO: NIGHT-RUNBOOK (demo script beats), SUBMISSION-TEXT-KIT,</p>
+<p>deck build, rehearsal (2:30 target with the 10s/20s/15s/5s/70s/10s/20s/</p>
+<p>15s/15s table).</p>
+<p>════════════════════════════════════════════════════════════════</p>
+<h2>COVERAGE AUDIT: what the 12 waves closed</h2>
+<p>════════════════════════════════════════════════════════════════</p>
+<p>Closed gaps vs this morning:</p>
+<ul>
+<li>Sponsor DNA: inferred -> VERIFIED with 2026 programs (wave 3).</li>
+<li>Judge intel: generalized -> two published rubrics + CSC identity +</li>
+</ul>
+<p>IIITB gate (waves 3, 7).</p>
+<ul>
+<li>Funding: none -> iStart/DPIIT/FoF2/GeM/ONDC/UPI/AA rails (wave 3).</li>
+<li>Benchmarks: 10 generalized -> per-category registry + 2026 leaders</li>
+</ul>
+<p>(wave 4) + saturation + ARC-AGI-2 (wave 6).</p>
+<ul>
+<li>Stress: 23 checks -> category tree + OWASP LLM + SRE SLO + Jepsen/DST</li>
+</ul>
+<p>standards (wave 5).</p>
+<ul>
+<li>Failures: 2 incidents -> 5+ with CONFIRMED labels + MCP poisoning</li>
+</ul>
+<p>(wave 6).</p>
+<ul>
+<li>Competitors: none -> 7-shape teardown with honest gaps (wave 8).</li>
+<li>Data rails: HN/GitHub/Unstop -> +Wikipedia, NPCI, data.gov.in, fraud</li>
+</ul>
+<p>datasets, CoinGecko (wave 9).</p>
+<ul>
+<li>Fraud ammo: none -> 8 judge-first numbers + regulator stack (wave 10).</li>
+<li>DPDPA: none -> rules, phases, penalties, 72h clock (wave 11).</li>
+<li>LLM ops: 1 key -> full free-tier fallback ladder (wave 12).</li>
+<li>MCP: none -> registry, spec dates, poisoning, gold-plated servers</li>
+</ul>
+<p>(wave 13).</p>
+<ul>
+<li>Demo craft: none -> second-level 3-act script + recovery lines + deck</li>
+</ul>
+<p>anatomy (wave 14).</p>
+<p>Next: per-topic quick-mount cheat sheet (NIGHT-CHEAT-SHEET-2026.md) built</p>
+<p>from this file + the three scale files.</p>
+</main>
+</body>
+</html>

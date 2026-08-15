@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/BENCHMARKS-2026.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/BENCHMARKS-2026.md</h1>
+  <p class="blurb">Frontier benchmark landscape: HCAST, SWE-bench spread, MAST, WebArena + wave-2/4/6 numbers.</p>
+  <a class="open" href="../../research/BENCHMARKS-2026.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>BENCHMARKS-2026.md: the frontier, the evals, and what we honestly claim</h1>
+<p>Wave 1 research (Aug 15, 2026). Sources: decodethefuture.org</p>
+<p>"AI Agent Benchmarks 2026" (updated May 2026), codesota.com</p>
+<p>"Agentic AI Benchmarks Explained" (March 2026). Both fetched raw via</p>
+<p>curl and quoted with numbers. VERIFIED = quoted from the pages.</p>
+<h2>THE FRONTIER IN ONE PARAGRAPH (stage line ready)</h2>
+<p>The field stopped measuring "can the model answer" and now measures</p>
+<p>"can the agent FINISH a task safely". The six benchmarks that matter in</p>
+<p>2026: GAIA (general assistant), SWE-bench Verified (real GitHub bug</p>
+<p>fixes), OSWorld (computer use on a real desktop), Tau-squared-Bench</p>
+<p>(tool-agent-user interaction with POLICY ADHERENCE), WebArena (multi-</p>
+<p>step browser tasks), and METR HCAST / Time Horizons (the longest task</p>
+<p>an agent can finish 50% of the time, called "the new Moore's law").</p>
+<p>VERIFIED: top scores cluster between 74-94% on the easier suites, but</p>
+<p>those numbers are inflated by 5-15 points by contamination, scaffolding</p>
+<p>and single-run reporting. "Treat any leaderboard as a directional</p>
+<p>signal, not an SLA."</p>
+<p>Why our story wins on this axis: our engine was built for exactly the</p>
+<p>two axes the frontier now cares about. Tau-squared-Bench measures</p>
+<p>policy adherence; we ship a typed tool registry with a policy gate</p>
+<p>(auto/suggest/require) and a human approval step. HCAST measures task</p>
+<p>horizon; we ship a 200-step trace ring and an audit trail so a long</p>
+<p>run stays readable. We do not claim a benchmark number, we show a trace</p>
+<p>a judge can read in 10 seconds. That is the honest version of "state of</p>
+<p>the art".</p>
+<h2>THE SIX BENCHMARKS (what each measures, what we map to it)</h2>
+<ol>
+<li>GAIA: general assistant, real-world questions with tools.</li>
+</ol>
+<p>Our map: evidence-first answers + sources in every proposal.</p>
+<p>Honest claim: we answer with evidence, we do not claim GAIA scores.</p>
+<ol>
+<li>SWE-bench Verified: coding agents on real GitHub bugs.</li>
+</ol>
+<p>Leaderboard VERIFIED: codex-1 (OpenAI) 62.3% Feb 2026, Claude 3.5</p>
+<p>Sonnet + SWE-agent 55.0%, Amazon Q Developer 52.4%.</p>
+<p>Our map: not our domain, we say so if asked.</p>
+<ol>
+<li>OSWorld: computer use on a real desktop. Our map: not our domain.</li>
+<li>Tau-squared-Bench (Sierra Research, arXiv 2506.07982): tool-agent-</li>
+</ol>
+<p>user interaction with policy adherence, dual-control environment.</p>
+<p>Our map: THIS IS OUR ENGINE. Typed tools, side-effect classes,</p>
+<p>policy gate auto/suggest/require, human approve, audit. If a judge</p>
+<p>asks "how do you stop the agent doing something it shouldn't", the</p>
+<p>answer is the approval gate + the double-decision guard + the audit</p>
+<p>row for every decision.</p>
+<ol>
+<li>WebArena: multi-step browser tasks. Our map: channel adapter.</li>
+<li>METR HCAST / Time Horizons: longest task finished 50% of the time.</li>
+</ol>
+<p>Our map: 200-step trace ring + replay + golden fixtures. The demo</p>
+<p>shows a run from ingest to approved action in one window.</p>
+<h2>WHY LEADERBOARD SCORES LIE (VERIFIED list, 5 reasons)</h2>
+<ol>
+<li>training-data contamination (the model saw the answer)</li>
+<li>LLM-as-judge noise (a model grading a model)</li>
+<li>single-run reporting (best of N, not median)</li>
+<li>no cost or safety in scoring (a 100% score that burns money or</li>
+</ol>
+<p>breaks policy is not a win)</p>
+<ol>
+<li>search-time contamination (agent finds the answer online mid-run)</li>
+</ol>
+<p>Our counter, all built and verifiable:</p>
+<ul>
+<li>golden fixtures with expected results files, rerun fresh every time</li>
+</ul>
+<p>(42/42, 81/81 with the new suites, order-independent, fresh DBs)</p>
+<ul>
+<li>zero LLM-as-judge: tests assert real HTTP responses and real DB rows</li>
+<li>no single-run cherry-picks: every suite reruns clean</li>
+<li>cost and safety ARE the product: approval gate, consent records,</li>
+</ul>
+<p>provenance manifest, honest mode badge (provider_errors now counted)</p>
+<ul>
+<li>no search-time contamination: offline mode is fully deterministic</li>
+</ul>
+<h2>OUR OWN EVAL STACK (what we actually run, all plain python3)</h2>
+<ul>
+<li>42 baseline tests: approval 13, trace 12, providers 9, multimodal 4,</li>
+</ul>
+<p>provenance 4. Fresh DB per suite, order-independent.</p>
+<ul>
+<li>Honesty suite (8): the badge must flip to offline when the provider</li>
+</ul>
+<p>fails or the key is missing; fixture/cached/offline flags all honest.</p>
+<ul>
+<li>Feeds suite (8): real data kit fetches, offline refresh, --feeds</li>
+</ul>
+<p>server mode, zero network in tests.</p>
+<ul>
+<li>Stress bench (23): flood 100 items, prompt injection (owned fields</li>
+</ul>
+<p>survive), 500KB bodies, empty feed, hostile search queries, malformed</p>
+<p>POST, 12 concurrent requests, path traversal (404 after fix),</p>
+<p>provider-failure counting. See scaffold/tests/test_stress.py.</p>
+<ul>
+<li>Total: 81/81, all deterministic, all order-independent.</li>
+</ul>
+<h2>STRESS-TEST SOURCES FOR THE NIGHT (what can kill the demo, ranked)</h2>
+<ol>
+<li>LLM key dies (network/rate limit/quota): badge now says offline,</li>
+</ol>
+<p>offline rules still produce a full ranked feed. Drill: kill key</p>
+<p>mid-run, watch the badge flip (the honesty moment, show it ON STAGE</p>
+<p>if time allows).</p>
+<ol>
+<li>Network dies for feeds: feeds.py --offline pre-writes honest meta;</li>
+</ol>
+<p>the demo falls back to fixture data with the badge showing cached.</p>
+<ol>
+<li>Cache poisoned (stale .llm_cache.json): delete it, cold run.</li>
+<li>DB locked by a previous server: kill stale serve.py first</li>
+</ol>
+<p>(bracket trick: pkill -f "[s]erve.py").</p>
+<ol>
+<li>Port busy: pick a fresh port (demo.sh takes one).</li>
+<li>Judge asks a hostile question: attack sheets + judge dossiers</li>
+</ol>
+<p>(docs/ATTACK-SHEETS.md, research/JUDGE-DOSSIERS.md).</p>
+<h2>FRONTIER PRODUCT LANDSCAPE (who builds what, for the "already made"</h2>
+<h2>question on stage)</h2>
+<p>VERIFIED from the leaderboard pages: OpenAI codex-1 leads coding agents</p>
+<p>at 62.3%, Claude + SWE-agent 55.0%, Amazon Q 52.4%. The pattern: every</p>
+<p>major lab now ships agent products with tool use and approval flows.</p>
+<p>If a judge asks "who already does this", the honest answer: the labs</p>
+<p>ship agents, nobody ships OUR combination (controlled pipeline +</p>
+<p>approval + provenance + honest failure badge + zero deps + runs</p>
+<p>anywhere). The gap is the product, not the model.</p>
+<h2>WAVE-2 NUMBERS (parallel.ai pro-fast, Aug 15, raw in</h2>
+<h2>research/raw/wave2-ai-failures.md)</h2>
+<ul>
+<li>HCAST (METR): agents succeed 70-80% on tasks under one human-hour,</li>
+</ul>
+<p>under 20% on tasks over four human-hours. The 50% time horizon</p>
+<p>doubles roughly every 7 months. Our line: that gap is why a human</p>
+<p>approves; the demo shows the division of labor.</p>
+<ul>
+<li>SWE-bench Verified: official page shows Claude 4.5 Opus high 76.80%</li>
+</ul>
+<p>(2026-02-17); a third-party tracker shows Claude Mythos 5 95.5%</p>
+<p>averaged over 5 runs. Same benchmark, 19 points apart: report</p>
+<p>version, harness, run count, source. We report our numbers exactly</p>
+<p>that way (81/81, fresh DBs, deterministic).</p>
+<ul>
+<li>WebArena: best GPT-4 agent in the original study 14.41% vs 78.24%</li>
+</ul>
+<p>for humans. End-to-end success is far stricter than language</p>
+<p>quality.</p>
+<ul>
+<li>MAST: failure rates 41% to 86.7% across seven open-source</li>
+</ul>
+<p>multi-agent systems, 14 fine-grained failure modes identified.</p>
+<ul>
+<li>Production reality: 68% of production agents execute at most 10</li>
+</ul>
+<p>steps before human intervention, 70% prompt off-the-shelf models,</p>
+<p>74% rely primarily on human evaluation.</p>
+<ul>
+<li>A mature production scorecard has five layers: outcome correctness,</li>
+</ul>
+<p>policy adherence, tool-call correctness, trajectory efficiency,</p>
+<p>failure recovery. That is our 5-layer claim set, in order:</p>
+<p>81/81 tests, policy gate suites, typed registry tests, trace ring</p>
+<p>review, provider_errors + offline fallback.</p>
+<ul>
+<li>Leaderboard hygiene: LLM-as-judge shows substantial reliability</li>
+</ul>
+<p>gaps in a 2026 study; single-run scores are unstable because</p>
+<p>sampling, tool latency, web state, and judge behavior are</p>
+<p>stochastic. Our answer: code-based assertions, fresh DBs,</p>
+<p>order-independent suites, no LLM judges anywhere in the 81.</p>
+</main>
+</body>
+</html>

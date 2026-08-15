@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/SKIN-KITS-2026.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/SKIN-KITS-2026.md</h1>
+  <p class="blurb">5 mountable kits + company flavor matrix + competitor lines per kit (wave-8).</p>
+  <a class="open" href="../../research/SKIN-KITS-2026.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>SKIN-KITS-2026: mountable templates for every predicted shape</h1>
+<p>Purpose: turn the 15-40 min skin mount into a copy-paste job. Each kit is</p>
+<p>self-contained: a fixture feed (data, mounts instantly via --fixture),</p>
+<p>a label-patch brief (one opencode one-liner if UI labels must change),</p>
+<p>deck beats, demo script deltas, and judge Q prep. Night flow: fingerprint</p>
+<p>the drop (company vocab + topic shape) -&gt; pick the kit -&gt; mount -&gt; ./demo.sh.</p>
+<p>Kit anatomy (everything is in this repo, nothing to research at night):</p>
+<ol>
+<li>fixture JSON in scaffold/fixtures/<kit>.json (data, my lane, done)</li>
+<li>label patch brief below (only if the UI must speak the skin's nouns)</li>
+<li>deck beats: which deck slides to swap (decks are generic, noun swaps)</li>
+<li>demo script delta: what changes in the 2:30 run</li>
+<li>judge Qs: the questions that kit's judges ask + the answers</li>
+</ol>
+<p>The 4 skins share one engine, so a kit is mostly seed data + nouns.</p>
+<p>The engine does not change between kits. The LLM layer runs live when the</p>
+<p>key works, offline otherwise, badge always honest (BUILD-SPEC-3).</p>
+<h2>KIT-1: TRUSTWORTHY AGENT / agentic ops (Google, Accenture ops)</h2>
+<p>Company DNA: multi-step task, evidence, approved tools, confirmation</p>
+<p>before side effects, typed audit. Watch-words: agent, multi-step,</p>
+<p>grounding, verification, tool use, "with evidence".</p>
+<p>Fixture: scaffold/fixtures/kit1_agent.json (ops mail + tickets).</p>
+<p>Demo delta: open feed -&gt; approve a propose action -&gt; show audit trace</p>
+<p>ring -&gt; show provenance manifest with prompt_sha256 -&gt; show the badge</p>
+<p>flip when the key dies (offline fallback, the honesty moment).</p>
+<p>Label swaps: "Signal Engine" -&gt; "BriefLens"; "Ranked feed" -&gt; "Decision</p>
+<p>queue"; "Approve" stays. Side-effect classes already typed (registry).</p>
+<p>Deck beats: 3 (the one action that matters) + 5 (typed audit) + 8</p>
+<p>(offline fallback demo, the "we show failure" moment).</p>
+<p>Judge Qs: "How do you know the LLM is right?" -&gt; evidence-first answers</p>
+<ul>
+<li>golden fixtures + trace ring. "What if the model is wrong?" -> human</li>
+</ul>
+<p>approval gate + policy auto/suggest/require + provider_errors badge.</p>
+<p>"Who adopts it?" -&gt; ops teams drowning in channels (the 2025 Collegiate</p>
+<p>Inbox Navigator lane won this shape).</p>
+<h2>KIT-2: CREATIVE PRODUCTION AGENT (Adobe)</h2>
+<p>Company DNA: brief + brand kit -&gt; channel variants, constraints,</p>
+<p>provenance, review. Watch-words: brand, creative, content, provenance,</p>
+<p>campaign, asset, Firefly.</p>
+<p>Fixture: scaffold/fixtures/kit2_creative.json (brand briefs, briefs with</p>
+<p>constraints, one brief that violates brand rules on purpose).</p>
+<p>Demo delta: ingest a brief -&gt; 3 channel variants proposed -&gt; one variant</p>
+<p>catches a brand violation -&gt; approve export -&gt; provenance manifest shows</p>
+<p>every input that shaped the output.</p>
+<p>Label swaps: "Signal Engine" -&gt; "SignalStory"; "Ranked feed" -&gt; "Brief</p>
+<p>queue"; proposals show channel tags.</p>
+<p>Deck beats: 2 (creative pipeline) + provenance slide + constraint demo.</p>
+<p>Judge Qs: "Is this just a prompt wrapper?" -&gt; no: constraints are typed,</p>
+<p>approval is required, provenance is deterministic (prompt_sha256), brand</p>
+<p>rules are data not vibes. "Content credentials?" -&gt; provenance manifest</p>
+<p>is our version of it, honest about LLM usage.</p>
+<h2>KIT-3: PRIVATE PERSONAL INTELLIGENCE (Apple)</h2>
+<p>Company DNA: on-device, private, local, offline, sensitive content,</p>
+<p>visible data movement, graceful fallback. Watch-words: on-device,</p>
+<p>private, local, offline, sensitive.</p>
+<p>Fixture: scaffold/fixtures/kit3_privacy.json (personal items: health,</p>
+<p>financial, family; one item that must NOT leave the device).</p>
+<p>Demo delta: show consent records (grant/deny), show a sensitive item</p>
+<p>refusing cloud processing (offline fallback), show the mode badge</p>
+<p>proving nothing left the machine, show the audit trail of what data</p>
+<p>moved where.</p>
+<p>Label swaps: "Signal Engine" -&gt; skin noun (privacy-first inbox);</p>
+<p>highlight the badge; the refusal moment is the demo beat.</p>
+<p>Deck beats: 4 (on-device transform) + consent slide + DPDPA-shaped</p>
+<p>honesty (consent as a feature, never claim legal compliance).</p>
+<p>Judge Qs: "Is it really on-device?" -&gt; the LLM layer falls back to</p>
+<p>offline rules; badge proves it; nothing claims otherwise.</p>
+<p>"Who adopts it?" -&gt; anyone with sensitive data; truecaller-adjacent</p>
+<p>privacy anxiety is the wedge.</p>
+<h2>KIT-4: MULTIMODAL ASSISTANT ON MESSAGING (Meta)</h2>
+<p>Company DNA: text+image, trusted answers, approved templates, human</p>
+<p>escalation. Watch-words: message, creator, community, reel, broadcast,</p>
+<p>WhatsApp.</p>
+<p>Fixture: scaffold/fixtures/kit4_messaging.json (WhatsApp-style items</p>
+<p>incl. a scam message + an image attachment reference + a community</p>
+<p>question; multimodal.json already covers attachments).</p>
+<p>Demo delta: ingest a message with an image -&gt; trusted answer -&gt; one</p>
+<p>risky action escalates to a human -&gt; approve -&gt; trace shows the whole</p>
+<p>path. The scam item dies in seconds (Kavach Circle is this skin).</p>
+<p>Label swaps: "Signal Engine" -&gt; "Kavach Circle"; channels show as</p>
+<p>WhatsApp-style labels.</p>
+<p>Deck beats: Kavach deck (if the drop smells security) or IDEA B beats.</p>
+<p>Judge Qs: "What if the message is a scam?" -&gt; this kit IS the answer</p>
+<p>(Kit-4B below). "Escalation?" -&gt; typed policy gate, human approves risky</p>
+<p>side effects only.</p>
+<h2>KIT-4B: SECURITY / FRAUD OVERRIDE (any company, fraud words in drop)</h2>
+<p>If the drop contains scam/fraud/phishing/deepfake/digital-arrest/UPI</p>
+<p>words, this overrides everything. Fixture: kit4_messaging.json +</p>
+<p>scam corpus. Demo: scam call dies under a second, offline rules catch</p>
+<p>it with zero network, signed evidence bundle for 1930/Chakshu.</p>
+<p>Deck beats: Kavach security deck. Judge Qs: the 6 verified claims</p>
+<p>(defensible gap: Hindi-first + on-device + real-time during live call +</p>
+<p>digital-arrest workflow + signed evidence).</p>
+<h2>KIT-5: GOVERNED ENTERPRISE CASE ROUTER (Accenture)</h2>
+<p>Company DNA: unstructured -&gt; structured cases, routing, policy, consent,</p>
+<p>audit, ROI. Watch-words: enterprise, governance, adoption, productivity,</p>
+<p>ROI, policy.</p>
+<p>Fixture: scaffold/fixtures/kit5_enterprise.json (tickets, exceptions,</p>
+<p>policy items, one item needing consent before processing).</p>
+<p>Demo delta: 3 requests in -&gt; extraction -&gt; one exception flagged -&gt;</p>
+<p>approval -&gt; KPI card (SLA hours, channel mix) -&gt; audit trail.</p>
+<p>Label swaps: "Signal Engine" -&gt; ops skin noun; "Ranked feed" -&gt; "Case</p>
+<p>queue"; SLA badges already exist on complaints.</p>
+<p>Deck beats: 5 (governed pipeline) + KPI numbers slide (NUMBERS-2026).</p>
+<p>Judge Qs: "ROI?" -&gt; 42/42 tests, zero deps, cold boot 40-50 s, SLA</p>
+<p>routing, KPI card. "Governance?" -&gt; policy gate + consent + audit,</p>
+<p>nothing claims legal compliance (DPDPA warning in docs).</p>
+<h2>COMPANY FLAVOR MATRIX (fingerprint -&gt; kit)</h2>
+<p>Google    -&gt; KIT-1 (agent vocab) or KIT-3 (if privacy words)</p>
+<p>Accenture -&gt; KIT-1 ops or KIT-5 (enterprise vocab)</p>
+<p>Meta      -&gt; KIT-4 (messaging vocab) or KIT-4B (fraud words)</p>
+<p>Apple     -&gt; KIT-3 (privacy words) or KIT-4B (fraud)</p>
+<p>Adobe     -&gt; KIT-2 (creative vocab)</p>
+<p>Security words anywhere -&gt; KIT-4B overrides all.</p>
+<h2>MOUNT PROTOCOL (measured target: 15-40 min, drill in MOCK-DROPS)</h2>
+<ol>
+<li>fingerprint (2 min): company vocab + topic shape -> kit from matrix</li>
+<li>mount fixture: cp fixtures/<kit>.json fixtures/<skin>.json (or</li>
+</ol>
+<p>--fixture &lt;kit&gt; directly), swap nouns in the deck (10 min)</p>
+<ol>
+<li>label patch (5 min): if labels must change, run the brief below via</li>
+</ol>
+<p>opencode or accept generic labels (generic is fine, the badge +</p>
+<p>pipeline carry the story)</p>
+<ol>
+<li>./demo.sh + timed run (10 min)</li>
+<li>submit kit text from SUBMISSION-TEXT-KIT.md, numbers from</li>
+</ol>
+<p>NUMBERS-2026.md</p>
+<h2>LABEL PATCH BRIEF (copy-paste to opencode during the night, if needed)</h2>
+<p>"Edit scaffold/webapp/static/index.html string labels only (no logic):</p>
+<p>replace the app title with &lt;KIT NAME&gt;, the feed header with &lt;QUEUE</p>
+<p>NAME&gt;, channel labels with &lt;SKIN CHANNELS&gt;. Keep all element ids,</p>
+<p>endpoints, and the mode badge untouched. No em dashes. Do not commit."</p>
+<p>Estimated 5 min including opencode startup.</p>
+<h2>COMPETITOR LINES PER KIT (wave-8 teardown, VERIFIED)</h2>
+<p>KIT-1 (agentic ops / governed router): OpenAI Operator now lives inside</p>
+<p>ChatGPT, still "research preview": sandboxed browser, no cross-app</p>
+<p>approval queue, no audit log. Our dashboard ranks + logs across</p>
+<p>email/Slack/tickets in one place, with a policy gate. That is the gap</p>
+<p>Operator leaves open.</p>
+<p>KIT-2 (creative provenance): C2PA is real hardware (6 camera vendors</p>
+<p>sign: Leica, Sony, Nikon, Canon, Samsung Galaxy S26) but a software</p>
+<p>verification desert: email clients strip metadata, messaging strips it,</p>
+<p>CMS ignores it, screenshots unsolved. A verifier layer = the wedge.</p>
+<p>KIT-4 (messaging trust): WhatsApp Meta AI "incorrectly claimed an</p>
+<p>action was complete when it was not" and hallucinates text in images;</p>
+<p>AI routes sit outside E2EE. Truecaller (500M+ users) covers the inbound</p>
+<p>call funnel only. Group-chat moderation + verified replies + approval</p>
+<p>flows are the trust gap.</p>
+<p>KIT-4B (fraud guard): banks deploy FICO Falcon / SAS Fraud Management</p>
+<p>over the 1930/CFCFRMS pipeline; RBI DPIP is closed to students. Sutra 5</p>
+<p>of RBI FREE-AI ("AI for customer protection") is the explicit opening</p>
+<p>for a customer-side tool. Neural Defend (seed, Mar 2025) does live</p>
+<p>deepfake detection but has no India consumer install base. The space is</p>
+<p>open.</p>
+<p>KIT-5 (enterprise router): Salesforce Agentforce + ServiceNow Otto are</p>
+<p>tuned for Fortune-500; Accenture + Google Cloud announced mid-market</p>
+<p>"agentic AI" lines in 2026, confirming the SME gap. A vertical-scoped</p>
+<p>router (one workflow, two tools, hard policy) is defensible in 48 hours.</p>
+<p>KIT-3 (privacy): PrivateGPT 1.0 (57k+ stars) proved run-time privacy;</p>
+<p>the wide gap is build-time: ingestion hygiene, audit of what got</p>
+<p>chunked, who saw the embedding. That audit story is our evidence-first</p>
+<p>UX, not an add-on.</p>
+<p>MCP shape (if the PS is MCP-flavored): 9,652 servers in the official</p>
+<p>registry (24 May 2026), 97M monthly SDK downloads; "connect an LLM to</p>
+<p>X" is saturated. Spec dates to name-drop: 2024-11-05 (HTTP+SSE</p>
+<p>deprecated), 2025-03-26 (Streamable HTTP), 2026-07-28 (stateless core,</p>
+<p>hardened auth, MRTR). Tool poisoning (Invariant Labs, 1 Apr 2025) is</p>
+<p>the headline attack class: typed allow-listed tools = the answer.</p>
+<p>Compose gold-plated servers (filesystem, GitHub, Supabase, Slack,</p>
+<p>Playwright, Redis, Postgres), never rebuild them.</p>
+</main>
+</body>
+</html>

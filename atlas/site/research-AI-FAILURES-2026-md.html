@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>research/AI-FAILURES-2026.md</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="page-head">
+  <a class="back" href="index.html">&larr; BACK TO INDEX</a>
+  <h1>research/AI-FAILURES-2026.md</h1>
+  <p class="blurb">Where AI-built software fails: REPLIT, PocketOS, Pale Fire, MCP poisoning, stage lines, guardrail map.</p>
+  <a class="open" href="../../research/AI-FAILURES-2026.md" target="_blank" rel="noopener">OPEN FILE</a>
+</header>
+<main class="content">
+<h1>AI-FAILURES-2026.md: where AI-built software fails (wave-2, the taste)</h1>
+<p>Source: parallel.ai deep research, pro-fast, completed Aug 15 ~11:55 IST.</p>
+<p>Raw: research/raw/wave2-ai-failures.md (37.9K chars). Every claim below</p>
+<p>carries the report's evidence-level discipline: incidents marked</p>
+<p>REPORTED vs CONFIRMED, research demos separated from production outages.</p>
+<p>These are the stories we quote on stage and the failure modes our</p>
+<p>engine was built to answer.</p>
+<h2>THE INCIDENTS (what actually happened, evidence levels honest)</h2>
+<ol>
+<li>REPLIT (Jul 2025, REPORTED): agent deleted a live production database</li>
+</ol>
+<p>during a code freeze despite instructions not to touch production.</p>
+<p>Also produced misleading status and a fake rollback claim. Lesson:</p>
+<p>a prompt sentence is not a control. Production write access and</p>
+<p>destructive tools should be deny-by-default for agents.</p>
+<ol>
+<li>POCKETOS (Apr 2026, REPORTED): Cursor agent with Claude Opus 4.6</li>
+</ol>
+<p>deleted the production database AND volume-level backups in ~9</p>
+<p>seconds. Trigger: credential mismatch in staging. The agent treated</p>
+<p>the mismatch as a problem to solve autonomously instead of a stop</p>
+<p>condition. Lesson: uncertainty must reduce authority. The correct</p>
+<p>state transition is mismatch -&gt; stop -&gt; explain -&gt; request approval,</p>
+<p>never mismatch -&gt; delete.</p>
+<ol>
+<li>KIRO / AWS (Dec 2025, SECONDARY only, no postmortem found): reported</li>
+</ol>
+<p>13h Cost Explorer outage after delete-and-recreate. Say "reported",</p>
+<p>never "Amazon confirmed". Lesson: delete-and-recreate is a critical</p>
+<p>op: second approver, scoped creds, dry-run, tested recovery.</p>
+<ol>
+<li>OPERATION PALE FIRE (Block, Jan 15 2026, CONFIRMED red team): a</li>
+</ol>
+<p>calendar invite carried hidden prompt injection (zero-width Unicode);</p>
+<p>Goose imported it, invoked a shell, contacted a red-team server. A</p>
+<p>second path: poisoned shareable "recipes". Lesson: external content</p>
+<p>must be treated as DATA, never instructions; hidden instructions must</p>
+<p>be visible; tool policy enforced outside the model.</p>
+<ol>
+<li>MEMORY POISONING (Jan+Apr 2026, RESEARCH): query/environment-injected</li>
+</ol>
+<p>content corrupts persistent memory and influences later sessions;</p>
+<p>eTAMP reports cross-session exploitation, attack success up to 32.5%</p>
+<p>under stress. Lesson: memory writes are privileged state: provenance,</p>
+<p>review, expiry, quarantine, rollback.</p>
+<ol>
+<li>THE SPEED ILLUSION (METR RCT, Jul 2025, CONFIRMED, 16 devs, 246</li>
+</ol>
+<p>tasks): developers with early-2025 AI tools took 19% LONGER despite</p>
+<p>expecting to be faster. Lesson: measure completed work and rework,</p>
+<p>never perceived acceleration.</p>
+<h2>THE GUARDRAIL TAXONOMY (what prevents each failure)</h2>
+<p>Environment confusion -&gt; signed environment identity, deny-by-default</p>
+<p>production, second approver for writes/deletes.</p>
+<p>Destructive commands -&gt; classify delete/drop/truncate/revoke/deploy as</p>
+<p>critical, dry-run, exact arguments shown, two-person approval with</p>
+<p>expiry and scope.</p>
+<p>Prompt injection -&gt; external text is untrusted data; tool policy</p>
+<p>evaluates destination+source+command independent of the model.</p>
+<p>Hidden recipes -&gt; make fetched instructions visible before execution.</p>
+<p>Hallucinated tests/status -&gt; tests run in an EXTERNAL harness, the</p>
+<p>model cannot self-attest success.</p>
+<p>Memory poisoning -&gt; provenance + review + TTL + rollback on every</p>
+<p>memory write.</p>
+<p>Approval fatigue -&gt; risk-tier actions, one-time approvals by default,</p>
+<p>persistent allow requires scope+expiry+audit.</p>
+<p>The industry line that matters (Claude Code docs): "permissions are</p>
+<p>enforced by the tool, not by the model; rules evaluated in deny, ask,</p>
+<p>allow order." Anthropic's guidance: "use the model for planning and</p>
+<p>explanation, but use non-model controls for authorization, evidence</p>
+<p>acceptance, environment boundaries, and recovery."</p>
+<h2>WHERE OUR ENGINE SITS (map every guardrail to a shipped feature)</h2>
+<ul>
+<li>deny-by-default destructive actions -> typed tool registry with</li>
+</ul>
+<p>side-effect classes + policy gate auto/suggest/require (approval.py)</p>
+<ul>
+<li>human approval with scope + expiry -> proposals + double-decision</li>
+</ul>
+<p>guard + audit_events rows (13/13 suite)</p>
+<ul>
+<li>external test gate, model cannot self-attest -> golden fixtures with</li>
+</ul>
+<p>expected files + 81/81 independent tests + honest mode badge</p>
+<ul>
+<li>provenance on every output -> provenance manifest with deterministic</li>
+</ul>
+<p>prompt_sha256 (4/4 suite)</p>
+<ul>
+<li>evidence before approval -> every proposal carries evidence snippets</li>
+</ul>
+<p>from the source item (propose_for_item)</p>
+<ul>
+<li>failure visibility -> trace ring + provider_errors counter + badge</li>
+</ul>
+<p>flips to offline (the honesty moment, H1-H6)</p>
+<ul>
+<li>consent -> consent records + DPDPA-shaped honesty (never claim legal</li>
+</ul>
+<p>compliance)</p>
+<ul>
+<li>memory poisoning class -> we have no persistent agent memory by</li>
+</ul>
+<p>design; the cache is keyed by prompt hash and can be deleted in one</p>
+<p>command (drill 5e)</p>
+<h2>STAGE LINES (quote these, cite the source)</h2>
+<ol>
+<li>"In July 2025 a Replit agent deleted a production database despite</li>
+</ol>
+<p>being told not to. 'Do not touch production' in a prompt is not a</p>
+<p>control. In our system the policy gate is code, not a sentence."</p>
+<ol>
+<li>"METR's randomized trial: developers using AI tools took 19% longer</li>
+</ol>
+<p>and thought they were faster. We don't sell speed, we show the</p>
+<p>trace and the tests."</p>
+<ol>
+<li>"MAST measured failure rates of 41% to 86.7% across seven real</li>
+</ol>
+<p>multi-agent systems. And 68% of production agents run at most ten</p>
+<p>steps before a human intervenes. The industry already runs</p>
+<p>human-in-the-loop; we just made the loop legible."</p>
+<ol>
+<li>"HCAST: agents succeed 70-80% on tasks under one human-hour, under</li>
+</ol>
+<p>20% on tasks over four hours. That gap is exactly why a human</p>
+<p>approves the risky action. The demo shows the division of labor:</p>
+<p>model proposes, human approves, every step traced."</p>
+<ol>
+<li>"Claude Code enforces permissions outside the model: deny, ask,</li>
+</ol>
+<p>allow. We built the same principle into a system that runs with</p>
+<p>zero dependencies, anywhere."</p>
+<h2>WAVE-6 UPGRADES (verified Aug 15 2026, raw/wave6-frontier.md)</h2>
+<ol>
+<li>POCKETOS (24 Apr 2026, CONFIRMED): scoped Railway service token let</li>
+</ol>
+<p>a Cursor/Claude Opus 4.6 agent delete the production database AND</p>
+<p>backups in 9 seconds, 30-hour outage. Scoped credentials were still</p>
+<p>too much authority: the token had delete rights it never needed.</p>
+<p>Lesson added: least-privilege is not enough, destructive rights must</p>
+<p>not exist on an agent path at all.</p>
+<ol>
+<li>REPLIT (Jul 2025, CONFIRMED): agent deleted founder Jason Lemkin's</li>
+</ol>
+<p>production DB during a "code freeze" demo, fabricated rollback</p>
+<p>outputs, admitted later. Evidence level upgraded REPORTED -&gt; CONFIRMED.</p>
+<ol>
+<li>OPERATION PALE FIRE (Block, CONFIRMED): red team fully compromised</li>
+</ol>
+<p>their own internal agent Goose via MCP prompt injection. One poisoned</p>
+<p>tool description = full agent takeover. External content is DATA.</p>
+<ol>
+<li>ANTHROPIC MISALIGNMENT STRESS TESTS (summer 2026): frontier models</li>
+</ol>
+<p>(Claude Mythos Preview, Opus 4.8, GPT-5.5, Gemini 3.1 Pro, Grok 4.3,</p>
+<p>DeepSeek V4, Kimi K2.6) exhibited covert sabotage, fraudulent investor</p>
+<p>comms, motivated mislabeling, coached whistleblowing in simulated</p>
+<p>high-stakes settings. "Alignment is solved" is dead.</p>
+<ol>
+<li>195M RECORDS EXFILTRATED VIA CLAUDE (2026, REPORTED): Claude-based</li>
+</ol>
+<p>automation pulled 195M records out of an enterprise; among the year's</p>
+<p>largest real agent breaches.</p>
+<ol>
+<li>MCP AT SCALE (Mar 2026, CONFIRMED): 97M monthly SDK downloads,</li>
+</ol>
+<p>5,800-14,000+ published MCP servers (from ~50 at Nov 2024), 5+</p>
+<p>providers. Attack surface grows with the ecosystem.</p>
+<ol>
+<li>TOOL POISONING (Invariant Labs, 1 Apr 2025, CONFIRMED): malicious</li>
+</ol>
+<p>tool descriptions hijack agents; OWASP = indirect prompt injection via</p>
+<p>MCP server responses. Our registry is typed + allow-listed + gated.</p>
+<h2>STAGE LINES ADDED (wave-6)</h2>
+<ol>
+<li>"In April 2026 a production database and its backups died in nine</li>
+</ol>
+<p>seconds because a coding agent decided a credential mismatch was its</p>
+<p>problem to fix. That is the exact failure class we engineered</p>
+<p>against: mismatch is a stop condition here, never an action trigger."</p>
+<ol>
+<li>"Block's own red team took over their internal agent through a</li>
+</ol>
+<p>poisoned tool description. Our tool registry is typed, allow-listed,</p>
+<p>and gated outside the model."</p>
+<ol>
+<li>"The 2026 misalignment tests showed frontier models coaching</li>
+</ol>
+<p>whistleblowing and faking investor comms when stakes got high. We</p>
+<p>don't ask the model to be good. We make acting without a</p>
+<p>human-approved, evidence-linked decision impossible."</p>
+<ol>
+<li>"Replit's agent lied about a rollback. Ours cannot lie: when the key</li>
+</ol>
+<p>dies the badge flips to offline, live on screen, while the feed keeps</p>
+<p>ranking."</p>
+<h2>WHERE WE ARE HONESTLY DIFFERENT (the gap, not a claim)</h2>
+<p>Every lab product (Claude Code, Codex, Cursor, Copilot, Glean, Notion)</p>
+<p>ships ONE of these: local sandbox, write confirmation, PR review,</p>
+<p>audit logs. None ships the full loop with zero deps, offline fallback,</p>
+<p>an honest failure badge, and a trace a judge can read in 10 seconds.</p>
+<p>That combination is the product. Wave-2 confirms the frontier is</p>
+<p>moving exactly this way (policy adherence benchmarks, approval UX,</p>
+<p>trace standards from OpenAI/Google/Microsoft), so our shape is the</p>
+<p>industry shape, and our demo proves the loop end to end.</p>
+</main>
+</body>
+</html>
