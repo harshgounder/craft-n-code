@@ -242,3 +242,17 @@ PS-05 Hardware Hack -> software companion, never fresh hardware
 All five kits exist in scaffold/fixtures/kit*.json with decks and
 storyboards already in the repo. The night is a fingerprint + copy
 job, not a build.
+
+## SECTION 9: EXPANSION PASS 1 (2026-08-15, landscape scan)
+
+Source: reskilll "AI Hackathon Ideas for 2026: 20 Projects That Use Agentic AI and MCP" + "AI Hackathon Calendar India 2026" (both live 2026-08-15 via curl, Firecrawl 402). Full detail in ~/hackathon-idea-lab/research/TOPIC-UNIVERSE-2026.md (master copy lives there; this file stays in sync for the night).
+
+NEW SHAPES (VERIFIED landscape, both mount on the existing engine):
+- Shape 6: MCP ECOSYSTEM. Watch-words: MCP, model context protocol, tool server, integration. Kit: KIT-1 architecture + labeled tool adapters. NOTE: "MCP server" already appeared in the 2025 phase-2 extension list, so this vocabulary is familiar to these setters.
+- Shape 7: MULTI-AGENT SYSTEM. Watch-words: agent team, multi-agent, supervisor, orchestrator, specialist agents. Kit: KIT-1 architecture + coordinator view in the UI.
+
+NEW DOMAINS (30 total now): DevTools/code (codebase navigator, code review pipeline, OSS contribution finder), meetings/collaboration (meeting assistant, action items), research/academic (paper analyzer, lit review), agriculture (advisory agent, weather+soil+crop), AI for Bharat / Indic (multilingual, Indic models, rural, voice-first: Kavach DNA fits), responsible AI (bias, explainability, safety), gaming/entertainment (AI dungeon master), music/audio (playlist curator), food/recipe (fridge image -> recipe), smart city (multi-agent dashboard).
+
+CONFIRMED 2026 THEMES (VERIFIED): on-device AI / edge LLMs (iQOO hackathon June 2026), agentic AI, MCP servers, GenAI education (SahAI for Shiksha, Wadhwani AI), AI for Bharat, responsible AI. Same tips independently confirmed: demo matters, show the agent loop, handle failures gracefully.
+
+Kit mapping additions: MCP words -> KIT-1 + tool adapters. Multi-agent words -> KIT-1 + coordinator view. Education words -> KIT-1/KIT-4. Indic/Bharat words -> KIT-4/KIT-1 voice-first (Hindi-first Kavach DNA). On-device words -> KIT-3.
