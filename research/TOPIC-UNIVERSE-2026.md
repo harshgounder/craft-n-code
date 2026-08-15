@@ -331,6 +331,64 @@ Run: cnc-nonconsumption (ADECENT 79.6, 135 cites, 2 tables, 38K chars. Full repo
 
 Takeaways that change tonight's parse: voice-first (KIT-4) in 7/10 segments, agentic (KIT-1) in 9/10. Those are the two kits judges reward most. On-device (KIT-3) wins where connectivity rules (elderly, kirana, students). Pure app builds do not appear: the distribution channel itself is nonconsumed. If the drop says "voice" or "Bharat" or "vernacular", this table is the target list.
 
+### SECTION 9.7: GEOGRAPHIC ARBITRAGE ATLAS (wave 3 refire, parallel.ai pro-fast, 2026-08-15)
+
+Run: cnc-geo-arbitrage-refire (DEEP 100.0, 490 cites, 10 tables, 54.5K chars. First attempt SURFACE 74.9 with 43 cites; refire with 100-URL pressure hit a perfect score). Full report: parallel-ai-stack/test-results/cnc-geo-arbitrage-refire.content.md.
+
+US/EU-validated AI products with no Indian equivalent, top-12 by arbitrage wedge:
+
+| # | US/EU product (traction) | India gap + adaptation | Shape x domain x kit |
+|---|---|---|---|
+| 1 | Abridge ($550M raised, ambient clinical docs) | 1.4M MBBS doctors, 70% solo, paper EHR. Hindi AI voice scribe -> ABHA push, Rs 500/doc/month | voice agent, healthcare, KIT-3/4 |
+| 2 | Harvey ($11B val, legal AI) | 1.4M advocates, no enterprise Indic AI. Bharat-law drafter (BNS), Rs 999/month | multi-agent, legal, KIT-5 |
+| 3 | Runway ($315M Series E Feb 2026, video gen) | Indian film/creator $25B+ market, only Reelmind.ai beta. Indic video gen | creative, media, KIT-2 |
+| 4 | Glean ($300M ARR May 2026, enterprise search) | 50K+ mid-market SaaS, no enterprise KG. Hindi+Kannada KG search, Rs 200/seat | retrieval agent, enterprise, KIT-5 |
+| 5 | Pilot ($150M+, bookkeeping) | 63M MSMEs + 80K CAs. AI bookkeeper pulls Razorpay/Paytm SMS, files GST. Rs 99/3,000 | agent, finance, KIT-1 |
+| 6 | Notion (100M users) | Indian knowledge workers on Zoho. Hindi AI wiki, Rs 200/seat | wiki agent, productivity, KIT-1 |
+| 7 | SchoolAI ($25M, 1M classrooms) | 9.5M K-12 teachers. Hinglish lesson planner + DIKSHA, Rs 99/teacher | agent, education, KIT-1/4 |
+| 8 | Descript ($100M / $55M ARR) | 80M+ creators. Hinglish auto-transcribe + voice clone, Rs 299 | audio agent, creator, KIT-2 |
+| 9 | Suki ($165M, voice assistant) | tier-2 docs, ABDM, Rs 500/month | voice agent, healthcare, KIT-3 |
+| 10 | Spellbook ($40M RBCx debt, contract AI) | Indian law firm arms (Amarchand, AZB, Khaitan). Indian-Acts contract AI | multi-agent, legal, KIT-5 |
+| 11 | SkySlope (3M+ transactions, real estate) | 1.4L+ sub-registrar offices, paper. Encumbrance + stamp-duty AI, Rs 5K/txn | doc AI, property, KIT-5 |
+| 12 | Mercury ($5.2B val, AI-native banking) | Indian founders, no AI-native bank. RazorpayX AI copilot | copilot, fintech, KIT-1 |
+
+Takeaways: every row is a statement-ready "build the Indian X" problem. Abridge/Harvey/SchoolAI lanes are the strongest sponsor fits (Google/Accenture love India-impact framing). If the drop says "India's doctors/lawyers/teachers/shops", this table is the reference implementation list.
+
+### SECTION 9.8: FAILED-AI AUTOPSIES (wave 3, parallel.ai pro-fast, 2026-08-15, PROVISIONAL)
+
+Run: cnc-failed-ai-startups-refire. Verdict: MINED 94.5 (287 cites, 5 tables, 48.4K chars. MINED = FAIL per contract; content folded provisionally because the retry opportunities are statement-ready and each has a death source). Full report: parallel-ai-stack/test-results/cnc-failed-ai-startups-refire.content.md.
+
+19 dead/distressed AI startups across 7 lanes: consumer assistants (Pi, Replika, Sonantic, Socratic, Halo), education (AI tutoring, homework bots, essay graders), healthcare (triage bots, mental-health chatbots), finance (bookkeeping, wealth, fraud), enterprise (copilots, knowledge, meeting tools), creative (art/music/video/writing), India-specific (dead/distressed Indian AI startups).
+
+The retry pattern that matters tonight: every dead company proves a LIVE problem that a 24h student build CAN serve now, because free LLM APIs + MCP + on-device remove the cost structures that killed the original (inference cost, distribution, single-model lock-in). Death causes cluster as: retention (consumer), regulatory/trust (health), monetization (creative), timing (India). Use the report's per-company death-source table when the demo needs a "why this matters" slide: name the dead company, show its death cause, show the live problem.
+
+### SECTION 9.9: COMPELLED EVIDENCE MINE (wave 3 refire, parallel.ai pro-fast, 2026-08-15, PROVISIONAL)
+
+Run: cnc-compelled-evidence-refire. Verdict: SURFACE 67.7 (10 cites, 21 tables, 29K chars; refire dropped citation count vs first attempt MINED 90.4. Folded provisionally: the numbers themselves are the deliverable, each table carries its source). Full report: parallel-ai-stack/test-results/cnc-compelled-evidence-refire.content.md.
+
+Top citable numbers (each with source in the report):
+
+| Stat | Lane | Year | Demo use |
+|---|---|---|---|
+| Rs 11,158 cr saved via 1930/CFCFRMS fraud helpline | Fraud | FY21-26 | national helpline intercepts 20% of reported fraud value |
+| 101,928 cybercrime cases registered | Fraud | 2024 | cybercrime doubled in 4 years |
+| Doctor ratio 1:811 (13.86 lakh doctors) | Healthcare | Jul 2024 | India crossed WHO 1:1000 threshold |
+| 5.6 crore pending court cases | Civic | Aug 2026 | 1 pending case per 25 citizens |
+| 70 crore active UPI QR codes | SMB | Dec 2025 | every kirana is a payment node |
+| 24 lakh NEET candidates | Education | 2024 | 22:1 med-school squeeze |
+| Rs 224B piracy loss | Creator | 2023 | EY-IAMAI |
+| Rs 805 cr UPI fraud value, ~85% YoY growth | Fraud | FY26 | fraud beat recovery |
+| Rs 250 cr DPDPA max penalty | Compliance | 2025 | bigger than GDPR per-firm |
+| 21.70 billion UPI transactions | Finance | FY25 | UPI moves India's GDP |
+
+Takeaway: the cross-cutting pattern is shell vs substance: India moves massive public numbers (70 cr QRs, 21.7B UPI, 7.3 cr MSMEs) but the opaque backend is thinner (fraud recovery ~12%, FIR conversion 3:1 behind complaints). Any demo opening with one of these numbers beats a generic problem slide.
+
+### SECTION 9.10: COMPLAINT MINE (wave 3, parallel.ai pro-fast, 2026-08-15, PROVISIONAL)
+
+Run: cnc-complaint-mining-refire. Verdict: SHALLOW 54.3 (398 cites, 6 tables, 63.8K chars; first attempt SURFACE 67.1, refire scored LOWER. Verdict instability on this prompt after two attempts, no third refire: content folded provisionally for its verbatim quotes, which are the usable part). Full report: parallel-ai-stack/test-results/cnc-complaint-mining-refire.content.md.
+
+5 sponsor lanes mined (Google dev/student/SMB, Apple on-device/accessibility, Meta WhatsApp India/sellers/group admins, Accenture enterprise ops, Adobe creators). The usable output: verbatim complaint quotes per lane for the demo problem slide, and the statement-readiness ranking. Use it as the quote bank, not as prediction: complaints prove pain, they do not predict the setter.
+
 ## SECTION 10: THE META-UNIVERSE (beyond Craft N Code 2026)
 
 This universe generalizes to any AI hackathon in India 2026-2027. The event-agnostic core: Section 1 company DNA (apply the setter list of YOUR event), Section 2 shapes (7 core + 13 from wave 2 = 22 now), Section 3 domains (30 core + 32 from wave 2 = 62 now), Section 5 grammar, Section 4 kit mapping. For a new event: re-run the site forensics + company lane scan, swap the priors, keep everything else. The kit layer (what you can build in 24h) stays identical: one engine, many skins.
