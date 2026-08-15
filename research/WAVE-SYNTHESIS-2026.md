@@ -7,7 +7,7 @@ master index: per wave, the facts, where they plug in, and how to use them on
 stage or in the repo.
 
 ════════════════════════════════════════════════════════════════
-## WAVE 3 — DILIGENCE (sponsors, judges, funding, adoption)
+## WAVE 3: DILIGENCE (sponsors, judges, funding, adoption)
 ════════════════════════════════════════════════════════════════
 KEY FACTS (all VERIFIED via cited sources in raw/wave3):
 - Google I/O Connect India 2026 (14 Jul 2026, one month before our event):
@@ -49,7 +49,7 @@ STAGE USE: "why now" numbers (UPI 24,161 cr txns; <5% MSME software
 adoption; iStart Rs 10K/mo follow-on funding).
 
 ════════════════════════════════════════════════════════════════
-## WAVE 4 — BENCHMARKS (per-category registry, verified)
+## WAVE 4: BENCHMARKS (per-category registry, verified)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:
 - Agentic: AgentBench-style suites show ~80% success variance across runs;
@@ -71,12 +71,12 @@ KEY FACTS:
   AI Governance Guidelines (Nov 2025).
 PLUGS INTO: PER-TOPIC-BENCHMARKS-2026.md (upgrade rows to VERIFIED),
 BENCHMARKS-2026.md.
-STAGE USE: when judge asks "how is it tested" — cite the multi-run /
+STAGE USE: when judge asks "how is it tested": cite the multi-run /
   trajectory-level stance (matches our 81/81 order-independent suites,
   zero LLM judges).
 
 ════════════════════════════════════════════════════════════════
-## WAVE 5 — STRESS (categories + standards, verified)
+## WAVE 5: STRESS (categories + standards, verified)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:
 - SLOs at p99 not averages: Google SRE Workbook multi-threshold (90% <100ms
@@ -102,7 +102,7 @@ STAGE USE: our 81/81 includes injection, flood, traversal, concurrency;
 we can name the OWASP LLM01-LLM10 map per test.
 
 ════════════════════════════════════════════════════════════════
-## WAVE 6 — FRONTIER (incidents, shipped products, leaderboards)
+## WAVE 6: FRONTIER (incidents, shipped products, leaderboards)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:
 - PocketOS (24 Apr 2026, CONFIRMED): scoped Railway token let Cursor/Claude
@@ -125,7 +125,7 @@ STAGE USE: the honesty moment story (our badge flips offline while feed
 keeps ranking) directly counters the Replit/PocketOS pattern judges know.
 
 ════════════════════════════════════════════════════════════════
-## WAVE 7 — WINNERS + FORMAT (mechanics confirmed)
+## WAVE 7: WINNERS + FORMAT (mechanics confirmed)
 ════════════════════════════════════════════════════════════════
 KEY FACTS (VERIFIED, CSC MUJ Instagram 12 Aug 2026 reel + sources):
 - Craft N Code 2026: 24-hour state-level hackathon, 15-16 Aug, Rs 299/team
@@ -139,7 +139,7 @@ KEY FACTS (VERIFIED, CSC MUJ Instagram 12 Aug 2026 reel + sources):
   Fintech, Edtech, Blockchain-for-Good, Supply Chain, Environment, Health,
   Smart Cities, Disaster, Cyber+Defence, Open Innovation).
 - SIH prize floor: Rs 1,50,000 per winner; SIH judges DO declare no-winner
-  PS (SIH1529, SIH1564, SIH1692, SIH1697, SIH1776 in 2024) — PS fidelity
+  PS (SIH1529, SIH1564, SIH1692, SIH1697, SIH1776 in 2024): PS fidelity
   matters but is not enough (Reddit r/Btechtards case: only team following
   PS 1779 still lost).
 - Unstop patterns: 2540+ hackathons; Adobe University Hackathon 2026 R1 =
@@ -159,11 +159,11 @@ deck (IIITB framing).
 STAGE USE: the pitch opens on the national finale gate, not the Rs 50K.
 
 ════════════════════════════════════════════════════════════════
-## WAVE 8 — COMPETITORS (teardown of all 7 shapes)
+## WAVE 8: COMPETITORS (teardown of all 7 shapes)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:
 - Shape 1 (agent ops): OpenAI Operator now lives inside ChatGPT, still
-  "research preview" — no cross-app approval queue, no audit log. A
+  "research preview": no cross-app approval queue, no audit log. A
   dashboard that ranks + logs across email/Slack/tickets beats the browser
   surface.
 - Shape 2 (creative): C2PA is real hardware (6 camera vendors sign: Leica,
@@ -192,7 +192,7 @@ PLUGS INTO: SKIN-KITS-2026.md (competitor lines per kit), BENCHMARKS
 STAGE USE: "this exists" objections pre-answered with honest gaps.
 
 ════════════════════════════════════════════════════════════════
-## WAVE 9 — DATA (real rails for the live demo)
+## WAVE 9: DATA (real rails for the live demo)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:
 - HN Firebase API (hacker-news.firebaseio.com/v0/): keyless, no documented
@@ -214,7 +214,7 @@ PLUGS INTO: NIGHT-RUNBOOK (live data beat), feeds.py roadmap, kit fixtures.
 STAGE USE: live ingest shows real HN + NPCI-shaped data on screen.
 
 ════════════════════════════════════════════════════════════════
-## WAVE 10 — FRAUD AMMO (KIT-4B numbers, all VERIFIED)
+## WAVE 10: FRAUD AMMO (KIT-4B numbers, all VERIFIED)
 ════════════════════════════════════════════════════════════════
 KEY FACTS (the eight numbers a judge will ask first):
 - RBI FY25-26: 10,114 cases, Rs 48,021 crore (vs 23,722 cases / Rs 32,803
@@ -249,7 +249,7 @@ SUBMISSION-TEXT-KIT, deck slide 2.
 STAGE USE: open the demo with "Rs 4,057 crore, 3 lakh victims, one call".
 
 ════════════════════════════════════════════════════════════════
-## WAVE 11 — DPDPA (KIT-3/KIT-5 compliance ammo)
+## WAVE 11: DPDPA (KIT-3/KIT-5 compliance ammo)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:
 - Rules notified 14 Nov 2025; 3-phase rollout (6/12/18 months) -> first
@@ -267,11 +267,11 @@ KEY FACTS:
   enforcement from 2 Aug 2026.
 PLUGS INTO: IDEA-DILIGENCE-2026.md KIT-3/KIT-5 rows, UI-UX-BRIEF (consent
 UX), deck.
-STAGE USE: "DPDPA-ready by default" — consent flow + 72h breach endpoint
+STAGE USE: "DPDPA-ready by default": consent flow + 72h breach endpoint
 as a feature, not a footnote.
 
 ════════════════════════════════════════════════════════════════
-## WAVE 12 — LLM OPS (demo fallback ladder, VERIFIED)
+## WAVE 12: LLM OPS (demo fallback ladder, VERIFIED)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:
 - Gemini 2.5 Flash free tier: ~10-15 RPM, ~1,500 RPD, no card. Default
@@ -295,7 +295,7 @@ LLM dies", name the ladder: OLLAMA -> OpenRouter :free -> Cerebras -> deep
 offline mode.
 
 ════════════════════════════════════════════════════════════════
-## WAVE 13 — MCP ECOSYSTEM (shape 6 depth)
+## WAVE 13: MCP ECOSYSTEM (shape 6 depth)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:
 - Official MCP Registry: 9,652 servers (24 May 2026); mcp.so 19.7k+,
@@ -317,7 +317,7 @@ STAGE USE: if the PS is MCP-shaped, we name the spec dates and the
 poisoning class; that is depth judges don't expect from students.
 
 ════════════════════════════════════════════════════════════════
-## WAVE 14 — DEMO CRAFT (the 3-minute playbook)
+## WAVE 14: DEMO CRAFT (the 3-minute playbook)
 ════════════════════════════════════════════════════════════════
 KEY FACTS:
 - Three-act arc for 3 min: Act 1 problem 30-45s (hook 10s: name victim,
