@@ -4,9 +4,23 @@ Compiled: 2026-08-14 20:30 IST | Source of truth for the schedule:
 the club's own event site (research/SITE-FORENSICS-20260814.md, VERIFIED).
 Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
 
+## FORMAT UPDATE 2026-08-15 19:23-19:47 IST (organizer msgs, SUPERSEDES below)
+
+- Round 0 = ONLINE screening, starts 22:00 IST tonight. Problem statements
+  announced by 22:00. Submission = PPT AND Prototype BOTH required.
+- Evaluated directly by IIIT BHUBANESWAR faculty (not sponsor companies).
+- MIDNIGHT SURPRISE, revealed at midnight, unknown content. Keep 30-min slack.
+- Round 1 = OFFLINE 12-hour sprint on campus, date TBA after Round 0 results.
+- Round 2 = selected teams present in front of the panel.
+- Old gates (Unstop 06:00 / club site 09:00) UNVERIFIED for Round 0: verify
+  the live submission links + real deadline when the round opens at 22:00.
+- 21:30 references below shift to 22:00. Judges for Round 0 = faculty:
+  they probe claims, reward evidence. Proof ledger is the shield.
+
+
 ## ROLES (Team 511)
 
-- Harsh (lead): fingerprint scan at 21:30, final decision call, pitch lead.
+- Harsh (lead): fingerprint scan at 22:00, final decision call, pitch lead.
 - Ayush: repo + engine ops, demo.sh runner, seed data swap.
 - Sujal: deck + submission text, paste and submit at each gate.
 - Backup rule: anyone can run ./demo.sh and ./atlas/serve.sh. No single point
@@ -45,7 +59,7 @@ Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
   club WhatsApp/Telegram, Unstop app push notifications on.
 - Pull reg count (unstop.com/api/public/competition/1730314), log it.
 
-21:30 PROBLEM STATEMENTS DROP
+22:00 PROBLEM STATEMENTS DROP (Round 0, online)
 - Fingerprint scan, 2 MINUTES: read the text for company vocab (cue table in
   IDEA-BANK section 5): agents/tools/deadlines = Google, Llama/multimodal/
   community = Meta, Firefly/creative/brand = Adobe, Swift/accessibility/
