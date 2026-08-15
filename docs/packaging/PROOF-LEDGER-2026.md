@@ -7,7 +7,7 @@ Claim | Evidence | Condition | Status. Every number in the deck, README, trailer
 | # | Claim | Evidence | Condition | Status |
 |---|---|---|---|---|
 | 1 | Engine completes the full loop: ingest -> dedupe -> rank -> propose -> approve -> audit | Trace viewer + acceptance suites; test_trace 12/12 | Any configured provider; local mode with null provider | VERIFIED |
-| 2 | 85/85 acceptance suites green | scaffold/tests run 2026-08-15 (approval 13/13, providers 9/9, feeds 8/8, honesty 12/12, stress 23/23 + trace/multimodal/provenance) | Fresh DB per suite, order-independent | VERIFIED (re-run before submission) |
+| 2 | 85/85 acceptance suites green | scaffold/tests fresh run 2026-08-15 20:11 (approval 13/13, trace 12/12, providers 9/9, multimodal 4/4, provenance 4/4, feeds 8/8, honesty 12/12, stress 23/23) | Fresh DB per suite; run BEFORE the demo server starts (port contention causes flakes) | VERIFIED (fresh run) |
 | 3 | 46/46 lane fixture scenarios verified | B5 lane fixtures suite (support-ticket, volunteer-coordination, campus-ops golden sets) | Fixture data, dedupe pairs + scam items included | VERIFIED |
 | 4 | Zero runtime deps beyond stdlib + optional LLM endpoint | Engine imports scan, requirements.txt, clean-machine run | Python 3.11+ | VERIFIED |
 | 5 | Honest mode badge counts ACTUAL provider outcomes | Honesty suite 12/12 (incl. H7 live-outcome badge, no badge-lie) | Any provider | VERIFIED |
