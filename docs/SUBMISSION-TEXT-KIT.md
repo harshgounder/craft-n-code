@@ -1,10 +1,15 @@
 # SUBMISSION TEXT KIT - copy-paste ready for both gates
 
-Compiled: 2026-08-14 20:30 IST | Purpose: every submission field pre-written so
-the night is paste + submit, not write-at-5am. Two gates:
-- ROUND 0 (organizer msg 19:23 IST): ONLINE, drop 22:00, submission = PPT AND Prototype BOTH. Evaluated by IIIT Bhubaneswar faculty. Midnight surprise. Gates below are the OLD format, verify live at 22:00.
-- Unstop round 1569450: PPT (pdf/pptx, max 50MB), v1 at 23:00, final 05:00, closes 06:00
-- Club site (cscmuj.com / craftncode.dev form): repo_url (required) + pitch (1-2000 chars) + demo_url (optional), v1 before 06:00, final before 09:00 freeze
+Compiled: 2026-08-14 20:30 IST, Round 0 update 2026-08-15 | Purpose: every
+submission field pre-written so the night is paste + submit, not write-at-5am.
+One live gate:
+- ROUND 0 (organizer msg 19:23 IST): ONLINE, drop 22:00, submission = PPT AND
+  Prototype BOTH. Evaluated by IIIT Bhubaneswar faculty. Midnight surprise.
+  EXACT submission links + real deadline: verify live when the round opens at
+  22:00. Old links below are history.
+- OLD GATES (superseded, history only): Unstop round 1569450 PPT v1 23:00 /
+  final 05:00 / close 06:00; club site form repo_url + pitch, v1 06:00 /
+  freeze 09:00. Kept as the Round 1 (12h sprint) skeleton.
 
 ## V2 ADDITIONS (Aug 15, after the 17-wave research round)
 
@@ -131,4 +136,5 @@ Do NOT rename the repo on the night; the URL is the URL.
 demo_url is optional on the club form. If a demo video exists (team records
 tonight or tomorrow), host it: YouTube unlisted (fastest, reliable at the
 venue) and paste the link. If no video exists yet, leave the field empty;
-repo_url + pitch + live demo at 09:00 still lands.
+repo_url + pitch + demo_url lands at whatever the live Round 0 gate is
+(verify at 22:00).

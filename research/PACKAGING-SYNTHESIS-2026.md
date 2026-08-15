@@ -1,4 +1,4 @@
-# PACKAGING-SYNTHESIS-2026 — the YC-seed-level packaging layer for Craft N Code
+# PACKAGING-SYNTHESIS-2026: the YC-seed-level packaging layer for Craft N Code
 
 Written 2026-08-15 ~19:50 IST, pre-drop. Folds the full packaging research wave (15 parallel.ai runs, 2 DEEP, 13 ADECENT/MINED, 1,159 unique sources in the union). This is the evidence base for the startup-universe hackathon edition plan. Honest tags: VERIFIED (source-cited), INFERRED (cross-run convergence, no direct cite), WILDCARD (my reasoning, no evidence).
 

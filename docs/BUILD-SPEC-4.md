@@ -47,7 +47,7 @@ M2. Slide count of each deck increases by EXACTLY 1 vs the previous
 M3. The new slide's title text exists in the pptx XML (grep the
     mcpSlide title string in the unzipped deck).
 M4. The cover badge "MCP-READY" appears on slide 1 XML of each deck.
-M5. grep -rl "—" on scaffold/deck returns nothing (no em dashes).
+M5. the em-dash grep on scaffold/deck returns nothing (no em dashes).
 M6. No other file changed (git status shows only deck-gen.js + the 4
     .pptx). No git commit.
 

@@ -1,10 +1,11 @@
 # RUDRA ASK - the only gap the internet cannot close
 
-Why this matters: everything else for Aug 15 21:30 is pre-built and
-verified (engine 42/42, 4 decks, 4 storyboards, decision tree). The ONE
+Why this matters: everything else for the 22:00 drop is pre-built and
+verified (engine 85/85, 4 decks, 4 storyboards, decision tree). The ONE
 piece of intel no research run could recover is the 2025 RAJASTHAN
 state-round reality: the actual problems, the judging format, what won.
-Rudra (club) has it. Ask before Aug 15 21:30, ideally tonight.
+Rudra (club) has it. Still worth asking before 22:00: it feeds Round 1/2
+prep even though Round 0 is a pass-through for MUJ teams.
 
 ## The ask (copy-paste to WhatsApp / Telegram)
 
@@ -42,5 +43,5 @@ No rush on exact wording, bullet points or voice notes are perfect.
 ## Timeline
 
 - Tonight (Aug 14): send the message while Rudra is reachable.
-- Aug 15 before 21:00: if no answer, stop asking, rely on the tree.
-- 21:30: drop fires, 10-min decision tree, no more intel hunting.
+- Aug 15 before 22:00: if no answer, stop asking, rely on the tree.
+- 22:00: drop fires, 10-min decision tree, no more intel hunting.

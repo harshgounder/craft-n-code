@@ -49,7 +49,7 @@ pre-verified. Nothing here is vibes; each claim has an evidence tag.
   funding, adoption, idea seed, gate, risk). PRIOR-ART-MAP: the exists-map
   per shape/domain with stars, wedges, traps, the three tensions, the
   venue recipe. WAVE-SYNTHESIS: the master index. NIGHT-CHEAT-SHEET: the
-  21:30 quick-mount table (5 mount cards + 25 domain rows + 6 judge
+  22:00 quick-mount table (5 mount cards + 25 domain rows + 6 judge
   attack answers + 3-min script). EVIDENCE CHAIN (honest): wave numbers
   are verified through each report's inline citations and URL
   reachability spot-checks, not independently re-measured.
@@ -86,6 +86,11 @@ pre-verified. Nothing here is vibes; each claim has an evidence tag.
   reward security depth. INFERRED but grounded.
 
 ## 4. THE NIGHT BUDGET (Aug 15 21:30 - Aug 16 09:00)
+
+ROUND 0 UPDATE 2026-08-15: tonight is ONLINE screening (drop 22:00, PPT +
+prototype, faculty judges, midnight surprise). The gates below are the OLD
+physical-night budget and are UNVERIFIED for Round 0; verify live at 22:00.
+Keep this budget as the Round 1 (12h sprint) skeleton.
 
 - 21:30 drop to 06:00 Unstop close = 8.5 hours. To 09:00 club freeze = 11.5h.
 - Budget: 0.5h fingerprint + decision, 0.5-1h skin mount, 2-3h vertical slice

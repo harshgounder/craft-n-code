@@ -20,7 +20,7 @@ two are the only files that matter for the night.
 
 1. `research/IDEA-BANK.md` - THE playbook. Pre-built answers for each
    sponsor-shaped question, the decision tree that fires 10 minutes after
-   the 21:30 problem drop. This is what we run the night on.
+   the 22:00 problem drop. This is what we run the night on.
 2. `research/WAVE-SYNTHESIS.md` - WHY one shared engine wins: the 5 most
    likely problem shapes all share one pipeline (input -> extraction ->
    evidence -> ranking -> proposal -> approval -> audit). Also the gaps we
@@ -129,6 +129,6 @@ two are the only files that matter for the night.
 1. This tour (done).
 2. IDEA-BANK.md decision tree (2 min).
 3. WAVE-SYNTHESIS.md execution plan (2 min).
-4. Unstop open. 21:30 drop. Cue table from IDEA-BANK §5 (2 min).
+4. 22:00 drop. Cue table from IDEA-BANK §5 (2 min).
 5. Decision tree fires (10 min). Pick idea + deck + storyboard.
-6. Swap seed data, ./demo.sh, submit the pptx before 06:00.
+6. Swap seed data, ./demo.sh, submit the pptx at the Round 0 gate (verify at 22:00).

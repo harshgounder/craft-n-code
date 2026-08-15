@@ -1,8 +1,10 @@
-# NIGHT RUNBOOK - Aug 15 20:00 to Aug 16 09:00 (print this)
+# NIGHT RUNBOOK - Round 0 (online) tonight, Round 1/2 TBA (print this)
 
-Compiled: 2026-08-14 20:30 IST | Source of truth for the schedule:
-the club's own event site (research/SITE-FORENSICS-20260814.md, VERIFIED).
-Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
+Compiled: 2026-08-14 20:30 IST, Round 0 update 2026-08-15 19:47 IST |
+Source of truth: the FORMAT UPDATE block below (organizer msgs 19:23-19:47).
+The old site-forensics gates (Unstop 06:00 / club site 09:00) are UNVERIFIED
+for Round 0; verify the live Round 0 submission links when the round opens
+at 22:00.
 
 ## FORMAT UPDATE 2026-08-15 19:23-19:47 IST (organizer msgs, SUPERSEDES below)
 
@@ -16,6 +18,26 @@ Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
   the live submission links + real deadline when the round opens at 22:00.
 - 21:30 references below shift to 22:00. Judges for Round 0 = faculty:
   they probe claims, reward evidence. Proof ledger is the shield.
+
+## ROUND 0 TIMELINE (tonight, ONLINE)
+
+20:00-21:00 PRE-DROP: tabs open (Unstop round 1569450, club channels), reg
+count log, kit mount scripts sanity check, LLM PRE-WARM pass 1.
+21:45 PRE-WARM pass 2 (spaced passes fill the cache; 429 WATCH below).
+22:00 DROP: fingerprint 2 min -> decision tree 10 min -> SKIN MOUNT
+  (15-40 min, drill-proven) -> ./demo.sh verify -> bundle PPT + prototype.
+23:00-23:30 GATE 1: v1 SUBMIT at the live Round 0 link (verified at 22:00).
+  A bad v1 beats no v1. PPT under 50MB, pdf preferred.
+23:30-00:00 MIDNIGHT SURPRISE WATCH (30-min slack, pivot cheat sheet).
+00:00-01:00 SURPRISE RESPONSE: fold it in, v2 submit if the surprise changes
+  the statement, otherwise STOP and rest.
+01:00 REST. Round 0 is a pass-through for MUJ teams (user intel); the real
+  weeding is Round 1 (offline 12h sprint, judges watch the build) + Round 2
+  (panel). A rested team wins the sprint.
+
+STILL BINDING (below in the old timeline): pre-warm rule, 429 watch,
+honesty moment, LLM fallback ladder, live data rails, kill criteria, carry
+list.
 
 
 ## ROLES (Team 511)
@@ -45,7 +67,10 @@ Two submission gates: Unstop PPT (06:00) and club site (09:00). Both lock.
   alone lost a team that was "the only one following the brief". Theme
   resonance + adoption language beat literalism.
 
-## TIMELINE
+## OLD PHYSICAL-NIGHT TIMELINE (SUPERSEDED by Round 0 online; keep as Round 1 skeleton)
+
+ALL GATES BELOW (23:00/03:00/05:00/06:00/09:00) ARE THE OLD PHYSICAL-NIGHT
+PLAN. Dead for Round 0. Verify the real gate at 22:00.
 
 20:00 CHECK-IN + OPENING BRIEF (MUJ)
 - Team lock-in. LISTEN for wildcard signals: sponsor names, track changes,
