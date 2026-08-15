@@ -520,6 +520,70 @@ The one-page takeaway for the 21:30 decision (full checklist + printable in repo
 - The checklist order: company DNA -> shape -> domain -> kit fit -> demo gate -> team skills -> failure story. Pass/fail thresholds in the report.
 - 1st vs 2nd place test: the empty-lane test (is another team likely to build the same), the judge-replay test (can a judge re-run your demo), the 3-minute-narrative test (does the story fit 180 seconds).
 
+### SECTION 9.21: EXISTING-SOLUTION LANDSCAPE: AGENTIC OPS (BriefLens), 2026-08-15
+
+Run: cnc-exist-agentic-ops (ADECENT 83.4, 158 cites, 7 tables, 59.7K chars. Full report: parallel-ai-stack/test-results/cnc-exist-agentic-ops.content.md).
+
+- Email triage incumbents: Superhuman (tier-gated AI, no approval pause), SaneBox ($7.99/mo, router not agent, no evidence per item), Shortwave (~50 staff, agent drafts not approval queue), Front ($15-25/user, support-inbox only), Missive (UI layer). NONE expose an evidence ledger per email, an approval pause, or an audit trail a non-technical user can read.
+- OSS/adjacent: inbox-zero 11.7K stars (no audit/approval in feature set), PaperclipAI 76.4K stars (immutable audit + review-approval primitives, SDK not product), LangGraph 35.2K stars HITL checkpoints, OpenAI Agents SDK result.interruptions, Claude Agent SDK canUseTool, Vercel AI SDK 7 approvals+observability. AgentMail (YC S25) = inboxes FOR agents, AgentRQ = HITL supervisor MCP.
+- Pain evidence: r/Slack app-approval cycles ~3 months, r/SRE eBPF audit thread, Show HN AgentMail/AgentRQ = community sees HITL + audit as the missing layer.
+- WEDGE (confirmed): a packaged, email-first approve+audit product with Indic summarization (Bhashini 22 langs) + one-tap WhatsApp approval. No commercial Western email product ships that.
+- Judge objection: "Superhuman/SaneBox do this" -> none of them pause for approval, none show why (evidence) per email, none give a readable audit trail.
+
+### SECTION 9.22: EXISTING-SOLUTION LANDSCAPE: SECURITY/VOICE (Kavach + Circle), 2026-08-15, PROVISIONAL
+
+Run: cnc-exist-security-voice. Verdict: SURFACE 67.6 (49 cites, 7 tables; folded provisionally, cross-checked against the verified S9.13 incident data). Full report: parallel-ai-stack/test-results/cnc-exist-security-voice.content.md.
+
+- Truecaller AI (India, 450M users, Family Protection $74.99/yr): server-side caller-ID summaries, NOT live mid-call audio analysis, no claim of on-device Hindi model. Closest incumbent, paid-only above basic tier.
+- Hiya: US-only. Google Pixel Scam Detection + Android fake-call detection: on-device but US-English-gated. McAfee: 96% video deepfake claim, US/UK/AU only. Pindrop/Reality Defender/Intel FakeCatcher: contact-centre grade, curated-benchmark EER degrades in the real world.
+- WhatsApp on-device Scam Alert: limited beta. CyberDost/I4C: awareness-only. 1930 helpline: post-loss. DoT FRI/Chakshu: transactional/OTP-level, not voice-content-aware.
+- WEDGE (confirmed): live Hindi/Indic on-device mid-call detection (Whisper-small/wav2vec2-BERT locally), evidence bundle for FIR, free tier. Community WhatsApp scam->QR->UPI hash db: genuinely unoccupied. Hindi deepfake corpus missing = real gap.
+- REGULATORY WARNING: DPDPA Phase 2 effective 13 Nov 2026 creates the consent-manager framework; a 24h build recording calls without per-call consent risks unlawful processing. The demo must show consent capture or simulate.
+- The 5 judge objections all have evidence-backed answers: Truecaller (no live Hindi on-device outgoing detection), Google (Pixel US-English only), McAfee (video-only, US subscription), WhatsApp (post-fact, not preventive), RBI/Chakshu (transactional only).
+
+### SECTION 9.23: EXISTING-SOLUTION LANDSCAPE: COMPLIANCE (VicharSetu), 2026-08-15
+
+Run: cnc-exist-compliance (DEEP 95.0, 276 cites, 10 tables, 37.5K chars. Full report: parallel-ai-stack/test-results/cnc-exist-compliance.content.md).
+
+- Enterprise tier saturated but English-only: OneTrust (Bengaluru hub, quote-based), Securiti, DataGuidance, Tsaaro (SME-on-Demand 10-80 hr/mo), SISA, Kratikal, Scrut (DPDP Rules 2025 playbook Dec 2025). NONE target the citizen/MSME tier, NONE are Hindi-ready, NONE have public INR pricing. ConsentiQo (KavachOne, dpdpact.co.in) = India-first consent platform, English, immature; DPDP Board itself has NO live consent-manager registry page yet.
+- Legal AI ($106.3M India market by 2030, 23% CAGR): SpotDraft (500+ enterprise customers, quote-based), Leegality, Harvey, Spellbook, Kira = lawyer-at-keyboard, English.
+- Gov stack: myscheme.gov.in 4,772 schemes; UMANG 11.89 cr registrations / 799.74 cr transactions; Bhashini + Jugalbandi = translation infra, they do NOT cite DPDP sections.
+- TWO REGULATORY TRAPS (must disclaim in the pitch): (1) Consent Manager is a REGISTERED ROLE under DPDP S8 with fully-operational interoperable platforms mandated by 13 May 2027: build a Q&A COPILOT, never pretend to be a consent manager. (2) AI-generated contract answers are under-tested by the Indian Contract Act 1872: a "ChatGPT answers policy" demo gets torn apart; every answer must cite the section.
+- WEDGE (confirmed): Hindi-first, SME-priced, WhatsApp-native (550M+ users), DPDPA-section-aware Q&A with audit trail, fed by myscheme corpus + DPDP Rules PDF + Sarvam TTS + Jugalbandi WhatsApp pattern. Feeds INTO OneTrust/SpotDraft ecosystems as the citizen/SME interface.
+
+### SECTION 9.24: EXISTING-SOLUTION LANDSCAPE: INDIA DOMAINS, 2026-08-15, PROVISIONAL
+
+Run: cnc-exist-india-domains. Verdict: MINED 96.8 (346 cites, 6 tables, 63.1K chars; provisional fold, cross-checked against S9.5 workarounds + S9.6 nonconsumption). Full report: parallel-ai-stack/test-results/cnc-exist-india-domains.content.md.
+
+- Kirana: Khatabook 50M+ downloads / 13 languages but text-first, no voice-first Hindi IVR; OkCredit (YC) SMS-only reminders; Vyapar desktop-first, no WhatsApp channel; BharatPe 10L+ merchants, terminal beep not conversational. The voice-first Hindi udhar gap is real and unoccupied.
+- Agri: DeHaat 190K farmers vs 70% smallholders; Kisan.AI OSS 37 stars; the Hindi-voice advisory lane is open.
+- Health: ABHA 863M registrations but ABDM Node SDK has 2 stars = missing FHIR tooling = buildable; Practo doctor revolt (50% fee + Rs 23K/mo visibility cost, r/india verified) = doctor-copilot wedge without the 50% cut.
+- Edu: Entri 14M users / 250K paying across 8 languages proves vernacular pays; no teacher copilot exists (AI drafts the parent WhatsApp message).
+- Gig: Urban Company "slavery-like" partner conditions documented; gig workforce 120 lakh (FY25) -> 62M by 2047; no Hindi IVR wage-tool.
+- Judge objection: "Khatabook already does this" -> Khatabook is text-first in 13 languages, NOT voice-first Hindi/Hinglish over IVR for shopkeepers who do not read English.
+
+### SECTION 9.25: EXISTING-SOLUTION LANDSCAPE: CREATIVE/MEDIA (SignalStory), 2026-08-15, PROVISIONAL
+
+Run: cnc-exist-creative-media. Verdict: SURFACE 64.8 (0 cites, 9 tables; provisional, provenance claims cross-checked against verified S9.12 C2PA data). Full report: parallel-ai-stack/test-results/cnc-exist-creative-media.content.md.
+
+- Enterprise: Adobe GenStudio (7-figure licensing, no India ramp), WPP Open (captive, 33x volume claims, not buyable), Canva Magic Studio (free tier 500 exports/day, no brand-kit enforcement, no C2PA export), Jasper ($49-69/mo, English), Copy.ai (from $1,000/mo starter).
+- Approval SaaS: Filestage EUR 99/mo, Ziflow $249/mo per 15 users, ProofHub $89/mo = no WhatsApp lane, no India pricing.
+- REGULATORY TAILWIND: MeitY draft IT Rules (Oct 2025) mandate a Synthesized Content Indicator on AI content (10% visible surface) with 24h takedown SLA. Provenance is becoming a legal requirement, and no Indian creator tool ships C2PA-signed export + WhatsApp approval + Indic variants together.
+- OSS: IndicTrans2 (458 stars, 22 langs), Sarvam-105B open.
+- WEDGE (confirmed): brief-to-variants + Indic + WhatsApp approval handshake + C2PA/CR-pin export for the 3-5 person Indian agency. Nothing in the market combines those four.
+
+### SECTION 9.26: EXISTING-SOLUTION LANDSCAPE: MCP/AGENTS/ON-DEVICE, 2026-08-15, PROVISIONAL
+
+Run: cnc-exist-mcp-agents. Verdict: SURFACE 68.3 (102 cites, 10 tables, 50.5K chars; provisional fold, cross-checked against verified S9.12/S9.13). Full report: parallel-ai-stack/test-results/cnc-exist-mcp-agents.content.md.
+
+- MCP catalogs 2026: official registry 9,652 records, servers repo 89.5K stars, Glama 56,976, mcp.so 19,700+, mcpservers.org 9,800 curated, Smithery 7,300+.
+- Frameworks: LangGraph 39.7K stars (GA Oct 2025), CrewAI 55.9K, AG2, OpenAI Agents SDK 28.4K, Claude Agent SDK (permission modes Jun 15 2026), Google ADK (deleted 3 malicious workflows Aug 2026 = supply-chain live), Pydantic AI (MCP-native, durable execution, HITL approval first-class), Mastra 26.6K. NONE make approval checkpoints first-class except Pydantic AI.
+- On-device: Ollama 178K stars, llama.cpp 109K, MLX 27.7K, WebLLM 18.6K, ExecuTorch (Trail of Bits audited Jun 2026). Models that run on a student laptop: Llama 3.2 1B/3B (128K ctx), Qwen 2.5 0.5-3B, Phi-4-mini 3.8B, SmolLM3 3B, Gemini Nano via ML Kit (Oct 30 2025).
+- Voice: Pipecat 14.1K, faster-whisper, Vosk 50MB per language offline, Sarvam Indicus (11 Indic TTS, 12 ASR, 23 langs).
+- India MCP: MCP-India-Stack (Indicus/GST/financial), MoSPI official India AI Data MCP (Feb 2026), Samarth-23 collection. NO canonical ABHA/ONDC/GeM/UPI/DigiLocker server exists = the exact buildable wedge.
+- Security: OWASP MCP Tool Poisoning cataloged; Invariant WhatsApp-exfiltration demo; approval gate must sit around the CALL, not the server.
+- THE RECOMMENDED 24H STACK (from the report): Pydantic AI (MCP-native, durable, HITL) + LangGraph audit shell + Ollama offline fallback + MCP-India-Stack + Sarvam voice. Every tool call through an explicit policy node emitting a signed envelope = the wedge none of the incumbents ship.
+
 ## SECTION 10: THE META-UNIVERSE (beyond Craft N Code 2026)
 
 This universe generalizes to any AI hackathon in India 2026-2027. The event-agnostic core: Section 1 company DNA (apply the setter list of YOUR event), Section 2 shapes (7 core + 13 from wave 2 = 22 now), Section 3 domains (30 core + 32 from wave 2 = 62 now), Section 5 grammar, Section 4 kit mapping. For a new event: re-run the site forensics + company lane scan, swap the priors, keep everything else. The kit layer (what you can build in 24h) stays identical: one engine, many skins.
