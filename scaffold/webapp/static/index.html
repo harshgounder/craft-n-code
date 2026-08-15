@@ -120,6 +120,7 @@
       <span class="chip" id="mode-chip">mode: -</span>
       <span class="chip live" id="llm-chip">llm: -</span>
       <span class="chip" id="n-chip">- items</span>
+      <span class="chip" id="live-chip">● polling</span>
     </div>
   </header>
 
@@ -199,6 +200,51 @@
 <script>
 const $=id=>document.getElementById(id);
 let FEED={items:[]};
+let sse=null, pollTimer=null;
+
+function setLive(on){
+  const c=$('live-chip');
+  if(c){c.classList.toggle('live',on);c.textContent=on?'● LIVE':'● polling';}
+  if(on){if(pollTimer){clearInterval(pollTimer);pollTimer=null;}}
+  else if(!pollTimer){pollTimer=setInterval(pollNow,5000);}
+}
+
+async function pollNow(){
+  try{await load();if(!$('v-actions').classList.contains('hide'))await loadActions();}catch(e){}
+}
+
+async function refreshFeed(){
+  const [feed,digest,stats]=await Promise.all([jget('/api/feed'),jget('/api/digest'),jget('/api/stats')]);
+  FEED=feed;
+  $('mode-chip').textContent='mode: '+(stats.mode||'live');
+  $('llm-chip').textContent='llm: '+(feed.llm?.model||'db');
+  $('n-chip').textContent=feed.total+' items';
+  renderStats(stats);renderDigest(digest);renderFeed(feed.items);
+}
+
+async function refreshActions(){
+  renderProposals((await jget('/api/proposals')).proposals);
+  renderAudit((await jget('/api/audit')).events);
+}
+
+function onItemNew(d){refreshFeed();}
+function onItemUpdated(d){refreshFeed();}
+function onProposalNew(d){refreshActions();}
+function onProposalDecided(d){refreshActions();}
+function onAuditNew(d){refreshActions();}
+
+function connectSSE(){
+  if(!window.EventSource)return;
+  sse=new EventSource('/api/events');
+  sse.onopen=()=>setLive(true);
+  sse.onerror=()=>setLive(false);
+  sse.addEventListener('item_new',e=>{try{onItemNew(JSON.parse(e.data))}catch(_){}});
+  sse.addEventListener('item_updated',e=>{try{onItemUpdated(JSON.parse(e.data))}catch(_){}});
+  sse.addEventListener('proposal_new',e=>{try{onProposalNew(JSON.parse(e.data))}catch(_){}});
+  sse.addEventListener('proposal_decided',e=>{try{onProposalDecided(JSON.parse(e.data))}catch(_){}});
+  sse.addEventListener('audit_new',e=>{try{onAuditNew(JSON.parse(e.data))}catch(_){}});
+  sse.addEventListener('close',()=>{});
+}
 
 async function jget(u){const r=await fetch(u);return r.json()}
 
@@ -373,6 +419,8 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
 });
 
 load();
+connectSSE();
+setLive(false);
 </script>
 </body>
 </html>

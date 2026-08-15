@@ -57,6 +57,35 @@ FEEDS: bool = False              # real data kit from --feeds
 FEEDS_DIR = HERE.parent / "data" / "feeds"
 AUTH_TOKEN: Optional[str] = None  # token gate from --auth; None = no gate
 
+# SSE event queue (BUILD-SPEC B4): thread-safe list + condition, stdlib only.
+# Each event carries a monotonic seq; the queue keeps the last 50 so a
+# reconnecting client with since=<old> can still catch up on missed events.
+SSE_MAX_CLIENTS = 8          # connection cap: drop oldest when exceeded
+SSE_KEEPALIVE = 15.0         # idle flush interval for ": keepalive" comments
+SSE_HISTORY = 50             # events kept for replay
+
+_sse_cond = threading.Condition()
+_sse_seq = 0
+_sse_events: list[dict] = []   # [{"seq": int, "type": str, "data": dict}]
+_sse_clients: list = []        # [_SSEClient, ...] open connections
+
+
+class _SSEClient:
+    """One open SSE connection; closed Event flags a drop by the cap."""
+
+    def __init__(self):
+        self.closed = threading.Event()
+
+
+def _push_event(event_type: str, data: dict) -> None:
+    """Record a change and wake every connected SSE client."""
+    global _sse_seq
+    with _sse_cond:
+        _sse_seq += 1
+        _sse_events.append({"seq": _sse_seq, "type": event_type, "data": data})
+        del _sse_events[:-SSE_HISTORY]
+        _sse_cond.notify_all()
+
 
 def load_fixture(name: str) -> list[E.Item]:
     """Load a golden fixture feed (scaffold/fixtures/{name}.json) as Items."""
@@ -241,6 +270,11 @@ def ingest_multimodal(body: dict) -> dict:
     result = E.run_pipeline(items, feed.get("profile") or ["general"])
     FEED_CACHE = result
 
+    pos = next((i for i, it in enumerate(result["items"])
+                if it.get("source_id") == item.source_id), None)
+    if pos is not None:
+        _push_event("item_new", {"id": item.source_id, "rank": pos})
+
     trace_meta = meta if meta is not None else {}
     E.push_trace({"step": "ingest:multimodal", "source_id": item.source_id,
                   "extraction": trace_meta})
@@ -320,6 +354,10 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
     if parts[0] == "api":
         if not _authorized(handler, query, parts, method):
             return json_reply(handler, {"error": "unauthorized"}, 401)
+
+        if parts[1] == "events":
+            return _sse_stream(handler, query)
+
         feed = load_feed()
 
         if parts[1] == "feed":
@@ -393,6 +431,9 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
                 tool = body.get("tool")
                 params = body.get("params") or {}
                 res = propose_for_item(item_id, tool, params)
+                if res.get("ok"):
+                    _push_event("proposal_new",
+                                {"id": res["proposal"]["id"], "tool": res["proposal"]["tool"]})
                 return json_reply(handler, res, 201 if res.get("ok") else 404)
             proposals = A.list_proposals()
             return json_reply(handler, {"proposals": [p.as_dict() for p in proposals]})
@@ -407,6 +448,13 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
                 prop = A.decide(pid, decision, actor)
                 if prop is None:
                     return json_reply(handler, {"ok": False, "error": "proposal not found"}, 404)
+                _push_event("proposal_decided",
+                            {"id": prop.id, "decision": decision, "actor": actor})
+                _push_event("audit_new", {
+                    "ts": prop.decided_at, "actor": actor, "decision": decision,
+                    "proposal_id": prop.id, "tool": prop.tool,
+                    "params": prop.params, "evidence": prop.evidence,
+                    "reason": prop.reason})
                 return json_reply(handler, {"ok": True, "proposal": prop.as_dict()})
             return json_reply(handler, {"ok": False, "error": "POST only"}, 405)
 
@@ -441,6 +489,75 @@ def json_reply(handler: BaseHTTPRequestHandler, obj, code: int = 200):
     handler.send_header("Content-Length", str(len(data)))
     handler.end_headers()
     handler.wfile.write(data)
+
+
+def _sse_stream(handler: BaseHTTPRequestHandler, query: dict):
+    """GET /api/events?since=<seq>: live event stream.
+
+    Replays buffered events newer than the cursor (since=0 gives the last
+    50), then holds the connection open, flushing ": keepalive" comment
+    lines every 15 seconds of idle time. Each change on the write paths
+    wakes every connected client immediately. When the connection cap is
+    hit, the oldest client is dropped with a close event.
+    """
+    since = 0
+    try:
+        since = max(0, int(query.get("since", ["0"])[0] or 0))
+    except (ValueError, IndexError):
+        since = 0
+
+    with _sse_cond:
+        if len(_sse_clients) >= SSE_MAX_CLIENTS:
+            _sse_clients.pop(0).closed.set()
+            _sse_cond.notify_all()
+        client = _SSEClient()
+        _sse_clients.append(client)
+
+    handler.send_response(200)
+    handler.send_header("Content-Type", "text/event-stream")
+    handler.send_header("Cache-Control", "no-cache")
+    handler.end_headers()
+
+    def send(event_type: str, seq: int, data: dict):
+        payload = dict(data)
+        payload["seq"] = seq
+        handler.wfile.write(
+            f"event: {event_type}\ndata: {json.dumps(payload)}\n\n".encode())
+        handler.wfile.flush()
+
+    last_seq = since
+    with _sse_cond:
+        for ev in _sse_events:
+            if ev["seq"] > since:
+                send(ev["type"], ev["seq"], ev["data"])
+                last_seq = ev["seq"]
+
+    try:
+        while True:
+            with _sse_cond:
+                if client.closed.is_set():
+                    break
+                if _sse_seq <= last_seq:
+                    if _sse_cond.wait(timeout=SSE_KEEPALIVE):
+                        continue
+                pending = [ev for ev in _sse_events if ev["seq"] > last_seq]
+                last_seq = _sse_seq
+            for ev in pending:
+                send(ev["type"], ev["seq"], ev["data"])
+            if not pending:
+                handler.wfile.write(b": keepalive\n\n")
+                handler.wfile.flush()
+    except (BrokenPipeError, ConnectionResetError, OSError):
+        pass
+    finally:
+        if client.closed.is_set():
+            try:
+                send("close", 0, {})
+            except Exception:
+                pass
+        with _sse_cond:
+            if client in _sse_clients:
+                _sse_clients.remove(client)
 
 
 class Handler(BaseHTTPRequestHandler):
