@@ -27,7 +27,7 @@
 
 ## 🎯 The Competition (verified)
 
-- **Rajasthan State Qualifier** (Unstop listing **1730314**): **402 registered / 81 players**, ₹299/team, LIVE. Biggest confirmed 2026 state round (UP 1730325 has 1 reg). Problems are set by the state club (CSC MUJ)  -  own qualifier problems, contact-verified.
+- **Rajasthan State Qualifier** (Unstop listing **1730314**): **629 registered (watchdog 2026-08-15 10:04)**, ₹299/team, LIVE. Biggest confirmed 2026 state round (UP 1730325 has 1 reg). Problems are set by the state club (CSC MUJ)  -  own qualifier problems, contact-verified.
 - **The event**: overnight hackathon at MUJ. Registration closed Aug 14 23:59. Idea submission Aug 15 21:00–Aug 16 06:00. Pitch to judges Aug 16 10:00–17:30.
 - **Nationals**: IIIT Bhubaneswar, Oct 30 – Nov 1, 2026. Top 2 from each state advance. Travel sponsored. Problem statements release Oct 30 08:00.
 - **2026 question writers (Rudra intel, Aug 14)**: the REAL problems are set by the sponsor companies (Google, Apple, Meta, Accenture, Adobe), not the club. The 5 site tracks are the club's BACKUP SET and are NOT the basis for prep. Only the timings are reliable from the site.
@@ -97,7 +97,7 @@ Whatever drops at 21:30, these are pre-built (`scaffold/`, see `scaffold/README.
 
 ### 2026  -  Craft N Code (D³ Fest 2026, IIIT Bhubaneswar × state clubs)
 - **Run by**: Tech Society IIIT-B (national) + Cyber Space Club MUJ (Rajasthan round). State rounds → nationals Oct 30 – Nov 1. ₹50K winner.
-- **2026 state rounds found**: Rajasthan **1730314** (402 reg / 81 players  -  biggest confirmed, down from 706 in 2025), UP **1730325** (1 reg, fresh). 17303xx range otherwise jobs/internships.
+- **2026 state rounds found**: Rajasthan **1730314** (629 reg, watchdog 2026-08-15 10:04  -  biggest confirmed, down from 706 in 2025), UP **1730325** (1 reg, fresh). 17303xx range otherwise jobs/internships.
 - **Sibling events at D³ Fest 2026** (official brochure): CTF Arena (cybersecurity battle), Workshop.exe (AI/Blockchain/Web3/AR/VR), UI/UX Showdown, TechXpo, Code-o-lympics, Dev Dialogue. 4-day fest, Tech + Robotics Societies.
 - **Event site forensics**: the official site source is PUBLIC (Lovable, arcade theme, Supabase)  -  built by Rudra Pratap Singh (CSC dev). Admin console read-only, pitch-first; food route = UI mock. Renamed from "Rewind&Recode" Aug 9, 2026.
 
@@ -158,9 +158,9 @@ Full matrix in `research/2026-TOPIC-PROBABILITY.md` (site track bodies kept for 
 
 ## 🌐 Participant Universe (the field)
 
-- **2024**: 1,318 reg / 280 players (national); 24/2 (state combined). **2025**: 1,592 reg / 285 players across 11 state rounds; nationals 1,600–2,000+ teams. **2026**: Rajasthan 402/81, UP 1 (fresh). ~200 expected at the Rajasthan overnight.
+- **2024**: 1,318 reg / 280 players (national); 24/2 (state combined). **2025**: 1,592 reg / 285 players across 11 state rounds; nationals 1,600–2,000+ teams. **2026**: Rajasthan 629 (watchdog 08-15 10:04, was 402/81 at README time), UP 1 (fresh). ~200 expected at the Rajasthan overnight.
 - **GitHub-mapped repos**: 25+ across editions (see `research/PARTICIPANT-UNIVERSE.md`). Known 2025 solutions: TrustChain (rural microfinance blockchain), BitSized (shopping assistant), Innovize (student health portal), Quantum Glitch, Chetna. 2026 threat matrix in `research/COMPETITOR-POOL.md`.
-- **The field is smaller this year** (402 vs 706 in Rajasthan)  -  the easiest qualifier in the event's history.
+- **The field is smaller this year** (629 and climbing vs 706 in 2025; was 402 at README write time)  -  the easiest qualifier in the event's history.
 
 ---
 

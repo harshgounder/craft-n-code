@@ -80,7 +80,7 @@ Team 511 (Harsh Gounder = lead, Ayush Kharwar, Sujal Shukla) is competing in the
 
 ## KEY FACTS (do not re-research)
 
-- Unstop IDs: 1730314 Rajasthan 2026 (456 reg/96 players, ₹299, LIVE) · 1730325 UP 2026 · 1171379 national 2024 · 1175823 state 2024 · 1545708 RJ 2025 · 374277 D³ Fest 2025 (dead).
+- Unstop IDs: 1730314 Rajasthan 2026 (629 reg (watchdog 2026-08-15 10:04)/96 players, ₹299, LIVE) · 1730325 UP 2026 · 1171379 national 2024 · 1175823 state 2024 · 1545708 RJ 2025 · 374277 D³ Fest 2025 (dead).
 - Submission format (VERIFIED Aug 14): PPT only (pdf/pptx, max 50MB, mandatory), multiple submissions allowed (latest wins), round 1569450 Aug 15 21:00 - Aug 16 06:00, presentation round Aug 16 10:00-17:30. Judge panel buttons: shortlist/reject/hold/noshow, score /5 weighted 100.
 - 2026 question writers: the sponsor companies (Google, Apple, Meta, Accenture, Adobe) per club insider. The site's 5-track list is a BACKUP SET, not the real questions (Rudra intel, Aug 14). Only the timings are reliable from the site. Pass-2 deep research could NOT publicly verify sponsor authorship - Rudra's word is the best signal.
 - 2025 winners: AFTERPACKETS (MUJ Highlanders) - zero external deps, Android VPNService + C++ DPI, empty lane. 2024: Wizard_Oz (CVRGU) 1st, Fork (RVCE) 2nd.
