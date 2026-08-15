@@ -107,3 +107,34 @@ If a judge asks "who already does this", the honest answer: the labs
 ship agents, nobody ships OUR combination (controlled pipeline +
 approval + provenance + honest failure badge + zero deps + runs
 anywhere). The gap is the product, not the model.
+
+## WAVE-2 NUMBERS (parallel.ai pro-fast, Aug 15, raw in
+## research/raw/wave2-ai-failures.md)
+
+- HCAST (METR): agents succeed 70-80% on tasks under one human-hour,
+  under 20% on tasks over four human-hours. The 50% time horizon
+  doubles roughly every 7 months. Our line: that gap is why a human
+  approves; the demo shows the division of labor.
+- SWE-bench Verified: official page shows Claude 4.5 Opus high 76.80%
+  (2026-02-17); a third-party tracker shows Claude Mythos 5 95.5%
+  averaged over 5 runs. Same benchmark, 19 points apart: report
+  version, harness, run count, source. We report our numbers exactly
+  that way (81/81, fresh DBs, deterministic).
+- WebArena: best GPT-4 agent in the original study 14.41% vs 78.24%
+  for humans. End-to-end success is far stricter than language
+  quality.
+- MAST: failure rates 41% to 86.7% across seven open-source
+  multi-agent systems, 14 fine-grained failure modes identified.
+- Production reality: 68% of production agents execute at most 10
+  steps before human intervention, 70% prompt off-the-shelf models,
+  74% rely primarily on human evaluation.
+- A mature production scorecard has five layers: outcome correctness,
+  policy adherence, tool-call correctness, trajectory efficiency,
+  failure recovery. That is our 5-layer claim set, in order:
+  81/81 tests, policy gate suites, typed registry tests, trace ring
+  review, provider_errors + offline fallback.
+- Leaderboard hygiene: LLM-as-judge shows substantial reliability
+  gaps in a 2026 study; single-run scores are unstable because
+  sampling, tool latency, web state, and judge behavior are
+  stochastic. Our answer: code-based assertions, fresh DBs,
+  order-independent suites, no LLM judges anywhere in the 81.

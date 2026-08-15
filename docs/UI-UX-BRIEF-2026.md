@@ -31,21 +31,54 @@ system did, and what it refused. If the UI needs explaining, it loses.
    toast explains "model unreachable, showing offline rules". Showing
    the failure state on purpose is the demo beat, not an accident.
 
-## PATTERNS TO STEAL (merged after wave-2 lands)
+## PATTERNS TO STEAL (wave-2 VERIFIED, parallel.ai pro-fast)
 
-[DRAFT] placeholders: Claude Code permission prompts (diff preview
-before accept), Codex plan-then-execute, Cursor agent review mode,
-Glean citation chips, Notion AI inline evidence, Stripe-style audit
-logs, Linear-style keyboard-first triage.
+1. Claude Code: read-only by default, ask before edits/commands, rules
+   evaluated in DENY, ASK, ALLOW order, enforced outside the model.
+   Our map: policy gate auto/suggest/require IS deny/ask/allow. The UI
+   must show which rule class fired on each proposal.
+2. Glean: pause BEFORE a write, let the user review AND EDIT the
+   proposed change, then approve. Better than approving an opaque
+   plan. Our map: proposals show params + evidence; the UI should show
+   the exact side-effect class and let the approver see what changes.
+3. GitHub PR model: durable artifact + tests + discussion between
+   proposal and merge. Our map: the audit row + trace ring is the
+   artifact; tests are the 81/81 suite, runnable by the judge.
+4. Approval queue = operational review surface, not a chat transcript.
+   7 stages from wave-2: triage (risk tier, environment), action
+   summary (exact tool+args+blast radius, never a generic "run"),
+   evidence (diff, tests, logs, provenance, confidence), safety preview
+   (dry-run, rollback, what cannot be undone), decision (scoped to
+   exact action+resource+time window), execution (live status, each
+   tool call, policy check), closure (before/after state, approver
+   identities, immutable export).
+5. Three interaction patterns that win: DIFF-FIRST (show the mutation
+   before the rationale), EVIDENCE-LINKED (green status must link to an
+   external test result, never the model's assertion), SCOPED approval
+   (approve one call or a narrow class for a short window).
+6. Failure visibility is UX: a credential mismatch must appear as a
+   high-risk STOP condition, not get silently "fixed". Our honesty
+   moment is this exact principle on stage.
+7. Notion is the cautionary tale: automation while people are away
+   raises the provenance bar. We always show the trace, so automation
+   stays explainable.
 
-## WHAT TO AVOID (from AI-failure cases, wave-2 pending)
+## WHAT TO AVOID (from the real failures, wave-2 VERIFIED)
 
-[DRAFT] placeholders: hidden auto-execute, no evidence on proposals,
-approve buttons that fire side effects twice, badges that lie, feeds
-that look live but are static, trace that hides failures.
+- Hidden auto-execute: the Replit/PocketOS class. Never hide what will
+  change.
+- Approve buttons that fire side effects twice: our double-decision
+  guard kills it; the UI must disable the buttons after decision.
+- Badges that lie: fixed Aug 15 (provider_errors -> offline). The UI
+  shows the badge and the failure count, never hides it.
+- Feeds that look live but are static: feeds badge shows live/cached/
+  offline with fetched_at timestamps.
+- Traces that hide failures: the trace ring keeps every step including
+  provider failures (engine prints "using offline" to the ring).
 
 ## DELIVERABLE
 
-After wave-2: this file becomes the spec for a UI polish pass via
-opencode (labels, badge placement, card layout in index.html, no logic
-changes), plus the demo script beats that use the UI intentionally.
+This file + wave-2 = the spec for a UI polish pass via opencode
+(labels, badge placement, card layout in index.html, no logic changes).
+The polish pass is optional pre-drop; the functional UI already tells
+the story. Priority: rehearsal beats polish.
