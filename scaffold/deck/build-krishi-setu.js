@@ -168,15 +168,17 @@ header(s, "Prototype today: verified, honest, offline-capable");
 const proof = [
   ["85 / 85", "acceptance suites green across approval, trace, providers, multimodal, provenance, feeds, honesty, stress"],
   ["46 / 46", "lane fixture scenarios verified, order-independent on fresh databases"],
-  ["Zero-dep", "engine runs on stdlib only; demo never dies, offline fallback replay"],
+  ["Zero-dep", "stdlib python only: no installs, no API keys, no network. runs on any machine with python3"],
+  ["Self-dependent", "built for 4G or less, offline-first by design: decision engine + UI run entirely on local CPU"],
   ["Honest mode", "badges count actual provider outcomes, no badge-lie, audit trail per action"],
+  ["Live on CPU", "CVaR harvest decision, Fani replay band, ladder, claim packet: all computed live, milliseconds, no GPU needed"],
 ];
 proof.forEach((pr, i) => {
   const x = M + (i % 2) * (4.45 + 0.1);
-  const y = 1.15 + Math.floor(i / 2) * 1.15;
-  card(s, x, y, 4.45, 1.0, DARK, { rotate: -1.5, strip: "555555" });
-  s.addText(pr[0], { x: x + 0.15, y: y + 0.12, w: 1.9, h: 0.5, fontSize: 20, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
-  s.addText(pr[1], { x: x + 2.05, y: y + 0.12, w: 2.3, h: 0.8, fontSize: 9.5, color: GRAY2, fontFace: "Arial", margin: 0 });
+  const y = 1.15 + Math.floor(i / 2) * 1.05;
+  card(s, x, y, 4.45, 0.92, DARK, { rotate: -1.5, strip: "555555" });
+  s.addText(pr[0], { x: x + 0.15, y: y + 0.1, w: 1.9, h: 0.5, fontSize: 18, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
+  s.addText(pr[1], { x: x + 2.05, y: y + 0.1, w: 2.3, h: 0.75, fontSize: 9, color: GRAY2, fontFace: "Arial", margin: 0 });
 });
 s.addText("Demo arc (3 minutes): Asha's plot -> cyclone forecast -> staged Odia advisory -> tower drops, advice still syncs -> damage evidence -> claim packet export.", { x: 5.45, y: 3.6, w: 4.0, h: 0.9, fontSize: 11.5, color: INK, fontFace: "Arial", margin: 0 });
 card(s, M, 4.35, 9, 0.72, DARK, {});
