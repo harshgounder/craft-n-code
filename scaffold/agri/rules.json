@@ -1,0 +1,376 @@
+{
+  "schema": "krishisetu-rules-v1",
+  "version": "2026-08-16",
+  "rule_type": "data, not code. The compiler reads this file; no rule behavior lives in source.",
+  "source": "d41 global farm practices refire (cnc-ps07-d41-global-farm-practices-refire.content.md), R1-R16 registry, section 5.2",
+  "resources_badge": "SCENARIO-ASSUMPTION - labor hours, costs, and credit figures are estimates pending Odisha field trials (d41 section 4: operational thresholds missing)",
+  "rules": [
+    {
+      "id": "R1",
+      "name": "Official-alert lock",
+      "practice": "Cyclone Preparedness Programme, Bangladesh (official-signal relay)",
+      "trigger": {
+        "hazard": ["cyclone", "flood"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"any": true},
+        "incident_has": ["official_alert"]
+      },
+      "action_template": "Official {alert_type} for {hazard} at {district}: issued {issue_time}, valid until {validity}. Relay the official wording verbatim. Notify the village relay and the extension desk. Confirm receipt.",
+      "deadline_logic": "Relay immediately on receipt; never hold for aggregation. Validity window starts from the official issue time.",
+      "source": {"title": "Cyclone Preparedness Programme (CPP)", "org": "Bangladesh Red Crescent Society", "url": "https://bdrcs.org/cyclone-preparedness-programm-cpp", "ref": "[18]"},
+      "grade": "A",
+      "badge": "ODISHA-MEASURED",
+      "guardrail": "Never paraphrase a watch as a warning. The platform relays IMD and CWC signals; it never issues a competing cyclone warning.",
+      "asset": "crop",
+      "protection": 0.15,
+      "numbers": [],
+      "resources": {"labor_hours": 0.25, "cost_rs": 0, "credit_needed": 0, "tenancy_required": false}
+    },
+    {
+      "id": "R2",
+      "name": "Redundant last mile",
+      "practice": "People-centered early warning (preparecenter) and Ama Krushi delivery pattern",
+      "trigger": {
+        "hazard": ["cyclone", "flood"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"any": true},
+        "incident_has": ["severe_alert"]
+      },
+      "action_template": "Send concise SMS for {hazard} at {district}; place an Odia IVR call; retry on no acknowledgment; notify the trusted village contact; offer a live agent. Record acknowledgment, not merely delivery.",
+      "deadline_logic": "Escalate after one unacknowledged delivery window. Latency budget per action decides the rung: 1h window = IVR plus radio, 6h window = SMS.",
+      "source": {"title": "Strengthening Early Warning Systems for All", "org": "Prepare Center", "url": "https://preparecenter.org/resource/last-mile-ews-report", "ref": "[30]"},
+      "grade": "A",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "No single channel reaches everyone. A message is acknowledged only when the farmer confirms, not when it is delivered.",
+      "asset": "crop",
+      "protection": 0.10,
+      "numbers": [],
+      "resources": {"labor_hours": 0.5, "cost_rs": 0, "credit_needed": 0, "tenancy_required": false}
+    },
+    {
+      "id": "R3",
+      "name": "Flood-safe seed",
+      "practice": "Practical Action safe grain storage, Bangladesh and South Asia",
+      "trigger": {
+        "hazard": ["flood", "cyclone"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"min": 12},
+        "farm_has": ["stores_seed"],
+        "incident_has": ["water_may_reach_storage"]
+      },
+      "action_template": "{farm_name}: dry and label your seed; seal an inner container; move it above the predicted water; duplicate a lot at a second safe site or the community store before water arrives.",
+      "deadline_logic": "Complete before forecast water reaches the storage elevation. Minimum lead 12h.",
+      "source": {"title": "Safe Grain Storage in Flood Prone Area", "org": "Practical Action", "url": "https://infohub.practicalaction.org/bitstreams/c5b80468-19bf-406c-903f-8c85ace7a209/download", "ref": "[17]"},
+      "grade": "A",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Jute sacks and earthen pots alone are not floodproof. Never claim a store is flood-safe without elevation above forecast water.",
+      "asset": "crop",
+      "protection": 0.40,
+      "numbers": [],
+      "resources": {"labor_hours": 3, "cost_rs": 200, "credit_needed": 0, "tenancy_required": false}
+    },
+    {
+      "id": "R4",
+      "name": "Livestock movement plan",
+      "practice": "FAO livestock flood-emergency guidelines",
+      "trigger": {
+        "hazard": ["cyclone", "flood"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"min": 6},
+        "farm_min": {"livestock_count": 1},
+        "incident_has": ["route_cutoff_approaching", "shelter_confirmed"]
+      },
+      "action_template": "{farm_name}: identify animals and owners; move early by species order; carry fodder, medicines, and a clean-water plan; confirm head count at the destination shelter.",
+      "deadline_logic": "Route-cutoff time minus movement lead. No universal fixed lead time; use route, species, daylight, handlers, and shelter capacity.",
+      "source": {"title": "Guidelines for Managing Livestock in Flood Emergencies", "org": "FAO", "url": "https://openknowledge.fao.org/handle/20.500.14283/cd5422en", "ref": "[27][14]"},
+      "grade": "A",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Local shelter capacity, routes passable at forecast water, species handling times, and owners must be confirmed before movement.",
+      "asset": "livestock",
+      "protection": 0.50,
+      "numbers": [],
+      "resources": {"labor_hours": 8, "cost_rs": 500, "credit_needed": 0, "tenancy_required": false}
+    },
+    {
+      "id": "R5",
+      "name": "Livestock water safety",
+      "practice": "Post-flood livestock guidance, GOV.UK",
+      "trigger": {
+        "hazard": ["flood", "post_flood"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"any": true},
+        "farm_min": {"livestock_count": 1},
+        "incident_has": ["floodwater_contamination"]
+      },
+      "action_template": "{farm_name}: block water that floodwater may have contacted; use a tested or approved clean supply; monitor animals; request veterinary help if any animal drinks contaminated water.",
+      "deadline_logic": "Immediately on floodwater contamination, before animals drink again.",
+      "source": {"title": "Keeping farm animals and horses in extreme weather", "org": "GOV.UK", "url": "https://www.gov.uk/guidance/keeping-farm-animals-and-horses-in-extreme-weather", "ref": "[43]"},
+      "grade": "A",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Floodwater can contain sewage, manure, and chemicals; drinking-water access is assessed separately from flood depth.",
+      "asset": "livestock",
+      "protection": 0.40,
+      "numbers": [],
+      "resources": {"labor_hours": 1, "cost_rs": 100, "credit_needed": 0, "tenancy_required": false}
+    },
+    {
+      "id": "R6",
+      "name": "Submergence-tolerant paddy planning",
+      "practice": "Swarna-Sub1 flood-tolerant rice, J-PAL randomized trial in Odisha",
+      "trigger": {
+        "hazard": ["preseason"],
+        "crop": ["paddy"],
+        "stage": ["any"],
+        "lead_hours": {"any": true},
+        "incident_has": ["submergence_risk"]
+      },
+      "action_template": "Preseason {farm_name}: offer Swarna-Sub1 or the locally approved equivalent with duration, seed availability, and the district recommendation for freshwater submergence risk.",
+      "deadline_logic": "Preseason before the sowing decision; replanting must close before the season window ends.",
+      "source": {"title": "Reducing Farmers' Risk through Flood-Tolerant Rice in India", "org": "J-PAL / Abdul Latif Jameel Poverty Action Lab", "url": "http://povertyactionlab.org/evaluation/reducing-farmers-risk-through-flood-tolerant-rice-india", "ref": "[20]"},
+      "grade": "A",
+      "badge": "ODISHA-MEASURED",
+      "guardrail": "Swarna-Sub1 is not a salinity or wind solution. Requires approved local seed and a district recommendation.",
+      "asset": "crop",
+      "protection": 0.60,
+      "numbers": [
+        {"value": 64, "unit": "kg/ha per flood day", "badge": "ODISHA-MEASURED"},
+        {"value": 718, "unit": "kg/ha under severe submergence", "badge": "ODISHA-MEASURED"},
+        {"value": 180, "unit": "kg/ha neutral when no flood", "badge": "ODISHA-MEASURED"}
+      ],
+      "resources": {"labor_hours": 0.5, "cost_rs": 800, "credit_needed": true, "tenancy_required": false}
+    },
+    {
+      "id": "R7",
+      "name": "Lodging-risk varietal score",
+      "practice": "Japan rice lodging-resistance research",
+      "trigger": {
+        "hazard": ["preseason"],
+        "crop": ["paddy"],
+        "stage": ["any"],
+        "lead_hours": {"any": true},
+        "incident_has": ["variety_ranking"]
+      },
+      "action_template": "Preseason {farm_name}: rank approved varieties by lodging resistance, maturity, yield, and local trial performance for cyclone-prone {district}.",
+      "deadline_logic": "Preseason, before variety purchase.",
+      "source": {"title": "Identification of a Major Locus for Lodging Resistance to Typhoons in Rice", "org": "peer-reviewed", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9919122", "ref": "[7]"},
+      "grade": "B",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Japanese research informs the ranking criterion; it does not make a Japanese variety automatically suitable for Odisha.",
+      "asset": "crop",
+      "protection": 0.20,
+      "numbers": [],
+      "resources": {"labor_hours": 1, "cost_rs": 0, "credit_needed": false, "tenancy_required": false}
+    },
+    {
+      "id": "R8",
+      "name": "Seasonal floating-rice or rice-fish pilot",
+      "practice": "Floating rice plus fish, Mekong Delta, Vietnam",
+      "trigger": {
+        "hazard": ["preseason"],
+        "crop": ["paddy"],
+        "stage": ["any"],
+        "lead_hours": {"min": 720},
+        "incident_has": ["seasonal_flood_pilot_eligible"]
+      },
+      "action_template": "Seasonal pilot only ({farm_name}): extension-supervised flood admission, elongating variety, fingerlings released after inundation, joint rice-fish harvest. Disclose the yield trade-off.",
+      "deadline_logic": "Seasonal, before flood onset; gated by an extension supervisor.",
+      "source": {"title": "Floating Rice: Sparkling Hopes for Water and Sediment Preservation", "org": "WWF Vietnam", "url": "https://vietnam.panda.org/en/?388478/FLOATING-RICE-SPARKLING-HOPES-FOR-WATER-AND-SEDIMENT-PRESERVATION", "ref": "[31]"},
+      "grade": "B",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Rice yield is one-half to one-third of high-yielding varieties [31]; hydrologic dependence must be disclosed. Never activate for cyclone surge.",
+      "asset": "crop",
+      "protection": 0.10,
+      "numbers": [
+        {"value": "1/2 to 1/3", "unit": "of high-yielding-variety rice yield", "badge": "TRANSFER-PRIOR"}
+      ],
+      "resources": {"labor_hours": 40, "cost_rs": 5000, "credit_needed": true, "tenancy_required": true}
+    },
+    {
+      "id": "R9",
+      "name": "Floating vegetable bed",
+      "practice": "Baira / dhap floating gardens, southern Bangladesh",
+      "trigger": {
+        "hazard": ["flood", "waterlogging"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"min": 12},
+        "farm_has": ["vegetable_need"],
+        "incident_has": ["freshwater_waterlogging"]
+      },
+      "action_template": "{farm_name}: build a locally tested floating bed recipe from clean plant residue, anchor it, grow the recommended vegetable and spice list, and follow the sanitation warning.",
+      "deadline_logic": "Build before waterlogging onset while water is low; minimum lead 12h.",
+      "source": {"title": "Floating Garden Agricultural Practices", "org": "FAO GIAHS Bangladesh", "url": "http://fao.org/giahs/around-the-world/detail/bangladesh-floating-gardens-system/en", "ref": "[39]"},
+      "grade": "B",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Do not recommend invasive or contaminated hyacinth; Nigerian evidence shows harm in aquaculture [26]. Not a substitute for paddy acreage.",
+      "asset": "vegetable",
+      "protection": 0.30,
+      "numbers": [],
+      "resources": {"labor_hours": 12, "cost_rs": 1500, "credit_needed": true, "tenancy_required": false}
+    },
+    {
+      "id": "R10",
+      "name": "Raised bed plus perimeter drainage",
+      "practice": "Chinampas (Mexico) and waru waru (Peru) raised-field systems",
+      "trigger": {
+        "hazard": ["waterlogging", "flood"],
+        "crop": ["vegetable", "nursery"],
+        "stage": ["any"],
+        "lead_hours": {"min": 48},
+        "farm_has": ["suitable_soil", "drainage_outlet"]
+      },
+      "action_template": "{farm_name}: raise the root zone, route water through maintained perimeter channels, stabilize edges, and inspect after heavy rain.",
+      "deadline_logic": "Before the monsoon; inspect after each heavy rain.",
+      "source": {"title": "Chinampas System in Mexico", "org": "FAO GIAHS", "url": "https://www.fao.org/giahs/around-the-world/detail/mexico-chinampas/en", "ref": "[33]"},
+      "grade": "B",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "The geometry is the inspiration; dimensions require Odisha trials. Permanent land modification requires owned or long-term tenancy.",
+      "asset": "crop",
+      "protection": 0.40,
+      "numbers": [],
+      "resources": {"labor_hours": 30, "cost_rs": 6000, "credit_needed": true, "tenancy_required": true}
+    },
+    {
+      "id": "R11",
+      "name": "Flood-recession sowing gate",
+      "practice": "Recession rice (Cambodia) and recession sorghum (Mali)",
+      "trigger": {
+        "hazard": ["flood"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"min": 24},
+        "farm_has": ["field_accessible"],
+        "incident_has": ["water_falling"]
+      },
+      "action_template": "{farm_name}: sow an approved short-duration crop in the falling-water window while the soil is wet but workable, so it matures before the next hazard.",
+      "deadline_logic": "Within the window after water withdrawal; the crop must mature before the next hazard.",
+      "source": {"title": "Large rice-based irrigation systems in Cambodia", "org": "FAO", "url": "https://www.fao.org/4/ai408e/ai408e06.htm", "ref": "[1]" },
+      "grade": "B",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Never advise solely because satellite water area shrank; require moisture, salinity, contamination, tenure, and crop-duration checks.",
+      "asset": "crop",
+      "protection": 0.40,
+      "numbers": [],
+      "resources": {"labor_hours": 20, "cost_rs": 2500, "credit_needed": true, "tenancy_required": true}
+    },
+    {
+      "id": "R12",
+      "name": "Drain-pond integration",
+      "practice": "Mulberry-dyke fish-pond (China) and cotton tail-water recycling (Australia)",
+      "trigger": {
+        "hazard": ["flood", "waterlogging"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"min": 24},
+        "farm_has": ["has_pond"],
+        "incident_has": ["drainage_connectable"]
+      },
+      "action_template": "{farm_name}: capture manageable field drainage into the pond, prevent fish escape, and reuse water only after quality and overflow checks.",
+      "deadline_logic": "During monsoon preparation; before overflow checks.",
+      "source": {"title": "Zhejiang Huzhou Mulberry-dyke and Fish-pond System", "org": "FAO GIAHS China", "url": "https://www.fao.org/giahs/around-the-world/detail/china-zhejiang-system/en", "ref": "[36]"},
+      "grade": "B",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Agrichemical and disease risks require local limits; overflow must not flood downstream fields.",
+      "asset": "crop",
+      "protection": 0.30,
+      "numbers": [],
+      "resources": {"labor_hours": 24, "cost_rs": 4000, "credit_needed": true, "tenancy_required": true}
+    },
+    {
+      "id": "R13",
+      "name": "Community tank and ditch maintenance",
+      "practice": "Cascaded tank-village system (Sri Lanka) and subak governance (Bali)",
+      "trigger": {
+        "hazard": ["any"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"min": 48},
+        "incident_has": ["pre_monsoon_inspection"]
+      },
+      "action_template": "Assign desilting, gate, bund, culvert, and outlet tasks to named water-user groups; log completion before the first heavy rain.",
+      "deadline_logic": "Pre-monsoon completion; before the first heavy rain.",
+      "source": {"title": "Cascaded Tank-Village System in the Dry Zone of Sri Lanka", "org": "FAO GIAHS", "url": "https://www.fao.org/giahs/around-the-world/detail/sri-lanka-dry-zone/en", "ref": "[12]"},
+      "grade": "B/C",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Governance is the transferable mechanism; major civil works need engineers and permits.",
+      "asset": "crop",
+      "protection": 0.30,
+      "numbers": [],
+      "resources": {"labor_hours": 10, "cost_rs": 0, "credit_needed": false, "tenancy_required": false}
+    },
+    {
+      "id": "R14",
+      "name": "Controlled overflow corridor",
+      "practice": "Room for the River, Netherlands",
+      "trigger": {
+        "hazard": ["any"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"any": true},
+        "incident_has": ["overflow_zone_plan"]
+      },
+      "action_template": "Protect designated drainage corridors and overflow zones from obstruction; this triggers authority action, not an individual farmer action.",
+      "deadline_logic": "Planning phase; authority-led.",
+      "source": {"title": "Room for the River", "org": "Rijkswaterstaat", "url": "https://www.rijkswaterstaat.nl/en/projects/iconic-structures/room-for-the-river", "ref": "[32]"},
+      "grade": "C",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Requires compensation, land-use authority, and hydraulic modeling. Individual farmers are not the actor.",
+      "asset": "crop",
+      "protection": 0.30,
+      "numbers": [],
+      "resources": {"labor_hours": 0, "cost_rs": 0, "credit_needed": false, "tenancy_required": false}
+    },
+    {
+      "id": "R15",
+      "name": "Post-flood damage to assistance",
+      "practice": "USDA flood recovery workflow",
+      "trigger": {
+        "hazard": ["post_flood"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"any": true},
+        "incident_has": ["access_declared_safe"]
+      },
+      "action_template": "{farm_name}: photograph and geotag crop, seed, livestock, pond, bund, fence, and drainage damage; triage contamination; clear debris safely; restore drainage; route the claim and input support.",
+      "deadline_logic": "Start after authorities declare access safe. PMFBY intimation clock is 72 hours from the damaging event (ODISHA-MEASURED).",
+      "source": {"title": "Flood and Excessive Moisture", "org": "USDA / Farmers.gov", "url": "https://www.farmers.gov/protection-recovery/flood", "ref": "[29]"},
+      "grade": "A",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Mirrors the USDA debris-to-reseeding sequence [29]. Claim intimation within 72h; PMFBY yield-loss threshold 33%.",
+      "asset": "crop",
+      "protection": 0.50,
+      "numbers": [
+        {"value": 72, "unit": "hours intimation window (PMFBY)", "badge": "ODISHA-MEASURED"},
+        {"value": 33, "unit": "percent yield-loss threshold (PMFBY)", "badge": "ODISHA-MEASURED"}
+      ],
+      "resources": {"labor_hours": 6, "cost_rs": 100, "credit_needed": false, "tenancy_required": false}
+    },
+    {
+      "id": "R16",
+      "name": "Evidence quarantine",
+      "practice": "d41 noise log (real-vs-filler classification)",
+      "trigger": {
+        "hazard": ["any"],
+        "crop": ["any"],
+        "stage": ["any"],
+        "lead_hours": {"any": true},
+        "admin_only": true
+      },
+      "action_template": "Administrator only: show 'research lead - no farmer advisory' with the source, mechanism, hazard fit, and approval status; send nothing to farmers.",
+      "deadline_logic": "None; permanent until evidence is supplied and locally approved.",
+      "source": {"title": "Global flood and cyclone farm wisdom (real-vs-filler and noise log)", "org": "d41 refire", "url": "research-inputs/cnc-ps07-d41-global-farm-practices-refire.content.md", "ref": "[d41]"},
+      "grade": "A governance rule",
+      "badge": "UNKNOWN",
+      "guardrail": "Prevents unsupported labels from becoming dangerous farmer instructions.",
+      "asset": "crop",
+      "protection": 0.0,
+      "numbers": [],
+      "resources": {"labor_hours": 0, "cost_rs": 0, "credit_needed": false, "tenancy_required": false}
+    }
+  ]
+}
