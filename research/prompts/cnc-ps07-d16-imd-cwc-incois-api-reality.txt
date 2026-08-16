@@ -1,0 +1,36 @@
+# CNC PS-07 WAVE 3 — API REALITY: IMD, CWC, INCOIS FEEDS
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful research for the KrishiSetu edge-AI advisory system. This run
+maps what exists, what is real, and what a prototype can use today.
+
+Research exactly what government weather/water APIs a developer can actually access from India TODAY:
+- IMD: MOSDAC data portal (what datasets, registration), mausam.imd.gov.in API (is there a public API? rate limits?), IMD AWS/agromet data access (who gets it, is it public), cyclone bulletins formats (text/JSON?), the new IMD data policy (2024-25, paid vs free tiers).
+- CWC: flood forecast bulletins (URL, format, JSON?), water level station data API (India-WRIS portal), real-time availability.
+- INCOIS: storm surge forecast products, wave/tide data APIs (INCOIS APIs, INCOIS-ISRO), buoy data access.
+- ISRO/Bhuvan: what layers are open, registration, APIs for DEM/LULC.
+- OpenWeatherMap/other global APIs as fallback: cost, coverage for India, reliability during cyclones.
+- Authentication reality: what needs an account, an MOU, a paid license, vs what is open. What a hackathon prototype can legally use today.
+- Any published API guides or developer experiences for IMD/CWC data access.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag.
+2. DATA INVENTORY: per sub-question: item | named source (URL + date) | spec | feasibility | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: exact gaps.
+5. HOW IT FEEDS THE PRODUCT: which tier/decision it powers.
+6. REAL-vs-FILLER: genuinely usable vs decorative. Evidence only.
+7. NOISE LOG: searched and discarded, with reasons.
+8. VERDICT: GO / PARTIAL / GATED with reasons, for prototype and pilot.

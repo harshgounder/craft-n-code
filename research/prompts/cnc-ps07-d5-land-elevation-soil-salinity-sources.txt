@@ -1,0 +1,39 @@
+# CNC PS-07 DATA WAVE — LAND + ELEVATION + SOIL + SALINITY DATA SOURCES
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful data research for the advisory engine. This run maps what data
+exists (named, dated, URL'd), what is missing, and what a prototype can actually
+use TODAY for pre-disaster action advisories, post-disaster recovery steps, claim
+packets, and next-season planning for Odisha farmers.
+
+Research the geospatial data stack for plot-level flood and salinity exposure in Odisha:
+- DEM sources: SRTM 30m (USGS), Cartosat-1 10m via Bhuvan, ALOS AW3D 12.5m (JAXA free). Which covers Odisha coastal plains well? Resolution limits for flat delta terrain.
+- Cropland identification: Bhuvan LULC maps, NRSC seasonal crop masks, Sentinel-2 NDVI time series, any Odisha-specific cropland layer. How to identify agricultural areas programmatically.
+- Soil data: NBSS&LUP soil maps (1:250k and finer), Soil Health Cards program data (how many cards issued in Odisha, what parameters), district soil series.
+- Saline/alkaline soil zones: the Odisha coastal saline belt, maps, and how salinity spreads after cyclone surges (Yaas evidence).
+- Water table: CGWB groundwater data for Odisha districts, depth to water table, recharge estimates.
+- Drainage density, flood-prone village lists from state sources.
+- Interaction rules: elevation + soil + drainage -> flood/salinity exposure. What published models or indices exist (e.g., flood susceptibility mapping studies for Odisha)?
+- What is free and downloadable TODAY vs what needs state records.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag. What data exists, what is missing, what we can build on.
+2. DATA INVENTORY: per sub-question, a table row: data item | named source (with URL + date) | granularity | freshness | access path (free API / file / report / purchase / field collection) | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: the gaps that no public source covers. Name them exactly.
+5. HOW IT FEEDS THE ENGINE: for each data item, which advisory decision it powers (pre-disaster action, post-disaster recovery, claim packet, next-season planning, positive-use advice)
+6. REAL-vs-FILLER: what is genuinely usable vs what is decorative. Evidence only.
+7. NOISE LOG: what was searched and discarded, with reasons.
+8. VERDICT: can a prototype use this data today (free), what needs collection, what needs a partner. Grade: GO / PARTIAL / GATED with reasons.

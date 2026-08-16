@@ -1,0 +1,38 @@
+# CNC PS-07 EDGE-AI WAVE — CONTINUOUS FINE-TUNING: LoRA/QLoRA, ADAPTER PUSH, FEDERATION
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful research for the edge-AI mesh architecture: cheap sensor nodes,
+farmer phone as offline AI hub (small quantized LLM), continuous learning loop
+(server fine-tunes, phone adapts), and the predictive statistics underneath. This
+run maps what exists, what is real vs marketing, and what a prototype can demo.
+
+Research the realistic continuous-learning loop for small LLMs serving farmers:
+- LoRA/QLoRA on 1-4B models: VRAM/RAM needs on a server (what GPU or CPU-only server suffices), training time for a daily cadence, adapter size in MB, merge vs load-adapter approaches.
+- Data needs: how many examples per day/domain to improve advisory quality measurably, data quality requirements (outcome-labeled examples: farmer did X, result Y), synthetic data generation from bigger models (distillation) for the small model.
+- Adapter distribution: pushing 10-50MB adapters to phones over Indian connectivity (2G/3G/4G patchy, SMS links, offline village Wi-Fi, KCC/USB drop points), delta updates, versioning, rollback.
+- Federated learning frameworks: Flower, FedML, TensorFlow Federated; what works for heterogeneous Android fleets; privacy (aggregated outcome stats vs raw data).
+- Online learning for classical ML on-device: BOCPD, adaptive thresholds, incremental tree methods, what trains cheaply on a phone CPU.
+- Real deployed examples of continuous LLM fine-tuning at fleet scale, and what fails (catastrophic forgetting, drift, data poisoning, feedback loops).
+- Honest boundary: what the physics allow (server trains daily, phone adapts instantly) vs marketing claims.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag.
+2. DATA INVENTORY: per sub-question: item | named source (URL + date) | spec/price | feasibility for India | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: exact gaps no public source covers.
+5. HOW IT FEEDS THE EDGE-AI ENGINE: which tier (sensor node / phone hub / learning server) and which decision it powers.
+6. REAL-vs-FILLER: genuinely usable vs decorative. Evidence only.
+7. NOISE LOG: searched and discarded, with reasons.
+8. VERDICT: GO / PARTIAL / GATED with reasons, for a prototype and for a pilot.

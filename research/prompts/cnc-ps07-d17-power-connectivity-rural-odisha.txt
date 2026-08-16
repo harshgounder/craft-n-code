@@ -1,0 +1,37 @@
+# CNC PS-07 WAVE 3 — POWER + CONNECTIVITY REALITY IN RURAL ODISHA
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful research for the KrishiSetu edge-AI advisory system. This run
+maps what exists, what is real, and what a prototype can use today.
+
+Research the infrastructure reality that shapes the offline-first design:
+- Mobile network coverage in coastal Odisha districts: 4G/3G/2G availability by district (TRAI reports, Ookla, OpenSignal India data), which areas have poor coverage.
+- What happens to telecom towers during cyclones: power loss, fiber cuts, battery backup duration, tower failure stats from Fani/Amphan/Yaas/Dana, how long connectivity drops.
+- Electricity reliability: hours of power per day in rural Odisha (state DISCOM data, surveys), how this affects sensor nodes and phone charging.
+- Solar viability: insolation in Odisha (MNRE data), cost of small solar kits, battery sizing for a sensor node.
+- The offline window math: during a cyclone, how long is a village cut off (communication + power + roads)? Studies and reports.
+- Smartphone penetration in rural Odisha: NFHS/ASER/TRAI numbers, basic phone share, data pack affordability.
+- What survived vs failed in past cyclones: community radio, ham radio (300 operators in Kerala floods), VSAT, satellite phones, cell broadcast (does India use it?).
+- Implications: what the design must assume (offline hours, power cycles, bandwidth).
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag.
+2. DATA INVENTORY: per sub-question: item | named source (URL + date) | spec | feasibility | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: exact gaps.
+5. HOW IT FEEDS THE PRODUCT: which tier/decision it powers.
+6. REAL-vs-FILLER: genuinely usable vs decorative. Evidence only.
+7. NOISE LOG: searched and discarded, with reasons.
+8. VERDICT: GO / PARTIAL / GATED with reasons, for prototype and pilot.

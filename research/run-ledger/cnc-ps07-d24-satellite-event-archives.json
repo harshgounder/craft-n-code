@@ -1,0 +1,10 @@
+{
+  "name": "cnc-ps07-d24-satellite-event-archives",
+  "run_id": "trun_b2e19fb2178d43ccb6fe8f8db8aaf6b0",
+  "processor": "ultra8x",
+  "key_idx": null,
+  "key_tail": "pYZ_f-",
+  "launched": "2026-08-16T12:01:33Z",
+  "done": false,
+  "type": "task"
+}

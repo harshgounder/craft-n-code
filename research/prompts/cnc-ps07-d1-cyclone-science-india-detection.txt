@@ -1,0 +1,37 @@
+# CNC PS-07 DATA WAVE — CYCLONE SCIENCE + INDIA DETECTION
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful data research for the advisory engine. This run maps what data
+exists (named, dated, URL'd), what is missing, and what a prototype can actually
+use TODAY for pre-disaster action advisories, post-disaster recovery steps, claim
+packets, and next-season planning for Odisha farmers.
+
+Research the complete science-to-detection chain for cyclones that form in the Bay of Bengal and hit Odisha:
+- What a cyclone is: formation physics (sea surface temperature threshold, Coriolis effect, low wind shear, moisture), why Bay of Bengal cyclones form (warm shallow shelf, funnel shape, high SST), seasonal pattern (pre-monsoon May-June, post-monsoon Oct-Nov).
+- IMD classification scale: depression, deep depression, cyclonic storm, severe, very severe, extremely severe, super cyclonic storm with exact wind speed thresholds and typical damage descriptors.
+- Detection infrastructure in India: INSAT-3D/3DR/3DS satellites, Doppler Weather Radar (DWR) network with coverage gaps along Odisha coast, RS/RW buoys, ships, coastal observatories. Which assets actually cover Odisha?
+- Forecast products: track forecast cones (12-72h), intensity forecasts, landfall timing/location error bars, cyclone warnings color code system. What does a farmer-facing app actually receive and when?
+- Historical Bay of Bengal cyclone database: 1999 Odisha super cyclone, Phailin 2013, Hudhud 2014, Fani 2019, Amphan 2020, Yaas 2021, Dana 2024. Tracks, intensity, landfall points, damage, lead time achieved vs ideal.
+- How IMD warnings reach the public today: SMS, TV, app, Meghdoot, sirens, and the actual lead time farmers get.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag. What data exists, what is missing, what we can build on.
+2. DATA INVENTORY: per sub-question, a table row: data item | named source (with URL + date) | granularity | freshness | access path (free API / file / report / purchase / field collection) | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: the gaps that no public source covers. Name them exactly.
+5. HOW IT FEEDS THE ENGINE: for each data item, which advisory decision it powers (pre-disaster action, post-disaster recovery, claim packet, next-season planning, positive-use advice)
+6. REAL-vs-FILLER: what is genuinely usable vs what is decorative. Evidence only.
+7. NOISE LOG: what was searched and discarded, with reasons.
+8. VERDICT: can a prototype use this data today (free), what needs collection, what needs a partner. Grade: GO / PARTIAL / GATED with reasons.

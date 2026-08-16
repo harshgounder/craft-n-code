@@ -1,0 +1,38 @@
+# CNC PS-07 WAVE 4 (REPLAY) — SATELLITE ARCHIVES: FLOOD EXTENT + DAMAGE FOR REAL ODISHA EVENTS
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful research for building REAL-EVENT REPLAY simulations: reconstruct
+past Odisha cyclones/floods from real data, run our advisory engine against them,
+and validate the simulated outcomes against what actually happened.
+
+Research the satellite data available for replaying real Odisha cyclone/flood events:
+- Sentinel-1 SAR flood extent maps: for 2019 Fani, 2020 Amphan, 2021 Yaas, 2024 Dana + major floods: are there published flood extent products (Copernicus EMS activations, GDACS, UNOSAT, ISRO Bhuvan), download links, resolution.
+- Sentinel-2/Landsat pre/post NDVI: crop damage proxies for those events, published vegetation index damage studies for Odisha cyclones.
+- MODIS/VIIRS: flood water detection (MODIS NRT flood product), fire/lightning data for cyclone context.
+- NASA GPM/IMERG rainfall: storm-total rainfall estimates for each event, download.
+- Any Indian-specific products: Bhuvan disaster services, NRSC cyclone/flood mapping reports, OSDMA satellite damage assessments.
+- Crop damage estimation from satellite: published methods + accuracy (SAR backscatter change, NDVI drop), validation studies for rice.
+- What a student team can download TODAY free (Copernicus Open Access Hub, NASA Earthdata, Bhuvan) vs what needs requests.
+- Data volume reality: what it takes to process a Sentinel-1 scene pair for one district.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag.
+2. EVENT DATASET: per event: what exists | named source (URL + date) | format | resolution | access | reliability A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: exact gaps (which event has no hourly data, which district has no damage figures).
+5. HOW IT FEEDS THE REPLAY SIMULATION: which simulation layer (hazard field, crop damage, advisory timing, recovery) and how it validates the engine.
+6. REAL-vs-FILLER: usable vs decorative. Evidence only.
+7. NOISE LOG: searched and discarded.
+8. VERDICT: GO / PARTIAL / GATED with reasons, for building a realistic event replay simulation.

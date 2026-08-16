@@ -1,0 +1,36 @@
+# CNC PS-07 WAVE 3 — ODIA + LOW-LITERACY UX: VOICE, IVR, COMPREHENSION
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful research for the KrishiSetu edge-AI advisory system. This run
+maps what exists, what is real, and what a prototype can use today.
+
+Research the language and usability layer for low-literacy Odia farmers:
+- Odia NLP resources: corpora, tokenizers, translation quality (IndicTrans2 Odia?), LLM Odia capability benchmarks for small models, ASR (speech-to-text) for Odia dialects, TTS voices available and quality, cost of Odia TTS/ASR APIs (Google, Microsoft, Bhashini/AI4Bharat, local).
+- Bhashini: what Odia services exist (ASR, TTS, translation), API access, cost, quality.
+- IVR design for low-literacy users: published best practices from IVR deployments in India (CGNet Swara, Avaaj Otalo, MeraVote, Gram Vaani), menu design, voice prompt patterns, comprehension rates.
+- SMS advisory comprehension studies: how farmers actually understand SMS advisories (studies from India/Bangladesh), message length, language mixing (Odia vs Odia-English), pictograms.
+- Existing Odia agricultural content: KVK advisories in Odia, Krishi Jagran Odia, state dept Odia content, Meghdoot Odia availability.
+- Phone usage reality: how low-literacy farmers use phones (missed calls, WhatsApp voice notes), what delivery channel actually reaches them.
+- Any published comprehension/effectiveness numbers for agri advisories in Odia or other Indian languages.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag.
+2. DATA INVENTORY: per sub-question: item | named source (URL + date) | spec | feasibility | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: exact gaps.
+5. HOW IT FEEDS THE PRODUCT: which tier/decision it powers.
+6. REAL-vs-FILLER: genuinely usable vs decorative. Evidence only.
+7. NOISE LOG: searched and discarded, with reasons.
+8. VERDICT: GO / PARTIAL / GATED with reasons, for prototype and pilot.

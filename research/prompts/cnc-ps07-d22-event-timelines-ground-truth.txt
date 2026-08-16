@@ -1,0 +1,37 @@
+# CNC PS-07 WAVE 4 (REPLAY) — EVENT TIMELINES + GROUND TRUTH: WARNINGS, ACTIONS, OUTCOMES
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful research for building REAL-EVENT REPLAY simulations: reconstruct
+past Odisha cyclones/floods from real data, run our advisory engine against them,
+and validate the simulated outcomes against what actually happened.
+
+Research the human timeline of real Odisha cyclone/flood events, the ground truth our simulation must reproduce:
+- For each major event (1999, Phailin, Hudhud, Fani, Amphan, Yaas, Dana): the official warning timeline: when IMD issued each bulletin, what lead time was achieved, when state warnings/sirens went out, when evacuations were ordered, how many people evacuated, shelter usage.
+- What advisories farmers actually received during each event (Meghdoot/IMD agromet advisories, state agri dept alerts, radio/TV), their content, and their timing vs the event.
+- What farmers actually DID before each cyclone: harvest early, no action, shelter, livestock moves. Post-event surveys and studies with numbers.
+- Verified outcomes: actual crop damage figures per event (acreage, value), the 7-day damage assessment process, compensation paid per farmer (KALIA/state ex-gratia), PMFBY payouts.
+- Post-event recovery timeline: how long fields recovered, salinity persistence (Yaas), disease/pest outbreaks observed, market disruption duration, when the next sowing happened.
+- Any before-after studies that quantify what a better advisory could have saved (counterfactual analyses, anticipatory action studies).
+- The counterfactual evidence base: studies of early harvest as a loss-reduction measure in rice (published yield loss vs stage vs days).
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag.
+2. EVENT DATASET: per event: what exists | named source (URL + date) | format | resolution | access | reliability A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: exact gaps (which event has no hourly data, which district has no damage figures).
+5. HOW IT FEEDS THE REPLAY SIMULATION: which simulation layer (hazard field, crop damage, advisory timing, recovery) and how it validates the engine.
+6. REAL-vs-FILLER: usable vs decorative. Evidence only.
+7. NOISE LOG: searched and discarded.
+8. VERDICT: GO / PARTIAL / GATED with reasons, for building a realistic event replay simulation.

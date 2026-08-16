@@ -1,0 +1,37 @@
+# CNC PS-07 EDGE-AI WAVE — EDGE-AI AGRICULTURE PRIOR ART + WHITE SPACE
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful research for the edge-AI mesh architecture: cheap sensor nodes,
+farmer phone as offline AI hub (small quantized LLM), continuous learning loop
+(server fine-tunes, phone adapts), and the predictive statistics underneath. This
+run maps what exists, what is real vs marketing, and what a prototype can demo.
+
+Research who already does on-device AI + sensors + agriculture advisory, and where the white space is:
+- Agritech with edge/offline claims: Cropin (edge devices?), Plantix (offline disease detection), Fasal (weather stations + advisory), DeHaat, Gramophone, AgroStar, AquaConnect: which actually run models on-device, which are cloud-only, pricing, farmer segments.
+- On-device LLM projects globally: agriculture LLM agents (AgriLLM research, KisanLLM, etc), any running on-device/offline in rural settings, any with Indic languages.
+- IoT weather networks: public low-cost station networks (weather.met.gov.in AWS, citizen networks like Weather Underground density in India, IITM network), how dense in Odisha.
+- Existing cyclone/flood early-warning systems for farmers: IMD Meghdoot, state OSDMA sirens, WFP anticipatory action pilots (cash before disaster), any with on-device components.
+- Academic edge-AI agri deployments: papers with real field results (accuracy, uptime, farmer adoption), e.g. in Kenya/India/Bangladesh.
+- The white space statement: does ANYONE run the full loop (sensors -> on-device LLM -> offline Odia advisory -> outcome capture -> daily adapter fine-tune)? Name the closest competitors and the exact gap with evidence.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag.
+2. DATA INVENTORY: per sub-question: item | named source (URL + date) | spec/price | feasibility for India | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: exact gaps no public source covers.
+5. HOW IT FEEDS THE EDGE-AI ENGINE: which tier (sensor node / phone hub / learning server) and which decision it powers.
+6. REAL-vs-FILLER: genuinely usable vs decorative. Evidence only.
+7. NOISE LOG: searched and discarded, with reasons.
+8. VERDICT: GO / PARTIAL / GATED with reasons, for a prototype and for a pilot.

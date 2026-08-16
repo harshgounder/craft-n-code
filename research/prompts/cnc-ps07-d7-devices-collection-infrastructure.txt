@@ -1,0 +1,39 @@
+# CNC PS-07 DATA WAVE — DEVICES + DATA COLLECTION INFRASTRUCTURE
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful data research for the advisory engine. This run maps what data
+exists (named, dated, URL'd), what is missing, and what a prototype can actually
+use TODAY for pre-disaster action advisories, post-disaster recovery steps, claim
+packets, and next-season planning for Odisha farmers.
+
+Research what instruments and channels exist to collect the data the advisory engine needs, with a focus on Odisha and on what a prototype can use:
+- IMD observation network: automatic weather stations (AWS), agromet stations (AMUS), rain gauges; how many cover Odisha districts, data availability via IMD API.
+- River gauges (CWC), tide gauges + deep ocean buoys (INCOIS), what is real-time and public.
+- Satellite: INSAT-3D/3DR derived products (rain estimates, cloud top temp), Sentinel-1 SAR for flood mapping (cloud-penetrating), Sentinel-2 for NDVI, RISAT. What a prototype can pull free.
+- IoT for farms: soil moisture probes, mini weather stations, rain sensors; cost per node in India, what agritech uses, DIY options.
+- Phone rails: USSD, IVR, SMS aggregators in India, costs per message/minute, A2P SMS rules, what an app can actually do on a basic phone, WhatsApp Business vs SMS for farmers.
+- Crowdsourced collection: farmer-reported damage via photos/voice, verification workflows, what existing apps do.
+- Drones for post-event damage assessment: cost, rules (DGCA), feasibility for a pilot.
+- What is realistic to wire into a prototype TODAY with public access, and what needs hardware.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag. What data exists, what is missing, what we can build on.
+2. DATA INVENTORY: per sub-question, a table row: data item | named source (with URL + date) | granularity | freshness | access path (free API / file / report / purchase / field collection) | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: the gaps that no public source covers. Name them exactly.
+5. HOW IT FEEDS THE ENGINE: for each data item, which advisory decision it powers (pre-disaster action, post-disaster recovery, claim packet, next-season planning, positive-use advice)
+6. REAL-vs-FILLER: what is genuinely usable vs what is decorative. Evidence only.
+7. NOISE LOG: what was searched and discarded, with reasons.
+8. VERDICT: can a prototype use this data today (free), what needs collection, what needs a partner. Grade: GO / PARTIAL / GATED with reasons.

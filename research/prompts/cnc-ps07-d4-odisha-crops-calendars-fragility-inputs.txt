@@ -1,0 +1,37 @@
+# CNC PS-07 DATA WAVE — ODISHA CROPS + CALENDARS + STAGE FRAGILITY + FARMER INPUTS
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful data research for the advisory engine. This run maps what data
+exists (named, dated, URL'd), what is missing, and what a prototype can actually
+use TODAY for pre-disaster action advisories, post-disaster recovery steps, claim
+packets, and next-season planning for Odisha farmers.
+
+Research what is grown in Odisha, when, and how vulnerable each crop is at each stage:
+- District-level crop map: paddy (the dominant crop), pulses, oilseeds, vegetables, coconut, cashew, spices. Which districts grow what, coastal vs interior split.
+- Crop calendars: kharif (June-Dec) and rabi (Nov-Apr) windows, paddy stages with typical dates per region (nursery, transplanting, tillering, panicle initiation, booting, flowering, grain filling, maturity), and how cyclones map onto the calendar (Oct-Nov cyclones hit flowering/maturity stage paddy).
+- STAGE-SPECIFIC FLOOD SENSITIVITY: the core fragility data. How many days of submergence kills paddy at each stage (IRRI/ICAR data), yield loss percentages by days submerged x stage, salt water vs fresh water effects, wind lodging thresholds for paddy and other crops.
+- Salt-tolerant varieties available in Odisha (CSR varieties, Swarna Sub1, etc.), adoption rates, where they are distributed.
+- What farmers actually use beyond the crop: seed varieties, fertilizer and pesticide inputs, irrigation (canals, wells, ponds), machinery (tractor/power tiller ownership), credit (KCC loans), labor. NSS/NABARD numbers for Odisha.
+- Yield loss tables per hazard x stage x crop that could power quantified 'cost of waiting' advice.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag. What data exists, what is missing, what we can build on.
+2. DATA INVENTORY: per sub-question, a table row: data item | named source (with URL + date) | granularity | freshness | access path (free API / file / report / purchase / field collection) | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: the gaps that no public source covers. Name them exactly.
+5. HOW IT FEEDS THE ENGINE: for each data item, which advisory decision it powers (pre-disaster action, post-disaster recovery, claim packet, next-season planning, positive-use advice)
+6. REAL-vs-FILLER: what is genuinely usable vs what is decorative. Evidence only.
+7. NOISE LOG: what was searched and discarded, with reasons.
+8. VERDICT: can a prototype use this data today (free), what needs collection, what needs a partner. Grade: GO / PARTIAL / GATED with reasons.

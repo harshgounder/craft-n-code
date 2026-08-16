@@ -1,0 +1,40 @@
+# CNC PS-07 WAVE 3 — TRAINING DATA: HISTORICAL WEATHER + YIELD + CROP STATISTICS
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful research for the KrishiSetu edge-AI advisory system. This run
+maps what exists, what is real, and what a prototype can use today.
+
+Research what historical datasets exist to TRAIN the predictive models (and what is downloadable):
+- IMD gridded rainfall/temperature data (0.25/1 degree grids, daily, 1901-present): access procedure (IMD Pune data portal, fees?), the IMD Open Data license.
+- IMD cyclone best-track database (1961-present, tracks, intensity, landfall): format, access.
+- CWC river gauge daily data: India-WRIS, years of record.
+- Crop yield statistics: district-level yields for Odisha crops (DES, Ministry of Agriculture, ICAR-DACNET), years, format.
+- Cost of cultivation data (CACP): input costs per crop per state.
+- ICRISAT district-level data for India (village dynamics): what it covers, access.
+- PMFBY claims data: district/crop claim rates (public reports?), loss assessment reports.
+- Soil Health Card data: any aggregated/APIs?
+- Satellite: Sentinel-1/2 free archives (Copernicus), NDVI products, flood extent maps (NASA GPM, GDACS), any India-specific flood layers (Bhuvan).
+- NSSO/ASUSE surveys for farmer economics.
+- What is actually downloadable today by a student team vs what needs purchase/MOU.
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag.
+2. DATA INVENTORY: per sub-question: item | named source (URL + date) | spec | feasibility | reliability grade A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: exact gaps.
+5. HOW IT FEEDS THE PRODUCT: which tier/decision it powers.
+6. REAL-vs-FILLER: genuinely usable vs decorative. Evidence only.
+7. NOISE LOG: searched and discarded, with reasons.
+8. VERDICT: GO / PARTIAL / GATED with reasons, for prototype and pilot.

@@ -1,0 +1,39 @@
+# CNC PS-07 WAVE 4 (REPLAY) — REAL EVENT DATA ARCHIVES: ODISHA CYCLONES + FLOODS
+
+OFFICIAL PROBLEM STATEMENT (verbatim, Craft N Code 2026):
+Title: Cyclone & Flood-Resilient Smart Agriculture Advisory System
+Body: Design an AI/IoT-based early-warning and advisory platform that integrates IMD alerts with hyperlocal farm data to recommend pre-disaster actions and post-disaster recovery steps for farmers in Odisha. It must work via SMS/IVR for low-literacy users.
+Objectives:
+1. Minimize crop loss during extreme weather events.
+2. Ensure accessibility for low-literacy and non-smartphone users.
+3. Provide actionable, time-sensitive agricultural advice.
+Features:
+1. Integration with IMD alerts and local farm data profiles.
+2. Automated advisory generation for pre and post-disaster.
+3. SMS and IVR (Voice) delivery system.
+
+## Core line
+Statement-faithful research for building REAL-EVENT REPLAY simulations: reconstruct
+past Odisha cyclones/floods from real data, run our advisory engine against them,
+and validate the simulated outcomes against what actually happened.
+
+Research the raw historical datasets needed to REPLAY real Odisha disasters in simulation:
+- For each major cyclone: 1999 Odisha Super Cyclone (Oct 29, 1999), Phailin (Oct 2013), Hudhud (Oct 2014), Fani (May 2019), Amphan (May 2020), Yaas (May 2021), Dana (Oct 2024):
+  - Best-track data: center coordinates, intensity, pressure every 6h (IBTrACS, IMD best track, JTWC)
+  - Hourly station observations during the event: barometric pressure series, sustained/gust wind, rainfall (IMD AWS archives, NCEI GSOD, any published station data papers)
+  - Storm surge: measured surge heights, inundation extent (INCOIS reports, post-event surveys, tide gauge data)
+  - District-wise crop damage: area affected, crop loss, livestock loss (state assessment reports, YSD/OSDMA, ICAR rapid assessments, published papers)
+- For major Odisha floods: 2011, 2013, 2017, 2019, 2021, 2024 (Mahanadi/Brahmani/Baitarani): CWC gauge hydrographs, inundation extent, district damage (state relief reports).
+- PMFBY claim data for those events: claim amounts, payouts, timelines (published reports).
+- Which of these are downloadable TODAY by a student team, in what format, and which need requests/MOUs.
+- Any published datasets of these events used in academic studies (with download links).
+
+## Required output structure (follow EXACTLY)
+1. EXECUTIVE SUMMARY: 6-10 bullets, each with [n] source tag.
+2. EVENT DATASET: per event: what exists | named source (URL + date) | format | resolution | access | reliability A-D
+3. COVERAGE TABLE: source families x useful hits x noise/missing x coverage judgment (A-D)
+4. WHAT IS MISSING: exact gaps (which event has no hourly data, which district has no damage figures).
+5. HOW IT FEEDS THE REPLAY SIMULATION: which simulation layer (hazard field, crop damage, advisory timing, recovery) and how it validates the engine.
+6. REAL-vs-FILLER: usable vs decorative. Evidence only.
+7. NOISE LOG: searched and discarded.
+8. VERDICT: GO / PARTIAL / GATED with reasons, for building a realistic event replay simulation.
