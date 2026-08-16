@@ -8,6 +8,26 @@ source, and a fallback, in Odia, on any phone.
 
 Warnings are infrastructure. Decisions are the product.
 
+## Where the AI is (and is not)
+
+The decision core is deliberately deterministic: no LLM sits inside the
+advice loop. Agronomy rules are a curated, cited seed set (R1-R18), and
+the math is classical: CVaR, Monte Carlo with convergence gates, fragility
+curves, a typed cascade graph. That is a design decision, not a gap.
+LLMs hallucinate agronomy, and a farmer cannot afford a wrong answer.
+Rules with citations beat vibes with confidence.
+
+The AI layers are the delivery and sensing layer, built for Round 1, and
+documented in EDGE-AI-VISION.md: on-device small LLM for conversational
+Odia advisory on a phone hub, Odia ASR and TTS, photo-based damage
+estimation for claim evidence, LoRA fine-tuning per district, all running
+offline on the farmer's own device. The prototype proves the decision
+core; Round 1 bolts on the voice.
+
+The research base is deep: 49 reports across 7 waves with verification
+gates, but the product never depends on a model to give advice. Every
+number in this deck traces to a source you can open.
+
 ## The problem in one line
 
 Farmers get warnings. They do not get decisions.
