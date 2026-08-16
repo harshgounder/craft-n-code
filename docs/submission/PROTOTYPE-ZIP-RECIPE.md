@@ -29,9 +29,9 @@ The merge conductor runs this after the 16:45 merge; verify the gates inside.
 
     # 3. boot check, both servers, then kill
     cd /tmp/krishi-submit/krishisetu-backend && python3 serve.py --seed --port 8100 &
-    cd /tmp/krishi-submit/scaffold && ./demo.sh &
+    cd /tmp/krishi-submit/scaffold && bash ./demo.sh &
     curl -s localhost:8100/health          # expect ok
-    curl -s localhost:8137/krishi.html     # expect 200
+    curl -s localhost:8137/static/krishi.html  # expect 200
     kill %1 %2
 
     # 4. zip

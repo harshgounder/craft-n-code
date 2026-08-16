@@ -18,10 +18,16 @@ SIMULATED, SIMULATOR, SIMULATED STREAM or ROADMAP. Nothing is live.
 
 ## How to run it (two commands)
 
-    cd krishisetu/backend && python3 serve.py --seed --port 8100
-    cd craft-n-code/scaffold && ./demo.sh
+    cd krishisetu-backend && python3 serve.py --seed --port 8100
+    cd scaffold && bash ./demo.sh
 
-Then open http://localhost:8137/krishi.html
+(bash runs the demo even if your unzip tool drops file permissions.)
+
+Then open http://localhost:8137/static/krishi.html
+
+(Optional: the generic scaffold landing page at http://localhost:8137/
+is the kit's original UI. The KrishiSetu farmer UI and operator
+console are the krishi.html page above.)
 
 That is the whole demo. Python 3.11+ stdlib only, no pip installs, no venv,
 no network, offline capable. The backend seeds SQLite with farms, incidents,
@@ -32,12 +38,12 @@ If a port is busy, the runbook in this kit lists every fallback.
 
 | Folder | What it is |
 |---|---|
-| craft-n-code/scaffold/agri/ | advisory core: compiler, CVaR, replay, 11-state machine, claims, doability, R1-R16 rules |
-| craft-n-code/scaffold/webapp/ | farmer UI (krishi.html), operator console, offline service worker |
-| krishisetu/backend/ | data layer: SQLite schema, 24-endpoint API, CAP ingest stub, SMS/IVR adapter stubs, hash-chained audit log |
-| craft-n-code/scaffold/tests/ | 85 acceptance checks + 46/46 eval, all green on this build |
-| craft-n-code/scaffold/deck/ | this deck, generator, and build instructions |
-| craft-n-code/scaffold/demo-script.md | the 3-minute demo, beat by beat, with honesty lines |
+| scaffold/agri/ | advisory core: compiler, CVaR, replay, 11-state machine, claims, doability, R1-R16 rules |
+| scaffold/webapp/ | farmer UI (krishi.html), operator console, offline service worker |
+| krishisetu-backend/ | data layer: SQLite schema, 24-endpoint API, CAP ingest stub, SMS/IVR adapter stubs, hash-chained audit log |
+| scaffold/tests/ | acceptance checks + eval, all green on this build |
+| scaffold/deck/ | deck generator and build instructions |
+| scaffold/demo-script.md | the 3-minute demo, beat by beat, with honesty lines |
 
 ## The evidence chain
 
