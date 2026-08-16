@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KrishiSetu - cyclone and flood resilient advisory, Odisha</title>
+<style>
+:root{
+  --bg:#0B1020; --panel:#141B33; --panel2:#1B2440; --line:#263055;
+  --txt:#E8ECF8; --mut:#93A0C4; --accent:#6C5CE7; --accent2:#00CE8F;
+  --warn:#FFB020; --danger:#FF5470; --chip:#202A4E;
+  --blue:#4A9EFF; --green:#00CE8F; --amber:#FFB020; --red:#FF5470;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--bg); color:var(--txt);
+  font-family:Inter,'Segoe UI',system-ui,sans-serif;
+  font-size:15px; line-height:1.5;
+  padding-bottom:70px;
+}
+#fallback{
+  position:fixed; inset:0; z-index:999; background:var(--bg);
+  padding:24px; overflow:auto;
+}
+#fallback h2{color:var(--danger); margin-bottom:12px;}
+#fallback p{color:var(--mut);}
+
+header{
+  background:var(--panel); border-bottom:1px solid var(--line);
+  padding:14px 20px 12px; display:flex; flex-wrap:wrap;
+  align-items:center; justify-content:space-between; gap:10px;
+}
+.brand .brow{font-size:20px; font-weight:700; letter-spacing:.02em;}
+.brand .brow .od{color:var(--accent2);}
+.brand .sub{color:var(--mut); font-size:12.5px; margin-top:2px;}
+.hstat{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.chip{
+  background:var(--chip); border:1px solid var(--line); color:var(--txt);
+  border-radius:999px; padding:4px 12px; font-size:12px; font-weight:600;
+  white-space:nowrap;
+}
+.chip.state{background:rgba(255,176,32,.14); border-color:rgba(255,176,32,.4); color:var(--warn);}
+.switch{display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--mut); cursor:pointer;}
+.switch input{accent-color:var(--accent); width:34px; height:18px; cursor:pointer;}
+
+nav.tabs{
+  display:flex; gap:6px; padding:10px 20px; background:var(--panel2);
+  border-bottom:1px solid var(--line); overflow-x:auto; flex-wrap:wrap;
+}
+nav.tabs button{
+  background:transparent; border:1px solid var(--line); color:var(--mut);
+  padding:7px 14px; border-radius:8px; cursor:pointer; font-size:13px;
+  font-family:inherit; white-space:nowrap;
+}
+nav.tabs button .od{color:var(--accent2);}
+nav.tabs button.active{
+  background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600;
+}
+
+main{padding:18px 20px 30px; max-width:1100px; margin:0 auto;}
+.panel{display:none;}
+.panel.active{display:block; animation:fade .2s ease;}
+@keyframes fade{from{opacity:0} to{opacity:1}}
+
+h2.tit{font-size:19px; margin-bottom:4px;}
+p.intro{color:var(--mut); margin-bottom:14px; font-size:13.5px;}
+
+.card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:16px;}
+.card h3{font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--mut); margin-bottom:10px;}
+.card h3 .od{color:var(--accent2); text-transform:none; letter-spacing:0;}
+
+/* badges */
+.badge{
+  display:inline-block; font-size:.64em; font-weight:800; letter-spacing:.05em;
+  padding:2px 8px; border-radius:999px; text-transform:uppercase; vertical-align:middle;
+}
+.b-om{background:var(--green); color:#04231a;}
+.b-tp{background:var(--blue); color:#041a2e;}
+.b-sa{background:var(--amber); color:#2b1c02;}
+.b-uk{background:var(--red); color:#2b0510;}
+.num{
+  padding:0 4px; border-radius:4px; font-weight:700; font-size:.85em;
+  white-space:nowrap;
+}
+.num.om{color:var(--green); background:rgba(0,206,143,.12);}
+.num.tp{color:var(--blue); background:rgba(74,158,255,.12);}
+.num.sa{color:var(--amber); background:rgba(255,176,32,.12);}
+.num.uk{color:var(--red); background:rgba(255,84,112,.12);}
+
+/* farm profile */
+table.prof{width:100%; border-collapse:collapse; font-size:13.5px;}
+table.prof td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical-align:top;}
+table.prof td.k{color:var(--mut); white-space:nowrap; width:110px;}
+.sim{color:var(--warn); font-size:11px; border:1px solid rgba(255,176,32,.4); border-radius:4px; padding:0 5px; margin-left:6px; white-space:nowrap;}
+
+/* stepper */
+.stepper{display:flex; gap:4px; flex-wrap:wrap; align-items:center; margin:10px 0 4px;}
+.step{
+  display:flex; flex-direction:column; align-items:center; gap:4px; font-size:10px;
+  color:var(--mut); text-align:center; max-width:96px;
+}
+.step .dot{width:11px; height:11px; border-radius:50%; background:var(--chip); border:1px solid var(--line);}
+.step.past .dot{background:var(--accent2); border-color:var(--accent2);}
+.step.current .dot{
+  background:var(--accent); border-color:var(--accent);
+  box-shadow:0 0 0 0 rgba(108,92,231,.6);
+  animation:pulse 1.6s infinite;
+}
+.step.future{opacity:.45;}
+.step .dur{color:var(--warn); font-size:9px;}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(108,92,231,.6);}
+  70%{box-shadow:0 0 0 8px rgba(108,92,231,0);}
+  100%{box-shadow:0 0 0 0 rgba(108,92,231,0);}
+}
+.arrow{color:var(--mut); font-size:11px;}
+.stepline{color:var(--mut); font-size:12px; margin:6px 0 0;}
+
+/* advisory cards */
+.adv{background:var(--panel2); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:12px;}
+.adv .top{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:6px;}
+.rank{
+  background:var(--accent); color:#fff; font-weight:800; font-size:12px;
+  width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; flex:none;
+}
+.adv .title{font-size:15px; font-weight:700;}
+.adv .title .en{color:var(--mut); font-weight:500; font-size:12.5px; margin-left:6px;}
+.status{margin-left:auto; font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px; white-space:nowrap;}
+.st-done{background:rgba(0,206,143,.15); color:var(--green);}
+.st-acked{background:rgba(74,158,255,.15); color:var(--blue);}
+.st-sent{background:rgba(108,92,231,.2); color:var(--accent2);}
+.st-queued{background:rgba(255,176,32,.14); color:var(--warn);}
+.adv .act{color:var(--txt); font-size:13.5px; margin-bottom:6px;}
+.adv .meta{list-style:none; font-size:12.5px; color:var(--mut); margin-bottom:6px;}
+.adv .meta li{margin:2px 0;}
+.adv .meta b{color:var(--txt); font-weight:600;}
+.adv .tags{display:flex; gap:6px; flex-wrap:wrap;}
+.note{color:var(--warn); font-size:11.5px; margin-bottom:4px; font-weight:600;}
+
+/* legend */
+.legend{display:flex; gap:8px; flex-wrap:wrap;}
+.legend .item{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--mut);}
+
+/* contrast */
+.cwrap{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+@media(max-width:860px){.cwrap{grid-template-columns:1fr;}}
+.cfarm{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; opacity:.82;}
+.cfarm.active{opacity:1; border-color:var(--accent); box-shadow:0 0 0 1px var(--accent);}
+.cfarm .cf-head{display:flex; align-items:center; gap:8px; margin-bottom:8px; flex-wrap:wrap;}
+.cfarm h3{font-size:15px;}
+.cfarm .summ{color:var(--mut); font-size:12px; margin-bottom:10px;}
+.ctoggle{margin-bottom:14px;}
+.ctoggle .lbl{color:var(--mut); font-size:12.5px; margin-right:8px;}
+.ctoggle button{
+  background:var(--chip); border:1px solid var(--line); color:var(--mut);
+  padding:6px 14px; border-radius:8px; cursor:pointer; font-family:inherit; font-size:12.5px;
+}
+.ctoggle button.active{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600;}
+.contrast-strip{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; margin-top:16px;}
+.contrast-strip h3{font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--mut); margin-bottom:8px;}
+.contrast-strip ol{margin-left:18px; color:var(--txt); font-size:13px;}
+.contrast-strip li{margin:4px 0;}
+
+/* ladder */
+.rung{background:var(--panel2); border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin:10px 0;}
+.rung .rhead{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.rung .rnum{color:var(--accent); font-weight:800; font-size:15px;}
+.rung .rname{font-weight:700; font-size:14px;}
+.rung .rname .od{color:var(--accent2);}
+.rung ul{list-style:none; font-size:12.5px; color:var(--mut); margin-top:6px;}
+.rung ul li{margin:2px 0;}
+.rung ul b{color:var(--txt); font-weight:600;}
+.gapdown{display:flex; align-items:center; gap:8px; color:var(--warn); font-size:12px; margin:2px 0 2px 8px;}
+.gapdown .arrow{color:var(--warn); font-size:15px;}
+.sidenote{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:8px; padding:10px 12px; font-size:12.5px; color:var(--mut); margin:14px 0;}
+.ladder-foot{color:var(--mut); font-size:12px;}
+
+/* research */
+.rbar{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;}
+.rbar input{
+  flex:1; min-width:220px; background:var(--panel2); border:1px solid var(--line);
+  color:var(--txt); border-radius:8px; padding:9px 12px; font-family:inherit; font-size:13px;
+}
+.rbar input::placeholder{color:var(--mut);}
+.wchips{display:flex; gap:6px; flex-wrap:wrap;}
+.wchips button{
+  background:var(--chip); border:1px solid var(--line); color:var(--mut);
+  padding:5px 12px; border-radius:999px; cursor:pointer; font-family:inherit; font-size:12px;
+}
+.wchips button.active{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:700;}
+.rrow{
+  display:grid; grid-template-columns:52px 62px 1fr 150px; gap:8px; align-items:start;
+  padding:8px 10px; border-bottom:1px solid rgba(38,48,85,.5); font-size:12.5px;
+}
+@media(max-width:700px){.rrow{grid-template-columns:52px 1fr;}}
+.rrow.hidden{display:none;}
+.rid{font-weight:800; color:var(--accent); font-family:monospace;}
+.wtag{font-size:10.5px; color:var(--mut); border:1px solid var(--line); border-radius:4px; padding:1px 5px; text-align:center; align-self:start; justify-self:start;}
+.rwhat{color:var(--txt);}
+.rfeed{color:var(--mut); font-size:11.5px;}
+.rfoot{color:var(--mut); font-size:11.5px; margin-top:12px; padding:8px 10px; background:var(--panel); border-radius:8px;}
+#rCount{color:var(--mut); font-size:12px; margin-bottom:8px;}
+
+/* console */
+table.ct{width:100%; border-collapse:collapse; font-size:12.5px;}
+table.ct th{
+  text-align:left; color:var(--mut); font-size:11px; text-transform:uppercase;
+  letter-spacing:.05em; border-bottom:1px solid var(--line); padding:6px 8px;
+}
+table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical-align:top;}
+.chain{display:flex; flex-direction:column; gap:10px;}
+.chain .crow{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-size:12.5px;}
+.chain .crow .anchor{font-weight:700; margin-bottom:4px;}
+.chain .crow .path{color:var(--mut);}
+.chain .crow code{color:var(--green); font-family:monospace; font-size:11.5px;}
+
+/* queue banner + honesty strip */
+.queue-banner{
+  position:fixed; left:50%; transform:translateX(-50%); bottom:58px; z-index:50;
+  background:#202A4E; border:1px solid var(--accent); color:var(--txt);
+  padding:8px 16px; border-radius:8px; font-size:13px; box-shadow:0 6px 20px rgba(0,0,0,.4);
+  white-space:nowrap;
+}
+@media(max-width:640px){.queue-banner{white-space:normal; width:92%; text-align:center;}}
+.honesty{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  background:#060913; border-top:1px solid var(--line); color:var(--mut);
+  font-size:11px; padding:8px 14px; text-align:center;
+}
+.honesty .hl{font-weight:800; letter-spacing:.1em; color:var(--accent2); margin-right:6px;}
+.honesty .p{color:var(--warn); font-weight:600;}
+</style>
+</head>
+<body>
+
+<div id="fallback" hidden>
+  <h2>KrishiSetu render fallback</h2>
+  <p>Scripting on this page was blocked or threw an error. The core data below still renders as plain content. Reload or use a modern browser to get the full interactive tabs.</p>
+  <p id="fbMsg"></p>
+</div>
+
+<header>
+  <div class="brand">
+    <div class="brow"><span class="od">କୃଷିସେତୁ</span> KrishiSetu</div>
+    <div class="sub">cyclone and flood resilient advisory, Odisha</div>
+  </div>
+  <div class="hstat">
+    <span class="chip state">INCIDENT: CYCLONE_WARNING (<span class="num sa">24h</span> lead)</span>
+    <label class="switch">
+      <input type="checkbox" id="offlineToggle">
+      <span><span class="od">ଅଫଲାଇନ</span> Offline (SIMULATED)</span>
+    </label>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button class="active" data-tab="farmer"><span class="od">ଚାଷୀ</span> Farmer</button>
+  <button data-tab="contrast"><span class="od">ଦୁଇ ଫାର୍ମ</span> Two farms</button>
+  <button data-tab="ladder"><span class="od">ପହଞ୍ଚାଣ</span> Ladder</button>
+  <button data-tab="research"><span class="od">ଗବେଷଣା</span> Research</button>
+  <button data-tab="console"><span class="od">ଅପରେଟର</span> Console</button>
+</nav>
+
+<main>
+
+<!-- ============ TAB 1: FARMER VIEW ============ -->
+<section class="panel active" id="tab-farmer">
+  <div class="card">
+    <h3><span class="od">ଅଶା</span> Asha, farm profile</h3>
+    <table class="prof">
+      <tr><td class="k">crop</td><td>paddy (<span class="od">ଧାନ</span>), variety Swarna</td></tr>
+      <tr><td class="k">stage</td><td>flowering (<span class="num sa">28+</span> days to maturity) <span class="badge b-tp">TRANSFER-PRIOR</span></td></tr>
+      <tr><td class="k">plot</td><td>low-lying, flood-prone, lowest in village</td></tr>
+      <tr><td class="k">embankment</td><td>weak, unrepaired since last season</td></tr>
+      <tr><td class="k">land</td><td>LEASED, owner lives in town (tenancy flag ON)</td></tr>
+      <tr><td class="k">soil</td><td>sandy loam</td></tr>
+      <tr><td class="k">holding</td><td><span class="num sa">0.9</span> ha <span class="badge b-om">ODISHA-MEASURED</span> <span class="badge b-tp">TRANSFER-PRIOR</span> (<span class="num om">0.95</span> ha Odisha average, d6)</td></tr>
+      <tr><td class="k">labor</td><td><span class="num sa">2</span> adults</td></tr>
+      <tr><td class="k">phone</td><td>feature phone, SMS + IVR only, no data</td></tr>
+      <tr><td class="k">language</td><td>Odia</td></tr>
+      <tr><td class="k">debt</td><td>one KCC loan (<span class="num om">40.5%</span> of Odisha farm households carry debt, d6) <span class="badge b-om">ODISHA-MEASURED</span></td></tr>
+      <tr><td class="k">ack status</td><td>ACKED via IVR at <span class="num sa">14:12</span> <span class="sim">SIMULATOR</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Incident state stepper</h3>
+    <div class="stepper">
+      <div class="step past"><span class="dot"></span>MONITOR</div>
+      <span class="arrow">-&gt;</span>
+      <div class="step past"><span class="dot"></span>PRE_CYCLONE_WATCH<span class="dur"><span class="num sa">72h</span></span></div>
+      <span class="arrow">-&gt;</span>
+      <div class="step past"><span class="dot"></span>CYCLONE_ALERT<span class="dur"><span class="num sa">48h</span></span></div>
+      <span class="arrow">-&gt;</span>
+      <div class="step current"><span class="dot"></span>CYCLONE_WARNING<span class="dur"><span class="num sa">24h</span></span></div>
+      <span class="arrow">-&gt;</span>
+      <div class="step future"><span class="dot"></span>POST_LAND_FALL_OUTLOOK<span class="dur"><span class="num sa">12h</span></span></div>
+      <span class="arrow">-&gt;</span>
+      <div class="step future"><span class="dot"></span>IMPACT_SUSPECTED</div>
+      <span class="arrow">-&gt;</span>
+      <div class="step future"><span class="dot"></span>IMPACT_CONFIRMED</div>
+      <span class="arrow">-&gt;</span>
+      <div class="step future"><span class="dot"></span>RESPONSE</div>
+      <span class="arrow">-&gt;</span>
+      <div class="step future"><span class="dot"></span>RECOVERY</div>
+      <span class="arrow">-&gt;</span>
+      <div class="step future"><span class="dot"></span>NEXT_SEASON</div>
+      <span class="arrow">-&gt;</span>
+      <div class="step future"><span class="dot"></span>CLOSED</div>
+    </div>
+    <p class="stepline">CAP-linked: every update replaces the previous bulletin, never duplicates it (SIMULATED FEED).</p>
+    <p class="stepline">The machine never closes on the first recession: second-flood semantics keep RECOVERY open until NEXT_SEASON.</p>
+  </div>
+
+  <div class="card">
+    <h3>Incident header <span class="sim">SIMULATED FEED</span></h3>
+    <p style="font-size:13.5px">
+      Cyclone warning for coastal Odisha, <span class="num sa">24h</span> lead, wind <span class="num sa">175-185 km/h</span>, surge
+      <span class="num sa">1.5-2 m</span> over low-lying coast, rain <span class="num sa">200+ mm</span> in <span class="num sa">24h</span>.
+      Source: IMD CAP bulletin (cached sample, live feed in Round 1).
+      <span class="badge b-sa">SCENARIO-ASSUMPTION</span> <span style="color:var(--mut);font-size:11.5px">(specific numbers are a demo storm, not a live bulletin)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h3><span class="od">ପରାମର୍ଶ</span> Advisories, ranked by what Asha can do</h3>
+
+    <article class="adv">
+      <div class="top">
+        <span class="rank">1</span>
+        <span class="title"><span class="od">ଫସଲ କାଟ ନାହିଁ</span> <span class="en">Do not harvest</span></span>
+        <span class="status st-acked">ACKED (SIMULATED)</span>
+      </div>
+      <p class="act">Flowering stage, grain not formed; harvesting now loses the whole season. Early-harvest studies at maturity put the loss at <span class="num tp">5.76%</span> (d32); at flowering the loss is total. Protect the crop instead.</p>
+      <ul class="meta">
+        <li><b>deadline:</b> not applicable (no harvest option)</li>
+        <li><b>source:</b> d32 (early-harvest meta), d33 (stage science)</li>
+        <li><b>cost of waiting:</b> <span class="num om">0</span>, harvest is not an option at flowering</li>
+        <li><b>doability:</b> <span class="num sa">0h</span> labor, Rs <span class="num sa">0</span>, no credit, no tenancy issue</li>
+      </ul>
+      <div class="tags">
+        <span class="badge b-tp">TRANSFER-PRIOR</span>
+        <span class="badge b-sa">SCENARIO-ASSUMPTION</span>
+      </div>
+    </article>
+
+    <article class="adv">
+      <div class="top">
+        <span class="rank">2</span>
+        <span class="title"><span class="od">ବନ୍ଧ ମରାମତି</span> <span class="en">Reinforce the weak embankment</span></span>
+        <span class="status st-acked">ACKED (SIMULATED)</span>
+      </div>
+      <p class="act">Weak embankment, low plot: a <span class="num sa">1.5-2 m</span> surge can overtop it. Sandbag the weakest <span class="num sa">30 m</span> stretch.</p>
+      <ul class="meta">
+          <li><b>deadline:</b> before <span class="num sa">06:00</span> tomorrow (<span class="num sa">12h</span>)</li>
+        <li><b>source:</b> R7 (fragility rule), d9 (fragility math)</li>
+        <li><b>cost of waiting:</b> an overtopped embankment adds standing water days on a low plot; waterlogging alone reprocesses <span class="num om">41.9%</span> of the crop (d3)</li>
+        <li><b>doability:</b> <span class="num sa">8h</span> labor, Rs <span class="num sa">1,200</span> sandbags, credit: KCC ok, tenancy: owner approval required, request sent via IVR (SIMULATOR), pending</li>
+      </ul>
+      <div class="tags">
+        <span class="badge b-sa">SCENARIO-ASSUMPTION</span>
+        <span class="badge b-tp">TRANSFER-PRIOR</span>
+      </div>
+    </article>
+
+    <article class="adv">
+      <div class="top">
+        <span class="rank">3</span>
+        <span class="title"><span class="od">ବୀଜ ଉଚ୍ଚ ସ୍ଥାନକୁ</span> <span class="en">Move seed stock and grain to high ground</span></span>
+        <span class="status st-sent">SENT (SIMULATED)</span>
+      </div>
+      <p class="act">Seed is next season's capital. Move stored seed and harvested grain to the raised platform or the neighbor's high room.</p>
+      <ul class="meta">
+        <li><b>deadline:</b> before <span class="num sa">18:00</span> today</li>
+        <li><b>source:</b> R6 (seed protection), d35 (Koraput storage wisdom)</li>
+        <li><b>cost of waiting:</b> a flooded seed stock means no re-sowing and relief dependence next season (d37)</li>
+        <li><b>doability:</b> <span class="num sa">2h</span> labor, Rs <span class="num sa">0</span>, no credit, no tenancy issue</li>
+      </ul>
+      <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+    </article>
+
+    <article class="adv">
+      <div class="top">
+        <span class="rank">4</span>
+        <span class="title"><span class="od">ଜନ୍ତୁ ଆଶ୍ରୟ</span> <span class="en">Livestock to raised shelter</span></span>
+        <span class="status st-sent">SENT (SIMULATED)</span>
+      </div>
+      <p class="act">Move livestock to the raised shelter or high ground before dark.</p>
+      <ul class="meta">
+        <li><b>deadline:</b> before <span class="num sa">18:00</span> today</li>
+        <li><b>source:</b> R8 (livestock rule), d46 (effects catalog)</li>
+        <li><b>cost of waiting:</b> livestock loss is a capital loss on a small holding</li>
+        <li><b>doability:</b> <span class="num sa">3h</span> labor, Rs <span class="num sa">0</span></li>
+      </ul>
+      <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+    </article>
+
+    <article class="adv">
+      <div class="top">
+        <span class="rank">5</span>
+        <span class="title"><span class="od">ଦାବି ପ୍ରସ୍ତୁତି</span> <span class="en">Claim packet prep: photo + <span class="num om">72h</span> clock</span></span>
+        <span class="status st-queued">QUEUED (SIMULATED)</span>
+      </div>
+      <p class="act">Photograph the standing crop now with a time stamp. PMFBY intimation must be filed within <span class="num om">72h</span> of loss; <span class="num om">33%</span> crop damage is the threshold (d6).</p>
+      <ul class="meta">
+        <li><b>deadline:</b> photo now, intimation within <span class="num om">72h</span> of loss</li>
+        <li><b>source:</b> d6 (PMFBY rules)</li>
+        <li><b>cost of waiting:</b> a missed intimation window can void the claim</li>
+        <li><b>doability:</b> <span class="num sa">30 min</span> labor, Rs <span class="num sa">0</span>, phone camera not needed: the photo can be taken by the volunteer</li>
+      </ul>
+      <div class="tags"><span class="badge b-om">ODISHA-MEASURED</span></div>
+    </article>
+
+    <article class="adv">
+      <div class="top">
+        <span class="rank">6</span>
+        <span class="title"><span class="od">ନାଳ ସଫା</span> <span class="en">Clear the drainage outlet</span></span>
+        <span class="status st-queued">QUEUED (SIMULATED)</span>
+      </div>
+      <p class="act">Low plot drains through one outlet. Clear it before the rain.</p>
+      <ul class="meta">
+        <li><b>deadline:</b> before <span class="num sa">20:00</span> today</li>
+        <li><b>source:</b> R9 (drainage rule), d3 (waterlogging)</li>
+        <li><b>cost of waiting:</b> standing water duration decides the loss share</li>
+        <li><b>doability:</b> <span class="num sa">4h</span> labor, Rs <span class="num sa">0</span></li>
+      </ul>
+      <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+    </article>
+
+    <article class="adv">
+      <div class="top">
+        <span class="rank">7</span>
+        <span class="title"><span class="od">ଲୁଣ ପରୀକ୍ଷା</span> <span class="en">Test sediment before re-sowing</span></span>
+        <span class="status st-queued">QUEUED (SIMULATED)</span>
+      </div>
+      <p class="note">NEXT STATE: RESPONSE</p>
+      <p class="act">After water recedes, test sediment salinity before re-sowing; Saltol seedlings hold saline patches (d33). This fires in RESPONSE or RECOVERY, not now.</p>
+      <ul class="meta">
+        <li><b>deadline:</b> after recession (state-gated)</li>
+        <li><b>source:</b> d33 (Saltol), d5 (SAC salinity mapping)</li>
+        <li><b>cost of waiting:</b> re-sowing into saline soil wastes seed and labor</li>
+        <li><b>doability:</b> <span class="num sa">1h</span> labor, Rs <span class="num sa">0</span></li>
+      </ul>
+      <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+    </article>
+  </div>
+
+  <div class="card">
+    <h3>Badge legend</h3>
+    <div class="legend">
+      <div class="item"><span class="badge b-om">ODISHA-MEASURED</span> measured on Odisha ground, dated source</div>
+      <div class="item"><span class="badge b-tp">TRANSFER-PRIOR</span> from other regions or studies</div>
+      <div class="item"><span class="badge b-sa">SCENARIO-ASSUMPTION</span> demo scenario or modeled assumption</div>
+      <div class="item"><span class="badge b-uk">UNKNOWN</span> not known yet, TODO: report dXX</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 2: TWO-FARM CONTRAST ============ -->
+<section class="panel" id="tab-contrast">
+  <h2 class="tit">Same warning, different advice: <span class="od">ଅଶା</span> Asha vs high field</h2>
+  <p class="intro">Both farms received the same <span class="num sa">24h</span> cyclone warning. The compiler produces different actions because the profiles differ: stage, plot, embankment, tenancy, labor.</p>
+
+  <div class="ctoggle">
+    <span class="lbl">compare:</span>
+    <button data-farm="asha" class="active">Asha</button>
+    <button data-farm="highfield">High field</button>
+  </div>
+
+  <div class="cwrap">
+    <div class="cfarm" id="farm-asha">
+      <div class="cf-head"><h3><span class="od">ଅଶା</span> Asha</h3></div>
+      <p class="summ">flowering paddy, low plot, weak embankment, leased, <span class="num sa">2</span> adults</p>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">1</span>
+          <span class="title"><span class="od">ଫସଲ କାଟ ନାହିଁ</span> <span class="en">Do not harvest</span></span>
+          <span class="status st-acked">ACKED</span>
+        </div>
+        <p class="act">Flowering stage, grain not formed; harvesting now loses the whole season. Loss at maturity is <span class="num tp">5.76%</span> (d32); at flowering the loss is total. Protect the crop instead.</p>
+        <ul class="meta">
+          <li><b>deadline:</b> not applicable (no harvest option)</li>
+          <li><b>source:</b> d32, d33</li>
+          <li><b>cost of waiting:</b> <span class="num om">0</span>, harvest is not an option</li>
+          <li><b>doability:</b> <span class="num sa">0h</span> labor, Rs <span class="num sa">0</span></li>
+        </ul>
+        <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      </article>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">2</span>
+          <span class="title"><span class="od">ବନ୍ଧ ମରାମତି</span> <span class="en">Reinforce the weak embankment</span></span>
+          <span class="status st-acked">ACKED</span>
+        </div>
+        <p class="act">Weak embankment, low plot: a <span class="num sa">1.5-2 m</span> surge can overtop it. Sandbag the weakest <span class="num sa">30 m</span>.</p>
+        <ul class="meta">
+        <li><b>deadline:</b> before <span class="num sa">06:00</span> tomorrow (<span class="num sa">12h</span>)</li>
+          <li><b>source:</b> R7, d9</li>
+          <li><b>cost of waiting:</b> waterlogging alone reprocesses <span class="num om">41.9%</span> (d3)</li>
+          <li><b>doability:</b> <span class="num sa">8h</span> labor, Rs <span class="num sa">1,200</span>, tenancy: owner approval required (pending via IVR)</li>
+        </ul>
+        <div class="tags"><span class="badge b-sa">SCENARIO-ASSUMPTION</span> <span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      </article>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">3</span>
+          <span class="title"><span class="od">ବୀଜ ଉଚ୍ଚ ସ୍ଥାନକୁ</span> <span class="en">Move seed stock and grain to high ground</span></span>
+          <span class="status st-sent">SENT</span>
+        </div>
+        <p class="act">Seed is next season's capital. Move stored seed and harvested grain to the raised platform or the neighbor's high room.</p>
+        <ul class="meta">
+          <li><b>deadline:</b> before <span class="num sa">18:00</span> today</li>
+          <li><b>source:</b> R6, d35</li>
+          <li><b>cost of waiting:</b> a flooded seed stock means no re-sowing next season (d37)</li>
+          <li><b>doability:</b> <span class="num sa">2h</span> labor, Rs <span class="num sa">0</span></li>
+        </ul>
+        <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      </article>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">4</span>
+          <span class="title"><span class="od">ଜନ୍ତୁ ଆଶ୍ରୟ</span> <span class="en">Livestock to raised shelter</span></span>
+          <span class="status st-sent">SENT</span>
+        </div>
+        <p class="act">Move livestock to the raised shelter or high ground before dark.</p>
+        <ul class="meta">
+          <li><b>deadline:</b> before <span class="num sa">18:00</span> today</li>
+          <li><b>source:</b> R8, d46</li>
+          <li><b>cost of waiting:</b> livestock loss is a capital loss on a small holding</li>
+          <li><b>doability:</b> <span class="num sa">3h</span> labor, Rs <span class="num sa">0</span></li>
+        </ul>
+        <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      </article>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">5</span>
+          <span class="title"><span class="od">ଦାବି ପ୍ରସ୍ତୁତି</span> <span class="en">Claim packet prep: photo + <span class="num om">72h</span> clock</span></span>
+          <span class="status st-queued">QUEUED</span>
+        </div>
+        <p class="act">PMFBY intimation must be filed within <span class="num om">72h</span> of loss; <span class="num om">33%</span> crop damage is the threshold (d6).</p>
+        <ul class="meta">
+          <li><b>deadline:</b> photo now, intimation within <span class="num om">72h</span></li>
+          <li><b>source:</b> d6</li>
+          <li><b>cost of waiting:</b> a missed intimation window can void the claim</li>
+          <li><b>doability:</b> <span class="num sa">30 min</span> labor, photo can be taken by the volunteer</li>
+        </ul>
+        <div class="tags"><span class="badge b-om">ODISHA-MEASURED</span></div>
+      </article>
+    </div>
+
+    <div class="cfarm" id="farm-highfield">
+      <div class="cf-head"><h3><span class="od">ଉଚ୍ଚ ଜମି ଫାର୍ମ</span> <span class="en">High field farm</span></h3></div>
+      <p class="summ">mature paddy, high plot, strong embankment, owned, <span class="num sa">5</span> adults + hired labor</p>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">1</span>
+          <span class="title"><span class="od">ଫସଲ କାଟ</span> <span class="en">Harvest now</span></span>
+          <span class="status st-sent">SENT</span>
+        </div>
+        <p class="act">Mature paddy, ~<span class="num sa">10</span> days early. Early harvest costs about <span class="num tp">5.76%</span> on average (d32); a flooded mature crop can be a total loss. Harvest before landfall.</p>
+        <ul class="meta">
+          <li><b>deadline:</b> before <span class="num sa">06:00</span> tomorrow</li>
+          <li><b>source:</b> d32 (early-harvest meta), d9 (replay math)</li>
+          <li><b>cost of waiting:</b> each day of flood water on mature paddy risks the full crop; Swarna-Sub1 buys ~<span class="num tp">64 kg/ha</span> per flood day of survival edge (d33), but <span class="num tp">5-7</span> days under water still cuts yield</li>
+          <li><b>doability:</b> <span class="num sa">40</span> person-hours (<span class="num sa">5</span> adults + <span class="num sa">3</span> hired), Rs <span class="num sa">2,500</span> hired labor, credit: KCC ok, tenancy: owned, no block</li>
+        </ul>
+        <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span> <span class="badge b-sa">SCENARIO-ASSUMPTION</span></div>
+      </article>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">2</span>
+          <span class="title"><span class="od">ଗୋଦାମ ନିରାପଦ</span> <span class="en">Secure stored grain in the stilt granary</span></span>
+          <span class="status st-sent">SENT</span>
+        </div>
+        <p class="act">Move stored grain to the stilt granary, off the floor.</p>
+        <ul class="meta">
+          <li><b>deadline:</b> before <span class="num sa">18:00</span> today</li>
+          <li><b>source:</b> d35, d42 (storage wisdom)</li>
+          <li><b>cost of waiting:</b> floor-level grain wicks moisture in one night</li>
+          <li><b>doability:</b> <span class="num sa">3h</span> labor, Rs <span class="num sa">0</span></li>
+        </ul>
+        <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      </article>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">3</span>
+          <span class="title"><span class="od">ବନ୍ଧ ମରାମତି</span> <span class="en">Reinforce the embankment</span></span>
+          <span class="status st-acked">ACKED</span>
+        </div>
+        <p class="act">Strong embankment, owned land: top it up and sandbag the joints. Feasible without any approval.</p>
+        <ul class="meta">
+          <li><b>deadline:</b> before <span class="num sa">06:00</span> tomorrow</li>
+          <li><b>source:</b> R7, d9</li>
+          <li><b>cost of waiting:</b> overtopping floods the field for days</li>
+          <li><b>doability:</b> <span class="num sa">8h</span> labor, Rs <span class="num sa">1,500</span> sandbags, credit: KCC ok, tenancy: owned, no block</li>
+        </ul>
+        <div class="tags"><span class="badge b-sa">SCENARIO-ASSUMPTION</span> <span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      </article>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">4</span>
+          <span class="title"><span class="od">ପମ୍ପ ଉଠାଅ</span> <span class="en">Move pump and equipment above the flood line</span></span>
+          <span class="status st-queued">QUEUED</span>
+        </div>
+        <p class="act">One hour of labor saves the pump from immersion.</p>
+        <ul class="meta">
+          <li><b>deadline:</b> before <span class="num sa">20:00</span> today</li>
+          <li><b>source:</b> R10 (equipment rule)</li>
+          <li><b>cost of waiting:</b> an immersed pump is days of recovery delay</li>
+          <li><b>doability:</b> <span class="num sa">1h</span> labor, Rs <span class="num sa">0</span></li>
+        </ul>
+        <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      </article>
+
+      <article class="adv">
+        <div class="top">
+          <span class="rank">5</span>
+          <span class="title"><span class="od">ଦାବି ପ୍ରସ୍ତୁତି</span> <span class="en">Claim packet prep: photo + <span class="num om">72h</span> clock</span></span>
+          <span class="status st-queued">QUEUED</span>
+        </div>
+        <p class="act">PMFBY intimation must be filed within <span class="num om">72h</span> of loss; <span class="num om">33%</span> crop damage is the threshold (d6).</p>
+        <ul class="meta">
+          <li><b>deadline:</b> photo now, intimation within <span class="num om">72h</span></li>
+          <li><b>source:</b> d6</li>
+          <li><b>cost of waiting:</b> a missed intimation window can void the claim</li>
+          <li><b>doability:</b> <span class="num sa">30 min</span> labor, photo can be taken by the volunteer</li>
+        </ul>
+        <div class="tags"><span class="badge b-om">ODISHA-MEASURED</span></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="contrast-strip">
+    <h3>What changed the advice</h3>
+    <ol>
+      <li>stage: flowering (harvest impossible) vs mature (harvest first)</li>
+      <li>tenancy: leased (embankment work needs owner approval) vs owned (feasible now)</li>
+      <li>plot: low (drainage + surge exposure) vs high (drainage fast)</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ TAB 3: DELIVERY LADDER ============ -->
+<section class="panel" id="tab-ladder">
+  <h2 class="tit"><span class="od">ପହଞ୍ଚାଣ</span> Delivery ladder: six rungs, one message</h2>
+  <p class="intro">No single channel reaches every Odisha farmer (d7, d28). The advisory starts at the top rung and escalates DOWN when a rung is unacknowledged. Every rung shows its latency budget.</p>
+
+  <div class="rung">
+    <div class="rhead"><span class="rnum">1</span><span class="rname">App (offline-first PWA)</span><span class="badge b-sa">ROADMAP</span></div>
+    <ul>
+      <li><b>works on:</b> smartphones, any data</li>
+      <li><b>latency budget:</b> &lt;<span class="num sa">5s</span> push</li>
+      <li><b>trigger:</b> <span class="num sa">4G/5G</span> present</li>
+      <li><b>fallback:</b> cache renders from local store, queue syncs later</li>
+    </ul>
+  </div>
+  <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
+
+  <div class="rung">
+    <div class="rhead"><span class="rnum">2</span><span class="rname">SMS (Odia-capable, DLT)</span><span class="badge b-sa">SIMULATOR</span></div>
+    <ul>
+      <li><b>works on:</b> ANY phone including feature phones</li>
+      <li><b>latency budget:</b> <span class="num sa">5-30 min</span></li>
+      <li><b>trigger:</b> <span class="num sa">2G/3G</span> no data</li>
+      <li><b>fallback:</b> unread after T, escalate to IVR</li>
+    </ul>
+  </div>
+  <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
+
+  <div class="rung">
+    <div class="rhead"><span class="rnum">3</span><span class="rname">IVR missed-call callback</span><span class="badge b-sa">SIMULATOR</span></div>
+    <ul>
+      <li><b>works on:</b> ANY phone, no data</li>
+      <li><b>latency budget:</b> <span class="num sa">30-60s</span> setup</li>
+      <li><b>trigger:</b> DND, low literacy, no credit (collect call)</li>
+      <li><b>fallback:</b> unacknowledged, escalate to volunteer</li>
+    </ul>
+  </div>
+  <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
+
+  <div class="rung">
+    <div class="rhead"><span class="rnum">4</span><span class="rname">USSD (session-based)</span><span class="badge b-sa">SIMULATOR</span></div>
+    <ul>
+      <li><b>works on:</b> ANY phone, <span class="num sa">2G</span></li>
+      <li><b>latency budget:</b> &lt;<span class="num sa">1s</span> round trip, <span class="num sa">90s</span> session</li>
+      <li><b>trigger:</b> <span class="num sa">2G</span> only, data dead, SMS slow</li>
+      <li><b>fallback:</b> session expiry, SMS fallback</li>
+    </ul>
+  </div>
+  <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
+
+  <div class="rung">
+    <div class="rhead"><span class="rnum">5</span><span class="rname">Community radio / loudspeaker</span><span class="badge b-sa">ROADMAP</span></div>
+    <ul>
+      <li><b>works on:</b> no phone needed</li>
+      <li><b>latency budget:</b> broadcast schedule</li>
+      <li><b>trigger:</b> tower down, mass event</li>
+      <li><b>fallback:</b> village relay confirms</li>
+    </ul>
+  </div>
+  <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
+
+  <div class="rung">
+    <div class="rhead"><span class="rnum">6</span><span class="rname">Village volunteer / paper</span><span class="badge b-sa">ROADMAP</span></div>
+    <ul>
+      <li><b>works on:</b> no phone needed</li>
+      <li><b>latency budget:</b> hours</li>
+      <li><b>trigger:</b> everything dead</li>
+      <li><b>fallback:</b> post-event debrief</li>
+    </ul>
+  </div>
+
+  <div class="sidenote">Latency budget decides the rung: a <span class="num sa">6h</span> action window ships by SMS, a <span class="num sa">1h</span> window ships by IVR and radio (THE-PLAN rules).</div>
+  <p class="ladder-foot">SIMULATOR: no live sending, no live calls. Real gateway + DLT registration are Round 1 (BUILD-MATRIX tier 2).</p>
+</section>
+
+<!-- ============ TAB 4: RESEARCH MACHINE ============ -->
+<section class="panel" id="tab-research">
+  <h2 class="tit"><span class="od">ଗବେଷଣା</span> Research machine: the <span class="num sa">48</span>-report base</h2>
+  <p class="intro"><span class="num sa">48</span> reports, <span class="num sa">6</span> waves, ~<span class="num sa">2.5M</span> chars. Rows below are the index from krishisetu/research/EVIDENCE-INDEX.md (d1-d47); refire runs and the wave ledger live in research/run-ledger.</p>
+
+  <div class="rbar">
+    <input type="search" id="rSearch" placeholder="search 48 reports, e.g. submergence, tenancy, radio">
+    <div class="wchips" id="rChips">
+      <button class="active" data-wave="all">All</button>
+      <button data-wave="1">Wave 1</button>
+      <button data-wave="2">Wave 2</button>
+      <button data-wave="3">Wave 3</button>
+      <button data-wave="4">Wave 4</button>
+      <button data-wave="5">Wave 5</button>
+      <button data-wave="6">Wave 6</button>
+    </div>
+  </div>
+  <div id="rCount"></div>
+  <div id="rRows">
+
+    <div class="rrow" data-wave="1"><span class="rid">d01</span><span class="wtag">Wave 1</span><span class="rwhat">cyclone science + India detection: IMD scale machine-codable, <span class="num om">72/48/24h</span> lead stages, track errors, <span class="num om">1999</span> deaths despite warning</span><span class="rfeed">feeds: hazard trigger</span></div>
+    <div class="rrow" data-wave="1"><span class="rid">d02</span><span class="wtag">Wave 1</span><span class="rwhat">flood science + CWC network: <span class="num om">325</span> stations, warning cadence, compound chains, recession clock</span><span class="rfeed">feeds: flood trigger</span></div>
+    <div class="rrow" data-wave="1"><span class="rid">d03</span><span class="wtag">Wave 1</span><span class="rwhat">cascades + positive use (refire): waterlogging <span class="num om">41.9%</span> repro loss, salinity persistence, blast conditions, PMFBY cover</span><span class="rfeed">feeds: cascade</span></div>
+    <div class="rrow" data-wave="1"><span class="rid">d04</span><span class="wtag">Wave 1</span><span class="rwhat">Odisha crops + calendars + fragility: paddy <span class="num om">44%</span> of GCA, Swarna-Sub1, stage calendars, machinery numbers</span><span class="rfeed">feeds: farm profile</span></div>
+    <div class="rrow" data-wave="1"><span class="rid">d05</span><span class="wtag">Wave 1</span><span class="rwhat">land/elevation/soil/salinity: DEM options, soil maps, SAC Yaas salinity mapping, CGWB recharge</span><span class="rfeed">feeds: soil data</span></div>
+    <div class="rrow" data-wave="1"><span class="rid">d06</span><span class="wtag">Wave 1</span><span class="rwhat">farmers + impact + PMFBY: <span class="num om">4.866M</span> holdings, <span class="num om">0.95 ha</span> avg, debt <span class="num om">40.5%</span>, PMFBY intimation window</span><span class="rfeed">feeds: doability</span></div>
+    <div class="rrow" data-wave="1"><span class="rid">d07</span><span class="wtag">Wave 1</span><span class="rwhat">devices + collection: CWC sites, tide gauges, SMS/IVR tariffs, DLT</span><span class="rfeed">feeds: delivery</span></div>
+    <div class="rrow" data-wave="1"><span class="rid">d08</span><span class="wtag">Wave 1</span><span class="rwhat">advisory prior art: GKMS cadence, KCC <span class="num sa">22</span> languages, Ama Krushi scale</span><span class="rfeed">feeds: prior art</span></div>
+    <div class="rrow" data-wave="1"><span class="rid">d09</span><span class="wtag">Wave 1</span><span class="rwhat">hazard-model math + fragility: Holland field, Bates-De Roo, Swarna-Sub1 RCT, SDRF norms</span><span class="rfeed">feeds: replay</span></div>
+
+    <div class="rrow" data-wave="2"><span class="rid">d10</span><span class="wtag">Wave 2</span><span class="rwhat">on-device LLM: <span class="num sa">1B</span> Q4 = design center, <span class="num sa">3B</span> out, llama.cpp, Lava Blaze target</span><span class="rfeed">feeds: AI layer</span></div>
+    <div class="rrow" data-wave="2"><span class="rid">d11</span><span class="wtag">Wave 2</span><span class="rwhat">continuous fine-tuning: three-loop model, LoRA <span class="num tp">11-49MB</span>, server gated training</span><span class="rfeed">feeds: AI layer</span></div>
+    <div class="rrow" data-wave="2"><span class="rid">d12</span><span class="wtag">Wave 2</span><span class="rwhat">cheap sensor hardware: Rs <span class="num om">2,899</span> node BOM, pressure tendency, no universal hPa/hr</span><span class="rfeed">feeds: hardware</span></div>
+    <div class="rrow" data-wave="2"><span class="rid">d13</span><span class="wtag">Wave 2</span><span class="rwhat">predictive stats: BOCPD/Kalman/iForest, no oracle claims, thresholds must be fitted</span><span class="rfeed">feeds: math</span></div>
+    <div class="rrow" data-wave="2"><span class="rid">d14</span><span class="wtag">Wave 2</span><span class="rwhat">edge-AI agri prior art: no full loop exists anywhere, OSDMA EWDS, Nuru</span><span class="rfeed">feeds: white space</span></div>
+
+    <div class="rrow" data-wave="3"><span class="rid">d15</span><span class="wtag">Wave 3</span><span class="rwhat">Odia + low-literacy voice: Ama Krushi <span class="num sa">50K</span> calls, no Odia TTS from big vendors, IndicF5, WER <span class="num om">35.1</span> real</span><span class="rfeed">feeds: voice</span></div>
+    <div class="rrow" data-wave="3"><span class="rid">d16</span><span class="wtag">Wave 3</span><span class="rwhat">IMD/CWC/INCOIS API: CAP RSS free, IMD API gated, WRIS works, Open-Meteo fallback</span><span class="rfeed">feeds: feed</span></div>
+    <div class="rrow" data-wave="3"><span class="rid">d17</span><span class="wtag">Wave 3</span><span class="rwhat">power + connectivity: Fani <span class="num om">4</span> districts down <span class="num om">9</span> days, rural supply reality</span><span class="rfeed">feeds: offline</span></div>
+    <div class="rrow" data-wave="3"><span class="rid">d18</span><span class="wtag">Wave 3</span><span class="rwhat">who pays: <span class="num om">81.3%</span> WTP, voice reminders <span class="num tp">38%</span> vs <span class="num tp">18%</span>, ATMA <span class="num tp">60:40</span>, FPO rails</span><span class="rfeed">feeds: business</span></div>
+    <div class="rrow" data-wave="3"><span class="rid">d19</span><span class="wtag">Wave 3</span><span class="rwhat">training data: IMD gridded <span class="num om">1901-2024</span>, best tracks, CWC free, J-PAL data</span><span class="rfeed">feeds: replay</span></div>
+    <div class="rrow" data-wave="3"><span class="rid">d20</span><span class="wtag">Wave 3</span><span class="rwhat">OSDMA ecosystem: post-<span class="num om">1999</span> institutions, EWDS, ODRAF, Krushak Odisha <span class="num sa">9.2M</span></span><span class="rfeed">feeds: institutional</span></div>
+
+    <div class="rrow" data-wave="4"><span class="rid">d25</span><span class="wtag">Wave 4</span><span class="rwhat">global prior art: BaKhabar Kissan <span class="num om">15.8M</span>, BAMIS, no recovery state machine anywhere</span><span class="rfeed">feeds: white space</span></div>
+    <div class="rrow" data-wave="4"><span class="rid">d26</span><span class="wtag">Wave 4</span><span class="rwhat">GitHub/forums sweep: KrishiRakshak collision (yesterday), Ama Krushi <span class="num om">7.9M</span> + <span class="num tp">10%</span> loss cut</span><span class="rfeed">feeds: honesty</span></div>
+    <div class="rrow" data-wave="4"><span class="rid">d27</span><span class="wtag">Wave 4</span><span class="rwhat">anticipatory action + insurance: WFP <span class="num sa">$53</span> pre-event, R4, ARC, ACRE <span class="num sa">217K</span> failed deliveries</span><span class="rfeed">feeds: claims rail</span></div>
+    <div class="rrow" data-wave="4"><span class="rid">d28</span><span class="wtag">Wave 4</span><span class="rwhat">offline/feature-phone delivery: Ethiopia <span class="num sa">8028</span> <span class="num tp">6M/60M</span> calls, radio <span class="num tp">24.1M</span>, WeFarm/iCow deaths</span><span class="rfeed">feeds: delivery</span></div>
+    <div class="rrow" data-wave="4"><span class="rid">d29</span><span class="wtag">Wave 4</span><span class="rwhat">LLM + agri worldwide: Farmer.Chat <span class="num tp">830K/5M</span> queries, AgroMetLLM Pi <span class="num sa">4B</span>, sesame incident</span><span class="rfeed">feeds: AI</span></div>
+    <div class="rrow" data-wave="4"><span class="rid">d30</span><span class="wtag">Wave 4</span><span class="rwhat">farm data platforms: SoilGrids, WorldCover, GDACS, GloFAS, Sen1Floods11 free</span><span class="rfeed">feeds: data</span></div>
+
+    <div class="rrow" data-wave="5"><span class="rid">d31</span><span class="wtag">Wave 5</span><span class="rwhat">farmer problem capture: symptom grammar, keypad &gt; ASR, KCC corpus, <span class="num tp">65%</span> want experts</span><span class="rfeed">feeds: voice</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d32</span><span class="wtag">Wave 5</span><span class="rwhat">crop evacuation physics: <span class="num tp">5.76%</span> early-harvest meta, labor hours/ha, movable units</span><span class="rfeed">feeds: action</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d33</span><span class="wtag">Wave 5</span><span class="rwhat">frontier agri science: Swarna-Sub1 +<span class="num tp">64kg/ha</span>/day, Saltol seedling-stage, halopriming</span><span class="rfeed">feeds: science</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d34</span><span class="wtag">Wave 5</span><span class="rwhat">unique angle validation: QUALIFIED GO, new combination, not first-to-harvest</span><span class="rfeed">feeds: honesty</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d35</span><span class="wtag">Wave 5</span><span class="rwhat">human disaster history: universal sequence, Koraput storage, mangroves <span class="num tp">409-village</span></span><span class="rfeed">feeds: wisdom</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d36</span><span class="wtag">Wave 5</span><span class="rwhat">science validation folk: FR13A -&gt; Sub1 story, tiered evidence gate</span><span class="rfeed">feeds: wisdom</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d37</span><span class="wtag">Wave 5</span><span class="rwhat">adaptation gap: tenancy <span class="num tp">5.82%</span>, debt, labor, relief hazard, memory decay</span><span class="rfeed">feeds: THESIS</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d38</span><span class="wtag">Wave 5</span><span class="rwhat">farmer-as-sensor: phone as data network, DTMF, photo protocols, zero hardware</span><span class="rfeed">feeds: data</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d39</span><span class="wtag">Wave 5</span><span class="rwhat">doability engine: feasibility-aware advisories are rare, labor is the constraint</span><span class="rfeed">feeds: THESIS</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d40</span><span class="wtag">Wave 5</span><span class="rwhat">farmer data as asset: value loop data -&gt; advice -&gt; claims -&gt; credit</span><span class="rfeed">feeds: business</span></div>
+
+    <div class="rrow" data-wave="6"><span class="rid">d41</span><span class="wtag">Wave 6</span><span class="rwhat">global farm practices (refire): Vietnam/Japan/China/Andes/Indus/Niger practices</span><span class="rfeed">feeds: wisdom</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d42</span><span class="wtag">Wave 6</span><span class="rwhat">storage + water engineering: stilt granaries, qanats, amunas, bolanha, baira</span><span class="rfeed">feeds: wisdom</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d43</span><span class="wtag">Wave 6</span><span class="rwhat">institutional response + theory: CPP <span class="num sa">76K</span> volunteers, Japan nosai, FCIP, Delta Programme, Sendai</span><span class="rfeed">feeds: institutional</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d44</span><span class="wtag">Wave 6</span><span class="rwhat">every cyclone agri damage: Sidr <span class="num sa">1.4M ha</span>, Idai <span class="num sa">715K</span>, Remal <span class="num sa">498K</span>, Mocha <span class="num sa">327K</span>, Yagi <span class="num sa">286K</span>, Michael <span class="num sa">$2B+</span>, noise log</span><span class="rfeed">feeds: global record</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d45</span><span class="wtag">Wave 6</span><span class="rwhat">every major flood agri: Yangtze <span class="num sa">1998</span>, Pakistan <span class="num sa">2010/2022</span>, Kerala, Thailand <span class="num sa">2011</span>, Nigeria, Brazil <span class="num sa">2024</span></span><span class="rfeed">feeds: global record</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d46</span><span class="wtag">Wave 6</span><span class="rwhat">complete effects catalog: full taxonomy during/immediate/weeks/years + positives</span><span class="rfeed">feeds: cascade</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d47</span><span class="wtag">Wave 6</span><span class="rwhat">cascade systems math: typed DAG, BN-FLEMO MAE <span class="num sa">0.18</span>, CVaR, MC gates, four badges</span><span class="rfeed">feeds: THESIS</span></div>
+
+  </div>
+  <p class="rfoot">raw reports live in krishisetu/research/raw/ and hackathon-sota-lab/research/raw/v2/, one content.md + basis.json pair per report (cnc-ps07-dXX-&lt;slug&gt;). Chain: slide -&gt; proof ledger -&gt; index row -&gt; raw report.</p>
+</section>
+
+<!-- ============ TAB 5: OPERATOR CONSOLE ============ -->
+<section class="panel" id="tab-console">
+  <h2 class="tit"><span class="od">ଅପରେଟର</span> Operator console (minimal, SIMULATED)</h2>
+
+  <div class="card">
+    <h3>Section 1: Incidents</h3>
+    <table class="ct">
+      <tr><th>incident</th><th>source</th><th>state</th><th>version</th><th>started</th></tr>
+      <tr>
+        <td>INC-<span class="num sa">2026</span>-<span class="num sa">001</span></td>
+        <td>IMD CAP bulletin <span class="sim">SIMULATED FEED</span></td>
+        <td>CYCLONE_WARNING (<span class="num sa">24h</span>)</td>
+        <td>v<span class="num sa">3</span> (CAP-linked updates)</td>
+        <td><span class="num sa">13:40</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Section 2: Per-farm ack status</h3>
+    <table class="ct">
+      <tr><th>farm</th><th>channel</th><th>sent</th><th>ack</th><th>status</th></tr>
+      <tr><td>Asha</td><td>IVR callback <span class="sim">SIMULATOR</span></td><td><span class="num sa">14:05</span></td><td><span class="num sa">14:12</span></td><td>ACKED</td></tr>
+      <tr><td>Asha</td><td>SMS <span class="sim">SIMULATOR</span></td><td><span class="num sa">13:58</span></td><td>unread</td><td>ESCALATED to IVR</td></tr>
+      <tr><td>High field</td><td>SMS <span class="sim">SIMULATOR</span></td><td><span class="num sa">13:58</span></td><td>unread</td><td>ESCALATED</td></tr>
+      <tr><td>High field</td><td>Volunteer + radio <span class="badge b-sa">ROADMAP</span></td><td>assigned <span class="num sa">14:30</span></td><td>pending</td><td>pending</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Section 3: Evidence chain (slide -&gt; ledger -&gt; index -&gt; raw)</h3>
+    <div class="chain">
+      <div class="crow">
+        <div class="anchor">Fani <span class="num om">108,220 ha</span> / Rs <span class="num om">1,304.58 cr</span></div>
+        <div class="path">deck slide <span class="num sa">7</span> (replay) -&gt; ledger P1-P6 (proof ledger, deck claims) -&gt; index row d9 -&gt; raw: <code>research/raw/cnc-ps07-d9-agri-hazard-model-math-fragility.basis.json</code></div>
+      </div>
+      <div class="crow">
+        <div class="anchor">Yaas <span class="num om">2-4 m</span> surge</div>
+        <div class="path">deck slide <span class="num sa">7</span> -&gt; ledger -&gt; index row d5 -&gt; raw: <code>research/raw/cnc-ps07-d5-land-elevation-soil-salinity-sources.basis.json</code></div>
+      </div>
+      <div class="crow">
+        <div class="anchor">Swarna-Sub1 +<span class="num tp">64 kg/ha</span> per flood day</div>
+        <div class="path">deck slide <span class="num sa">8</span> (science) -&gt; ledger -&gt; index row d33 -&gt; raw: <code>research/raw/cnc-ps07-d33-frontier-agriculture-science.basis.json</code></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Section 4: Delivery log <span class="sim">SIMULATOR</span></h3>
+    <table class="ct">
+      <tr><th>time</th><th>rung</th><th>event</th></tr>
+      <tr><td><span class="num sa">13:40</span></td><td>incident</td><td>incident created <span class="sim">SIMULATED FEED</span></td></tr>
+      <tr><td><span class="num sa">13:58</span></td><td>SMS</td><td>SMS sent to Asha, SMS sent to high field <span class="sim">SIMULATOR</span></td></tr>
+      <tr><td><span class="num sa">14:05</span></td><td>IVR</td><td>IVR callback to Asha <span class="sim">SIMULATOR</span></td></tr>
+      <tr><td><span class="num sa">14:12</span></td><td>IVR</td><td>Asha ACKED via keypad press <span class="num sa">1</span> <span class="sim">SIMULATOR</span></td></tr>
+      <tr><td><span class="num sa">14:30</span></td><td>volunteer</td><td>volunteer assigned for high field <span class="sim">SIMULATED</span></td></tr>
+      <tr><td><span class="num sa">17:00</span></td><td>radio</td><td>radio bulletin scheduled <span class="badge b-sa">ROADMAP</span></td></tr>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<div class="queue-banner" id="queueBanner" hidden><span class="od">ଅଫଲାଇନ</span> <span class="num sa">3</span> actions queued, syncs when bandwidth returns (SIMULATED)</div>
+
+<footer class="honesty">
+  <span class="hl">HONESTY STRIP</span>
+  SIMULATED FEED (hazard input) <span class="p">|</span>
+  SIMULATOR (SMS, IVR, USSD traces) <span class="p">|</span>
+  SIMULATED STREAM (sensors) <span class="p">|</span>
+  ROADMAP (PWA, radio, LoRA loop, live CAP) <span class="p">|</span>
+  every number wears a badge.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var ok = true;
+  function fail(e){
+    ok = false;
+    var fb = document.getElementById("fallback");
+    if (fb) {
+      fb.hidden = false;
+      var m = document.getElementById("fbMsg");
+      if (m) m.textContent = String(e && e.message || e || "unknown scripting error");
+    }
+  }
+  window.addEventListener("error", function(e){ fail(e && e.error || e.message); });
+
+  try {
+    document.documentElement.classList.add("js");
+
+    var tabs = document.querySelectorAll("nav.tabs button");
+    var panels = document.querySelectorAll(".panel");
+    function showTab(id){
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.toggle("active", tabs[i].getAttribute("data-tab") === id);
+      }
+      for (var j = 0; j < panels.length; j++) {
+        panels[j].classList.toggle("active", panels[j].id === "tab-" + id);
+      }
+    }
+    for (var t = 0; t < tabs.length; t++) {
+      tabs[t].addEventListener("click", (function(btn){
+        return function(){ showTab(btn.getAttribute("data-tab")); };
+      })(tabs[t]));
+    }
+
+    var off = document.getElementById("offlineToggle");
+    var qb = document.getElementById("queueBanner");
+    if (off && qb) {
+      off.addEventListener("change", function(){
+        qb.hidden = !off.checked;
+      });
+    }
+
+    var farmBtns = document.querySelectorAll(".ctoggle button");
+    var fAsha = document.getElementById("farm-asha");
+    var fHigh = document.getElementById("farm-highfield");
+    for (var f = 0; f < farmBtns.length; f++) {
+      farmBtns[f].addEventListener("click", (function(btn){
+        return function(){
+          for (var x = 0; x < farmBtns.length; x++) farmBtns[x].classList.remove("active");
+          btn.classList.add("active");
+          if (btn.getAttribute("data-farm") === "asha") {
+            fAsha.classList.add("active");
+            fHigh.classList.remove("active");
+          } else {
+            fHigh.classList.add("active");
+            fAsha.classList.remove("active");
+          }
+        };
+      })(farmBtns[f]));
+    }
+
+    var rows = document.querySelectorAll(".rrow");
+    var search = document.getElementById("rSearch");
+    var chips = document.querySelectorAll("#rChips button");
+    var count = document.getElementById("rCount");
+    var waveFilter = "all";
+    var textFilter = "";
+
+    function applyFilter(){
+      var shown = 0;
+      for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var w = row.getAttribute("data-wave");
+        var wm = (waveFilter === "all") || (w === waveFilter);
+        var tm = textFilter === "" || row.textContent.toLowerCase().indexOf(textFilter) !== -1;
+        var vis = wm && tm;
+        row.classList.toggle("hidden", !vis);
+        if (vis) shown++;
+      }
+      if (count) count.textContent = shown + " of " + rows.length + " rows";
+    }
+    if (search) {
+      search.addEventListener("input", function(){
+        textFilter = search.value.trim().toLowerCase();
+        applyFilter();
+      });
+    }
+    for (var c = 0; c < chips.length; c++) {
+      chips[c].addEventListener("click", (function(chip){
+        return function(){
+          for (var y = 0; y < chips.length; y++) chips[y].classList.remove("active");
+          chip.classList.add("active");
+          waveFilter = chip.getAttribute("data-wave");
+          applyFilter();
+        };
+      })(chips[c]));
+    }
+    applyFilter();
+
+  } catch (err) {
+    fail(err);
+  }
+  if (!ok) { /* fallback div already shown */ }
+})();
+</script>
+</body>
+</html>
