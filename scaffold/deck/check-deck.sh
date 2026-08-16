@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deck gate: rebuild + verify 11 slides, content-identical strings, no em
+# Deck gate: rebuild + verify 12 slides, content-identical strings, no em
 # dash, no banned words. Run from scaffold/deck. Exit 0 = ship it.
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -12,7 +12,7 @@ import zipfile, re, sys
 PPTX = 'KrishiSetu-Round0-20260816.pptx'
 z = zipfile.ZipFile(PPTX)
 slides = [n for n in z.namelist() if re.match(r'ppt/slides/slide\d+\.xml$', n)]
-assert len(slides) == 11, f'slide count {len(slides)}, expected 11'
+assert len(slides) == 12, f'slide count {len(slides)}, expected 12'
 
 allxml = ''
 for n in z.namelist():
