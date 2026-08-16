@@ -84,8 +84,8 @@ class TestCVaR(unittest.TestCase):
         decision = cvar.harvest_decision(seed.high_field_farm(), incident, n=600, seed=7)
         self.assertEqual(decision["best"], "wait", decision)
 
-    def test_tillering_farm_never_harvests_green(self):
-        # Asha is tillering: harvesting green paddy is destructive, so
+    def test_flowering_farm_never_harvests_green(self):
+        # Asha is flowering: harvesting green paddy is destructive, so
         # wait is forced even under high risk (the doability gate)
         incident = dict(seed.flood_warning_incident(),
                         flood_probability=0.9, deep_flood_share=0.6,
@@ -211,6 +211,53 @@ class TestR17R18(unittest.TestCase):
         self.assertTrue("R18" in joined, "R18 missing for immature paddy farm")
         self.assertNotIn("harvest the mature", joined.lower(),
                          "harvest action leaked onto immature paddy")
+
+
+class TestStressFixRegression(unittest.TestCase):
+    """Regression guards for the adversarial stress-run fixes
+    (FIX-BRIEF-AGRI-P1S): R17 risk gate, brace-free rendering, and the
+    hazard-any rules R13/R14/R16."""
+
+    def _ids(self, actions):
+        return [a.get("rule_id") for a in actions]
+
+    def test_r17_absent_at_negligible_flood_risk(self):
+        high = seed.high_field_farm()
+        inc = dict(seed.flood_warning_incident(), flood_probability=0.001, lead_hours=48)
+        self.assertNotIn("R17", self._ids(compiler.compile_actions(high, inc, RULES)))
+
+    def test_r17_present_at_high_flood_risk(self):
+        high = seed.high_field_farm()
+        inc = dict(seed.flood_warning_incident(), flood_probability=0.9, lead_hours=48)
+        self.assertIn("R17", self._ids(compiler.compile_actions(high, inc, RULES)))
+
+    def test_no_literal_braces_in_any_compiled_action(self):
+        for farm in (seed.asha_farm(), seed.high_field_farm()):
+            inc = dict(seed.flood_warning_incident(), flood_probability=0.9, lead_hours=48,
+                       pre_monsoon_inspection=True, overflow_zone_plan=True)
+            actions = compiler.compile_actions(farm, inc, RULES, include_admin=True)
+            self.assertTrue(actions)
+            for a in actions:
+                self.assertNotIn("{", a["action"], f"brace in {a['rule_id']}: {a['action']!r}")
+                self.assertNotIn("}", a["action"], f"brace in {a['rule_id']}: {a['action']!r}")
+
+    def test_r13_fires_with_community_tank_profile(self):
+        farm = dict(seed.high_field_farm(), community_tank=True)
+        inc = dict(seed.flood_warning_incident(), lead_hours=48, pre_monsoon_inspection=True)
+        actions = compiler.compile_actions(farm, inc, RULES, include_admin=True)
+        self.assertIn("R13", self._ids(actions))
+
+    def test_r14_fires_with_overflow_corridor(self):
+        farm = dict(seed.high_field_farm(), overflow_corridor=True)
+        inc = dict(seed.flood_warning_incident(), overflow_zone_plan=True)
+        actions = compiler.compile_actions(farm, inc, RULES, include_admin=True)
+        self.assertIn("R14", self._ids(actions))
+
+    def test_r16_appears_only_in_admin_list(self):
+        farm = seed.high_field_farm()
+        inc = dict(seed.flood_warning_incident())
+        self.assertIn("R16", self._ids(compiler.compile_actions(farm, inc, RULES, include_admin=True)))
+        self.assertNotIn("R16", self._ids(compiler.compile_actions(farm, inc, RULES)))
 
 
 if __name__ == "__main__":

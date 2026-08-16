@@ -17,18 +17,26 @@ action ranks above every infeasible one.
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional
 
 from doability import score as doability_score, INFEASIBLE_PENALTY
 from cvar import (
+    EARLY_HARVEST_COST,
     expected_crop_loss_fraction,
     exposed_crop_value,
+    flood_loss_fraction,
     LIVESTOCK_VALUE_PER_HEAD_RS,
     VEGETABLE_VALUE_RS,
     LIVESTOCK_FLOOD_LOSS,
 )
+
+HARVEST_MIN_EXPECTED_LOSS = EARLY_HARVEST_COST
+"""R17 gate: expected flood loss (flood_probability x stage loss fraction)
+must exceed the 5.76% early-harvest yield cost before harvest-now fires.
+Mirrors cvar.EARLY_HARVEST_COST (TRANSFER-PRIOR, 32-study meta)."""
 
 CYCLONE_CROP_LOSS_FRACTION = 0.35
 """SCENARIO-ASSUMPTION: cyclone wind loss fraction for an exposed standing
@@ -66,10 +74,9 @@ def _condition_ok(farm: dict, incident: dict, trigger: dict) -> bool:
 def match_rule(farm: dict, incident: dict, rule: dict) -> bool:
     """True when the rule's hazard x crop x stage x lead trigger fires."""
     tr = rule.get("trigger", {})
-    if rule.get("admin_only"):
-        return False
 
-    if incident.get("hazard") not in tr.get("hazard", []):
+    hazards = tr.get("hazard", [])
+    if "any" not in hazards and incident.get("hazard") not in hazards:
         return False
 
     crop = farm.get("crop")
@@ -112,6 +119,18 @@ def _asset_loss_fraction(farm: dict, incident: dict, asset: str) -> float:
     return expected_crop_loss_fraction(farm, incident)
 
 
+def _r17_expected_flood_loss_fraction(farm: dict, incident: dict) -> float:
+    """Probability-weighted expected flood loss fraction for the R17 gate.
+
+    flood_probability x the stage- and variety-aware deep-flood loss
+    fraction from cvar.flood_loss_fraction, mirroring the CVaR
+    wait-vs-harvest comparator. R17 fires only when this exceeds the
+    early-harvest yield cost (HARVEST_MIN_EXPECTED_LOSS)."""
+    p = min(1.0, max(0.0, float(incident.get("flood_probability", 1.0))))
+    days = max(6, int(incident.get("inundation_days_mean", 3)) + 3)
+    return p * flood_loss_fraction(farm, days, "deep")
+
+
 def expected_loss_reduction(farm: dict, incident: dict, rule: dict) -> float:
     """Rupee value of loss the rule averts: exposed value x expected loss
     fraction x the rule's protection share (SCENARIO-ASSUMPTION)."""
@@ -139,9 +158,28 @@ def compute_deadline(incident: dict, rule: dict) -> dict:
     return {"note": f"within {max_h}h of the advisory" if max_h is not None else "as scheduled"}
 
 
+def _render_action_text(tpl: str, fmt: dict, incident: dict, rule: dict) -> str:
+    """Fill a rule action template without ever leaking literal braces.
+
+    Known keys are substituted; `deadline` falls back to the rule's
+    computed deadline phrasing; any other unknown placeholder collapses
+    to an empty segment so a missing key never surfaces as "{key}"."""
+    def _field(match):
+        key = match.group(0)[1:-1].strip()
+        if key in fmt:
+            return str(fmt[key])
+        if key == "deadline":
+            dl = compute_deadline(incident, rule)
+            return dl.get("note") or dl.get("by_iso") or ""
+        return ""
+
+    return re.sub(r"\{[^{}]*\}", _field, tpl)
+
+
 def build_action(farm: dict, incident: dict, rule: dict) -> dict:
     """Render one fired rule into a ranked action object."""
     tpl = rule.get("action_template", "")
+    deadline = compute_deadline(incident, rule)
     fmt = {
         "hazard": str(incident.get("hazard", "hazard")).replace("_", " "),
         "district": incident.get("district", "the district"),
@@ -152,11 +190,9 @@ def build_action(farm: dict, incident: dict, rule: dict) -> dict:
         "variety": farm.get("variety", "approved variety"),
         "stage": farm.get("stage", "current stage"),
         "farm_name": farm.get("name", farm.get("id", "farmer")),
+        "deadline": deadline.get("note") or deadline.get("by_iso") or "as scheduled",
     }
-    try:
-        action_text = tpl.format(**fmt)
-    except (KeyError, IndexError):
-        action_text = tpl
+    action_text = _render_action_text(tpl, fmt, incident, rule)
 
     feas = doability_score(farm, rule.get("resources", {}))
     reduction = expected_loss_reduction(farm, incident, rule)
@@ -166,7 +202,7 @@ def build_action(farm: dict, incident: dict, rule: dict) -> dict:
     return {
         "rule_id": rule["id"],
         "action": action_text,
-        "deadline": compute_deadline(incident, rule),
+        "deadline": deadline,
         "grade": rule.get("grade"),
         "badge": rule.get("badge"),
         "guardrail": rule.get("guardrail"),
@@ -190,7 +226,11 @@ def compile_actions(farm: dict, incident: dict, rules: list[dict],
     """
     fired = []
     for rule in rules:
-        if rule.get("admin_only") and not include_admin:
+        is_admin = bool(rule.get("admin_only") or rule.get("trigger", {}).get("admin_only"))
+        if is_admin and not include_admin:
+            continue
+        if (rule.get("id") == "R17"
+                and _r17_expected_flood_loss_fraction(farm, incident) < HARVEST_MIN_EXPECTED_LOSS):
             continue
         if match_rule(farm, incident, rule):
             fired.append(build_action(farm, incident, rule))

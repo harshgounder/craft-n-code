@@ -21,7 +21,7 @@ def asha_farm() -> dict:
         "drainage_ok": False,
         "crop": "paddy",
         "variety": "Swarna",
-        "stage": "tillering",
+        "stage": "flowering",
         "area_ha": 0.95,
         "expected_yield_kg_ha": 3500,
         "price_rs_kg": 19.0,
