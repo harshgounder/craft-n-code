@@ -31,14 +31,16 @@ console are the krishi.html page above.)
 
 That is the whole demo. Python 3.11+ stdlib only, no pip installs, no venv,
 no network, offline capable. The backend seeds SQLite with farms, incidents,
-rules and the research index; the UI reads it on 8100 and serves on 8137.
-If a port is busy, the runbook in this kit lists every fallback.
+rules and the research index, and exposes them on 8100. The UI is served by
+the scaffold webapp on 8137 and reads its own generated feed; the two layers
+are independent. If a port is busy, the webapp prints the error and you can
+pass a different port: ./demo.sh 8138, and the backend: serve.py --port 8101.
 
 ## What is in the zip
 
 | Folder | What it is |
 |---|---|
-| scaffold/agri/ | advisory core: compiler, CVaR, replay, 11-state machine, claims, doability, R1-R16 rules |
+| scaffold/agri/ | advisory core: compiler, CVaR, replay, 11-state machine, claims, doability, R1-R18 rules |
 | scaffold/webapp/ | farmer UI (krishi.html), operator console, offline service worker |
 | krishisetu-backend/ | data layer: SQLite schema, 24-endpoint API, CAP ingest stub, SMS/IVR adapter stubs, hash-chained audit log |
 | scaffold/tests/ | acceptance checks + eval, all green on this build |
