@@ -49,7 +49,7 @@ s.addText("Asha, 47, flowering paddy on a low-lying plot in Balasore district. P
 const stats = [
   ["5,428 acres", "crop loss across 4 blocks of Kendrapada and Bhadrak, Cyclone Dana 2024 (rapid assessment)"],
   ["5,882 ha", "cultivable land salt-affected across 5 Balasore blocks, Cyclone Yaas 2021 (Down To Earth)"],
-  ["78.4 crore", "PMFBY crop-insurance applications on a Rs 1.83 lakh crore program"],
+  ["88.5 lakh", "PMFBY crop-insurance enrollments, Rs 2,580 crore claims paid (2020-25, Lok Sabha annexure)"],
 ];
 stats.forEach((st, i) => {
   const x = M + i * (CW + 0.35);
@@ -210,7 +210,7 @@ s.background = { color: "FFFFFF" };
 header(s, "One rail, one pilot, one quarter");
 card(s, M, 1.15, 4.35, 2.3, PALE);
 s.addText("The rail exists", { x: 0.7, y: 1.3, w: 4.0, h: 0.35, fontSize: 13, bold: true, color: FOREST, fontFace: "Cambria", margin: 0 });
-s.addText("78.4 crore PMFBY applications, Rs 1.83 lakh crore program", { x: 0.7, y: 1.7, w: 4.0, h: 0.6, fontSize: 15, bold: true, color: INK, fontFace: "Cambria", margin: 0 });
+s.addText("88.5 lakh PMFBY enrollments, Rs 2,580 crore claims paid (2020-25)", { x: 0.7, y: 1.7, w: 4.0, h: 0.6, fontSize: 15, bold: true, color: INK, fontFace: "Cambria", margin: 0 });
 s.addText("Digital Agriculture Mission, Rs 2,817 crore, funds agri-digital public infrastructure", { x: 0.7, y: 2.4, w: 4.0, h: 0.6, fontSize: 12.5, color: INK, fontFace: "Cambria", margin: 0 });
 s.addText("Odisha: cyclone-facing coast, paddy and saline zones, Dana and Yaas damage on record", { x: 0.7, y: 3.05, w: 4.0, h: 0.6, fontSize: 12.5, color: INK, fontFace: "Cambria", margin: 0 });
 card(s, 5.15, 1.15, 4.35, 2.3, PALE);

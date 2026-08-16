@@ -10,6 +10,9 @@
   --txt:#E8ECF8; --mut:#93A0C4; --accent:#6C5CE7; --accent2:#00CE8F;
   --warn:#FFB020; --danger:#FF5470; --chip:#202A4E;
   --blue:#4A9EFF; --green:#00CE8F; --amber:#FFB020; --red:#FF5470;
+  /* IMD official cyclone warning palette: grey=monitor, yellow=watch,
+     orange=alert, red=warning */
+  --imd-grey:#8A94A8; --imd-yellow:#F5C03C; --imd-orange:#F07F22; --imd-red:#F04141;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
 html,body{height:100%;}
@@ -141,6 +144,114 @@ table.prof td.k{color:var(--mut); white-space:nowrap; width:110px;}
 /* legend */
 .legend{display:flex; gap:8px; flex-wrap:wrap;}
 .legend .item{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--mut);}
+.legend .item.imd{font-weight:700;}
+
+/* IMD color coding (grey=monitor, yellow=watch, orange=alert, red=warning) */
+.imd-dot{width:11px; height:11px; border-radius:50%; border:1px solid var(--line); background:var(--chip); display:inline-block; flex:none;}
+.imd-grey{color:var(--imd-grey);} .imd-grey .imd-dot, .imd-dot.grey{background:var(--imd-grey); border-color:var(--imd-grey);}
+.imd-yellow{color:var(--imd-yellow);} .imd-yellow .imd-dot, .imd-dot.yellow{background:var(--imd-yellow); border-color:var(--imd-yellow);}
+.imd-orange{color:var(--imd-orange);} .imd-orange .imd-dot, .imd-dot.orange{background:var(--imd-orange); border-color:var(--imd-orange);}
+.imd-red{color:var(--imd-red);} .imd-red .imd-dot, .imd-dot.red{background:var(--imd-red); border-color:var(--imd-red);}
+.imd-chip{display:inline-block; width:11px; height:11px; border-radius:3px; flex:none;}
+.imd-chip.grey{background:var(--imd-grey);} .imd-chip.yellow{background:var(--imd-yellow);}
+.imd-chip.orange{background:var(--imd-orange);} .imd-chip.red{background:var(--imd-red);}
+
+/* loud status banner */
+.status-banner{
+  display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px;
+  margin:0 0 14px; padding:14px 18px; border-radius:12px;
+  background:linear-gradient(90deg, rgba(240,65,65,.16), rgba(240,65,65,.04) 55%, transparent);
+  border:1px solid rgba(240,65,65,.45); border-left:5px solid var(--imd-red);
+}
+.status-banner .sb-name{font-size:19px; font-weight:800;}
+.status-banner .sb-state{font-size:13px; font-weight:700; color:var(--imd-red);}
+.status-banner .sb-color{font-size:12px; font-weight:800; letter-spacing:.06em; padding:3px 10px; border-radius:999px; background:rgba(240,65,65,.18); border:1px solid rgba(240,65,65,.5); color:var(--imd-red);}
+
+/* trigger timeline strip */
+.trigger-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:0 0 16px;}
+@media(max-width:760px){.trigger-strip{grid-template-columns:1fr 1fr;}}
+.trig{background:var(--panel2); border:1px solid var(--line); border-top:4px solid var(--imd-grey); border-radius:8px; padding:10px 12px;}
+.trig.watch{border-top-color:var(--imd-yellow);}
+.trig.alert{border-top-color:var(--imd-orange);}
+.trig.warning{border-top-color:var(--imd-red);}
+.trig.landfall{border-top-color:var(--imd-red);}
+.trig .tt{font-size:16px; font-weight:800; letter-spacing:.02em;}
+.trig .tlbl{font-size:11px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--mut); margin:1px 0 6px;}
+.trig.watch .tlbl{color:var(--imd-yellow);}
+.trig.alert .tlbl{color:var(--imd-orange);}
+.trig.warning .tlbl{color:var(--imd-red);}
+.trig.landfall .tlbl{color:var(--imd-red);}
+.trig .tact{font-size:12px; color:var(--txt); line-height:1.4;}
+.trig .tact b{color:var(--accent2); font-weight:700;}
+
+/* stepper: IMD-colored dots per state */
+.step .dot{width:12px; height:12px;}
+.step.imd-grey .dot{background:var(--imd-grey); border-color:var(--imd-grey);}
+.step.imd-yellow .dot{background:var(--imd-yellow); border-color:var(--imd-yellow);}
+.step.imd-orange .dot{background:var(--imd-orange); border-color:var(--imd-orange);}
+.step.imd-red .dot{background:var(--imd-red); border-color:var(--imd-red);}
+.step.imd-red.current .dot{box-shadow:0 0 0 0 rgba(240,65,65,.6); animation:pulsered 1.6s infinite;}
+@keyframes pulsered{
+  0%{box-shadow:0 0 0 0 rgba(240,65,65,.6);}
+  70%{box-shadow:0 0 0 8px rgba(240,65,65,0);}
+  100%{box-shadow:0 0 0 0 rgba(240,65,65,0);}
+}
+
+/* advisory card IMD borders */
+.adv.imd-watch{border-left:5px solid var(--imd-yellow);}
+.adv.imd-alert{border-left:5px solid var(--imd-orange);}
+.adv.imd-warning{border-left:5px solid var(--imd-red);}
+.adv .advfoot{
+  display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; margin-top:10px;
+  padding-top:8px; border-top:1px dashed rgba(38,48,85,.6); font-size:11.5px; color:var(--mut);
+}
+.adv .advfoot .af-src{font-family:monospace; color:var(--accent2); font-weight:700;}
+.adv .advfoot .af-fresh{margin-left:auto; white-space:nowrap;}
+.adv .advfoot .af-fresh b{color:var(--green);}
+
+/* Jeonnam crop x hazard matrix */
+.mxwrap{overflow-x:auto;}
+table.mx{width:100%; border-collapse:collapse; font-size:13px;}
+table.mx th, table.mx td{padding:8px 10px; text-align:left; border-bottom:1px solid rgba(38,48,85,.5);}
+table.mx th{color:var(--mut); font-size:11px; text-transform:uppercase; letter-spacing:.05em;}
+table.mx td.crop{font-weight:700; white-space:nowrap;}
+.riskchip{display:inline-block; font-size:11.5px; font-weight:800; letter-spacing:.03em; padding:3px 10px; border-radius:999px; border:1px solid;}
+.riskchip.low{color:var(--imd-grey); border-color:rgba(138,148,168,.5); background:rgba(138,148,168,.1);}
+.riskchip.med{color:var(--imd-yellow); border-color:rgba(245,192,60,.5); background:rgba(245,192,60,.12);}
+.riskchip.high{color:var(--imd-red); border-color:rgba(240,65,65,.5); background:rgba(240,65,65,.12);}
+
+/* feature-phone mockup */
+.phone{
+  width:min(300px,100%); margin:6px auto 0; background:#0A0E1E; border:10px solid #1B2440;
+  border-radius:22px; padding:14px; font-size:13px; color:var(--txt);
+}
+.phone .pspeaker{width:52px; height:4px; border-radius:4px; background:var(--line); margin:2px auto 12px;}
+.phone .prompt-od{font-size:17px; font-weight:800; line-height:1.45;}
+.phone .prompt-ro{color:var(--mut); font-size:12.5px; margin:2px 0 12px;}
+.phone .dtmf{display:flex; flex-direction:column; gap:6px; margin:10px 0;}
+.phone .dkey{
+  display:flex; gap:10px; align-items:center; background:var(--panel2); border:1px solid var(--line);
+  border-radius:8px; padding:8px 10px;
+}
+.phone .dnum{width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; font-weight:800; display:inline-flex; align-items:center; justify-content:center; flex:none; font-size:12px;}
+.phone .dlabel{font-size:12.5px;}
+.phone .dlabel .od{color:var(--accent2);}
+.phone .callstate{margin-top:10px; font-size:11.5px; color:var(--mut); border-top:1px dashed rgba(38,48,85,.6); padding-top:8px;}
+.cbtl{list-style:none; margin-top:10px; font-size:12px; color:var(--mut);}
+.cbtl li{padding:4px 0 4px 22px; position:relative;}
+.cbtl li:before{content:""; position:absolute; left:6px; top:9px; width:7px; height:7px; border-radius:50%; background:var(--accent);}
+.cbtl li.done:before{background:var(--green);}
+.cbtl li b{color:var(--txt); font-family:monospace;}
+
+/* chat thread (Farmer.Chat style) */
+.thread{display:flex; flex-direction:column; gap:10px;}
+.tmsg{max-width:86%; padding:9px 12px; border-radius:10px; font-size:13px; line-height:1.5;}
+.tmsg .twho{font-size:10.5px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin-bottom:3px;}
+.tmsg .trule{font-size:10.5px; color:var(--mut); margin-top:5px; font-family:monospace;}
+.tmsg.farm{align-self:flex-start; background:var(--panel2); border:1px solid var(--line); border-bottom-left-radius:3px;}
+.tmsg.farm .twho{color:var(--accent2);}
+.tmsg.rule{align-self:flex-end; background:rgba(108,92,231,.14); border:1px solid rgba(108,92,231,.4); border-bottom-right-radius:3px;}
+.tmsg.rule .twho{color:var(--accent);}
 
 /* contrast */
 .cwrap{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
@@ -209,6 +320,16 @@ table.ct th{
   letter-spacing:.05em; border-bottom:1px solid var(--line); padding:6px 8px;
 }
 table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical-align:top;}
+.cfilters{display:flex; flex-direction:column; gap:8px; margin-bottom:12px;}
+.cfilters .cfrow{display:flex; gap:6px; flex-wrap:wrap; align-items:center;}
+.cfilters .cfrow .flbl{color:var(--mut); font-size:11.5px; width:64px; flex:none; text-transform:uppercase; letter-spacing:.05em;}
+.fchip{
+  background:var(--chip); border:1px solid var(--line); color:var(--mut);
+  padding:5px 12px; border-radius:999px; cursor:pointer; font-family:inherit; font-size:12px;
+}
+.fchip.active{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:700;}
+tr.drow.hidden{display:none;}
+#cfCount{color:var(--mut); font-size:12px; margin:2px 0 10px;}
 .chain{display:flex; flex-direction:column; gap:10px;}
 .chain .crow{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-size:12.5px;}
 .chain .crow .anchor{font-weight:700; margin-bottom:4px;}
@@ -266,6 +387,14 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
 
 <!-- ============ TAB 1: FARMER VIEW ============ -->
 <section class="panel active" id="tab-farmer">
+  <div class="status-banner imd-red">
+    <span class="imd-dot red"></span>
+    <span class="sb-name">Cyclone warning, coastal Odisha</span>
+    <span class="sb-state">CYCLONE_WARNING, <span class="num sa">24h</span> lead</span>
+    <span class="sb-color">IMD RED = WARNING</span>
+    <span class="sim">SIMULATED FEED</span>
+  </div>
+
   <div class="card">
     <h3><span class="od">ଅଶା</span> Asha, farm profile</h3>
     <table class="prof">
@@ -285,29 +414,52 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
   </div>
 
   <div class="card">
+    <h3>Trigger timeline <span class="sim">SIMULATED FEED</span></h3>
+    <div class="trigger-strip">
+      <div class="trig watch">
+        <span class="tt">T-72h</span><span class="tlbl">WATCH</span>
+        <span class="tact"><b>readiness:</b> verify phone, IVR language, crop stage, seed and livestock inventory</span>
+      </div>
+      <div class="trig alert">
+        <span class="tt">T-48h</span><span class="tlbl">ALERT</span>
+        <span class="tact"><b>confirm:</b> dry grain and seed stores, livestock routes, contacts and volunteer line</span>
+      </div>
+      <div class="trig warning">
+        <span class="tt">T-24h</span><span class="tlbl">WARNING</span>
+        <span class="tact"><b>act now:</b> move dry assets above water, shift livestock, sandbag the weak embankment</span>
+      </div>
+      <div class="trig landfall">
+        <span class="tt">T-0</span><span class="tlbl">LANDFALL</span>
+        <span class="tact"><b>shelter:</b> no field work, protect family and animals, wait for the all-clear</span>
+      </div>
+    </div>
+    <p class="stepline">OSDMA/WFP anticipatory-action pattern (d27, d20): each trigger releases the action below it, never waits for the next bulletin.</p>
+  </div>
+
+  <div class="card">
     <h3>Incident state stepper</h3>
     <div class="stepper">
-      <div class="step past"><span class="dot"></span>MONITOR</div>
+      <div class="step past imd-grey"><span class="dot"></span>MONITOR</div>
       <span class="arrow">-&gt;</span>
-      <div class="step past"><span class="dot"></span>PRE_CYCLONE_WATCH<span class="dur"><span class="num sa">72h</span></span></div>
+      <div class="step past imd-yellow"><span class="dot"></span>PRE_CYCLONE_WATCH<span class="dur"><span class="num sa">72h</span></span></div>
       <span class="arrow">-&gt;</span>
-      <div class="step past"><span class="dot"></span>CYCLONE_ALERT<span class="dur"><span class="num sa">48h</span></span></div>
+      <div class="step past imd-orange"><span class="dot"></span>CYCLONE_ALERT<span class="dur"><span class="num sa">48h</span></span></div>
       <span class="arrow">-&gt;</span>
-      <div class="step current"><span class="dot"></span>CYCLONE_WARNING<span class="dur"><span class="num sa">24h</span></span></div>
+      <div class="step current imd-red"><span class="dot"></span>CYCLONE_WARNING<span class="dur"><span class="num sa">24h</span></span></div>
       <span class="arrow">-&gt;</span>
-      <div class="step future"><span class="dot"></span>POST_LAND_FALL_OUTLOOK<span class="dur"><span class="num sa">12h</span></span></div>
+      <div class="step future imd-orange"><span class="dot"></span>POST_LAND_FALL_OUTLOOK<span class="dur"><span class="num sa">12h</span></span></div>
       <span class="arrow">-&gt;</span>
-      <div class="step future"><span class="dot"></span>IMPACT_SUSPECTED</div>
+      <div class="step future imd-red"><span class="dot"></span>IMPACT_SUSPECTED</div>
       <span class="arrow">-&gt;</span>
-      <div class="step future"><span class="dot"></span>IMPACT_CONFIRMED</div>
+      <div class="step future imd-red"><span class="dot"></span>IMPACT_CONFIRMED</div>
       <span class="arrow">-&gt;</span>
-      <div class="step future"><span class="dot"></span>RESPONSE</div>
+      <div class="step future imd-orange"><span class="dot"></span>RESPONSE</div>
       <span class="arrow">-&gt;</span>
-      <div class="step future"><span class="dot"></span>RECOVERY</div>
+      <div class="step future imd-yellow"><span class="dot"></span>RECOVERY</div>
       <span class="arrow">-&gt;</span>
-      <div class="step future"><span class="dot"></span>NEXT_SEASON</div>
+      <div class="step future imd-grey"><span class="dot"></span>NEXT_SEASON</div>
       <span class="arrow">-&gt;</span>
-      <div class="step future"><span class="dot"></span>CLOSED</div>
+      <div class="step future imd-grey"><span class="dot"></span>CLOSED</div>
     </div>
     <p class="stepline">CAP-linked: every update replaces the previous bulletin, never duplicates it (SIMULATED FEED).</p>
     <p class="stepline">The machine never closes on the first recession: second-flood semantics keep RECOVERY open until NEXT_SEASON.</p>
@@ -324,9 +476,42 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
   </div>
 
   <div class="card">
+    <h3><span class="od">ଫୋନ୍ ନିର୍ଦ୍ଦେଶ</span> What Asha hears on her phone <span class="sim">SIMULATOR</span></h3>
+    <div class="phone">
+      <div class="pspeaker"></div>
+      <div class="prompt-od">ଅଶା, ବନ୍ଧ ମରାମତି କରନ୍ତୁ।</div>
+      <div class="prompt-ro">Asha, reinforce the weak embankment before 06:00 tomorrow.</div>
+      <div class="dtmf">
+        <div class="dkey"><span class="dnum">1</span><span class="dlabel"><b>confirm</b> <span class="od">ହଁ</span></span></div>
+        <div class="dkey"><span class="dnum">2</span><span class="dlabel"><b>repeat</b> <span class="od">ପୁଣି ଶୁଣନ୍ତୁ</span></span></div>
+        <div class="dkey"><span class="dnum">3</span><span class="dlabel"><b>talk to a person</b> <span class="od">ଲୋକଙ୍କ ସହ କଥା ହୁଅନ୍ତୁ</span></span></div>
+      </div>
+      <div class="callstate">One decision per prompt, big type, keypad 1-3 only. Ama Krushi / CGNet pattern (d15, d28).</div>
+    </div>
+    <h3 style="margin-top:14px;">Missed-call callback timeline <span class="sim">SIMULATOR</span></h3>
+    <ul class="cbtl">
+      <li class="done"><b>13:58</b> SMS sent to Asha, unread</li>
+      <li class="done"><b>14:05</b> missed call placed, no credit on feature phone</li>
+      <li class="done"><b>14:07</b> callback connects, IVR prompt plays</li>
+      <li class="done"><b>14:12</b> Asha presses <span class="num sa">1</span>, ACKED</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="od">କଥାବାର୍ତ୍ତା</span> Advisory thread, Farmer.Chat style <span class="sim">SIMULATED FEED</span></h3>
+    <div class="thread">
+      <div class="tmsg farm"><div class="twho">Asha <span class="od">ଅଶା</span></div>My embankment is weak. What do I do first?</div>
+      <div class="tmsg rule"><div class="twho">KrishiSetu</div>Sandbag the weakest 30 m stretch now. A 1.5-2 m surge can overtop it. Rule <b>R7</b>.<div class="trule">rule R7 - fragility rule <span class="sim">SIMULATED FEED</span></div></div>
+      <div class="tmsg farm"><div class="twho">Asha <span class="od">ଅଶା</span></div>What about my seed stock?</div>
+      <div class="tmsg rule"><div class="twho">KrishiSetu</div>Move stored seed and grain to the raised platform or the neighbor's high room before 18:00. Rule <b>R6</b>.<div class="trule">rule R6 - seed protection <span class="sim">SIMULATED FEED</span></div></div>
+    </div>
+    <p class="stepline">Every message logs its rule id, same as the structured cards. Conversation is a wrapper, the rule is the source of truth (d29).</p>
+  </div>
+
+  <div class="card">
     <h3><span class="od">ପରାମର୍ଶ</span> Advisories, ranked by what Asha can do</h3>
 
-    <article class="adv">
+    <article class="adv imd-warning">
       <div class="top">
         <span class="rank">1</span>
         <span class="title"><span class="od">ଫସଲ କାଟ ନାହିଁ</span> <span class="en">Do not harvest</span></span>
@@ -343,9 +528,14 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
         <span class="badge b-tp">TRANSFER-PRIOR</span>
         <span class="badge b-sa">SCENARIO-ASSUMPTION</span>
       </div>
+      <div class="advfoot">
+        <span class="af-src">src: d32, d33</span>
+        <span class="badge b-tp">TRANSFER-PRIOR</span>
+        <span class="af-fresh">fresh <b>14:12</b> ack</span>
+      </div>
     </article>
 
-    <article class="adv">
+    <article class="adv imd-warning">
       <div class="top">
         <span class="rank">2</span>
         <span class="title"><span class="od">ବନ୍ଧ ମରାମତି</span> <span class="en">Reinforce the weak embankment</span></span>
@@ -362,9 +552,14 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
         <span class="badge b-sa">SCENARIO-ASSUMPTION</span>
         <span class="badge b-tp">TRANSFER-PRIOR</span>
       </div>
+      <div class="advfoot">
+        <span class="af-src">src: R7, d9</span>
+        <span class="badge b-tp">TRANSFER-PRIOR</span>
+        <span class="af-fresh">fresh <b>14:12</b> ack</span>
+      </div>
     </article>
 
-    <article class="adv">
+    <article class="adv imd-alert">
       <div class="top">
         <span class="rank">3</span>
         <span class="title"><span class="od">ବୀଜ ଉଚ୍ଚ ସ୍ଥାନକୁ</span> <span class="en">Move seed stock and grain to high ground</span></span>
@@ -378,9 +573,14 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
         <li><b>doability:</b> <span class="num sa">2h</span> labor, Rs <span class="num sa">0</span>, no credit, no tenancy issue</li>
       </ul>
       <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      <div class="advfoot">
+        <span class="af-src">src: R6, d35</span>
+        <span class="badge b-tp">TRANSFER-PRIOR</span>
+        <span class="af-fresh">fresh <b>13:58</b> sent</span>
+      </div>
     </article>
 
-    <article class="adv">
+    <article class="adv imd-alert">
       <div class="top">
         <span class="rank">4</span>
         <span class="title"><span class="od">ଜନ୍ତୁ ଆଶ୍ରୟ</span> <span class="en">Livestock to raised shelter</span></span>
@@ -394,9 +594,14 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
         <li><b>doability:</b> <span class="num sa">3h</span> labor, Rs <span class="num sa">0</span></li>
       </ul>
       <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      <div class="advfoot">
+        <span class="af-src">src: R8, d46</span>
+        <span class="badge b-tp">TRANSFER-PRIOR</span>
+        <span class="af-fresh">fresh <b>13:58</b> sent</span>
+      </div>
     </article>
 
-    <article class="adv">
+    <article class="adv imd-watch">
       <div class="top">
         <span class="rank">5</span>
         <span class="title"><span class="od">ଦାବି ପ୍ରସ୍ତୁତି</span> <span class="en">Claim packet prep: photo + <span class="num om">72h</span> clock</span></span>
@@ -410,9 +615,14 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
         <li><b>doability:</b> <span class="num sa">30 min</span> labor, Rs <span class="num sa">0</span>, phone camera not needed: the photo can be taken by the volunteer</li>
       </ul>
       <div class="tags"><span class="badge b-om">ODISHA-MEASURED</span></div>
+      <div class="advfoot">
+        <span class="af-src">src: d6</span>
+        <span class="badge b-om">ODISHA-MEASURED</span>
+        <span class="af-fresh">fresh <b>13:58</b> queued</span>
+      </div>
     </article>
 
-    <article class="adv">
+    <article class="adv imd-watch">
       <div class="top">
         <span class="rank">6</span>
         <span class="title"><span class="od">ନାଳ ସଫା</span> <span class="en">Clear the drainage outlet</span></span>
@@ -426,9 +636,14 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
         <li><b>doability:</b> <span class="num sa">4h</span> labor, Rs <span class="num sa">0</span></li>
       </ul>
       <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      <div class="advfoot">
+        <span class="af-src">src: R9, d3</span>
+        <span class="badge b-tp">TRANSFER-PRIOR</span>
+        <span class="af-fresh">fresh <b>13:58</b> queued</span>
+      </div>
     </article>
 
-    <article class="adv">
+    <article class="adv imd-watch">
       <div class="top">
         <span class="rank">7</span>
         <span class="title"><span class="od">ଲୁଣ ପରୀକ୍ଷା</span> <span class="en">Test sediment before re-sowing</span></span>
@@ -438,12 +653,44 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
       <p class="act">After water recedes, test sediment salinity before re-sowing; Saltol seedlings hold saline patches (d33). This fires in RESPONSE or RECOVERY, not now.</p>
       <ul class="meta">
         <li><b>deadline:</b> after recession (state-gated)</li>
-        <li><b>source:</b> d33 (Saltol), d5 (SAC salinity mapping)</li>
+        <li><b>source:</b> d47 (systems math), d33 (Saltol), d5 (SAC salinity mapping)</li>
         <li><b>cost of waiting:</b> re-sowing into saline soil wastes seed and labor</li>
         <li><b>doability:</b> <span class="num sa">1h</span> labor, Rs <span class="num sa">0</span></li>
+        <li><b>why it matters (verified):</b>
+          Yaas dropped <span class="num om">29 cm</span> rain in <span class="num om">24h</span> at Chandbali <span class="badge b-om">ODISHA-MEASURED</span> (d47); the surge leaves salt behind. Asha's soil EC is <span class="num tp">2.2 dS/m</span> (seed profile): above the <span class="num tp">1.9 dS/m</span> rice threshold, each <span class="num tp">1 dS/m</span> above it cuts yield <span class="num tp">9.1%</span> (d4/d47) <span class="badge b-tp">TRANSFER-PRIOR</span>.
+          Swarna-Sub1 adds <span class="num tp">64 kg/ha</span> per flooded day, ceiling near <span class="num tp">718 kg/ha</span> under severe flooding; the <span class="num tp">180 kg/ha</span> non-flood disadvantage is not significant (d47) <span class="badge b-tp">TRANSFER-PRIOR</span>.
+        </li>
       </ul>
-      <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span></div>
+      <div class="tags"><span class="badge b-tp">TRANSFER-PRIOR</span><span class="badge b-om">ODISHA-MEASURED</span></div>
+      <div class="advfoot">
+        <span class="af-src">src: d47, d4, d33</span>
+        <span class="badge b-tp">TRANSFER-PRIOR</span>
+        <span class="af-fresh">fresh <b>13:58</b> queued</span>
+      </div>
     </article>
+  </div>
+
+  <div class="card">
+    <h3>Jeonnam-style crop x hazard matrix <span class="sim">SIMULATED FEED</span></h3>
+    <p class="stepline">Rows are Asha's crops, columns the four hazards that matter on a low coastal plot. Cells carry risk chips: LOW = monitor, MED = watch, HIGH = warning (IMD palette). Pattern borrowed from the Jeonnam EWS risk matrix (d25).</p>
+    <div class="mxwrap">
+      <table class="mx">
+        <tr><th></th><th>flood</th><th>cyclone</th><th>surge</th><th>salinity</th></tr>
+        <tr><td class="crop">paddy <span class="od">ଧାନ</span></td>
+          <td><span class="riskchip high">HIGH</span></td>
+          <td><span class="riskchip high">HIGH</span></td>
+          <td><span class="riskchip high">HIGH</span></td>
+          <td><span class="riskchip high">HIGH</span></td>
+        </tr>
+        <tr><td class="crop">pulses <span class="od">ଡାଲି</span></td>
+          <td><span class="riskchip med">MED</span></td>
+          <td><span class="riskchip med">MED</span></td>
+          <td><span class="riskchip med">MED</span></td>
+          <td><span class="riskchip high">HIGH</span></td>
+        </tr>
+      </table>
+    </div>
+    <p class="stepline">Chips read the Asha seed profile: paddy is at HIGH across all four hazards on this low, surge-exposed, saline-prone plot; pulses sit at MED except salinity, where the same <span class="num tp">1.9 dS/m</span> threshold applies. Every cell is a risk state, not a loss number.</p>
   </div>
 
   <div class="card">
@@ -453,6 +700,13 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
       <div class="item"><span class="badge b-tp">TRANSFER-PRIOR</span> from other regions or studies</div>
       <div class="item"><span class="badge b-sa">SCENARIO-ASSUMPTION</span> demo scenario or modeled assumption</div>
       <div class="item"><span class="badge b-uk">UNKNOWN</span> not known yet, TODO: report dXX</div>
+    </div>
+    <h3 style="margin-top:14px;">IMD warning color codes</h3>
+    <div class="legend">
+      <div class="item imd imd-grey"><span class="imd-chip grey"></span> grey = MONITOR</div>
+      <div class="item imd imd-yellow"><span class="imd-chip yellow"></span> yellow = WATCH</div>
+      <div class="item imd imd-orange"><span class="imd-chip orange"></span> orange = ALERT</div>
+      <div class="item imd imd-red"><span class="imd-chip red"></span> red = WARNING</div>
     </div>
   </div>
 </section>
@@ -655,8 +909,8 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
   <h2 class="tit"><span class="od">ପହଞ୍ଚାଣ</span> Delivery ladder: six rungs, one message</h2>
   <p class="intro">No single channel reaches every Odisha farmer (d7, d28). The advisory starts at the top rung and escalates DOWN when a rung is unacknowledged. Every rung shows its latency budget.</p>
 
-  <div class="rung">
-    <div class="rhead"><span class="rnum">1</span><span class="rname">App (offline-first PWA)</span><span class="badge b-sa">ROADMAP</span></div>
+  <div class="rung imd-grey">
+    <div class="rhead"><span class="rnum">1</span><span class="rname">App (offline-first PWA)</span><span class="badge b-sa">ROADMAP</span><span class="imd-chip grey"></span></div>
     <ul>
       <li><b>works on:</b> smartphones, any data</li>
       <li><b>latency budget:</b> &lt;<span class="num sa">5s</span> push</li>
@@ -666,8 +920,8 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
   </div>
   <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
 
-  <div class="rung">
-    <div class="rhead"><span class="rnum">2</span><span class="rname">SMS (Odia-capable, DLT)</span><span class="badge b-sa">SIMULATOR</span></div>
+  <div class="rung imd-orange">
+    <div class="rhead"><span class="rnum">2</span><span class="rname">SMS (Odia-capable, DLT)</span><span class="badge b-sa">SIMULATOR</span><span class="imd-chip orange"></span></div>
     <ul>
       <li><b>works on:</b> ANY phone including feature phones</li>
       <li><b>latency budget:</b> <span class="num sa">5-30 min</span></li>
@@ -677,8 +931,8 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
   </div>
   <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
 
-  <div class="rung">
-    <div class="rhead"><span class="rnum">3</span><span class="rname">IVR missed-call callback</span><span class="badge b-sa">SIMULATOR</span></div>
+  <div class="rung imd-red">
+    <div class="rhead"><span class="rnum">3</span><span class="rname">IVR missed-call callback</span><span class="badge b-sa">SIMULATOR</span><span class="imd-chip red"></span></div>
     <ul>
       <li><b>works on:</b> ANY phone, no data</li>
       <li><b>latency budget:</b> <span class="num sa">30-60s</span> setup</li>
@@ -688,8 +942,8 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
   </div>
   <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
 
-  <div class="rung">
-    <div class="rhead"><span class="rnum">4</span><span class="rname">USSD (session-based)</span><span class="badge b-sa">SIMULATOR</span></div>
+  <div class="rung imd-orange">
+    <div class="rhead"><span class="rnum">4</span><span class="rname">USSD (session-based)</span><span class="badge b-sa">SIMULATOR</span><span class="imd-chip orange"></span></div>
     <ul>
       <li><b>works on:</b> ANY phone, <span class="num sa">2G</span></li>
       <li><b>latency budget:</b> &lt;<span class="num sa">1s</span> round trip, <span class="num sa">90s</span> session</li>
@@ -699,8 +953,8 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
   </div>
   <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
 
-  <div class="rung">
-    <div class="rhead"><span class="rnum">5</span><span class="rname">Community radio / loudspeaker</span><span class="badge b-sa">ROADMAP</span></div>
+  <div class="rung imd-yellow">
+    <div class="rhead"><span class="rnum">5</span><span class="rname">Community radio / loudspeaker</span><span class="badge b-sa">ROADMAP</span><span class="imd-chip yellow"></span></div>
     <ul>
       <li><b>works on:</b> no phone needed</li>
       <li><b>latency budget:</b> broadcast schedule</li>
@@ -710,8 +964,8 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
   </div>
   <div class="gapdown"><span class="arrow">&#8595;</span> unacknowledged -&gt; next rung down</div>
 
-  <div class="rung">
-    <div class="rhead"><span class="rnum">6</span><span class="rname">Village volunteer / paper</span><span class="badge b-sa">ROADMAP</span></div>
+  <div class="rung imd-yellow">
+    <div class="rhead"><span class="rnum">6</span><span class="rname">Village volunteer / paper</span><span class="badge b-sa">ROADMAP</span><span class="imd-chip yellow"></span></div>
     <ul>
       <li><b>works on:</b> no phone needed</li>
       <li><b>latency budget:</b> hours</li>

@@ -32,7 +32,7 @@ Claim | Evidence | Condition | Status. Every number in the deck, README, trailer
 |---|---|---|---|---|
 | P1 | 5,428 acres crop loss, 4 blocks of Kendrapada + Bhadrak, Cyclone Dana 2024 | YSD Odisha rapid assessment (research/raw/v2 forensics [25]) | Call it a rapid assessment, not a census | VERIFIED |
 | P2 | 5,882 ha cultivable land salt-affected, 5 Balasore blocks, Cyclone Yaas 2021 | Down To Earth post-Yaas report (forensics [23]) | Farmers "in a fix" context, not a loss total | VERIFIED |
-| P3 | PMFBY: 78.4 cr applications, Rs 1.83 lakh cr program | Verified in wave (pmfby.gov.in + press data) | Program scale, not our TAM | VERIFIED |
+| P3 | PMFBY: 88.5 lakh enrollments, Rs 2,580 cr claims paid (2020-25) | d21 [16]: Lok Sabha annexure, 88,55,046 enrollments, Rs 2,580.06 cr | Program scale, not our TAM | VERIFIED |
 | P4 | Digital Agriculture Mission Rs 2,817 cr | PS-07 v1 mine [9] | Outlay, not our addressable spend | VERIFIED |
 | P5 | 85/85 suites + 46/46 eval green | scaffold fresh run 2026-08-16 07:40 | Fresh DB, pre-server | VERIFIED |
 | P6 | Prototype honesty: IMD feed simulated, SMS via simulator, curated seed rules | scaffold code + deck slide 5 | No live claims anywhere | VERIFIED |
