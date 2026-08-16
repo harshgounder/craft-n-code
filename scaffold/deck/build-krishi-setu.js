@@ -79,7 +79,7 @@ const stats = [
 ];
 stats.forEach((st, i) => {
   const x = M + i * (CW + 0.35);
-  card(s, x, 2.45, CW, 1.6, DARK, { rotate: -2, strip: "555555" });
+  card(s, x, 2.45, CW, 1.6, DARK, { strip: "555555" });
   accentBar(s, x + 0.1, 2.5, CW - 0.2, ORANGE, 0.045);
   s.addText(st[0], { x: x + 0.15, y: 2.68, w: CW - 0.3, h: 0.6, fontSize: 32, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
   s.addText(st[1], { x: x + 0.15, y: 3.36, w: CW - 0.3, h: 0.65, fontSize: 10, color: GRAY2, fontFace: "Arial", margin: 0 });
@@ -92,9 +92,9 @@ s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-
 {
   const s = p.addSlide();
   s.background = { color: DARK };
-  const HDR = 0.35;
-  extrudeText(s, "The research machine behind this deck", M, HDR, 9, 0.6, { fontSize: 32, color: WHITE }, true);
-  accentBar(s, M, 0.98, 1.4, GRAY2);
+  const HDR = 0.42;
+  extrudeText(s, "The research machine behind this deck", M, HDR, 9, 0.6, { fontSize: 30, color: WHITE }, true);
+  accentBar(s, M, 1.04, 1.4, GRAY2);
   const cards = [
     ["49", "parallel deep-research reports across 7 waves, every run multi-channel with coverage tables, noise logs, A-D evidence grades"],
     ["3.2M+", "chars of raw evidence: named, dated sources on every claim, nothing unverified ships"],
@@ -107,7 +107,7 @@ s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-
     card(s, x, y, 4.45, 1.3, CARD_ALT, { dark: true, rotate: -1.5, line: { color: "2A2A2A", width: 1 }, strip: "555555" });
     s.addText(c[0], { x: x + 0.2, y: y + 0.08, w: 4.05, h: 0.55, fontSize: 44, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
     s.addText(c[1], { x: x + 0.2, y: y + 0.6, w: 4.05, h: 0.4, fontSize: 9.5, color: GRAY2, fontFace: "Arial", margin: 0 });
-    s.addText("source: EVIDENCE-INDEX.md · freshness: 2026-08-15", { x: x + 0.2, y: y + 1.05, w: 4.05, h: 0.16, fontSize: 7.5, color: "8A8A8A", fontFace: "Arial", margin: 0 });
+    s.addText("source: EVIDENCE-INDEX.md · freshness: 2026-08-15", { x: x + 0.2, y: y + 1.05, w: 4.05, h: 0.16, fontSize: 7.5, color: GRAY2, fontFace: "Arial", margin: 0 });
   });
   s.addText("single-pass AI summarizes. this is an orchestrated parallel research machine with verification gates: every number in this deck traces to a source you can open.", { x: M, y: 4.2, w: 9, h: 0.75, fontSize: 13, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
   footer(s, "Evidence chain: slide -> proof ledger -> EVIDENCE-INDEX.md -> raw report -> named dated source. Nothing ships without the chain.", 5.1, true);
@@ -153,7 +153,7 @@ phases.forEach((ph, i) => {
   s.addShape(p.ShapeType.ellipse, { x: x + 0.15, y: 1.95, w: 0.42, h: 0.42, fill: { color: DARK } });
   s.addText(String(i + 1), { x: x + 0.15, y: 2.0, w: 0.42, h: 0.32, fontSize: 14, bold: true, color: WHITE, fontFace: "Arial", align: "center", margin: 0 });
   s.addText(ph[0], { x: x + 0.68, y: 1.98, w: CW - 0.8, h: 0.35, fontSize: 15, bold: true, color: INK, fontFace: "Arial Black", margin: 0 });
-  s.addText(ph.slice(1).map((t, idx) => (idx === 0 ? t.toUpperCase() : t)).join("\n"), { x: x + 0.2, y: 2.55, w: CW - 0.4, h: 1.65, fontSize: 11, color: INK, fontFace: "Arial", lineSpacing: 22, margin: 0, breakLine: false });
+  s.addText(ph.slice(1).map((t, idx) => (idx === 0 ? t.toUpperCase() : t)).join("\n"), { x: x + 0.2, y: 2.55, w: CW - 0.4, h: 1.65, fontSize: 10.5, color: INK, fontFace: "Arial", lineSpacing: 20, margin: 0, breakLine: false });
 });
 s.addText("Honest framing: the advisory engine is the hero. Acknowledgement and report capture are adaptation features inside it, not the pitch.", { x: M, y: 4.5, w: 9, h: 0.4, fontSize: 10.5, italic: true, color: GRAY, fontFace: "Arial", margin: 0 });
 footer(s, "Statement-faithful: the official problem is a resilient advisory system for cyclone and flood contexts, with farm-profile-aware, staged actions.", 5.28);
@@ -220,7 +220,7 @@ s.addText("\"Cyclone expected. Stay safe.\"", { x: 0.7, y: 1.6, w: 4.0, h: 0.5, 
 s.addText("No crop, no stage, no deadline, no cost of waiting, no recovery step.", { x: 0.7, y: 2.2, w: 4.0, h: 0.55, fontSize: 11, color: GRAY, fontFace: "Arial", margin: 0 });
 card(s, 5.15, 1.05, 4.35, 1.85, DARK, { rotate: -2 });
 s.addText("The advisory says", { x: 5.35, y: 1.2, w: 4.0, h: 0.35, fontSize: 12, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
-s.addText("\"Plot 12B, flowering paddy: harvest by 18:00 tomorrow, or move to the raised platform. Source: IMD + rule R17. Cost of waiting: est. yield loss.\"", { x: 5.35, y: 1.6, w: 4.0, h: 1.1, fontSize: 13.5, color: WHITE, fontFace: "Arial", margin: 0 });
+s.addText("\"Plot 12B, flowering paddy: harvest by 18:00 tomorrow, or move to the raised platform. Source: IMD + rule R17. Cost of waiting: est. yield loss.\"", { x: 5.35, y: 1.6, w: 4.0, h: 1.1, fontSize: 12.5, color: WHITE, fontFace: "Arial", margin: 0 });
 const prior = [
   ["Meghdoot (IMD)", "alerts and agromet advisories", "no farm profile, no staged action, no claims path"],
   ["Fasal, DeHaat", "marketplace and credit rails", "advisory is content, not a governed decision"],
@@ -295,7 +295,7 @@ card(s, M, 1.15, 4.35, 2.3, WHITE, { line: { color: INK, width: 2 } });
 s.addText("The rail exists", { x: 0.7, y: 1.3, w: 4.0, h: 0.35, fontSize: 13, bold: true, color: INK, fontFace: "Arial Black", margin: 0 });
 s.addText("88.5 lakh PMFBY enrollments, Rs 2,580 crore claims paid (2020-25)", { x: 0.7, y: 1.7, w: 4.0, h: 0.6, fontSize: 16, bold: true, color: INK, fontFace: "Arial Black", margin: 0 });
 s.addText("Digital Agriculture Mission, Rs 2,817 crore, funds agri-digital public infrastructure", { x: 0.7, y: 2.4, w: 4.0, h: 0.6, fontSize: 12.5, color: INK, fontFace: "Arial", margin: 0 });
-s.addText("Odisha: cyclone-facing coast, paddy and saline zones, Dana and Yaas damage on record", { x: 0.7, y: 3.05, w: 4.0, h: 0.6, fontSize: 12, color: INK, fontFace: "Arial", margin: 0 });
+s.addText("Odisha: cyclone-facing coast, paddy and saline zones, Dana and Yaas damage on record", { x: 0.7, y: 2.98, w: 4.0, h: 0.45, fontSize: 11, color: INK, fontFace: "Arial", margin: 0 });
 card(s, 5.15, 1.15, 4.35, 2.3, WHITE, { line: { color: INK, width: 2 } });
 s.addText("The pilot", { x: 5.35, y: 1.3, w: 4.0, h: 0.35, fontSize: 13, bold: true, color: INK, fontFace: "Arial Black", margin: 0 });
 const pilot = ["one coastal block with extension-worker access", "one agronomist-reviewed rule pack", "measure comprehension and claim conversion, not downloads"];
