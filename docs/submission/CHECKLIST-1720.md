@@ -8,7 +8,7 @@ stop and fix before 17:20; after that, only what is on this list ships.
 - [ ] KrishiSetu-Round0-20260816.pptx built from a clean node run
       (cd scaffold/deck && node build-krishi-setu.js)
 - [ ] 11 slides, black/white/bold/3D style (window-d restyle)
-- [ ] Zero em dashes, zero banned words (sweep script in scaffold/deck/check)
+- [ ] Zero em dashes, zero banned words (cd scaffold/deck && ./check-deck.sh)
 - [ ] PMFBY number decided: ledger line (88.5 lakh / Rs 2,580 cr) in, or the
       78.4 crore source added to the ledger first. FRESH-EYES-AUDIT flag 1.
 - [ ] Research machine slide: 49 reports, wave count agreed (7 with d21-d24)
