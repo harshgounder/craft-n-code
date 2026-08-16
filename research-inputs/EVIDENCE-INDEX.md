@@ -1,4 +1,4 @@
-# EVIDENCE-INDEX.md: The 48-Report Map (nothing omitted, nothing hidden)
+# EVIDENCE-INDEX.md: The 49-Report Map (nothing omitted, nothing hidden)
 
 Every KrishiSetu research report, what it proved, and which deck claim it
 feeds. If a claim in the deck or README has no row here, it does not ship.
@@ -35,6 +35,14 @@ Raws live in research/raw/ (this repo) + hackathon-sota-lab/research/raw/v2/.
 | d18 who pays | 81.3% WTP, voice reminders 38% vs 18%, ATMA 60:40, FPO rails | Business slide |
 | d19 training data | IMD gridded 1901-2024, best tracks, CWC free, J-PAL data | Replay slide |
 | d20 OSDMA ecosystem | Post-1999 institutions, EWDS, ODRAF, Krushak Odisha 9.2M | Institutional slide |
+
+## WAVE 3B: REAL EVENT ARCHIVES (d21-d24)
+| Report | What it proved | Feeds |
+|---|---|---|
+| d21 event archives | IBTrACS v4.01 tracks, IMD chronologies, Fani DLNA damage table, PMFBY aggregates; replay guardrail: freeze best track | Replay slide |
+| d22 surge + tide data | Yaas 2-4 m surge over full-moon tide, 29 cm/24h Chandbali, 158.6 mm news discrepancy noted | Counterfactual slide |
+| d23 satellite validation | IMERG 30-min rainfall since 2000, Sen1Floods11, strongest validation cores for Yaas + Aug-2022 | Replay slide |
+| d24 flood archives | CWC/NWDP hourly river levels, Dartmouth Flood Observatory, 90d replay windows | Replay slide |
 
 ## WAVE 4: GLOBAL PRIOR ART (d25-d30)
 | Report | What it proved | Feeds |
