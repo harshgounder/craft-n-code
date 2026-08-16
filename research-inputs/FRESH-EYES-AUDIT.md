@@ -126,6 +126,36 @@ crop for claim; embankment gated on tenancy). Then the deck S6 "rule 14" must be
 updated to the real rule id (content change, merge decision). Do not ship the demo
 narrating a rule id that resolves to an overflow corridor.
 
+### FLAG-12 (window A/conductor, 2026-08-16 15:50): R18 does not fire for Asha, test fails
+The conductor's R17/R18 opencode run landed in this tree but test_agri.py now fails
+1/21: test_r18_fires_for_flowering_farm asserts R18 fires for seed.asha_farm() and
+gets "R18 missing". Root cause: seed.asha_farm() has stage "tillering" (seed.py),
+while R18's trigger stage list is ["flowering", "vegetative"]. The matcher
+(compiler.match_rule) is fine; the trigger list simply misses tillering. Also
+Asha's tenancy field is None, which does not block R18 (no farm_has requirement),
+so stage is the only blocker.
+Second mismatch: the demo script narrates "Her paddy is flowering, 28 days from
+maturity" and SUBMISSION-TEXT says "flowering paddy", but seed.py has Asha at
+tillering (tillering to maturity is ~60+ days, so the "28 days" line does not fit
+tillering). The UI renders the seed stage, so a judge watching the demo sees
+tillering on screen while hearing flowering.
+Third mismatch: the deck moat slide quote now cites "rule R17" for "Plot 12B,
+flowering paddy: harvest by 18:00 tomorrow" (applied per FIX-BRIEF-R17-R18), but
+R17's trigger is stage in [harvest_window, maturity] and its guardrail says "Never
+fire for flowering or vegetative paddy". R17 cannot fire for the farm the quote
+describes.
+FIX (recommended, window A decides):
+1. R18 trigger stage list: ["flowering", "vegetative", "tillering"]. Tillering is
+   green paddy; the R18 action (do not harvest, protect seed, shelter livestock,
+   photo for claim) is agronomically correct for it. Test then passes.
+2. Seed or narration: either set asha_farm() stage to "flowering" (matches the
+   demo line and "28 days from maturity") or reword the demo line to tillering.
+   Do not leave both in place.
+3. Deck quote: change "flowering paddy" to "mature paddy" so the R17 citation is
+   internally consistent (matches R17 trigger, matches the high-field farm in the
+   two-farm contrast). One word, content change, conductor approves.
+Do not merge with test_agri.py failing.
+
 ## PASSES WORTH KEEPING (do not touch)
 - The deck's honesty strip (S5) and limitation box (S10) are exactly right.
 - The demo script's fallback lines ("Do not fake a chart") are the right discipline.
@@ -138,13 +168,16 @@ EVIDENCE-INDEX.md: 1 em dash (title), 0 banned. THE-PLAN.md: 0 em dash, 1 banned
 ("harness"). build-krishi-setu.js: 0/0.
 
 ## PRIORITY ORDER FOR THE MERGE (if time is short)
-1. FLAG-11 (harvest rule missing, deck cites wrong rule id): the demo's core beat
+1. FLAG-12 (R18 misses tillering, test_agri 1/21 failing, seed stage vs demo
+   narration, deck quote stage word): do not merge with a failing suite. FIX 1 is
+   one list item in rules.json.
+2. FLAG-11 (harvest rule missing, deck cites wrong rule id): the demo's core beat
    must resolve to a real rule. Window A adds R17/R18; deck citation updates after.
-2. FLAG-8 (deck S2B "No single-pass..."): one word, visible on the density slide.
-3. FLAG-2/FLAG-3 (48->49, 6->7 waves): one number each in deck + demo + SUBMISSION.
-4. FLAG-7 (em dash in EVIDENCE-INDEX title, "harness" in THE-PLAN): hard rules.
-5. FLAG-9 (QBANK Q12 slide ref): two words.
-6. FLAG-4/FLAG-5 (2.5M+ -> 2.2M+, 4,000+ -> 2,200+): only if caught in a probe.
-7. FLAG-6/FLAG-10 (index rows, ledger): repo hygiene, no judge impact.
+3. FLAG-8 (deck S2B "No single-pass..."): one word, visible on the density slide.
+4. FLAG-2/FLAG-3 (48->49, 6->7 waves): one number each in deck + demo + SUBMISSION.
+5. FLAG-7 (em dash in EVIDENCE-INDEX title, "harness" in THE-PLAN): hard rules.
+6. FLAG-9 (QBANK Q12 slide ref): two words.
+7. FLAG-4/FLAG-5 (2.5M+ -> 2.2M+, 4,000+ -> 2,200+): only if caught in a probe.
+8. FLAG-6/FLAG-10 (index rows, ledger): repo hygiene, no judge impact.
 NOTE: CRITICAL-1 (PMFBY) already resolved in the deck by commit 2fd5c56; only the
 VERIFY step remains at merge.
