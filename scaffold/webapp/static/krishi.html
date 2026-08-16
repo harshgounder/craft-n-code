@@ -279,7 +279,7 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
       <tr><td class="k">labor</td><td><span class="num sa">2</span> adults</td></tr>
       <tr><td class="k">phone</td><td>feature phone, SMS + IVR only, no data</td></tr>
       <tr><td class="k">language</td><td>Odia</td></tr>
-      <tr><td class="k">debt</td><td>one KCC loan (<span class="num om">40.5%</span> of Odisha farm households carry debt, d6) <span class="badge b-om">ODISHA-MEASURED</span></td></tr>
+      <tr><td class="k">debt</td><td>one KCC loan (<span class="num om">40.5%</span> of Odisha rural households carry debt, d6) <span class="badge b-om">ODISHA-MEASURED</span></td></tr>
       <tr><td class="k">ack status</td><td>ACKED via IVR at <span class="num sa">14:12</span> <span class="sim">SIMULATOR</span></td></tr>
     </table>
   </div>
@@ -355,7 +355,7 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
       <ul class="meta">
           <li><b>deadline:</b> before <span class="num sa">06:00</span> tomorrow (<span class="num sa">12h</span>)</li>
         <li><b>source:</b> R7 (fragility rule), d9 (fragility math)</li>
-        <li><b>cost of waiting:</b> an overtopped embankment adds standing water days on a low plot; waterlogging alone reprocesses <span class="num om">41.9%</span> of the crop (d3)</li>
+        <li><b>cost of waiting:</b> an overtopped embankment adds standing water days on a low plot; waterlogging alone reprocesses <span class="num om">41.9%</span> of the crop at reproductive stage (d3)</li>
         <li><b>doability:</b> <span class="num sa">8h</span> labor, Rs <span class="num sa">1,200</span> sandbags, credit: KCC ok, tenancy: owner approval required, request sent via IVR (SIMULATOR), pending</li>
       </ul>
       <div class="tags">
@@ -402,7 +402,7 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
         <span class="title"><span class="od">ଦାବି ପ୍ରସ୍ତୁତି</span> <span class="en">Claim packet prep: photo + <span class="num om">72h</span> clock</span></span>
         <span class="status st-queued">QUEUED (SIMULATED)</span>
       </div>
-      <p class="act">Photograph the standing crop now with a time stamp. PMFBY intimation must be filed within <span class="num om">72h</span> of loss; <span class="num om">33%</span> crop damage is the threshold (d6).</p>
+      <p class="act">Photograph the standing crop now with a time stamp. PMFBY intimation within <span class="num om">72h</span> of loss (d6); state relief eligibility starts at <span class="num om">33%</span> loss (d20).</p>
       <ul class="meta">
         <li><b>deadline:</b> photo now, intimation within <span class="num om">72h</span> of loss</li>
         <li><b>source:</b> d6 (PMFBY rules)</li>
@@ -499,7 +499,7 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
         <ul class="meta">
         <li><b>deadline:</b> before <span class="num sa">06:00</span> tomorrow (<span class="num sa">12h</span>)</li>
           <li><b>source:</b> R7, d9</li>
-          <li><b>cost of waiting:</b> waterlogging alone reprocesses <span class="num om">41.9%</span> (d3)</li>
+          <li><b>cost of waiting:</b> waterlogging alone reprocesses <span class="num om">41.9%</span> of the crop at reproductive stage (d3)</li>
           <li><b>doability:</b> <span class="num sa">8h</span> labor, Rs <span class="num sa">1,200</span>, tenancy: owner approval required (pending via IVR)</li>
         </ul>
         <div class="tags"><span class="badge b-sa">SCENARIO-ASSUMPTION</span> <span class="badge b-tp">TRANSFER-PRIOR</span></div>
@@ -543,7 +543,7 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
           <span class="title"><span class="od">ଦାବି ପ୍ରସ୍ତୁତି</span> <span class="en">Claim packet prep: photo + <span class="num om">72h</span> clock</span></span>
           <span class="status st-queued">QUEUED</span>
         </div>
-        <p class="act">PMFBY intimation must be filed within <span class="num om">72h</span> of loss; <span class="num om">33%</span> crop damage is the threshold (d6).</p>
+        <p class="act">PMFBY intimation within <span class="num om">72h</span> of loss (d6); state relief eligibility starts at <span class="num om">33%</span> loss (d20).</p>
         <ul class="meta">
           <li><b>deadline:</b> photo now, intimation within <span class="num om">72h</span></li>
           <li><b>source:</b> d6</li>
@@ -628,7 +628,7 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
           <span class="title"><span class="od">ଦାବି ପ୍ରସ୍ତୁତି</span> <span class="en">Claim packet prep: photo + <span class="num om">72h</span> clock</span></span>
           <span class="status st-queued">QUEUED</span>
         </div>
-        <p class="act">PMFBY intimation must be filed within <span class="num om">72h</span> of loss; <span class="num om">33%</span> crop damage is the threshold (d6).</p>
+        <p class="act">PMFBY intimation within <span class="num om">72h</span> of loss (d6); state relief eligibility starts at <span class="num om">33%</span> loss (d20).</p>
         <ul class="meta">
           <li><b>deadline:</b> photo now, intimation within <span class="num om">72h</span></li>
           <li><b>source:</b> d6</li>
@@ -751,34 +751,34 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
     <div class="rrow" data-wave="1"><span class="rid">d05</span><span class="wtag">Wave 1</span><span class="rwhat">land/elevation/soil/salinity: DEM options, soil maps, SAC Yaas salinity mapping, CGWB recharge</span><span class="rfeed">feeds: soil data</span></div>
     <div class="rrow" data-wave="1"><span class="rid">d06</span><span class="wtag">Wave 1</span><span class="rwhat">farmers + impact + PMFBY: <span class="num om">4.866M</span> holdings, <span class="num om">0.95 ha</span> avg, debt <span class="num om">40.5%</span>, PMFBY intimation window</span><span class="rfeed">feeds: doability</span></div>
     <div class="rrow" data-wave="1"><span class="rid">d07</span><span class="wtag">Wave 1</span><span class="rwhat">devices + collection: CWC sites, tide gauges, SMS/IVR tariffs, DLT</span><span class="rfeed">feeds: delivery</span></div>
-    <div class="rrow" data-wave="1"><span class="rid">d08</span><span class="wtag">Wave 1</span><span class="rwhat">advisory prior art: GKMS cadence, KCC <span class="num sa">22</span> languages, Ama Krushi scale</span><span class="rfeed">feeds: prior art</span></div>
+    <div class="rrow" data-wave="1"><span class="rid">d08</span><span class="wtag">Wave 1</span><span class="rwhat">advisory prior art: GKMS cadence, KCC <span class="num tp">22</span> languages, Ama Krushi scale</span><span class="rfeed">feeds: prior art</span></div>
     <div class="rrow" data-wave="1"><span class="rid">d09</span><span class="wtag">Wave 1</span><span class="rwhat">hazard-model math + fragility: Holland field, Bates-De Roo, Swarna-Sub1 RCT, SDRF norms</span><span class="rfeed">feeds: replay</span></div>
 
-    <div class="rrow" data-wave="2"><span class="rid">d10</span><span class="wtag">Wave 2</span><span class="rwhat">on-device LLM: <span class="num sa">1B</span> Q4 = design center, <span class="num sa">3B</span> out, llama.cpp, Lava Blaze target</span><span class="rfeed">feeds: AI layer</span></div>
-    <div class="rrow" data-wave="2"><span class="rid">d11</span><span class="wtag">Wave 2</span><span class="rwhat">continuous fine-tuning: three-loop model, LoRA <span class="num tp">11-49MB</span>, server gated training</span><span class="rfeed">feeds: AI layer</span></div>
-    <div class="rrow" data-wave="2"><span class="rid">d12</span><span class="wtag">Wave 2</span><span class="rwhat">cheap sensor hardware: Rs <span class="num om">2,899</span> node BOM, pressure tendency, no universal hPa/hr</span><span class="rfeed">feeds: hardware</span></div>
+    <div class="rrow" data-wave="2"><span class="rid">d10</span><span class="wtag">Wave 2</span><span class="rwhat">on-device LLM: <span class="num tp">1B</span> Q4 = design center, <span class="num tp">3B</span> out, llama.cpp, Lava Blaze target</span><span class="rfeed">feeds: AI layer</span></div>
+    <div class="rrow" data-wave="2"><span class="rid">d11</span><span class="wtag">Wave 2</span><span class="rwhat">continuous fine-tuning: three-loop model, LoRA ~<span class="num tp">11-23MB</span> (1B, calculated), server gated training</span><span class="rfeed">feeds: AI layer</span></div>
+    <div class="rrow" data-wave="2"><span class="rid">d12</span><span class="wtag">Wave 2</span><span class="rwhat">cheap sensor hardware: Rs <span class="num sa">2,899</span> node BOM, pressure tendency, no universal hPa/hr</span><span class="rfeed">feeds: hardware</span></div>
     <div class="rrow" data-wave="2"><span class="rid">d13</span><span class="wtag">Wave 2</span><span class="rwhat">predictive stats: BOCPD/Kalman/iForest, no oracle claims, thresholds must be fitted</span><span class="rfeed">feeds: math</span></div>
     <div class="rrow" data-wave="2"><span class="rid">d14</span><span class="wtag">Wave 2</span><span class="rwhat">edge-AI agri prior art: no full loop exists anywhere, OSDMA EWDS, Nuru</span><span class="rfeed">feeds: white space</span></div>
 
-    <div class="rrow" data-wave="3"><span class="rid">d15</span><span class="wtag">Wave 3</span><span class="rwhat">Odia + low-literacy voice: Ama Krushi <span class="num sa">50K</span> calls, no Odia TTS from big vendors, IndicF5, WER <span class="num om">35.1</span> real</span><span class="rfeed">feeds: voice</span></div>
+    <div class="rrow" data-wave="3"><span class="rid">d15</span><span class="wtag">Wave 3</span><span class="rwhat">Odia + low-literacy voice: Ama Krushi 3.2M farmers at 2022 handover (d26), no Odia TTS from big vendors, IndicF5, WER <span class="num om">35.1</span> real</span><span class="rfeed">feeds: voice</span></div>
     <div class="rrow" data-wave="3"><span class="rid">d16</span><span class="wtag">Wave 3</span><span class="rwhat">IMD/CWC/INCOIS API: CAP RSS free, IMD API gated, WRIS works, Open-Meteo fallback</span><span class="rfeed">feeds: feed</span></div>
     <div class="rrow" data-wave="3"><span class="rid">d17</span><span class="wtag">Wave 3</span><span class="rwhat">power + connectivity: Fani <span class="num om">4</span> districts down <span class="num om">9</span> days, rural supply reality</span><span class="rfeed">feeds: offline</span></div>
-    <div class="rrow" data-wave="3"><span class="rid">d18</span><span class="wtag">Wave 3</span><span class="rwhat">who pays: <span class="num om">81.3%</span> WTP, voice reminders <span class="num tp">38%</span> vs <span class="num tp">18%</span>, ATMA <span class="num tp">60:40</span>, FPO rails</span><span class="rfeed">feeds: business</span></div>
+    <div class="rrow" data-wave="3"><span class="rid">d18</span><span class="wtag">Wave 3</span><span class="rwhat">who pays: <span class="num om">81.3%</span> WTP, voice reminders <span class="num om">38%</span> vs <span class="num om">18%</span>, ATMA <span class="num tp">60:40</span>, FPO rails</span><span class="rfeed">feeds: business</span></div>
     <div class="rrow" data-wave="3"><span class="rid">d19</span><span class="wtag">Wave 3</span><span class="rwhat">training data: IMD gridded <span class="num om">1901-2024</span>, best tracks, CWC free, J-PAL data</span><span class="rfeed">feeds: replay</span></div>
-    <div class="rrow" data-wave="3"><span class="rid">d20</span><span class="wtag">Wave 3</span><span class="rwhat">OSDMA ecosystem: post-<span class="num om">1999</span> institutions, EWDS, ODRAF, Krushak Odisha <span class="num sa">9.2M</span></span><span class="rfeed">feeds: institutional</span></div>
+    <div class="rrow" data-wave="3"><span class="rid">d20</span><span class="wtag">Wave 3</span><span class="rwhat">OSDMA ecosystem: post-<span class="num om">1999</span> institutions, EWDS, ODRAF, Krushak Odisha portal ~<span class="num tp">9.17M</span>, access-dated (d40)</span><span class="rfeed">feeds: institutional</span></div>
 
-    <div class="rrow" data-wave="4"><span class="rid">d25</span><span class="wtag">Wave 4</span><span class="rwhat">global prior art: BaKhabar Kissan <span class="num om">15.8M</span>, BAMIS, no recovery state machine anywhere</span><span class="rfeed">feeds: white space</span></div>
+    <div class="rrow" data-wave="4"><span class="rid">d25</span><span class="wtag">Wave 4</span><span class="rwhat">global prior art: BaKhabar Kissan <span class="num tp">15.8M</span>, BAMIS, no recovery state machine anywhere</span><span class="rfeed">feeds: white space</span></div>
     <div class="rrow" data-wave="4"><span class="rid">d26</span><span class="wtag">Wave 4</span><span class="rwhat">GitHub/forums sweep: KrishiRakshak collision (yesterday), Ama Krushi <span class="num om">7.9M</span> + <span class="num tp">10%</span> loss cut</span><span class="rfeed">feeds: honesty</span></div>
-    <div class="rrow" data-wave="4"><span class="rid">d27</span><span class="wtag">Wave 4</span><span class="rwhat">anticipatory action + insurance: WFP <span class="num sa">$53</span> pre-event, R4, ARC, ACRE <span class="num sa">217K</span> failed deliveries</span><span class="rfeed">feeds: claims rail</span></div>
-    <div class="rrow" data-wave="4"><span class="rid">d28</span><span class="wtag">Wave 4</span><span class="rwhat">offline/feature-phone delivery: Ethiopia <span class="num sa">8028</span> <span class="num tp">6M/60M</span> calls, radio <span class="num tp">24.1M</span>, WeFarm/iCow deaths</span><span class="rfeed">feeds: delivery</span></div>
-    <div class="rrow" data-wave="4"><span class="rid">d29</span><span class="wtag">Wave 4</span><span class="rwhat">LLM + agri worldwide: Farmer.Chat <span class="num tp">830K/5M</span> queries, AgroMetLLM Pi <span class="num sa">4B</span>, sesame incident</span><span class="rfeed">feeds: AI</span></div>
+    <div class="rrow" data-wave="4"><span class="rid">d27</span><span class="wtag">Wave 4</span><span class="rwhat">anticipatory action + insurance: WFP <span class="num tp">$53</span> pre-event, R4, ARC, ACRE <span class="num tp">217K</span> failed deliveries</span><span class="rfeed">feeds: claims rail</span></div>
+    <div class="rrow" data-wave="4"><span class="rid">d28</span><span class="wtag">Wave 4</span><span class="rwhat">offline/feature-phone delivery: Ethiopia <span class="num tp">8028</span> <span class="num tp">6M/60M</span> calls, radio <span class="num tp">24.1M</span>, WeFarm/iCow deaths</span><span class="rfeed">feeds: delivery</span></div>
+    <div class="rrow" data-wave="4"><span class="rid">d29</span><span class="wtag">Wave 4</span><span class="rwhat">LLM + agri worldwide: Farmer.Chat <span class="num tp">830K/5M</span> queries, AgroMetLLM Pi <span class="num tp">4B</span>, sesame incident</span><span class="rfeed">feeds: AI</span></div>
     <div class="rrow" data-wave="4"><span class="rid">d30</span><span class="wtag">Wave 4</span><span class="rwhat">farm data platforms: SoilGrids, WorldCover, GDACS, GloFAS, Sen1Floods11 free</span><span class="rfeed">feeds: data</span></div>
 
     <div class="rrow" data-wave="5"><span class="rid">d31</span><span class="wtag">Wave 5</span><span class="rwhat">farmer problem capture: symptom grammar, keypad &gt; ASR, KCC corpus, <span class="num tp">65%</span> want experts</span><span class="rfeed">feeds: voice</span></div>
     <div class="rrow" data-wave="5"><span class="rid">d32</span><span class="wtag">Wave 5</span><span class="rwhat">crop evacuation physics: <span class="num tp">5.76%</span> early-harvest meta, labor hours/ha, movable units</span><span class="rfeed">feeds: action</span></div>
     <div class="rrow" data-wave="5"><span class="rid">d33</span><span class="wtag">Wave 5</span><span class="rwhat">frontier agri science: Swarna-Sub1 +<span class="num tp">64kg/ha</span>/day, Saltol seedling-stage, halopriming</span><span class="rfeed">feeds: science</span></div>
     <div class="rrow" data-wave="5"><span class="rid">d34</span><span class="wtag">Wave 5</span><span class="rwhat">unique angle validation: QUALIFIED GO, new combination, not first-to-harvest</span><span class="rfeed">feeds: honesty</span></div>
-    <div class="rrow" data-wave="5"><span class="rid">d35</span><span class="wtag">Wave 5</span><span class="rwhat">human disaster history: universal sequence, Koraput storage, mangroves <span class="num tp">409-village</span></span><span class="rfeed">feeds: wisdom</span></div>
+    <div class="rrow" data-wave="5"><span class="rid">d35</span><span class="wtag">Wave 5</span><span class="rwhat">human disaster history: universal sequence, Koraput stilt storage</span><span class="rfeed">feeds: wisdom</span></div>
     <div class="rrow" data-wave="5"><span class="rid">d36</span><span class="wtag">Wave 5</span><span class="rwhat">science validation folk: FR13A -&gt; Sub1 story, tiered evidence gate</span><span class="rfeed">feeds: wisdom</span></div>
     <div class="rrow" data-wave="5"><span class="rid">d37</span><span class="wtag">Wave 5</span><span class="rwhat">adaptation gap: tenancy <span class="num tp">5.82%</span>, debt, labor, relief hazard, memory decay</span><span class="rfeed">feeds: THESIS</span></div>
     <div class="rrow" data-wave="5"><span class="rid">d38</span><span class="wtag">Wave 5</span><span class="rwhat">farmer-as-sensor: phone as data network, DTMF, photo protocols, zero hardware</span><span class="rfeed">feeds: data</span></div>
@@ -787,11 +787,11 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
 
     <div class="rrow" data-wave="6"><span class="rid">d41</span><span class="wtag">Wave 6</span><span class="rwhat">global farm practices (refire): Vietnam/Japan/China/Andes/Indus/Niger practices</span><span class="rfeed">feeds: wisdom</span></div>
     <div class="rrow" data-wave="6"><span class="rid">d42</span><span class="wtag">Wave 6</span><span class="rwhat">storage + water engineering: stilt granaries, qanats, amunas, bolanha, baira</span><span class="rfeed">feeds: wisdom</span></div>
-    <div class="rrow" data-wave="6"><span class="rid">d43</span><span class="wtag">Wave 6</span><span class="rwhat">institutional response + theory: CPP <span class="num sa">76K</span> volunteers, Japan nosai, FCIP, Delta Programme, Sendai</span><span class="rfeed">feeds: institutional</span></div>
-    <div class="rrow" data-wave="6"><span class="rid">d44</span><span class="wtag">Wave 6</span><span class="rwhat">every cyclone agri damage: Sidr <span class="num sa">1.4M ha</span>, Idai <span class="num sa">715K</span>, Remal <span class="num sa">498K</span>, Mocha <span class="num sa">327K</span>, Yagi <span class="num sa">286K</span>, Michael <span class="num sa">$2B+</span>, noise log</span><span class="rfeed">feeds: global record</span></div>
-    <div class="rrow" data-wave="6"><span class="rid">d45</span><span class="wtag">Wave 6</span><span class="rwhat">every major flood agri: Yangtze <span class="num sa">1998</span>, Pakistan <span class="num sa">2010/2022</span>, Kerala, Thailand <span class="num sa">2011</span>, Nigeria, Brazil <span class="num sa">2024</span></span><span class="rfeed">feeds: global record</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d43</span><span class="wtag">Wave 6</span><span class="rwhat">institutional response + theory: CPP <span class="num tp">76K</span> volunteers, Japan nosai, FCIP, Delta Programme, Sendai</span><span class="rfeed">feeds: institutional</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d44</span><span class="wtag">Wave 6</span><span class="rwhat">every cyclone agri damage: Sidr <span class="num tp">1.4M ha</span>, Idai <span class="num tp">715K</span>, Remal <span class="num tp">498K</span>, Mocha <span class="num tp">327K</span>, Yagi <span class="num tp">286K</span>, Michael <span class="num tp">$2B+</span>, noise log</span><span class="rfeed">feeds: global record</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d45</span><span class="wtag">Wave 6</span><span class="rwhat">every major flood agri: Yangtze <span class="num tp">1998</span>, Pakistan <span class="num tp">2010/2022</span>, Kerala, Thailand <span class="num tp">2011</span>, Nigeria, Brazil <span class="num tp">2024</span></span><span class="rfeed">feeds: global record</span></div>
     <div class="rrow" data-wave="6"><span class="rid">d46</span><span class="wtag">Wave 6</span><span class="rwhat">complete effects catalog: full taxonomy during/immediate/weeks/years + positives</span><span class="rfeed">feeds: cascade</span></div>
-    <div class="rrow" data-wave="6"><span class="rid">d47</span><span class="wtag">Wave 6</span><span class="rwhat">cascade systems math: typed DAG, BN-FLEMO MAE <span class="num sa">0.18</span>, CVaR, MC gates, four badges</span><span class="rfeed">feeds: THESIS</span></div>
+    <div class="rrow" data-wave="6"><span class="rid">d47</span><span class="wtag">Wave 6</span><span class="rwhat">cascade systems math: typed DAG, BN-FLEMO MAE <span class="num tp">0.18</span>, CVaR, MC gates, four badges</span><span class="rfeed">feeds: THESIS</span></div>
 
   </div>
   <p class="rfoot">raw reports live in krishisetu/research/raw/ and hackathon-sota-lab/research/raw/v2/, one content.md + basis.json pair per report (cnc-ps07-dXX-&lt;slug&gt;). Chain: slide -&gt; proof ledger -&gt; index row -&gt; raw report.</p>
@@ -831,15 +831,15 @@ table.ct td{padding:6px 8px; border-bottom:1px solid rgba(38,48,85,.5); vertical
     <div class="chain">
       <div class="crow">
         <div class="anchor">Fani <span class="num om">108,220 ha</span> / Rs <span class="num om">1,304.58 cr</span></div>
-        <div class="path">deck slide <span class="num sa">7</span> (replay) -&gt; ledger P1-P6 (proof ledger, deck claims) -&gt; index row d9 -&gt; raw: <code>research/raw/cnc-ps07-d9-agri-hazard-model-math-fragility.basis.json</code></div>
+        <div class="path">deck slide <span class="num sa">7</span> (replay) -&gt; ledger P1-P6 (proof ledger, deck claims) -&gt; index row d47 -&gt; raw: <code>research/raw/cnc-ps07-d47-systems-cascade-math-agri.basis.json</code></div>
       </div>
       <div class="crow">
         <div class="anchor">Yaas <span class="num om">2-4 m</span> surge</div>
-        <div class="path">deck slide <span class="num sa">7</span> -&gt; ledger -&gt; index row d5 -&gt; raw: <code>research/raw/cnc-ps07-d5-land-elevation-soil-salinity-sources.basis.json</code></div>
+        <div class="path">deck slide <span class="num sa">7</span> -&gt; ledger -&gt; index row d47 -&gt; raw: <code>research/raw/cnc-ps07-d47-systems-cascade-math-agri.basis.json</code></div>
       </div>
       <div class="crow">
         <div class="anchor">Swarna-Sub1 +<span class="num tp">64 kg/ha</span> per flood day</div>
-        <div class="path">deck slide <span class="num sa">8</span> (science) -&gt; ledger -&gt; index row d33 -&gt; raw: <code>research/raw/cnc-ps07-d33-frontier-agriculture-science.basis.json</code></div>
+        <div class="path">deck slide <span class="num sa">8</span> (science) -&gt; ledger -&gt; index row d47 -&gt; raw: <code>research/raw/cnc-ps07-d47-systems-cascade-math-agri.basis.json</code></div>
       </div>
     </div>
   </div>
