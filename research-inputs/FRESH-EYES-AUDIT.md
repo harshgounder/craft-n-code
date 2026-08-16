@@ -78,9 +78,11 @@ d22 event timelines ground truth, d23 replay simulation methodology, d24 satelli
 event archives. Also fixes FLAG-3.
 
 ### FLAG-7: Hard-rule violations in research home
-- EVIDENCE-INDEX.md title: "# EVIDENCE-INDEX.md — The 48-Report Map..." contains an
-  em dash (U+2014). Only em dash found in the audit scope. The research-inputs copy
-  was fixed by window-d (same file name); the ~/krishisetu original still needs it.
+- EVIDENCE-INDEX.md title: "# EVIDENCE-INDEX.md: The 48-Report Map (nothing omitted,
+  nothing hidden)" originally used an em dash (U+2014) between the filename and
+  "The 48-Report Map". Only em dash found in the audit scope. The research-inputs
+  copy was fixed by window-d (same file name); the ~/krishisetu original still
+  needs it.
 - THE-PLAN.md: "the replay harness with uncertainty bands" contains banned word
   "harness" (both the original and the research-inputs copy). FIX: "replay rig" or
   "replay setup".
