@@ -36,6 +36,7 @@ Claim | Evidence | Condition | Status. Every number in the deck, README, trailer
 | P4 | Digital Agriculture Mission Rs 2,817 cr | PS-07 v1 mine [9] | Outlay, not our addressable spend | VERIFIED |
 | P5 | 85/85 suites + 46/46 eval green | scaffold fresh run 2026-08-16 07:40 | Fresh DB, pre-server | VERIFIED |
 | P6 | Prototype honesty: IMD feed simulated, SMS via simulator, curated seed rules | scaffold code + deck slide 5 | No live claims anywhere | VERIFIED |
+| P7 | Research machine: 49 reports (47 numbered + 2 refires), 7 waves, 3.2M chars, 4,800 cited sources | krishisetu research/raw: 49 content files, 2,225,731 chars, 3,471 source mentions (window D measured 2026-08-16). hackathon-sota-lab research/raw/v2: 18 content files, 992,045 chars, 1,329 mentions. Combined 3,217,776 chars, 4,800 mentions | Holds only when both research waves count; "sources" = raw URL mentions, ~4,100 unique after dedupe | VERIFIED |
 
 ## Honesty rule
 
