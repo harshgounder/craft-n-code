@@ -154,3 +154,11 @@ OPEN (night): Rudra ask (cutoff 21:00), 4 demo videos, rehearsal
 2:30, venue fan-out 30 min before code (wave-17 rule), then the
 night flow 21:30 -> 09:00. Problem drops 21:30; fingerprint -> tree
 -> kit mount via NIGHT-CHEAT-SHEET; gates 23:00 / 05:00 / 09:00.
+
+## ROUNDS (corrected 2026-08-16, user intel)
+- Round 0: online, closes 18:00 Aug 16. PPT + prototype, IIIT-B faculty grade + suggestions, no elimination.
+- Round 1: offline 12h sprint on campus, likely next weekend. BUILD UPON the Round 0 submission, same product.
+- Round 2: at IIIT-B later. NEW problem statements, NEW product from scratch.
+- Implication: the engine + kit system + research method are the durable weapon, not any single lane.
+  Round 0/1 = PS-07 advisory engine. Round 2 = fresh mount, unknown statements.
+- Internal politics delayed the event; CyberSpace holds it together, first big event. Dates soft, rounds real.
