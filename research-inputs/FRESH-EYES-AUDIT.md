@@ -107,6 +107,25 @@ Ledger does not cover d25-d47. Not a deck claim, but it weakens "every number tr
 to a source you can open" during a probe. FIX: backfill run metadata or relabel the
 ledger as partial.
 
+### FLAG-11 (window A, new): the harvest advisory has no rule behind it
+The deck S6 advisory quote says "Plot 12B, flowering paddy: harvest by 18:00
+tomorrow, or move to the raised platform. Source: IMD + rule 14." Verified against
+scaffold/agri/rules.json: R14 is "Controlled overflow corridor" (Room for the River,
+authority-led, grade C, TRANSFER-PRIOR), nothing to do with harvest. No rule in the
+R1-R16 registry contains "harvest by", "harvest now", "early harvest", "raised
+platform", or "harvest or move" (checked all 16). seed.py has harvest labor data
+(12 h/ha) and a harvest_window stage but no harvest rule. The two-farm contrast is
+the demo's core beat, and SUBMISSION-TEXT feature bullet 1 promises "high-field farm
+(mature paddy, owned land: harvest now)", so the demo narrates a rule that does not
+exist in the seed set. Evidence exists in the raws (d32: 5.76% early-harvest meta,
+labor hours; d4: stage calendars) and needs wiring into the registry.
+FIX (window A): add R17 (mature paddy, lead >= 24h, owned land, labor available:
+harvest now, deadline lead minus 6h, source d32, badge TRANSFER-PRIOR) and R18
+(flowering paddy: do not harvest, protect seed, shelter livestock, photo standing
+crop for claim; embankment gated on tenancy). Then the deck S6 "rule 14" must be
+updated to the real rule id (content change, merge decision). Do not ship the demo
+narrating a rule id that resolves to an overflow corridor.
+
 ## PASSES WORTH KEEPING (do not touch)
 - The deck's honesty strip (S5) and limitation box (S10) are exactly right.
 - The demo script's fallback lines ("Do not fake a chart") are the right discipline.
@@ -119,11 +138,13 @@ EVIDENCE-INDEX.md: 1 em dash (title), 0 banned. THE-PLAN.md: 0 em dash, 1 banned
 ("harness"). build-krishi-setu.js: 0/0.
 
 ## PRIORITY ORDER FOR THE MERGE (if time is short)
-1. FLAG-8 (deck S2B "No single-pass..."): one word, visible on the density slide.
-2. FLAG-2/FLAG-3 (48->49, 6->7 waves): one number each in deck + demo + SUBMISSION.
-3. FLAG-7 (em dash in EVIDENCE-INDEX title, "harness" in THE-PLAN): hard rules.
-4. FLAG-9 (QBANK Q12 slide ref): two words.
-5. FLAG-4/FLAG-5 (2.5M+ -> 2.2M+, 4,000+ -> 2,200+): only if caught in a probe.
-6. FLAG-6/FLAG-10 (index rows, ledger): repo hygiene, no judge impact.
+1. FLAG-11 (harvest rule missing, deck cites wrong rule id): the demo's core beat
+   must resolve to a real rule. Window A adds R17/R18; deck citation updates after.
+2. FLAG-8 (deck S2B "No single-pass..."): one word, visible on the density slide.
+3. FLAG-2/FLAG-3 (48->49, 6->7 waves): one number each in deck + demo + SUBMISSION.
+4. FLAG-7 (em dash in EVIDENCE-INDEX title, "harness" in THE-PLAN): hard rules.
+5. FLAG-9 (QBANK Q12 slide ref): two words.
+6. FLAG-4/FLAG-5 (2.5M+ -> 2.2M+, 4,000+ -> 2,200+): only if caught in a probe.
+7. FLAG-6/FLAG-10 (index rows, ledger): repo hygiene, no judge impact.
 NOTE: CRITICAL-1 (PMFBY) already resolved in the deck by commit 2fd5c56; only the
 VERIFY step remains at merge.
