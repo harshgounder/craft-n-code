@@ -2,7 +2,9 @@
 
 The claim rail (THE-PLAN Part 6): photo + voice + geo evidence, a 72-hour
 intimation clock from the damaging event, and a 33% yield-loss threshold
-for eligibility. Both numbers are ODISHA-MEASURED (PMFBY norms).
+for eligibility. The 72-hour clock is ODISHA-MEASURED (PMFBY intimation
+norms); the 33% threshold is ODISHA-MEASURED (Odisha SRC assessment
+threshold, d20/d22).
 
 Exporters are pure string builders plus a small writer that emits the
 packet as text, a self-contained printable HTML form, and one SVG damage
@@ -17,6 +19,8 @@ from typing import Optional
 
 INTIMATION_WINDOW_HOURS = 72
 LOSS_THRESHOLD = 0.33
+"""33% yield-loss eligibility threshold. Odisha SRC (State Revenue Cell)
+assessment threshold (d20/d22)."""
 
 REQUIRED_EVIDENCE = ["geo", "photo"]
 

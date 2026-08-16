@@ -9,7 +9,7 @@ Every coefficient wears a badge. Calibration anchors (all SIMULATED
 unless marked ODISHA-MEASURED):
 
   Swarna-Sub1 RCT (Odisha, J-PAL): +64 kg/ha per flood day,
-    ~718 kg/ha under severe submergence, 180 kg/ha neutral when no flood.
+    ~718 kg/ha under severe submergence, no-flood point estimate -180 kg/ha (NS, d47).
   Early harvest: 5.76% cost (32-study meta, TRANSFER-PRIOR).
   Tillering rice: no loss below 4 days inundation, 80% at 6 days.
   Waterlogging repro loss: 32.9% global prior (TRANSFER-PRIOR).
@@ -52,7 +52,7 @@ SUB1_SEVERE_SUBMERGENCE_KG_HA = 718.0
 """Swarna-Sub1 advantage under severe submergence. ODISHA-MEASURED."""
 
 SUB1_NO_FLOOD_KG_HA = 180.0
-"""Swarna-Sub1 neutral-to-positive yield when no flood. ODISHA-MEASURED."""
+"""Swarna-Sub1 no-flood point estimate -180 kg/ha (NS), d47. ODISHA-MEASURED."""
 
 SALINITY_THRESHOLD_DS_M = 1.9
 """Yield loss starts above 1.9 dS/m. TRANSFER-PRIOR."""
@@ -88,7 +88,7 @@ EVIDENCE = {
                               "severe_submergence_kg_ha": SUB1_SEVERE_SUBMERGENCE_KG_HA,
                               "no_flood_kg_ha": SUB1_NO_FLOOD_KG_HA},
                     "unit": "kg/ha", "badge": "ODISHA-MEASURED",
-                    "note": "J-PAL Swarna-Sub1 RCT in Odisha"},
+                    "note": "J-PAL Swarna-Sub1 RCT in Odisha; no-flood point estimate -180 kg/ha (NS), d47"},
     "salinity": {"value": {"threshold_ds_m": SALINITY_THRESHOLD_DS_M,
                            "loss_per_ds_m": SALINITY_LOSS_PER_DS_M},
                  "unit": "dS/m", "badge": "TRANSFER-PRIOR",

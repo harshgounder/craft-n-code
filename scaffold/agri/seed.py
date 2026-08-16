@@ -39,6 +39,7 @@ def asha_farm() -> dict:
         "field_accessible": True,
         "harvest_labor_hours_per_ha": 12,
         "wage_rs_per_hour": 100,
+        "defaults_note": "profile defaults are SCENARIO-ASSUMPTION, not from raws: yield 3500 kg/ha, price Rs 19/kg, wage Rs 100/hr, labor 12 h/ha",
     }
 
 
@@ -72,6 +73,7 @@ def high_field_farm() -> dict:
         "field_accessible": True,
         "harvest_labor_hours_per_ha": 12,
         "wage_rs_per_hour": 100,
+        "defaults_note": "profile defaults are SCENARIO-ASSUMPTION, not from raws: yield 3500 kg/ha, price Rs 19/kg, wage Rs 100/hr, labor 12 h/ha",
     }
 
 

@@ -20,7 +20,7 @@
       "deadline_logic": "Relay immediately on receipt; never hold for aggregation. Validity window starts from the official issue time.",
       "source": {"title": "Cyclone Preparedness Programme (CPP)", "org": "Bangladesh Red Crescent Society", "url": "https://bdrcs.org/cyclone-preparedness-programm-cpp", "ref": "[18]"},
       "grade": "A",
-      "badge": "ODISHA-MEASURED",
+      "badge": "TRANSFER-PRIOR",
       "guardrail": "Never paraphrase a watch as a warning. The platform relays IMD and CWC signals; it never issues a competing cyclone warning.",
       "asset": "crop",
       "protection": 0.15,
