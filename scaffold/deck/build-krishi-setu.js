@@ -96,7 +96,7 @@ s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-
   extrudeText(s, "The research machine behind this deck", M, HDR, 9, 0.6, { fontSize: 32, color: WHITE }, true);
   accentBar(s, M, 0.98, 1.4, GRAY2);
   const cards = [
-    ["49", "parallel deep-research reports across 7 waves, every run multi-channel with coverage tables, noise logs, A-D evidence grades"],
+    ["49", "research reports across 7 waves, every one multi-channel with coverage tables, noise logs, A-D evidence grades"],
     ["3.2M+", "chars of raw evidence: named, dated sources on every claim, nothing unverified ships"],
     ["4,800+", "cited source mentions across 6 continents: cyclone/flood/agri ledgers, cascade math, human wisdom, frontier science"],
     ["A-D", "evidence grading on every claim: ODISHA-MEASURED, TRANSFER-PRIOR, SCENARIO-ASSUMPTION, UNKNOWN badges"],
@@ -109,7 +109,7 @@ s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-
     s.addText(c[1], { x: x + 0.2, y: y + 0.6, w: 4.05, h: 0.4, fontSize: 9.5, color: GRAY2, fontFace: "Arial", margin: 0 });
     s.addText("source: EVIDENCE-INDEX.md · freshness: 2026-08-15", { x: x + 0.2, y: y + 1.05, w: 4.05, h: 0.16, fontSize: 7.5, color: "8A8A8A", fontFace: "Arial", margin: 0 });
   });
-  s.addText("single-pass AI summarizes. this is an orchestrated parallel research machine with verification gates: every number in this deck traces to a source you can open.", { x: M, y: 4.2, w: 9, h: 0.75, fontSize: 13, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
+  s.addText("every number in this deck traces to a source you can open: slide, proof ledger, index, raw report. nothing ships without the chain.", { x: M, y: 4.2, w: 9, h: 0.75, fontSize: 13, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
   footer(s, "Evidence chain: slide -> proof ledger -> EVIDENCE-INDEX.md -> raw report -> named dated source. Nothing ships without the chain.", 5.1, true);
   s.addNotes("This slide is the holy-shit moment: 49 reports, 7 waves, 3.2M chars, 4,800+ sources, A-D grades. Judges who ask 'where is this from' get a path. Never claim we read everything without this map to prove it.");
 }
