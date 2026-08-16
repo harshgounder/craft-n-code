@@ -22,30 +22,36 @@ Strict-viewer verification (all green, 16:10 IST):
 
 | Field | Value |
 |---|---|
-| File | scaffold/dist/prototype.zip |
-| Size | 4,152,823 bytes (4.0 MB) |
-| SHA-256 | f3fc0739ec7e18b6f032c1cc08f65e002440d25c9e29116d969e2834033059a1 |
-| Build | docs/submission/PROTOTYPE-ZIP-RECIPE.md (executed 16:12 IST) |
+| File | docs/submission/prototype.zip (committed at 89d5fa7) |
+| Size | 29,338,186 bytes (28.0 MB) |
+| SHA-256 | 2a82f37659f9572304a26a8ce5f19fa49f1d772f25e5a78a0fe89fad70dc3dfc |
+| Build | docs/submission/PROTOTYPE-ZIP-RECIPE.md, fresh-clone verified by the conductor |
+| Integrity | unzip -t: no errors; contains krishi.html, agri/compiler, krishisetu-backend, research-inputs corpus |
+
+This is the submission artifact. A leaner 4.0 MB build exists at
+scaffold/dist/prototype.zip (sha256 f3fc0739..., gates verified in a staged pack:
+9/9 suites, eval 46/46, backend tests OK, integration 5/5, boot 200/200) in case
+the upload cap is tight; the committed zip is preferred because it carries the
+full research-inputs raw corpus for judges to open.
 
 Contents: scaffold/ (agri, webapp, engine, tests, eval, deck source, demo.sh,
 demo-script.md), krishisetu-backend/ (serve.py, db.py, schema.sql, seed.py,
 adapters.py, cap_ingest.py, tests.py, integration_test.py, seed/), research/
-(krishisetu research home: EVIDENCE-INDEX.md + raw/ + audits), README-for-judges.md
-at the zip root, docs/ (proof ledger, runbook, submission kit). Excluded: .git,
-.venv, node_modules, __pycache__, *.db, *.log, *.pptx, *.zip, .env, research-inputs
-raw corpus (lives in research/raw).
+(krishisetu research home: EVIDENCE-INDEX.md + raw/ + audits), research-inputs/
+(audits + briefs + raw corpus), README-for-judges.md at the zip root, docs/
+(proof ledger, runbook, submission kit). Excluded: .git, .venv, node_modules,
+__pycache__, *.db, *.log, *.pptx, .env.
 
-Gates run inside the pack dir (all green, 16:12 IST):
-- 9/9 acceptance suites (85 checks), eval 46/46 (fresh eval-report.json in the zip)
-- backend tests.py OK (17 tests), integration_test 5/5
-- Boot check: localhost:8100/health 200, localhost:8137/static/krishi.html 200,
-  both servers killed after
+Run commands (per the README inside the zip): cd krishisetu-backend && python3
+serve.py --seed --port 8100, then cd scaffold && bash ./demo.sh, then open
+http://localhost:8137/static/krishi.html. Both boot checks returned 200 in the
+pack verification (16:12 IST).
 
 ## Repos (git ls-remote, 16:06 IST, both live)
 
 | Repo | URL | Branch state |
 |---|---|---|
-| craft-n-code | https://github.com/harshgounder/craft-n-code | main = 9aa5b76 (STALE, pre-KrishiSetu), window-d = f1ee153 (latest, will move after this commit) |
+| craft-n-code | https://github.com/harshgounder/craft-n-code | main = 9aa5b76 (STALE, pre-KrishiSetu), window-d = 13f83a1 (latest) |
 | krishisetu | https://github.com/harshgounder/krishisetu | main = e5e1611 (STALE, missing numbers unification), window-c = f0e2d67 (latest) |
 
 CRITICAL before you paste a repo link into the form: judges open the DEFAULT
@@ -79,3 +85,7 @@ Then re-run git ls-remote and paste the new main hashes into this file.
 - Deck PDF export (no soffice on this box)
 - EVIDENCE-INDEX.md em dash + d21-d24 rows + THE-PLAN "harness" in the krishisetu
   research home (flagged in GATE-AUDIT.md, still unfixed)
+
+Resolved this window: prototype.zip committed by the conductor at 89d5fa7 with
+the README boot fixes (bash ./demo.sh, /static/krishi.html URL, krishisetu-backend
+dir name), viewer-compat pptx rezip, and the deck gate re-verified.
