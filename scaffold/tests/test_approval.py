@@ -197,8 +197,9 @@ def main():
             # ── G11 UI: static assets served, no obvious JS breakage ──
             with urllib.request.urlopen(BASE + "/") as r:
                 html = r.read().decode()
-            check("G11 UI renders Actions tab + audit panel",
-                  'data-v="actions"' in html and 'id="audit"' in html and 'v-actions' in html)
+            check("G11 UI renders product tabs + farm profiles",
+                  'id="tab-farmer"' in html and 'id="tab-console"' in html
+                  and 'id="farm-asha"' in html and 'id="farm-highfield"' in html)
 
             # ── G12 regression: existing endpoints still pass ──
             ok12 = all(jget(p) is not None for p in ["/api/feed", "/api/digest",
