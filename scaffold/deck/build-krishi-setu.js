@@ -195,7 +195,7 @@ s.addText("\"Cyclone expected. Stay safe.\"", { x: 0.7, y: 1.6, w: 4.0, h: 0.5, 
 s.addText("No crop, no stage, no deadline, no cost of waiting, no recovery step.", { x: 0.7, y: 2.2, w: 4.0, h: 0.55, fontSize: 11, color: GRAY, fontFace: "Arial", margin: 0 });
 card(s, 5.15, 1.05, 4.35, 1.85, DARK, { rotate: -2 });
 s.addText("The advisory says", { x: 5.35, y: 1.2, w: 4.0, h: 0.35, fontSize: 12, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
-s.addText("\"Plot 12B, flowering paddy: harvest by 18:00 tomorrow, or move to the raised platform. Source: IMD + rule 14. Cost of waiting: est. yield loss.\"", { x: 5.35, y: 1.6, w: 4.0, h: 1.1, fontSize: 13.5, color: WHITE, fontFace: "Arial", margin: 0 });
+s.addText("\"Plot 12B, flowering paddy: harvest by 18:00 tomorrow, or move to the raised platform. Source: IMD + rule R17. Cost of waiting: est. yield loss.\"", { x: 5.35, y: 1.6, w: 4.0, h: 1.1, fontSize: 13.5, color: WHITE, fontFace: "Arial", margin: 0 });
 const prior = [
   ["Meghdoot (IMD)", "alerts and agromet advisories", "no farm profile, no staged action, no claims path"],
   ["Fasal, DeHaat", "marketplace and credit rails", "advisory is content, not a governed decision"],
