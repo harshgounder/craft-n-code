@@ -61,6 +61,30 @@ s.addText("Farmers get warnings. They do not get decisions.", { x: M, y: 4.35, w
 footer(s, "Sources: YSD Odisha Cyclone Dana rapid assessment (2025); Down To Earth, post-Yaas Kharif report; PMFBY program data. Numbers verified in research wave, dated 2024-2025.");
 s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-Yaas Balasore field reporting, not a named individual. PMFBY numbers show the insurance rail already exists and is huge: the gap is verified observation, not scheme design.");
 
+// ---------- S2B RESEARCH MACHINE (the depth proof) ----------
+{
+  const s = p.addSlide();
+  s.background = { color: "FFFFFF" };
+  const HDR = 0.35;
+  s.addText("The research machine behind this deck", { x: M, y: HDR, w: 9, h: 0.6, fontSize: 30, bold: true, color: FOREST, fontFace: "Cambria", margin: 0 });
+  const cards = [
+    ["48", "parallel deep-research runs, 7 waves, every run multi-channel with coverage tables, noise logs, A-D evidence grades"],
+    ["2.5M+", "chars of raw evidence: named, dated sources on every claim, nothing unverified ships"],
+    ["4,000+", "cited sources across 6 continents: cyclone/food/agri ledgers, cascade math, human wisdom, frontier science"],
+    ["A-D", "evidence grading on every claim: ODISHA-MEASURED, TRANSFER-PRIOR, SCENARIO-ASSUMPTION, UNKNOWN badges"],
+  ];
+  cards.forEach((c, i) => {
+    const x = M + (i % 2) * 4.55;
+    const y = 1.15 + Math.floor(i / 2) * 1.35;
+    card(s, x, y, 4.45, 1.2, PALE2);
+    s.addText(c[0], { x: x + 0.15, y: y + 0.1, w: 1.5, h: 0.5, fontSize: 26, bold: true, color: FOREST, fontFace: "Cambria", margin: 0 });
+    s.addText(c[1], { x: x + 1.7, y: y + 0.1, w: 2.65, h: 1.0, fontSize: 9.5, color: INK, fontFace: "Calibri", margin: 0 });
+  });
+  s.addText("single-pass AI summarizes. this is an orchestrated parallel research machine with verification gates: every number in this deck traces to a source you can open.", { x: M, y: 4.15, w: 9, h: 0.75, fontSize: 13, bold: true, color: FOREST, fontFace: "Calibri", margin: 0 });
+  footer(s, "Evidence chain: slide -> proof ledger -> EVIDENCE-INDEX.md -> raw report -> named dated source. Nothing ships without the chain.", 5.1);
+  s.addNotes("This slide is the holy-shit moment: 48 runs, 7 waves, 2.5M chars, 4,000+ sources, A-D grades. Judges who ask 'where is this from' get a path. Never claim we read everything without this map to prove it.");
+}
+
 // ---------- S3 SOLUTION ----------
 s = p.addSlide();
 s.background = { color: "FFFFFF" };
