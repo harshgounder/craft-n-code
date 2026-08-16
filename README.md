@@ -8,6 +8,75 @@ source, and a fallback, in Odia, on any phone.
 
 Warnings are infrastructure. Decisions are the product.
 
+## Why this exists: the 1999 lesson
+
+In 1999 a super cyclone hit Odisha with a 48h+ official warning. 9,893
+people died. The warning existed. The decision did not. Every cyclone
+since is measured against that failure: Fani 2019 (108,220 ha crop loss,
+Rs 1,304.58 cr, OSDMA damage assessment), Yaas 2021 (5,882 ha
+salt-affected across 5 Balasore blocks, 2-4 m surge over a full-moon
+tide), Dana 2024 (5,428 acres in a rapid assessment of 4 selected
+blocks). Farmers got the alerts. They did not get an answer to the one
+question that matters: what do I do with my crop today.
+
+## The market we studied, not guessed
+
+This is not a tech-first idea. It is grounded in 49 research reports, 7
+waves, 3.2M chars of raw evidence, 4,800+ cited sources, every claim
+traceable to a named dated source. The market reality:
+
+- Paddy covers 44% of Odisha's cropland
+- 4.866 million holdings, average 0.95 ha
+- 40.5% of rural households are indebted (average Rs 31,000)
+- 5.82% of land is wholly leased in: the tenant cannot make long-term
+  investments, so advice must fit what a tenant can actually do
+- 48.4% of women own a phone versus 80.7% of men: the advisory must
+  work on a shared feature phone, in Odia, by voice
+- PMFBY already processes 88.5 lakh enrollments and Rs 2,580 crore in
+  claims (2020-25, Lok Sabha annexure): the insurance rail exists, the
+  gap is verified observation and actionable advice
+
+## Why the hardware and money floor is low, on purpose
+
+The target farmer has no money for sensors, no reliable 4G, no smartphone,
+and a landlord who may veto changes to the land. So the system is built
+backwards from that constraint:
+
+- Rs 1,500 total demo hardware budget: one real ESP32 sensor node in
+  Round 1, everything else simulated and labeled SIMULATED
+- zero API-key dependence: the advisory engine runs on the absence of
+  every external service. IMD CAP RSS is a cached bonus, not a dependency
+- zero installs, zero network needed: Python 3.11+ stdlib only, the demo
+  runs on any machine, offline, on the CPU
+- a delivery ladder, not a fallback list: app, SMS, IVR missed-call,
+  USSD, community radio, village announcement. Each rung has a trigger,
+  a latency budget, and an escalation rule when delivery fails. If the
+  phone has no data, the farmer still gets the decision
+- the phone is a feature, not a dependency: every advisory works on a
+  basic phone with voice
+
+## The two-farm proof
+
+Two farms, one warning. Asha: flowering paddy, low plot, weak embankment,
+leased land. The compiler says do not harvest: grain not formed,
+harvesting loses the whole season, protect the crop, photograph it for
+the claim. The high-field farm: mature paddy, owned land, labor
+available. The compiler says harvest now, deadline lead minus 6h, move to
+the raised platform. Same 24h warning, two governed decisions, each with
+a deadline, a source, a cost of waiting, a doability check. That contrast
+is the product: the message was never the gap, the decision was.
+
+## The math is real and visible
+
+- CVaR (conditional value at risk) at every decision node, sample-based
+- Monte Carlo with convergence gates (pilot + main, precision stops)
+- fragility curves per crop and stage
+- a typed cascade graph: TRIGGER, AMPLIFY, CASCADE, COMPOUND edges
+  between hazards and outcomes, because no phenomenon is a static event
+- the Fani replay: the engine is run over the real 2019 event with the
+  best track frozen, the posterior band contains the actual 108,220 ha
+  anchor. No prevented-loss claim is made: the numbers are what happened
+
 ## Where the AI is (and is not)
 
 The decision core is deliberately deterministic: no LLM sits inside the
