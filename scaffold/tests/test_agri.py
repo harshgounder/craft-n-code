@@ -187,5 +187,31 @@ class TestResearchIndex(unittest.TestCase):
         self.assertGreaterEqual(len(hits), 1)
 
 
+class TestR17R18(unittest.TestCase):
+    """R17 harvest-now and R18 do-not-harvest: the rules behind the
+    two-farm contrast (FRESH-EYES-AUDIT FLAG-11)."""
+
+    def _compile(self, farm, incident):
+        return compiler.compile_actions(farm, incident, RULES)
+
+    def test_r17_fires_for_mature_owned_farm(self):
+        high = seed.high_field_farm()
+        inc = dict(seed.flood_warning_incident())
+        inc["lead_hours"] = 48
+        actions = self._compile(high, inc)
+        joined = json.dumps(actions)
+        self.assertTrue("R17" in joined, "R17 missing for mature owned farm")
+
+    def test_r18_fires_for_flowering_farm(self):
+        asha = seed.asha_farm()
+        inc = dict(seed.flood_warning_incident())
+        inc["lead_hours"] = 48
+        actions = self._compile(asha, inc)
+        joined = json.dumps(actions)
+        self.assertTrue("R18" in joined, "R18 missing for immature paddy farm")
+        self.assertNotIn("harvest the mature", joined.lower(),
+                         "harvest action leaked onto immature paddy")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

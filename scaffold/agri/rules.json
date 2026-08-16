@@ -371,6 +371,50 @@
       "protection": 0.0,
       "numbers": [],
       "resources": {"labor_hours": 0, "cost_rs": 0, "credit_needed": false, "tenancy_required": false}
+    },
+    {
+      "id": "R17",
+      "name": "Harvest now to high ground",
+      "practice": "Early-harvest crop evacuation (d32)",
+      "trigger": {
+        "hazard": ["cyclone", "flood"],
+        "crop": ["paddy"],
+        "stage": ["harvest_window", "maturity"],
+        "lead_hours": {"min": 24},
+        "farm_has": ["owns_land"],
+        "farm_min": {"available_labor_hours": 1}
+      },
+      "action_template": "{farm_name}: harvest the mature paddy now. Cut and move to high ground by {deadline}. Labor estimate 12 hours per hectare.",
+      "deadline_logic": "Complete before the forecast arrival; minimum lead 24 hours.",
+      "source": {"title": "crop evacuation physics", "org": "d32", "url": "research-inputs/cnc-ps07-d32-crop-evacuation-protection-physics.content.md", "ref": "[d32]"},
+      "grade": "B",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Early harvest costs 5.76% yield (32-study meta): fire only when expected flood loss exceeds that, per the CVaR comparison. Never fire for flowering or vegetative paddy.",
+      "asset": "crop",
+      "protection": 0.0,
+      "numbers": [],
+      "resources": {"labor_hours": 12, "cost_rs": 0, "credit_needed": false, "tenancy_required": true}
+    },
+    {
+      "id": "R18",
+      "name": "Do not harvest green paddy",
+      "practice": "Stage-aware no-harvest guard (d34)",
+      "trigger": {
+        "hazard": ["cyclone", "flood"],
+        "crop": ["paddy"],
+        "stage": ["flowering", "vegetative", "tillering"],
+        "lead_hours": {"any": true}
+      },
+      "action_template": "{farm_name}: do not harvest, the paddy is not ready. Protect seed, shelter livestock, and photograph the standing crop now for your claim packet.",
+      "deadline_logic": "Immediate on the advisory; protect seed and photograph the standing crop now.",
+      "source": {"title": "unique angle validation", "org": "d34", "url": "research-inputs/cnc-ps07-d34-unique-angle-validation.content.md", "ref": "[d34]"},
+      "grade": "B",
+      "badge": "TRANSFER-PRIOR",
+      "guardrail": "Never advise harvesting green paddy. Embankment work gated on tenancy: leased land asks the landlord first (d37).",
+      "asset": "crop",
+      "protection": 0.0,
+      "numbers": [],
+      "resources": {"labor_hours": 0, "cost_rs": 0, "credit_needed": false, "tenancy_required": false}
     }
   ]
 }

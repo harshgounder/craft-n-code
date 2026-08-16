@@ -120,7 +120,7 @@ navigate forms; the packet assembles itself from the advisory."
 CLICK: the research tab. Type "Fani" in the search box, show the
 filtered rows.
 
-SAY: "The credibility layer: 48 reports across 6 waves, searchable,
+SAY: "The credibility layer: 49 reports across 7 waves, searchable,
 every row linking to its raw report. The evidence chain is enforced:
 slide claim to proof ledger to index row to raw file. Any claim
 without a chain does not ship."

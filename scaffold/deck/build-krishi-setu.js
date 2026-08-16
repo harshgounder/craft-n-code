@@ -96,9 +96,9 @@ s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-
   extrudeText(s, "The research machine behind this deck", M, HDR, 9, 0.6, { fontSize: 32, color: WHITE }, true);
   accentBar(s, M, 0.98, 1.4, GRAY2);
   const cards = [
-    ["48", "parallel deep-research runs, 7 waves, every run multi-channel with coverage tables, noise logs, A-D evidence grades"],
-    ["2.5M+", "chars of raw evidence: named, dated sources on every claim, nothing unverified ships"],
-    ["4,000+", "cited sources across 6 continents: cyclone/food/agri ledgers, cascade math, human wisdom, frontier science"],
+    ["49", "parallel deep-research reports across 7 waves, every run multi-channel with coverage tables, noise logs, A-D evidence grades"],
+    ["3.2M+", "chars of raw evidence: named, dated sources on every claim, nothing unverified ships"],
+    ["4,800+", "cited source mentions across 6 continents: cyclone/flood/agri ledgers, cascade math, human wisdom, frontier science"],
     ["A-D", "evidence grading on every claim: ODISHA-MEASURED, TRANSFER-PRIOR, SCENARIO-ASSUMPTION, UNKNOWN badges"],
   ];
   cards.forEach((c, i) => {
@@ -111,7 +111,7 @@ s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-
   });
   s.addText("single-pass AI summarizes. this is an orchestrated parallel research machine with verification gates: every number in this deck traces to a source you can open.", { x: M, y: 4.2, w: 9, h: 0.75, fontSize: 13, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
   footer(s, "Evidence chain: slide -> proof ledger -> EVIDENCE-INDEX.md -> raw report -> named dated source. Nothing ships without the chain.", 5.1, true);
-  s.addNotes("This slide is the holy-shit moment: 48 runs, 7 waves, 2.5M chars, 4,000+ sources, A-D grades. Judges who ask 'where is this from' get a path. Never claim we read everything without this map to prove it.");
+  s.addNotes("This slide is the holy-shit moment: 49 reports, 7 waves, 3.2M chars, 4,800+ sources, A-D grades. Judges who ask 'where is this from' get a path. Never claim we read everything without this map to prove it.");
 }
 
 // ---------- S3 SOLUTION ----------
@@ -263,9 +263,9 @@ s = p.addSlide();
 s.background = { color: WHITE };
 header(s, "Team 511");
 const team = [
-  ["Harsh Gounder", "Lead, E&CE", "systems, research method, 17-statement evidence wave"],
-  ["Ayush Kharwar", "Engine and demo", "zero-dep engine, demo.sh, seed data"],
-  ["Sujal Shukla", "Deck and submission", "submission text, paste at gates, backup demo runner"],
+  ["Harsh Gounder", "Lead, E&CE", "everything: architecture, code, research method, 49-report evidence wave, backend, QA, devops"],
+  ["Ayush Kharwar", "Deck and design", "presentation build and design"],
+  ["Sujal Shukla", "Deck design", "design assistance on the presentation"],
 ];
 team.forEach((tm, i) => {
   const x = M + i * (CW + 0.35);
