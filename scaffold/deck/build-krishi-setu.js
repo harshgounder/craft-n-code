@@ -112,16 +112,23 @@ function cropRows(s, dark) {
     bar(s, M, 4.78 + i * 0.115, 0.55 + i * 0.42, 0.022, c);
   }
 }
-// signature motif: cyclone arcs top-right
+// signature motif: cyclone vortex top-right
 function arcs(s) {
-  const cols = ["2E4C38", "3D5C46", "55755E"];
-  for (let i = 0; i < 3; i++) {
+  const cols = ["2E4C38", "3D5C46", "55755E", "6E8A76"];
+  for (let i = 0; i < 4; i++) {
     s.addShape(p.ShapeType.ellipse, {
-      x: 7.1 + i * 0.62, y: -0.9 + i * 0.5, w: 2.6, h: 2.6,
-      fill: { color: "14341F" }, line: { color: cols[i], width: 1.5 },
-      rectRadius: 0,
+      x: 6.9 + i * 0.48, y: -1.0 + i * 0.42, w: 2.9 - i * 0.3, h: 2.9 - i * 0.3,
+      fill: { color: "14341F" }, line: { color: cols[i], width: 1.4 },
     });
   }
+  // vortex eye + spiral tail dots
+  s.addShape(p.ShapeType.ellipse, {
+    x: 9.05, y: 1.05, w: 0.24, h: 0.24, fill: { color: AMBER }, line: { color: AMBER, width: 0 },
+  });
+  const tail = [[8.15, 0.05], [9.0, -0.35], [9.7, 0.6], [8.6, 1.35]];
+  tail.forEach((pt) => s.addShape(p.ShapeType.ellipse, {
+    x: pt[0], y: pt[1], w: 0.09, h: 0.09, fill: { color: "6E8A76" }, line: { color: "6E8A76", width: 0 },
+  }));
 }
 function statHero(s, x, y, w, num, unit, label, source, dark) {
   s.addText(num, {
@@ -183,7 +190,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S1 TITLE (dark) ============
 {
   const s = p.addSlide();
-  s.background = { color: PINE_DARK };
+  s.background = { path: "assets/grain-dark.png" };
   arcs(s);
   cropRows(s, true);
   s.addText("CRAFT N CODE 2026  ·  ROUND 0  ·  TEAM 511", {
@@ -219,7 +226,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S2 PROBLEM ============
 {
   const s = p.addSlide();
-  s.background = { color: PAPER };
+  s.background = { path: "assets/grain-paper.png" };
   cropRows(s, false);
   eyebrow(s, "The Problem");
   title(s, "Warnings arrive. Decisions do not.");
@@ -264,7 +271,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S3 RESEARCH MACHINE (dark, the wow slide) ============
 {
   const s = p.addSlide();
-  s.background = { color: PINE_DARK };
+  s.background = { path: "assets/grain-dark.png" };
   arcs(s);
   eyebrow(s, "The Evidence", true);
   title(s, "A research machine, not a chat output.", true);
@@ -327,7 +334,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S4 SOLUTION ============
 {
   const s = p.addSlide();
-  s.background = { color: PAPER };
+  s.background = { path: "assets/grain-paper.png" };
   cropRows(s, false);
   eyebrow(s, "The Solution");
   title(s, "An advisory engine, not an alert system.");
@@ -374,7 +381,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S5 MECHANISM (money slide) ============
 {
   const s = p.addSlide();
-  s.background = { color: PAPER };
+  s.background = { path: "assets/grain-paper.png" };
   cropRows(s, false);
   eyebrow(s, "The Mechanism");
   title(s, "Ingest, decide, deliver, recover.");
@@ -430,48 +437,38 @@ function phoneMock(s, x, y, w, h) {
 // ============ S6 PROTOTYPE ============
 {
   const s = p.addSlide();
-  s.background = { color: PAPER };
+  s.background = { path: "assets/grain-paper.png" };
   cropRows(s, false);
   eyebrow(s, "The Prototype");
   title(s, "Verified today. Honest by design. Offline-capable.");
   hairline(s, 1.28);
-  // hero stat
-  s.addText("85 / 85", {
-    x: M, y: 1.5, w: 3.0, h: 0.95, fontSize: 46, bold: true,
-    color: PINE, fontFace: DISP, margin: 0, valign: "middle",
+  // real terminal artifact (85/85 acceptance suites, run today, offline)
+  s.addImage({ path: "assets/signal-engine----acceptance-suites.png", x: M, y: 1.42, w: 5.05, h: 2.95 });
+  s.addText("REAL RUN · TODAY · OFFLINE · ZERO NETWORK", {
+    x: M, y: 4.42, w: 5.05, h: 0.22, fontSize: 7.5, bold: true, color: AMBER_TXT, fontFace: MONO, charSpacing: 1, margin: 0,
   });
-  s.addText("ACCEPTANCE SUITES GREEN", {
-    x: M, y: 2.5, w: 3.0, h: 0.26, fontSize: 9, bold: true, color: AMBER_TXT,
-    fontFace: LABEL, charSpacing: 2, margin: 0,
-  });
-  s.addText("approval, trace, providers, multimodal, provenance, feeds, honesty, stress", {
-    x: M, y: 2.78, w: 3.0, h: 0.55, fontSize: 9.5, color: MUTED, fontFace: BODY, margin: 0, lineSpacing: 12,
-  });
-  // right rows
+  // right: supporting facts
   const rows = [
-    ["46 / 46", "lane fixture scenarios verified, order-independent on fresh databases"],
-    ["Zero-dep", "engine runs on stdlib only; demo never dies, offline fallback replay"],
-    ["Honest mode", "badges count actual provider outcomes, no badge-lie, audit trail per action"],
+    ["46 / 46", "lane fixture scenarios, order-independent"],
+    ["Zero-dep", "stdlib only, demo never dies, offline replay"],
+    ["Honest mode", "no badge-lie, audit trail per action"],
   ];
   rows.forEach((r, i) => {
     const y = 1.5 + i * 0.83;
-    s.addText(r[0], { x: 4.3, y: y, w: 1.35, h: 0.5, fontSize: 17, bold: true, color: PINE, fontFace: DISP, margin: 0 });
-    s.addText(r[1], { x: 5.8, y: y + 0.04, w: 3.65, h: 0.55, fontSize: 9.5, color: MUTED, fontFace: BODY, margin: 0, lineSpacing: 12 });
-    if (i < 2) hairline(s, y + 0.62, LINE, 4.3, 5.15);
+    s.addText(r[0], { x: 5.85, y: y, w: 1.35, h: 0.5, fontSize: 17, bold: true, color: PINE, fontFace: DISP, margin: 0 });
+    s.addText(r[1], { x: 7.25, y: y + 0.02, w: 2.2, h: 0.55, fontSize: 9.5, color: MUTED, fontFace: BODY, margin: 0, lineSpacing: 12 });
+    if (i < 2) hairline(s, y + 0.62, LINE, 5.85, 3.6);
   });
   // demo arc strip
-  bar(s, M, 3.98, CW, 0.88, PINE_DARK);
-  s.addText("3-MINUTE DEMO ARC", {
-    x: 0.75, y: 4.1, w: 2.0, h: 0.24, fontSize: 8, bold: true, color: AMBER, fontFace: MONO, margin: 0,
-  });
-  s.addText("Asha's plot  →  cyclone forecast  →  staged Odia advisory  →  tower drops, advice still syncs  →  damage evidence  →  claim packet export", {
-    x: 0.75, y: 4.36, w: 8.5, h: 0.42, fontSize: 10.5, color: CREAM, fontFace: BODY, margin: 0, lineSpacing: 13,
+  bar(s, M, 4.68, CW, 0.42, PINE_DARK);
+  s.addText("3-MIN DEMO:  Asha's plot → cyclone forecast → Odia advisory → tower drops, syncs → damage → claim packet", {
+    x: 0.75, y: 4.75, w: 8.5, h: 0.28, fontSize: 9, color: CREAM, fontFace: BODY, margin: 0,
   });
   // honesty panel
-  bar(s, M, 5.02, 0.055, 0.42, AMBER);
-  bar(s, M + 0.055, 5.02, CW - 0.055, 0.42, AMBER_SOFT);
-  s.addText("Prototype honesty: IMD feed is simulated, SMS and IVR run through simulators, agronomy rules are a curated seed set awaiting agronomist review. Nothing labeled live is not live.", {
-    x: 0.78, y: 5.1, w: 8.4, h: 0.3, fontSize: 9, color: "5A3A10", fontFace: BODY, margin: 0,
+  bar(s, M, 5.18, 0.055, 0.34, AMBER);
+  bar(s, M + 0.055, 5.18, CW - 0.055, 0.34, AMBER_SOFT);
+  s.addText("Prototype honesty: IMD feed simulated, SMS/IVR via simulators, rules are a curated seed awaiting agronomist review. Nothing labeled live is not live.", {
+    x: 0.78, y: 5.24, w: 8.4, h: 0.24, fontSize: 8, color: "5A3A10", fontFace: BODY, margin: 0,
   });
   pageNum(s, 6);
   s.addNotes("The deck claims only what the repo proves. Round 0 submission is PPT plus prototype; the demo carries the proof. The honesty strip is deliberate: faculty will probe.");
@@ -480,7 +477,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S7 MOAT ============
 {
   const s = p.addSlide();
-  s.background = { color: PAPER };
+  s.background = { path: "assets/grain-paper.png" };
   cropRows(s, false);
   eyebrow(s, "The Moat");
   title(s, "Why this is not another alert system.");
@@ -544,7 +541,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S8 BUYERS ============
 {
   const s = p.addSlide();
-  s.background = { color: PAPER };
+  s.background = { path: "assets/grain-paper.png" };
   cropRows(s, false);
   eyebrow(s, "The Model");
   title(s, "Three buyers, one verified loop.");
@@ -592,7 +589,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S9 MARKET ============
 {
   const s = p.addSlide();
-  s.background = { color: PAPER };
+  s.background = { path: "assets/grain-paper.png" };
   cropRows(s, false);
   eyebrow(s, "The Market");
   title(s, "One rail, one pilot, one quarter.");
@@ -656,7 +653,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S10 TEAM ============
 {
   const s = p.addSlide();
-  s.background = { color: PAPER };
+  s.background = { path: "assets/grain-paper.png" };
   eyebrow(s, "The Team");
   title(s, "Team 511.");
   hairline(s, 1.28);
@@ -698,7 +695,7 @@ function phoneMock(s, x, y, w, h) {
 // ============ S11 CLOSE (dark) ============
 {
   const s = p.addSlide();
-  s.background = { color: PINE_DARK };
+  s.background = { path: "assets/grain-dark.png" };
   arcs(s);
   cropRows(s, true);
   s.addText("CRAFT N CODE 2026  ·  ROUND 0  ·  TEAM 511", {
