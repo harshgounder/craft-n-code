@@ -26,6 +26,17 @@ Claim | Evidence | Condition | Status. Every number in the deck, README, trailer
 | K3 | [Trailer proof line: specific result in defined context] | Trailer footage + dated demo | Footage matches current build | PENDING |
 | K4 | [Deck traction timeline: primary metric monthly] | Live feed data + kit metrics | Dates + denominator stated | PENDING |
 
+## PS-07 deck rows (KrishiSetu Round 0, added 2026-08-16)
+
+| # | Claim | Evidence | Condition | Status |
+|---|---|---|---|---|
+| P1 | 5,428 acres crop loss, 4 blocks of Kendrapada + Bhadrak, Cyclone Dana 2024 | YSD Odisha rapid assessment (research/raw/v2 forensics [25]) | Call it a rapid assessment, not a census | VERIFIED |
+| P2 | 5,882 ha cultivable land salt-affected, 5 Balasore blocks, Cyclone Yaas 2021 | Down To Earth post-Yaas report (forensics [23]) | Farmers "in a fix" context, not a loss total | VERIFIED |
+| P3 | PMFBY: 78.4 cr applications, Rs 1.83 lakh cr program | Verified in wave (pmfby.gov.in + press data) | Program scale, not our TAM | VERIFIED |
+| P4 | Digital Agriculture Mission Rs 2,817 cr | PS-07 v1 mine [9] | Outlay, not our addressable spend | VERIFIED |
+| P5 | 85/85 suites + 46/46 eval green | scaffold fresh run 2026-08-16 07:40 | Fresh DB, pre-server | VERIFIED |
+| P6 | Prototype honesty: IMD feed simulated, SMS via simulator, curated seed rules | scaffold code + deck slide 5 | No live claims anywhere | VERIFIED |
+
 ## Honesty rule
 
 If the evidence is a projection, call it a projection. If the product is a prototype, call it a prototype. Every row survives a follow-up question. (wave24: the film should survive a skeptical screenshot; same rule for every artifact.)
