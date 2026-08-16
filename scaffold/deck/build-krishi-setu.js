@@ -73,7 +73,7 @@ card(s, M, 1.05, 9, 1.1, DARK, { rotate: -2, rectRadius: 0.08 });
 accentBar(s, M + 0.12, 1.15, 0.06, ORANGE, 0.9);
 s.addText("Asha, 47, flowering paddy on a low-lying plot in Balasore district. Post-Yaas field reporting documents saltwater on 5,882 hectares of cultivable land across five blocks. The alert came. The action did not.", { x: 0.75, y: 1.18, w: 8.5, h: 0.85, fontSize: 14.5, italic: true, color: WHITE, fontFace: "Arial", margin: 0 });
 const stats = [
-  ["5,428 acres", "crop loss across 4 blocks of Kendrapada and Bhadrak, Cyclone Dana 2024 (rapid assessment)"],
+  ["108,220 ha", "crop loss in Odisha, Cyclone Fani 2019, Rs 1,304.58 cr (OSDMA damage assessment)"],
   ["5,882 ha", "cultivable land salt-affected across 5 Balasore blocks, Cyclone Yaas 2021 (Down To Earth)"],
   ["88.5 lakh", "PMFBY crop-insurance enrollments, Rs 2,580 crore claims paid (2020-25, Lok Sabha annexure)"],
 ];
@@ -165,7 +165,7 @@ s.background = { color: WHITE };
 header(s, "Mechanism: ingest, decide, deliver, recover");
 const steps = [
   ["1", "INGEST", "IMD forecast plus farm profile: crop, stage, plot, soil, connectivity state", "one inbox, local, no external runtime deps"],
-  ["2", "DECIDE", "agronomist-reviewed rule engine: pre/during/post x crop x stage x hazard", "every proposal carries deadline, source, cost of waiting"],
+  ["2", "DECIDE", "agronomist-curated rule engine: pre/during/post x crop x stage x hazard", "every proposal carries deadline, source, cost of waiting"],
   ["3", "DELIVER", "Odia SMS and IVR, offline queue, ack and report capture", "works when the tower drops; syncs when it returns"],
   ["4", "RECOVER", "post-inundation recovery chain and claims evidence packet", "verified observation becomes an insurance claim"],
 ];
@@ -253,7 +253,7 @@ s.addText("We took the real incidents from the ledgers, ran the engine backward 
 const events = [
   ["FANI 2019", "108,220 ha crop loss, Rs 1,304.58 cr (OSDMA DLNA). Official lead: watch 90h, alert 66h, warning 36h. The engine at T-24 issues a stage-specific action with deadline and cost of waiting for every notified plot. The replay posterior band contains the real anchor.", "d21, d47, d12"],
   ["YAAS 2021", "5,882 ha salt-affected across 5 Balasore blocks. Surge 2-4 m over a full-moon tide. The engine's advisory at T-48: move seed above the forecast water line, brace or cut banana, photo standing crop for the claim. Recovery phase then plans saline flush and next-season variety.", "d22, d47"],
-  ["DANA 2024", "5,428 acres across 4 blocks of Kendrapada + Bhadrak (rapid assessment). The engine's T-72 watch triggers R17 harvest-now for mature owned plots with labor, R18 protect-in-place for immature paddy. Same warning, two different governed decisions.", "d6, d20"],
+  ["DANA 2024", "rapid assessment: 5,428 acres across 4 selected blocks of Kendrapara + Bhadrak (nonrepresentative, d6). The engine's T-72 watch triggers R17 harvest-now for mature owned plots with labor, R18 protect-in-place for immature paddy. Same warning, two different governed decisions.", "d6, d20"],
   ["1999 SUPER CYCLONE", "9,893 deaths with a 48h+ official warning. The warning existed; the decision did not. This is the entire thesis: warnings are infrastructure, decisions are the product. Every subsequent event is measured against that failure.", "d1, d35"],
 ];
 events.forEach((ev, i) => {
@@ -298,7 +298,7 @@ s.addText("Digital Agriculture Mission, Rs 2,817 crore, funds agri-digital publi
 s.addText("Odisha: cyclone-facing coast, paddy and saline zones, Dana and Yaas damage on record", { x: 0.7, y: 3.05, w: 4.0, h: 0.6, fontSize: 12, color: INK, fontFace: "Arial", margin: 0 });
 card(s, 5.15, 1.15, 4.35, 2.3, WHITE, { line: { color: INK, width: 2 } });
 s.addText("The pilot", { x: 5.35, y: 1.3, w: 4.0, h: 0.35, fontSize: 13, bold: true, color: INK, fontFace: "Arial Black", margin: 0 });
-const pilot = ["one coastal block with extension-worker access", "one agronomist-reviewed rule pack", "measure comprehension and claim conversion, not downloads"];
+const pilot = ["one coastal block with extension-worker access", "one agronomist-curated rule pack", "measure comprehension and claim conversion, not downloads"];
 pilot.forEach((ln, i) => {
   s.addText(String(i + 1) + ".  " + ln, { x: 5.35, y: 1.75 + i * 0.55, w: 4.0, h: 0.5, fontSize: 12, color: INK, fontFace: "Arial", margin: 0 });
 });
