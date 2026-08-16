@@ -4,15 +4,15 @@ const pptxgen = require("pptxgenjs");
 const p = new pptxgen();
 p.layout = "LAYOUT_16x9"; // 10 x 5.625 in
 
-// palette: black/white bold 3D report
-const DARK = "0A0A0A";
-const WHITE = "FFFFFF";
-const INK = "0A0A0A";
-const GRAY = "6E6E6E";
-const GRAY2 = "B0B0B0";
-const EDGE = "E0E0E0";
-const CARD_ALT = "161616";
-const ORANGE = "FF5A1F";
+// palette: forest & moss green (reverted from black/white 3D report)
+const DARK = "1F3D26";
+const WHITE = "F0F5EA";
+const INK = "2C5F2D";
+const GRAY = "5A6B5A";
+const GRAY2 = "8FAE8B";
+const EDGE = "D8E8C8";
+const CARD_ALT = "2A4A33";
+const ACCENT = "97BC62";
 
 const M = 0.5; // margin
 const W = 10;
@@ -22,7 +22,7 @@ const CW = (W - 2 * M - 2 * 0.35) / 3; // card width for 3-up rows
 // extruded text: back copy offset down-right, front copy on top
 function extrudeText(s, text, x, y, w, h, opt, dark) {
   const base = { fontFace: "Arial Black", bold: true, margin: 0 };
-  const back = Object.assign({}, base, opt, { x: x + 0.045, y: y + 0.045, color: dark ? "2A2A2A" : EDGE });
+  const back = Object.assign({}, base, opt, { x: x + 0.045, y: y + 0.045, color: dark ? "142B1A" : EDGE });
   s.addText(text, back);
   const front = Object.assign({}, base, opt, { x, y });
   if (!dark) front.shadow = { type: "outer", color: "000000", blur: 0, angle: 45, offset: 3, opacity: 0.25 };
@@ -40,7 +40,7 @@ function header(s, text) {
 
 function card(s, x, y, w, h, fill, opt) {
   opt = opt || {};
-  const back = opt.dark ? "2A2A2A" : EDGE;
+  const back = opt.dark ? "142B1A" : EDGE;
   s.addShape(p.ShapeType.rect, { x: x + 0.055, y: y + 0.055, w, h, fill: { color: back }, line: { color: back, width: 0 } });
   if (opt.strip) {
     s.addShape(p.ShapeType.parallelogram, { x: x + w - 0.02, y: y + 0.08, w: 0.09, h: h - 0.16, fill: { color: opt.strip }, line: { color: opt.strip, width: 0 } });
@@ -70,7 +70,7 @@ s = p.addSlide();
 s.background = { color: WHITE };
 header(s, "The problem: warnings arrive, decisions do not");
 card(s, M, 1.05, 9, 1.1, DARK, { rotate: -2, rectRadius: 0.08 });
-accentBar(s, M + 0.12, 1.15, 0.06, ORANGE, 0.9);
+accentBar(s, M + 0.12, 1.15, 0.06, ACCENT, 0.9);
 s.addText("Asha, 47, flowering paddy on a low-lying plot in Balasore district. Post-Yaas field reporting documents saltwater on 5,882 hectares of cultivable land across five blocks. The alert came. The action did not.", { x: 0.75, y: 1.18, w: 8.5, h: 0.85, fontSize: 14.5, italic: true, color: WHITE, fontFace: "Arial", margin: 0 });
 const stats = [
   ["5,428 acres", "crop loss across 4 blocks of Kendrapada and Bhadrak, Cyclone Dana 2024 (rapid assessment)"],
@@ -79,8 +79,8 @@ const stats = [
 ];
 stats.forEach((st, i) => {
   const x = M + i * (CW + 0.35);
-  card(s, x, 2.45, CW, 1.6, DARK, { strip: "555555" });
-  accentBar(s, x + 0.1, 2.5, CW - 0.2, ORANGE, 0.045);
+  card(s, x, 2.45, CW, 1.6, DARK, { strip: "3E5C42" });
+  accentBar(s, x + 0.1, 2.5, CW - 0.2, ACCENT, 0.045);
   s.addText(st[0], { x: x + 0.15, y: 2.68, w: CW - 0.3, h: 0.6, fontSize: 32, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
   s.addText(st[1], { x: x + 0.15, y: 3.36, w: CW - 0.3, h: 0.65, fontSize: 10, color: GRAY2, fontFace: "Arial", margin: 0 });
 });
@@ -104,7 +104,7 @@ s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-
   cards.forEach((c, i) => {
     const x = M + (i % 2) * 4.55;
     const y = 1.15 + Math.floor(i / 2) * 1.45;
-    card(s, x, y, 4.45, 1.3, CARD_ALT, { dark: true, rotate: -1.5, line: { color: "2A2A2A", width: 1 }, strip: "555555" });
+    card(s, x, y, 4.45, 1.3, CARD_ALT, { dark: true, rotate: -1.5, line: { color: "142B1A", width: 1 }, strip: "3E5C42" });
     s.addText(c[0], { x: x + 0.2, y: y + 0.08, w: 4.05, h: 0.55, fontSize: 44, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
     s.addText(c[1], { x: x + 0.2, y: y + 0.6, w: 4.05, h: 0.4, fontSize: 9.5, color: GRAY2, fontFace: "Arial", margin: 0 });
     s.addText("source: EVIDENCE-INDEX.md · freshness: 2026-08-15", { x: x + 0.2, y: y + 1.05, w: 4.05, h: 0.16, fontSize: 7.5, color: GRAY2, fontFace: "Arial", margin: 0 });
@@ -118,7 +118,7 @@ s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-
 s = p.addSlide();
 s.background = { color: DARK };
 extrudeText(s, "The method: everything is connected", M, 0.32, W - 2 * M, 0.6, { fontSize: 30, color: WHITE }, true);
-accentBar(s, M, 0.98, 1.4, ORANGE);
+accentBar(s, M, 0.98, 1.4, ACCENT);
 s.addText("No phenomenon is treated as a separate static event. Every hazard is a node in a web of causes and effects, and the system computes the chain, not the headline.", { x: M, y: 1.05, w: 9, h: 0.6, fontSize: 13.5, bold: true, color: WHITE, fontFace: "Arial", margin: 0 });
 
 const chain = [
@@ -130,7 +130,7 @@ const chain = [
 chain.forEach((ch, i) => {
   const x = M + (i % 2) * 4.55;
   const y = 1.85 + Math.floor(i / 2) * 1.35;
-  card(s, x, y, 4.45, 1.25, CARD_ALT, { dark: true, rotate: -1.5, line: { color: "2A2A2A", width: 1 }, strip: "555555" });
+  card(s, x, y, 4.45, 1.25, CARD_ALT, { dark: true, rotate: -1.5, line: { color: "142B1A", width: 1 }, strip: "3E5C42" });
   s.addText(ch[0], { x: x + 0.2, y: y + 0.1, w: 4.05, h: 0.35, fontSize: 14, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
   s.addText(ch[1], { x: x + 0.2, y: y + 0.48, w: 4.05, h: 0.75, fontSize: 8.5, color: GRAY2, fontFace: "Arial", margin: 0 });
 });
@@ -199,13 +199,13 @@ const proof = [
 proof.forEach((pr, i) => {
   const x = M + (i % 2) * (4.45 + 0.1);
   const y = 1.15 + Math.floor(i / 2) * 1.05;
-  card(s, x, y, 4.45, 0.92, DARK, { rotate: -1.5, strip: "555555" });
+  card(s, x, y, 4.45, 0.92, DARK, { rotate: -1.5, strip: "3E5C42" });
   s.addText(pr[0], { x: x + 0.15, y: y + 0.1, w: 1.9, h: 0.5, fontSize: 18, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
   s.addText(pr[1], { x: x + 2.05, y: y + 0.1, w: 2.3, h: 0.75, fontSize: 9, color: GRAY2, fontFace: "Arial", margin: 0 });
 });
 s.addText("Demo arc (3 minutes): Asha's plot -> cyclone forecast -> staged Odia advisory -> tower drops, advice still syncs -> damage evidence -> claim packet export.", { x: 5.45, y: 3.6, w: 4.0, h: 0.9, fontSize: 11.5, color: INK, fontFace: "Arial", margin: 0 });
 card(s, M, 4.35, 9, 0.72, DARK, {});
-accentBar(s, M + 0.1, 4.44, 0.05, ORANGE, 0.54);
+accentBar(s, M + 0.1, 4.44, 0.05, ACCENT, 0.54);
 s.addText("Prototype honesty: IMD feed is simulated, SMS and IVR run through simulators, agronomy rules are a curated seed set awaiting agronomist review. Nothing is labeled live that is not live.", { x: 0.7, y: 4.44, w: 8.6, h: 0.55, fontSize: 10.5, color: WHITE, fontFace: "Arial", margin: 0 });
 footer(s, "Verification: fresh runs 2026-08-16 07:40 IST, scaffold eval report on repo. 46/46 eval report is engine-level; agri domain rules are the new layer for Round 1.", 5.28);
 s.addNotes("The deck claims only what the repo proves. Round 0 submission is PPT plus prototype; the demo carries the proof. The honesty strip is deliberate: faculty will probe.");
@@ -214,9 +214,9 @@ s.addNotes("The deck claims only what the repo proves. Round 0 submission is PPT
 s = p.addSlide();
 s.background = { color: WHITE };
 header(s, "Why this is not another alert system");
-card(s, M, 1.05, 4.35, 1.85, "F2F2F2", { rotate: -2 });
+card(s, M, 1.05, 4.35, 1.85, "EAF2E4", { rotate: -2 });
 s.addText("The alert says", { x: 0.7, y: 1.2, w: 4.0, h: 0.35, fontSize: 12, bold: true, color: GRAY, fontFace: "Arial", margin: 0 });
-s.addText("\"Cyclone expected. Stay safe.\"", { x: 0.7, y: 1.6, w: 4.0, h: 0.5, fontSize: 17, italic: true, color: ORANGE, fontFace: "Arial Black", margin: 0 });
+s.addText("\"Cyclone expected. Stay safe.\"", { x: 0.7, y: 1.6, w: 4.0, h: 0.5, fontSize: 17, italic: true, color: ACCENT, fontFace: "Arial Black", margin: 0 });
 s.addText("No crop, no stage, no deadline, no cost of waiting, no recovery step.", { x: 0.7, y: 2.2, w: 4.0, h: 0.55, fontSize: 11, color: GRAY, fontFace: "Arial", margin: 0 });
 card(s, 5.15, 1.05, 4.35, 1.85, DARK, { rotate: -2 });
 s.addText("The advisory says", { x: 5.35, y: 1.2, w: 4.0, h: 0.35, fontSize: 12, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
@@ -231,14 +231,14 @@ const priorRows = [
   [{ text: "Prior art", options: { colspan: 3, fill: { color: DARK }, color: WHITE, bold: true, fontSize: 12, fontFace: "Arial Black", align: "center" } }],
 ];
 prior.forEach((row, ri) => {
-  const fill = ri % 2 === 0 ? "F7F7F7" : WHITE;
+  const fill = ri % 2 === 0 ? "F4F9EF" : WHITE;
   priorRows.push([
     { text: row[0], options: { fill: { color: fill }, color: INK, bold: true, fontSize: 10.5, fontFace: "Arial" } },
     { text: row[1], options: { fill: { color: fill }, color: GRAY, fontSize: 10.5, fontFace: "Arial" } },
     { text: row[2], options: { fill: { color: fill }, color: GRAY2, fontSize: 10.5, fontFace: "Arial" } },
   ]);
 });
-s.addTable(priorRows, { x: M, y: 3.0, w: 9, colW: [2.1, 3.2, 3.7], rowH: 0.33, border: { color: "D9D9D9", pt: 0.5 }, fontFace: "Arial", margin: 0.06, valign: "mid" });
+s.addTable(priorRows, { x: M, y: 3.0, w: 9, colW: [2.1, 3.2, 3.7], rowH: 0.33, border: { color: "C8D9C0", pt: 0.5 }, fontFace: "Arial", margin: 0.06, valign: "mid" });
 extrudeText(s, "Warnings are infrastructure. Decisions are the product.", M, 4.82, 9, 0.4, { fontSize: 15, color: INK }, false);
 footer(s, "Prior art from the statement-faithful research wave: channel evidence in research/raw/v2/cnc-channel-ps07-ultra8x-v2.content.md.", 5.32);
 s.addNotes("One contrast, one sentence. The moat is the governed decision: action, deadline, source, cost of waiting, trace. Prior art rows are mine-verified, not marketing.");
@@ -247,7 +247,7 @@ s.addNotes("One contrast, one sentence. The moat is the governed decision: actio
 s = p.addSlide();
 s.background = { color: DARK };
 extrudeText(s, "The counterfactual: what this changes in a real event", M, 0.32, W - 2 * M, 0.6, { fontSize: 28, color: WHITE }, true);
-accentBar(s, M, 0.98, 1.4, ORANGE);
+accentBar(s, M, 0.98, 1.4, ACCENT);
 s.addText("We took the real incidents from the ledgers, ran the engine backward over their actual timelines, and compared the decision output to what the ground truth records. No prevented-loss claim is made: the numbers are the events as they happened.", { x: M, y: 1.05, w: 9, h: 0.6, fontSize: 11.5, color: GRAY2, fontFace: "Arial", margin: 0 });
 
 const events = [
@@ -259,10 +259,10 @@ const events = [
 events.forEach((ev, i) => {
   const x = M + (i % 2) * 4.55;
   const y = 1.8 + Math.floor(i / 2) * 1.5;
-  card(s, x, y, 4.45, 1.4, CARD_ALT, { dark: true, rotate: -1.5, line: { color: "2A2A2A", width: 1 }, strip: "555555" });
+  card(s, x, y, 4.45, 1.4, CARD_ALT, { dark: true, rotate: -1.5, line: { color: "142B1A", width: 1 }, strip: "3E5C42" });
   s.addText(ev[0], { x: x + 0.2, y: y + 0.1, w: 4.05, h: 0.35, fontSize: 15, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
   s.addText(ev[1], { x: x + 0.2, y: y + 0.48, w: 4.05, h: 0.85, fontSize: 8, color: GRAY2, fontFace: "Arial", margin: 0 });
-  s.addText("sources: " + ev[2], { x: x + 0.2, y: y + 1.22, w: 4.05, h: 0.15, fontSize: 6.5, color: "8A8A8A", fontFace: "Arial", margin: 0 });
+  s.addText("sources: " + ev[2], { x: x + 0.2, y: y + 1.22, w: 4.05, h: 0.15, fontSize: 6.5, color: "8FAE8B", fontFace: "Arial", margin: 0 });
 });
 footer(s, "The replay froze each event's best track before running, so the engine never sees the outcome. Honesty: what the engine WOULD have issued, validated against what happened.", 5.1, true);
 s.addNotes("Counterfactual discipline: no avoided-loss claims anywhere. The events are real, the lead times are real, the engine output is what the product would issue, and the replay validates the loss bands against actual anchors. A judge asking 'so what would this have done in Fani' gets this slide.");
@@ -278,10 +278,10 @@ const models = [
 ];
 models.forEach((md, i) => {
   const x = M + i * (CW + 0.35);
-  card(s, x, 1.35, CW, 2.5, DARK, { rotate: -1.5, strip: "555555" });
+  card(s, x, 1.35, CW, 2.5, DARK, { rotate: -1.5, strip: "3E5C42" });
   s.addText(md[0], { x: x + 0.2, y: 1.55, w: CW - 0.4, h: 0.4, fontSize: 16, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
   s.addText(md[1], { x: x + 0.2, y: 2.1, w: CW - 0.4, h: 1.0, fontSize: 11.5, color: GRAY2, fontFace: "Arial", margin: 0 });
-  s.addText(md[2], { x: x + 0.2, y: 3.25, w: CW - 0.4, h: 0.5, fontSize: 10, italic: true, color: "8A8A8A", fontFace: "Arial", margin: 0 });
+  s.addText(md[2], { x: x + 0.2, y: 3.25, w: CW - 0.4, h: 0.5, fontSize: 10, italic: true, color: "8FAE8B", fontFace: "Arial", margin: 0 });
 });
 s.addText("Seed revenue line for Round 1: one FPO, one season, measured renewal. No consumer subscription fantasy.", { x: M, y: 4.35, w: 9, h: 0.45, fontSize: 13, bold: true, color: INK, fontFace: "Arial Black", margin: 0 });
 footer(s, "Mine verdict: the real buyer is institutional, and the real distribution is extension workers, KCC, FPOs, dealers, and panchayat actors. Consumer subscriptions and network effects are not evidenced.");
@@ -334,8 +334,8 @@ s = p.addSlide();
 s.background = { color: DARK };
 extrudeText(s, "Grade our decision quality.", 1, 1.0, 8, 0.7, { fontSize: 40, color: WHITE, align: "center" }, true);
 s.addText("Why this action, why now, why this channel. That is the product, and your questions shape Round 1.", { x: 1.2, y: 1.8, w: 7.6, h: 0.55, fontSize: 15, color: GRAY2, fontFace: "Arial", align: "center", margin: 0 });
-card(s, 1.2, 2.6, 7.6, 1.5, CARD_ALT, { dark: true, line: { color: "2A2A2A", width: 1 } });
-accentBar(s, 1.28, 2.68, 0.05, ORANGE, 1.3);
+card(s, 1.2, 2.6, 7.6, 1.5, CARD_ALT, { dark: true, line: { color: "142B1A", width: 1 } });
+accentBar(s, 1.28, 2.68, 0.05, ACCENT, 1.3);
 s.addText("One limitation, stated openly: the rule set is a curated seed awaiting agronomist review; the IMD feed and telecom delivery are simulated in this prototype, and nothing is sent over live SMS or WhatsApp. Every claim in this deck has a dated source on the repo.", { x: 1.45, y: 2.78, w: 7.1, h: 1.15, fontSize: 12, color: WHITE, fontFace: "Arial", margin: 0 });
 s.addText("Live demo: 3 minutes  |  Repo: github.com/harshgounder/craft-n-code  |  Team 511", { x: 1, y: 4.5, w: 8, h: 0.4, fontSize: 12.5, color: GRAY2, fontFace: "Arial", align: "center", margin: 0 });
 s.addNotes("Ask tied to the next milestone: faculty feedback contract. Slide 8 of the runbook said the same: feedback shapes Round 1. The limitation is the honesty move faculty will remember.");

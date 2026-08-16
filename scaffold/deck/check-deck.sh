@@ -34,8 +34,8 @@ if hits:
     print('FAIL: banned words in deck text:', hits); sys.exit(1)
 
 # hazard orange used, near-black base used, Arial Black present
-assert 'FF5A1F' in allxml, 'hazard orange missing'
-assert '0A0A0A' in allxml, 'near-black base missing'
+assert '97BC62' in allxml, 'moss green missing'
+assert '1F3D26' in allxml, 'forest green base missing'
 assert 'Arial Black' in allxml, 'Arial Black missing'
 
 print(f'DECK GATE PASS: {len(slides)} slides, {len(texts)} text runs, 0 em dash, 0 banned words, style tokens present')
