@@ -1,0 +1,569 @@
+[
+  {
+    "field": "answer",
+    "citations": [
+      {
+        "title": "Bayesian Online Changepoint Detection",
+        "url": "https://gregorygundersen.com/blog/2019/08/13/bocd",
+        "excerpts": [
+          "Bayesian Online Changepoint Detection Aug 13, 2019 \u2014 Bayesian online changepoint detection introduces a modular Bayesian framework for online estimation of changes in the generative parameters of sequential data."
+        ]
+      },
+      {
+        "title": "On-device training in TensorFlow Lite",
+        "url": "https://blog.tensorflow.org/2021/11/on-device-training-in-tensorflow-lite.html",
+        "excerpts": [
+          "On-device training in TensorFlow Lite TensorFlow Lite now supports training your models on-device, On-device training enables interesting personalization use cases where models can",
+          "The `train` function takes a batch of input images and labels.",
+          "A _[train](https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/examples/on_device_training/overview.ipynb=d8577c80&line=38&uniqifier=1)_ function that trains the model using training data. The train function below makes a prediction, calculates the loss (or error), and uses tf.GradientTape() to record operations for [automatic differentiation](https://www.tensorflow.org/guide/autodiff) and update the model\u2019s parameters.",
+          "@tf.function(input_signature=[ tf.TensorSpec([None, IMG_SIZE, IMG_SIZE], tf.float32), tf.TensorSpec([None, 10], tf.float32), ]) def train(self, x, y): with tf.GradientTape() as tape: prediction = self.model(x) loss = self._LOSS_FN(prediction, y) gradients = tape.gradient(loss, self.model.trainable_variables) self._OPTIM.apply_gradients( zip(gradients, self.model.trainable_variables)) result = {\"loss\": loss} for grad in gradients: result[grad.name] = grad return result ```",
+          "For example, we had defined a _train_ function for on-device training, which is one of the model\u2019s signatures. The _train_ function can be invoked using TensorFlow Lite\u2019s [runSignature](https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/examples/on_device_training/overview.ipynb=jBYb5JEnPeOR) method by specifying the name of the signature (\u2018train\u2019):",
+          "interpreter.runSignature(inputs, outputs, \"train\");",
+          "On Android, TensorFlow Lite on-device training can be performed using either Java or C++ APIs.",
+          "You can create an instance of the TensorFlow Lite [Interpreter](https://www.tensorflow.org/lite/guide/inference) to load a model and drive model training tasks.",
+          "We had previously defined multiple tf.functions: these functions can be invoked using TensorFlow Lite\u2019s support for [Signatures](https://www.tensorflow.org/lite/guide/signatures) , which allow a single TensorFlow Lite model to support multiple \u2018entry\u2019 points.",
+          "Performance: Depending on the use case, on-device training could take anywhere from a few seconds to much longer. If you run on-device training as part of a user-facing feature (e.g., your end user is interacting with the feature), you should measure the time taken for a wide range of possible training inputs in your app to limit the training time. If your use-case requires very long on-device training times, consider training a model using a desktop or the cloud first, then fine-tuning it on-device.",
+          "Battery usage: Just like model inference, invoking model training on device may result in a battery drain. If model training is part of a feature that is not user facing, we recommend following Android\u2019s [guidelines](https://developer.android.com/guide/background) to implement background tasks.",
+          "Training from scratch vs. retraining: In _theory_ , it should be possible to train a model from scratch on device using the above features. However, in _reality_ , training from scratch involves an enormous amount of training data and may take several days even on servers with powerful processors. Consequently, for on-device applications, we recommend retraining on an already trained model (i.e., [transfer learning](https://developers.google.com/machine-learning/glossary) ) as shown in the [Colab](https://www.tensorflow.org/lite/examples/on_device_training/overview) example.",
+          "Performance: Depending on the use case, on-device training could take anywhere from a few seconds to much longer. If you run on-device training as part of a user-facing feature (e.g., your end user is interacting with the feature), you should measure the time taken for a wide range of possible training inputs in your app to limit the training time. If your use-case requires very long on-device training times, consider training a model using a desktop or the cloud first, then fine-tuning it on-device. Battery usage: Just like model inference, invoking model training on device may result in a battery drain. If model training is part of a feature that is not user facing, we recommend following Android\u2019s [guidelines](https://developer.android.com/guide/background) to implement background tasks. Training from scratch vs. retraining: In _theory_ , it should be possible to train a model from scratch on device using the above features. However, in _reality_ , training from scratch involves an enormous amount of training data and may take several days even on servers with powerful processors. Consequently, for on-device applications, we recommend retraining on an already trained model (i.e., [transfer learning](https://developers.google.com/machine-learning/glossary) ) as shown in the [Colab](https://www.tensorflow.org/lite/examples/on_device_training/overview) example.",
+          "A _[train](https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/examples/on_device_training/overview.ipynb=d8577c80&line=38&uniqifier=1)_ function that trains the model using training data. The train function below makes a prediction, calculates the loss (or error), and uses tf.GradientTape() to record operations for [automatic differentiation](https://www.tensorflow.org/guide/autodiff) and update the model\u2019s parameters. ``` The `train` function takes a batch of input images and labels. @tf.function(input_signature=[ tf.TensorSpec([None, IMG_SIZE, IMG_SIZE], tf.float32), tf.TensorSpec([None, 10], tf.float32), ]) def train(self, x, y): with tf.GradientTape() as tape: prediction = self.model(x) loss = self._LOSS_FN(prediction, y) gradients = tape.gradient(loss, self.model.trainable_variables) self._OPTIM.apply_gradients( zip(gradients, self.model.trainable_variables)) result = {\"loss\": loss} for grad in gradients: result[grad.name] = grad return result ```",
+          "On Android, TensorFlow Lite on-device training can be performed using either Java or C++ APIs. You can create an instance of the TensorFlow Lite [Interpreter](https://www.tensorflow.org/lite/guide/inference) to load a model and drive model training tasks. We had previously defined multiple tf.functions: these functions can be invoked using TensorFlow Lite\u2019s support for [Signatures](https://www.tensorflow.org/lite/guide/signatures) , which allow a single TensorFlow Lite model to support multiple \u2018entry\u2019 points. For example, we had defined a _train_ function for on-device training, which is one of the model\u2019s signatures. The _train_ function can be invoked using TensorFlow Lite\u2019s [runSignature](https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/lite/g3doc/examples/on_device_training/overview.ipynb=jBYb5JEnPeOR) method by specifying the name of the signature (\u2018train\u2019):"
+        ]
+      },
+      {
+        "title": "Mobile Connectivity and Its Impact on Rural India | Ookla",
+        "url": "https://www.ookla.com/articles/india-mobile-connectivity-1h2025",
+        "excerpts": [
+          "Mobile Connectivity and Its Impact on Rural India | Ookla Oct 7, 2025 \u2014 4G networks demonstrated strong penetration in rural India, with samples reporting signal strengths exceeding -110 dBm in 88.9% of all villages"
+        ]
+      },
+      {
+        "title": "TensorFlow Federated",
+        "url": "https://www.tensorflow.org/federated",
+        "excerpts": [
+          "TensorFlow Federated TFF enables developers to declaratively express federated computations, so they could be deployed to diverse runtime environments.",
+          "Included with TFF is a performant multi-machine simulation runtime for experiments.",
+          "TensorFlow Federated TFF enables developers to declaratively express federated computations, so they could be deployed to diverse runtime environments. Included with TFF is a performant multi-machine simulation runtime for experiments. Please visit the tutorials and try it out yourself!"
+        ]
+      },
+      {
+        "title": "[2305.11206] LIMA: Less Is More for Alignment - arXiv.org",
+        "url": "https://arxiv.org/abs/2305.11206",
+        "excerpts": [
+          "[2305.11206] LIMA: Less Is More for Alignment - arXiv.org We measure the relative importance of these two stages by training LIMA, a 65B parameter LLaMa language model fine-tuned with the standard supervised loss on only 1,000 carefully curated prompts and responses, without any reinforcement learning or human preference modeling."
+        ]
+      },
+      {
+        "title": "[2305.14314] QLoRA: Efficient Finetuning of Quantized LLMs",
+        "url": "https://arxiv.org/abs/2305.14314",
+        "excerpts": [
+          "[2305.14314] QLoRA: Efficient Finetuning of Quantized LLMs by T Dettmers \u00b7 2023 \u00b7 Cited by 7404 \u2014 We present QLoRA, an efficient finetuning approach that reduces memory usage enough to finetune a 65B parameter model on a single 48GB GPU."
+        ]
+      },
+      {
+        "title": "Fine-tuning LLMs Guide",
+        "url": "http://unsloth.ai/docs/get-started/fine-tuning-llms-guide",
+        "excerpts": [
+          "LoRA is when the original model is 16-bit unquantized while QLoRA quantizes to 4-bit to save 75% memory. {% endcolumn %} ...",
+          "Choose the Right Model + Method **LoRA** is a parameter efficient training method that typically keeps the base model's weights frozen and trains a small set of added low-rank adapter weights (in 16-bit precision). **QLoRA** combines LoRA with 4-bit precision to handle very large models with minimal resources.",
+          "These models consume slightly more VRAM than standard BitsAndBytes 4-bit models but offer significantly higher accuracy. ... **`load_in_4bit = True`** \u2013 Enables 4-bit quantization, reducing memory use 4\u00d7 for fine-tuning.",
+          "Disabling it enables LoRA 16-bit fine-tuning.",
+          "We recommend starting with QLoRA, as it is one of the most accessible and effective methods for training models.",
+          "Our [dynamic 4-bit](https://unsloth.ai/blog/dynamic-4bit) quants, the accuracy loss for QLoRA compared to LoRA is now largely recovered. ...",
+          "Model names ending in **`unsloth-bnb-4bit`** indicate they are [**Unsloth dynamic 4-bit**](https://unsloth.ai/blog/dynamic-4bit) **quants**.",
+          "When done correctly, LoRA can match FFT.",
+          "Unsloth also supports full fine-tuning (FFT) and pretraining, which require significantly more resources, but FFT is usually unnecessary.",
+          "You can also enable 16-bit LoRA with `load_in_16bit = True` To enable full fine-tuning (FFT), set `full_finetuning = True`. ... {% hint style=\"info\" %} A common mistake is jumping straight into full fine-tuning (FFT), which is compute-heavy."
+        ]
+      },
+      {
+        "title": "AGROMET ADVISORY SERVICES - India Meteorological Department",
+        "url": "https://mausam.imd.gov.in/responsive/agromet_adv_ser_state_current.php",
+        "excerpts": [
+          "AGROMET ADVISORY SERVICES - India Meteorological Department AGROMET ADVISORY SERVICES District Bulletins District level weather forecast State Bulletins National Bulletins Current National Bulletin based on ERFS Interactive Map for Agromet Information Special Agrimet Advisory KALP (Krishi Advisory Based on Location specific weather prediction) Launches on 151st Foundation Day (Videos and SOP manuals)"
+        ]
+      },
+      {
+        "title": "HuggingFaceTB/SmolLM2-1.7B \u00b7 Hugging Face",
+        "url": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B",
+        "excerpts": [
+          "HuggingFaceTB/SmolLM2-1.7B \u00b7 Hugging Face SmolLM2 is a family of compact language models available in three size: 135M, 360M, and 1.7B parameters.",
+          "They are capable of solving a wide range of tasks while being lightweight enough to run on-device.",
+          "HuggingFaceTB/SmolLM2-1.7B \u00b7 Hugging Face SmolLM2 is a family of compact language models available in three size: 135M, 360M, and 1.7B parameters. They are capable of solving a wide range of tasks while being lightweight enough to run on-device. More details in our paper: https://arxiv.org/abs/2502.02737v1."
+        ]
+      },
+      {
+        "title": "Differential Privacy in TFF | TensorFlow Federated",
+        "url": "https://www.tensorflow.org/federated/tutorials/federated_learning_with_differential_privacy",
+        "excerpts": [
+          "Differential Privacy in TFF | TensorFlow Federated This tutorial will demonstrate the recommended best practice for training models with user-level Differential Privacy using Tensorflow Federated."
+        ]
+      },
+      {
+        "title": "Telecom Statistics India-2024 - Department of Telecommunication",
+        "url": "https://dot.gov.in/static/uploads/2025/07/f44e3a674c85aa98cd6fa881e4462b57.pdf",
+        "excerpts": [
+          "Telecom Statistics India-2024 - Department of Telecommunication Source- Yearly Performance Indicator Reports of TRAI, Calender Year figures Upto 2020 and 2020-21 onwards Financial Year. Source: TRAI, Yearly Performance Indicators of Indian Telecom Sector - 2023-24."
+        ]
+      },
+      {
+        "title": "Deployment | TensorFlow Federated",
+        "url": "https://www.tensorflow.org/federated/deployment",
+        "excerpts": [
+          "Deployment | TensorFlow Federated One example common use of this would be to reduce the set of federated operators that appear in a computation, so that parts of the backend dowstream of the transformation do not have to be exposed to the full set.",
+          "In addition to defining computations, TFF provides tools for executing them. Whereas the primary focus is on simulations, the interfaces and tools we provide are more general. This document outlines the options for deployment to various types of platform.",
+          "There are two principal modes of deployment for TFF computations: **Native backends** . We're going to refer to a backend as _native_ if it is capable of interpreting the syntactic structure of TFF computations as defined in [`computation.proto`](https://github.com/google-parfait/federated-language/blob/main/tensorflow_federated/proto/computation.proto) . A native backend does not necessarily have to support all language constructs or intrinsics. Native backends must implement one of the standard TFF _executor_ interfaces, such as [`federated_language.framework.Executor`](https://www.tensorflow.org/federated/api_docs/python/tff/framework/Executor) for consumption by Python code, or the language-independent version of it defined in [`executor.proto`](https://github.com/google-parfait/tensorflow-federated/blob/main/tensorflow_federated/proto/v0/executor.proto) exposed as a gRPC endpoint. Native backends that support the above interfaces can be used interactively in lieu of the default reference runtime, e.g., to run notebooks or experiment scripts. Most native backends will operate in the _interpreted mode_ , i.e., they will process the computation definition as it is defined, and execute it incrementally, but this does not always have to be the case. A native backend can also _transform_ ( _compile_ , or JIT-compile) a part of the computation for better performance, or to simplify its structure. One example common use of this would be to reduce the set of federated operators that appear in a computation, so that parts of the backend dowstream of the transformation do not have to be exposed to the full set. **Non-native backends** . Non-native backends, in contrast to the native ones, cannot directly interpret the TFF computation structure, and require it to be converted into a different _target representation_ understood by the backend. A notable example of such a backend would be a Hadoop cluster, or a similar platform for static data pipelines. In order for a computation to be deployed to such a backend, it must first be _transformed_ (or _compiled_ ). Depending on the setup, this can be done transparently to the user (i.e., a non-native backend could be wrapped in a standard executor interface such as [`federated_language.framework.Executor`](https://www.tensorflow.org/federated/api_docs/python/tff/framework/Executor) that performs transformations under the hood), or it can be exposed as a tool that allows the user to manually convert a computation, or a set of computations, into the appropriate target representation understood by the particular class of backends. Code that supports specific types of non-native backends can be found in the [`tff.backends`](https://www.tensorflow.org/federated/api_docs/python/tff/backends) namespace. At the time of this writing, the only support type of non-native backends is a class of systems capable of executing single-round MapReduce.",
+          "Native backends must implement one of the standard TFF _executor_ interfaces, such as [`federated_language.framework.Executor`](https://www.tensorflow.org/federated/api_docs/python/tff/framework/Executor) for consumption by Python code, or the language-independent version of it defined in [`executor.proto`](https://github.com/google-parfait/tensorflow-federated/blob/main/tensorflow_federated/proto/v0/executor.proto) exposed as a gRPC endpoint.",
+          "**Non-native backends** . Non-native backends, in contrast to the native ones, cannot directly interpret the TFF computation structure, and require it to be converted into a different _target representation_ understood by the backend. A notable example of such a backend would be a Hadoop cluster, or a similar platform for static data pipelines. In order for a computation to be deployed to such a backend, it must first be _transformed_ (or _compiled_ ). Depending on the setup, this can be done transparently to the user (i.e., a non-native backend could be wrapped in a standard executor interface such as [`federated_language.framework.Executor`](https://www.tensorflow.org/federated/api_docs/python/tff/framework/Executor) that performs transformations under the hood), or it can be exposed as a tool that allows the user to manually convert a computation, or a set of computations, into the appropriate target representation understood by the particular class of backends.",
+          "**Note:** This document is still under construction.",
+          "**Native backends** . We're going to refer to a backend as _native_ if it is capable of interpreting the syntactic structure of TFF computations as defined in [`computation.proto`](https://github.com/google-parfait/federated-language/blob/main/tensorflow_federated/proto/computation.proto) . A native backend does not necessarily have to support all language constructs or intrinsics. Native backends must implement one of the standard TFF _executor_ interfaces, such as [`federated_language.framework.Executor`](https://www.tensorflow.org/federated/api_docs/python/tff/framework/Executor) for consumption by Python code, or the language-independent version of it defined in [`executor.proto`](https://github.com/google-parfait/tensorflow-federated/blob/main/tensorflow_federated/proto/v0/executor.proto) exposed as a gRPC endpoint.",
+          "Code that supports specific types of non-native backends can be found in the [`tff.backends`](https://www.tensorflow.org/federated/api_docs/python/tff/backends) namespace. At the time of this writing, the only support type of non-native backends is a class of systems capable of executing single-round MapReduce."
+        ]
+      },
+      {
+        "title": "Bayesian Online Changepoint Detection - arXiv.org",
+        "url": "https://arxiv.org/pdf/0710.3742",
+        "excerpts": [
+          "Bayesian Online Changepoint Detection - arXiv.org This paper contributes a predictive, online interpeta-tion of Bayesian changepoint detection and provides a simple and exact method for calculating the poste-rior probability of the current run length.",
+          "We assume that we can compute the predictive distri- bution conditional on a given run length rt.",
+          "We then integrate over the posterior distribution on the current run length to find the marginal predictive distribution: P(xt+1 | x1:t) = \ufffd rt P(xt+1 | rt, x ( r ) t ) P ( r t | x 1: t ) (1)",
+          "Note that the predictive distribution P(xt | rt\u22121, x1:t) depends only on the recent data x ( r ) t . We can thus generate a recursive message-passing algorithm for the joint distribution over the current run length and the data, based on two calculations: 1) the prior over rt given rt\u22121, and 2) the predictive distribution over the newly-observed datum, given the data since the last changepoint.",
+          "The conditional prior on the changepoint P(rt | rt\u22121) gives this algorithm its computational efficiency, as it has nonzero mass at only two outcomes: the run length either continues to grow and rt = rt\u22121 +1 or a change- point occurs and rt = 0.",
+          "The complete algorithm, assuming exponential-family likelihoods, is shown in Algorithm 1.",
+          "Algorithm 1: The online changepoint algorithm with prediction.",
+          "Initialize P(r0) = \u02dc S(r) or P(r0=0) = 1",
+          "Observe New Datum xt 3.",
+          "Evaluate Predictive Probability \u03c0 ( r ) t = P(xt | \u03bd ( r ) t , \u03c7 ( r ) t )",
+          "Calculate Growth Probabilities P(rt=rt\u22121+1, x1:t) = P(rt\u22121,x1:t\u22121)\u03c0 ( r ) t (1\u2212H(rt\u22121))",
+          "Calculate Changepoint Probabilities P(rt=0, x1:t) = \ufffd rt\u22121 P(rt\u22121, x1:t\u22121)\u03c0 ( r ) t H(rt\u22121)",
+          "Calculate Evidence P(x1:t) = \ufffd rt P(rt, x1:t)",
+          "Determine Run Length Distribution P(rt | x1:t) = P(rt, x1:t)/P(x1:t)",
+          "Update Sufficient Statistics \u03bd (0) t+1 = \u03bd prior \u03c7 (0) t+1 = \u03c7 prior \u03bd ( r \\+1) t+1 = \u03bd ( r ) t + 1 \u03c7 ( r \\+1) t+1 = \u03c7 ( r ) t + u(xt)",
+          "Perform Prediction P(xt+1 | x1:t) = \ufffd rt P(xt+1|x ( r ) t , r t )",
+          "The space- and time-complexity per time-step are linear in the number of data points so far observed.",
+          "A trivial modification of the algorithm is to discard the run length probability estimates in the tail of the distribution which have a total mass less than some threshold, say 10 \u2212 \u2074 .",
+          "This yields a constant average complexity per iteration on the order of the expected run length E[r], although the worst-case complexity is still linear in the data.",
+          "We assume that we can compute the predictive distri- bution conditional on a given run length rt. We then integrate over the posterior distribution on the current run length to find the marginal predictive distribution: P(xt+1 | x1:t) = \ufffd rt P(xt+1 | rt, x ( r ) t ) P ( r t | x 1: t ) (1) To find the posterior distribution P(rt | x1:t) = P ( r t , x 1: t ) P(x1:t) , (2) we write the joint distribution over run length and observed data recursively. P(rt, x1:t) = \ufffd rt\u22121 P(rt, rt\u22121, x1:t) = \ufffd rt\u22121 P(rt, xt | rt\u22121, x1:t\u22121)P(rt\u22121, x1:t\u22121) (3) = \ufffd rt\u22121 P(rt | rt\u22121)P(xt | rt\u22121, x ( r ) t ) P ( r t \u2212 \u00b9 , x 1: t \u2212 \u00b9 ) Note that the predictive distribution P(xt | rt\u22121, x1:t) depends only on the recent data x ( r ) t . We can thus generate a recursive message-passing algorithm for the joint distribution over the current run length and the data, based on two calculations: 1) the prior over rt given rt\u22121, and 2) the predictive distribution over the newly-observed datum, given the data since the last changepoint. 2\\.1 THE CHANGEPOINT PRIOR The conditional prior on the changepoint P(rt | rt\u22121) gives this algorithm its computational efficiency, as it has nonzero mass at only two outcomes: the run length either continues to grow and rt = rt\u22121 +1 or a change- point occurs and rt = 0.",
+          "The space- and time-complexity per time-step are linear in the number of data points so far observed. A trivial modification of the algorithm is to discard the run length probability estimates in the tail of the distribution which have a total mass less than some threshold, say 10 \u2212 \u2074 . This yields a constant average complexity per iteration on the order of the expected run length E[r], although the worst-case complexity is still linear in the data."
+        ]
+      },
+      {
+        "title": "An Empirical Study of Catastrophic Forgetting in Large ...",
+        "url": "https://arxiv.org/abs/2308.08747",
+        "excerpts": [
+          "Catastrophic forgetting (CF) is a phenomenon that occurs in machine learning when a model forgets previously learned information while acquiring new knowledge for achieving a satisfactory performance in downstream tasks.",
+          "As large language models (LLMs) have demonstrated remarkable performance, it is intriguing to investigate whether CF exists during the continual instruction tuning of LLMs"
+        ]
+      },
+      {
+        "title": "meta-llama/Llama-3.2-3B \u00b7 Hugging Face",
+        "url": "https://huggingface.co/meta-llama/Llama-3.2-3B",
+        "excerpts": [
+          "meta-llama/Llama-3.2-3B \u00b7 Hugging Face \u201cLlama 3.2\u201d means the foundational large language models and software and algorithms, including machine-learning model code, trained model weights, inference-enabling code, training-enabling code, fine-tuning enabling code and other elements of the foregoing distributed by Meta at https://www.llama.com/llama-downloads."
+        ]
+      },
+      {
+        "title": "[2306.14793] Private Federated Learning in Gboard",
+        "url": "https://arxiv.org/abs/2306.14793",
+        "excerpts": [
+          "[2306.14793] Private Federated Learning in Gboard by Y Zhang \u00b7 2023 \u00b7 Cited by 24 \u2014 This white paper describes recent advances in Gboard ( Google Keyboard )'s use of federated learning , DP-Follow-the-Regularized-Leader (DP-FTRL)"
+        ]
+      },
+      {
+        "title": "Bitsandbytes - Hugging Face",
+        "url": "https://huggingface.co/docs/transformers/en/quantization/bitsandbytes",
+        "excerpts": [
+          "You should use NF4 for training 4-bit base models.",
+          "Bitsandbytes - Hugging Face NF4 is a 4-bit data type from the QLoRA paper, adapted for weights initialized from a normal distribution."
+        ]
+      },
+      {
+        "title": "LESS: Selecting Influential Data for Targeted Instruction Tuning",
+        "url": "https://proceedings.mlr.press/v235/xia24c.html",
+        "excerpts": [
+          "LESS: Selecting Influential Data for Targeted Instruction Tuning However, real-world applications often require a specialized suite of skills (e.g., reasoning). The challenge lies in identifying the most relevant data from these extensive datasets to effectively develop specific capabilities, a setting we frame as targeted instruction tuning.",
+          "However, real-world applications often require a specialized suite of skills (e.g., reasoning).",
+          "The challenge lies in identifying the most relevant data from these extensive datasets to effectively develop specific capabilities, a setting we frame as _targeted instruction tuning_ .",
+          "We propose LESS, an optimizer-aware and practically efficient algorithm to estimate data influences and perform **L** ow-rank gradi **E** nt **S** imilarity **S** earch for instruction data selection.",
+          "LESS first constructs a highly reusable and transferable _gradient datastore_ with low-dimensional gradient features and then selects examples based on their similarity to few-shot examples embodying a specific capability.",
+          "Experiments show that training on a LESS-selected 5% of the data can often outperform training on the full dataset across diverse downstream tasks.",
+          "Furthermore, the selected data is highly transferable: smaller models can be leveraged to select useful data for larger models and models from different families.",
+          "Our qualitative analysis shows that our method goes beyond surface form cues to identify data that exemplifies the necessary reasoning skills for the intended downstream application.",
+          "LESS first constructs a highly reusable and transferable _gradient datastore_ with low-dimensional gradient features and then selects examples based on their similarity to few-shot examples embodying a specific capability. Experiments show that training on a LESS-selected 5% of the data can often outperform training on the full dataset across diverse downstream tasks. Furthermore, the selected data is highly transferable: smaller models can be leveraged to select useful data for larger models and models from different families. Our qualitative analysis shows that our method goes beyond surface form cues to identify data that exemplifies the necessary reasoning skills for the intended downstream application.",
+          "However, real-world applications often require a specialized suite of skills (e.g., reasoning). The challenge lies in identifying the most relevant data from these extensive datasets to effectively develop specific capabilities, a setting we frame as _targeted instruction tuning_ . We propose LESS, an optimizer-aware and practically efficient algorithm to estimate data influences and perform **L** ow-rank gradi **E** nt **S** imilarity **S** earch for instruction data selection. Crucially, LESS adapts existing influence formulations to work with the Adam optimizer and variable-length instruction data. LESS first constructs a highly reusable and transferable _gradient datastore_ with low-dimensional gradient features and then selects examples based on their similarity to few-shot examples embodying a specific capability. Experiments show that training on a LESS-selected 5% of the data can often outperform training on the full dataset across diverse downstream tasks. Furthermore, the selected data is highly transferable: smaller models can be leveraged to select useful data for larger models and models from different families. Our qualitative analysis shows that our method goes beyond surface form cues to identify data that exemplifies the necessary reasoning skills for the intended downstream application."
+        ]
+      },
+      {
+        "title": "L4 Tensor Core GPU for AI & Graphics",
+        "url": "https://www.nvidia.com/en-us/data-center/l4",
+        "excerpts": [
+          "L4 Tensor Core GPU for AI & Graphics Product Specifications ; GPU memory, 24GB ; GPU memory bandwidth, 300GB/s ; NVENC | NVDEC | JPEG decoders, 2 | 4 | 4 ; Max thermal design power (TDP), 72W."
+        ]
+      },
+      {
+        "title": "Federated Learning: Collaborative Machine ...",
+        "url": "https://research.google/blog/federated-learning-collaborative-machine-learning-without-centralized-training-data",
+        "excerpts": [
+          "Careful scheduling ensures training happens only when the device is idle, plugged in, and on a free wireless connection, so there is no impact"
+        ]
+      },
+      {
+        "title": "GitHub - flwrlabs/flower: Flower: A Friendly Federated AI Framework \u00b7 GitHub",
+        "url": "http://github.com/flwrlabs/flower",
+        "excerpts": [
+          "[Quickstart (scikit-learn)](https://flower.ai/docs/framework/tutorial-quickstart-scikitlearn.html) [Quickstart (Android [TFLite])](https://flower.ai/docs/framework/tutorial-quickstart-android.html) [Quickstart (iOS [CoreML])](https://flower.ai/docs/framework/tutorial-quickstart-ios.html) Flower Baselines Flower Baselines is a collection of community-contributed projects that reproduce the experiments performed in popular federated learning publications.",
+          "Quickstart examples: ... [Quickstart (Android [TFLite])](https://github.com/flwrlabs/flower/tree/main/examples/android) [Quickstart (iOS [CoreML])](https://github.com/flwrlabs/flower/tree/main/examples/ios) [Quickstart (MLX)](https://github.com/flwrlabs/flower/tree/main/examples/quickstart-mlx) [Quickstart (XGBoost)](https://github.com/flwrlabs/flower/tree/main/examples/xgboost-quickstart) [Quickstart (CatBoost)](https://github.com/flwrlabs/flower/tree/main/examples/quickstart-catboost) Other [examples](https://github.com/flwrlabs/flower/tree/main/examples) : [Raspberry Pi & Nvidia Jetson Tutorial](https://github.com/flwrlabs/flower/tree/main/examples/embedded-devices) [PyTorch: From Centralized to Federated](https://github.com/flwrlabs/flower/tree/main/examples/pytorch-from-centralized-to-federated) [Vertical FL](https://github.com/flwrlabs/flower/tree/main/examples/vertical-fl) [Federated Finetuning of OpenAI's Whisper](https://github.com/flwrlabs/flower/tree/main/examples/whisper-federated-finetuning) [Federated Finetuning of Large Language Model](https://github.com/flwrlabs/flower/tree/main/examples/flowertune-llm) [Federated Finetuning of a Vision Transformer](https://github.com/flwrlabs/flower/tree/main/examples/flowertune-vit) [Advanced Flower with PyTorch](https://github.com/flwrlabs/flower/tree/main/examples/advanced-pytorch) [Comprehensive Flower+XGBoost](https://github.com/flwrlabs/flower/tree/main/examples/xgboost-comprehensive) [Flower with KaplanMeierFitter from the lifelines library](https://github.com/flwrlabs/flower/tree/main/examples/federated-kaplan-meier-fitter) flwrlabs/flower Page: GitHub repository URL: https://github.com/flwrlabs/flower Description: Flower: A Friendly Federated AI Framework Stars: 7,040 Forks: 1,213 Topics: android, python, raspberry-pi, ios, machine-learning, framework, ai, deep-learning, cpp, tensorflow, scikit-learn, grpc, pytorch, artificial-intelligence, flower, federated-learning, federated-learning-framework, federated-analytics, fleet-learning, fleet-intelligence License: Apache-2.0 license Default branch: main Created: 2020-02-17T11:51:29.000Z Commits: 5,371 Top-level files .devcontainer/ .github/ FlowerIntelligenceExamples.xcodeproj/ baselines/ benchmarks/flowertune-llm/ datasets/ dev/ examples/ framework/ glossary/ hub/ intelligence/ model/docs/ .editorconfig .gitignore .pre-commit-config.yaml .swift-format AGENTS.md CHANGELOG.md CONTRIBUTING.md LICENSE Package.swift README.md project.yml Flower: A Friendly Federated AI Framework [Flower Website](https://flower.ai/) [Website](https://flower.ai/) | [Blog](https://flower.ai/blog) | [Docs](https://flower.ai/docs/) | [Slack](https://flower.ai/join-slack) [GitHub license](https://github.com/flwrlabs/flower/blob/main/LICENSE) [PRs Welcome](https://github.com/flwrlabs/flower/blob/main/CONTRIBUTING.md) [Build](https://github.com/flwrlabs/flower/actions/workflows/framework.yml/badge.svg) [Downloads](https://pepy.tech/project/flwr) [Docker Hub](https://hub.docker.com/u/flwr) [Slack](https://flower.ai/join-slack) Flower ( `flwr` ) is a framework for building federated AI systems.",
+          "The design of Flower is based on a few guiding principles: **Customizable** : Federated learning systems vary wildly from one use case to another. Flower allows for a wide range of different configurations depending on the needs of each individual use case. **Extendable** : Flower originated from a research project at the University of Oxford, so it was built with AI research in mind. Many components can be extended and overridden to build new state-of-the-art systems. **Framework-agnostic** : Different machine learning frameworks have different strengths."
+        ]
+      },
+      {
+        "title": "Parameter-efficient fine-tuning",
+        "url": "http://huggingface.co/docs/transformers/peft",
+        "excerpts": [
+          "Only the trainable adapter parameters are saved, reducing checkpoint size and save time.",
+          "Trainer checkpoints contain only the adapter weights (`adapter_model.safetensors`) and configuration (`adapter_config.json`), keeping checkpoints small.",
+          "PEFT adapters work with distributed training out of the box.",
+          "Only the trainable adapter parameters are saved, reducing checkpoint size and save time. PEFT adapters work with distributed training out of the box. Trainer checkpoints contain only the adapter weights (`adapter_model.safetensors`) and configuration (`adapter_config.json`), keeping checkpoints small."
+        ]
+      },
+      {
+        "title": "Applied Federated Learning: Improving Google Keyboard Query ...",
+        "url": "https://ar5iv.labs.arxiv.org/html/1812.02903",
+        "excerpts": [
+          "In this paper, we use federated learning in a commercial, global-scale setting to train, evaluate and deploy a model to improve virtual keyboard search"
+        ]
+      },
+      {
+        "title": "FEDML - The unified and scalable ML library for ...",
+        "url": "https://github.com/FedML-AI/FedML",
+        "excerpts": [
+          "FEDML - The unified and scalable ML library for ... FEDML - The unified and scalable ML library for large-scale distributed training, model serving, and federated learning.",
+          "Description: FEDML - The unified and scalable ML library for large-scale distributed training, model serving, and federated learning. FEDML Launch, a cross-cloud scheduler, further enables running any AI jobs o...",
+          "TensorOpera\u00aeOpen Source is unified and scalable machine learning library for running these AI jobs anywhere at any scale.",
+          "**TensorOpera\u00ae Studio** embraces the power of Generative AI! Access popular open-source foundational models (e.g., LLMs), fine-tune them seamlessly with your specific data, and deploy them scalably and cost-effectively using the TensorOpera Launch on GPU marketplace.",
+          "**TensorOpera\u00ae Train** focuses on distributed training of large and foundational models.",
+          "It helps developers to launch complex model training, deployment, and federated learning anywhere on decentralized GPUs, multi-clouds, edge servers, and smartphones, easily, economically, and securely.",
+          "**TensorOpera\u00ae Federate** is a federated learning platform backed by the most popular federated learning open-source library and the world\u2019s first FLOps (federated learning Ops), offering on-device training on smartphones and cross-cloud GPU servers.",
+          "**TensorOpera\u00ae Launch** swiftly pairs AI jobs with the most economical GPU resources, auto-provisions, and effortlessly runs the job, eliminating complex environment setup and management. It supports a range of compute-intensive jobs for generative AI and LLMs, such as large-scale training, serverless deployments, and vector DB searches. TensorOpera Launch also facilitates on-prem cluster management and deployment on private or hybrid clouds."
+        ]
+      },
+      {
+        "title": "Other Play guides | Android Developers",
+        "url": "https://developer.android.com/guide/playcore/asset-delivery",
+        "excerpts": [
+          "Other Play guides | Android Developers PAD offers flexible delivery modes, auto-updates, compression, and delta patching, and is free to use.",
+          "Other Play guides | Android Developers PAD offers flexible delivery modes, auto-updates, compression, and delta patching, and is free to use. Using PAD, all asset packs are hosted and served on Google Play removing the need to use a content delivery network (CDN) to get your game resources to players.",
+          "Using PAD, all asset packs are hosted and served on Google Play removing the need to use a content delivery network (CDN) to get your game resources to players."
+        ]
+      },
+      {
+        "title": "Overview | Nearby Connections | Google for Developers",
+        "url": "https://developers.google.com/nearby/connections/overview",
+        "excerpts": [
+          "Overview | Nearby Connections | Google for Developers Nearby Connections enables advertising, discovery, and connections between nearby devices in a fully-offline peer-to-peer manner.",
+          "Connections between devices are high-bandwidth,",
+          "Overview | Nearby Connections | Google for Developers Nearby Connections enables advertising, discovery, and connections between nearby devices in a fully-offline peer-to-peer manner. Connections between devices are high-bandwidth,"
+        ]
+      },
+      {
+        "title": "Fine-Tune LoRA Models Free on Colab and Kaggle in 2026",
+        "url": "https://www.mrcomputerscience.com/fine-tune-lora-models-free-on-colab-and-kaggle-in-2026",
+        "excerpts": [
+          "Google Colab\u2019s free tier provides a T4 GPU for sessions up to 12 hours. Kaggle\u2019s free tier gives you 30 GPU hours per week on a T4 or P100 with no session time limit.",
+          "Fine-Tune LoRA Models Free on Colab and Kaggle in 2026 You do not need an RTX 4090 or a cloud GPU bill to fine-tune a language model in 2026. Google Colab\u2019s free tier provides a T4 GPU for sessions up to 12 hours. Kaggle\u2019s free tier gives you 30 GPU hours per week on a T4 or P100 with no session time limit."
+        ]
+      },
+      {
+        "title": "Axolotl",
+        "url": "http://docs.axolotl.ai/",
+        "excerpts": [
+          "2025/02: Axolotl has added LoRA optimizations to reduce memory usage and improve training speed for LoRA and QLoRA in single GPU and multi-GPU training (DDP and DeepSpeed). Jump into the [docs](https://docs.axolotl.ai/docs/lora_optims.html) to give it a try. 2025/02: Axolotl has added GRPO support. ... \u2728 Overview **Training Methods** : Full fine-tuning, LoRA, QLoRA, GPTQ, QAT, Preference Tuning (DPO, IPO, KTO, ORPO), RL (GRPO, GDPO), and Reward Modelling (RM) / Process Reward Modelling (PRM). ... (SP)](https://docs.axolotl.ai/docs/sequence_parallelism.html) , [LoRA optimizations](https://docs.axolotl.ai/docs/lora_optims.html) , [Multi-GPU training (FSDP1, FSDP2, DeepSpeed)](https://docs.axolotl.ai/docs/multi-gpu.html) , [Multi-node training (Torchrun, Ray)](https://docs.axolotl.ai/docs/multi-node.html) , and many more!"
+        ]
+      },
+      {
+        "title": "QLoRA Fine-Tuning With Unsloth: 5 Steps On A Free Colab GPU",
+        "url": "https://technoscripts.com/python-qlora-fine-tuning",
+        "excerpts": [
+          "QLoRA Fine-Tuning With Unsloth: 5 Steps On A Free Colab GPU QLoRA lets you fine-tune a 7B-class LLM on a free Colab GPU.",
+          "QLoRA Fine-Tuning With Unsloth: 5 Steps On A Free Colab GPU QLoRA lets you fine-tune a 7B-class LLM on a free Colab GPU. A hands-on Python workshop: decide, prep data, train with Unsloth, evaluate, publish."
+        ]
+      },
+      {
+        "title": "Unsloth Requirements",
+        "url": "https://unsloth.ai/docs/get-started/fine-tuning-for-beginners/unsloth-requirements",
+        "excerpts": [
+          "QLoRA uses 4-",
+          "Unsloth Requirements Set it to 1, 2, or 3 to use less VRAM. Check this table for VRAM requirements sorted by model parameters and fine-tuning method. QLoRA uses 4-",
+          "Check this table for VRAM requirements sorted by model parameters and fine-tuning method. QLoRA uses 4-bit, LoRA uses 16-bit. Keep in mind that sometimes more VRAM is required depending on the model so these numbers are the absolute minimum: | Model parameters | QLoRA (4-bit) VRAM | LoRA (16-bit) VRAM | | 3B               | 3.5 GB             | 8 GB               | | 7B               | 5 GB               | 19 GB              | | 8B               | 6 GB               | 22 GB              | | 9B               | 6.5 GB             | 24 GB              | | 11B              | 7.5 GB             | 29 GB              | | 14B              | 8.5 GB             | 33 GB              | | 27B              | 22GB               | 64GB               | | 32B              | 26 GB              | 76 GB              | | 40B              | 30GB               | 96GB               | | 70B              | 41 GB              | 164 GB             | | 81B              | 48GB               | 192GB              | | 90B              | 53GB               | 212GB              | | 405B             | 237 GB             | 950 GB             |",
+          "QLoRA uses 4-bit, LoRA uses 16-bit.",
+          "Keep in mind that sometimes more VRAM is required depending on the model so these numbers are the absolute minimum:",
+          "{% hint style=\"info\" %} A common issue when you OOM or run out of memory is because you set your batch size too high. Set it to 1, 2, or 3 to use less VRAM.",
+          "**For context length benchmarks, see** [**here**](/docs/basics/unsloth-benchmarks.md#context-length-benchmarks)**.** {% endhint %}",
+          "<i class=\"fa-microchip\">:microchip:</i> CPU only Unsloth Studio supports CPU devices for [Chat](#run-models-locally) for GGUF models and [Data Recipes](/docs/new/studio/data-recipe.md) ([Export](/docs/new/studio/export.md) coming very soon)",
+          "Same as the ones mentioned above for Linux (except for NVIDIA GPU drivers) and MacOS.",
+          "**CPU: Unsloth still works without a GPU**, for Chat + Data Recipes."
+        ]
+      },
+      {
+        "title": "Llama-3.2-3B-Instruct-abliterated uses 35GB VRAM (!)",
+        "url": "https://www.reddit.com/r/LocalLLaMA/comments/1hmbfa7/llama323binstructabliterated_uses_35gb_vram",
+        "excerpts": [
+          "Llama-3.2-3B-Instruct-abliterated uses 35GB VRAM (!) It loads and works, but it consumes 18200 and 17542 MB respectively."
+        ]
+      },
+      {
+        "title": "adapter_model.safetensors \u00b7 AdrianFernandes/llama-3.2-3b-konkani-v2-lora at main",
+        "url": "https://huggingface.co/AdrianFernandes/llama-3.2-3b-konkani-v2-lora/blob/main/adapter_model.safetensors",
+        "excerpts": [
+          "llama-3.2-3b-konkani-v2-lora",
+          "llama-3.2-3b-konkani-v2-lora / adapter\\_model.safetensors",
+          "195 MB",
+          "Size of remote file: 195 MB"
+        ]
+      },
+      {
+        "title": "Quickstart Android - Flower Framework",
+        "url": "https://flower.ai/docs/framework/tutorial-quickstart-android.html",
+        "excerpts": [
+          "Let\u2019s build a federated learning system using [TFLite](https://ai.google.dev/edge/litert/android) and Flower on Android!",
+          "Let\u2019s build a federated learning system using [TFLite](https://ai.google.dev/edge/litert/android) and Flower on Android! Please refer to the [full code example](https://github.com/flwrlabs/flower/tree/main/examples/android) to learn more.",
+          "The experimental Flower Android SDK is not compatible with the latest version of Flower.",
+          "Android support is currently being reworked and will be released in 2025.",
+          "This quickstart tutorial is kept for historical purposes and will be updated once the new Android SDK is released.",
+          "The experimental Flower Android SDK is not compatible with the latest version of Flower. Android support is currently being reworked and will be released in 2025. This quickstart tutorial is kept for historical purposes and will be updated once the new Android SDK is released."
+        ]
+      },
+      {
+        "title": "flower/examples/android at main \u00b7 flwrlabs/flower \u00b7 GitHub",
+        "url": "https://github.com/flwrlabs/flower/tree/main/examples/android",
+        "excerpts": [
+          "|Android |Java |TensorFlowLite |",
+          "The FL server runs in Python but all the clients run on Android.",
+          "Flower Android Example (TensorFlowLite)",
+          "We use a strategy called FedAvgAndroid for this example. The strategy is vanilla FedAvg with a custom serialization and deserialization to handle the Bytebuffers sent from Android clients to Python server.",
+          "Start by cloning the example project. We prepared a single-line command that you can copy into your shell which will checkout the example for you: ```shell git clone --depth=1 https://github.com/flwrlabs/flower.git && mv flower/examples/android . && rm -rf flower && cd android ```",
+          "The CIFAR10 dataset is randomly split across 10 clients. Each Android client holds a local dataset of 5000 training examples and 1000 test examples.",
+          "The FL server runs in Python but all the clients run on Android. We use a strategy called FedAvgAndroid for this example. The strategy is vanilla FedAvg with a custom serialization and deserialization to handle the Bytebuffers sent from Android clients to Python server. The background thread is established via the `WorkManager` library of Android, thus, it will run comfortably on Android Versions from 8 to 13.",
+          "The server currently expects a minimum of 4 Android clients, but it can be changed in the `server.py` . When the Android app runs, add the client ID (between 1-10), the IP and port of your server, and press `Start` . This will load the local CIFAR10 dataset in memory, establish connection with the server, and start the federated training."
+        ]
+      },
+      {
+        "title": "Incremental decision trees in river: the Hoeffding Tree case - River",
+        "url": "https://riverml.xyz/0.11.1/recipes/on-hoeffding-trees",
+        "excerpts": [
+          "Although fairly lightweight, traditional batch DTs cannot cope with data stream mining/online learning requirements, as they do multiple passes over the data and have to be retrained from scratch every time a new observation appears.",
+          "The data stream literature has plenty of incremental DT (iDT) families that are better suited to online learning.",
+          "Nonetheless, Hoeffding Trees (HT) are historically the most popular family of iDTs to date. In fact, HTs have some nice properties: one-pass learning regime;",
+          "We are going to train an instance of `HoeffdingTreeClassifier` using this dataset.",
+          "``` %% time model = tree . HoeffdingTreeClassifier ( grace_period = 50 ) for x , y in dataset : model . learn_one ( x , y ) model ```",
+          "HTs have memory-management routines that put the user in the control of computational resources that are available.",
+          "Here, we are going to focus on two parameters: `max_size` : determines the maximum amount of memory (in MB) that the HT can use.",
+          "Here, we are going to focus on two parameters: `max_size` : determines the maximum amount of memory (in MB) that the HT can use. `memory_estimate_period` : intervals after which the memory-management is triggered.",
+          "Note that as soon the memory usage reaches the limit that we determined (at the memory check intervals), HTR starts managing its resource usage to reduce the size.",
+          "As a consequence, the running time also decreases.",
+          "For more accurate management, the intervals between memory checks should be decreased. This action, however, has costs since the tree stops the learning process to estimate its size and alter its own structure. Too frequent memory checks might end up result in a slow learning process.",
+          "**Hint:** another indirect way to bound memory usage is to limit the tree depth. By default, the trees can grow indefinitely, but the `max_depth` parameter can control this behavior.",
+          "Although fairly lightweight, traditional batch DTs cannot cope with data stream mining/online learning requirements, as they do multiple passes over the data and have to be retrained from scratch every time a new observation appears. The data stream literature has plenty of incremental DT (iDT) families that are better suited to online learning. Nonetheless, Hoeffding Trees (HT) are historically the most popular family of iDTs to date. In fact, HTs have some nice properties: one-pass learning regime;",
+          "We are going to train an instance of `HoeffdingTreeClassifier` using this dataset. As everything else in `river` , training an iDT is a piece of cake! ``` %% time model = tree . HoeffdingTreeClassifier ( grace_period = 50 ) for x , y in dataset : model . learn_one ( x , y ) model ```",
+          "Here, we are going to focus on two parameters: `max_size` : determines the maximum amount of memory (in MB) that the HT can use. `memory_estimate_period` : intervals after which the memory-management is triggered. We are going to limit our HTR to 5 MB and perform memory checks at intervals of 500 instances. ``` plot_performance ( synth . Friedman ( seed = 42 ) . take ( 10_000 ), metrics . MAE (), { \"Restricted HTR\" : ( preprocessing . StandardScaler () | tree . HoeffdingTreeRegressor ( max_size = 5 , memory_estimate_period = 500 ) ) } ) ``` png Note that as soon the memory usage reaches the limit that we determined (at the memory check intervals), HTR starts managing its resource usage to reduce the size. As a consequence, the running time also decreases. For more accurate management, the intervals between memory checks should be decreased. This action, however, has costs since the tree stops the learning process to estimate its size and alter its own structure. Too frequent memory checks might end up result in a slow learning process."
+        ]
+      },
+      {
+        "title": "Concept drift - River",
+        "url": "https://riverml.xyz/dev/introduction/getting-started/concept-drift-detection",
+        "excerpts": [
+          "In online machine learning, it is assumed that data can change over time.",
+          "On the other hand, stream learning methods continuously update themselves and adapt to new concepts.",
+          "ADWIN () drifts = [] for i , val in enumerate ( stream ): drift_detector . update ( val ) # Data is processed one sample at a time if drift_detector . drift_detected : # The drift detector indicates after each sample if there is a drift in the data print ( f 'Change detected at index { i } ' ) drifts . append ( i ) plot_data ( dist_a , dist_b , dist_c , drifts ) ```",
+          "It must also be resource-wise efficient to work in the context of infinite data streams."
+        ]
+      },
+      {
+        "title": "Hotswapping adapters",
+        "url": "https://huggingface.co/docs/peft/main/en/package_reference/hotswap",
+        "excerpts": [
+          "But sometimes, we want to load one LoRA and then replace its weights in-place with the LoRA weights of another adapter.",
+          "This is now possible the `hotswap_adapter` function.",
+          "In general, this should be faster than deleting one adapter and loading the adapter in its place, which would be the how to achieve the same final outcome without hotswapping.",
+          "Another advantage of hotswapping is that it prevents re-compilation in case the PEFT model is already compiled using `torch.compile`.",
+          "Substitute old adapter data with new adapter data, keeping the rest the same.",
+          "The adapter name will remain the same, but the weights and other parameters will be swapped out.",
+          "Right now, only LoRA is properly supported.",
+          "It only works for the same PEFT method, so no swapping LoRA and LoHa, for example.",
+          "The adapter that is being swapped in must target the same layers as the previous adapter or a subset of those layers. It cannot target new layers. Therefore, if possible, start with the adapter that targets most layers.",
+          "If the adapters are incomptabile, e.g. targeting different layers or having different alpha values, an error will be raised.",
+          "Hotswapping works with transformers models and diffusers models.",
+          "Therefore, it is recommended to avoid using `target_parameters` together with compiled models and hotswapping.",
+          "But sometimes, we want to load one LoRA and then replace its weights in-place with the LoRA weights of another adapter. This is now possible the `hotswap_adapter` function. In general, this should be faster than deleting one adapter and loading the adapter in its place, which would be the how to achieve the same final outcome without hotswapping. Another advantage of hotswapping is that it prevents re-compilation in case the PEFT model is already compiled using `torch.compile`.",
+          "Right now, only LoRA is properly supported. It only works for the same PEFT method, so no swapping LoRA and LoHa, for example. The adapter that is being swapped in must target the same layers as the previous adapter or a subset of those layers. It cannot target new layers. Therefore, if possible, start with the adapter that targets most layers.",
+          "Substitute old adapter data with new adapter data, keeping the rest the same. As of now, only LoRA is supported. This function is useful when you want to replace the loaded adapter with a new adapter. The adapter name will remain the same, but the weights and other parameters will be swapped out. If the adapters are incomptabile, e.g. targeting different layers or having different alpha values, an error will be raised."
+        ]
+      },
+      {
+        "title": "intel-extension-for-transformers/docs/qloracpu.md at main \u00b7 intel/intel-extension-for-transformers \u00b7 GitHub",
+        "url": "https://github.com/intel/intel-extension-for-transformers/blob/main/docs/qloracpu.md",
+        "excerpts": [
+          "Currently it only supports finetuning on CUDA devices, we have developed necessary API to support QLoRA on CPU device, where 4-bit NormalFloat (NF4), Float4 (FP4), INT4 and INT8 are supported data type for LLMs quantization.",
+          "[QLoRA](https://arxiv.org/abs/2305.14314) is an efficient finetuning approach that reduces memory usage of Large Language Models (LLMs) finetuning, it backpropagates gradients through a frozen, quantized LLMs into Low Rank Adapters~(LoRA).",
+          "To use QLoRA on Neural Chat with CPU device, just add `--qlora` argument to the normal [Neural Chat Fine-tuning Example](https://github.com/intel/intel-extension-for-transformers/tree/main/intel_extension_for_transformers/neural_chat/examples/finetuning/instruction), for example, as below.",
+          "```python import torch from intel_extension_for_transformers.transformers.modeling import AutoModelForCausalLM model = AutoModelForCausalLM.from_pretrained( 'decapoda-research/llama-7b-hf', torch_dtype=torch.bfloat16, load_in_4bit=True, use_neural_speed=False ) from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, TaskType model = prepare_model_for_kbit_training( model, use_gradient_checkpointing=True ) model.gradient_checkpointing_enable() peft_config = LoraConfig( r=8, task_type=TaskType.CAUSAL_LM, ) model = get_peft_model(model, peft_config) ```",
+          "```bash python finetune_clm.py \\ --model_name_or_path \"meta-llama/Llama-2-7b\" \\ --bf16 True \\ --dataset_name /path/to/alpaca_data.json \\ --per_device_train_batch_size 8 \\ --per_device_eval_batch_size 8 \\ --gradient_accumulation_steps 1 \\ --do_train \\ --learning_rate 1e-4 \\ --num_train_epochs 3 \\ --logging_steps 100 \\ --save_total_limit 2 \\ --overwrite_output_dir \\ --log_level info \\ --save_strategy epoch \\ --output_dir ./llama_peft_finetuned_model \\ --peft lora \\ --use_fast_tokenizer false \\ --no_cuda --qlora --max_train_samples 500 ```",
+          "[QLoRA](https://arxiv.org/abs/2305.14314) is an efficient finetuning approach that reduces memory usage of Large Language Models (LLMs) finetuning, it backpropagates gradients through a frozen, quantized LLMs into Low Rank Adapters~(LoRA). Currently it only supports finetuning on CUDA devices, we have developed necessary API to support QLoRA on CPU device, where 4-bit NormalFloat (NF4), Float4 (FP4), INT4 and INT8 are supported data type for LLMs quantization. Examples Python API ```python import torch from intel_extension_for_transformers.transformers.modeling import AutoModelForCausalLM model = AutoModelForCausalLM.from_pretrained( 'decapoda-research/llama-7b-hf', torch_dtype=torch.bfloat16, load_in_4bit=True, use_neural_speed=False ) from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, TaskType model = prepare_model_for_kbit_training( model, use_gradient_checkpointing=True ) model.gradient_checkpointing_enable() peft_config = LoraConfig( r=8, task_type=TaskType.CAUSAL_LM, ) model = get_peft_model(model, peft_config) ``` Neural Chat Example To use QLoRA on Neural Chat with CPU device, just add `--qlora` argument to the normal [Neural Chat Fine-tuning Example](https://github.com/intel/intel-extension-for-transformers/tree/main/intel_extension_for_transformers/neural_chat/examples/finetuning/instruction), for example, as below. ```bash python finetune_clm.py \\ --model_name_or_path \"meta-llama/Llama-2-7b\" \\ --bf16 True \\ --dataset_name /path/to/alpaca_data.json \\ --per_device_train_batch_size 8 \\ --per_device_eval_batch_size 8 \\ --gradient_accumulation_steps 1 \\ --do_train \\ --learning_rate 1e-4 \\ --num_train_epochs 3 \\ --logging_steps 100 \\ --save_total_limit 2 \\ --overwrite_output_dir \\ --log_level info \\ --save_strategy epoch \\ --output_dir ./llama_peft_finetuned_model \\ --peft lora \\ --use_fast_tokenizer false \\ --no_cuda --qlora --max_train_samples 500 ```"
+        ]
+      },
+      {
+        "title": "Model merging",
+        "url": "https://huggingface.co/docs/peft/en/developer_guides/model_merging",
+        "excerpts": [
+          "Training a model for each task can be costly, take up storage space, and the models aren't able to learn new information to improve their performance.",
+          "Multitask learning can overcome some of these limitations by training a model to learn several tasks, but it is expensive to train and designing a dataset for it is challenging. *Model merging* offers a solution to these challenges by combining multiple pretrained models into one model, giving it the combined abilities of each individual model without any additional training.",
+          "[TIES](https://hf.co/papers/2306.01708) - TrIm, Elect, and Merge (TIES) is a three-step method for merging models. First, redundant parameters are trimmed, then conflicting signs are resolved into an aggregated vector, and finally the parameters whose signs are the same as the aggregate sign are averaged. This method takes into account that some values (redundant and sign disagreement) can degrade performance in the merged model.",
+          "[DARE](https://hf.co/papers/2311.03099) - Drop And REscale is a method that can be used to prepare for other model merging methods like TIES. It works by randomly dropping parameters according to a drop rate and rescaling the remaining parameters. This helps to reduce the number of redundant and potentially interfering parameters among multiple models.",
+          "With TIES and DARE, merging is enabled by setting `combination_type` and `density` to a value of the weights to keep from the individual models.",
+          "When you're attempting to merge fully trained models with TIES, you should be aware of any special tokens each model may have added to the embedding layer which are not a part of the original checkpoint's vocabulary.",
+          "This may cause an issue because each model may have added a special token to the same embedding position.",
+          "If this is the case, you should use the [resize_token_embeddings](https://huggingface.co/docs/transformers/v5.14.1/en/main_classes/model.PreTrainedModel.resize_token_embeddings) method to avoid merging the special tokens at the same embedding index.",
+          "This shouldn't be an issue if you're only merging LoRA adapters trained from the same base model.",
+          "Weight values greater than `1.0` typically produce better results because they preserve the correct scale.",
+          "A good default starting value for the weights is to set all values to `1.0`.",
+          "Set the newly merged model as the active model with the set_adapter() method."
+        ]
+      },
+      {
+        "title": "Self-Instruct: Aligning Language Models with Self-Generated Instructions - ACL Anthology",
+        "url": "https://aclanthology.org/2023.acl-long.754",
+        "excerpts": [
+          "We introduce Self-Instruct, a framework for improving the instruction-following capabilities of pretrained language models by bootstrapping off their own generations.",
+          "Our pipeline generates instructions, input, and output samples from a language model, then filters invalid or similar ones before using them to finetune the original model.",
+          "Applying our method to the vanilla GPT3, we demonstrate a 33% absolute improvement over the original model on Super-NaturalInstructions, on par with the performance of InstructGPT-001, which was trained with private user data and human annotations.",
+          "For further evaluation, we curate a set of expert-written instructions for novel tasks, and show through human evaluation that tuning GPT3 with Self-Instruct outperforms using existing public instruction datasets by a large margin, leaving only a 5% absolute gap behind InstructGPT-001.",
+          "Self-Instruct provides an almost annotation-free method for aligning pre-trained language models with instructions, and we release our large synthetic dataset to facilitate future studies on instruction tuning.",
+          "We introduce Self-Instruct, a framework for improving the instruction-following capabilities of pretrained language models by bootstrapping off their own generations. Our pipeline generates instructions, input, and output samples from a language model, then filters invalid or similar ones before using them to finetune the original model. Applying our method to the vanilla GPT3, we demonstrate a 33% absolute improvement over the original model on Super-NaturalInstructions, on par with the performance of InstructGPT-001, which was trained with private user data and human annotations. For further evaluation, we curate a set of expert-written instructions for novel tasks, and show through human evaluation that tuning GPT3 with Self-Instruct outperforms using existing public instruction datasets by a large margin, leaving only a 5% absolute gap behind InstructGPT-001. Self-Instruct provides an almost annotation-free method for aligning pre-trained language models with instructions, and we release our large synthetic dataset to facilitate future studies on instruction tuning."
+        ]
+      },
+      {
+        "title": "AI models collapse when trained on recursively generated data | Nature",
+        "url": "https://www.nature.com/articles/s41586-024-07566-y",
+        "excerpts": [
+          "We find that indiscriminate use of model-generated content in training causes irreversible defects in the resulting models, in which tails of the original content distribution disappear. We refer to this effect as \u2018model collapse\u2019 and show that it can occur in LLMs as well as in variational autoencoders (VAEs) and Gaussian mixture models (GMMs). We build theoretical intuition behind the phenomenon and portray its ubiquity among all learned generative models.",
+          "We discover that indiscriminately learning from data produced by other models causes \u2018model collapse\u2019\u2014a degenerative process whereby, over time, models forget the true underlying data distribution, even in the absence of a shift in the distribution over time.",
+          "We show that, over time, models start losing information about the true distribution, which first starts with tails disappearing, and learned behaviours converge over the generations to a point estimate with very small variance.",
+          "We fine-tune the OPT-125m causal language model made available by Meta through Hugging Face 6.\") . We fine-tune it on the wikitext2 dataset 16.\") .",
+          "For data generation from the trained models, we use a five-way beam search. We block training sequences to be 64 tokens long; then, for each token sequence in the training set, we ask the model to predict the next 64 tokens. We go through all of the original training dataset and produce an artificial dataset of the same size. Because we go through all of the original dataset and predict all of the blocks, if the model had 0 error, it would produce the original wikitext2 dataset.",
+          "Here we consider two different settings: Five epochs, no original training data. Here the model is trained for five epochs starting on the original dataset but with no original data retained for subsequent runs. The overall original task performance is presented in Fig. 1b . We find that training with generated data allows us to adapt to the underlying task, losing some performance, from 20 to 28 perplexity points. Ten epochs, 10% of original training data preserved. Here the model is trained for ten epochs on the original dataset and with every new generation of training, a random 10% of the original data points is sampled. The overall original task performance is presented in Fig. 1c . We find that preservation of the original data allows for better model fine-tuning and leads to only minor degradation of performance. Both training regimes lead to degraded performance in our models, yet we do find that learning with generated data is possible and models can successfully learn (some of) the underlying task.",
+          "1 and their 3D versions in the Supplementary Materials , we see that model collapse occurs, as the density of samples with low perplexity begins to accumulate over the generations. This in turn makes it likely that, over the generations, the sampled data will similarly collapse to a delta function.",
+          "Over the generations, models tend to produce samples that the original model trained with real data is more likely to produce. At the same time, a much longer tail appears for later generations. Later generations start producing samples that would never be produced by the original model, that is, they start misperceiving reality based on errors introduced by their ancestors.",
+          "The _x_ axis refers to the generation of the model. \u2018Real\u2019 refers to the \u2018model 0\u2019 trained on the original wikitext2 dataset; model 1 was trained on the data produced by model 0, model 2 was trained on data produced by model 1 and so on, with all generated datasets equal in size. We find that models trained on generated data are able to learn some of the original task, but with errors, as seen from the increase in perplexity.",
+          "Model collapse is universal across various families of machine learning models.",
+          "Discrete distributions with exact approximation In this subsection, we consider a discrete probability distribution in absence of functional approximation and expressivity errors, that is, \\\\({\\\\mathcal{F}}(p)=p\\\\) . In this case, model collapse arises only because of statistical errors from the sampling step. At first, the tails (low-probability events) begin to disappear as a result of the low probability of sampling them and, over time, support of the distribution shrinks. Denoting the sample size as _M_ , if we consider state _i_ with probability \\\\(q\\\\le \\\\frac{1}{M}\\\\) , the expected number of samples with value _i_ coming from those events will be less than 1. In practice, this would mean that we lose information about them.",
+          "Theorem 3.1 (Gaussian model collapse) Assume the original data are sampled from distribution \\\\({{\\\\mathcal{D}}}\\_{0}\\\\) (not necessarily Gaussian), with non-zero sample variance. Assume _X_ _n_ are fit recursively using the unbiased sample mean and variance estimators from the previous generation, \\\\({X}\\_{j}^{n}| {\\\\mu }\\_{n},{\\\\Sigma }\\_{n} \\\\sim {\\\\mathcal{N}}({\\\\mu }\\_{n},{\\\\Sigma }\\_{n})\\\\) , with a fixed sample size. Then, $${\\\\mathbb{E}}[{{\\\\mathbb{W}}}\\_{2}^{2}({\\\\mathcal{N}}({\\\\mu }\\_{n},{\\\\Sigma }\\_{n}),{{\\\\mathcal{D}}}\\_{0})]\\\\to \\\\infty ;\\\\,{\\\\Sigma }\\_{n}\\\\,\\\\mathop{\\\\to }\\\\limits^{{\\\\rm{a}}.{\\\\rm{s}}.}\\\\,0\\\\,\\\\,{\\\\rm{a}}{\\\\rm{s}}\\\\,\\\\,n\\\\to \\\\infty ,$$ in which \\\\({{\\\\mathbb{W}}}\\_{2}\\\\) denotes the Wasserstein-2 distance between the true distribution and its approximation at generation _n_ . In words, this implies that not only does the _n_ th generation approximation diverge arbitrarily far from the original one but it also collapses to be zero variance as the number of generations increases, with probability 1. The results are very analogous to that seen in the discrete case, with this theorem illustrating the effect of late stage model collapse, in which the process begins to collapse to be zero variance.",
+          "Our evaluation suggests a \u2018first mover advantage\u2019 when it comes to training models such as LLMs. In our work, we demonstrate that training on samples from another generative model can induce a distribution shift, which\u2014over time\u2014causes model collapse. This in turn causes the model to mis-perceive the underlying learning task. To sustain learning over a long period of time, we need to make sure that access to the original data source is preserved and that further data not generated by LLMs remain available over time.",
+          "We fine-tune the OPT-125m causal language model made available by Meta through Hugging Face 6.\") . We fine-tune it on the wikitext2 dataset 16.\") . For data generation from the trained models, we use a five-way beam search. We block training sequences to be 64 tokens long; then, for each token sequence in the training set, we ask the model to predict the next 64 tokens. We go through all of the original training dataset and produce an artificial dataset of the same size. Because we go through all of the original dataset and predict all of the blocks, if the model had 0 error, it would produce the original wikitext2 dataset. Training for each generation starts with generation from the original training data. Each experiment is run five times and the results are shown as five separate runs with different randomness seeds. The original model fine-tuned with real wikitext2 data obtains 34 mean perplexity, from the zero-shot baseline of 115, that is, it successfully learns the task. Finally, to be as realistic as possible, we use the best-performing model on the original task, evaluated using the original wikitext2 validation set, as the base model for the subsequent generations, meaning that\u2014in practice\u2014observed model collapse can be even more pronounced. Here we consider two different settings: Five epochs, no original training data. Here the model is trained for five epochs starting on the original dataset but with no original data retained for subsequent runs. The overall original task performance is presented in Fig. 1b . We find that training with generated data allows us to adapt to the underlying task, losing some performance, from 20 to 28 perplexity points. Ten epochs, 10% of original training data preserved. Here the model is trained for ten epochs on the original dataset and with every new generation of training, a random 10% of the original data points is sampled. The overall original task performance is presented in Fig. 1c . We find that preservation of the original data allows for better model fine-tuning and leads to only minor degradation of performance. Both training regimes lead to degraded performance in our models, yet we do find that learning with generated data is possible and models can successfully learn (some of) the underlying task."
+        ]
+      },
+      {
+        "title": "eprint.iacr.org",
+        "url": "https://eprint.iacr.org/2017/281.pdf",
+        "excerpts": [
+          "Consider training a deep neural network to predict the next word that a user will type as she composes a text message. Such models are commonly used to to improve typing efficacy for a phone\u2019s on-screen keyboard [31]. A modeler may wish to train such a model on all text messages across a large pop- ulation of users. However, text messages frequently contain sensitive information; users may be reluctant to upload a copy of them to the modeler\u2019s servers. Instead, we consider train- ing such a model in a Federated Learning setting, wherein each user maintains a private database of her text messages securely on her own mobile device, and a shared global model is trained under the coordination of a central server based upon highly processed, minimally scoped, ephemeral updates from users [45, 52].",
+          "Instead, we consider train- ing such a model in a Federated Learning setting, wherein each user maintains a private database of her text messages securely on her own mobile device, and a shared global model is trained under the coordination of a central server based upon highly processed, minimally scoped, ephemeral updates from users [45, 52]. These updates are high-dimensional vectors based on infor- mation from the user\u2019s private database.",
+          "However, in the Federated Learning setting, the server does not need to access any indi- vidual user\u2019s update in order to perform stochastic gradient descent; it requires only the element-wise weighted averages of the update vectors, taken over a random subset of users. Us- ing a Secure Aggregation protocol to compute these weighted averages1 would ensure that the server may learn only that one or more users in this randomly selected subset wrote a given word, but not which users.",
+          "Thus, Federated Learning motivates a need for a Secure Aggregation protocol that: (1) operates on high-dimensional vectors (2) is highly communication efficient, even with a novel set of users on each instantiation (3) is robust to users dropping out (4) provides the strongest possible security under the constraints of a server-mediated, unauthenticated network model",
+          "The protocol is run (in a synchronous network) between a server and a set of n users, and consists of four rounds. Each user u holds as input a vector xu (of equal length m) consisting of elements from ZR for some R. The server has no input, but can communicate with the users through secure (private and authenticated) channels. At any point, users can drop out of the protocol (in which case they stop sending messages completely), and the server will be able to produce a correct output as long as t of them survive until the last round.",
+          "As in their protocol, we divide the parties into two classes: a single server S that aggregates inputs from n client parties U. Each user4 u \u2208 U holds a private vector xu of dimension m; for simplicity we assume that the elements of xu and \ufffd u\u2208U xu are in ZR for some R. The goal of the protocol is to compute \ufffd u\u2208U xu in a secure fashion: at a high level, we guarantee that the server only learns a sum of the clients\u2019 inputs containing contributions from at least a large fraction of the users and that the users learn nothing.",
+          "1.1 Our Results We present a protocol for securely computing sums of vectors, which has a constant number of rounds, low communication overhead, robustness to failures, and which requires only one server with limited trust. In our design the server has two roles: it routes messages between the other parties, and it computes the final result.",
+          "4.0.4 Putting it all Together. We summarize our proto- col in Figure 2 and its asymptotic costs in Figure 3. The computational cost is quadratic for the users, and cubic for the server. As the size of the data vector gets large, the communication and storage overhead for each of the clients and the server using our protocol approaches a multiplicative constant over sending the data in the clear.",
+          "Communication cost: O(n + m). The communication costs of each user can be broken up into 4 parts: (1) Exchang- ing keys with each other user by sending 2 and receiving 2(n \u2212 1) public keys, (2) Sending 2(n \u2212 1) and receiving 2(n \u2212 1) encrypted secret shares, (3) Sending a masked data vector of size m\u2308log2 R\u2309 to the server, and (4) Sending the server n secret shares, for an overall communication cost of 2naK +(5n\u22124)aS+m\u2308log2 R\u2309, where aK and aS are the num- ber of bits in a key exchange public key and the number of bits in a secret share, respectively. Overall, the user\u2019s communica- tion complexity is O(n+m).",
+          "6.3.2 Security against only the server. From Theorems 6.3 and A.2, we see that if we set nC = 0, that is, there are no clients who cheat or collaborate with the server, then setting t \u2265 \u230a n 2 \u230b + 1 guarantees that the sum learned by the server contains the values of at least t > n 2 clients, and the protocol can deal with up to \u2308 n 2 \u2309 \u2212 1 dropouts.",
+          "6.3.3 Security against a server colluding with clients. From Theorems 6.3 and A.2, we see that we can allow a server (honest or adversarial) to collaborate with up to nC = \u2308 n 3 \u2309\u22121 users (honest or adversarial), if we set t \u2265 \u230a 2n 3 \u230b + 1, at the same time guaranteeing that the sum learned by the server contains the values of at least n 3 clients. Additionally, the protocol is robust to up to \u2308 n 3 \u2309 \u2212 1 users dropping out.",
+          "B DIFFERENTIAL PRIVACY AND SECURE AGGREGATION While secure aggregation alone may suffice for some appli- cations, for other applications stronger guarantees may be needed, as indicated by the failures of ad-hoc anonymization techniques [6, 47, 54], and by the demonstrated capability to extract information about individual training data from fully- trained models (which are essentially aggregates) [27, 52, 53]. In such cases, secure aggregation composes well with differ- ential privacy [22]. This is particularly advantageous in the local privacy setting [21], which offers provable guarantees for the protection of individual training examples [1, 3] even when the data aggregator is not assumed to be trusted [26, 55]. For example, when computing averages, partial averages over subgroups of users may be computed and privacy-preserving noise may be incorporated [23, 32] before revealing the results to the data aggregator."
+        ]
+      },
+      {
+        "title": "Applied Federated Learning: Improving Google Keyboard Query Suggestions",
+        "url": "https://arxiv.org/html/1812.02903",
+        "excerpts": [
+          "In this paper, we use federated learning in a commercial, global-scale setting to train, evaluate and deploy a model to improve virtual keyboard search suggestion quality without direct access to the underlying user data. We describe our observations in federated training, compare metrics to live deployments, and present resulting quality increases. In whole, we demonstrate how federated learning can be applied end-to-end to both improve user experiences and enhance user privacy.",
+          "The Google Keyboard (Gboard) is a virtual keyboard for mobile devices with over 1 billion installs in 2018.",
+          "In this section, we describe the model setup used to improve Gboard\u2019s query suggestion system. The system works in two stages \u2013 a traditionally server-side trained baseline model which generates query candidates, and a triggering model trained via FL (Figure 2 ). The goal is to improve query click-through-rate (CTR) by taking suggestions from the baseline model and removing low quality suggestions through the triggering model.",
+          "The task of the federated trained model is designed to take in the suggested query candidate from the baseline model, and determine if the suggestion should or should not be shown to the user. We refer to this model as the triggering model . The triggering model used in our experiments is a logistic regression model trained to predict the probability of a click; the output is a score for a given query, with higher scores meaning greater confidence in the suggestion. When deploying the triggering model, we select a threshold $\\tau$ in order to reach a desired triggering rate, where a higher threshold is stricter and reduces the trigger rate of suggestions. Tuning the triggering threshold allows us to balance the tradeoff between providing value to the user and potentially hiding a valuable suggestion. As a logistic regression model, the score is in logit space, where the predicted probability of a click is the logistic sigmoid function applied to the score.",
+          "A greater threshold indicates a stricter quality bar for suggestions. |Model |Live $\\Delta$ CTR |Live Retained Clicks | |Model Iteration 1 |\\+14.52% |77\\.11% | |Model Iteration 2 |\\+25.56% |63\\.39% | |Model Iteration 3 |\\+51.49% |82\\.01% | Table 2: Change in CTR over several trained and deployed models.",
+          "Comparing our expected $\\Delta$ CTR in training metrics to our actual $\\Delta$ CTR in live experiments, our live deployments reflect a successful improvement in CTR (Table 1 ). However, while we capture a majority of the expected improvements, we do observe a slight drop between expected and actual $\\Delta$ CTR.",
+          "Typically a trained machine learning model can be validated by evaluating its performance on a held-out validation set. The FL analogue to such a central validation set is to perform evaluation by pushing the trained model to devices to score it on their own data and report back the results. However, on-device metrics like loss, CTR and retained impressions do not necessarily tell the whole story that traditionally inspecting key training examples might provide. For this reason it is valuable to have tools for debugging models without reference to training data. During model development, synthetically generated proxy data was used to validate the model architecture to select ballparks for basic hyperparameters like learning rate. The generated data encoded some basic first-order statistics like aggregate click-through-rate, an expectation that some users would click more than others or at different times of day, etc.",
+          "During model development, synthetically generated proxy data was used to validate the model architecture to select ballparks for basic hyperparameters like learning rate. The generated data encoded some basic first-order statistics like aggregate click-through-rate, an expectation that some users would click more than others or at different times of day, etc. The model was also validated with integration and end-to-end testing on a handful of realistic hand \u2013 constructed and donated examples. The combination of synthetic and donated data enabled model development, validated that the approach learned patterns we\u2019d encoded into the data, and built confidence that it would learn as expected with data generated by the application.",
+          "In addition to these advantages, FL can guarantee an even higher standard of privacy by making use of two additional techniques. With secure aggregation [11 ] , clients\u2019 updates are securely summed into a single aggregate update without revealing any client\u2019s individual component even to the server. This is accomplished by cryptographically simulating a trusted third party. Differential privacy techniques can be used in which each client adds a carefully calibrated amount of noise to their update to mask their contribution to the learned model [10 ] .",
+          "In addition to these advantages, FL can guarantee an even higher standard of privacy by making use of two additional techniques. With secure aggregation [11 ] , clients\u2019 updates are securely summed into a single aggregate update without revealing any client\u2019s individual component even to the server. This is accomplished by cryptographically simulating a trusted third party. Differential privacy techniques can be used in which each client adds a carefully calibrated amount of noise to their update to mask their contribution to the learned model [10 ] . However, since neither of these techniques were employed in the present work, we will not describe them in further detail here.",
+          "Differential privacy techniques can be used in which each client adds a carefully calibrated amount of noise to their update to mask their contribution to the learned model [10 ] . However, since neither of these techniques were employed in the present work, we will not describe them in further detail here.",
+          "To validate the model after training, we interpreted the coefficients of our logistic regression model via direct examination of the weights in order to gain insight into what the model had learned. We determined that FL had produced a reasonable model (reasonable enough to warrant pushing to devices for live inference experiments) considering that: \u2022 the weights corresponding to query categories had intuitive values \u2022 the weights corresponding to binned real-valued features tended to have smooth, monotone progressions \u2022 the weights of more common features were larger in absolute value, i.e. the model came to rely on them more due to their frequency.",
+          "Our use case is search query suggestions [4 ] : when a user enters text, Gboard uses a baseline model to determine and possibly surface search suggestions relevant to the input. For instance, typing \u201cLet\u2019s eat at Charlie\u2019s\u201d may display a web query suggestion to search for nearby restaurants of that name; other types of suggestions include GIFs and Stickers. Here, we improve the feature by filtering query suggestions from the baseline model with an additional triggering model that is trained with FL. By combining query suggestions with FL and on-device inference, we demonstrate quality improvements to Gboard suggestions while enhancing user privacy and respecting mobile constraints."
+        ]
+      },
+      {
+        "title": "TS 123 040 - V16.0.0",
+        "url": "https://www.etsi.org/deliver/etsi_ts/123000_123099/123040/16.00.00_60/ts_123040v160000p.pdf",
+        "excerpts": [
+          "TS 123 040 - V16.0.0 TS 23.040 version 16.0.0 Release. The UDHL field is the first octet of the TP-User-Data content of the Short Message. TS 23.040 version 16.0.0. SMS User Data:"
+        ]
+      },
+      {
+        "title": "A Survey of Federated Learning Privacy Attacks, Defenses ... - arXiv",
+        "url": "https://arxiv.org/abs/2405.03636",
+        "excerpts": [
+          "A Survey of Federated Learning Privacy Attacks, Defenses ... - arXiv May 6, 2024 \u00b7 In this survey paper, we provide a comprehensive literature review of the different privacy attacks and defense methods in FL."
+        ]
+      },
+      {
+        "title": "http://proceedings.mlr.press/v235/liu24bn.html",
+        "url": "http://proceedings.mlr.press/v235/liu24bn.html",
+        "excerpts": [
+          "By employing DoRA, we enhance both the learning capacity and training stability of LoRA while avoiding any additional inference overhead.",
+          "However, there still often exists an accuracy gap between these methods and full fine-tuning (FT).",
+          "DoRA consistently outperforms LoRA on fine-tuning LLaMA, LLaVA, and VL-BART on various downstream tasks, such as commonsense reasoning, visual instruction tuning, and image/video-text understanding.",
+          "By employing DoRA, we enhance both the learning capacity and training stability of LoRA while avoiding any additional inference overhead. DoRA consistently outperforms LoRA on fine-tuning LLaMA, LLaVA, and VL-BART on various downstream tasks, such as commonsense reasoning, visual instruction tuning, and image/video-text understanding."
+        ]
+      },
+      {
+        "title": "mKisan: A Portal of Government of State Base Services for ...",
+        "url": "https://mkisan.gov.in/Home/KCCFeature",
+        "excerpts": [
+          "A countrywide common eleven digit number 1800-180-1551 has been allotted for Kisan Call Centre.",
+          "The number is accessible through all mobile phones and landlines of all telecom networks including private service providers.",
+          "Replies to the farmers\u2019 queries are given in 22 local languages.",
+          "A countrywide common eleven digit number 1800-180-1551 has been allotted for Kisan Call Centre. The number is accessible through all mobile phones and landlines of all telecom networks including private service providers. Replies to the farmers\u2019 queries are given in 22 local languages."
+        ]
+      },
+      {
+        "title": "IMD API Reference",
+        "url": "https://api.imd.gov.in/public/api_reference.html",
+        "excerpts": [
+          "List of APIs of India Meteorological Department API Index Weather Forecast APIs City Weather Forecast (7 Days) City Weather Forecast with Latitude & Longitude Subdivision Rainfall Forecast (7 Days) State District Rainfall Forecast (5 Days) All India Weather Forecast Bulletin Weather at your location (Mausamgram) Current Weather & Nowcast"
+        ]
+      },
+      {
+        "title": "http://proceedings.mlr.press/v235/hayou24a.html",
+        "url": "http://proceedings.mlr.press/v235/hayou24a.html",
+        "excerpts": [
+          "This is due to the fact that adapter matrices A and B in LoRA are updated with the same learning rate in ADAM. Using scaling arguments for large width networks, we demonstrate that the same learning rate does not allow efficient feature learning. We then show that this suboptimality of LoRA can be corrected simply by setting different learning rates for the LoRA adapter matrices A and B with a well-chosen fixed ratio. We call this proposed algorithm LoRA+.",
+          "In our extensive experiments, LoRA+ improves finetuning speed (up to \u223c 2X SpeedUp) and performance (1% \u2212 2% improvements), at the same computational cost as LoRA.",
+          "This is due to the fact that adapter matrices A and B in LoRA are updated with the same learning rate in ADAM. Using scaling arguments for large width networks, we demonstrate that the same learning rate does not allow efficient feature learning. We then show that this suboptimality of LoRA can be corrected simply by setting different learning rates for the LoRA adapter matrices A and B with a well-chosen fixed ratio. We call this proposed algorithm LoRA+. In our extensive experiments, LoRA+ improves finetuning speed (up to \u223c 2X SpeedUp) and performance (1% \u2212 2% improvements), at the same computational cost as LoRA."
+        ]
+      },
+      {
+        "title": "http://arxiv.org/abs/2106.09685",
+        "url": "http://arxiv.org/abs/2106.09685",
+        "excerpts": [
+          "LoRA: Low-Rank Adaptation of Large Language Models - arXiv.org We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition matrices into each layer of the Transformer architecture, greatly reducing the number of trainable parameters for downstream tasks."
+        ]
+      },
+      {
+        "title": "http://arxiv.org/html/2308.08747v5",
+        "url": "http://arxiv.org/html/2308.08747v5",
+        "excerpts": [
+          "An Empirical Study of Catastrophic Forgetting in Large Abstract Catastrophic forgetting (CF) is a phenomenon that occurs in machine learning when a model forgets previously learned information while acquiring new knowledge to achieve satisfactory performance in downstream tasks. As large language models (LLMs) have demonstrated remarkable performance, it is intriguing to investigate whether CF exists during the continual instruction tuning of LLMs"
+        ]
+      }
+    ],
+    "reasoning": "Assessment reasoning: The user field_description asks for a structured, multi-part output detailing edge-AI learning loops, data, coverage, missing items, feed into edge engine, real-vs-filler, noise log, and verdict. The provided field_answer contains a thorough executive summary, data inventory, coverage table, gaps, architecture feed-in, real-vs-filler evaluation, noise log, verdict, and multiple case-study-like items, aligned with the required sections. It also cites numerous sources in excerpts to support the claims (LoRA/QLoRA, on-device training, federated learning, adapter sizing, connectivity, etc.). Given the breadth and sequence match to the requested outline (EXECUTIVE SUMMARY, DATA INVENTORY, COVERAGE TABLE, WHAT IS MISSING, HOW IT FEEDS THE EDGE-AI ENGINE, REAL-vs-FILLER, NOISE LOG, VERDICT), the field answer appears complete. Most factual assertions reference the excerpts provided, and the excerpts list contains relevant sources for the major claims (LoRA/QLoRA, on-device training, FLOWER/TFF/FedML, adapter packaging, connectivity, etc.). Therefore: completeness = true. supported = true, since excerpts appear to back many of the key assertions, and the answer explicitly includes numerous source-style claims that align with the excerpts. If any minor claim lacks a direct public source in the excerpts, it is framed as design intent or engineering judgment rather than an unbacked assertion, but overall support is strong.",
+    "confidence": "high"
+  }
+]

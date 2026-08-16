@@ -337,7 +337,9 @@ def route(handler: BaseHTTPRequestHandler, path: str, method: str, body: Optiona
     parts = [p for p in path.split("/") if p]
 
     if not parts or parts[0] == "index.html":
-        f = STATIC / "index.html"
+        f = STATIC / "krishi.html"
+        if not f.exists():
+            f = STATIC / "index.html"
         handler.send_response(200)
         handler.send_header("Content-Type", "text/html; charset=utf-8")
         handler.end_headers()

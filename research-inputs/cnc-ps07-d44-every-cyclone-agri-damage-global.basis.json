@@ -1,0 +1,700 @@
+[
+  {
+    "field": "answer",
+    "citations": [
+      {
+        "title": "FAO Knowledge Repository",
+        "url": "https://openknowledge.fao.org/bitstreams/bddf76de-cdbd-42c1-95eb-40dab145890d/download",
+        "excerpts": [
+          "FAO Knowledge Repository",
+          "In 2018, Cyclones Mekunu and Luban brought exceptional rainfall to parts of the Arabian Peninsula, including Yemen, Oman and Saudi Arabia.",
+          "Message 3: Climate extremes are becoming a major risk multiplier cal cyclones, vegetation development and Indian Ocean"
+        ]
+      },
+      {
+        "title": "\n\tThe Impact of Disasters on Agriculture and Food Security\n",
+        "url": "https://www.fao.org/publications/fao-flagship-publications/the-impact-of-disasters-on-agriculture-and-food-security/en",
+        "excerpts": [
+          "**##### **The Impact of Disasters on Agriculture and Food Security 2025** ###### **Digital solutions for reducing risks and impacts****",
+          "Agriculture and food security face unprecedented challenges from the escalating frequency and intensity of disasters worldwide.",
+          "This report, the second edition of an FAO flagship series, provides a comprehensive analysis of how disasters disrupt agricultural systems across multiple dimensions \u2014 from immediate production losses to cascading effects through infrastructure, markets, financial systems, and ecosystem services."
+        ]
+      },
+      {
+        "title": "Global Active Archive of Large Flood Events (DFO) | Humanitarian Dataset | HDX",
+        "url": "https://data.humdata.org/dataset/global-active-archive-of-large-flood-events-dfo",
+        "excerpts": [
+          "24 April 2019 Dataset Added on HDX [?] 18 April 2019 Less",
+          "Global Active Archive of Large Flood Events (DFO)",
+          "Location World",
+          "Methodology Caveats / Comments",
+          "[](https://X.com/share?url=https://data.humdata.org/dataset/global-active-archive-of-large-flood-events-dfo \"X\") [](https://www.facebook.com/sharer.php?u=https://data.humdata.org/dataset/global-active-archive-of-large-flood-events-dfo \"Facebook\") [](mailto:?subject=\\[HDX\\]: \"Global Active Archive of Large Flood Events \\(DFO\\)\"&body=Description:%0D%0AThis data is from Darthmouth Flood Observatory \\(DFO\\) Global Active Archive of Large Flood Events. It contains more than 4000 records of flooding events globally from 1985 - 2010. %0D%0Ahttps://data.humdata.org/dataset/global-active-archive-of-large-flood-events-dfo \"E-Mail\")",
+          "Source Darthmouth Flood Observatory",
+          "Methodology Caveats / Comments License Creative Commons Attribution International (CC BY) Tags [flooding](https://data.humdata.org/dataset/?vocab_Topics=flooding \"flooding\") File Format SHP",
+          "wlf\\_nhr\\_fl\\_dfomasterlist\\_20190418.zip SHP (596.3K) Modified: 24 April 2019",
+          "Source Darthmouth Flood Observatory ... More Contributor WFP - World Food Programme Methodology Caveats / Comments License Creative Commons Attribution International (CC BY) Tags [flooding](https://data.humdata.org/dataset/?vocab_Topics=flooding \"flooding\") File Format SHP"
+        ]
+      },
+      {
+        "title": "Dartmouth Flood Observatory",
+        "url": "https://floodobservatory.colorado.edu/Archives",
+        "excerpts": [
+          "DFO - Flood Observatory, University of Colorado, USA. http://floodobservatory.colorado.edu/ Archives/ (Accessed 1 October 2016)._",
+          "| | | |__Global Active Archive of Large Flood Events, 1985-Present__",
+          "##### The listing is comprehensive and global in scope. Deaths and displaced estimates for tropical storms are totals from all causes, but tropical storms without significant river flooding are not included.",
+          "##### Each entry in the table and related \"area affected\" map outline represents a discrete flood event. However, repeat flooding in some regions is a complex phenomenon and may require a compromise between aggregating and dividing such events.",
+          "##### The information presented in this Archive is derived from news, governmental, instrumental, and remote sensing sources. The archive is \"active\" because current events are continually being added.",
+          "##### The Archive includes: a) an online .html table of recent events , only; b) Excel .xlsx and .xml files for all events, 1985-present, updated as the recent events html is updated; and c) Zip-compressed GIS MapInfo format and Shp format files, each providing flood catalog numbers, centroids, area affected outlines, and other attribute information and updated as the recent events html is updated.",
+          "Notes: ##### The information presented in this Archive is derived from news, governmental, instrumental, and remote sensing sources. The archive is \"active\" because current events are continually being added. ##### Each entry in the table and related \"area affected\" map outline represents a discrete flood event. However, repeat flooding in some regions is a complex phenomenon and may require a compromise between aggregating and dividing such events. ##### The listing is comprehensive and global in scope. Deaths and displaced estimates for tropical storms are totals from all causes, but tropical storms without significant river flooding are not included. ##### The Archive includes: a) an online .html table of recent events , only; b) Excel .xlsx and .xml files for all events, 1985-present, updated as the recent events html is updated; and c) Zip-compressed GIS MapInfo format and Shp format files, each providing flood catalog numbers, centroids, area affected outlines, and other attribute information and updated as the recent events html is updated. ##### Many floods have now been imaged by satellite and translated at the Dartmouth Flood Observatory into individual maps of inundation extents. See: [DFO Flood Maps Index.](https://floodobservatory.colorado.edu/FloodMapIndex.htm) ##### For additional information concerning how these maps and tables are created, please review further Archive Notes .",
+          "| | | |__Global Active Archive of Large Flood Events, 1985-Present__ _Sample citation:_ _G.R. Brakenridge. Global Active Archive of Large Flood Events. DFO - Flood Observatory, University of Colorado, USA. http://floodobservatory.colorado.edu/ Archives/ (Accessed 1 October 2016)._ Obtaining the Archive (includes database and associated GIS files): The Global Active Archive is [made availabl](https://floodobservatory.colorado.edu/temp/) e without charge for scholarly research and education purposes. Notes: ##### The information presented in this Archive is derived from news, governmental, instrumental, and remote sensing sources. The archive is \"active\" because current events are continually being added. ##### Each entry in the table and related \"area affected\" map outline represents a discrete flood event. However, repeat flooding in some regions is a complex phenomenon and may require a compromise between aggregating and dividing such events. ##### The listing is comprehensive and global in scope. Deaths and displaced estimates for tropical storms are totals from all causes, but tropical storms without significant river flooding are not included. ##### The Archive includes: a) an online .html table of recent events , only; b) Excel .xlsx and .xml files for all events, 1985-present, updated as the recent events html is updated; and c) Zip-compressed GIS MapInfo format and Shp format files, each providing flood catalog numbers, centroids, area affected outlines, and other attribute information and updated as the recent events html is updated.",
+          "| | | |__Global Active Archive of Large Flood Events, 1985-Present__ _Sample citation:_ _G.R. Brakenridge. Global Active Archive of Large Flood Events. DFO - Flood Observatory, University of Colorado, USA. http://floodobservatory.colorado.edu/ Archives/ (Accessed 1 October 2016)._ Obtaining the Archive (includes database and associated GIS files): The Global Active Archive is [made availabl](https://floodobservatory.colorado.edu/temp/) e without charge for scholarly research and education purposes. Notes: ##### The information presented in this Archive is derived from news, governmental, instrumental, and remote sensing sources. The archive is \"active\" because current events are continually being added. ##### Each entry in the table and related \"area affected\" map outline represents a discrete flood event. However, repeat flooding in some regions is a complex phenomenon and may require a compromise between aggregating and dividing such events. ##### The listing is comprehensive and global in scope. Deaths and displaced estimates for tropical storms are totals from all causes, but tropical storms without significant river flooding are not included."
+        ]
+      },
+      {
+        "title": "A rapid geospatial analysis of the impact of the Tropical Cyclone Gombe in Mozambique in 2022",
+        "url": "https://openknowledge.fao.org/items/4ca16338-d1dd-497b-9f73-32b83140d2a2",
+        "excerpts": [
+          "Year of publication 2022",
+          "Synopsis (short abstract) Mozambique was hit by Tropical Storm Ana on 24 January 2022 and Tropical Cyclone Gombe on 11 March 2022.",
+          "These extreme weather events caused floods, damages to infrastructure (including roads and electricity poles), the evacuation of several thousands of people to temporary shelters, and the deaths of dozens of people.",
+          "Furthermore, agriculture in these areas of the country was significantly impacted.",
+          "Since the beginning of the rainy season up till now, it is reported that a total 220 425 hectares of crops have been lost (OCHA, 2022d).",
+          "This analysis builds on FAO experience in assessing impacts from natural hazards to the agricultural sector and highlights the importance to of regularly updating geospatial information for vulnerability and impact assessments in support to preparedness and response programs.",
+          "The accuracy of the results provided can be improved by combining additional information, such as agricultural statistics, and field data.",
+          "Since the beginning of the rainy season up till now, it is reported that a total 220 425 hectares of crops have been lost (OCHA, 2022d). This analysis builds on FAO experience in assessing impacts from natural hazards to the agricultural sector and highlights the importance to of regularly updating geospatial information for vulnerability and impact assessments in support to preparedness and response programs. The accuracy of the results provided can be improved by combining additional information, such as agricultural statistics, and field data.",
+          "This analysis builds on FAO experience in assessing impacts from natural hazards to the agricultural sector and highlights the importance to of regularly updating geospatial information for vulnerability and impact assessments in support to preparedness and response programs. The accuracy of the results provided can be improved by combining additional information, such as agricultural statistics, and field data."
+        ]
+      },
+      {
+        "title": "Table of Contents",
+        "url": "https://www.fao.org/4/Y2784E/Y2784E00.htm",
+        "excerpts": [
+          "**Food and Agriculture Organization of the United Nations FAO November 2001.**",
+          "Analysis of the Medium-Term Effects of Hurricane Mitch on Food Security in Central America",
+          "Damage inflicted on the farming sector by Hurricane Mitch > 3\\.",
+          "AVAILABILITY OF BASIC FOODS** > 1\\. Impact of Hurricane Mitch > 2\\. Damage inflicted on the farming sector by Hurricane Mitch > 3\\. Trends in food production > 4\\. Food imports and exports > >",
+          "Trends in prices of basic grains > >",
+          "Importance of cereals to dietary intake > 2\\.",
+          "**II. AGROSOCIOECONOMIC DATA** > 1\\. Geographical context > 2\\. Basic macroeconomic data > > **III. AVAILABILITY OF BASIC FOODS**",
+          "**IV. STABILITY OF FOOD SUPPLY** > 1\\. Impact of Hurricane Mitch on regional markets > 2\\. Food balances > 3\\. Analysis of farm credit > 4\\. Trends in prices of basic grains > > **V. ACCESS TO BASIC FOODS**",
+          "**VI. BIOLOGICAL UTILIZATION OF FOODS** > 1\\. Importance of cereals to dietary intake > 2\\. Habits and customs > 3\\. Malnutrition > 4\\. Deficiencies in micronutrients > > **VII. GENERAL CONCLUSIONS AND RECOMMENDATIONS**",
+          "**Table of Contents** * * **Food and Agriculture Organization of the United Nations FAO November 2001.** * * Table of Contents * * **Download PDF version** [](https://www.fao.org/docrep/pdf/003/y2784e/y2784e00.pdf) (654 kb)",
+          "Impact of Hurricane Mitch > 2\\. Damage inflicted on the farming sector by Hurricane Mitch > 3\\.",
+          "**VIII. CONCLUSIONS AND RECOMMENDATIONS BY COUNTRY** **IX. ANNEXES**"
+        ]
+      },
+      {
+        "title": "Cyclone Sidr in Bangladesh | GFDRR",
+        "url": "https://www.gfdrr.org/en/publication/cyclone-sidr-bangladesh",
+        "excerpts": [
+          "Cyclone Sidr in Bangladesh",
+          "Damage, Loss and Needs Assessment for Disaster Recovery and Reconstruction",
+          "March 1, 2008",
+          "Cyclone Sidr in Bangladesh Damage, Loss and Needs Assessment for Disaster Recovery and Reconstruction March 1, 2008"
+        ]
+      },
+      {
+        "title": "World Bank Document",
+        "url": "https://documents1.worldbank.org/curated/en/337501468014345112/pdf/PIDAppraisal0BD0Cyclone0May01902008.pdf",
+        "excerpts": [
+          "**Date PID Prepared** May 15, 2008",
+          "1\\.1 Cylclone Sidr (Category IV) hit Bangladesh on the evening of November 15, 2007. The cyclone, originating from a depression over the Bay of Bengal, first reached offshore islands at 1830 hours and then made landfall across the southern coast from Cox's Bazaar toward Satkhira. Heavy rains were experienced throughout the country, including in the capital Dhaka. The first area hit by Cyclone Sidr was Hiron Point and part of the Sundarban mangrove forest in Bagerhat. According to the Bangladesh Meteorological Department (BMD), Cyclone Sidr had a radius of 500 km with the eye of the storm 74 km wide and wind speeds reaching 220-240 km per hour. The storm caused extensive damage, in particular in the southwestern districts. As it moved north into central Bangladesh, the cyclone was downgraded to a Category II tropical storm. 1.2 The cyclone caused extensive damage to lives and property. Overall, 30 districts in the country and about 9 million people (more than 2 million families) were affected by the cyclone. The death toll exceeded 3,000, about 100 were missing, and more than 55,000 people were injured. There was a nationwide power outage for more than 24 hours. About 1.5 million houses were damaged and 4 million trees destroyed. The livestock death toll was over 100,000. The cyclone hit at a time when _aman_ rice, the predominant source of food in the area, was about to be harvested, and almost 113,000 ha and 1,400,000 ha of crops, respectively, were totally or partially damaged. The crop loss was about 1.3 million tons. 1.3 A comprehensive analysis undertaken by a team of Government of Bangladesh (GoB), international experts, and international agencies, led by the World Bank, estimated the total damage and losses caused by the cyclone to be Bangladesh Taka (BDT) 115.6 billion (US$1.7 billion). More than two-thirds of this was physical damage and one-",
+          "third economic losses. Damage and losses were concentrated in the housing sector (US$840 million, or 50 % of the total), productive sectors (US$ 490 million, 30 %), and public sector infrastructure (US$250 million, 16 %). The most affected sectors were, in decreasing order, housing, agriculture, transport, water control structures, education, and industry. 1.4 Responding to GoB\u2019s request for rehabilitation and reconstruction assistance in the aftermath of the cyclone, IDA is implementing a cyclone assistance program to help the country cope with the current situation and build resilience to future disasters. This is built on a three-phase approach: (i) A quick-disbursing support to the GoB budget (US$100 million) under the Development Support Credit IV, to assist in reducing pressure on the FY08 budget arising from non-programmed cyclone-related spending and financing of immediate recovery needs; (ii) An Additional Financing to the Social Investment Program Project (US$50 million) to help restore livelihoods in cyclone-affected areas, through micro- credit, emergency assistance funds, local infrastructure, and income generating activities; and (iii) An Emergency Recovery Credit (IDA financing amount is not finalized yet) for an Emergency Recovery Credit for infrastructure rehabilitation and reconstruction needs. 1.5 Given satisfactory performance of the ongoing SIPP to date, GoB and IDA have identified it as one of the best instruments for channeling funds quickly and efficiently to support livelihoods restoration at the community level for the second phase of the cyclone assistance program described above. 1.6 The ongoing SIPP is helping GoB develop effective and efficient financing and institutional arrangements to empower the poorest and most vulnerable and improve their access to small-scale local infrastructure, assets and livelihoods.",
+          "1\\.1 Cylclone Sidr (Category IV) hit Bangladesh on the evening of November 15, 2007. The cyclone, originating from a depression over the Bay of Bengal, first reached offshore islands at 1830 hours and then made landfall across the southern coast from Cox's Bazaar toward Satkhira. Heavy rains were experienced throughout the country, including in the capital Dhaka. The first area hit by Cyclone Sidr was Hiron Point and part of the Sundarban mangrove forest in Bagerhat. According to the Bangladesh Meteorological Department (BMD), Cyclone Sidr had a radius of 500 km with the eye of the storm 74 km wide and wind speeds reaching 220-240 km per hour. The storm caused extensive damage, in particular in the southwestern districts. As it moved north into central Bangladesh, the cyclone was downgraded to a Category II tropical storm. 1.2 The cyclone caused extensive damage to lives and property. Overall, 30 districts in the country and about 9 million people (more than 2 million families) were affected by the cyclone. The death toll exceeded 3,000, about 100 were missing, and more than 55,000 people were injured. There was a nationwide power outage for more than 24 hours. About 1.5 million houses were damaged and 4 million trees destroyed. The livestock death toll was over 100,000. The cyclone hit at a time when _aman_ rice, the predominant source of food in the area, was about to be harvested, and almost 113,000 ha and 1,400,000 ha of crops, respectively, were totally or partially damaged. The crop loss was about 1.3 million tons. 1.3 A comprehensive analysis undertaken by a team of Government of Bangladesh (GoB), international experts, and international agencies, led by the World Bank, estimated the total damage and losses caused by the cyclone to be Bangladesh Taka (BDT) 115.6 billion (US$1.7 billion). More than two-thirds of this was physical damage and one- Public Disclosure Authorized Public Disclosure Authorized Public Disclosure Authorized Public Disclosure Authorized Public Disclosure Authorized Public Disclosure Authorized Public Disclosure Authorized Public Disclosure Authorized third economic losses. Damage and losses were concentrated in the housing sector (US$840 million, or 50 % of the total), productive sectors (US$ 490 million, 30 %), and public sector infrastructure (US$250 million, 16 %). The most affected sectors were, in decreasing order, housing, agriculture, transport, water control structures, education, and industry. 1.4 Responding to GoB\u2019s request for rehabilitation and reconstruction assistance in the aftermath of the cyclone, IDA is implementing a cyclone assistance program to help the country cope with the current situation and build resilience to future disasters. This is built on a three-phase approach: (i) A quick-disbursing support to the GoB budget (US$100 million) under the Development Support Credit IV, to assist in reducing pressure on the FY08 budget arising from non-programmed cyclone-related spending and financing of immediate recovery needs; (ii) An Additional Financing to the Social Investment Program Project (US$50 million) to help restore livelihoods in cyclone-affected areas, through micro- credit, emergency assistance funds, local infrastructure, and income generating activities; and (iii) An Emergency Recovery Credit (IDA financing amount is not finalized yet) for an Emergency Recovery Credit for infrastructure rehabilitation and reconstruction needs. 1.5 Given satisfactory performance of the ongoing SIPP to date, GoB and IDA have identified it as one of the best instruments for channeling funds quickly and efficiently to support livelihoods restoration at the community level for the second phase of the cyclone assistance program described above. 1.6 The ongoing SIPP is helping GoB develop effective and efficient financing and institutional arrangements to empower the poorest and most vulnerable and improve their access to small-scale local infrastructure, assets and livelihoods."
+        ]
+      },
+      {
+        "title": "Puerto Rico\u2019s Agricultural Economy in the Aftermath of Hurricanes Irma and Maria: A Brief Overview | Economic Research Service",
+        "url": "https://www.ers.usda.gov/publications/106260",
+        "excerpts": [
+          "4/6/2023",
+          "In 2017, Hurricanes Irma and Maria caused severe damage, and hurricane losses particularly affected smaller farms with sales under $20,000 per year.",
+          "Puerto Rico\u2019s Agricultural Economy in the Aftermath of Hurricanes Irma and Maria: A Brief Overview",
+          "This study provides a broad overview of Puerto Rico\u2019s agricultural sector, with an emphasis on identifying changes between 2012 and 2018.",
+          "The number of farms smaller than 10 acres decreased by more than 50 percent, and the number of farms with 10\u201349 acres fell by almost one-third.",
+          "Crop sales in Puerto Rico decreased by $82 million from 2012 to 2018, with the most notable decreases for plantains (-$54 million), coffee (-$30 million), vegetables and melons (-$23 million), and fruits and coconuts (-$19 million)."
+        ]
+      },
+      {
+        "title": "EM-DAT - The international disaster database",
+        "url": "https://www.emdat.be/",
+        "excerpts": [
+          "EM-DAT contains data on the occurrence and impacts of over 27,000 mass disasters worldwide from 1900 to the present day.",
+          "The database is compiled from various sources, including UN agencies, non-governmental organizations, reinsurance companies, research institutes, and press agencies.",
+          "EM-DAT globally records at the country level **human and economic losses** for disasters with at least one of the following criteria: 10 fatalities; 100 affected people; a declaration of state of emergency; a call for international assistance.",
+          "Disaster Classification EM-DAT adopts a hierarchical classification The database classifies disasters into two groups of hazards: **natural** and **technological** . The natural group is further classified up to four additional levels following the [2014 IRDR Peril Classification and Hazard Glossary](https://www.irdrinternational.org/knowledge_pool/publications/173) . The technological group is less detailed and comprises three main types: transport, industrial, and miscellaneous accidents.",
+          "The main objective of the database is to serve the purposes of **humanitarian action at national and international levels** .",
+          "The initiative aims to rationalize decision-making for **disaster preparedness** and **disaster risk reduction strategies** , as well as provide an objective base for **vulnerability assessment and priority setting** .",
+          "\u00a9 CRED-IRSS-UCLouvain 2025",
+          "EM-DAT globally records at the country level **human and economic losses** for disasters with at least one of the following criteria:",
+          "10 fatalities; 100 affected people; a declaration of state of emergency; a call for international assistance.",
+          "EM-DAT contains data on the occurrence and impacts of over 27,000 mass disasters worldwide from 1900 to the present day. The database is compiled from various sources, including UN agencies, non-governmental organizations, reinsurance companies, research institutes, and press agencies."
+        ]
+      },
+      {
+        "title": "International Best Track Archive for Climate Stewardship (IBTrACS) | National Centers for Environmental Information (NCEI)",
+        "url": "https://www.ncei.noaa.gov/products/international-best-track-archive",
+        "excerpts": [
+          "Hurricane Isabel (9/14/2003)",
+          "Release Date: June 2024",
+          "The International Best Track Archive for Climate Stewardship (IBTrACS) project is the most complete global collection of tropical cyclones available.",
+          "It merges recent and historical tropical cyclone data from multiple agencies to create a unified, publicly available, best-track dataset that improves inter-agency comparisons.",
+          "IBTrACS v04r01 is updated three times a week (usually on Sunday, Tuesday, and Thursday), and could be updated more frequently to address specific needs and use cases.",
+          "Some early (pre-1950) storms were not correctly matched, so the number of storms in the record is artificially high.",
+          "**Initial dates vary:** Data from some agencies are not available for all 30 years of the climatology.",
+          "**Counts based solely on wind:** The climatologies are based solely on wind speed.",
+          "Storms without wind speeds were not included in the climatology.",
+          "**Wind speed homogeneities:** Wind speed averaging periods vary between agencies, which affects the WMO inter-basin count values.",
+          "The International Best Track Archive for Climate Stewardship (IBTrACS) project is the most complete global collection of tropical cyclones available. It merges recent and historical tropical cyclone data from multiple agencies to create a unified, publicly available, best-track dataset that improves inter-agency comparisons.",
+          "Tropical cyclone track data is available in several subsets, including: **ALL** : All storms available in the IBTrACS record **since1980** : The modern era of satellite observations **last3years** : 3 most recent years of data **active** : storms active in the last 7 days",
+          "[Column Variable Descriptions](https://www.ncei.noaa.gov/sites/default/files/2025-09/IBTrACS_v04r01_column_documentation.pdf)",
+          "Landfall Variables New variables in netCDF provide information on storm location with respect to land. The new variable dist2land provides information on the current distance to land. The new variable landfall provides the minimum distance to land between the current time and the next reporting time. Landfalling storms would at least one occurrences of a dist2land value > 0 but landfall = 0"
+        ]
+      },
+      {
+        "title": "Bangladesh: Cyclone SIDR OCHA Situation Report No. 10 | OCHA",
+        "url": "https://www.unocha.org/publications/report/bangladesh/bangladesh-cyclone-sidr-ocha-situation-report-no-10",
+        "excerpts": [
+          "26 November 2007",
+          "Cyclone Sidr, Category IV, hit Bangladesh on the evening of 15 November.",
+          "The GoB estimates more than 1.8 million acres of crops are damaged.",
+          "There is significant damage to livelihoods with a need to focus required on the fisheries and agricultural rehabilitation in particular.",
+          "Over 523,000 livestock are confirmed killed, which represents loss of critical household assets, with an associated loss to wealth and income, as well as a loss in milk production for own consumption.",
+          "FAO is assisting 47,000 households with seeds and other agricultural inputs, as well as fishing nets and supplies and intends to support over 100,000 families in livelihood rehabilitation.",
+          "This situation report is based on information received from the Bangladesh Disaster Management Information Centre, the UN Resident Coordinator's Office Bangladesh, the Disaster Emergency Response Group (DER), UN Agencies and OCHA Regional Office for Asia and the Pacific (ROAP).",
+          "Results from the initial rapid UN Emergency Assessment of the needs and damages in nine of the worst affected districts indicated that out of the approximately 4.7 million people affected in the nine districts assessed, 2.6 million people require immediate livelihoods and life-saving relief assistance.",
+          "The GoB estimates more than 1.8 million acres of crops are damaged. Over 523,000 livestock are confirmed killed, which represents loss of critical household assets, with an associated loss to wealth and income, as well as a loss in milk production for own consumption."
+        ]
+      },
+      {
+        "title": "\n\tDesert Locust crisis | FAO Emergency and Resilience | Food and Agriculture Organization of the United Nations\n",
+        "url": "https://www.fao.org/emergencies/where-we-work/desert-locust-crisis",
+        "excerpts": [
+          "[Desert locust upsurge: Progress report on the response in the Greater Horn of Africa and Yemen, September\u2013December 2021](https://www.fao.org/documents/card/en/c/cc0175en) 05/2022 This sixth and final progress report details FAO\u2019s work to mitigate the effects of the desert locust upsurge \u2013 an unprecedented threat to food security and livelihoods \u2013 across the Greater Horn of Africa and Yemen between September and December 2021, while outlining the outcomes of the response in all of 2021.",
+          "Desert locust crisis (2020\u20132021)",
+          "Desert locust crisis (2020\u20132021) With the tremendous support of resource partners, FAO has made great strides against the worst desert locust upsurge to hit the Greater Horn of Africa and Yemen in decades. Now, we can finally say that the upsurge has come to an end.",
+          "In late 2019, a massive outbreak of desert locusts swept across the greater Horn of Africa and Yemen.",
+          "With the tremendous support of resource partners, FAO has made great strides against the worst desert locust upsurge to hit the Greater Horn of Africa and Yemen in decades.",
+          "The sixth and final [**\u201cProgress report on the response in the Greater Horn of Africa and Yemen\u201d**](https://www.fao.org/3/cc0175en/cc0175en.pdf) details the work carried out by FAO across the region between September and December 2021 to combat the upsurge\u2019s unprecedented threat to food security and livelihoods, while providing an overview of the outcomes of the response in all of 2021.",
+          "FAO\u2019s fully funded appeal allowed for the treatment of nearly 2.3 million ha of desert locust-infested land in targeted countries, through ground and aerial operations between January 2020 and December 2021.",
+          "These efforts averted 4.5 million tonnes of crop losses, saved 900 million litres of milk production, and secured food for 41.5 million people.",
+          "The commercial value of the cereal and milk losses averted through the response is estimated at USD 1.77 billion.",
+          "The devastating impact of the upsurge on livelihoods was in turn mitigated through a combination of in-kind and/or cash support; over 305 000 households were supported by FAO and an additional 300 000 by non-governmental organizations, providing approximately 3 million people with the means to meet their immediate needs and to restore their productive capacity.",
+          "Timely and generous contributions amounting to USD 230.5 million between January 2020 and December 2021 enabled FAO \u2013 working closely with governments and partners \u2013 to put in place and maintain an extraordinarily effective system capable of forecasting, coordinating and responding in order to keep desert locust at bay as well as prepare for future upsurges.",
+          "FAO's Desert Locust Information Service (DLIS) provided timely and accurate early warning and forecasts throughout the upsurge. Collaboration with academic, research and private sector partners resulted in 16 new innovations that have been integrated into DLIS and national locust programmes to further improve monitoring and early warning, including important tools such as the eLocust3 application \u2013 used to record field observations and transmit them in real time via satellite to inform the response.",
+          "FAO\u2019s fully funded appeal allowed for the treatment of nearly 2.3 million ha of desert locust-infested land in targeted countries, through ground and aerial operations between January 2020 and December 2021. These efforts averted 4.5 million tonnes of crop losses, saved 900 million litres of milk production, and secured food for 41.5 million people. The commercial value of the cereal and milk losses averted through the response is estimated at USD 1.77 billion.",
+          "While we can now state that this historic upsurge has been defeated, challenges remain to maintain the gains made over the past two years and ensure countries can sustain the robust monitoring and control systems that have been put into place, improving the region\u2019s collective ability to prevent future upsurges and plagues.",
+          "Starting in late 2019, the largest upsurge of desert locusts in living memory darkened the skies of East Africa and Yemen, threatening to wipe out crops...",
+          "FAO's Desert Locust Information Service (DLIS) provided timely and accurate early warning and forecasts throughout the upsurge.",
+          "Collaboration with academic, research and private sector partners resulted in 16 new innovations that have been integrated into DLIS and national locust programmes to further improve monitoring and early warning, including important tools such as the eLocust3 application \u2013 used to record field observations and transmit them in real time via satellite to inform the response."
+        ]
+      },
+      {
+        "title": "FAO/GIEWS - Foodcrops and Shortages \ufffd-\ufffd10/05 - VIET NAM (12 October)",
+        "url": "https://www.fao.org/4/J6398e/pays/VIE.htm",
+        "excerpts": [
+          "FAO/GIEWS - Foodcrops and Shortages \ufffd-\ufffd10/05 - VIET NAM (12 October)",
+          "Typhoon Damrey and flash floods in the late September struck northern Viet Nam, killing 69 people and destroying 318\ufffd000 hectares of crops, mainly rice.",
+          "The northern regions are likely to lose between 300\ufffd000 and 400\ufffd000 tonnes of rice due to Damrey\ufffds destruction.",
+          "Seafood and salt production were also reportedly hit by the disaster.",
+          "Harvesting of the 10 th month rice started from the middle of September in northern parts of the country and will commence from late October in the south.",
+          "Despite the recent floods, the 2005 output of paddy is forecast to reach a new record at 37 million tonnes, some 882\ufffd000 tonnes over last year\ufffds record production.",
+          "Typhoon Damrey and flash floods in the late September struck northern Viet Nam, killing 69 people and destroying 318\ufffd000 hectares of crops, mainly rice. The northern regions are likely to lose between 300\ufffd000 and 400\ufffd000 tonnes of rice due to Damrey\ufffds destruction. Seafood and salt production were also reportedly hit by the disaster."
+        ]
+      },
+      {
+        "title": "\n    Odette-affected farmers and fisherfolk receive P3-billion worth of interventions from DA |\n    Official Portal of the Department of Agriculture",
+        "url": "https://www.da.gov.ph/odette-affected-farmers-and-fisherfolk-receive-p3-billion-worth-of-interventions-from-da",
+        "excerpts": [
+          "Author: DA Press Office | 20 January 2022",
+          "The Department of Agriculture (DA) released a total of 3-billion-peso worth of agricultural interventions to aid farmers and fisherfolk affected by Typhoon Odette, which caused havoc in almost 10 regions, with the Visayas severely hit.",
+          "To date, agricultural damages and losses from Typhoon Odette translate to P13.3 billion, with 462,766 hectares of agricultural areas affected and 273,062 metric tons of total volume loss agonizing 533,709 farmers and fishers.",
+          "\u201cIn spite of all these challenges, the Philippines, with the combination of enhancing local production and supply augmentation from other countries, _sapat po ang pagkain ng ating bansa_ ,\u201d the secretary concluded. _**\\### (Daryl Lou Battad, DA StratComms)**_",
+          "To aid farm recovery efforts, the DA distributed P500 million worth of certified rice, corn, and assorted vegetable seeds; P1.63 million worth of seednuts, seedlings, and fertilizers from the Philippine Coconut Authority; P6.6 million worth of animal stocks, drugs, and biologics for livestock and poultry; and P.2 million worth of farm inputs from Philippine Fiber Industry and Development Authority.",
+          "Although the interventions were not enough compared to the damages that the typhoon caused, Secretary Dar assured that \u201cthis is a good start.\u201d He also guaranteed that the inventory of basic commodities such as rice, livestock, poultry, and fishery products are enough.",
+          "Also, P828 million was set aside by the Philippine Crop Insurance Corporation (PCIC) as potential payout to around 79,217 insured farmers and fishers affected by the typhoon.",
+          "The fisheries sector through the Bureau of Fisheries and Aquatic Resources also provided P31.58 million worth of interventions such as fiber boats, marine diesel engine, banca repairs, and various fishery products as relief goods.",
+          "The SURE Loan Assistance Program of the DA under the Agricultural Credit Policy Council (ACPC) also allotted P500-million worth of loan which will benefit 20,000 affected farmers and fishers. This program features P25,000 loanable amount per household, with zero interest, no collateral, and payable up to three years.",
+          "Of the P3 billion, P1 billion came from the Quick Response Fund (QRF) of the Department for the rehabilitation of affected areas particularly in regions 6, 7, 8, 13, and MIMAROPA which have been directly hit by Typhoon Odette.",
+          "To aid farm recovery efforts, the DA distributed P500 million worth of certified rice, corn, and assorted vegetable seeds; P1.63 million worth of seednuts, seedlings, and fertilizers from the Philippine Coconut Authority; P6.6 million worth of animal stocks, drugs, and biologics for livestock and poultry; and P.2 million worth of farm inputs from Philippine Fiber Industry and Development Authority. The fisheries sector through the Bureau of Fisheries and Aquatic Resources also provided P31.58 million worth of interventions such as fiber boats, marine diesel engine, banca repairs, and various fishery products as relief goods.",
+          "Of the P3 billion, P1 billion came from the Quick Response Fund (QRF) of the Department for the rehabilitation of affected areas particularly in regions 6, 7, 8, 13, and MIMAROPA which have been directly hit by Typhoon Odette. Also, P828 million was set aside by the Philippine Crop Insurance Corporation (PCIC) as potential payout to around 79,217 insured farmers and fishers affected by the typhoon. The SURE Loan Assistance Program of the DA under the Agricultural Credit Policy Council (ACPC) also allotted P500-million worth of loan which will benefit 20,000 affected farmers and fishers. This program features P25,000 loanable amount per household, with zero interest, no collateral, and payable up to three years. To aid farm recovery efforts, the DA distributed P500 million worth of certified rice, corn, and assorted vegetable seeds; P1.63 million worth of seednuts, seedlings, and fertilizers from the Philippine Coconut Authority; P6.6 million worth of animal stocks, drugs, and biologics for livestock and poultry; and P.2 million worth of farm inputs from Philippine Fiber Industry and Development Authority. The fisheries sector through the Bureau of Fisheries and Aquatic Resources also provided P31.58 million worth of interventions such as fiber boats, marine diesel engine, banca repairs, and various fishery products as relief goods."
+        ]
+      },
+      {
+        "title": "Bangladesh: Cyclone Remal and monsoon floods \u2013 Emergency appeal",
+        "url": "https://openknowledge.fao.org/server/api/core/bitstreams/18f904d3-0e63-47c4-844f-298263ee655a/content",
+        "excerpts": [
+          "\u00a9 FAO, 2024 CD3395EN/1/11.24",
+          "**June 2024\u2013March 2025**",
+          "In May 2024, cyclone Remal struck Bangladesh\u2019s southern coastal districts, triggering widespread flooding and landslides that devastated the lives and livelihoods of agriculture\u2011dependent communities.",
+          "The flash floods swept across the northern, northeastern and eastern regions during May\u2013June, impacting approximately 18 million people, including 5.5 million in urgent need of food security assistance.",
+          "Bangladesh is one of the world\u2019s most vulnerable countries to climate\u2011induced disasters and extreme weather events.",
+          "Targeted areas: **Barishal, Chattogram, Dhaka, Khulna, Mymensingh, Rajshahi,** **Rangpur** and **Sylhet** divisions",
+          "Over **498 300 ha** of standing crops were damaged and **1 million tonnes** of crops were lost",
+          "**\u2022 Crop production:** Distribute 306 tonnes of rice and 92 tonnes of vegetable seeds, 2 444 tonnes of fertilizers, tools and cash+ livelihood grants.",
+          "**23 928 ha** of grazing land have been affected and **436 089 tonnes** of livestock feed/fodder were lost",
+          "**81 914 ha** of fishing ponds and enclosures have been affected",
+          "Fishing and livestock\u2011keeping households have similarly suffered severe losses, including fishponds, equipment and livestock assets.",
+          "Damage to the crop, livestock and fisheries sectors totals approximately USD 596 million, with 1.7 million farming households affected, standing crops destroyed and vital agricultural assets lost.",
+          "Beyond immediate impacts, rural communities face longer\u2011term risks as malnutrition rises, and negative coping mechanisms, such as increased reliance on credit and livestock sales, become more prevalent.",
+          "The flash floods swept across the northern, northeastern and eastern regions during May\u2013June, impacting approximately 18 million people, including 5.5 million in urgent need of food security assistance. Damage to the crop, livestock and fisheries sectors totals approximately USD 596 million, with 1.7 million farming households affected, standing crops destroyed and vital agricultural assets lost.",
+          "Bangladesh: Cyclone Remal and monsoon floods Emergency appeal Damage to the crop, livestock and fisheries sectors totals approximately USD 596 million, with 1.7 million farming households affected, standing crops destroyed and vital agricultural assets lost.",
+          "In May 2024, cyclone Remal struck Bangladesh\u2019s southern coastal districts, triggering widespread flooding and landslides that devastated the lives and livelihoods of agriculture\u2011dependent communities. As communities struggled to recover, a series of flash floods compounded the crisis. The flash floods swept across the northern, northeastern and eastern regions during May\u2013June, impacting approximately 18 million people, including 5.5 million in urgent need of food security assistance. Damage to the crop, livestock and fisheries sectors totals approximately USD 596 million, with 1.7 million farming households affected, standing crops destroyed and vital agricultural assets lost.",
+          "In May 2024, cyclone Remal struck Bangladesh\u2019s southern coastal districts, triggering widespread flooding and landslides that devastated the lives and livelihoods of agriculture\u2011dependent communities. As communities struggled to recover, a series of flash floods compounded the crisis. The flash floods swept across the northern, northeastern and eastern regions during May\u2013June, impacting approximately 18 million people, including 5.5 million in urgent need of food security assistance.",
+          "**23 928 ha** of grazing land have been affected",
+          "Over **498 300 ha** of standing crops were damaged and **1 million tonnes** of crops were lost **23\\.6 million** people experiencing high levels of acute food insecurity (October\u2013December 2024) **23 928 ha** of grazing land have been affected"
+        ]
+      },
+      {
+        "title": "DA RFO 2, WFP AND FAO DISTRIBUTE AGRICULTURAL INPUTS TO TYPHOON MANGKHUT-STRICKEN FARMERS | Cagayan Valley Department of Agriculture Official Website",
+        "url": "https://cagayanvalley.da.gov.ph/2019/02/18/da-rfo-2-wfp-and-fao-distribute-agricultural-inputs-to-typhoon-mangkhut-stricken-farmers",
+        "excerpts": [
+          "Posted on [February 18, 2019](https://cagayanvalley.da.gov.ph/2019/02/18/da-rfo-2-wfp-and-fao-distribute-agricultural-inputs-to-typhoon-mangkhut-stricken-farmers/ \"11:34 am\") by [Mark Anthony Gallibu](https://cagayanvalley.da.gov.ph/author/markygallibu/ \"View all posts by Mark Anthony Gallibu\")",
+          "Kerrie Anderson, counselor, Australian Embassy to the Philippines during luminaries\u2019 courtesy visit on February 14, 2019. The delegates informed Edillo that they will complement the Department of Agriculture Regional Field Office 2\u2019s (DA RFO 2) initiative in restoring food security and agricultural livelihood of typhoon Mangkhut (Ompong)- stricken farmers.",
+          "Jose Luis Fernandez, representative, Food and Agriculture Organization (FAO) of the United Nations and Ms. Kerrie Anderson, counselor, Australian Embassy to the Philippines during luminaries\u2019 courtesy visit on February 14, 2019.",
+          "Two successive typhoons struck our country, leaving much their fury in Cagayan Valley,\u201d RED Edillo said. \u201cWe have been giving assistance after the assessment of the damage. You see, Region 2 is a rice-producing region.\u201d",
+          "Tim Stewardson, Deputy Head of Mission has identified barangays in Tuao, Amulung, and Solana as recipients of Urea fertilizers. Likewise, the Australian Embassy has identified barangays in Buguey, Lasam, Abulug, and Camalaniugan to avail of their assistance.",
+          "In an overview, Alberto Aduna, FAO emergency coordinator, said the area affected by Typhoon Mangkhut was largely agricultural and has caused disruptions in agricultural production, including on staple food.",
+          "You see, Region 2 is a rice-producing region.\u201d DA RFO 2 recently distributed seeds in areas heavily devastated by the typhoon.",
+          "Kerrie Anderson said the Australian Embassy has teamed up with the Embassy of New Zealand to distribute urea fertilizers to the typhoon-affected farmers to supplement rehabilitation measures earlier implemented by the agency.",
+          "\u201cToday, we acknowledge and extend our gratitude to one of our long-standing partners, the New Zealand Government, for their generous assistance that has enabled FAO to provide fertilizers that complement the DA\u2019s provision of rice seed,\u201d Fernandez said.",
+          "In an overview, Alberto Aduna, FAO emergency coordinator, said the area affected by Typhoon Mangkhut was largely agricultural and has caused disruptions in agricultural production, including on staple food. Edillo supported the event reminding them that this kind of collaboration is proof that institutions can work together to achieve an end goal. \u201cDA and FAO were on the ground right after the typhoon to assess the damages and needs following the typhoon\u2019s onslaught,\u201d he added. \u201cWe know that our country is prone to typhoons and we expect this every year, but through interventions and climate-smart decisions we can address this major problem by adopting a different planting season,\u201d he said. \u201cToday, we acknowledge and extend our gratitude to one of our long-standing partners, the New Zealand Government, for their generous assistance that has enabled FAO to provide fertilizers that complement the DA\u2019s provision of rice seed,\u201d Fernandez said. \u201cThis day marked a simple yet meaningful event as we will continuously work together in nation-building, we hope that you to be more resilient in the coming days ahead,\u201d Stewardson added talking to hundreds of farmer-beneficiaries. A total of 834 beneficiaries in Solana, Cagayan covering seven (7) barangays and 213 beneficiaries in Amulung, Cagayan covering six (6) barangays. The WFP works in over 80 countries to ensure food security and offers assistance to the most vulnerable people, strengthening their capacity to absorb and adapt the effects of stressors and calamities. The FAO has over 194 member states, aimed at defeating hunger and ensuring safe, high-quality food which ensures healthy lives.",
+          "The delegates informed Edillo that they will complement the Department of Agriculture Regional Field Office 2\u2019s (DA RFO 2) initiative in restoring food security and agricultural livelihood of typhoon Mangkhut (Ompong)- stricken farmers.",
+          "Two successive typhoons struck our country, leaving much their fury in Cagayan Valley,\u201d RED Edillo said. \u201cWe have been giving assistance after the assessment of the damage.",
+          "DA RFO 2 recently distributed seeds in areas heavily devastated by the typhoon.",
+          "He said that he is confident that the administrative prerogative of President Rodrigo Duterte which include free irrigation and free crop insurance, the zeal of the farmers will be restored. He added that DA is giving loans with very minimal interest rate to individual farmers.",
+          "The collaboration was made possible by distributing urea fertilizer in Tuao, Cagayan to the farmers of eight (8) barangays which include: Pata, Lallayug, Villalaida, Barangurag, Bulagao, Cato, Culung and Battung.",
+          "\u201cDA and FAO were on the ground right after the typhoon to assess the damages and needs following the typhoon\u2019s onslaught,\u201d he added.",
+          "More so, typhoons arrive just as when harvest time nears. To lessen the adverse impact on farmers, we forewarn them. We give advisories through our radio station, DZDA. In fact, we are the only regional office with a state of the art FM radio station,\u201d Edillo said. Asked on what mitigation measures DA will undertake with the forecasted El Nino, he said that buffer stocks have been readied. The irrigation systems are reliable for the incoming drought.",
+          "\u201cWe know that our country is prone to typhoons and we expect this every year, but through interventions and climate-smart decisions we can address this major problem by adopting a different planting season,\u201d he said.",
+          "A total of 834 beneficiaries in Solana, Cagayan covering seven (7) barangays and 213 beneficiaries in Amulung, Cagayan covering six (6) barangays.",
+          "Kerrie Anderson, counselor, Australian Embassy to the Philippines during luminaries\u2019 courtesy visit on February 14, 2019.",
+          "You see, Region 2 is a rice-producing region.\u201d",
+          "Meanwhile, the Embassy of New Zealand in the Philippines with WFP through Mr. Tim Stewardson, Deputy Head of Mission has identified barangays in Tuao, Amulung, and Solana as recipients of Urea fertilizers. Likewise, the Australian Embassy has identified barangays in Buguey, Lasam, Abulug, and Camalaniugan to avail of their assistance.",
+          "Asked on what mitigation measures DA will undertake with the forecasted El Nino, he said that buffer stocks have been readied. The irrigation systems are reliable for the incoming drought. \u201cWe also have irrigation pumps as an open source."
+        ]
+      },
+      {
+        "title": "Fre Final Hurricane Ian Report",
+        "url": "https://fred.ifas.ufl.edu/media/fredifasufledu/economic-impact-analysis/reports/FRE-Final-Hurricane-Ian-Report.pdf",
+        "excerpts": [
+          "Gainesville, Florida February 9, 2023",
+          "The system that would eventually become Hurricane Ian first became a tropical storm in the central Caribbean on September 23, 2022 and rapidly intensified, strengthening into a hurricane on September 26. It attained Category 4 strength prior to its first landfall on September 28 on Cayo Costa Island, followed by a second landfall on the southwestern peninsula of Florida near Punta Gorda.",
+          "University of Florida-Institute of Food and Agricultural Sciences (UF/IFAS)",
+          "The event data shapefiles (e.g. wind, precipitation, and flooding) were overlaid on county boundary shapefiles available from the U.S. Census Bureau to determine each county\u2019s wind, rainfall, and flooding index respectively, as well as the percentage of the agricultural lands in each county affected by the different wind, precipitation, and flood categories. Then an area- weighted method was used to respectively calculate the composite index of wind, precipitation, and flooding of each county. In the end, the HCII was calculated for each affected county as the sum of area-weighted wind index, area- weighted precipitation index, and area-weighted flood index of the county, as shown in Figure 5 and listed in Table A-3.",
+          "Nearly five million acres of agricultural land were affected by Hurricane Ian, of which almost 62% was land of grazing land.",
+          "Total 2,425,096 1,455,360 676,085 223,730 256 4,780,527",
+          "Citrus1 53,133 107,004 143,928 71,236 0 375,302 Field and Row Crops2 916,633 130,909 24,058 5,828 0 1,077,427 Fruit (Non-citrus) 17,178 10,477 3,654 2,076 0 33,385 Greenhouse/Nursery 40,170 22,840 5,064 4,335 17 72,426 Animals and Animal Products3 1,321,480 1,151,468 466,573 122,954 239 3,062,715 Vegetables and Melons 76,215 32,709 32,968 17,380 0.06 159,272 Total 2,425,096 1,455,360 676,085 223,730 256 4,780,527",
+          "Note: Citrus acreage includes non-bearing acreage and was adjusted to reflect the 2022 Commercial Citrus Inventory Preliminary Report from USDA NASS.2 Field and Row Crops acreage includes field crops, hay, and sugarcane.3 Animals and Animal Products acreage includes grazing land.",
+          "The commodity groups that were most affected (in terms of overall acreage impacted) by Hurricane Ian (not including grazing land) were Field and Row Crops (including hay and sugarcane, 1,077,427 acres), Citrus (375,302 acres), and Vegetables and Melons (159,272 acres).",
+          "\u00bb Defoliation, branch and limb damage, and down trees in citrus groves as well as defoliation and fallen vines in vineyards. \u00bb Lost, injured, shocked, or deceased animals (e.g., beef and dairy cattle, chickens, honey bee colonies) due to damaged or destroyed fences, structures, and flooding. \u00bb Deceased fish, shellfish, and other aquaculture prod- ucts due to power outages that impacted the proper functioning of growing systems or increased freshwa- ter inflows to coastal operations.",
+          "Livestock and Animal Products $52,248,046 $26,628,914 $20,458,801 $20,415,437 $14,028 $119,765,226",
+          "Grand Total $247,078,864 $130,210,145 $137,730,527 $195,374,623 $119,765,226 $204,617,641 $1,034,777,027",
+          "Considering all of this information, estimated production losses for agricultural producers in Florida resulting from Hurricane Ian are $1.03 billion.",
+          "Grand Total $307,517,124 $273,479,101 $270,404,050 $183,267,339 $109,413 $1,034,777,027",
+          "The commodity groups that were most affected in terms of production losses are Citrus ($247 million), Vegetables and Melons ($205 million), and Greenhouse/ Nursery ($195 million).",
+          "While the costs or value of agricultural damage is not estimated, survey responses and ongoing conversations with Florida Cooperative Extension representatives, representatives of industry associations, and state and federal government agencies in the affected areas do still indicate that agricultural operations in the areas impacted by Hurricane Ian did experience significant damages to structures, perennial plantings, live animal stocks, equipment, and other infrastructure, including but not limited to: \u2022 Structural damages, ranging from minimal to extensive, including farm homes, farmworker housing, barns, shade and greenhouse structures, storage sheds and buildings [including refrigerated storage], post-harvest struc- tures such as packinghouses, and livestock pens and structures. \u2022 Reported damages specific to perennial plantings and live animal stocks include: \u00bb Defoliation, branch and limb damage, and down trees in citrus groves as well as defoliation and fallen vines in vineyards. \u00bb Lost, injured, shocked, or deceased animals (e.g., beef and dairy cattle, chickens, honey bee colonies) due to damaged or destroyed fences, structures, and flooding. \u00bb Deceased fish, shellfish, and other aquaculture prod- ucts due to power outages that impacted the proper functioning of growing systems or increased freshwa- ter inflows to coastal operations. \u2022 Damages to equipment and infrastructure including irrigation structures and equipment, erosion control structures, plastic mulching, protective structures (including tree defenders and Citrus Under Protective Screen [CUPS]), honey bee boxes, exterior and interior fencing, farm equipment and tools stored in damaged sheds or storage facilities, power generators, etc.",
+          "The values also do not account for the costs or value of agricultural damages.",
+          "However, statewide, commodity (or commodity group) specific baseline data are very limited with respect to agricultural infrastructure, stored inputs, and stored harvested products and their values, making it difficult, if not impossible, to estimate state- or county-wide values associated with agricultural damages. As a result, the costs or value of reported agricultural damages are not included in these estimates.",
+          "Producers might experience losses (changes in economic flows) resulting from a change in the level or value of sales or a change in input costs and they might also experience damages (changes in economic stocks) that require repair or replacement. Agricultural losses might result from situations such as fruit drop in a citrus grove, a flooded field of vegetables, dumped milk at a dairy farm due to cold storage not being available during a power outage, or even a lower sales price for a rancher that had cattle that were not able to get the appropriate nutrition due to stress or flooded grazing lands. Agricultural assets at risk for damages include farm homes, farm buildings, greenhouse and nursery structures, machinery/equipment, fencing, irrigation systems, other infrastructure, livestock animals, and perennial plantings such as citrus trees and vineyards.",
+          "Note that some crops (e.g. fresh market vegetables) have multiple growing seasons in Florida, one of which was just getting underway with fall plantings. The multiple seasons as well as considerations regarding delayed planting or replanting and the compounding impacts of the January 2022 freeze event are reflected in these annual production loss estimates.",
+          "On September 29, 2022, the UF/IFAS EIAP distributed the Assessment of Losses and Damages to Florida Agriculture from Hazard/Disaster Events to begin assessing losses and damages associated with Hurricane Ian.",
+          "The survey tool does not ask for an address or exact location of the responding agricultural operation. Also, many agricultural operations in Florida operate on multiple parcels, some with operations in multiple counties. Due to the difficulty in knowing the exact location of survey respondents\u2019 farms, and in turn the exact hurricane characteristics that they experienced on their farm, we calculated the HCII level of each impacted county to correlate respondents\u2019 reported losses to average hurricane conditions at the county level. The event data shapefiles (e.g. wind, precipitation, and flooding) were overlaid on county boundary shapefiles available from the U.S. Census Bureau to determine each county\u2019s wind, rainfall, and flooding index respectively, as well as the percentage of the agricultural lands in each county affected by the different wind, precipitation, and flood categories. Then an area- weighted method was used to respectively calculate the composite index of wind, precipitation, and flooding of each county. In the end, the HCII was calculated for each affected county as the sum of area-weighted wind index, area- weighted precipitation index, and area-weighted flood index of the county, as shown in Figure 5 and listed in Table A-3. The area-weighted HCII level of each affected county was used to connect with the analysis results of survey data along with observations from previously analyzed tropical cyclone events (Irma [2017] and Michael [2018]) to estimate the production loss percentage (%) of different commodity groups at different HCII levels. These estimates of percentage production loss by commodity group and HCII were then combined with the estimated value of annual production on impacted agricultural lands to determine estimated losses.",
+          "The estimated loss values presented in this report focus solely on near-term production losses that are expected to result from Hurricane Ian within calendar year 2022 or marketing year 2022-2023. These estimates do not account for the fact that some crop losses might be eligible for or covered by crop insurance or other risk management tools available to producers. The values also do not account for the costs or value of agricultural damages. Agricultural damages can include asset damages, which include damages to agricultural structures, lost perennial plantings, lost/deceased animals, and damages to other infrastructure assets and equipment that will require repair or replacement. Agricultural damages can also include production damages, which include damages to stored inputs such as fuel for farm equipment, fertilizer, and other agricultural chemicals or damages to previously harvested crops that were stored on-farm and not yet sold. Near-term production losses that might occur as a result of agricultural damages are accounted for in the estimated loss values reported to the extent that they were considered by producers or industry/agency representatives as they estimate and report losses through the UF/IFAS EIAP survey tool. However, statewide, commodity (or commodity group) specific baseline data are very limited with respect to agricultural infrastructure, stored inputs, and stored harvested products and their values, making it difficult, if not impossible, to estimate state- or county-wide values associated with agricultural damages. As a result, the costs or value of reported agricultural damages are not included in these estimates.",
+          "The estimated loss values presented in this report focus solely on near-term production losses that are expected to result from Hurricane Ian within calendar year 2022 or marketing year 2022-2023."
+        ]
+      },
+      {
+        "title": "FAO/GIEWS Special Alert Central America, 6 November 1998  ",
+        "url": "https://www.fao.org/4/X0313E/X0313E00.htm",
+        "excerpts": [
+          "**DATE : 6 November 1998**",
+          "Between 26 October and 1 November, hurricane \"Mitch\" swept across several Central American countries, with torrential rains, and high winds causing widespread flooding.",
+          "Honduras and Nicaragua have been the hardest hit.",
+          "Guatemala and El Salvador have also been severely affected, and, to a lesser extent, Costa Rica, some south-western parts of Mexico and Jamaica.",
+          "These hopes have vanished as fields under foodcrops, mostly cultivated by small farmers, have been washed away in every country.",
+          "Banana, coffee and sugar plantations, which are vital sources of foreign exchange, have been devastated in several countries, as have non-traditional export crops such as melons, fruits and vegetables.",
+          "The banana growing areas of Guatemala and Honduras, which together account for over 10 percent of world supplies, were heavily affected, with reported losses ranging from 60 to 90 percent.",
+          "Preliminary damage assessments are underway in the affected countries.",
+          "FAO plans to field a mission to the most affected countries to assess the implications for food security in the coming year and to prepare a plan for the rehabilitation of agricultural production.",
+          "Planting of the country\u2019s 1998 main season cereal crops including about 80 percent of annual maize production was underway when the hurricane struck.",
+          "No detailed assessment of damage has yet been made but enormous losses are reported.",
+          "The bean crop (about 65 percent of annual output), another important staple in the population\u2019s diet, as well as bananas, oil palms, citrus and other fruit crops have been seriously affected.",
+          "Preliminary estimates put the coffee losses at 650 000 bags or over 20 percent of expected production this year.",
+          "Preliminary indications are that 30 percent of the coffee crop has been lost.",
+          "All of these crops are reported to have been seriously affected by the floods.",
+          "Preliminary official assessments confirm extensive damage to coffee, tobacco and banana plantations, melons and other fruit and garden vegetables.",
+          "About 15 percent of the coffee crop has been reportedly lost.",
+          "But harvesting of the important first season maize crop, which was still underway, and planting of the second season crop, were severely affected by the floods.",
+          "Early estimates indicate that possibly as much as 80 percent of maize crop grown in these areas has been lost.",
+          "Other important crops for the affected population, such as sorghum and beans, are also reported to have been seriously damaged.",
+          "No detailed assessment of damage has yet been made, but extensive damage is reported to fields of standing crops in the aforementioned areas which are some of the most economically depressed zones in the country.",
+          "Losses inflicted on the agricultural and livestock sectors are reported to be very large but a detailed assessment of damage has not been made yet.",
+          "Every important coffee producing area in the country, an important sector in the economy of the nation, including Cop\u00e1n, Olancho, Comayagua, Francisco Moraz\u00e1n and La Paz, has been affected, and large warehouses and coffee store rooms of main exporters inundated. Preliminary estimates put the coffee losses at 650 000 bags or over 20 percent of expected production this year. Planting of the country\u2019s 1998 main season cereal crops including about 80 percent of annual maize production was underway when the hurricane struck. No detailed assessment of damage has yet been made but enormous losses are reported. The bean crop (about 65 percent of annual output), another important staple in the population\u2019s diet, as well as bananas, oil palms, citrus and other fruit crops have been seriously affected.",
+          "Preliminary indications are that 30 percent of the coffee crop has been lost. As regards foodcrops, the country had obtained excellent results from the first season, but the losses sustained have ended all hopes of a recovery from last year\u2019s severely drought-affected crops. Second season maize, currently being planted, represents about 15 to 20 percent of annual production. The crop of beans and sorghum, important food staples currently in the ground, represent about 50 percent and 80 percent of the total annual production respectively. All of these crops are reported to have been seriously affected by the floods.",
+          "Preliminary official assessments confirm extensive damage to coffee, tobacco and banana plantations, melons and other fruit and garden vegetables. About 15 percent of the coffee crop has been reportedly lost. The important paddy growing zones in the north-east of the country have also been affected. Fortunately, some 70 percent of the paddy crop as well as a good part of the staple bean crop had already been collected. But harvesting of the important first season maize crop, which was still underway, and planting of the second season crop, were severely affected by the floods.",
+          "Early estimates indicate that possibly as much as 80 percent of maize crop grown in these areas has been lost. Other important crops for the affected population, such as sorghum and beans, are also reported to have been seriously damaged. Important coffee plantations, a vital foreign exchange earner, have been also seriously affected. Considerable damage is reported to the important sugar cane crop."
+        ]
+      },
+      {
+        "title": "World Bank Document",
+        "url": "https://documents1.worldbank.org/curated/en/244871603784378547/pdf/2017-Vietnam-Post-Typhoon-Damrey-Rapid-Damage-and-Needs-Assessment.pdf",
+        "excerpts": [
+          "2017 Vietnam Post-Typhoon Damrey Rapid Damage and Needs Assessment",
+          "@2018 The World Bank",
+          "The assessment team visited Khanh Hoa province from 14 to 21 March, 2018, to obtain the necessary data and information on damages, losses and the needs of reconstruction required to develop a Recovery and Reconstruction Plan.",
+          "Originating from a tropical depression over the South China Sea, the storm strengthened into a deadliest typhoon, named Damrey (known in Vietnam as Storm No.12) on November 2, 2017. Typhoon Damrey made landfall in Vietnam in the early morning of November 4, 2017, impacting 15 provinces in the South Central and Central Highlands regions \u00b9 . It directly hit Khanh Hoa province with wind speeds of up to 135 kilometers (km) per hour.",
+          "It directly hit Khanh Hoa province with wind speeds of up to 135 kilometers (km) per hour.",
+          "In the early morning of November 4th, 2017, Typhoon Damrey made landfall in Vietnam and directly hit Khanh Hoa province with winds of up to 135 km/hour.",
+          "Typhoon Damrey, or Storm No.12, made landfall in Vietnam on early Saturday morning, November 4th, 2017, with winds of up to 135 kilometers per hour impacting fifteen provinces in the South Central and Central Highlands regions.",
+          "Typhoon Damrey made landfall in Vietnam in the early morning of November 4, 2017, impacting 15 provinces in the South Central and Central Highlands regions \u00b9 .",
+          "**3\\.** Crops: 11,327 hectares (ha) of rice damaged and 27,301 ha of vegetables submerged;",
+          "**3\\.** Crop: A total of 33,600 hectares of rice and vegetables affected;",
+          "**4\\.** Forestry: 19,700 hectares of forest fallen and broken;",
+          "The following yield reduction per crop have been assumed: 10% for paddy rice, 10% for peanut, 10% for other vegetables, 10% for other legumes, 17% for cashew, 2.2% for coffee, 10% for pepper, 6.2% for corn, 10% for cassava, 10% for APPENDIX: EXPLANATORY NOTE ON METHODOLOGY APPLIED TO CALCULATE DAMAGES AND LOSSES, RECOVERY AND RECONSTRUCTION NEEDS 53 sugarcane, 3.2% for banana, 10% for jack fruit, 10% for coconut, 3.3% for mango, 10% for durian, 10% for pomelo, and 10% for existing forests.",
+          "**5\\.** Livestock: 870,000 cattle and poultry killed/swept away;",
+          "**6\\.** Aquaculture: 1,751 hectares of aquaculture farms and 35,785 aquaculture cages damaged and swept away, and 1,609 fishing vessels sunk and damaged;",
+          "**4\\.** Fishery: 4,472 hectares (ha) of aquaculture farm and 38,629 aquaculture cages damaged and swept away, 1,809 fishing vessels sunk or damaged.",
+          "Estimated economic losses amount to VND 15,500 billion (approximately USD 696 million).",
+          "According to CCDPC, the estimated economic loss due to Typhoon Damrey is VND 22,680 billion (approximately US$994 million). A breakdown of the total damages in the 15 affected provinces is as follows:",
+          "In addition to financial support, strengthening livelihood recovery by distribution of seeds, seedlings, fertilizers, pesticides, animal feed, vaccinations, fingerlings, etc. should also be undertaken.",
+          "\u2022 Restocking animal herds and scaling up capacity building in animal management, animal health, and pasture management in affected townships, at a cost of VND 90,120.5 million, of which VND 20,940.9 million is for large animals and VND 69,179.5 million is for small animals and poultry. \u2022 Repair and restoration of damaged vessels and boats, at a cost of VND 121,134 million.",
+          "\u2022 Provision of equipment, nets and other tools for aquaculture farming, estimated at VND 180,000 million. The activities are expected to build on the efforts by the PPC to develop and implement aquaculture planning, and to encourage closer linkages with the value chain (trading and processing) of aquatic products. These efforts include the support to farmers in adapting their aquaculture farming practices to the seasonality of each species, and regularly monitoring the ponds to ensure that they adhere to health, safety and environmental standards.",
+          "This rapid assessment was carried out in Khanh Hoa province following an official request to the World Bank by the Khanh Hoa PPC on November 10, 2017. The rapid assessment focused solely on estimating the direct physical damage to the following sectors: housing, transportation, flood protection and irrigation infrastructure, and agriculture, livestock, fishery and forestry. For the agriculture, livestock, fishery and forestry sectors, losses as well as physical damage were assessed. Macro-economic impacts, DRM and gender were also considered in the assessment as cross-cutting issues.",
+          "The assessment was conducted in a short period of secondary data review, and 5 working days at the site to gain first-hand understanding of the impacts. The assessment selected 2 affected coastal and mountainous districts of Ninh Hoa and Khanh Vinh for field visits. Since it was 5 months after the typhoon hit, most of the collapsed houses, aquaculture farms, fish cages and fishing boats were repaired and rebuilt. The assessment, therefore, is mainly dependent on secondary data.",
+          "Due to incomplete or inconsistent data provided, in most cases, the district-level data have been used to calculate the share of the damage, and accordingly distribute the damages reported at the province level. The reason to do so is that the data at the province level provided disaggregated damages by different types of crops, animals and aquaculture ponds, allowing the calculation of variation in yields and prices more accurately. Such detailed information was not always available for data disaggregated at the district level. Therefore, there are few deviances between the results of the rapid assessment and the provincial report on damages and losses. Explanation of the differences in damages and losses reported in this assessment and in the provincial report are provided in detail in the Appendix.",
+          "Crop and vegetable damaged ha 38,628 33,600 87.0%",
+          "Based on the reports submitted by the provincial government, the total area damaged by the Typhoon Damrey is estimated at 59,392.7 ha (table 3.14).",
+          "The perennial crops whose cultivated area was more seriously affected were mango (5,078.6 ha), cashew (4,214 ha) and banana (2,322.9 ha).",
+          "The bulk in volume and value of the losses for annual crops corresponds to sugarcane, with over 103,160.1 tons lost (valued at VND 101,096.9 million) and to cassava, with 9,421 tons lost (valued at VND 32,246.2 million).",
+          "These losses are the result of the disaster timing, at the beginning of the winter-spring season after most of the spring-autumn rice crop had been harvested. Farmers had to wait for the water to recede from the flooded crop fields which delayed the planting of winter and winter-spring season.",
+          "Following the disaster, the current estimates indicate that 595,971 animals are reported dead, of which 164 are large animals, 4,539 are small animals, and 591,268 are poultry birds.",
+          "Total Agriculture Losses (VND billion) 5,201 1,855",
+          "**Total 1,495,151.4 69,389.2 2,141,834.7 1,640,045.0 5,346,420.3**",
+          "The total agricultural production loss (measured in 2018 prices) post-Damrey was estimated to be VND 5.35 trillion. The total 2018 production losses are estimated to be about VND 4.56 trillion. By multiplying the losses with the value-added coefficient from the Input-Output table \u00b9\u2076 , the estimate of production losses was transformed into agriculture GDP losses. As shown in table 4.3, the estimated reduction in agriculture GDP is VND 1.77 trillion, about 10 times more than the government\u2019s projection of VND 173 billion.",
+          "Annual Crops **208\\.82 0.45 93.97** Perennial Crops **648\\.92 0.45 292.01** Forestry **1,640.05 0.45 738.02** Livestock **7\\.24 0.45 3.26** Fishery **2,058.29 0.31 638.07** **Total 4,563.32 1,765.33**",
+          "**TABLE 5.1:** Short Term Recovery and Reconstruction Activities in 2018 **Subsector Program of Activity Value (million VND) Responsible Agency** **Agriculture** Provide seeds, inputs, and financial and management support to replant annual crops 85,000.0 DARD, PPC Khanh Hoa Rehabilitation work, provision of seedlings, financial and management support to replant perennial crops and fruit trees (multiyear) 330,000.0 **Livestock** Provision of feed and vaccines (large animals) 7,993.5 DARD, PPC Khanh Hoa Provision of feed and vaccines (small animals, poultry) 5,306.0 Restocking of large animals (cattle) 20,940.9 Restocking of small animals (pigs, goats, poultry) 69,179.6 **Fisheries** Repair and restoration of damaged boats, vessels and equipment 121,134.0 DARD, PPC Khanh Hoa Provide seeds, fingerlings, medicines for aquaculture facilities and inland fisheries 550,000.0 Provision of equipment and nets 180,000.0 **Forestry** Rehabilitation work, provision of seedlings, financial and management support to replant damaged forests (multiyear) 94,714.6 DARD, PPC Khanh Hoa **TOTAL 1,464,268.6**",
+          "The joint UN approach provided humanitarian aid through the distribution of cash grants and vouchers, technical equipment and non-food items in the sectors of food security and the restoration of livelihoods, shelter and WASH to more than 150,000 affected people, a substantive amount of which were beneficiaries in Khanh Hoa.",
+          "The overall impact on the agriculture sector (see table 3.13) is estimated at VND 5,346,420.3 million, of which VND 1,495,151.4 million correspond to crop production, VND 69,389.2 million to livestock, VND 2,141,834.7 million to fisheries, and VND 1,649,045 million to forestry.",
+          "Recovery will focus on immediate activities aimed at the restoration of production levels."
+        ]
+      },
+      {
+        "title": "Puerto Rico\u2019s Agricultural Economy in the Aftermath of Hurricanes Irma and Maria: A Brief Overview",
+        "url": "https://ers.usda.gov/sites/default/files/_laserfiche/publications/106261/AP-114_Summary.pdf?v=34487",
+        "excerpts": [
+          "_April 2023_",
+          "In September 2017, Hurricanes Irma and Maria caused major disruptions, destroying Puerto Rico\u2019s agricultural harvest and infrastructure, with long-lasting effects on the makeup of its agricultural sector.",
+          "Relative to its other economic sectors, the agricultural sector of Puerto Rico\u2014a U.S. territory\u2014is comparatively small, making up only a fraction of 1 percent of the island\u2019s gross domestic product (GDP) in 2020.",
+          "Overall, between agricultural census years 2012 and 2018, the number of farms declined by 37.5 percent and acreage under cultivation by 16.6 percent, a loss of 4,929 farms and 97,213 acres.",
+          "\u2022 Between 2012 and 2018, total farm sales fell $170 million (26 percent), from $655 million to $485 million (adjusted for inflation), with large declines in bananas, coconuts and other fruits, coffee, and poultry.",
+          "\u2022 Crop sales decreased by $82 million, falling in 8 of the 10 commodity groups for which crop sales are recorded.",
+          "\u2022 Poultry and poultry products suffered the greatest percentage decline in sales among livestock, poultry, and animal products (58 percent).",
+          "The inflation-adjusted dollar value of reduced sales in poultry and poultry products was $28 million.",
+          "\u2022 Sales of milk and other dairy products declined 24 percent to $54 million (adjusted for inflation).",
+          "Puerto Rico\u2019s agricultural sector is adjusting to the devastation left by Hurricanes Irma and Maria in 2017 through production and business decisions consistent with the options and resources available to individuals and firms, including Government support.",
+          "Since the early 2000s, the agricultural sector has received boosts from policy initiatives to decrease the island\u2019s reliance on food imports.",
+          "More important, however, is its transformation from shade-grown cultivation to sun-grown coffee.",
+          "This report examines the resulting changes in Puerto Rico\u2019s agricultural sector between 2012 and 2018, based on statistics collected under the 2017 _Census of Agriculture, Puerto Rico (2018)._",
+          "The primary source of detailed agricultural production data in Puerto Rico is the U.S. Department of Agriculture, National Agricultural Statistics Service (NASS), Census of Agriculture, conducted every 5 years.",
+          "At the time this analysis was conducted, the most recent census data available was taken in 2018, delayed a year because of hurricane disruptions in 2017.",
+          "Trade data for Puerto Rico was collected from the U.S. Department of Commerce, Bureau of the Census\u2019 State Data Series.",
+          "\u2022 Despite the decline in sales, net cash farm income increased from $15 million in 2012 to $21 million in 2018.",
+          "However, much of the gain was due to increased Federal Government payments for participation in farm programs.",
+          "Payments more than doubled, from $42 million in 2012 to $86 million in 2018.",
+          "The losses were particularly felt by smaller farms of less than 10 acres, whose numbers decreased by more than half.",
+          "\u2022 Despite hurricane damage, coffee cultivation continued partly because it is mostly grown in the center of the island and was relatively less affected by the hurricanes.",
+          "\u2022 Agricultural and related exports dropped in value from a high of $352 million in 2016 to just $191 million in 2020.",
+          "\u2022 Between 2012 and 2018, total farm sales fell $170 million (26 percent), from $655 million to $485 million (adjusted for inflation), with large declines in bananas, coconuts and other fruits, coffee, and poultry. \u2022 Crop sales decreased by $82 million, falling in 8 of the 10 commodity groups for which crop sales are recorded. _www.ers.usda.gov_ _April 2023_ **Summary** \u2022 Poultry and poultry products suffered the greatest percentage decline in sales among livestock, poultry, and animal products (58 percent). The inflation-adjusted dollar value of reduced sales in poultry and poultry products was $28 million. \u2022 Sales of milk and other dairy products declined 24 percent to $54 million (adjusted for inflation)."
+        ]
+      },
+      {
+        "title": "Microsoft Word - Document11",
+        "url": "https://fsi.nic.in/uploads/documents/assessment_of_damage.pdf",
+        "excerpts": [
+          "A super-cyclone struck Orissa coast on 29 th October, 1999 with an intensity of about 300 km per hours accompanied with 7 meter high storm surges. Out of total number of 30 Districts, 11 coastal districts were heavily affected leading to a death toll of more than 10,000 people. A large number of trees both outside as well as within forest area were uprooted leading to a large scale ecological devastation. FSI took up a special study on assessment of damage to forest cover due to this super-cyclone. Two districts namely Jagatsinghpur and Kendra Para, which were among the worst hit districts were selected for the study. Satellite data of",
+          "about 300 km per hours accompanied with 7 meter high storm surges. Out of total number of 30 Districts, 11 coastal districts were heavily affected leading to a death toll of more than 10,000 people. A large number of trees both outside as well as within forest area were uprooted leading to a large scale ecological devastation. FSI took up a special study on assessment of damage to forest cover due to this super-cyclone. Two districts namely Jagatsinghpur and Kendra Para, which were among the worst hit districts were selected for the study. Satellite data of IRS-1C (LISS-III) of pre-cyclone date (11 th Oct\u2019 99) and post cyclone date (30 th Nov\u201999) was procured for the study and digitally interpreted. The results of the study are given in Table 10. It is observed that in Jagatsinghpur, more than 50% dense forest was lost. In Kendrapara, about 40% of open forest was lost. In mangrove areas the loss has been less in both the districts."
+        ]
+      },
+      {
+        "title": "Myanmar: Cyclone Mocha. Urgent call for assistance",
+        "url": "https://www.themimu.info/sites/themimu.info/files/documents/Urgent_Call_for_Assistance_on_Cyclone_Mocha_FAO_Jul2023.pdf",
+        "excerpts": [
+          "On 14 May 2023, cyclone Mocha made landfall in Myanmar, accompanied by violent gusts, torrential rainfall and flooding.",
+          "**Magway, Rakhine and Sagaing**",
+          "On 14 May 2023, cyclone Mocha made landfall in Myanmar, accompanied by violent gusts, torrential rainfall and flooding. Mocha caused significant disruption to the lives and livelihoods of more than 40 percent of farming households in Ayeyarwady, Chin, Kachin, Magway and Sagaing, and more than 80 percent in Rakhine.",
+          "Cyclone Mocha damaged approximately 327 000 ha of agricultural lands, wiping out agricultural production worth an estimated USD 22.6 million. **3** Furthermore, nearly 13 000 heads of livestock were lost, valued at approximately USD 6.7 million. **3** Mocha also inflicted severe damage on critical agricultural infrastructures, fisheries, and vital seed stocks.",
+          "**Crop production** USD 2 863 258 18 407 households (92 037 people) **\u2022** Provision of seeds and fertilizers for the most vulnerable farming households.",
+          "FAO further estimates that nearly half of the fishing equipment in Sittwe (Rakhine state) was damaged. **3** Additionally, according to the findings of a series of key informant interviews conducted by FAO in 11 townships in Rakhine state, two in every three farming households, two in every five agropastoral households, and more than one in every three fishing households lost their productive assets.",
+          "**\u2022** Provision of seeds and fertilizers for the most vulnerable farming households.",
+          "According to the findings of a household survey conducted by the Food and Agriculture Organization of the United Nations (FAO) in Ayeyarwady, Chin, Kachin, Magway, Rakhine and Sagaing, half of the surveyed farming and livestock-keeping households reported loss of productive assets.",
+          "Accordingly, and in line with Cyclone Mocha Flash Appeal, FAO aims to scale up emergency livelihoods support to the most vulnerable rural households in the affected areas.",
+          "**\u2022** Provision of seeds and fertilizers for the most vulnerable farming households. **\u2022** Implementation of cash-for-work interventions for land clearance and the rehabilitation of agricultural infrastructures. **\u2022** Provision of unconditional cash transfers to the most vulnerable farming households. **Fisheries** USD 2 585 258 6 118 households (30 589 people) **\u2022** Provision of small boats, engines and nets, among other productive assets, for small-scale fishers, through direct distribution or conditional cash transfers. **\u2022** Provision of unconditional cash transfers for the most vulnerable fishers. **Livestock production** USD 956 938 7 731 households (38 653 people) **\u2022** Restoration and rehabilitation of livestock production assets through conditional cash transfers. **\u2022** Provision of livestock production inputs (e.g. livestock feed) and unconditional cash transfers for the most vulnerable livestock-keepers.",
+          "With three in four people dependent on agriculture for their livelihoods, emergency livelihoods support to farmers, fishers and livestock keepers is crucial in preventing a decline in food security.",
+          "On 14 May 2023, cyclone Mocha made landfall in Myanmar, accompanied by violent gusts, torrential rainfall and flooding. Mocha caused significant disruption to the lives and livelihoods of more than 40 percent of farming households in Ayeyarwady, Chin, Kachin, Magway and Sagaing, and more than 80 percent in Rakhine. The climate-induced disaster struck some of the most vulnerable rural communities at a time when they were already grappling with a growing food security crisis. **1** Moreover, agricultural production had been steadily declining, and more than half of farmers reported a drop in agricultural production in January 2023. **2** Cyclone Mocha damaged approximately 327 000 ha of agricultural lands, wiping out agricultural production worth an estimated USD 22.6 million. **3** Furthermore, nearly 13 000 heads of livestock were lost, valued at approximately USD 6.7 million. **3** Mocha also inflicted severe damage on critical agricultural infrastructures, fisheries, and vital seed stocks. According to the findings of a household survey conducted by the Food and Agriculture Organization of the United Nations (FAO) in Ayeyarwady, Chin, Kachin, Magway, Rakhine and Sagaing, half of the surveyed farming and livestock-keeping households reported loss of productive assets. FAO further estimates that nearly half of the fishing equipment in Sittwe (Rakhine state) was damaged. **3** Additionally, according to the findings of a series of key informant interviews conducted by FAO in 11 townships in Rakhine state, two in every three farming households, two in every five agropastoral households, and more than one in every three fishing households lost their productive assets.",
+          "Cyclone Mocha damaged approximately 327 000 ha of agricultural lands, wiping out agricultural production worth an estimated USD 22.6 million. **3** Furthermore, nearly 13 000 heads of livestock were lost, valued at approximately USD 6.7 million. **3** Mocha also inflicted severe damage on critical agricultural infrastructures, fisheries, and vital seed stocks. According to the findings of a household survey conducted by the Food and Agriculture Organization of the United Nations (FAO) in Ayeyarwady, Chin, Kachin, Magway, Rakhine and Sagaing, half of the surveyed farming and livestock-keeping households reported loss of productive assets. FAO further estimates that nearly half of the fishing equipment in Sittwe (Rakhine state) was damaged. **3** Additionally, according to the findings of a series of key informant interviews conducted by FAO in 11 townships in Rakhine state, two in every three farming households, two in every five agropastoral households, and more than one in every three fishing households lost their productive assets."
+        ]
+      },
+      {
+        "title": "Bangladesh Cyclone Remal Impact Assessment Report June 2024",
+        "url": "https://bangladesh.un.org/sites/default/files/2024-06/Bangladesh-Cyclone%20REMAL%20Impact%20Assessment%20Report_June_2024.pdf",
+        "excerpts": [
+          "Formed as a depression on May 24th, Cyclone REMAL slammed into Bangladesh's coasts on May 26th with heavy rain and strong winds.",
+          "\u2022 Tropical Cyclone REMAL-24 made landfall on 26 May 2024 (Cat. 1.5)",
+          "Weakening inland, REMAL caused significant damage, particularly across at least 16 coastal districts, with millions evacuated, and widespread infrastructure damage. Cyclone REMAL made landfall near the Bangladesh-India border, in the western part of Sundarbans in Shatkhira district. Major rivers overflowed due to tidal surges, damaging embankments. Eight districts namely Pirojpur, Khulna, Bagerhat, Satkhira, Patuakhali, Barguna, Bhola and Barisal remain the most affected.",
+          "\u2022 Over 80 591 Ha cultivable land inundated",
+          "Food security Price hike and temporary shortage of food affecting 17 percent of households Crop 137 ha damaged = $127 283 Storage facility damaged =$12 055 Market functionality Sales & transport difficulties Insufficient food supply Price hike Fishery 171 MT fish and shrimp lost = $409 132 Forestry 3 ha of forests, 103 ha of plantation, 2 nurseries damaged = $17 775",
+          "The cyclone timing coincided with the Boro harvest (late-planted), Aus planted/seedbed, Rabi maize harvest (late-planted) and Kharif maize growing, kharif mungbean growing season. Although the combined area for rice cultivation was the highest among all crops it primarily constituted Aus rice and Aus rice beds, as most of the Boro rice has been harvested. The second most affected crop in terms of cultivated area were summer/Kharif vegetables followed by fruits (e.g. mango) and oilseeds (e.g. sesame). However, it should be noted that most of these crops only sustained minor impacts, as per the preliminary estimates by the Department of Agricultural Extension (DAE).",
+          "\u2022 More than 537 234 crop farmers affected \u2022 $96.7M worth of loss in the agriculture sector \u2022 Over 80 591 Ha cultivable land inundated \u2022 287 756 MT crop loss \u2022 Highest damage for summer vegetables, Aus rice and cash crops \u2022 Bagerhat and Bhola most affected",
+          "Source: Estimated from preliminary information received DDM, DAE, DLS, DoF, ICCG, ISCG, and NAWG 2024",
+          "LIVESTOCK \u2022 $4.46M worth of loss in livestock sector \u2022 264 cows/buffaloes (990 farms), and 249 goat/sheep dead \u2022 225 269 poultry dead (556 farms) \u2022 6 266 MT feed/fodder and 1 518 Ha grazing land \u2022 Bhola, Pirojpur and Patuakhali most affected",
+          "FISHERIES \u2022 $78.2M worth of loss in the fisheries sector \u2022 50,000 fish enclosures, 34,000 ponds, and 4,000 crab farms flooded \u2022 Bagerhat was most affected \u2022 Boat/trawler/water transport and fishing net damage worth of $0.4M",
+          "Fishermen, who are solely dependent on sea fishing, were doubly impacted due to the annual fishing ban (65 days from 20 May) coinciding with the cyclone. The cyclone resulted in an estimated financial loss of approximately USD 78.4 million in the Fisheries sector. The devastation included the flooding and destruction of ponds, enclosures, hatcheries, and fisheries, significantly impacting shrimp farms and fish fries. The Khulna division alone reported losses exceeding USD 65 million.",
+          "Over half of the farmers reported loss/depletion of seed stocks that can impact the capacity to plant as usual.",
+          "Around 13 percent of the DIEM survey respondents reported taking loans to cope with the impacts of the cyclone/floods, with 55 percent foreseeing/planning to take loans for the same purpose within the next six months.",
+          "The DIEM respondent households involved in agricultural activities opted for cash, crop inputs (seed, fertilizer, pesticide, tools/equipment, machinery, irrigation, fuel/transport and labour), livestock feed, veterinary services and relevant infrastructures as the most priority needs for the next 3-6 months. In particular, the farmers mentioned rice, leafy vegetables, chilli, sweet gourd and bitter gourd seeds as crop inputs.",
+          "Shocks, agricultural livelihoods and food security The heavy damage and loss in agriculture due to the cyclone and flooding is likely to impact food security and nutrition security."
+        ]
+      },
+      {
+        "title": "IFRC - INDIA CYCLONE (Preliminary Appeal 20/96) - Situation Report 01 (13/11/1996)",
+        "url": "https://www.ifrc.org/docs/appeals/96/209601.pdf",
+        "excerpts": [
+          "On Wednesday 6 November, the Godavari Delta of Andhra Pradesh was hit by a high velocity hurricane, violent rains and 8 to 10 feet high tidal waves which, according to official sources, left more than 700 people dead and tens of thousands homeless.",
+          "On Wednesday 6 November, the Godavari Delta of Andhra Pradesh was hit by a high velocity hurricane, violent rains and 8 to 10 feet high tidal waves which, according to official sources, left more than 700 people dead and tens of thousands homeless. The East Godavari district was the worst hit , accounting for 70% of the total damage.",
+          "About 353,000 hectares of paddy (rice) crop, 56,000 hectares of other crops and more than 70,000 hectares of coconut plantations have been completely destroyed.",
+          "The Indian RC/Federation assessment team has almost completed its survey: its findings will form the basis of a detailed appeal._**",
+          "Although the assessment mission has not yet been completed, the Indian Red Cross Society is already preparing to provide :",
+          "The assessment mission will continue through Thursday, 14 November. Once its evaluation is received a detailed Appeal will be issued. A tentative option is for IRCS/Federation to provide a basic food relief package consisting of rice, dhal and oil to approximately 100,000 people currently residing in the relief centres, but this needs to be confirmed by the survey.",
+          "State and Defence Forces medical teams are attending to the medical needs of the affected population and a round the clock operation to restore transport and communication facilities is in progress.",
+          "Following an aerial survey of the affected areas, the Andhra Pradesh State Red Cross Branch began emergency relief through its district branches.",
+          "An initial Rs. 2.5 million (approx. CHF 87,000 from the Federation's Disaster Relief Emergency Fund) was released to Andhra Pradesh State Red Cross Branch from the National Headquarters for the purchase of emergency supplies. In addition, the Headquarters has already despatched relief items to the State Branch, as follows :",
+          "Although the assessment mission has not yet been completed, the Indian Red Cross Society is already preparing to provide : 1\\. immediate temporary shelter in tents for the homeless; 2\\. drinking water ; 3\\. bleaching powder and/or chlorine tablets to purify water; 4\\. emergency food and milk powder; 5\\. cotton and wool blankets, and bed sheets; 6\\. clothing; 7\\. vaccines and preventive and curative medicines to prevent the out-break of diseases (cholera, malaria, diarrhoea and dysentery, jaundice), ; 8\\. utensils for cooking, and kitchen sets; 9\\. soap and towels.",
+          "On Wednesday 6 November, the Godavari Delta of Andhra Pradesh was hit by a high velocity hurricane, violent rains and 8 to 10 feet high tidal waves which, according to official sources, left more than 700 people dead and tens of thousands homeless. The East Godavari district was the worst hit , accounting for 70% of the total damage. Two villages - Bhairvapada and Bulusutippa in Eastern Godavari district -- were reportedly totally wiped out. The total population affected by this cyclone is estimated at seven million. **_Latest events_** As of 11 November, the Indian Coast Guard service was still searching for missing persons and Defence Force helicopters were providing food and water packets and medicines for the relief operations. In rural areas, dead bodies are being dug out from under the debris of collapsed houses and from deep mud left behind by the tidal waves. About 450,000 houses have been partially or completely destroyed, leaving tens of thousands without a roof over their heads. As of 13 November, more than 190,000 people were housed in 790 relief camps. There are 324 medical teams and 217 para medical teams providing assistance in the area . About 353,000 hectares of paddy (rice) crop, 56,000 hectares of other crops and more than 70,000 hectares of coconut plantations have been completely destroyed.",
+          "Red Cross volunteers are helping in rescue and relief operations in the affected areas. Following an aerial survey of the affected areas, the Andhra Pradesh State Red Cross Branch began emergency relief through its district branches.",
+          "An initial Rs. 2.5 million (approx. CHF 87,000 from the Federation's Disaster Relief Emergency Fund) was released to Andhra Pradesh State Red Cross Branch from the National Headquarters for the purchase of emergency supplies.",
+          "Red Cross volunteers are helping in rescue and relief operations in the affected areas. Following an aerial survey of the affected areas, the Andhra Pradesh State Red Cross Branch began emergency relief through its district branches. The Secretary General of the Indian Red Cross is visiting the cyclone hit areas together with Federation assessment team. An initial Rs. 2.5 million (approx. CHF 87,000 from the Federation's Disaster Relief Emergency Fund) was released to Andhra Pradesh State Red Cross Branch from the National Headquarters for the purchase of emergency supplies."
+        ]
+      },
+      {
+        "title": "VIET NAM MULTI-SECTOR ASSESSMENT (VMSA) REPORT",
+        "url": "https://www.undp.org/sites/g/files/zskgke326/files/2024-12/vmsa_final.pdf",
+        "excerpts": [
+          "On September 7, 2024, Typhoon Yagi made landfall in northern Viet Nam, striking the coastal regions of Quang Ninh and Hai Phong provinces with wind speeds exceeding 213 km/h. The typhoon and the subsequent floods affected 26 provinces and cities (nearly half of the total number of provinces and cities in Viet Nam).",
+          "The agricultural sector suffered substantial losses, with approximately 286,647 hectares of rice fields and 63,352 hectares of crops flooded or damaged, 39,232 hectares of fruit trees and 190,028 hectares of forest were damaged, while 35,812 hectares and 11,835 aquaculture cages damaged or washed away.",
+          "There were also 44,550 livestock and 5,761,454 poultry that died due to typhoon Yagi.",
+          "The total damages of VND 8,640 billion (USD 354.04 million), and total losses of VND 5,520 billion (USD 226.25 million) have been estimated in the selected provinces.",
+          "A total of VND 12,510 billion (USD 512.77 million) has been calculated for recovery needs.",
+          "Of the total losses, the crop sector has incurred the largest proportion with VND 3.44 trillion (USD 140.81 million), followed by the Aquaculture and Fisheries sector with VND 1.94 trillion (USD 79.35 million), see Table 25 for details.",
+          "**Crops** **3\\.44 140.81** **\\-** **3\\.44** Paddy Rice 2.41 98.75 **\\-** 2\\.41 Vegetables 0.29 11.89 **\\-** 0\\.29 Flowers and ornamental plants 0.02 0.85 **\\-** 0\\.02 Other annual crops 0.04 1.81 **\\-** 0\\.04 Perennial industrial plants 0.19 7.64 **\\-** 0\\.19 Concentrated fruit trees 0.48 19.86 **\\-** 0\\.48 **Livestock - - - -** **Aquaculture & Fisheries** **1\\.94 79.35** **\\-** **1\\.94**",
+          "Moreover, the Prime Minister has decided to allocate 350 billion VND from the central budget and 432,585 metric tons of rice from the national export reserve to alleviate the condition of the affected people, especially those who are vulnerable from starvation.",
+          "The focus of the **short-term recovery** should be on the small-scale farmers affected by the storm and floods, to secure their food and income security, and overall livelihoods. For recognized farms of any specialization, the support to recovery should be aligned to government compensation and support schemes with support to the clearing of land and repair of irrigation, recovery support to the aquaculture and fisheries cultures infrastructures of bonds, ponds, and pans. During the recovery process, capacity building on disaster risk reduction and climate smart elements should be integrated to facilitate a building back better approach.",
+          "The focus of the **short-term recovery** should be on the small-scale farmers affected by the storm and floods, to secure their food and income security, and overall livelihoods. Especially provinces with limited numbers of recognized farms should be considered for immediate recovery, as they host largely subsistence farming households. Combined with the number of households below the poverty line, food assistance to the households living below the poverty line is suggested. This can be facilitated through a top up of the existing government social assistance disaster transfers and should cover a basic food allowance for rice for six months, see Human Impact calculation above. Additionally, for the small scale and subsistence households, vegetable cultivation support and replacement of small livestock should be facilitated to support immediate requirements of food security and income generation. For recognized farms of any specialization, the support to recovery should be aligned to government compensation and support schemes. However, overall, support to the clearing of land and repair of irrigation canals should be extended to a proportion of the population. Similarly, recovery support to the aquaculture and fisheries cultures infrastructures of bonds, ponds and pans should be facilitated, especially for the smaller production farms.",
+          "On September 7, 2024, Typhoon Yagi made landfall in northern Viet Nam, striking the coastal regions of Quang Ninh and Hai Phong provinces with wind speeds exceeding 213 km/h.",
+          "Total damages of **VND 8,638.58 billion (USD 354.04 million** ), and total losses of **VND 5,520.50 billion (USD 226.25 million)** have been estimated in the selected provinces.",
+          "The government achieved significant positive results, notably the safe evacuation of over 1 million people from coastal areas before Typhoon Yagi made landfall, protecting their lives and property.",
+          "The government and relevant agencies have also mobilized military forces and local militia to provide emergency support, ensure traffic flow, and deliver essential relief supplies to severely affected areas.",
+          "Additionally, people have also been proactive and self-reliant in prevention, response, and coping, which has helped to minimize the damage caused by the typhoon and subsequent floods.",
+          "Additionally, people have also been proactive and self-reliant in prevention, response, and coping, which has helped to minimize the damage caused by the typhoon and subsequent floods. The government achieved significant positive results, notably the safe evacuation of over 1 million people from coastal areas before Typhoon Yagi made landfall, protecting their lives and property. In addition, the efficient management of major reservoirs such as Hoa Binh and Son VIET NAM MULTI-SECTOR ASSESSMENT (VMSA) REPORT FOR TYPHOON YAGI RECOVERY **3** La significantly mitigated the risk of flooding in downstream areas, especially critical areas like Hanoi and the Red River Delta. The government and relevant agencies have also mobilized military forces and local militia to provide emergency support, ensure traffic flow, and deliver essential relief supplies to severely affected areas."
+        ]
+      },
+      {
+        "title": "Hurricane Helene Impact Report - fieldreport.caes.uga.edu",
+        "url": "https://fieldreport.caes.uga.edu/wp-content/uploads/2025/08/AP-133-1_1.pdf",
+        "excerpts": [
+          "We estimate that Hurricane Helene\u2019s damages to Georgia agriculture and forestry will cost the state economy at least $5.5 billion in 2024 present value."
+        ]
+      },
+      {
+        "title": "Texas agricultural losses from Hurricane Harvey estimated at ...",
+        "url": "https://tscra.org/texas-agricultural-losses-from-hurricane-harvey-estimated-at-more-than-200m/",
+        "excerpts": [
+          "Hurricane Harvey, which decimated parts of South Central Texas and the upper Gulf Coast, caused more than $200 million in crop and livestock losses, according to Texas A&M AgriLife Extension Service economists."
+        ]
+      },
+      {
+        "title": "\u4ee4\u548c\u5143\u5e74\u6771\u65e5\u672c\u53f0\u98a8\uff08\u53f0\u98a8\u7b2c19\u53f7\uff09\u7b49\u306b\u4fc2\u308b\u88ab\u5bb3\u60c5\u5831\uff1a\u8fb2\u6797\u6c34\u7523\u7701",
+        "url": "https://www.maff.go.jp/j/saigai/typhoon/191011/index.html",
+        "excerpts": [
+          "2 \u8fb2\u6797\u6c34\u7523\u95a2\u4fc2\u306e\u88ab\u5bb3\u72b6\u6cc1 1 \u30c0\u30e0\u30fb\u305f\u3081\u6c60 \u30c0\u30e0\u306b\u3064\u3044\u3066\u306f\u3001\u88ab\u5bb3\u60c5\u5831\u306a\u3057\u3002 \u9632\u707d\u91cd\u70b9\u305f\u3081\u6c60\u306b\u3064\u3044\u3066\u306f\u3001\u5bae\u57ce\u770c\u3001\u798f\u5cf6\u770c\u3001\u6803\u6728\u770c\u3001\u7fa4\u99ac\u770c\u3001\u57fc\u7389\u770c\u3001\u5343\u8449\u770c\u3001\u9577\u91ce\u770c\u306b\u304a\u3044\u3066\u3001127\u7b87\u6240\u3067\u88ab\u707d\uff08\u3046\u306112\u7b87\u6240\uff0a\u3067\u6c7a\u58ca\u3001\u3046\u3061115\u7b87\u6240\u3067\u640d\u50b7\uff09\u3002 \u4eba\u7684\u88ab\u5bb3\u306a\u3057\u3002"
+        ]
+      },
+      {
+        "title": "AgCenter experts: Louisiana agriculture suffers at least ...",
+        "url": "https://www.lsuagcenter.com/articles/page1632415649946",
+        "excerpts": [
+          "Timber is Louisiana\u2019s top-grossing agricultural commodity and is a significant economic driver in the Florida Parishes, where many pine trees snapped as Ida unleashed hurricane-force winds.",
+          "A total of about 168,000 acres of trees were affected, costing the industry more than $300 million, Guidry said.",
+          "Timber is Louisiana\u2019s top-grossing agricultural commodity and is a significant economic driver in the Florida Parishes, where many pine trees snapped as Ida unleashed hurricane-force winds. A total of about 168,000 acres of trees were affected, costing the industry more than $300 million, Guidry said."
+        ]
+      },
+      {
+        "title": "Foundations for rebuilding seed systems post Cyclone Idai ...",
+        "url": "https://openknowledge.fao.org/handle/20.500.14283/CC6057EN",
+        "excerpts": [
+          "The cyclones and related floods affected more than 3.8 million people in Southern Africa and destroyed nearly 800 000 hectares of standing crops in Malawi, Mozambique and Zimbabwe."
+        ]
+      },
+      {
+        "title": "HURRICANE MILTON Update from Emergency Management",
+        "url": "https://www.facebook.com/citruscountygov/posts/keeping-you-informed-hurricane-miltonupdate-from-emergency-management/937378768423703",
+        "excerpts": [
+          "HURRICANE MILTON Update from Emergency Management Oct 8, 2024 \u2014 KEEPING YOU INFORMED: HURRICANE MILTON Monday, 3:50 PM The Citrus County Offices will be closed Tuesday, October 8 and Wednesday, October 9."
+        ]
+      },
+      {
+        "title": "cyclone biparjoy: Relief package of Rs 240 crore for farmers ...",
+        "url": "https://economictimes.indiatimes.com/news/india/gujarat-govt-announces-rs-240-cr-relief-package-for-farmers-affected-by-cyclone-biparjoy-in-kutch-banaskantha/articleshow/101765879.cms",
+        "excerpts": [
+          "The Gujarat government on Friday announced a relief package of Rs 240 crore for farmers who suffered losses due to Cyclone Biparjoy in Kutch and Banaskantha districts last month."
+        ]
+      },
+      {
+        "title": "Georgia farmers face more than $2 billion in losses from ...",
+        "url": "https://research.uga.edu/news/georgia-farmers-face-more-than-2-billion-in-losses-from-hurricane-michael/",
+        "excerpts": [
+          "The state\u2019s pecan industry suffered a $100 million loss from this year\u2019s crop plus $260 million in lost trees.",
+          "An additional $200 million in future profits will be lost over the next decade as new orchards are planted and existing orchards are reestablished, said Lenny Wells, UGA Extension pecan specialist.",
+          "The state\u2019s pecan industry suffered a $100 million loss from this year\u2019s crop plus $260 million in lost trees. An additional $200 million in future profits will be lost over the next decade as new orchards are planted and existing orchards are reestablished, said Lenny Wells, UGA Extension pecan specialist."
+        ]
+      },
+      {
+        "title": "Georgia farmers face more than $2 billion in losses from ...",
+        "url": "https://fieldreport.caes.uga.edu/news/georgia-farmers-face-more-than-2-billion-in-losses-from-hurricane-michael/",
+        "excerpts": [
+          "Hurricane Michael blew across southwest Georgia on Oct.",
+          "10, causing more than $2 billion in losses to the state\u2019s agriculture industry, according to early estimates from University of Georgia Cooperative Extension agricultural economists and Extension agents.",
+          "Hurricane Michael blew across southwest Georgia on Oct. 10, causing more than $2 billion in losses to the state\u2019s agriculture industry, according to early estimates from University of Georgia Cooperative Extension agricultural economists and Extension agents."
+        ]
+      },
+      {
+        "title": "2018-2019 Mozambique Humanitarian Response Plan Revised ...",
+        "url": "https://www.unocha.org/publications/report/mozambique/2018-2019-mozambique-humanitarian-response-plan-revised-following-cyclones-idai",
+        "excerpts": [
+          "Following Cyclone Idai\u2019s landfall, more than 715,000 hectares of crops were destroyed, while Cyclone Kenneth affected nearly 55,500 hectares of crops and caused loss of livelihoods, including fishing."
+        ]
+      },
+      {
+        "title": "Assessment of paddy fields\u2019 damage caused by Cyclone Nargis ...",
+        "url": "https://link.springer.com/article/10.1007/s10333-020-00829-0",
+        "excerpts": [
+          "On May 2, 2008, Cyclone Nargis made landfall and crossed Ayeyarwady Region and Yangon City, affecting more than 50 townships and causing massive destruction of personal property and natural ecosystems."
+        ]
+      },
+      {
+        "title": "MOZAMBIQUE Intense Tropical Cyclone Chido - cisu.dk",
+        "url": "https://cisu.dk/media/rmtnwifb/2024_dec_mozambique_tropical-cyclone-chido_final-merged.pdf",
+        "excerpts": [
+          "Tropical Cyclone Chido made landfall in Mozambique on 15 December 2024, resulting in widespread humanitarian needs across Cabo Delgado, Nampula, and Niassa provinces."
+        ]
+      },
+      {
+        "title": "\u8fb2\u6797\u6c34\u7523\u7701\u30db\u30fc\u30e0\u30da\u30fc\u30b8 \u8fb2\u6797\u6c34\u7523\u7701 https://www.maff.go.jp",
+        "url": "https://www.maff.go.jp/",
+        "excerpts": [
+          "\u8fb2\u6797\u6c34\u7523\u7701\u30db\u30fc\u30e0\u30da\u30fc\u30b8"
+        ]
+      },
+      {
+        "title": "Cyclone Batsirai - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Cyclone_Batsirai",
+        "excerpts": [
+          "Intense Tropical Cyclone Batsirai was a deadly tropical cyclone which heavily impacted Madagascar in February 2022, becoming the strongest tropical cyclone to strike Madagascar since Cyclone Enawo in 2017."
+        ]
+      },
+      {
+        "title": "Typhoon Jebi - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Typhoon_Jebi",
+        "excerpts": [
+          "A total of 30,996 hectares (76,590 acres) of cropland was damaged by the typhoon's strong winds, [90] which blew down fruit trees and caused lodging of vegetable and feed crops. [91]"
+        ]
+      },
+      {
+        "title": "Report finds $25B in insured losses from Milton in Florida",
+        "url": "https://www.wesh.com/article/insured-losses-from-hurricane-milton-florida/63396461",
+        "excerpts": [
+          "Report finds $25B in insured losses from Milton in Florida Jan 10, 2025 \u2014 The Florida Office of Insurance Regulation data shows that Milton's estimated insured losses are much at $3.6 billion."
+        ]
+      },
+      {
+        "title": "1991 Bangladesh cyclone",
+        "url": "https://en.wikipedia.org/wiki/1991_Bangladesh_cyclone",
+        "excerpts": [
+          "1991 Bangladesh cyclone The 1991 Bangladesh cyclone was a catastrophic tropical cyclone, causing at least 138,866 deaths and about US$1.7 billion (1991 USD) in damage."
+        ]
+      },
+      {
+        "title": "Cyclone Nargis Case Study",
+        "url": "https://www.coolgeography.co.uk/A-level/AQA/Year%2013/Weather%20and%20climate/Hurricanes/Cyclone_Nargis.htm",
+        "excerpts": [
+          "Cyclone Nargis Case Study Cycone Nargis struck in May 2008 and caused huge devastation in the military dictatorship of Myanmar (formerly known as Burma)."
+        ]
+      },
+      {
+        "title": "Hurricane Milton caused up to $2.5B in Florida farm damage",
+        "url": "https://www.agriculturedive.com/news/hurricane-milton-florida-farm-damage-usda/730404",
+        "excerpts": [
+          "Hurricane Milton caused up to $2.5B in Florida farm damage Strong winds and flooding from Hurricane Milton generated up to $2.5 billion in damages to Florida\u2019s farms, with the state\u2019s agriculture department reporting wrecked infrastructure and \u201csignificant production losses\u201d among orange crops."
+        ]
+      },
+      {
+        "title": "Preliminary estimates of losses in Louisiana agriculture ...",
+        "url": "https://www.lsuagcenter.com/topics/family_home/hazards_and_threats/recovery_assistance/agdisaster/preliminary-estimates-of-losses-in-louisiana-agriculture-forestry-and-fisheries-from-hurricane-gusta",
+        "excerpts": [
+          "Estimates of losses to Louisiana agriculture, forestry and fisheries resulting from Hurricane Gustav and Hurricane Ike now place the totals as high as $950-plus million and climbing."
+        ]
+      },
+      {
+        "title": "Madagascar - Tropical Heavy Rains and Cyclone - IFRC GO",
+        "url": "https://go.ifrc.org/emergencies/5807/details",
+        "excerpts": [
+          "Situational Overview Tropical Cyclone Batsirai made landfall as an Intense Tropical Cyclone (Category 3 equivalent) on the east coast of Madagascar\u201414 kilometres north of the city of Mananjary\u2014at 8 p.m. local time on Saturday, 5 February 2022."
+        ]
+      },
+      {
+        "title": "Mozambique: Intense Tropical Cyclone Chido - Flash Update No ...",
+        "url": "https://www.unocha.org/publications/report/mozambique/mozambique-intense-tropical-cyclone-chido-flash-update-no-5-27-december-2024",
+        "excerpts": [
+          "WFP's Advanced Disaster Analysis and Mapping Flood Impact Analysis revealed over 456,000 hectares of land, including 28,000 hectares of croplands, were inundated in cyclone-affected provinces."
+        ]
+      },
+      {
+        "title": "Ag Disaster: Loss & Recovery - LSU AgCenter",
+        "url": "https://www.lsuagcenter.com/topics/family_home/hazards_and_threats/recovery_assistance/agdisaster",
+        "excerpts": [
+          "Estimates of losses to Louisiana agriculture, forestry and fisheries resulting from Hurricane Gustav and Hurricane Ike now place the totals as high as $950-plus million and climbing."
+        ]
+      },
+      {
+        "title": "http://gpm.nasa.gov/data/imerg",
+        "url": "http://gpm.nasa.gov/data/imerg",
+        "excerpts": [
+          "Use \"Early Run\" or \"Late Run\" for low latency applications, or \"Final Run\" for research purposes where latency is not a concern."
+        ]
+      },
+      {
+        "title": "http://ecmwf.int/en/forecasts",
+        "url": "http://ecmwf.int/en/forecasts",
+        "excerpts": [
+          "We provide global forecasts, climate reanalyses and specific datasets, designed to meet different user requirements."
+        ]
+      },
+      {
+        "title": "http://ecmwf.int/en/forecasts/access-forecasts/access-archive-datasets",
+        "url": "http://ecmwf.int/en/forecasts/access-forecasts/access-archive-datasets",
+        "excerpts": [
+          "Access to archive datasets - ECMWF Web interfaces where you can explore data, configure your data request, check availability and size, generate download request scripts, and download the data in GRIB/NetCDF*"
+        ]
+      },
+      {
+        "title": "Damage from Cyclone Ditwah in Sri Lanka Estimated at ...",
+        "url": "https://www.worldbank.org/en/news/press-release/2025/12/22/damage-from-cyclone-ditwah-in-sri-lanka-estimated-at-4-1-billion",
+        "excerpts": [
+          "Damage from Cyclone Ditwah in Sri Lanka Estimated at ..."
+        ]
+      }
+    ],
+    "reasoning": "Assessment reasoning:\n- The field_description asks for a complete, global ledger of documented cyclone-related agricultural damage, organized by region/year, with per-event details and explicit MISSING-DATA where data is unavailable. It also requires multiple sections (executive summary, ledger, coverage, missing items, patterns, engine feed, logs, verdict).\n- The provided field_answer attempts to present a large, structured ledger and includes many events with damage figures, farmer actions, sources, and grades. However, it explicitly acknowledges that a truly complete global ledger does not exist in open archives and marks many entries as MISSING-DATA or D-grade where data is missing or uncertain. This indicates the answer concedes incompleteness rather than delivering a strict, verifiably complete ledger as mandated.\n- Step 1 (completeness): Based on the field_description, a truly complete ledger is expected. Since the answer itself notes substantial gaps and explicitly marks unsupported/missing data for many events, completeness should be false.\n- Step 2 (excerpts support): The excerpts list multiple sources and specific event data (Sidr, Mitch, Damrey, Rai/Odette, etc.) that the field_answer references. Several of the events and figures cited in the answer appear to be supported by the excerpts (e.g., Sidr data, Damrey data, Remal/Remal-like entries, Odette figures, Mitch, etc.). However, completeness is still not achieved as per the field_description, and some claims (global exhaustiveness, exact per-event agriculture totals for all listed events, and the complete cross-archive ledger) are not fully demonstrable from the excerpts alone. Therefore, excerpts support is partial but present for many items.\n- Conclusion: completeness = false; supported = true (field_answer is largely aligned with excerpts for many events, though not fully complete).",
+    "confidence": "low"
+  }
+]
