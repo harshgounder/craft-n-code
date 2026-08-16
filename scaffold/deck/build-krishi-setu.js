@@ -114,6 +114,29 @@ s.addNotes("One problem, one cost. Asha is a composite persona grounded in post-
   s.addNotes("This slide is the holy-shit moment: 49 reports, 7 waves, 3.2M chars, 4,800+ sources, A-D grades. Judges who ask 'where is this from' get a path. Never claim we read everything without this map to prove it.");
 }
 
+// ---------- S2C THE METHOD: NOTHING IS A STATIC EVENT ----------
+s = p.addSlide();
+s.background = { color: DARK };
+extrudeText(s, "The method: everything is connected", M, 0.32, W - 2 * M, 0.6, { fontSize: 30, color: WHITE }, true);
+accentBar(s, M, 0.98, 1.4, ORANGE);
+s.addText("No phenomenon is treated as a separate static event. Every hazard is a node in a web of causes and effects, and the system computes the chain, not the headline.", { x: M, y: 1.05, w: 9, h: 0.6, fontSize: 13.5, bold: true, color: WHITE, fontFace: "Arial", margin: 0 });
+
+const chain = [
+  ["FULL LEDGERS", "every cyclone and major flood on record with its agricultural damage: IBTrACS 1848-present, EM-DAT, Dartmouth Flood Observatory 1985-present, IMD archives. Sidr 1.4M ha, Idai 715K ha, Yagi 286K ha rice, Fani 108,220 ha, Dana, Yaas. Every row graded A-D, missing data marked, never silently dropped."],
+  ["CASCADE GRAPH", "typed edges: TRIGGER, AMPLIFY, CASCADE, COMPOUND. cyclone -> surge -> salinity -> soil -> next season. flood -> waterlogging -> root rot -> pest -> market -> debt. the advisory is a state machine that evolves with the chain, it never dies after one message."],
+  ["FRONTIER MATH", "Monte Carlo with convergence gates, CVaR at every decision node, copulas for compound events (cyclone + surge + river flood, fitted not borrowed), BOCPD regime detection, fragility curves per crop and stage, self-excitation for disaster clustering."],
+  ["POSITIVE CASCADES", "the same math finds what the disaster leaves behind: flood -> groundwater recharge -> next-season security, fish ingress -> yield, silt -> fertility. prevention is not the only use. the system uses the disaster."],
+];
+chain.forEach((ch, i) => {
+  const x = M + (i % 2) * 4.55;
+  const y = 1.85 + Math.floor(i / 2) * 1.35;
+  card(s, x, y, 4.45, 1.25, CARD_ALT, { dark: true, rotate: -1.5, line: { color: "2A2A2A", width: 1 }, strip: "555555" });
+  s.addText(ch[0], { x: x + 0.2, y: y + 0.1, w: 4.05, h: 0.35, fontSize: 14, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
+  s.addText(ch[1], { x: x + 0.2, y: y + 0.48, w: 4.05, h: 0.75, fontSize: 8.5, color: GRAY2, fontFace: "Arial", margin: 0 });
+});
+footer(s, "Source: 49-report evidence base, cascade engine spec (d47), global ledgers (d44, d45), positive cascades (d46). All on the repo.", 5.1, true);
+s.addNotes("The Ariadne transfer: a typed cascade graph with cause and effect edges, Monte Carlo uncertainty propagation, CVaR decisions, and explicit compound-event dependence. This is the intellectual spine the judges have never seen in an advisory product.");
+
 // ---------- S3 SOLUTION ----------
 s = p.addSlide();
 s.background = { color: WHITE };
