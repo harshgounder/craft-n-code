@@ -243,6 +243,30 @@ extrudeText(s, "Warnings are infrastructure. Decisions are the product.", M, 4.8
 footer(s, "Prior art from the statement-faithful research wave: channel evidence in research/raw/v2/cnc-channel-ps07-ultra8x-v2.content.md.", 5.32);
 s.addNotes("One contrast, one sentence. The moat is the governed decision: action, deadline, source, cost of waiting, trace. Prior art rows are mine-verified, not marketing.");
 
+// ---------- S7B THE COUNTERFACTUAL: REAL EVENTS, REAL LEAD TIMES ----------
+s = p.addSlide();
+s.background = { color: DARK };
+extrudeText(s, "The counterfactual: what this changes in a real event", M, 0.32, W - 2 * M, 0.6, { fontSize: 28, color: WHITE }, true);
+accentBar(s, M, 0.98, 1.4, ORANGE);
+s.addText("We took the real incidents from the ledgers, ran the engine backward over their actual timelines, and compared the decision output to what the ground truth records. No prevented-loss claim is made: the numbers are the events as they happened.", { x: M, y: 1.05, w: 9, h: 0.6, fontSize: 11.5, color: GRAY2, fontFace: "Arial", margin: 0 });
+
+const events = [
+  ["FANI 2019", "108,220 ha crop loss, Rs 1,304.58 cr (OSDMA DLNA). Official lead: watch 90h, alert 66h, warning 36h. The engine at T-24 issues a stage-specific action with deadline and cost of waiting for every notified plot. The replay posterior band contains the real anchor.", "d21, d47, d12"],
+  ["YAAS 2021", "5,882 ha salt-affected across 5 Balasore blocks. Surge 2-4 m over a full-moon tide. The engine's advisory at T-48: move seed above the forecast water line, brace or cut banana, photo standing crop for the claim. Recovery phase then plans saline flush and next-season variety.", "d22, d47"],
+  ["DANA 2024", "5,428 acres across 4 blocks of Kendrapada + Bhadrak (rapid assessment). The engine's T-72 watch triggers R17 harvest-now for mature owned plots with labor, R18 protect-in-place for immature paddy. Same warning, two different governed decisions.", "d6, d20"],
+  ["1999 SUPER CYCLONE", "9,893 deaths with a 48h+ official warning. The warning existed; the decision did not. This is the entire thesis: warnings are infrastructure, decisions are the product. Every subsequent event is measured against that failure.", "d1, d35"],
+];
+events.forEach((ev, i) => {
+  const x = M + (i % 2) * 4.55;
+  const y = 1.8 + Math.floor(i / 2) * 1.5;
+  card(s, x, y, 4.45, 1.4, CARD_ALT, { dark: true, rotate: -1.5, line: { color: "2A2A2A", width: 1 }, strip: "555555" });
+  s.addText(ev[0], { x: x + 0.2, y: y + 0.1, w: 4.05, h: 0.35, fontSize: 15, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
+  s.addText(ev[1], { x: x + 0.2, y: y + 0.48, w: 4.05, h: 0.85, fontSize: 8, color: GRAY2, fontFace: "Arial", margin: 0 });
+  s.addText("sources: " + ev[2], { x: x + 0.2, y: y + 1.22, w: 4.05, h: 0.15, fontSize: 6.5, color: "8A8A8A", fontFace: "Arial", margin: 0 });
+});
+footer(s, "The replay harness froze each event's best track before running, so the engine never sees the outcome. Honesty: what the engine WOULD have issued, validated against what happened.", 5.1, true);
+s.addNotes("Counterfactual discipline: no avoided-loss claims anywhere. The events are real, the lead times are real, the engine output is what the product would issue, and the replay validates the loss bands against actual anchors. A judge asking 'so what would this have done in Fani' gets this slide.");
+
 // ---------- S7 BUSINESS MODEL ----------
 s = p.addSlide();
 s.background = { color: WHITE };

@@ -12,7 +12,7 @@ import zipfile, re, sys
 PPTX = 'KrishiSetu-Round0-20260816.pptx'
 z = zipfile.ZipFile(PPTX)
 slides = [n for n in z.namelist() if re.match(r'ppt/slides/slide\d+\.xml$', n)]
-assert len(slides) == 12, f'slide count {len(slides)}, expected 12'
+assert len(slides) == 13, f'slide count {len(slides)}, expected 13'
 
 allxml = ''
 for n in z.namelist():
