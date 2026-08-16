@@ -264,7 +264,7 @@ events.forEach((ev, i) => {
   s.addText(ev[1], { x: x + 0.2, y: y + 0.48, w: 4.05, h: 0.85, fontSize: 8, color: GRAY2, fontFace: "Arial", margin: 0 });
   s.addText("sources: " + ev[2], { x: x + 0.2, y: y + 1.22, w: 4.05, h: 0.15, fontSize: 6.5, color: "8A8A8A", fontFace: "Arial", margin: 0 });
 });
-footer(s, "The replay harness froze each event's best track before running, so the engine never sees the outcome. Honesty: what the engine WOULD have issued, validated against what happened.", 5.1, true);
+footer(s, "The replay froze each event's best track before running, so the engine never sees the outcome. Honesty: what the engine WOULD have issued, validated against what happened.", 5.1, true);
 s.addNotes("Counterfactual discipline: no avoided-loss claims anywhere. The events are real, the lead times are real, the engine output is what the product would issue, and the replay validates the loss bands against actual anchors. A judge asking 'so what would this have done in Fani' gets this slide.");
 
 // ---------- S7 BUSINESS MODEL ----------
