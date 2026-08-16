@@ -65,7 +65,7 @@ under 100x spikes, never timestamp batching.
 - Typed signed time-sliced DAG: TRIGGER/AMPLIFY/CASCADE/COMPOUND edges,
   sign positive or negative, lag, CP, evidence scope, source, grade
 - Calibrated on Fani (108,220 ha, Rs 1,304.58 cr) and Yaas (2-4m surge
-  over full-moon tide): the replay harness with uncertainty bands
+  over full-moon tide): the replay setup with uncertainty bands
 - Monte Carlo with convergence gates (pilot + main, precision stops)
 - 95% CVaR at loss nodes, optimized only at action nodes
 - Copulas fitted locally, never borrowed (no invented Gumbel theta)

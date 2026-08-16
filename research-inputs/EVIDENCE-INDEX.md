@@ -1,4 +1,4 @@
-# EVIDENCE-INDEX.md — The 48-Report Map (nothing omitted, nothing hidden)
+# EVIDENCE-INDEX.md: The 48-Report Map (nothing omitted, nothing hidden)
 
 Every KrishiSetu research report, what it proved, and which deck claim it
 feeds. If a claim in the deck or README has no row here, it does not ship.
