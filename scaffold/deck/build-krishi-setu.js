@@ -124,7 +124,7 @@ s.addText("No phenomenon is treated as a separate static event. Every hazard is 
 const chain = [
   ["FULL LEDGERS", "every cyclone and major flood on record with its agricultural damage: IBTrACS 1848-present, EM-DAT, Dartmouth Flood Observatory 1985-present, IMD archives. Sidr 1.4M ha, Idai 715K ha, Yagi 286K ha rice, Fani 108,220 ha, Dana, Yaas. Every row graded A-D, missing data marked, never silently dropped."],
   ["CASCADE GRAPH", "typed edges: TRIGGER, AMPLIFY, CASCADE, COMPOUND. cyclone -> surge -> salinity -> soil -> next season. flood -> waterlogging -> root rot -> pest -> market -> debt. the advisory is a state machine that evolves with the chain, it never dies after one message."],
-  ["FRONTIER MATH", "Monte Carlo with convergence gates, CVaR at every decision node, copulas for compound events (cyclone + surge + river flood, fitted not borrowed), BOCPD regime detection, fragility curves per crop and stage, self-excitation for disaster clustering."],
+  ["FRONTIER MATH", "shipped in the prototype: Monte Carlo with convergence gates, CVaR at every decision node, fragility curves per crop and stage. designed for the live system: fitted copulas for compound events (cyclone + surge + river flood), BOCPD regime detection, self-excitation for disaster clustering."],
   ["POSITIVE CASCADES", "the same math finds what the disaster leaves behind: flood -> groundwater recharge -> next-season security, fish ingress -> yield, silt -> fertility. prevention is not the only use. the system uses the disaster."],
 ];
 chain.forEach((ch, i) => {
@@ -220,7 +220,7 @@ s.addText("\"Cyclone expected. Stay safe.\"", { x: 0.7, y: 1.6, w: 4.0, h: 0.5, 
 s.addText("No crop, no stage, no deadline, no cost of waiting, no recovery step.", { x: 0.7, y: 2.2, w: 4.0, h: 0.55, fontSize: 11, color: GRAY, fontFace: "Arial", margin: 0 });
 card(s, 5.15, 1.05, 4.35, 1.85, DARK, { rotate: -2 });
 s.addText("The advisory says", { x: 5.35, y: 1.2, w: 4.0, h: 0.35, fontSize: 12, bold: true, color: WHITE, fontFace: "Arial Black", margin: 0 });
-s.addText("\"Plot 12B, flowering paddy: harvest by 18:00 tomorrow, or move to the raised platform. Source: IMD + rule R17. Cost of waiting: est. yield loss.\"", { x: 5.35, y: 1.6, w: 4.0, h: 1.1, fontSize: 13.5, color: WHITE, fontFace: "Arial", margin: 0 });
+s.addText("\"Plot 12B, mature paddy: harvest by 18:00 tomorrow, or move to the raised platform. Source: IMD + rule R17. Cost of waiting: est. yield loss.\"", { x: 5.35, y: 1.6, w: 4.0, h: 1.1, fontSize: 13.5, color: WHITE, fontFace: "Arial", margin: 0 });
 const prior = [
   ["Meghdoot (IMD)", "alerts and agromet advisories", "no farm profile, no staged action, no claims path"],
   ["Fasal, DeHaat", "marketplace and credit rails", "advisory is content, not a governed decision"],
